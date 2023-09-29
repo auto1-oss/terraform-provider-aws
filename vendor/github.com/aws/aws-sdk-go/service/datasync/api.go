@@ -29,14 +29,13 @@ const opCancelTaskExecution = "CancelTaskExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelTaskExecutionRequest method.
+//	req, resp := client.CancelTaskExecutionRequest(params)
 //
-//    // Example sending a request using the CancelTaskExecutionRequest method.
-//    req, resp := client.CancelTaskExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CancelTaskExecution
 func (c *DataSync) CancelTaskExecutionRequest(input *CancelTaskExecutionInput) (req *request.Request, output *CancelTaskExecutionOutput) {
@@ -58,15 +57,14 @@ func (c *DataSync) CancelTaskExecutionRequest(input *CancelTaskExecutionInput) (
 
 // CancelTaskExecution API operation for AWS DataSync.
 //
-// Cancels execution of a task.
+// Stops an DataSync task execution that's in progress. The transfer of some
+// files are abruptly interrupted. File contents that're transferred to the
+// destination might be incomplete or inconsistent with the source files.
 //
-// When you cancel a task execution, the transfer of some files are abruptly
-// interrupted. The contents of files that are transferred to the destination
-// might be incomplete or inconsistent with the source files. However, if you
-// start a new task execution on the same task and you allow the task execution
-// to complete, file content on the destination is complete and consistent.
+// However, if you start a new task execution using the same task and allow
+// it to finish, file content on the destination will be complete and consistent.
 // This applies to other unexpected failures that interrupt a task execution.
-// In all of these cases, AWS DataSync successfully complete the transfer when
+// In all of these cases, DataSync successfully completes the transfer when
 // you start the next task execution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -77,11 +75,12 @@ func (c *DataSync) CancelTaskExecutionRequest(input *CancelTaskExecutionInput) (
 // API operation CancelTaskExecution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CancelTaskExecution
 func (c *DataSync) CancelTaskExecution(input *CancelTaskExecutionInput) (*CancelTaskExecutionOutput, error) {
@@ -121,14 +120,13 @@ const opCreateAgent = "CreateAgent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateAgentRequest method.
+//	req, resp := client.CreateAgentRequest(params)
 //
-//    // Example sending a request using the CreateAgentRequest method.
-//    req, resp := client.CreateAgentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateAgent
 func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Request, output *CreateAgentOutput) {
@@ -149,24 +147,24 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 
 // CreateAgent API operation for AWS DataSync.
 //
-// Activates an AWS DataSync agent that you have deployed on your host. The
-// activation process associates your agent with your account. In the activation
-// process, you specify information such as the AWS Region that you want to
-// activate the agent in. You activate the agent in the AWS Region where your
-// target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created
-// in this AWS Region.
+// Activates an DataSync agent that you have deployed in your storage environment.
+// The activation process associates your agent with your account. In the activation
+// process, you specify information such as the Amazon Web Services Region that
+// you want to activate the agent in. You activate the agent in the Amazon Web
+// Services Region where your target locations (in Amazon S3 or Amazon EFS)
+// reside. Your tasks are created in this Amazon Web Services Region.
 //
-// You can activate the agent in a VPC (Virtual private Cloud) or provide the
+// You can activate the agent in a VPC (virtual private cloud) or provide the
 // agent access to a VPC endpoint so you can run tasks without going over the
-// public Internet.
+// public internet.
 //
 // You can use an agent for more than one location. If a task uses multiple
 // agents, all of them need to have status AVAILABLE for the task to run. If
 // you use multiple agents for a source location, the status of all the agents
 // must be AVAILABLE for the task to run.
 //
-// Agents are automatically updated by AWS on a regular basis, using a mechanism
-// that ensures minimal interruption to your tasks.
+// Agents are automatically updated by Amazon Web Services on a regular basis,
+// using a mechanism that ensures minimal interruption to your tasks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -176,11 +174,12 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 // API operation CreateAgent for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateAgent
 func (c *DataSync) CreateAgent(input *CreateAgentInput) (*CreateAgentOutput, error) {
@@ -220,14 +219,13 @@ const opCreateLocationEfs = "CreateLocationEfs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLocationEfsRequest method.
+//	req, resp := client.CreateLocationEfsRequest(params)
 //
-//    // Example sending a request using the CreateLocationEfsRequest method.
-//    req, resp := client.CreateLocationEfsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationEfs
 func (c *DataSync) CreateLocationEfsRequest(input *CreateLocationEfsInput) (req *request.Request, output *CreateLocationEfsOutput) {
@@ -248,7 +246,9 @@ func (c *DataSync) CreateLocationEfsRequest(input *CreateLocationEfsInput) (req 
 
 // CreateLocationEfs API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon EFS file system.
+// Creates an endpoint for an Amazon EFS file system that DataSync can access
+// for a transfer. For more information, see Creating a location for Amazon
+// EFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -258,11 +258,12 @@ func (c *DataSync) CreateLocationEfsRequest(input *CreateLocationEfsInput) (req 
 // API operation CreateLocationEfs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationEfs
 func (c *DataSync) CreateLocationEfs(input *CreateLocationEfsInput) (*CreateLocationEfsOutput, error) {
@@ -286,6 +287,259 @@ func (c *DataSync) CreateLocationEfsWithContext(ctx aws.Context, input *CreateLo
 	return out, req.Send()
 }
 
+const opCreateLocationFsxLustre = "CreateLocationFsxLustre"
+
+// CreateLocationFsxLustreRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxLustre operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxLustre for more information on using the CreateLocationFsxLustre
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLocationFsxLustreRequest method.
+//	req, resp := client.CreateLocationFsxLustreRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxLustre
+func (c *DataSync) CreateLocationFsxLustreRequest(input *CreateLocationFsxLustreInput) (req *request.Request, output *CreateLocationFsxLustreOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxLustre,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxLustreInput{}
+	}
+
+	output = &CreateLocationFsxLustreOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxLustre API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for Lustre file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxLustre for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxLustre
+func (c *DataSync) CreateLocationFsxLustre(input *CreateLocationFsxLustreInput) (*CreateLocationFsxLustreOutput, error) {
+	req, out := c.CreateLocationFsxLustreRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxLustreWithContext is the same as CreateLocationFsxLustre with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxLustre for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxLustreWithContext(ctx aws.Context, input *CreateLocationFsxLustreInput, opts ...request.Option) (*CreateLocationFsxLustreOutput, error) {
+	req, out := c.CreateLocationFsxLustreRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLocationFsxOntap = "CreateLocationFsxOntap"
+
+// CreateLocationFsxOntapRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxOntap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxOntap for more information on using the CreateLocationFsxOntap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLocationFsxOntapRequest method.
+//	req, resp := client.CreateLocationFsxOntapRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOntap
+func (c *DataSync) CreateLocationFsxOntapRequest(input *CreateLocationFsxOntapInput) (req *request.Request, output *CreateLocationFsxOntapOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxOntap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxOntapInput{}
+	}
+
+	output = &CreateLocationFsxOntapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxOntap API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync
+// can access for a transfer. For more information, see Creating a location
+// for FSx for ONTAP (https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxOntap for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOntap
+func (c *DataSync) CreateLocationFsxOntap(input *CreateLocationFsxOntapInput) (*CreateLocationFsxOntapOutput, error) {
+	req, out := c.CreateLocationFsxOntapRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxOntapWithContext is the same as CreateLocationFsxOntap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxOntap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxOntapWithContext(ctx aws.Context, input *CreateLocationFsxOntapInput, opts ...request.Option) (*CreateLocationFsxOntapOutput, error) {
+	req, out := c.CreateLocationFsxOntapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLocationFsxOpenZfs = "CreateLocationFsxOpenZfs"
+
+// CreateLocationFsxOpenZfsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxOpenZfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxOpenZfs for more information on using the CreateLocationFsxOpenZfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLocationFsxOpenZfsRequest method.
+//	req, resp := client.CreateLocationFsxOpenZfsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOpenZfs
+func (c *DataSync) CreateLocationFsxOpenZfsRequest(input *CreateLocationFsxOpenZfsInput) (req *request.Request, output *CreateLocationFsxOpenZfsOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxOpenZfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxOpenZfsInput{}
+	}
+
+	output = &CreateLocationFsxOpenZfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxOpenZfs API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync
+// can access for a transfer. For more information, see Creating a location
+// for FSx for OpenZFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html).
+//
+// Request parameters related to SMB aren't supported with the CreateLocationFsxOpenZfs
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxOpenZfs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxOpenZfs
+func (c *DataSync) CreateLocationFsxOpenZfs(input *CreateLocationFsxOpenZfsInput) (*CreateLocationFsxOpenZfsOutput, error) {
+	req, out := c.CreateLocationFsxOpenZfsRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxOpenZfsWithContext is the same as CreateLocationFsxOpenZfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxOpenZfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxOpenZfsWithContext(ctx aws.Context, input *CreateLocationFsxOpenZfsInput, opts ...request.Option) (*CreateLocationFsxOpenZfsOutput, error) {
+	req, out := c.CreateLocationFsxOpenZfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationFsxWindows = "CreateLocationFsxWindows"
 
 // CreateLocationFsxWindowsRequest generates a "aws/request.Request" representing the
@@ -302,14 +556,13 @@ const opCreateLocationFsxWindows = "CreateLocationFsxWindows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLocationFsxWindowsRequest method.
+//	req, resp := client.CreateLocationFsxWindowsRequest(params)
 //
-//    // Example sending a request using the CreateLocationFsxWindowsRequest method.
-//    req, resp := client.CreateLocationFsxWindowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxWindows
 func (c *DataSync) CreateLocationFsxWindowsRequest(input *CreateLocationFsxWindowsInput) (req *request.Request, output *CreateLocationFsxWindowsOutput) {
@@ -330,7 +583,7 @@ func (c *DataSync) CreateLocationFsxWindowsRequest(input *CreateLocationFsxWindo
 
 // CreateLocationFsxWindows API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon FSx for Windows file system.
+// Creates an endpoint for an Amazon FSx for Windows File Server file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -340,11 +593,12 @@ func (c *DataSync) CreateLocationFsxWindowsRequest(input *CreateLocationFsxWindo
 // API operation CreateLocationFsxWindows for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxWindows
 func (c *DataSync) CreateLocationFsxWindows(input *CreateLocationFsxWindowsInput) (*CreateLocationFsxWindowsOutput, error) {
@@ -368,6 +622,88 @@ func (c *DataSync) CreateLocationFsxWindowsWithContext(ctx aws.Context, input *C
 	return out, req.Send()
 }
 
+const opCreateLocationHdfs = "CreateLocationHdfs"
+
+// CreateLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationHdfs for more information on using the CreateLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLocationHdfsRequest method.
+//	req, resp := client.CreateLocationHdfsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationHdfs
+func (c *DataSync) CreateLocationHdfsRequest(input *CreateLocationHdfsInput) (req *request.Request, output *CreateLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationHdfsInput{}
+	}
+
+	output = &CreateLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationHdfs API operation for AWS DataSync.
+//
+// Creates an endpoint for a Hadoop Distributed File System (HDFS).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationHdfs
+func (c *DataSync) CreateLocationHdfs(input *CreateLocationHdfsInput) (*CreateLocationHdfsOutput, error) {
+	req, out := c.CreateLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationHdfsWithContext is the same as CreateLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationHdfsWithContext(ctx aws.Context, input *CreateLocationHdfsInput, opts ...request.Option) (*CreateLocationHdfsOutput, error) {
+	req, out := c.CreateLocationHdfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationNfs = "CreateLocationNfs"
 
 // CreateLocationNfsRequest generates a "aws/request.Request" representing the
@@ -384,14 +720,13 @@ const opCreateLocationNfs = "CreateLocationNfs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLocationNfsRequest method.
+//	req, resp := client.CreateLocationNfsRequest(params)
 //
-//    // Example sending a request using the CreateLocationNfsRequest method.
-//    req, resp := client.CreateLocationNfsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationNfs
 func (c *DataSync) CreateLocationNfsRequest(input *CreateLocationNfsInput) (req *request.Request, output *CreateLocationNfsOutput) {
@@ -413,7 +748,7 @@ func (c *DataSync) CreateLocationNfsRequest(input *CreateLocationNfsInput) (req 
 // CreateLocationNfs API operation for AWS DataSync.
 //
 // Defines a file system on a Network File System (NFS) server that can be read
-// from or written to
+// from or written to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -423,11 +758,12 @@ func (c *DataSync) CreateLocationNfsRequest(input *CreateLocationNfsInput) (req 
 // API operation CreateLocationNfs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationNfs
 func (c *DataSync) CreateLocationNfs(input *CreateLocationNfsInput) (*CreateLocationNfsOutput, error) {
@@ -451,6 +787,90 @@ func (c *DataSync) CreateLocationNfsWithContext(ctx aws.Context, input *CreateLo
 	return out, req.Send()
 }
 
+const opCreateLocationObjectStorage = "CreateLocationObjectStorage"
+
+// CreateLocationObjectStorageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationObjectStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationObjectStorage for more information on using the CreateLocationObjectStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLocationObjectStorageRequest method.
+//	req, resp := client.CreateLocationObjectStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationObjectStorage
+func (c *DataSync) CreateLocationObjectStorageRequest(input *CreateLocationObjectStorageInput) (req *request.Request, output *CreateLocationObjectStorageOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationObjectStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationObjectStorageInput{}
+	}
+
+	output = &CreateLocationObjectStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationObjectStorage API operation for AWS DataSync.
+//
+// Creates an endpoint for an object storage system that DataSync can access
+// for a transfer. For more information, see Creating a location for object
+// storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationObjectStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationObjectStorage
+func (c *DataSync) CreateLocationObjectStorage(input *CreateLocationObjectStorageInput) (*CreateLocationObjectStorageOutput, error) {
+	req, out := c.CreateLocationObjectStorageRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationObjectStorageWithContext is the same as CreateLocationObjectStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationObjectStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationObjectStorageWithContext(ctx aws.Context, input *CreateLocationObjectStorageInput, opts ...request.Option) (*CreateLocationObjectStorageOutput, error) {
+	req, out := c.CreateLocationObjectStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationS3 = "CreateLocationS3"
 
 // CreateLocationS3Request generates a "aws/request.Request" representing the
@@ -467,14 +887,13 @@ const opCreateLocationS3 = "CreateLocationS3"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLocationS3Request method.
+//	req, resp := client.CreateLocationS3Request(params)
 //
-//    // Example sending a request using the CreateLocationS3Request method.
-//    req, resp := client.CreateLocationS3Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationS3
 func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *request.Request, output *CreateLocationS3Output) {
@@ -495,16 +914,11 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 
 // CreateLocationS3 API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon S3 bucket.
+// Creates an endpoint for an Amazon S3 bucket that DataSync can access for
+// a transfer.
 //
-// For AWS DataSync to access a destination S3 bucket, it needs an AWS Identity
-// and Access Management (IAM) role that has the required permissions. You can
-// set up the required permissions by creating an IAM policy that grants the
-// required permissions and attaching the policy to the role. An example of
-// such a policy is shown in the examples section.
-//
-// For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html#create-s3-location
-// in the AWS DataSync User Guide.
+// For more information, see Create an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli)
+// in the DataSync User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -514,11 +928,12 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 // API operation CreateLocationS3 for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationS3
 func (c *DataSync) CreateLocationS3(input *CreateLocationS3Input) (*CreateLocationS3Output, error) {
@@ -558,14 +973,13 @@ const opCreateLocationSmb = "CreateLocationSmb"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLocationSmbRequest method.
+//	req, resp := client.CreateLocationSmbRequest(params)
 //
-//    // Example sending a request using the CreateLocationSmbRequest method.
-//    req, resp := client.CreateLocationSmbRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationSmb
 func (c *DataSync) CreateLocationSmbRequest(input *CreateLocationSmbInput) (req *request.Request, output *CreateLocationSmbOutput) {
@@ -586,7 +1000,7 @@ func (c *DataSync) CreateLocationSmbRequest(input *CreateLocationSmbInput) (req 
 
 // CreateLocationSmb API operation for AWS DataSync.
 //
-// Defines a file system on an Server Message Block (SMB) server that can be
+// Defines a file system on a Server Message Block (SMB) server that can be
 // read from or written to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -597,11 +1011,12 @@ func (c *DataSync) CreateLocationSmbRequest(input *CreateLocationSmbInput) (req 
 // API operation CreateLocationSmb for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationSmb
 func (c *DataSync) CreateLocationSmb(input *CreateLocationSmbInput) (*CreateLocationSmbOutput, error) {
@@ -641,14 +1056,13 @@ const opCreateTask = "CreateTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTaskRequest method.
+//	req, resp := client.CreateTaskRequest(params)
 //
-//    // Example sending a request using the CreateTaskRequest method.
-//    req, resp := client.CreateTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateTask
 func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Request, output *CreateTaskOutput) {
@@ -669,23 +1083,11 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 
 // CreateTask API operation for AWS DataSync.
 //
-// Creates a task. A task is a set of two locations (source and destination)
-// and a set of Options that you use to control the behavior of a task. If you
-// don't specify Options when you create a task, AWS DataSync populates them
-// with service defaults.
+// Configures a task, which defines where and how DataSync transfers your data.
 //
-// When you create a task, it first enters the CREATING state. During CREATING
-// AWS DataSync attempts to mount the on-premises Network File System (NFS)
-// location. The task transitions to the AVAILABLE state without waiting for
-// the AWS location to become mounted. If required, AWS DataSync mounts the
-// AWS location before each task execution.
-//
-// If an agent that is associated with a source (NFS) location goes offline,
-// the task transitions to the UNAVAILABLE status. If the status of the task
-// remains in the CREATING status for more than a few minutes, it means that
-// your agent might be having trouble mounting the source NFS file system. Check
-// the task's ErrorCode and ErrorDetail. Mount issues are often caused by either
-// a misconfigured firewall or a mistyped NFS server host name.
+// A task includes a source location, a destination location, and the preferences
+// for how and when you want to transfer your data (such as bandwidth limits,
+// scheduling, among other options).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -695,11 +1097,12 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 // API operation CreateTask for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateTask
 func (c *DataSync) CreateTask(input *CreateTaskInput) (*CreateTaskOutput, error) {
@@ -739,14 +1142,13 @@ const opDeleteAgent = "DeleteAgent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteAgentRequest method.
+//	req, resp := client.DeleteAgentRequest(params)
 //
-//    // Example sending a request using the DeleteAgentRequest method.
-//    req, resp := client.DeleteAgentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteAgent
 func (c *DataSync) DeleteAgentRequest(input *DeleteAgentInput) (req *request.Request, output *DeleteAgentOutput) {
@@ -770,8 +1172,8 @@ func (c *DataSync) DeleteAgentRequest(input *DeleteAgentInput) (req *request.Req
 //
 // Deletes an agent. To specify which agent to delete, use the Amazon Resource
 // Name (ARN) of the agent in your request. The operation disassociates the
-// agent from your AWS account. However, it doesn't delete the agent virtual
-// machine (VM) from your on-premises environment.
+// agent from your Amazon Web Services account. However, it doesn't delete the
+// agent virtual machine (VM) from your on-premises environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -781,11 +1183,12 @@ func (c *DataSync) DeleteAgentRequest(input *DeleteAgentInput) (req *request.Req
 // API operation DeleteAgent for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteAgent
 func (c *DataSync) DeleteAgent(input *DeleteAgentInput) (*DeleteAgentOutput, error) {
@@ -825,14 +1228,13 @@ const opDeleteLocation = "DeleteLocation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteLocationRequest method.
+//	req, resp := client.DeleteLocationRequest(params)
 //
-//    // Example sending a request using the DeleteLocationRequest method.
-//    req, resp := client.DeleteLocationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteLocation
 func (c *DataSync) DeleteLocationRequest(input *DeleteLocationInput) (req *request.Request, output *DeleteLocationOutput) {
@@ -854,7 +1256,7 @@ func (c *DataSync) DeleteLocationRequest(input *DeleteLocationInput) (req *reque
 
 // DeleteLocation API operation for AWS DataSync.
 //
-// Deletes the configuration of a location used by AWS DataSync.
+// Deletes the configuration of a location used by DataSync.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -864,11 +1266,12 @@ func (c *DataSync) DeleteLocationRequest(input *DeleteLocationInput) (req *reque
 // API operation DeleteLocation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteLocation
 func (c *DataSync) DeleteLocation(input *DeleteLocationInput) (*DeleteLocationOutput, error) {
@@ -908,14 +1311,13 @@ const opDeleteTask = "DeleteTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTaskRequest method.
+//	req, resp := client.DeleteTaskRequest(params)
 //
-//    // Example sending a request using the DeleteTaskRequest method.
-//    req, resp := client.DeleteTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteTask
 func (c *DataSync) DeleteTaskRequest(input *DeleteTaskInput) (req *request.Request, output *DeleteTaskOutput) {
@@ -937,7 +1339,7 @@ func (c *DataSync) DeleteTaskRequest(input *DeleteTaskInput) (req *request.Reque
 
 // DeleteTask API operation for AWS DataSync.
 //
-// Deletes a task.
+// Deletes an DataSync task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -947,11 +1349,12 @@ func (c *DataSync) DeleteTaskRequest(input *DeleteTaskInput) (req *request.Reque
 // API operation DeleteTask for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteTask
 func (c *DataSync) DeleteTask(input *DeleteTaskInput) (*DeleteTaskOutput, error) {
@@ -991,14 +1394,13 @@ const opDescribeAgent = "DescribeAgent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAgentRequest method.
+//	req, resp := client.DescribeAgentRequest(params)
 //
-//    // Example sending a request using the DescribeAgentRequest method.
-//    req, resp := client.DescribeAgentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeAgent
 func (c *DataSync) DescribeAgentRequest(input *DescribeAgentInput) (req *request.Request, output *DescribeAgentOutput) {
@@ -1032,11 +1434,12 @@ func (c *DataSync) DescribeAgentRequest(input *DescribeAgentInput) (req *request
 // API operation DescribeAgent for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeAgent
 func (c *DataSync) DescribeAgent(input *DescribeAgentInput) (*DescribeAgentOutput, error) {
@@ -1076,14 +1479,13 @@ const opDescribeLocationEfs = "DescribeLocationEfs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLocationEfsRequest method.
+//	req, resp := client.DescribeLocationEfsRequest(params)
 //
-//    // Example sending a request using the DescribeLocationEfsRequest method.
-//    req, resp := client.DescribeLocationEfsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationEfs
 func (c *DataSync) DescribeLocationEfsRequest(input *DescribeLocationEfsInput) (req *request.Request, output *DescribeLocationEfsOutput) {
@@ -1104,7 +1506,7 @@ func (c *DataSync) DescribeLocationEfsRequest(input *DescribeLocationEfsInput) (
 
 // DescribeLocationEfs API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information about an Amazon EFS location.
+// Returns metadata about your DataSync location for an Amazon EFS file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1114,11 +1516,12 @@ func (c *DataSync) DescribeLocationEfsRequest(input *DescribeLocationEfsInput) (
 // API operation DescribeLocationEfs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationEfs
 func (c *DataSync) DescribeLocationEfs(input *DescribeLocationEfsInput) (*DescribeLocationEfsOutput, error) {
@@ -1142,6 +1545,261 @@ func (c *DataSync) DescribeLocationEfsWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeLocationFsxLustre = "DescribeLocationFsxLustre"
+
+// DescribeLocationFsxLustreRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxLustre operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxLustre for more information on using the DescribeLocationFsxLustre
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLocationFsxLustreRequest method.
+//	req, resp := client.DescribeLocationFsxLustreRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxLustre
+func (c *DataSync) DescribeLocationFsxLustreRequest(input *DescribeLocationFsxLustreInput) (req *request.Request, output *DescribeLocationFsxLustreOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxLustre,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxLustreInput{}
+	}
+
+	output = &DescribeLocationFsxLustreOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxLustre API operation for AWS DataSync.
+//
+// Provides details about how an DataSync location for an Amazon FSx for Lustre
+// file system is configured.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxLustre for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxLustre
+func (c *DataSync) DescribeLocationFsxLustre(input *DescribeLocationFsxLustreInput) (*DescribeLocationFsxLustreOutput, error) {
+	req, out := c.DescribeLocationFsxLustreRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxLustreWithContext is the same as DescribeLocationFsxLustre with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxLustre for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxLustreWithContext(ctx aws.Context, input *DescribeLocationFsxLustreInput, opts ...request.Option) (*DescribeLocationFsxLustreOutput, error) {
+	req, out := c.DescribeLocationFsxLustreRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationFsxOntap = "DescribeLocationFsxOntap"
+
+// DescribeLocationFsxOntapRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxOntap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxOntap for more information on using the DescribeLocationFsxOntap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLocationFsxOntapRequest method.
+//	req, resp := client.DescribeLocationFsxOntapRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOntap
+func (c *DataSync) DescribeLocationFsxOntapRequest(input *DescribeLocationFsxOntapInput) (req *request.Request, output *DescribeLocationFsxOntapOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxOntap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxOntapInput{}
+	}
+
+	output = &DescribeLocationFsxOntapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxOntap API operation for AWS DataSync.
+//
+// Provides details about how an DataSync location for an Amazon FSx for NetApp
+// ONTAP file system is configured.
+//
+// If your location uses SMB, the DescribeLocationFsxOntap operation doesn't
+// actually return a Password.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxOntap for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOntap
+func (c *DataSync) DescribeLocationFsxOntap(input *DescribeLocationFsxOntapInput) (*DescribeLocationFsxOntapOutput, error) {
+	req, out := c.DescribeLocationFsxOntapRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxOntapWithContext is the same as DescribeLocationFsxOntap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxOntap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxOntapWithContext(ctx aws.Context, input *DescribeLocationFsxOntapInput, opts ...request.Option) (*DescribeLocationFsxOntapOutput, error) {
+	req, out := c.DescribeLocationFsxOntapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationFsxOpenZfs = "DescribeLocationFsxOpenZfs"
+
+// DescribeLocationFsxOpenZfsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxOpenZfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxOpenZfs for more information on using the DescribeLocationFsxOpenZfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLocationFsxOpenZfsRequest method.
+//	req, resp := client.DescribeLocationFsxOpenZfsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOpenZfs
+func (c *DataSync) DescribeLocationFsxOpenZfsRequest(input *DescribeLocationFsxOpenZfsInput) (req *request.Request, output *DescribeLocationFsxOpenZfsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxOpenZfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxOpenZfsInput{}
+	}
+
+	output = &DescribeLocationFsxOpenZfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxOpenZfs API operation for AWS DataSync.
+//
+// Provides details about how an DataSync location for an Amazon FSx for OpenZFS
+// file system is configured.
+//
+// Response elements related to SMB aren't supported with the DescribeLocationFsxOpenZfs
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxOpenZfs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxOpenZfs
+func (c *DataSync) DescribeLocationFsxOpenZfs(input *DescribeLocationFsxOpenZfsInput) (*DescribeLocationFsxOpenZfsOutput, error) {
+	req, out := c.DescribeLocationFsxOpenZfsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxOpenZfsWithContext is the same as DescribeLocationFsxOpenZfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxOpenZfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxOpenZfsWithContext(ctx aws.Context, input *DescribeLocationFsxOpenZfsInput, opts ...request.Option) (*DescribeLocationFsxOpenZfsOutput, error) {
+	req, out := c.DescribeLocationFsxOpenZfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeLocationFsxWindows = "DescribeLocationFsxWindows"
 
 // DescribeLocationFsxWindowsRequest generates a "aws/request.Request" representing the
@@ -1158,14 +1816,13 @@ const opDescribeLocationFsxWindows = "DescribeLocationFsxWindows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLocationFsxWindowsRequest method.
+//	req, resp := client.DescribeLocationFsxWindowsRequest(params)
 //
-//    // Example sending a request using the DescribeLocationFsxWindowsRequest method.
-//    req, resp := client.DescribeLocationFsxWindowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxWindows
 func (c *DataSync) DescribeLocationFsxWindowsRequest(input *DescribeLocationFsxWindowsInput) (req *request.Request, output *DescribeLocationFsxWindowsOutput) {
@@ -1186,8 +1843,8 @@ func (c *DataSync) DescribeLocationFsxWindowsRequest(input *DescribeLocationFsxW
 
 // DescribeLocationFsxWindows API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information about an Amazon FSx for Windows
-// location.
+// Returns metadata about an Amazon FSx for Windows File Server location, such
+// as information about its path.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1197,11 +1854,12 @@ func (c *DataSync) DescribeLocationFsxWindowsRequest(input *DescribeLocationFsxW
 // API operation DescribeLocationFsxWindows for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxWindows
 func (c *DataSync) DescribeLocationFsxWindows(input *DescribeLocationFsxWindowsInput) (*DescribeLocationFsxWindowsOutput, error) {
@@ -1225,6 +1883,89 @@ func (c *DataSync) DescribeLocationFsxWindowsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDescribeLocationHdfs = "DescribeLocationHdfs"
+
+// DescribeLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationHdfs for more information on using the DescribeLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLocationHdfsRequest method.
+//	req, resp := client.DescribeLocationHdfsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationHdfs
+func (c *DataSync) DescribeLocationHdfsRequest(input *DescribeLocationHdfsInput) (req *request.Request, output *DescribeLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationHdfsInput{}
+	}
+
+	output = &DescribeLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationHdfs API operation for AWS DataSync.
+//
+// Returns metadata, such as the authentication information about the Hadoop
+// Distributed File System (HDFS) location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationHdfs
+func (c *DataSync) DescribeLocationHdfs(input *DescribeLocationHdfsInput) (*DescribeLocationHdfsOutput, error) {
+	req, out := c.DescribeLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationHdfsWithContext is the same as DescribeLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationHdfsWithContext(ctx aws.Context, input *DescribeLocationHdfsInput, opts ...request.Option) (*DescribeLocationHdfsOutput, error) {
+	req, out := c.DescribeLocationHdfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeLocationNfs = "DescribeLocationNfs"
 
 // DescribeLocationNfsRequest generates a "aws/request.Request" representing the
@@ -1241,14 +1982,13 @@ const opDescribeLocationNfs = "DescribeLocationNfs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLocationNfsRequest method.
+//	req, resp := client.DescribeLocationNfsRequest(params)
 //
-//    // Example sending a request using the DescribeLocationNfsRequest method.
-//    req, resp := client.DescribeLocationNfsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationNfs
 func (c *DataSync) DescribeLocationNfsRequest(input *DescribeLocationNfsInput) (req *request.Request, output *DescribeLocationNfsOutput) {
@@ -1269,7 +2009,7 @@ func (c *DataSync) DescribeLocationNfsRequest(input *DescribeLocationNfsInput) (
 
 // DescribeLocationNfs API operation for AWS DataSync.
 //
-// Returns metadata, such as the path information, about a NFS location.
+// Returns metadata, such as the path information, about an NFS location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1279,11 +2019,12 @@ func (c *DataSync) DescribeLocationNfsRequest(input *DescribeLocationNfsInput) (
 // API operation DescribeLocationNfs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationNfs
 func (c *DataSync) DescribeLocationNfs(input *DescribeLocationNfsInput) (*DescribeLocationNfsOutput, error) {
@@ -1307,6 +2048,88 @@ func (c *DataSync) DescribeLocationNfsWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeLocationObjectStorage = "DescribeLocationObjectStorage"
+
+// DescribeLocationObjectStorageRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationObjectStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationObjectStorage for more information on using the DescribeLocationObjectStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLocationObjectStorageRequest method.
+//	req, resp := client.DescribeLocationObjectStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationObjectStorage
+func (c *DataSync) DescribeLocationObjectStorageRequest(input *DescribeLocationObjectStorageInput) (req *request.Request, output *DescribeLocationObjectStorageOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationObjectStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationObjectStorageInput{}
+	}
+
+	output = &DescribeLocationObjectStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationObjectStorage API operation for AWS DataSync.
+//
+// Returns metadata about your DataSync location for an object storage system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationObjectStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationObjectStorage
+func (c *DataSync) DescribeLocationObjectStorage(input *DescribeLocationObjectStorageInput) (*DescribeLocationObjectStorageOutput, error) {
+	req, out := c.DescribeLocationObjectStorageRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationObjectStorageWithContext is the same as DescribeLocationObjectStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationObjectStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationObjectStorageWithContext(ctx aws.Context, input *DescribeLocationObjectStorageInput, opts ...request.Option) (*DescribeLocationObjectStorageOutput, error) {
+	req, out := c.DescribeLocationObjectStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeLocationS3 = "DescribeLocationS3"
 
 // DescribeLocationS3Request generates a "aws/request.Request" representing the
@@ -1323,14 +2146,13 @@ const opDescribeLocationS3 = "DescribeLocationS3"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLocationS3Request method.
+//	req, resp := client.DescribeLocationS3Request(params)
 //
-//    // Example sending a request using the DescribeLocationS3Request method.
-//    req, resp := client.DescribeLocationS3Request(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationS3
 func (c *DataSync) DescribeLocationS3Request(input *DescribeLocationS3Input) (req *request.Request, output *DescribeLocationS3Output) {
@@ -1361,11 +2183,12 @@ func (c *DataSync) DescribeLocationS3Request(input *DescribeLocationS3Input) (re
 // API operation DescribeLocationS3 for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationS3
 func (c *DataSync) DescribeLocationS3(input *DescribeLocationS3Input) (*DescribeLocationS3Output, error) {
@@ -1405,14 +2228,13 @@ const opDescribeLocationSmb = "DescribeLocationSmb"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeLocationSmbRequest method.
+//	req, resp := client.DescribeLocationSmbRequest(params)
 //
-//    // Example sending a request using the DescribeLocationSmbRequest method.
-//    req, resp := client.DescribeLocationSmbRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationSmb
 func (c *DataSync) DescribeLocationSmbRequest(input *DescribeLocationSmbInput) (req *request.Request, output *DescribeLocationSmbOutput) {
@@ -1433,7 +2255,7 @@ func (c *DataSync) DescribeLocationSmbRequest(input *DescribeLocationSmbInput) (
 
 // DescribeLocationSmb API operation for AWS DataSync.
 //
-// Returns metadata, such as the path and user information about a SMB location.
+// Returns metadata, such as the path and user information about an SMB location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1443,11 +2265,12 @@ func (c *DataSync) DescribeLocationSmbRequest(input *DescribeLocationSmbInput) (
 // API operation DescribeLocationSmb for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationSmb
 func (c *DataSync) DescribeLocationSmb(input *DescribeLocationSmbInput) (*DescribeLocationSmbOutput, error) {
@@ -1487,14 +2310,13 @@ const opDescribeTask = "DescribeTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTaskRequest method.
+//	req, resp := client.DescribeTaskRequest(params)
 //
-//    // Example sending a request using the DescribeTaskRequest method.
-//    req, resp := client.DescribeTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeTask
 func (c *DataSync) DescribeTaskRequest(input *DescribeTaskInput) (req *request.Request, output *DescribeTaskOutput) {
@@ -1525,11 +2347,12 @@ func (c *DataSync) DescribeTaskRequest(input *DescribeTaskInput) (req *request.R
 // API operation DescribeTask for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeTask
 func (c *DataSync) DescribeTask(input *DescribeTaskInput) (*DescribeTaskOutput, error) {
@@ -1569,14 +2392,13 @@ const opDescribeTaskExecution = "DescribeTaskExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTaskExecutionRequest method.
+//	req, resp := client.DescribeTaskExecutionRequest(params)
 //
-//    // Example sending a request using the DescribeTaskExecutionRequest method.
-//    req, resp := client.DescribeTaskExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeTaskExecution
 func (c *DataSync) DescribeTaskExecutionRequest(input *DescribeTaskExecutionInput) (req *request.Request, output *DescribeTaskExecutionOutput) {
@@ -1607,11 +2429,12 @@ func (c *DataSync) DescribeTaskExecutionRequest(input *DescribeTaskExecutionInpu
 // API operation DescribeTaskExecution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeTaskExecution
 func (c *DataSync) DescribeTaskExecution(input *DescribeTaskExecutionInput) (*DescribeTaskExecutionOutput, error) {
@@ -1651,14 +2474,13 @@ const opListAgents = "ListAgents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAgentsRequest method.
+//	req, resp := client.ListAgentsRequest(params)
 //
-//    // Example sending a request using the ListAgentsRequest method.
-//    req, resp := client.ListAgentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListAgents
 func (c *DataSync) ListAgentsRequest(input *ListAgentsInput) (req *request.Request, output *ListAgentsOutput) {
@@ -1685,9 +2507,9 @@ func (c *DataSync) ListAgentsRequest(input *ListAgentsInput) (req *request.Reque
 
 // ListAgents API operation for AWS DataSync.
 //
-// Returns a list of agents owned by an AWS account in the AWS Region specified
-// in the request. The returned list is ordered by agent Amazon Resource Name
-// (ARN).
+// Returns a list of agents owned by an Amazon Web Services account in the Amazon
+// Web Services Region specified in the request. The returned list is ordered
+// by agent Amazon Resource Name (ARN).
 //
 // By default, this operation returns a maximum of 100 agents. This operation
 // supports pagination that enables you to optionally reduce the number of agents
@@ -1705,11 +2527,12 @@ func (c *DataSync) ListAgentsRequest(input *ListAgentsInput) (req *request.Reque
 // API operation ListAgents for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListAgents
 func (c *DataSync) ListAgents(input *ListAgentsInput) (*ListAgentsOutput, error) {
@@ -1741,15 +2564,14 @@ func (c *DataSync) ListAgentsWithContext(ctx aws.Context, input *ListAgentsInput
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListAgents operation.
-//    pageNum := 0
-//    err := client.ListAgentsPages(params,
-//        func(page *datasync.ListAgentsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListAgents operation.
+//	pageNum := 0
+//	err := client.ListAgentsPages(params,
+//	    func(page *datasync.ListAgentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataSync) ListAgentsPages(input *ListAgentsInput, fn func(*ListAgentsOutput, bool) bool) error {
 	return c.ListAgentsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1801,14 +2623,13 @@ const opListLocations = "ListLocations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLocationsRequest method.
+//	req, resp := client.ListLocationsRequest(params)
 //
-//    // Example sending a request using the ListLocationsRequest method.
-//    req, resp := client.ListLocationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListLocations
 func (c *DataSync) ListLocationsRequest(input *ListLocationsInput) (req *request.Request, output *ListLocationsOutput) {
@@ -1835,7 +2656,7 @@ func (c *DataSync) ListLocationsRequest(input *ListLocationsInput) (req *request
 
 // ListLocations API operation for AWS DataSync.
 //
-// Returns a lists of source and destination locations.
+// Returns a list of source and destination locations.
 //
 // If you have more locations than are returned in a response (that is, the
 // response returns only a truncated list of your agents), the response contains
@@ -1850,11 +2671,12 @@ func (c *DataSync) ListLocationsRequest(input *ListLocationsInput) (req *request
 // API operation ListLocations for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListLocations
 func (c *DataSync) ListLocations(input *ListLocationsInput) (*ListLocationsOutput, error) {
@@ -1886,15 +2708,14 @@ func (c *DataSync) ListLocationsWithContext(ctx aws.Context, input *ListLocation
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListLocations operation.
-//    pageNum := 0
-//    err := client.ListLocationsPages(params,
-//        func(page *datasync.ListLocationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListLocations operation.
+//	pageNum := 0
+//	err := client.ListLocationsPages(params,
+//	    func(page *datasync.ListLocationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataSync) ListLocationsPages(input *ListLocationsInput, fn func(*ListLocationsOutput, bool) bool) error {
 	return c.ListLocationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1946,14 +2767,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTagsForResource
 func (c *DataSync) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -1980,7 +2800,7 @@ func (c *DataSync) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 
 // ListTagsForResource API operation for AWS DataSync.
 //
-// Returns all the tags associated with a specified resources.
+// Returns all the tags associated with an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1990,11 +2810,12 @@ func (c *DataSync) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTagsForResource
 func (c *DataSync) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2026,15 +2847,14 @@ func (c *DataSync) ListTagsForResourceWithContext(ctx aws.Context, input *ListTa
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
-//    pageNum := 0
-//    err := client.ListTagsForResourcePages(params,
-//        func(page *datasync.ListTagsForResourceOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTagsForResource operation.
+//	pageNum := 0
+//	err := client.ListTagsForResourcePages(params,
+//	    func(page *datasync.ListTagsForResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataSync) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
 	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2086,14 +2906,13 @@ const opListTaskExecutions = "ListTaskExecutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTaskExecutionsRequest method.
+//	req, resp := client.ListTaskExecutionsRequest(params)
 //
-//    // Example sending a request using the ListTaskExecutionsRequest method.
-//    req, resp := client.ListTaskExecutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTaskExecutions
 func (c *DataSync) ListTaskExecutionsRequest(input *ListTaskExecutionsInput) (req *request.Request, output *ListTaskExecutionsOutput) {
@@ -2130,11 +2949,12 @@ func (c *DataSync) ListTaskExecutionsRequest(input *ListTaskExecutionsInput) (re
 // API operation ListTaskExecutions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTaskExecutions
 func (c *DataSync) ListTaskExecutions(input *ListTaskExecutionsInput) (*ListTaskExecutionsOutput, error) {
@@ -2166,15 +2986,14 @@ func (c *DataSync) ListTaskExecutionsWithContext(ctx aws.Context, input *ListTas
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTaskExecutions operation.
-//    pageNum := 0
-//    err := client.ListTaskExecutionsPages(params,
-//        func(page *datasync.ListTaskExecutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTaskExecutions operation.
+//	pageNum := 0
+//	err := client.ListTaskExecutionsPages(params,
+//	    func(page *datasync.ListTaskExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataSync) ListTaskExecutionsPages(input *ListTaskExecutionsInput, fn func(*ListTaskExecutionsOutput, bool) bool) error {
 	return c.ListTaskExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2226,14 +3045,13 @@ const opListTasks = "ListTasks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTasksRequest method.
+//	req, resp := client.ListTasksRequest(params)
 //
-//    // Example sending a request using the ListTasksRequest method.
-//    req, resp := client.ListTasksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTasks
 func (c *DataSync) ListTasksRequest(input *ListTasksInput) (req *request.Request, output *ListTasksOutput) {
@@ -2260,7 +3078,7 @@ func (c *DataSync) ListTasksRequest(input *ListTasksInput) (req *request.Request
 
 // ListTasks API operation for AWS DataSync.
 //
-// Returns a list of all the tasks.
+// Returns a list of the DataSync tasks you created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2270,11 +3088,12 @@ func (c *DataSync) ListTasksRequest(input *ListTasksInput) (req *request.Request
 // API operation ListTasks for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTasks
 func (c *DataSync) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
@@ -2306,15 +3125,14 @@ func (c *DataSync) ListTasksWithContext(ctx aws.Context, input *ListTasksInput, 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListTasks operation.
-//    pageNum := 0
-//    err := client.ListTasksPages(params,
-//        func(page *datasync.ListTasksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListTasks operation.
+//	pageNum := 0
+//	err := client.ListTasksPages(params,
+//	    func(page *datasync.ListTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DataSync) ListTasksPages(input *ListTasksInput, fn func(*ListTasksOutput, bool) bool) error {
 	return c.ListTasksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2366,14 +3184,13 @@ const opStartTaskExecution = "StartTaskExecution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartTaskExecutionRequest method.
+//	req, resp := client.StartTaskExecutionRequest(params)
 //
-//    // Example sending a request using the StartTaskExecutionRequest method.
-//    req, resp := client.StartTaskExecutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StartTaskExecution
 func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (req *request.Request, output *StartTaskExecutionOutput) {
@@ -2394,15 +3211,11 @@ func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (re
 
 // StartTaskExecution API operation for AWS DataSync.
 //
-// Starts a specific invocation of a task. A TaskExecution value represents
-// an individual run of a task. Each task can have at most one TaskExecution
+// Starts an DataSync task. For each task, you can only run one task execution
 // at a time.
 //
-// TaskExecution has the following transition phases: INITIALIZING | PREPARING
-// | TRANSFERRING | VERIFYING | SUCCESS/FAILURE.
-//
-// For detailed information, see the Task Execution section in the Components
-// and Terminology topic in the AWS DataSync User Guide.
+// There are several phases to a task execution. For more information, see Task
+// execution statuses (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2412,11 +3225,12 @@ func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (re
 // API operation StartTaskExecution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StartTaskExecution
 func (c *DataSync) StartTaskExecution(input *StartTaskExecutionInput) (*StartTaskExecutionOutput, error) {
@@ -2456,14 +3270,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/TagResource
 func (c *DataSync) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -2485,7 +3298,10 @@ func (c *DataSync) TagResourceRequest(input *TagResourceInput) (req *request.Req
 
 // TagResource API operation for AWS DataSync.
 //
-// Applies a key-value pair to an AWS resource.
+// Applies a tag to an Amazon Web Services resource. Tags are key-value pairs
+// that can help you manage, filter, and search for your resources.
+//
+// These include DataSync resources, such as locations, tasks, and task executions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2495,11 +3311,12 @@ func (c *DataSync) TagResourceRequest(input *TagResourceInput) (req *request.Req
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/TagResource
 func (c *DataSync) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2539,14 +3356,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UntagResource
 func (c *DataSync) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -2568,7 +3384,7 @@ func (c *DataSync) UntagResourceRequest(input *UntagResourceInput) (req *request
 
 // UntagResource API operation for AWS DataSync.
 //
-// Removes a tag from an AWS resource.
+// Removes tags from an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2578,11 +3394,12 @@ func (c *DataSync) UntagResourceRequest(input *UntagResourceInput) (req *request
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UntagResource
 func (c *DataSync) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2622,14 +3439,13 @@ const opUpdateAgent = "UpdateAgent"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAgentRequest method.
+//	req, resp := client.UpdateAgentRequest(params)
 //
-//    // Example sending a request using the UpdateAgentRequest method.
-//    req, resp := client.UpdateAgentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateAgent
 func (c *DataSync) UpdateAgentRequest(input *UpdateAgentInput) (req *request.Request, output *UpdateAgentOutput) {
@@ -2661,11 +3477,12 @@ func (c *DataSync) UpdateAgentRequest(input *UpdateAgentInput) (req *request.Req
 // API operation UpdateAgent for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateAgent
 func (c *DataSync) UpdateAgent(input *UpdateAgentInput) (*UpdateAgentOutput, error) {
@@ -2689,6 +3506,345 @@ func (c *DataSync) UpdateAgentWithContext(ctx aws.Context, input *UpdateAgentInp
 	return out, req.Send()
 }
 
+const opUpdateLocationHdfs = "UpdateLocationHdfs"
+
+// UpdateLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationHdfs for more information on using the UpdateLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLocationHdfsRequest method.
+//	req, resp := client.UpdateLocationHdfsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationHdfs
+func (c *DataSync) UpdateLocationHdfsRequest(input *UpdateLocationHdfsInput) (req *request.Request, output *UpdateLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationHdfsInput{}
+	}
+
+	output = &UpdateLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationHdfs API operation for AWS DataSync.
+//
+// Updates some parameters of a previously created location for a Hadoop Distributed
+// File System cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationHdfs
+func (c *DataSync) UpdateLocationHdfs(input *UpdateLocationHdfsInput) (*UpdateLocationHdfsOutput, error) {
+	req, out := c.UpdateLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationHdfsWithContext is the same as UpdateLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationHdfsWithContext(ctx aws.Context, input *UpdateLocationHdfsInput, opts ...request.Option) (*UpdateLocationHdfsOutput, error) {
+	req, out := c.UpdateLocationHdfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLocationNfs = "UpdateLocationNfs"
+
+// UpdateLocationNfsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationNfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationNfs for more information on using the UpdateLocationNfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLocationNfsRequest method.
+//	req, resp := client.UpdateLocationNfsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationNfs
+func (c *DataSync) UpdateLocationNfsRequest(input *UpdateLocationNfsInput) (req *request.Request, output *UpdateLocationNfsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationNfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationNfsInput{}
+	}
+
+	output = &UpdateLocationNfsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationNfs API operation for AWS DataSync.
+//
+// Updates some of the parameters of a previously created location for Network
+// File System (NFS) access. For information about creating an NFS location,
+// see Creating a location for NFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationNfs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationNfs
+func (c *DataSync) UpdateLocationNfs(input *UpdateLocationNfsInput) (*UpdateLocationNfsOutput, error) {
+	req, out := c.UpdateLocationNfsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationNfsWithContext is the same as UpdateLocationNfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationNfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationNfsWithContext(ctx aws.Context, input *UpdateLocationNfsInput, opts ...request.Option) (*UpdateLocationNfsOutput, error) {
+	req, out := c.UpdateLocationNfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLocationObjectStorage = "UpdateLocationObjectStorage"
+
+// UpdateLocationObjectStorageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationObjectStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationObjectStorage for more information on using the UpdateLocationObjectStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLocationObjectStorageRequest method.
+//	req, resp := client.UpdateLocationObjectStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationObjectStorage
+func (c *DataSync) UpdateLocationObjectStorageRequest(input *UpdateLocationObjectStorageInput) (req *request.Request, output *UpdateLocationObjectStorageOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationObjectStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationObjectStorageInput{}
+	}
+
+	output = &UpdateLocationObjectStorageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationObjectStorage API operation for AWS DataSync.
+//
+// Updates some parameters of an existing object storage location that DataSync
+// accesses for a transfer. For information about creating a self-managed object
+// storage location, see Creating a location for object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationObjectStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationObjectStorage
+func (c *DataSync) UpdateLocationObjectStorage(input *UpdateLocationObjectStorageInput) (*UpdateLocationObjectStorageOutput, error) {
+	req, out := c.UpdateLocationObjectStorageRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationObjectStorageWithContext is the same as UpdateLocationObjectStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationObjectStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationObjectStorageWithContext(ctx aws.Context, input *UpdateLocationObjectStorageInput, opts ...request.Option) (*UpdateLocationObjectStorageOutput, error) {
+	req, out := c.UpdateLocationObjectStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLocationSmb = "UpdateLocationSmb"
+
+// UpdateLocationSmbRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationSmb operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationSmb for more information on using the UpdateLocationSmb
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLocationSmbRequest method.
+//	req, resp := client.UpdateLocationSmbRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationSmb
+func (c *DataSync) UpdateLocationSmbRequest(input *UpdateLocationSmbInput) (req *request.Request, output *UpdateLocationSmbOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationSmb,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationSmbInput{}
+	}
+
+	output = &UpdateLocationSmbOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationSmb API operation for AWS DataSync.
+//
+// Updates some of the parameters of a previously created location for Server
+// Message Block (SMB) file system access. For information about creating an
+// SMB location, see Creating a location for SMB (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationSmb for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationSmb
+func (c *DataSync) UpdateLocationSmb(input *UpdateLocationSmbInput) (*UpdateLocationSmbOutput, error) {
+	req, out := c.UpdateLocationSmbRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationSmbWithContext is the same as UpdateLocationSmb with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationSmb for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationSmbWithContext(ctx aws.Context, input *UpdateLocationSmbInput, opts ...request.Option) (*UpdateLocationSmbOutput, error) {
+	req, out := c.UpdateLocationSmbRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTask = "UpdateTask"
 
 // UpdateTaskRequest generates a "aws/request.Request" representing the
@@ -2705,14 +3861,13 @@ const opUpdateTask = "UpdateTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTaskRequest method.
+//	req, resp := client.UpdateTaskRequest(params)
 //
-//    // Example sending a request using the UpdateTaskRequest method.
-//    req, resp := client.UpdateTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTask
 func (c *DataSync) UpdateTaskRequest(input *UpdateTaskInput) (req *request.Request, output *UpdateTaskOutput) {
@@ -2744,11 +3899,12 @@ func (c *DataSync) UpdateTaskRequest(input *UpdateTaskInput) (req *request.Reque
 // API operation UpdateTask for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRequestException
-//   This exception is thrown when the client submits a malformed request.
 //
-//   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTask
 func (c *DataSync) UpdateTask(input *UpdateTaskInput) (*UpdateTaskOutput, error) {
@@ -2772,8 +3928,99 @@ func (c *DataSync) UpdateTaskWithContext(ctx aws.Context, input *UpdateTaskInput
 	return out, req.Send()
 }
 
+const opUpdateTaskExecution = "UpdateTaskExecution"
+
+// UpdateTaskExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTaskExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTaskExecution for more information on using the UpdateTaskExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTaskExecutionRequest method.
+//	req, resp := client.UpdateTaskExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTaskExecution
+func (c *DataSync) UpdateTaskExecutionRequest(input *UpdateTaskExecutionInput) (req *request.Request, output *UpdateTaskExecutionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTaskExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTaskExecutionInput{}
+	}
+
+	output = &UpdateTaskExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateTaskExecution API operation for AWS DataSync.
+//
+// Updates execution of a task.
+//
+// You can modify bandwidth throttling for a task execution that is running
+// or queued. For more information, see Adjusting Bandwidth Throttling for a
+// Task Execution (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#adjust-bandwidth-throttling).
+//
+// The only Option that can be modified by UpdateTaskExecution is BytesPerSecond
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond) .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateTaskExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - InternalException
+//     This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTaskExecution
+func (c *DataSync) UpdateTaskExecution(input *UpdateTaskExecutionInput) (*UpdateTaskExecutionOutput, error) {
+	req, out := c.UpdateTaskExecutionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTaskExecutionWithContext is the same as UpdateTaskExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTaskExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateTaskExecutionWithContext(ctx aws.Context, input *UpdateTaskExecutionInput, opts ...request.Option) (*UpdateTaskExecutionOutput, error) {
+	req, out := c.UpdateTaskExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents a single entry in a list of agents. AgentListEntry returns an
-// array that contains a list of agents when the ListAgents operation is called.
+// array that contains a list of agents when the ListAgents (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html)
+// operation is called.
 type AgentListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2787,12 +4034,20 @@ type AgentListEntry struct {
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentListEntry) GoString() string {
 	return s.String()
 }
@@ -2819,18 +4074,26 @@ func (s *AgentListEntry) SetStatus(v string) *AgentListEntry {
 type CancelTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task execution to cancel.
+	// The Amazon Resource Name (ARN) of the task execution to stop.
 	//
 	// TaskExecutionArn is a required field
 	TaskExecutionArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -2858,12 +4121,20 @@ type CancelTaskExecutionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -2874,7 +4145,7 @@ type CreateAgentInput struct {
 
 	// Your agent activation key. You can get the activation key either by sending
 	// an HTTP GET request with redirects that enable you to get the agent IP address
-	// (port 80). Alternatively, you can get it from the AWS DataSync console.
+	// (port 80). Alternatively, you can get it from the DataSync console.
 	//
 	// The redirect URL returned in the response provides you the activation key
 	// for your agent in the query string parameter activationKey. It might also
@@ -2882,7 +4153,7 @@ type CreateAgentInput struct {
 	// The arguments you pass to this API call determine the actual configuration
 	// of your agent.
 	//
-	// For more information, see Activating an Agent in the AWS DataSync User Guide.
+	// For more information, see Activating an Agent in the DataSync User Guide.
 	//
 	// ActivationKey is a required field
 	ActivationKey *string `type:"string" required:"true"`
@@ -2892,7 +4163,7 @@ type CreateAgentInput struct {
 	AgentName *string `min:"1" type:"string"`
 
 	// The ARNs of the security groups used to protect your data transfer task subnets.
-	// See CreateAgentRequest$SubnetArns.
+	// See SecurityGroupArns (https://docs.aws.amazon.com/datasync/latest/userguide/API_Ec2Config.html#DataSync-Type-Ec2Config-SecurityGroupArns).
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
 	// The Amazon Resource Names (ARNs) of the subnets in which DataSync will create
@@ -2912,22 +4183,30 @@ type CreateAgentInput struct {
 	// in UTF-8 format, and the following special characters: + - = . _ : / @.
 	Tags []*TagListEntry `type:"list"`
 
-	// The ID of the VPC (Virtual Private Cloud) endpoint that the agent has access
+	// The ID of the VPC (virtual private cloud) endpoint that the agent has access
 	// to. This is the client-side VPC endpoint, also called a PrivateLink. If you
 	// don't have a PrivateLink VPC endpoint, see Creating a VPC Endpoint Service
 	// Configuration (https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html#create-endpoint-service)
-	// in the AWS VPC User Guide.
+	// in the Amazon VPC User Guide.
 	//
 	// VPC endpoint ID looks like this: vpce-01234d5aff67890e1.
 	VpcEndpointId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentInput) GoString() string {
 	return s.String()
 }
@@ -3005,16 +4284,24 @@ type CreateAgentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the agent. Use the ListAgents operation
-	// to return a list of agents for your account and AWS Region.
+	// to return a list of agents for your account and Amazon Web Services Region.
 	AgentArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentOutput) GoString() string {
 	return s.String()
 }
@@ -3029,54 +4316,60 @@ func (s *CreateAgentOutput) SetAgentArn(v string) *CreateAgentOutput {
 type CreateLocationEfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The subnet and security group that the Amazon EFS file system uses. The security
-	// group that you provide needs to be able to communicate with the security
-	// group on the mount target in the subnet specified.
-	//
-	// The exact relationship between security group M (of the mount target) and
-	// security group S (which you provide for DataSync to use at this stage) is
-	// as follows:
-	//
-	//    * Security group M (which you associate with the mount target) must allow
-	//    inbound access for the Transmission Control Protocol (TCP) on the NFS
-	//    port (2049) from security group S. You can enable inbound connections
-	//    either by IP address (CIDR range) or security group.
-	//
-	//    * Security group S (provided to DataSync to access EFS) should have a
-	//    rule that enables outbound connections to the NFS port on one of the file
-	//    system’s mount targets. You can enable outbound connections either by
-	//    IP address (CIDR range) or security group. For information about security
-	//    groups and mount targets, see Security Groups for Amazon EC2 Instances
-	//    and Mount Targets in the Amazon EFS User Guide.
+	// Specifies the Amazon Resource Name (ARN) of the access point that DataSync
+	// uses to access the Amazon EFS file system.
+	AccessPointArn *string `type:"string"`
+
+	// Specifies the subnet and security groups DataSync uses to access your Amazon
+	// EFS file system.
 	//
 	// Ec2Config is a required field
 	Ec2Config *Ec2Config `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) for the Amazon EFS file system.
+	// Specifies the ARN for the Amazon EFS file system.
 	//
 	// EfsFilesystemArn is a required field
 	EfsFilesystemArn *string `type:"string" required:"true"`
 
-	// A subdirectory in the location’s path. This subdirectory in the EFS file
-	// system is used to read data from the EFS source location or write data to
-	// the EFS destination. By default, AWS DataSync uses the root directory.
+	// Specifies an Identity and Access Management (IAM) role that DataSync assumes
+	// when mounting the Amazon EFS file system.
+	FileSystemAccessRoleArn *string `type:"string"`
+
+	// Specifies whether you want DataSync to use Transport Layer Security (TLS)
+	// 1.2 encryption when it copies data to or from the Amazon EFS file system.
 	//
-	// Subdirectory must be specified with forward slashes. For example /path/to/folder.
+	// If you specify an access point using AccessPointArn or an IAM role using
+	// FileSystemAccessRoleArn, you must set this parameter to TLS1_2.
+	InTransitEncryption *string `type:"string" enum:"EfsInTransitEncryption"`
+
+	// Specifies a mount path for your Amazon EFS file system. This is where DataSync
+	// reads or writes data (depending on if this is a source or destination location).
+	// By default, DataSync uses the root directory, but you can also include subdirectories.
+	//
+	// You must specify a value with forward slashes (for example, /path/to/folder).
 	Subdirectory *string `type:"string"`
 
-	// The key-value pair that represents a tag that you want to add to the resource.
-	// The value can be an empty string. This value helps you manage, filter, and
-	// search for your resources. We recommend that you create a name tag for your
-	// location.
+	// Specifies the key-value pair that represents a tag that you want to add to
+	// the resource. The value can be an empty string. This value helps you manage,
+	// filter, and search for your resources. We recommend that you create a name
+	// tag for your location.
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsInput) GoString() string {
 	return s.String()
 }
@@ -3112,6 +4405,12 @@ func (s *CreateLocationEfsInput) Validate() error {
 	return nil
 }
 
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *CreateLocationEfsInput) SetAccessPointArn(v string) *CreateLocationEfsInput {
+	s.AccessPointArn = &v
+	return s
+}
+
 // SetEc2Config sets the Ec2Config field's value.
 func (s *CreateLocationEfsInput) SetEc2Config(v *Ec2Config) *CreateLocationEfsInput {
 	s.Ec2Config = v
@@ -3121,6 +4420,18 @@ func (s *CreateLocationEfsInput) SetEc2Config(v *Ec2Config) *CreateLocationEfsIn
 // SetEfsFilesystemArn sets the EfsFilesystemArn field's value.
 func (s *CreateLocationEfsInput) SetEfsFilesystemArn(v string) *CreateLocationEfsInput {
 	s.EfsFilesystemArn = &v
+	return s
+}
+
+// SetFileSystemAccessRoleArn sets the FileSystemAccessRoleArn field's value.
+func (s *CreateLocationEfsInput) SetFileSystemAccessRoleArn(v string) *CreateLocationEfsInput {
+	s.FileSystemAccessRoleArn = &v
+	return s
+}
+
+// SetInTransitEncryption sets the InTransitEncryption field's value.
+func (s *CreateLocationEfsInput) SetInTransitEncryption(v string) *CreateLocationEfsInput {
+	s.InTransitEncryption = &v
 	return s
 }
 
@@ -3141,16 +4452,24 @@ type CreateLocationEfsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Amazon EFS file system location that
-	// is created.
+	// you create.
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsOutput) GoString() string {
 	return s.String()
 }
@@ -3161,32 +4480,23 @@ func (s *CreateLocationEfsOutput) SetLocationArn(v string) *CreateLocationEfsOut
 	return s
 }
 
-type CreateLocationFsxWindowsInput struct {
+type CreateLocationFsxLustreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Windows domain that the FSx for Windows server belongs to.
-	Domain *string `type:"string"`
-
-	// The Amazon Resource Name (ARN) for the FSx for Windows file system.
+	// The Amazon Resource Name (ARN) for the FSx for Lustre file system.
 	//
 	// FsxFilesystemArn is a required field
 	FsxFilesystemArn *string `type:"string" required:"true"`
 
-	// The password of the user who has the permissions to access files and folders
-	// in the FSx for Windows file system.
-	//
-	// Password is a required field
-	Password *string `type:"string" required:"true" sensitive:"true"`
-
-	// The Amazon Resource Names (ARNs) of the security groups that are to use to
-	// configure the FSx for Windows file system.
+	// The Amazon Resource Names (ARNs) of the security groups that are used to
+	// configure the FSx for Lustre file system.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// A subdirectory in the location’s path. This subdirectory in the Amazon
-	// FSx for Windows file system is used to read data from the Amazon FSx for
-	// Windows source location or write data to the FSx for Windows destination.
+	// A subdirectory in the location's path. This subdirectory in the FSx for Lustre
+	// file system is used to read data from the FSx for Lustre source location
+	// or write data to the FSx for Lustre destination.
 	Subdirectory *string `type:"string"`
 
 	// The key-value pair that represents a tag that you want to add to the resource.
@@ -3194,20 +4504,490 @@ type CreateLocationFsxWindowsInput struct {
 	// search for your resources. We recommend that you create a name tag for your
 	// location.
 	Tags []*TagListEntry `type:"list"`
+}
 
-	// The user who has the permissions to access files and folders in the FSx for
-	// Windows file system.
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxLustreInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxLustreInput"}
+	if s.FsxFilesystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FsxFilesystemArn"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *CreateLocationFsxLustreInput) SetFsxFilesystemArn(v string) *CreateLocationFsxLustreInput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxLustreInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxLustreInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxLustreInput) SetSubdirectory(v string) *CreateLocationFsxLustreInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxLustreInput) SetTags(v []*TagListEntry) *CreateLocationFsxLustreInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxLustreOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre file system location
+	// that's created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxLustreOutput) SetLocationArn(v string) *CreateLocationFsxLustreOutput {
+	s.LocationArn = &v
+	return s
+}
+
+type CreateLocationFsxOntapInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the data transfer protocol that DataSync uses to access your Amazon
+	// FSx file system.
+	//
+	// Protocol is a required field
+	Protocol *FsxProtocol `type:"structure" required:"true"`
+
+	// Specifies the Amazon EC2 security groups that provide access to your file
+	// system's preferred subnet.
+	//
+	// The security groups must allow outbound traffic on the following ports (depending
+	// on the protocol you use):
+	//
+	//    * Network File System (NFS): TCP ports 111, 635, and 2049
+	//
+	//    * Server Message Block (SMB): TCP port 445
+	//
+	// Your file system's security groups must also allow inbound traffic on the
+	// same ports.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies the ARN of the storage virtual machine (SVM) on your file system
+	// where you're copying data to or from.
+	//
+	// StorageVirtualMachineArn is a required field
+	StorageVirtualMachineArn *string `type:"string" required:"true"`
+
+	// Specifies the junction path (also known as a mount point) in the SVM volume
+	// where you're copying data to or from (for example, /vol1).
+	//
+	// Don't specify a junction path in the SVM's root volume. For more information,
+	// see Managing FSx for ONTAP storage virtual machines (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	Subdirectory *string `type:"string"`
+
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxOntapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxOntapInput"}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.StorageVirtualMachineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineArn"))
+	}
+	if s.Protocol != nil {
+		if err := s.Protocol.Validate(); err != nil {
+			invalidParams.AddNested("Protocol", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *CreateLocationFsxOntapInput) SetProtocol(v *FsxProtocol) *CreateLocationFsxOntapInput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxOntapInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxOntapInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetStorageVirtualMachineArn sets the StorageVirtualMachineArn field's value.
+func (s *CreateLocationFsxOntapInput) SetStorageVirtualMachineArn(v string) *CreateLocationFsxOntapInput {
+	s.StorageVirtualMachineArn = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxOntapInput) SetSubdirectory(v string) *CreateLocationFsxOntapInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxOntapInput) SetTags(v []*TagListEntry) *CreateLocationFsxOntapInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxOntapOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ARN of the FSx for ONTAP file system location that you create.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOntapOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxOntapOutput) SetLocationArn(v string) *CreateLocationFsxOntapOutput {
+	s.LocationArn = &v
+	return s
+}
+
+type CreateLocationFsxOpenZfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for OpenZFS file system.
+	//
+	// FsxFilesystemArn is a required field
+	FsxFilesystemArn *string `type:"string" required:"true"`
+
+	// The type of protocol that DataSync uses to access your file system.
+	//
+	// Protocol is a required field
+	Protocol *FsxProtocol `type:"structure" required:"true"`
+
+	// The ARNs of the security groups that are used to configure the FSx for OpenZFS
+	// file system.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// A subdirectory in the location's path that must begin with /fsx. DataSync
+	// uses this subdirectory to read or write data (depending on whether the file
+	// system is a source or destination location).
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents a tag that you want to add to the resource.
+	// The value can be an empty string. This value helps you manage, filter, and
+	// search for your resources. We recommend that you create a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxOpenZfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxOpenZfsInput"}
+	if s.FsxFilesystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FsxFilesystemArn"))
+	}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.Protocol != nil {
+		if err := s.Protocol.Validate(); err != nil {
+			invalidParams.AddNested("Protocol", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetFsxFilesystemArn(v string) *CreateLocationFsxOpenZfsInput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetProtocol(v *FsxProtocol) *CreateLocationFsxOpenZfsInput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxOpenZfsInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetSubdirectory(v string) *CreateLocationFsxOpenZfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxOpenZfsInput) SetTags(v []*TagListEntry) *CreateLocationFsxOpenZfsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxOpenZfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the FSx for OpenZFS file system location that you created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxOpenZfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxOpenZfsOutput) SetLocationArn(v string) *CreateLocationFsxOpenZfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+type CreateLocationFsxWindowsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name of the Windows domain that the FSx for Windows File Server
+	// belongs to.
+	Domain *string `type:"string"`
+
+	// Specifies the Amazon Resource Name (ARN) for the FSx for Windows File Server
+	// file system.
+	//
+	// FsxFilesystemArn is a required field
+	FsxFilesystemArn *string `type:"string" required:"true"`
+
+	// Specifies the password of the user who has the permissions to access files
+	// and folders in the file system.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLocationFsxWindowsInput's
+	// String and GoString methods.
+	//
+	// Password is a required field
+	Password *string `type:"string" required:"true" sensitive:"true"`
+
+	// Specifies the ARNs of the security groups that provide access to your file
+	// system's preferred subnet.
+	//
+	// If you choose a security group that doesn't allow connections from within
+	// itself, do one of the following:
+	//
+	//    * Configure the security group to allow it to communicate within itself.
+	//
+	//    * Choose a different security group that can communicate with the mount
+	//    target's security group.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies a mount path for your file system using forward slashes. This is
+	// where DataSync reads or writes data (depending on if this is a source or
+	// destination location).
+	Subdirectory *string `type:"string"`
+
+	// Specifies labels that help you categorize, filter, and search for your Amazon
+	// Web Services resources. We recommend creating at least a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+
+	// Specifies the user who has the permissions to access files and folders in
+	// the file system.
+	//
+	// For information about choosing a user name that ensures sufficient permissions
+	// to files, folders, and metadata, see user (create-fsx-location.html#FSxWuser).
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsInput) GoString() string {
 	return s.String()
 }
@@ -3292,23 +5072,295 @@ func (s *CreateLocationFsxWindowsInput) SetUser(v string) *CreateLocationFsxWind
 type CreateLocationFsxWindowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the FSx for Windows file system location
-	// that is created.
+	// The ARN of the FSx for Windows File Server file system location you created.
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsOutput) GoString() string {
 	return s.String()
 }
 
 // SetLocationArn sets the LocationArn field's value.
 func (s *CreateLocationFsxWindowsOutput) SetLocationArn(v string) *CreateLocationFsxWindowsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+type CreateLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Names (ARNs) of the agents that are used to connect to
+	// the HDFS cluster.
+	//
+	// AgentArns is a required field
+	AgentArns []*string `min:"1" type:"list" required:"true"`
+
+	// The type of authentication used to determine the identity of the user.
+	//
+	// AuthenticationType is a required field
+	AuthenticationType *string `type:"string" required:"true" enum:"HdfsAuthenticationType"`
+
+	// The size of data blocks to write into the HDFS cluster. The block size must
+	// be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB).
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The Kerberos key table (keytab) that contains mappings between the defined
+	// Kerberos principal and the encrypted keys. You can load the keytab from a
+	// file by providing the file's address. If you're using the CLI, it performs
+	// base64 encoding for you. Otherwise, provide the base64-encoded text.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
+	KerberosKeytab []byte `type:"blob"`
+
+	// The krb5.conf file that contains the Kerberos configuration information.
+	// You can load the krb5.conf file by providing the file's address. If you're
+	// using the CLI, it performs the base64 encoding for you. Otherwise, provide
+	// the base64-encoded text.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
+	KerberosKrb5Conf []byte `type:"blob"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The NameNode that manages the HDFS namespace. The NameNode performs operations
+	// such as opening, closing, and renaming files and directories. The NameNode
+	// contains the information to map blocks of data to the DataNodes. You can
+	// use only one NameNode.
+	//
+	// NameNodes is a required field
+	NameNodes []*HdfsNameNode `min:"1" type:"list" required:"true"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer protection settings configured on the Hadoop
+	// Distributed File System (HDFS) cluster. If QopConfiguration isn't specified,
+	// RpcProtection and DataTransferProtection default to PRIVACY. If you set RpcProtection
+	// or DataTransferProtection, the other parameter assumes the same value.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster. By default, data is replicated to three DataNodes.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system.
+	//
+	// If SIMPLE is specified for AuthenticationType, this parameter is required.
+	SimpleUser *string `min:"1" type:"string"`
+
+	// A subdirectory in the HDFS cluster. This subdirectory is used to read data
+	// from or write data to the HDFS cluster. If the subdirectory isn't specified,
+	// it will default to /.
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents the tag that you want to add to the location.
+	// The value can be an empty string. We recommend using tags to name your resources.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationHdfsInput"}
+	if s.AgentArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.AuthenticationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationType"))
+	}
+	if s.BlockSize != nil && *s.BlockSize < 1.048576e+06 {
+		invalidParams.Add(request.NewErrParamMinValue("BlockSize", 1.048576e+06))
+	}
+	if s.KerberosPrincipal != nil && len(*s.KerberosPrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KerberosPrincipal", 1))
+	}
+	if s.KmsKeyProviderUri != nil && len(*s.KmsKeyProviderUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyProviderUri", 1))
+	}
+	if s.NameNodes == nil {
+		invalidParams.Add(request.NewErrParamRequired("NameNodes"))
+	}
+	if s.NameNodes != nil && len(s.NameNodes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameNodes", 1))
+	}
+	if s.ReplicationFactor != nil && *s.ReplicationFactor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReplicationFactor", 1))
+	}
+	if s.SimpleUser != nil && len(*s.SimpleUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimpleUser", 1))
+	}
+	if s.NameNodes != nil {
+		for i, v := range s.NameNodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NameNodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationHdfsInput) SetAgentArns(v []*string) *CreateLocationHdfsInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *CreateLocationHdfsInput) SetAuthenticationType(v string) *CreateLocationHdfsInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *CreateLocationHdfsInput) SetBlockSize(v int64) *CreateLocationHdfsInput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetKerberosKeytab sets the KerberosKeytab field's value.
+func (s *CreateLocationHdfsInput) SetKerberosKeytab(v []byte) *CreateLocationHdfsInput {
+	s.KerberosKeytab = v
+	return s
+}
+
+// SetKerberosKrb5Conf sets the KerberosKrb5Conf field's value.
+func (s *CreateLocationHdfsInput) SetKerberosKrb5Conf(v []byte) *CreateLocationHdfsInput {
+	s.KerberosKrb5Conf = v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *CreateLocationHdfsInput) SetKerberosPrincipal(v string) *CreateLocationHdfsInput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *CreateLocationHdfsInput) SetKmsKeyProviderUri(v string) *CreateLocationHdfsInput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *CreateLocationHdfsInput) SetNameNodes(v []*HdfsNameNode) *CreateLocationHdfsInput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *CreateLocationHdfsInput) SetQopConfiguration(v *QopConfiguration) *CreateLocationHdfsInput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *CreateLocationHdfsInput) SetReplicationFactor(v int64) *CreateLocationHdfsInput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *CreateLocationHdfsInput) SetSimpleUser(v string) *CreateLocationHdfsInput {
+	s.SimpleUser = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationHdfsInput) SetSubdirectory(v string) *CreateLocationHdfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationHdfsInput) SetTags(v []*TagListEntry) *CreateLocationHdfsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the source HDFS cluster location that's created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationHdfsOutput) SetLocationArn(v string) *CreateLocationHdfsOutput {
 	s.LocationArn = &v
 	return s
 }
@@ -3323,12 +5375,20 @@ type CreateLocationNfsInput struct {
 	// Contains a list of Amazon Resource Names (ARNs) of agents that are used to
 	// connect to an NFS server.
 	//
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// for more information.
+	//
 	// OnPremConfig is a required field
 	OnPremConfig *OnPremConfig `type:"structure" required:"true"`
 
 	// The name of the NFS server. This value is the IP address or Domain Name Service
 	// (DNS) name of the NFS server. An agent that is installed on-premises uses
-	// this host name to mount the NFS server in a network.
+	// this hostname to mount the NFS server in a network.
+	//
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// for more information.
 	//
 	// This name must either be DNS-compliant or must be an IP version 4 (IPv4)
 	// address.
@@ -3342,7 +5402,7 @@ type CreateLocationNfsInput struct {
 	// The path should be such that it can be mounted by other NFS clients in your
 	// network.
 	//
-	// To see all the paths exported by your NFS server. run "showmount -e nfs-server-name"
+	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
 	// from an NFS client that has access to your server. You can specify any directory
 	// that appears in the results, and any subdirectory of that directory. Ensure
 	// that the NFS export is accessible without Kerberos authentication.
@@ -3353,6 +5413,10 @@ type CreateLocationNfsInput struct {
 	// files that you want DataSync allow read access for all users. Doing either
 	// enables the agent to read the files. For the agent to access directories,
 	// you must additionally enable all execute access.
+	//
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// for more information.
 	//
 	// For information about NFS export configuration, see 18.7. The /etc/exports
 	// Configuration File in the Red Hat Enterprise Linux documentation.
@@ -3365,12 +5429,20 @@ type CreateLocationNfsInput struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsInput) GoString() string {
 	return s.String()
 }
@@ -3448,12 +5520,20 @@ type CreateLocationNfsOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsOutput) GoString() string {
 	return s.String()
 }
@@ -3464,30 +5544,254 @@ func (s *CreateLocationNfsOutput) SetLocationArn(v string) *CreateLocationNfsOut
 	return s
 }
 
+// CreateLocationObjectStorageRequest
+type CreateLocationObjectStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the access key (for example, a user name) if credentials are required
+	// to authenticate with the object storage server.
+	AccessKey *string `min:"8" type:"string"`
+
+	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
+	// securely connect with your location.
+	//
+	// AgentArns is a required field
+	AgentArns []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies the name of the object storage bucket involved in the transfer.
+	//
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
+
+	// Specifies the secret key (for example, a password) if credentials are required
+	// to authenticate with the object storage server.
+	//
+	// SecretKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLocationObjectStorageInput's
+	// String and GoString methods.
+	SecretKey *string `min:"8" type:"string" sensitive:"true"`
+
+	// Specifies a certificate to authenticate with an object storage system that
+	// uses a private or self-signed certificate authority (CA). You must specify
+	// a Base64-encoded .pem file (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
+	// The certificate can be up to 32768 bytes (before Base64 encoding).
+	//
+	// To use this parameter, configure ServerProtocol to HTTPS.
+	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
+	ServerCertificate []byte `type:"blob"`
+
+	// Specifies the domain name or IP address of the object storage server. A DataSync
+	// agent uses this hostname to mount the object storage server in a network.
+	//
+	// ServerHostname is a required field
+	ServerHostname *string `type:"string" required:"true"`
+
+	// Specifies the port that your object storage server accepts inbound network
+	// traffic on (for example, port 443).
+	ServerPort *int64 `min:"1" type:"integer"`
+
+	// Specifies the protocol that your object storage server uses to communicate.
+	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
+
+	// Specifies the object prefix for your object storage server. If this is a
+	// source location, DataSync only copies objects with this prefix. If this is
+	// a destination location, DataSync writes all objects with this prefix.
+	Subdirectory *string `type:"string"`
+
+	// Specifies the key-value pair that represents a tag that you want to add to
+	// the resource. Tags can help you manage, filter, and search for your resources.
+	// We recommend creating a name tag for your location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationObjectStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationObjectStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationObjectStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationObjectStorageInput"}
+	if s.AccessKey != nil && len(*s.AccessKey) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 8))
+	}
+	if s.AgentArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.SecretKey != nil && len(*s.SecretKey) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 8))
+	}
+	if s.ServerHostname == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerHostname"))
+	}
+	if s.ServerPort != nil && *s.ServerPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ServerPort", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessKey sets the AccessKey field's value.
+func (s *CreateLocationObjectStorageInput) SetAccessKey(v string) *CreateLocationObjectStorageInput {
+	s.AccessKey = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationObjectStorageInput) SetAgentArns(v []*string) *CreateLocationObjectStorageInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *CreateLocationObjectStorageInput) SetBucketName(v string) *CreateLocationObjectStorageInput {
+	s.BucketName = &v
+	return s
+}
+
+// SetSecretKey sets the SecretKey field's value.
+func (s *CreateLocationObjectStorageInput) SetSecretKey(v string) *CreateLocationObjectStorageInput {
+	s.SecretKey = &v
+	return s
+}
+
+// SetServerCertificate sets the ServerCertificate field's value.
+func (s *CreateLocationObjectStorageInput) SetServerCertificate(v []byte) *CreateLocationObjectStorageInput {
+	s.ServerCertificate = v
+	return s
+}
+
+// SetServerHostname sets the ServerHostname field's value.
+func (s *CreateLocationObjectStorageInput) SetServerHostname(v string) *CreateLocationObjectStorageInput {
+	s.ServerHostname = &v
+	return s
+}
+
+// SetServerPort sets the ServerPort field's value.
+func (s *CreateLocationObjectStorageInput) SetServerPort(v int64) *CreateLocationObjectStorageInput {
+	s.ServerPort = &v
+	return s
+}
+
+// SetServerProtocol sets the ServerProtocol field's value.
+func (s *CreateLocationObjectStorageInput) SetServerProtocol(v string) *CreateLocationObjectStorageInput {
+	s.ServerProtocol = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationObjectStorageInput) SetSubdirectory(v string) *CreateLocationObjectStorageInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationObjectStorageInput) SetTags(v []*TagListEntry) *CreateLocationObjectStorageInput {
+	s.Tags = v
+	return s
+}
+
+// CreateLocationObjectStorageResponse
+type CreateLocationObjectStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ARN of the object storage system location that you create.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationObjectStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationObjectStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationObjectStorageOutput) SetLocationArn(v string) *CreateLocationObjectStorageOutput {
+	s.LocationArn = &v
+	return s
+}
+
 // CreateLocationS3Request
 type CreateLocationS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon S3 bucket.
+	// If you're using DataSync on an Amazon Web Services Outpost, specify the Amazon
+	// Resource Names (ARNs) of the DataSync agents deployed on your Outpost. For
+	// more information about launching a DataSync agent on an Amazon Web Services
+	// Outpost, see Deploy your DataSync agent on Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The ARN of the Amazon S3 bucket. If the bucket is on an Amazon Web Services
+	// Outpost, this must be an access point ARN.
 	//
 	// S3BucketArn is a required field
 	S3BucketArn *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that is used to access an Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role used to access an Amazon S3 bucket.
 	//
 	// For detailed information about using such a role, see Creating a Location
-	// for Amazon S3 in the AWS DataSync User Guide.
+	// for Amazon S3 in the DataSync User Guide.
 	//
 	// S3Config is a required field
 	S3Config *S3Config `type:"structure" required:"true"`
 
 	// The Amazon S3 storage class that you want to store your files in when this
-	// location is used as a task destination. For more information about S3 storage
-	// classes, see Amazon S3 Storage Classes (https://aws.amazon.com/s3/storage-classes/)
-	// in the Amazon Simple Storage Service Developer Guide. Some storage classes
-	// have behaviors that can affect your S3 storage cost. For detailed information,
-	// see using-storage-classes.
+	// location is used as a task destination. For buckets in Amazon Web Services
+	// Regions, the storage class defaults to Standard. For buckets on Outposts,
+	// the storage class defaults to Amazon Web Services S3 Outposts.
+	//
+	// For more information about S3 storage classes, see Amazon S3 Storage Classes
+	// (http://aws.amazon.com/s3/storage-classes/). Some storage classes have behaviors
+	// that can affect your S3 storage cost. For detailed information, see Considerations
+	// when working with S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 
 	// A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is
@@ -3499,12 +5803,20 @@ type CreateLocationS3Input struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Input) GoString() string {
 	return s.String()
 }
@@ -3512,6 +5824,9 @@ func (s CreateLocationS3Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateLocationS3Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateLocationS3Input"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
 	if s.S3BucketArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3BucketArn"))
 	}
@@ -3538,6 +5853,12 @@ func (s *CreateLocationS3Input) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationS3Input) SetAgentArns(v []*string) *CreateLocationS3Input {
+	s.AgentArns = v
+	return s
 }
 
 // SetS3BucketArn sets the S3BucketArn field's value.
@@ -3579,12 +5900,20 @@ type CreateLocationS3Output struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Output) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Output) GoString() string {
 	return s.String()
 }
@@ -3614,6 +5943,10 @@ type CreateLocationSmbInput struct {
 	// The password of the user who can mount the share, has the permissions to
 	// access files and folders in the SMB share.
 	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLocationSmbInput's
+	// String and GoString methods.
+	//
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
@@ -3633,7 +5966,7 @@ type CreateLocationSmbInput struct {
 	// The path should be such that it can be mounted by other SMB clients in your
 	// network.
 	//
-	// Subdirectory must be specified with forward slashes. For example /path/to/folder.
+	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
 	//
 	// To transfer all the data in the folder you specified, DataSync needs to have
 	// permissions to mount the SMB share, as well as to access all the data in
@@ -3654,16 +5987,28 @@ type CreateLocationSmbInput struct {
 	// The user who can mount the share, has the permissions to access files and
 	// folders in the SMB share.
 	//
+	// For information about choosing a user name that ensures sufficient permissions
+	// to files, folders, and metadata, see the User setting (create-smb-location.html#SMBuser)
+	// for SMB locations.
+	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbInput) GoString() string {
 	return s.String()
 }
@@ -3763,12 +6108,20 @@ type CreateLocationSmbOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbOutput) GoString() string {
 	return s.String()
 }
@@ -3785,42 +6138,39 @@ type CreateTaskInput struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is
 	// used to monitor and log events in the task.
-	//
-	// For more information on these groups, see Working with Log Groups and Log
-	// Streams in the Amazon CloudWatch User Guide.
-	//
-	// For more information about how to use CloudWatch Logs with DataSync, see
-	// Monitoring Your Task in the AWS DataSync User Guide.
 	CloudWatchLogGroupArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of an AWS storage resource's location.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services storage resource's
+	// location.
 	//
 	// DestinationLocationArn is a required field
 	DestinationLocationArn *string `type:"string" required:"true"`
 
-	// A list of filter rules that determines which files to exclude from a task.
-	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
-	// "/folder1|/folder2"
+	// Specifies a list of filter rules that exclude specific data during your transfer.
+	// For more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
+
+	// Specifies a list of filter rules that include specific data during your transfer.
+	// For more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	Includes []*FilterRule `type:"list"`
 
 	// The name of a task. This value is a text reference that is used to identify
 	// the task in the console.
 	Name *string `min:"1" type:"string"`
 
-	// The set of configuration options that control the behavior of a single execution
-	// of the task that occurs when you call StartTaskExecution. You can configure
-	// these options to preserve metadata such as user ID (UID) and group ID (GID),
-	// file permissions, data integrity verification, and so on.
+	// Specifies the configuration options for a task. Some options include preserving
+	// file or object metadata and verifying data integrity.
 	//
-	// For each individual task execution, you can override these options by specifying
-	// the OverrideOptions before starting a the task execution. For more information,
-	// see the operation.
+	// You can also override these options before starting an individual run of
+	// a task (also known as a task execution). For more information, see StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 	Options *Options `type:"structure"`
 
 	// Specifies a schedule used to periodically transfer files from a source to
 	// a destination location. The schedule should be specified in UTC time. For
-	// more information, see task-scheduling.
+	// more information, see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the source location for the task.
@@ -3828,17 +6178,28 @@ type CreateTaskInput struct {
 	// SourceLocationArn is a required field
 	SourceLocationArn *string `type:"string" required:"true"`
 
-	// The key-value pair that represents the tag that you want to add to the resource.
-	// The value can be an empty string.
+	// Specifies the tags that you want to apply to the Amazon Resource Name (ARN)
+	// representing the task.
+	//
+	// Tags are key-value pairs that help you manage, filter, and search for your
+	// DataSync resources.
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskInput) GoString() string {
 	return s.String()
 }
@@ -3900,6 +6261,12 @@ func (s *CreateTaskInput) SetExcludes(v []*FilterRule) *CreateTaskInput {
 	return s
 }
 
+// SetIncludes sets the Includes field's value.
+func (s *CreateTaskInput) SetIncludes(v []*FilterRule) *CreateTaskInput {
+	s.Includes = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateTaskInput) SetName(v string) *CreateTaskInput {
 	s.Name = &v
@@ -3938,12 +6305,20 @@ type CreateTaskOutput struct {
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskOutput) GoString() string {
 	return s.String()
 }
@@ -3959,18 +6334,27 @@ type DeleteAgentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the agent to delete. Use the ListAgents
-	// operation to return a list of agents for your account and AWS Region.
+	// operation to return a list of agents for your account and Amazon Web Services
+	// Region.
 	//
 	// AgentArn is a required field
 	AgentArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentInput) GoString() string {
 	return s.String()
 }
@@ -3998,12 +6382,20 @@ type DeleteAgentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentOutput) GoString() string {
 	return s.String()
 }
@@ -4018,12 +6410,20 @@ type DeleteLocationInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationInput) GoString() string {
 	return s.String()
 }
@@ -4051,12 +6451,20 @@ type DeleteLocationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationOutput) GoString() string {
 	return s.String()
 }
@@ -4065,18 +6473,26 @@ func (s DeleteLocationOutput) GoString() string {
 type DeleteTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task to delete.
+	// Specifies the Amazon Resource Name (ARN) of the task that you want to delete.
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskInput) GoString() string {
 	return s.String()
 }
@@ -4104,12 +6520,20 @@ type DeleteTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskOutput) GoString() string {
 	return s.String()
 }
@@ -4124,12 +6548,20 @@ type DescribeAgentInput struct {
 	AgentArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentInput) GoString() string {
 	return s.String()
 }
@@ -4164,10 +6596,10 @@ type DescribeAgentOutput struct {
 	CreationTime *time.Time `type:"timestamp"`
 
 	// The type of endpoint that your agent is connected to. If the endpoint is
-	// a VPC endpoint, the agent is not accessible over the public Internet.
+	// a VPC endpoint, the agent is not accessible over the public internet.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// The time that the agent last connected to DataSyc.
+	// The time that the agent last connected to DataSync.
 	LastConnectionTime *time.Time `type:"timestamp"`
 
 	// The name of the agent.
@@ -4184,12 +6616,20 @@ type DescribeAgentOutput struct {
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentOutput) GoString() string {
 	return s.String()
 }
@@ -4240,18 +6680,27 @@ func (s *DescribeAgentOutput) SetStatus(v string) *DescribeAgentOutput {
 type DescribeLocationEfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the EFS location to describe.
+	// The Amazon Resource Name (ARN) of the Amazon EFS file system location that
+	// you want information about.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsInput) GoString() string {
 	return s.String()
 }
@@ -4279,30 +6728,54 @@ func (s *DescribeLocationEfsInput) SetLocationArn(v string) *DescribeLocationEfs
 type DescribeLocationEfsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The time that the EFS location was created.
+	// The ARN of the access point that DataSync uses to access the Amazon EFS file
+	// system.
+	AccessPointArn *string `type:"string"`
+
+	// The time that the location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The subnet and the security group that DataSync uses to access target EFS
-	// file system. The subnet must have at least one mount target for that file
-	// system. The security group that you provide needs to be able to communicate
-	// with the security group on the mount target in the subnet specified.
+	// The subnet and security groups that DataSync uses to access your Amazon EFS
+	// file system.
 	Ec2Config *Ec2Config `type:"structure"`
 
-	// The Amazon resource Name (ARN) of the EFS location that was described.
+	// The Identity and Access Management (IAM) role that DataSync assumes when
+	// mounting the Amazon EFS file system.
+	FileSystemAccessRoleArn *string `type:"string"`
+
+	// Describes whether DataSync uses Transport Layer Security (TLS) encryption
+	// when copying data to or from the Amazon EFS file system.
+	InTransitEncryption *string `type:"string" enum:"EfsInTransitEncryption"`
+
+	// The ARN of the Amazon EFS file system location.
 	LocationArn *string `type:"string"`
 
-	// The URL of the EFS location that was described.
+	// The URL of the Amazon EFS file system location.
 	LocationUri *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *DescribeLocationEfsOutput) SetAccessPointArn(v string) *DescribeLocationEfsOutput {
+	s.AccessPointArn = &v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -4314,6 +6787,18 @@ func (s *DescribeLocationEfsOutput) SetCreationTime(v time.Time) *DescribeLocati
 // SetEc2Config sets the Ec2Config field's value.
 func (s *DescribeLocationEfsOutput) SetEc2Config(v *Ec2Config) *DescribeLocationEfsOutput {
 	s.Ec2Config = v
+	return s
+}
+
+// SetFileSystemAccessRoleArn sets the FileSystemAccessRoleArn field's value.
+func (s *DescribeLocationEfsOutput) SetFileSystemAccessRoleArn(v string) *DescribeLocationEfsOutput {
+	s.FileSystemAccessRoleArn = &v
+	return s
+}
+
+// SetInTransitEncryption sets the InTransitEncryption field's value.
+func (s *DescribeLocationEfsOutput) SetInTransitEncryption(v string) *DescribeLocationEfsOutput {
+	s.InTransitEncryption = &v
 	return s
 }
 
@@ -4329,21 +6814,387 @@ func (s *DescribeLocationEfsOutput) SetLocationUri(v string) *DescribeLocationEf
 	return s
 }
 
-type DescribeLocationFsxWindowsInput struct {
+type DescribeLocationFsxLustreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the FSx for Windows location to describe.
+	// The Amazon Resource Name (ARN) of the FSx for Lustre location to describe.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxLustreInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxLustreInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxLustreInput) SetLocationArn(v string) *DescribeLocationFsxLustreInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxLustreOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the FSx for Lustre location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre location that was described.
+	LocationArn *string `type:"string"`
+
+	// The URI of the FSx for Lustre location that was described.
+	LocationUri *string `type:"string"`
+
+	// The Amazon Resource Names (ARNs) of the security groups that are configured
+	// for the FSx for Lustre file system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxLustreOutput) SetCreationTime(v time.Time) *DescribeLocationFsxLustreOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxLustreOutput) SetLocationArn(v string) *DescribeLocationFsxLustreOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxLustreOutput) SetLocationUri(v string) *DescribeLocationFsxLustreOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxLustreOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxLustreOutput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+type DescribeLocationFsxOntapInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon Resource Name (ARN) of the FSx for ONTAP file system
+	// location that you want information about.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxOntapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxOntapInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOntapInput) SetLocationArn(v string) *DescribeLocationFsxOntapInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxOntapOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the FSx for ONTAP file system.
+	FsxFilesystemArn *string `type:"string"`
+
+	// The ARN of the FSx for ONTAP file system location.
+	LocationArn *string `type:"string"`
+
+	// The uniform resource identifier (URI) of the FSx for ONTAP file system location.
+	LocationUri *string `type:"string"`
+
+	// Specifies the data transfer protocol that DataSync uses to access your Amazon
+	// FSx file system.
+	Protocol *FsxProtocol `type:"structure"`
+
+	// The security groups that DataSync uses to access your FSx for ONTAP file
+	// system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+
+	// The ARN of the storage virtual machine (SVM) on your FSx for ONTAP file system
+	// where you're copying data to or from.
+	StorageVirtualMachineArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOntapOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxOntapOutput) SetCreationTime(v time.Time) *DescribeLocationFsxOntapOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *DescribeLocationFsxOntapOutput) SetFsxFilesystemArn(v string) *DescribeLocationFsxOntapOutput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOntapOutput) SetLocationArn(v string) *DescribeLocationFsxOntapOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxOntapOutput) SetLocationUri(v string) *DescribeLocationFsxOntapOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *DescribeLocationFsxOntapOutput) SetProtocol(v *FsxProtocol) *DescribeLocationFsxOntapOutput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxOntapOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxOntapOutput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetStorageVirtualMachineArn sets the StorageVirtualMachineArn field's value.
+func (s *DescribeLocationFsxOntapOutput) SetStorageVirtualMachineArn(v string) *DescribeLocationFsxOntapOutput {
+	s.StorageVirtualMachineArn = &v
+	return s
+}
+
+type DescribeLocationFsxOpenZfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for OpenZFS location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxOpenZfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxOpenZfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOpenZfsInput) SetLocationArn(v string) *DescribeLocationFsxOpenZfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxOpenZfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the FSx for OpenZFS location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the FSx for OpenZFS location that was described.
+	LocationArn *string `type:"string"`
+
+	// The uniform resource identifier (URI) of the FSx for OpenZFS location that
+	// was described.
+	//
+	// Example: fsxz://us-west-2.fs-1234567890abcdef02/fsx/folderA/folder
+	LocationUri *string `type:"string"`
+
+	// The type of protocol that DataSync uses to access your file system.
+	Protocol *FsxProtocol `type:"structure"`
+
+	// The ARNs of the security groups that are configured for the FSx for OpenZFS
+	// file system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxOpenZfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetCreationTime(v time.Time) *DescribeLocationFsxOpenZfsOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetLocationArn(v string) *DescribeLocationFsxOpenZfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetLocationUri(v string) *DescribeLocationFsxOpenZfsOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetProtocol(v *FsxProtocol) *DescribeLocationFsxOpenZfsOutput {
+	s.Protocol = v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxOpenZfsOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxOpenZfsOutput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+type DescribeLocationFsxWindowsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Windows File Server location
+	// to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsInput) GoString() string {
 	return s.String()
 }
@@ -4370,33 +7221,43 @@ func (s *DescribeLocationFsxWindowsInput) SetLocationArn(v string) *DescribeLoca
 type DescribeLocationFsxWindowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The time that the FSx for Windows location was created.
+	// The time that the FSx for Windows File Server location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The name of the Windows domain that the FSx for Windows server belongs to.
+	// The name of the Windows domain that the FSx for Windows File Server belongs
+	// to.
 	Domain *string `type:"string"`
 
-	// The Amazon resource Name (ARN) of the FSx for Windows location that was described.
+	// The Amazon Resource Name (ARN) of the FSx for Windows File Server location
+	// that was described.
 	LocationArn *string `type:"string"`
 
-	// The URL of the FSx for Windows location that was described.
+	// The URL of the FSx for Windows File Server location that was described.
 	LocationUri *string `type:"string"`
 
 	// The Amazon Resource Names (ARNs) of the security groups that are configured
-	// for the for the FSx for Windows file system.
+	// for the FSx for Windows File Server file system.
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
 	// The user who has the permissions to access files and folders in the FSx for
-	// Windows file system.
+	// Windows File Server file system.
 	User *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsOutput) GoString() string {
 	return s.String()
 }
@@ -4437,22 +7298,211 @@ func (s *DescribeLocationFsxWindowsOutput) SetUser(v string) *DescribeLocationFs
 	return s
 }
 
-// DescribeLocationNfsRequest
-type DescribeLocationNfsInput struct {
+type DescribeLocationHdfsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource Name (ARN) of the NFS location to describe.
+	// The Amazon Resource Name (ARN) of the HDFS cluster location to describe.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationHdfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationHdfsInput) SetLocationArn(v string) *DescribeLocationHdfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the agents that are used to connect to the HDFS cluster.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The type of authentication used to determine the identity of the user.
+	AuthenticationType *string `type:"string" enum:"HdfsAuthenticationType"`
+
+	// The size of the data blocks to write into the HDFS cluster.
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The time that the HDFS location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	// This parameter is used if the AuthenticationType is defined as KERBEROS.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The ARN of the HDFS cluster location.
+	LocationArn *string `type:"string"`
+
+	// The URI of the HDFS cluster location.
+	LocationUri *string `type:"string"`
+
+	// The NameNode that manage the HDFS namespace.
+	NameNodes []*HdfsNameNode `min:"1" type:"list"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer protection settings configured on the Hadoop
+	// Distributed File System (HDFS) cluster.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system. This
+	// parameter is used if the AuthenticationType is defined as SIMPLE.
+	SimpleUser *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationHdfsOutput) SetAgentArns(v []*string) *DescribeLocationHdfsOutput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *DescribeLocationHdfsOutput) SetAuthenticationType(v string) *DescribeLocationHdfsOutput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *DescribeLocationHdfsOutput) SetBlockSize(v int64) *DescribeLocationHdfsOutput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationHdfsOutput) SetCreationTime(v time.Time) *DescribeLocationHdfsOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *DescribeLocationHdfsOutput) SetKerberosPrincipal(v string) *DescribeLocationHdfsOutput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *DescribeLocationHdfsOutput) SetKmsKeyProviderUri(v string) *DescribeLocationHdfsOutput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationHdfsOutput) SetLocationArn(v string) *DescribeLocationHdfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationHdfsOutput) SetLocationUri(v string) *DescribeLocationHdfsOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *DescribeLocationHdfsOutput) SetNameNodes(v []*HdfsNameNode) *DescribeLocationHdfsOutput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *DescribeLocationHdfsOutput) SetQopConfiguration(v *QopConfiguration) *DescribeLocationHdfsOutput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *DescribeLocationHdfsOutput) SetReplicationFactor(v int64) *DescribeLocationHdfsOutput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *DescribeLocationHdfsOutput) SetSimpleUser(v string) *DescribeLocationHdfsOutput {
+	s.SimpleUser = &v
+	return s
+}
+
+// DescribeLocationNfsRequest
+type DescribeLocationNfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the NFS location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsInput) GoString() string {
 	return s.String()
 }
@@ -4483,7 +7533,7 @@ type DescribeLocationNfsOutput struct {
 	// The time that the NFS location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon resource Name (ARN) of the NFS location that was described.
+	// The Amazon Resource Name (ARN) of the NFS location that was described.
 	LocationArn *string `type:"string"`
 
 	// The URL of the source NFS location that was described.
@@ -4497,12 +7547,20 @@ type DescribeLocationNfsOutput struct {
 	OnPremConfig *OnPremConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsOutput) GoString() string {
 	return s.String()
 }
@@ -4537,6 +7595,153 @@ func (s *DescribeLocationNfsOutput) SetOnPremConfig(v *OnPremConfig) *DescribeLo
 	return s
 }
 
+// DescribeLocationObjectStorageRequest
+type DescribeLocationObjectStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the object storage system location that
+	// you want information about.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationObjectStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationObjectStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationObjectStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationObjectStorageInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationObjectStorageInput) SetLocationArn(v string) *DescribeLocationObjectStorageInput {
+	s.LocationArn = &v
+	return s
+}
+
+// DescribeLocationObjectStorageResponse
+type DescribeLocationObjectStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access key (for example, a user name) required to authenticate with the
+	// object storage system.
+	AccessKey *string `min:"8" type:"string"`
+
+	// The ARNs of the DataSync agents that can securely connect with your location.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The time that the location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The ARN of the object storage system location.
+	LocationArn *string `type:"string"`
+
+	// The URL of the object storage system location.
+	LocationUri *string `type:"string"`
+
+	// The self-signed certificate that DataSync uses to securely authenticate with
+	// your object storage system.
+	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
+	ServerCertificate []byte `type:"blob"`
+
+	// The port that your object storage server accepts inbound network traffic
+	// on (for example, port 443).
+	ServerPort *int64 `min:"1" type:"integer"`
+
+	// The protocol that your object storage system uses to communicate.
+	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationObjectStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationObjectStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessKey sets the AccessKey field's value.
+func (s *DescribeLocationObjectStorageOutput) SetAccessKey(v string) *DescribeLocationObjectStorageOutput {
+	s.AccessKey = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationObjectStorageOutput) SetAgentArns(v []*string) *DescribeLocationObjectStorageOutput {
+	s.AgentArns = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationObjectStorageOutput) SetCreationTime(v time.Time) *DescribeLocationObjectStorageOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationObjectStorageOutput) SetLocationArn(v string) *DescribeLocationObjectStorageOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationObjectStorageOutput) SetLocationUri(v string) *DescribeLocationObjectStorageOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetServerCertificate sets the ServerCertificate field's value.
+func (s *DescribeLocationObjectStorageOutput) SetServerCertificate(v []byte) *DescribeLocationObjectStorageOutput {
+	s.ServerCertificate = v
+	return s
+}
+
+// SetServerPort sets the ServerPort field's value.
+func (s *DescribeLocationObjectStorageOutput) SetServerPort(v int64) *DescribeLocationObjectStorageOutput {
+	s.ServerPort = &v
+	return s
+}
+
+// SetServerProtocol sets the ServerProtocol field's value.
+func (s *DescribeLocationObjectStorageOutput) SetServerProtocol(v string) *DescribeLocationObjectStorageOutput {
+	s.ServerProtocol = &v
+	return s
+}
+
 // DescribeLocationS3Request
 type DescribeLocationS3Input struct {
 	_ struct{} `type:"structure"`
@@ -4547,12 +7752,20 @@ type DescribeLocationS3Input struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Input) GoString() string {
 	return s.String()
 }
@@ -4580,39 +7793,59 @@ func (s *DescribeLocationS3Input) SetLocationArn(v string) *DescribeLocationS3In
 type DescribeLocationS3Output struct {
 	_ struct{} `type:"structure"`
 
+	// If you are using DataSync on an Amazon Web Services Outpost, the Amazon Resource
+	// Name (ARNs) of the EC2 agents deployed on your Outpost. For more information
+	// about launching a DataSync agent on an Amazon Web Services Outpost, see Deploy
+	// your DataSync agent on Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
+	AgentArns []*string `min:"1" type:"list"`
+
 	// The time that the Amazon S3 bucket location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the Amazon S3 bucket location.
+	// The Amazon Resource Name (ARN) of the Amazon S3 bucket or access point.
 	LocationArn *string `type:"string"`
 
 	// The URL of the Amazon S3 location that was described.
 	LocationUri *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that is used to access an Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role used to access an Amazon S3 bucket.
 	//
 	// For detailed information about using such a role, see Creating a Location
-	// for Amazon S3 in the AWS DataSync User Guide.
+	// for Amazon S3 in the DataSync User Guide.
 	S3Config *S3Config `type:"structure"`
 
 	// The Amazon S3 storage class that you chose to store your files in when this
 	// location is used as a task destination. For more information about S3 storage
-	// classes, see Amazon S3 Storage Classes (https://aws.amazon.com/s3/storage-classes/)
-	// in the Amazon Simple Storage Service Developer Guide. Some storage classes
-	// have behaviors that can affect your S3 storage cost. For detailed information,
-	// see using-storage-classes.
+	// classes, see Amazon S3 Storage Classes (http://aws.amazon.com/s3/storage-classes/).
+	// Some storage classes have behaviors that can affect your S3 storage cost.
+	// For detailed information, see Considerations when working with S3 storage
+	// classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Output) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Output) GoString() string {
 	return s.String()
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationS3Output) SetAgentArns(v []*string) *DescribeLocationS3Output {
+	s.AgentArns = v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -4649,18 +7882,26 @@ func (s *DescribeLocationS3Output) SetS3StorageClass(v string) *DescribeLocation
 type DescribeLocationSmbInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource Name (ARN) of the SMB location to describe.
+	// The Amazon Resource Name (ARN) of the SMB location to describe.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbInput) GoString() string {
 	return s.String()
 }
@@ -4698,10 +7939,10 @@ type DescribeLocationSmbOutput struct {
 	// The name of the Windows domain that the SMB server belongs to.
 	Domain *string `type:"string"`
 
-	// The Amazon resource Name (ARN) of the SMB location that was described.
+	// The Amazon Resource Name (ARN) of the SMB location that was described.
 	LocationArn *string `type:"string"`
 
-	// The URL of the source SBM location that was described.
+	// The URL of the source SMB location that was described.
 	LocationUri *string `type:"string"`
 
 	// The mount options that are available for DataSync to use to access an SMB
@@ -4713,12 +7954,20 @@ type DescribeLocationSmbOutput struct {
 	User *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbOutput) GoString() string {
 	return s.String()
 }
@@ -4775,12 +8024,20 @@ type DescribeTaskExecutionInput struct {
 	TaskExecutionArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -4808,10 +8065,17 @@ func (s *DescribeTaskExecutionInput) SetTaskExecutionArn(v string) *DescribeTask
 type DescribeTaskExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The physical number of bytes transferred over the network.
+	// The physical number of bytes transferred over the network after compression
+	// was applied. In most cases, this number is less than BytesTransferred unless
+	// the data isn't compressible.
+	BytesCompressed *int64 `type:"long"`
+
+	// The total number of bytes that are involved in the transfer. For the number
+	// of bytes sent over the network, see BytesCompressed.
 	BytesTransferred *int64 `type:"long"`
 
-	// The number of logical bytes written to the destination AWS storage resource.
+	// The number of logical bytes written to the destination Amazon Web Services
+	// storage resource.
 	BytesWritten *int64 `type:"long"`
 
 	// The estimated physical number of bytes that is to be transferred over the
@@ -4819,45 +8083,41 @@ type DescribeTaskExecutionOutput struct {
 	EstimatedBytesToTransfer *int64 `type:"long"`
 
 	// The expected number of files that is to be transferred over the network.
-	// This value is calculated during the PREPARING phase, before the TRANSFERRING
-	// phase. This value is the expected number of files to be transferred. It's
-	// calculated based on comparing the content of the source and destination locations
-	// and finding the delta that needs to be transferred.
+	// This value is calculated during the PREPARING phase before the TRANSFERRING
+	// phase of the task execution. This value is the expected number of files to
+	// be transferred. It's calculated based on comparing the content of the source
+	// and destination locations and finding the delta that needs to be transferred.
 	EstimatedFilesToTransfer *int64 `type:"long"`
 
-	// A list of filter rules that determines which files to exclude from a task.
-	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// A list of filter rules that exclude specific data during your transfer. For
+	// more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
 
 	// The actual number of files that was transferred over the network. This value
-	// is calculated and updated on an ongoing basis during the TRANSFERRING phase.
-	// It's updated periodically when each file is read from the source and sent
-	// over the network.
+	// is calculated and updated on an ongoing basis during the TRANSFERRING phase
+	// of the task execution. It's updated periodically when each file is read from
+	// the source and sent over the network.
 	//
 	// If failures occur during a transfer, this value can be less than EstimatedFilesToTransfer.
-	// This value can also be greater than EstimatedFilesTransferred in some cases.
+	// In some cases, this value can also be greater than EstimatedFilesToTransfer.
 	// This element is implementation-specific for some location types, so don't
 	// use it as an indicator for a correct file number or to monitor your task
 	// execution.
 	FilesTransferred *int64 `type:"long"`
 
-	// A list of filter rules that determines which files to include when running
-	// a task. The list should contain a single filter string that consists of the
-	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
-	// for example: "/folder1|/folder2"
+	// A list of filter rules that include specific data during your transfer. For
+	// more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Includes []*FilterRule `type:"list"`
 
-	// Represents the options that are available to control the behavior of a StartTaskExecution
-	// operation. Behavior includes preserving metadata such as user ID (UID), group
-	// ID (GID), and file permissions, and also overwriting files in the destination,
-	// data integrity verification, and so on.
+	// Configures your DataSync task settings. These options include how DataSync
+	// handles files, objects, and their associated metadata. You also can specify
+	// how DataSync verifies data integrity, set bandwidth limits for your task,
+	// among other options.
 	//
-	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// Each task setting has a default value. Unless you need to, you don't have
+	// to configure any of these Options before starting your task.
 	Options *Options `type:"structure"`
 
 	// The result of the task execution.
@@ -4869,7 +8129,7 @@ type DescribeTaskExecutionOutput struct {
 	// The status of the task execution.
 	//
 	// For detailed information about task execution statuses, see Understanding
-	// Task Statuses in the AWS DataSync User Guide.
+	// Task Statuses in the DataSync User Guide.
 	Status *string `type:"string" enum:"TaskExecutionStatus"`
 
 	// The Amazon Resource Name (ARN) of the task execution that was described.
@@ -4881,14 +8141,28 @@ type DescribeTaskExecutionOutput struct {
 	TaskExecutionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionOutput) GoString() string {
 	return s.String()
+}
+
+// SetBytesCompressed sets the BytesCompressed field's value.
+func (s *DescribeTaskExecutionOutput) SetBytesCompressed(v int64) *DescribeTaskExecutionOutput {
+	s.BytesCompressed = &v
+	return s
 }
 
 // SetBytesTransferred sets the BytesTransferred field's value.
@@ -4973,12 +8247,20 @@ type DescribeTaskInput struct {
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskInput) GoString() string {
 	return s.String()
 }
@@ -5016,40 +8298,46 @@ type DescribeTaskOutput struct {
 	// The time that the task was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the task execution that is syncing files.
+	// The Amazon Resource Name (ARN) of the task execution that is transferring
+	// files.
 	CurrentTaskExecutionArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS storage resource's location.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services storage resource's
+	// location.
 	DestinationLocationArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the destination ENIs (Elastic Network Interface)
-	// that was created for your subnet.
+	// The Amazon Resource Names (ARNs) of the network interfaces created for your
+	// destination location. For more information, see Network interface requirements
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces).
 	DestinationNetworkInterfaceArns []*string `type:"list"`
 
-	// Errors that AWS DataSync encountered during execution of the task. You can
-	// use this error code to help troubleshoot issues.
+	// Errors that DataSync encountered during execution of the task. You can use
+	// this error code to help troubleshoot issues.
 	ErrorCode *string `type:"string"`
 
 	// Detailed description of an error that was encountered during the task execution.
 	// You can use this information to help troubleshoot issues.
 	ErrorDetail *string `type:"string"`
 
-	// A list of filter rules that determines which files to exclude from a task.
-	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// A list of filter rules that exclude specific data during your transfer. For
+	// more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
+
+	// A list of filter rules that include specific data during your transfer. For
+	// more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	Includes []*FilterRule `type:"list"`
 
 	// The name of the task that was described.
 	Name *string `min:"1" type:"string"`
 
-	// The set of configuration options that control the behavior of a single execution
-	// of the task that occurs when you call StartTaskExecution. You can configure
-	// these options to preserve metadata such as user ID (UID) and group (GID),
-	// file permissions, data integrity verification, and so on.
+	// The configuration options that control the behavior of the StartTaskExecution
+	// operation. Some options include preserving file or object metadata and verifying
+	// data integrity.
 	//
-	// For each individual task execution, you can override these options by specifying
-	// the overriding OverrideOptions value to operation.
+	// You can override these options for each task execution. For more information,
+	// see StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 	Options *Options `type:"structure"`
 
 	// The schedule used to periodically transfer files from a source to a destination
@@ -5059,26 +8347,35 @@ type DescribeTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the source file system's location.
 	SourceLocationArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the source ENIs (Elastic Network Interface)
-	// that was created for your subnet.
+	// The Amazon Resource Names (ARNs) of the network interfaces created for your
+	// source location. For more information, see Network interface requirements
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces).
 	SourceNetworkInterfaceArns []*string `type:"list"`
 
 	// The status of the task that was described.
 	//
 	// For detailed information about task execution statuses, see Understanding
-	// Task Statuses in the AWS DataSync User Guide.
+	// Task Statuses in the DataSync User Guide.
 	Status *string `type:"string" enum:"TaskStatus"`
 
 	// The Amazon Resource Name (ARN) of the task that was described.
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskOutput) GoString() string {
 	return s.String()
 }
@@ -5131,6 +8428,12 @@ func (s *DescribeTaskOutput) SetExcludes(v []*FilterRule) *DescribeTaskOutput {
 	return s
 }
 
+// SetIncludes sets the Includes field's value.
+func (s *DescribeTaskOutput) SetIncludes(v []*FilterRule) *DescribeTaskOutput {
+	s.Includes = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DescribeTaskOutput) SetName(v string) *DescribeTaskOutput {
 	s.Name = &v
@@ -5173,32 +8476,48 @@ func (s *DescribeTaskOutput) SetTaskArn(v string) *DescribeTaskOutput {
 	return s
 }
 
-// The subnet and the security group that DataSync uses to access target EFS
-// file system. The subnet must have at least one mount target for that file
-// system. The security group that you provide needs to be able to communicate
-// with the security group on the mount target in the subnet specified.
+// The subnet and security groups that DataSync uses to access your Amazon EFS
+// file system.
 type Ec2Config struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Names (ARNs) of the security groups that are configured
-	// for the Amazon EC2 resource.
+	// Specifies the Amazon Resource Names (ARNs) of the security groups associated
+	// with an Amazon EFS file system's mount target.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// The ARN of the subnet and the security group that DataSync uses to access
-	// the target EFS file system.
+	// Specifies the ARN of a subnet where DataSync creates the network interfaces
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
+	// for managing traffic during your transfer.
+	//
+	// The subnet must be located:
+	//
+	//    * In the same virtual private cloud (VPC) as the Amazon EFS file system.
+	//
+	//    * In the same Availability Zone as at least one mount target for the Amazon
+	//    EFS file system.
+	//
+	// You don't need to specify a subnet that includes a file system mount target.
 	//
 	// SubnetArn is a required field
 	SubnetArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ec2Config) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ec2Config) GoString() string {
 	return s.String()
 }
@@ -5234,12 +8553,12 @@ func (s *Ec2Config) SetSubnetArn(v string) *Ec2Config {
 	return s
 }
 
-// Specifies which files, folders and objects to include or exclude when transferring
+// Specifies which files, folders, and objects to include or exclude when transferring
 // files from source to destination.
 type FilterRule struct {
 	_ struct{} `type:"structure"`
 
-	// The type of filter rule to apply. AWS DataSync only supports the SIMPLE_PATTERN
+	// The type of filter rule to apply. DataSync only supports the SIMPLE_PATTERN
 	// rule type.
 	FilterType *string `type:"string" enum:"FilterType"`
 
@@ -5248,12 +8567,20 @@ type FilterRule struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterRule) GoString() string {
 	return s.String()
 }
@@ -5270,7 +8597,283 @@ func (s *FilterRule) SetValue(v string) *FilterRule {
 	return s
 }
 
-// This exception is thrown when an error occurs in the AWS DataSync service.
+// Specifies the data transfer protocol that DataSync uses to access your Amazon
+// FSx file system.
+type FsxProtocol struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Network File System (NFS) protocol configuration that DataSync
+	// uses to access your FSx for OpenZFS file system or FSx for ONTAP file system's
+	// storage virtual machine (SVM).
+	NFS *FsxProtocolNfs `type:"structure"`
+
+	// Specifies the Server Message Block (SMB) protocol configuration that DataSync
+	// uses to access your FSx for ONTAP file system's SVM.
+	SMB *FsxProtocolSmb `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocol) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocol) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FsxProtocol) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FsxProtocol"}
+	if s.SMB != nil {
+		if err := s.SMB.Validate(); err != nil {
+			invalidParams.AddNested("SMB", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNFS sets the NFS field's value.
+func (s *FsxProtocol) SetNFS(v *FsxProtocolNfs) *FsxProtocol {
+	s.NFS = v
+	return s
+}
+
+// SetSMB sets the SMB field's value.
+func (s *FsxProtocol) SetSMB(v *FsxProtocolSmb) *FsxProtocol {
+	s.SMB = v
+	return s
+}
+
+// Specifies the Network File System (NFS) protocol configuration that DataSync
+// uses to access your Amazon FSx for OpenZFS or Amazon FSx for NetApp ONTAP
+// file system.
+type FsxProtocolNfs struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how DataSync can access a location using the NFS protocol.
+	MountOptions *NfsMountOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolNfs) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolNfs) GoString() string {
+	return s.String()
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *FsxProtocolNfs) SetMountOptions(v *NfsMountOptions) *FsxProtocolNfs {
+	s.MountOptions = v
+	return s
+}
+
+// Specifies the Server Message Block (SMB) protocol configuration that DataSync
+// uses to access your Amazon FSx for NetApp ONTAP file system. For more information,
+// see Accessing FSx for ONTAP file systems (https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access).
+type FsxProtocolSmb struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the fully qualified domain name (FQDN) of the Microsoft Active
+	// Directory that your storage virtual machine (SVM) belongs to.
+	Domain *string `type:"string"`
+
+	// Specifies how DataSync can access a location using the SMB protocol.
+	MountOptions *SmbMountOptions `type:"structure"`
+
+	// Specifies the password of a user who has permission to access your SVM.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FsxProtocolSmb's
+	// String and GoString methods.
+	//
+	// Password is a required field
+	Password *string `type:"string" required:"true" sensitive:"true"`
+
+	// Specifies a user name that can mount the location and access the files, folders,
+	// and metadata that you need in the SVM.
+	//
+	// If you provide a user in your Active Directory, note the following:
+	//
+	//    * If you're using Directory Service for Microsoft Active Directory, the
+	//    user must be a member of the Amazon Web Services Delegated FSx Administrators
+	//    group.
+	//
+	//    * If you're using a self-managed Active Directory, the user must be a
+	//    member of either the Domain Admins group or a custom group that you specified
+	//    for file system administration when you created your file system.
+	//
+	// Make sure that the user has the permissions it needs to copy the data you
+	// want:
+	//
+	//    * SE_TCB_NAME: Required to set object ownership and file metadata. With
+	//    this privilege, you also can copy NTFS discretionary access lists (DACLs).
+	//
+	//    * SE_SECURITY_NAME: May be needed to copy NTFS system access control lists
+	//    (SACLs). This operation specifically requires the Windows privilege, which
+	//    is granted to members of the Domain Admins group. If you configure your
+	//    task to copy SACLs, make sure that the user has the required privileges.
+	//    For information about copying SACLs, see Ownership and permissions-related
+	//    options (https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html#configure-ownership-and-permissions).
+	//
+	// User is a required field
+	User *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolSmb) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FsxProtocolSmb) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FsxProtocolSmb) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FsxProtocolSmb"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.User == nil {
+		invalidParams.Add(request.NewErrParamRequired("User"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *FsxProtocolSmb) SetDomain(v string) *FsxProtocolSmb {
+	s.Domain = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *FsxProtocolSmb) SetMountOptions(v *SmbMountOptions) *FsxProtocolSmb {
+	s.MountOptions = v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *FsxProtocolSmb) SetPassword(v string) *FsxProtocolSmb {
+	s.Password = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *FsxProtocolSmb) SetUser(v string) *FsxProtocolSmb {
+	s.User = &v
+	return s
+}
+
+// The NameNode of the Hadoop Distributed File System (HDFS). The NameNode manages
+// the file system's namespace. The NameNode performs operations such as opening,
+// closing, and renaming files and directories. The NameNode contains the information
+// to map blocks of data to the DataNodes.
+type HdfsNameNode struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname of the NameNode in the HDFS cluster. This value is the IP address
+	// or Domain Name Service (DNS) name of the NameNode. An agent that's installed
+	// on-premises uses this hostname to communicate with the NameNode in the network.
+	//
+	// Hostname is a required field
+	Hostname *string `min:"1" type:"string" required:"true"`
+
+	// The port that the NameNode uses to listen to client requests.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HdfsNameNode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HdfsNameNode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HdfsNameNode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HdfsNameNode"}
+	if s.Hostname == nil {
+		invalidParams.Add(request.NewErrParamRequired("Hostname"))
+	}
+	if s.Hostname != nil && len(*s.Hostname) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Hostname", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *HdfsNameNode) SetHostname(v string) *HdfsNameNode {
+	s.Hostname = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *HdfsNameNode) SetPort(v int64) *HdfsNameNode {
+	s.Port = &v
+	return s
+}
+
+// This exception is thrown when an error occurs in the DataSync service.
 type InternalException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5280,12 +8883,20 @@ type InternalException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) GoString() string {
 	return s.String()
 }
@@ -5333,17 +8944,27 @@ type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	DatasyncErrorCode *string `locationName:"datasyncErrorCode" type:"string"`
+
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -5398,12 +9019,20 @@ type ListAgentsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsInput) GoString() string {
 	return s.String()
 }
@@ -5432,12 +9061,20 @@ type ListAgentsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsOutput) GoString() string {
 	return s.String()
 }
@@ -5458,6 +9095,11 @@ func (s *ListAgentsOutput) SetNextToken(v string) *ListAgentsOutput {
 type ListLocationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// You can use API filters to narrow down the list of resources returned by
+	// ListLocations. For example, to retrieve all tasks on a specific source location,
+	// you can use ListLocations with filter name LocationType S3 and Operator Equals.
+	Filters []*LocationFilter `type:"list"`
+
 	// The maximum number of locations to return.
 	MaxResults *int64 `type:"integer"`
 
@@ -5466,14 +9108,48 @@ type ListLocationsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLocationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLocationsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListLocationsInput) SetFilters(v []*LocationFilter) *ListLocationsInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -5500,12 +9176,20 @@ type ListLocationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsOutput) GoString() string {
 	return s.String()
 }
@@ -5526,25 +9210,34 @@ func (s *ListLocationsOutput) SetNextToken(v string) *ListLocationsOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of locations to return.
+	// Specifies how many results that you want in the response.
 	MaxResults *int64 `type:"integer"`
 
-	// An opaque string that indicates the position at which to begin the next list
-	// of locations.
+	// Specifies an opaque string that indicates the position to begin the next
+	// list of results in the response.
 	NextToken *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the resource whose tags to list.
+	// Specifies the Amazon Resource Name (ARN) of the resource that you want tag
+	// information on.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -5584,20 +9277,28 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An opaque string that indicates the position at which to begin returning
-	// the next list of resource tags.
+	// The opaque string that indicates the position to begin the next list of results
+	// in the response.
 	NextToken *string `type:"string"`
 
-	// Array of resource tags.
+	// An array of tags applied to the specified resource.
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5629,12 +9330,20 @@ type ListTaskExecutionsInput struct {
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsInput) GoString() string {
 	return s.String()
 }
@@ -5669,12 +9378,20 @@ type ListTaskExecutionsOutput struct {
 	TaskExecutions []*TaskExecutionListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsOutput) GoString() string {
 	return s.String()
 }
@@ -5695,6 +9412,12 @@ func (s *ListTaskExecutionsOutput) SetTaskExecutions(v []*TaskExecutionListEntry
 type ListTasksInput struct {
 	_ struct{} `type:"structure"`
 
+	// You can use API filters to narrow down the list of resources returned by
+	// ListTasks. For example, to retrieve all tasks on a specific source location,
+	// you can use ListTasks with filter name LocationId and Operator Equals with
+	// the ARN for the location.
+	Filters []*TaskFilter `type:"list"`
+
 	// The maximum number of tasks to return.
 	MaxResults *int64 `type:"integer"`
 
@@ -5703,14 +9426,48 @@ type ListTasksInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTasksInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListTasksInput) SetFilters(v []*TaskFilter) *ListTasksInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -5737,12 +9494,20 @@ type ListTasksOutput struct {
 	Tasks []*TaskListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksOutput) GoString() string {
 	return s.String()
 }
@@ -5759,9 +9524,91 @@ func (s *ListTasksOutput) SetTasks(v []*TaskListEntry) *ListTasksOutput {
 	return s
 }
 
+// Narrow down the list of resources returned by ListLocations. For example,
+// to see all your Amazon S3 locations, create a filter using "Name": "LocationType",
+// "Operator": "Equals", and "Values": "S3".
+//
+// For more information, see filtering resources (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
+type LocationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter being used. Each API call supports a list of filters
+	// that are available for it (for example, LocationType for ListLocations).
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"LocationFilterName"`
+
+	// The operator that is used to compare filter values (for example, Equals or
+	// Contains).
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"Operator"`
+
+	// The values that you want to filter for. For example, you might want to display
+	// only Amazon S3 locations.
+	//
+	// Values is a required field
+	Values []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocationFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LocationFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LocationFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *LocationFilter) SetName(v string) *LocationFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *LocationFilter) SetOperator(v string) *LocationFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *LocationFilter) SetValues(v []*string) *LocationFilter {
+	s.Values = v
+	return s
+}
+
 // Represents a single entry in a list of locations. LocationListEntry returns
-// an array that contains a list of locations when the ListLocations operation
-// is called.
+// an array that contains a list of locations when the ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html)
+// operation is called.
 type LocationListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -5770,17 +9617,18 @@ type LocationListEntry struct {
 	// is the prefix path that you want to mount and use as the root of the location.
 	LocationArn *string `type:"string"`
 
-	// Represents a list of URLs of a location. LocationUri returns an array that
-	// contains a list of locations when the ListLocations operation is called.
+	// Represents a list of URIs of a location. LocationUri returns an array that
+	// contains a list of locations when the ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html)
+	// operation is called.
 	//
 	// Format: TYPE://GLOBAL_ID/SUBDIR.
 	//
-	// TYPE designates the type of location. Valid values: NFS | EFS | S3.
+	// TYPE designates the type of location (for example, nfs or s3).
 	//
 	// GLOBAL_ID is the globally unique identifier of the resource that backs the
 	// location. An example for EFS is us-east-2.fs-abcd1234. An example for Amazon
 	// S3 is the bucket name, such as myBucket. An example for NFS is a valid IPv4
-	// address or a host name compliant with Domain Name Service (DNS).
+	// address or a hostname that is compliant with Domain Name Service (DNS).
 	//
 	// SUBDIR is a valid file system path, delimited by forward slashes as is the
 	// *nix convention. For NFS and Amazon EFS, it's the export path to mount the
@@ -5789,12 +9637,20 @@ type LocationListEntry struct {
 	LocationUri *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocationListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocationListEntry) GoString() string {
 	return s.String()
 }
@@ -5811,37 +9667,46 @@ func (s *LocationListEntry) SetLocationUri(v string) *LocationListEntry {
 	return s
 }
 
-// Represents the mount options that are available for DataSync to access an
-// NFS location.
+// Specifies how DataSync can access a location using the NFS protocol.
 type NfsMountOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The specific NFS version that you want DataSync to use to mount your NFS
-	// share. If the server refuses to use the version specified, the sync will
-	// fail. If you don't specify a version, DataSync defaults to AUTOMATIC. That
-	// is, DataSync automatically selects a version based on negotiation with the
-	// NFS server.
+	// Specifies the NFS version that you want DataSync to use when mounting your
+	// NFS share. If the server refuses to use the version specified, the task fails.
 	//
-	// You can specify the following NFS versions:
+	// You can specify the following options:
 	//
-	//    * NFSv3 (https://tools.ietf.org/html/rfc1813) - stateless protocol version
-	//    that allows for asynchronous writes on the server.
+	//    * AUTOMATIC (default): DataSync chooses NFS version 4.1.
 	//
-	//    * NFSv4.0 (https://tools.ietf.org/html/rfc3530) - stateful, firewall-friendly
-	//    protocol version that supports delegations and pseudo filesystems.
+	//    * NFS3: Stateless protocol version that allows for asynchronous writes
+	//    on the server.
 	//
-	//    * NFSv4.1 (https://tools.ietf.org/html/rfc5661) - stateful protocol version
-	//    that supports sessions, directory delegations, and parallel data processing.
-	//    Version 4.1 also includes all features available in version 4.0.
+	//    * NFSv4_0: Stateful, firewall-friendly protocol version that supports
+	//    delegations and pseudo file systems.
+	//
+	//    * NFSv4_1: Stateful protocol version that supports sessions, directory
+	//    delegations, and parallel data processing. NFS version 4.1 also includes
+	//    all features available in version 4.0.
+	//
+	// DataSync currently only supports NFS version 3 with Amazon FSx for NetApp
+	// ONTAP locations.
 	Version *string `type:"string" enum:"NfsVersion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NfsMountOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NfsMountOptions) GoString() string {
 	return s.String()
 }
@@ -5857,18 +9722,26 @@ func (s *NfsMountOptions) SetVersion(v string) *NfsMountOptions {
 type OnPremConfig struct {
 	_ struct{} `type:"structure"`
 
-	// ARNs)of the agents to use for an NFS location.
+	// ARNs of the agents to use for an NFS location.
 	//
 	// AgentArns is a required field
 	AgentArns []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnPremConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnPremConfig) GoString() string {
 	return s.String()
 }
@@ -5895,26 +9768,25 @@ func (s *OnPremConfig) SetAgentArns(v []*string) *OnPremConfig {
 	return s
 }
 
-// Represents the options that are available to control the behavior of a StartTaskExecution
-// operation. Behavior includes preserving metadata such as user ID (UID), group
-// ID (GID), and file permissions, and also overwriting files in the destination,
-// data integrity verification, and so on.
+// Configures your DataSync task settings. These options include how DataSync
+// handles files, objects, and their associated metadata. You also can specify
+// how DataSync verifies data integrity, set bandwidth limits for your task,
+// among other options.
 //
-// A task has a set of default options associated with it. If you don't specify
-// an option in StartTaskExecution, the default value is used. You can override
-// the defaults options on each task execution by specifying an overriding Options
-// value to StartTaskExecution.
+// Each task setting has a default value. Unless you need to, you don't have
+// to configure any of these Options before starting your task.
 type Options struct {
 	_ struct{} `type:"structure"`
 
-	// A file metadata value that shows the last time a file was accessed (that
-	// is, when the file was read or written to). If you set Atime to BEST_EFFORT,
-	// DataSync attempts to preserve the original Atime attribute on all source
-	// files (that is, the version before the PREPARING phase). However, Atime's
-	// behavior is not fully standard across platforms, so AWS DataSync can only
-	// do this on a best-effort basis.
+	// Specifies whether to preserve metadata indicating the last time a file was
+	// read or written to. If you set Atime to BEST_EFFORT, DataSync attempts to
+	// preserve the original Atime attribute on all source files (that is, the version
+	// before the PREPARING phase of the task execution).
 	//
-	// Default value: BEST_EFFORT.
+	// The behavior of Atime isn't fully standard across platforms, so DataSync
+	// can only do this on a best-effort basis.
+	//
+	// Default value: BEST_EFFORT
 	//
 	// BEST_EFFORT: Attempt to preserve the per-file Atime value (recommended).
 	//
@@ -5925,11 +9797,13 @@ type Options struct {
 	// If Atime is set to NONE, Mtime must also be NONE.
 	Atime *string `type:"string" enum:"Atime"`
 
-	// A value that limits the bandwidth used by AWS DataSync. For example, if you
-	// want AWS DataSync to use a maximum of 1 MB, set this value to 1048576 (=1024*1024).
+	// Limits the bandwidth used by a DataSync task. For example, if you want DataSync
+	// to use a maximum of 1 MB, set this value to 1048576 (=1024*1024).
 	BytesPerSecond *int64 `type:"long"`
 
-	// The group ID (GID) of the file's owners.
+	// Specifies the POSIX group ID (GID) of the file's owners.
+	//
+	// For more information, see Metadata copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: INT_VALUE. This preserves the integer value of the ID.
 	//
@@ -5938,16 +9812,19 @@ type Options struct {
 	// NONE: Ignore UID and GID.
 	Gid *string `type:"string" enum:"Gid"`
 
-	// A value that determines the type of logs DataSync will deliver to your AWS
-	// CloudWatch Logs file. If set to OFF, no logs will be delivered. BASIC will
-	// deliver a few logs per transfer operation and TRANSFER will deliver a verbose
-	// log that contains logs for every file that is transferred.
+	// Specifies the type of logs that DataSync publishes to a Amazon CloudWatch
+	// Logs log group. To specify the log group, see CloudWatchLogGroupArn (https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html#DataSync-CreateTask-request-CloudWatchLogGroupArn).
+	//
+	// If you set LogLevel to OFF, no logs are published. BASIC publishes logs on
+	// errors for individual files transferred. TRANSFER publishes logs for every
+	// file or object that is transferred and integrity checked.
 	LogLevel *string `type:"string" enum:"LogLevel"`
 
-	// A value that indicates the last time that a file was modified (that is, a
-	// file was written to) before the PREPARING phase.
+	// Specifies whether to preserve metadata indicating the last time that a file
+	// was written to before the PREPARING phase of your task execution. This option
+	// is required when you need to run the a task more than once.
 	//
-	// Default value: PRESERVE.
+	// Default Value: PRESERVE
 	//
 	// PRESERVE: Preserve original Mtime (recommended)
 	//
@@ -5958,65 +9835,123 @@ type Options struct {
 	// If Mtime is set to NONE, Atime must also be set to NONE.
 	Mtime *string `type:"string" enum:"Mtime"`
 
-	// A value that determines whether files at the destination should be overwritten
-	// or preserved when copying files. If set to NEVER a destination file will
-	// not be replaced by a source file, even if the destination file differs from
-	// the source file. If you modify files in the destination and you sync the
-	// files, you can use this value to protect against overwriting those changes.
+	// Specifies whether object tags are preserved when transferring between object
+	// storage systems. If you want your DataSync task to ignore object tags, specify
+	// the NONE value.
 	//
-	// Some storage classes have specific behaviors that can affect your S3 storage
-	// cost. For detailed information, see using-storage-classes in the AWS DataSync
-	// User Guide.
+	// Default Value: PRESERVE
+	ObjectTags *string `type:"string" enum:"ObjectTags"`
+
+	// Specifies whether data at the destination location should be overwritten
+	// or preserved. If set to NEVER, a destination file for example will not be
+	// replaced by a source file (even if the destination file differs from the
+	// source file). If you modify files in the destination and you sync the files,
+	// you can use this value to protect against overwriting those changes.
+	//
+	// Some storage classes have specific behaviors that can affect your Amazon
+	// S3 storage cost. For detailed information, see Considerations when working
+	// with Amazon S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	OverwriteMode *string `type:"string" enum:"OverwriteMode"`
 
-	// A value that determines which users or groups can access a file for a specific
-	// purpose such as reading, writing, or execution of the file.
+	// Specifies which users or groups can access a file for a specific purpose
+	// such as reading, writing, or execution of the file.
 	//
-	// Default value: PRESERVE.
+	// For more information, see Metadata copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
+	//
+	// Default value: PRESERVE
 	//
 	// PRESERVE: Preserve POSIX-style permissions (recommended).
 	//
 	// NONE: Ignore permissions.
 	//
-	// AWS DataSync can preserve extant permissions of a source location.
+	// DataSync can preserve extant permissions of a source location.
 	PosixPermissions *string `type:"string" enum:"PosixPermissions"`
 
-	// A value that specifies whether files in the destination that don't exist
-	// in the source file system should be preserved. This option can affect your
-	// storage cost. If your task deletes objects, you might incur minimum storage
-	// duration charges for certain storage classes. For detailed information, see
-	// using-storage-classes in the AWS DataSync User Guide.
+	// Specifies whether files in the destination location that don't exist in the
+	// source should be preserved. This option can affect your Amazon S3 storage
+	// cost. If your task deletes objects, you might incur minimum storage duration
+	// charges for certain storage classes. For detailed information, see Considerations
+	// when working with Amazon S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	//
-	// Default value: PRESERVE.
+	// Default value: PRESERVE
 	//
 	// PRESERVE: Ignore such destination files (recommended).
 	//
 	// REMOVE: Delete destination files that aren’t present in the source.
 	PreserveDeletedFiles *string `type:"string" enum:"PreserveDeletedFiles"`
 
-	// A value that determines whether AWS DataSync should preserve the metadata
-	// of block and character devices in the source file system, and recreate the
-	// files with that device name and metadata on the destination.
+	// Specifies whether DataSync should preserve the metadata of block and character
+	// devices in the source location and recreate the files with that device name
+	// and metadata on the destination. DataSync copies only the name and metadata
+	// of such devices.
 	//
-	// AWS DataSync can't sync the actual contents of such devices, because they
-	// are nonterminal and don't return an end-of-file (EOF) marker.
+	// DataSync can't copy the actual contents of these devices because they're
+	// nonterminal and don't return an end-of-file (EOF) marker.
 	//
-	// Default value: NONE.
+	// Default value: NONE
 	//
 	// NONE: Ignore special devices (recommended).
 	//
-	// PRESERVE: Preserve character and block device metadata. This option isn't
-	// currently supported for Amazon EFS.
+	// PRESERVE: Preserve character and block device metadata. This option currently
+	// isn't supported for Amazon EFS.
 	PreserveDevices *string `type:"string" enum:"PreserveDevices"`
 
-	// A value that determines whether tasks should be queued before executing the
-	// tasks. If set to ENABLED, the tasks will be queued. The default is ENABLED.
+	// Specifies which components of the SMB security descriptor are copied from
+	// source to destination objects.
 	//
-	// If you use the same agent to run multiple tasks you can enable the tasks
-	// to run in series. For more information see queue-task-execution.
+	// This value is only used for transfers between SMB and Amazon FSx for Windows
+	// File Server locations or between two FSx for Windows File Server locations.
+	// For more information, see how DataSync handles metadata (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html).
+	//
+	// Default value: OWNER_DACL
+	//
+	// OWNER_DACL: For each copied object, DataSync copies the following metadata:
+	//
+	//    * The object owner.
+	//
+	//    * NTFS discretionary access control lists (DACLs), which determine whether
+	//    to grant access to an object. DataSync won't copy NTFS system access control
+	//    lists (SACLs) with this option.
+	//
+	// OWNER_DACL_SACL: For each copied object, DataSync copies the following metadata:
+	//
+	//    * The object owner.
+	//
+	//    * NTFS discretionary access control lists (DACLs), which determine whether
+	//    to grant access to an object.
+	//
+	//    * SACLs, which are used by administrators to log attempts to access a
+	//    secured object. Copying SACLs requires granting additional permissions
+	//    to the Windows user that DataSync uses to access your SMB location. For
+	//    information about choosing a user that ensures sufficient permissions
+	//    to files, folders, and metadata, see user (create-smb-location.html#SMBuser).
+	//
+	// NONE: None of the SMB security descriptor components are copied. Destination
+	// objects are owned by the user that was provided for accessing the destination
+	// location. DACLs and SACLs are set based on the destination server’s configuration.
+	SecurityDescriptorCopyFlags *string `type:"string" enum:"SmbSecurityDescriptorCopyFlags"`
+
+	// Specifies whether tasks should be queued before executing the tasks. The
+	// default is ENABLED, which means the tasks will be queued.
+	//
+	// If you use the same agent to run multiple tasks, you can enable the tasks
+	// to run in series. For more information, see Queueing task executions (https://docs.aws.amazon.com/datasync/latest/userguide/run-task.html#queue-task-execution).
 	TaskQueueing *string `type:"string" enum:"TaskQueueing"`
 
-	// The user ID (UID) of the file's owner.
+	// Determines whether DataSync transfers only the data and metadata that differ
+	// between the source and the destination location or transfers all the content
+	// from the source (without comparing what's in the destination).
+	//
+	// CHANGED: DataSync copies only data or metadata that is new or different content
+	// from the source location to the destination location.
+	//
+	// ALL: DataSync copies all source location content to the destination (without
+	// comparing what's in the destination).
+	TransferMode *string `type:"string" enum:"TransferMode"`
+
+	// Specifies the POSIX user ID (UID) of the file's owner.
+	//
+	// For more information, see Metadata copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: INT_VALUE. This preserves the integer value of the ID.
 	//
@@ -6025,25 +9960,47 @@ type Options struct {
 	// NONE: Ignore UID and GID.
 	Uid *string `type:"string" enum:"Uid"`
 
-	// A value that determines whether a data integrity verification should be performed
-	// at the end of a task execution after all data and metadata have been transferred.
+	// Specifies how and when DataSync checks the integrity of your data during
+	// a transfer.
 	//
-	// Default value: POINT_IN_TIME_CONSISTENT.
+	// Default value: POINT_IN_TIME_CONSISTENT
 	//
-	// POINT_IN_TIME_CONSISTENT: Perform verification (recommended).
+	// ONLY_FILES_TRANSFERRED (recommended): DataSync calculates the checksum of
+	// transferred files and metadata at the source location. At the end of the
+	// transfer, DataSync then compares this checksum to the checksum calculated
+	// on those files at the destination.
 	//
-	// ONLY_FILES_TRANSFERRED: Perform verification on only files that were transferred.
+	// We recommend this option when transferring to S3 Glacier Flexible Retrieval
+	// or S3 Glacier Deep Archive storage classes. For more information, see Storage
+	// class considerations with Amazon S3 locations (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	//
-	// NONE: Skip verification.
+	// POINT_IN_TIME_CONSISTENT: At the end of the transfer, DataSync scans the
+	// entire source and destination to verify that both locations are fully synchronized.
+	//
+	// You can't use this option when transferring to S3 Glacier Flexible Retrieval
+	// or S3 Glacier Deep Archive storage classes. For more information, see Storage
+	// class considerations with Amazon S3 locations (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
+	//
+	// NONE: DataSync doesn't run additional verification at the end of the transfer.
+	// All data transmissions are still integrity-checked with checksum verification
+	// during the transfer.
 	VerifyMode *string `type:"string" enum:"VerifyMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Options) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Options) GoString() string {
 	return s.String()
 }
@@ -6091,6 +10048,12 @@ func (s *Options) SetMtime(v string) *Options {
 	return s
 }
 
+// SetObjectTags sets the ObjectTags field's value.
+func (s *Options) SetObjectTags(v string) *Options {
+	s.ObjectTags = &v
+	return s
+}
+
 // SetOverwriteMode sets the OverwriteMode field's value.
 func (s *Options) SetOverwriteMode(v string) *Options {
 	s.OverwriteMode = &v
@@ -6115,9 +10078,21 @@ func (s *Options) SetPreserveDevices(v string) *Options {
 	return s
 }
 
+// SetSecurityDescriptorCopyFlags sets the SecurityDescriptorCopyFlags field's value.
+func (s *Options) SetSecurityDescriptorCopyFlags(v string) *Options {
+	s.SecurityDescriptorCopyFlags = &v
+	return s
+}
+
 // SetTaskQueueing sets the TaskQueueing field's value.
 func (s *Options) SetTaskQueueing(v string) *Options {
 	s.TaskQueueing = &v
+	return s
+}
+
+// SetTransferMode sets the TransferMode field's value.
+func (s *Options) SetTransferMode(v string) *Options {
+	s.TransferMode = &v
 	return s
 }
 
@@ -6133,7 +10108,7 @@ func (s *Options) SetVerifyMode(v string) *Options {
 	return s
 }
 
-// The VPC endpoint, subnet and security group that an agent uses to access
+// The VPC endpoint, subnet, and security group that an agent uses to access
 // IP addresses in a VPC (Virtual Private Cloud).
 type PrivateLinkConfig struct {
 	_ struct{} `type:"structure"`
@@ -6141,7 +10116,7 @@ type PrivateLinkConfig struct {
 	// The private endpoint that is configured for an agent that has access to IP
 	// addresses in a PrivateLink (https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html).
 	// An agent that is configured with this endpoint will not be accessible over
-	// the public Internet.
+	// the public internet.
 	PrivateLinkEndpoint *string `min:"7" type:"string"`
 
 	// The Amazon Resource Names (ARNs) of the security groups that are configured
@@ -6155,16 +10130,24 @@ type PrivateLinkConfig struct {
 
 	// The ID of the VPC endpoint that is configured for an agent. An agent that
 	// is configured with a VPC endpoint will not be accessible over the public
-	// Internet.
+	// internet.
 	VpcEndpointId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrivateLinkConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrivateLinkConfig) GoString() string {
 	return s.String()
 }
@@ -6193,27 +10176,81 @@ func (s *PrivateLinkConfig) SetVpcEndpointId(v string) *PrivateLinkConfig {
 	return s
 }
 
-// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-// (IAM) role that is used to access an Amazon S3 bucket.
+// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+// Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed
+// File System (HDFS) cluster.
+type QopConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The data transfer protection setting configured on the HDFS cluster. This
+	// setting corresponds to your dfs.data.transfer.protection setting in the hdfs-site.xml
+	// file on your Hadoop cluster.
+	DataTransferProtection *string `type:"string" enum:"HdfsDataTransferProtection"`
+
+	// The RPC protection setting configured on the HDFS cluster. This setting corresponds
+	// to your hadoop.rpc.protection setting in your core-site.xml file on your
+	// Hadoop cluster.
+	RpcProtection *string `type:"string" enum:"HdfsRpcProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QopConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QopConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDataTransferProtection sets the DataTransferProtection field's value.
+func (s *QopConfiguration) SetDataTransferProtection(v string) *QopConfiguration {
+	s.DataTransferProtection = &v
+	return s
+}
+
+// SetRpcProtection sets the RpcProtection field's value.
+func (s *QopConfiguration) SetRpcProtection(v string) *QopConfiguration {
+	s.RpcProtection = &v
+	return s
+}
+
+// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+// role used to access an Amazon S3 bucket.
 //
 // For detailed information about using such a role, see Creating a Location
-// for Amazon S3 in the AWS DataSync User Guide.
+// for Amazon S3 in the DataSync User Guide.
 type S3Config struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 bucket to access. This bucket is used as a parameter in the
-	// CreateLocationS3 operation.
+	// The ARN of the IAM role for accessing the S3 bucket.
 	//
 	// BucketAccessRoleArn is a required field
 	BucketAccessRoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Config) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Config) GoString() string {
 	return s.String()
 }
@@ -6237,24 +10274,30 @@ func (s *S3Config) SetBucketAccessRoleArn(v string) *S3Config {
 	return s
 }
 
-// Represents the mount options that are available for DataSync to access an
-// SMB location.
+// Specifies how DataSync can access a location using the SMB protocol.
 type SmbMountOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The specific SMB version that you want DataSync to use to mount your SMB
-	// share. If you don't specify a version, DataSync defaults to AUTOMATIC. That
-	// is, DataSync automatically selects a version based on negotiation with the
-	// SMB server.
+	// Specifies the SMB version that you want DataSync to use when mounting your
+	// SMB share. If you don't specify a version, DataSync defaults to AUTOMATIC
+	// and chooses a version based on negotiation with the SMB server.
 	Version *string `type:"string" enum:"SmbVersion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SmbMountOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SmbMountOptions) GoString() string {
 	return s.String()
 }
@@ -6269,35 +10312,54 @@ func (s *SmbMountOptions) SetVersion(v string) *SmbMountOptions {
 type StartTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of filter rules that determines which files to include when running
-	// a task. The pattern should contain a single filter string that consists of
-	// the patterns to include. The patterns are delimited by "|" (that is, a pipe).
-	// For example: "/folder1|/folder2"
+	// Specifies a list of filter rules that determines which files to exclude from
+	// a task. The list contains a single filter string that consists of the patterns
+	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// "/folder1|/folder2".
+	Excludes []*FilterRule `type:"list"`
+
+	// Specifies a list of filter rules that determines which files to include when
+	// running a task. The pattern should contain a single filter string that consists
+	// of the patterns to include. The patterns are delimited by "|" (that is, a
+	// pipe), for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
-	// Represents the options that are available to control the behavior of a StartTaskExecution
-	// operation. Behavior includes preserving metadata such as user ID (UID), group
-	// ID (GID), and file permissions, and also overwriting files in the destination,
-	// data integrity verification, and so on.
+	// Configures your DataSync task settings. These options include how DataSync
+	// handles files, objects, and their associated metadata. You also can specify
+	// how DataSync verifies data integrity, set bandwidth limits for your task,
+	// among other options.
 	//
-	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// Each task setting has a default value. Unless you need to, you don't have
+	// to configure any of these Options before starting your task.
 	OverrideOptions *Options `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task to start.
+	// Specifies the tags that you want to apply to the Amazon Resource Name (ARN)
+	// representing the task execution.
+	//
+	// Tags are key-value pairs that help you manage, filter, and search for your
+	// DataSync resources.
+	Tags []*TagListEntry `type:"list"`
+
+	// Specifies the Amazon Resource Name (ARN) of the task that you want to start.
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -6313,11 +10375,27 @@ func (s *StartTaskExecutionInput) Validate() error {
 			invalidParams.AddNested("OverrideOptions", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *StartTaskExecutionInput) SetExcludes(v []*FilterRule) *StartTaskExecutionInput {
+	s.Excludes = v
+	return s
 }
 
 // SetIncludes sets the Includes field's value.
@@ -6332,6 +10410,12 @@ func (s *StartTaskExecutionInput) SetOverrideOptions(v *Options) *StartTaskExecu
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartTaskExecutionInput) SetTags(v []*TagListEntry) *StartTaskExecutionInput {
+	s.Tags = v
+	return s
+}
+
 // SetTaskArn sets the TaskArn field's value.
 func (s *StartTaskExecutionInput) SetTaskArn(v string) *StartTaskExecutionInput {
 	s.TaskArn = &v
@@ -6342,16 +10426,24 @@ func (s *StartTaskExecutionInput) SetTaskArn(v string) *StartTaskExecutionInput 
 type StartTaskExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the specific task execution that was started.
+	// The ARN of the running task execution.
 	TaskExecutionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -6362,27 +10454,34 @@ func (s *StartTaskExecutionOutput) SetTaskExecutionArn(v string) *StartTaskExecu
 	return s
 }
 
-// Represents a single entry in a list of AWS resource tags. TagListEntry returns
-// an array that contains a list of tasks when the ListTagsForResource operation
-// is called.
+// A key-value pair representing a single tag that's been applied to an Amazon
+// Web Services resource.
 type TagListEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The key for an AWS resource tag.
+	// The key for an Amazon Web Services resource tag.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The value for an AWS resource tag.
+	// The value for an Amazon Web Services resource tag.
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagListEntry) GoString() string {
 	return s.String()
 }
@@ -6422,23 +10521,32 @@ func (s *TagListEntry) SetValue(v string) *TagListEntry {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource to apply the tag to.
+	// Specifies the Amazon Resource Name (ARN) of the resource to apply the tag
+	// to.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
-	// The tags to apply.
+	// Specifies the tags that you want to apply to the resource.
 	//
 	// Tags is a required field
 	Tags []*TagListEntry `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6485,19 +10593,28 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
 // Represents a single entry in a list of task executions. TaskExecutionListEntry
 // returns an array that contains a list of specific invocations of a task when
-// ListTaskExecutions operation is called.
+// the ListTaskExecutions (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTaskExecutions.html)
+// operation is called.
 type TaskExecutionListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -6508,12 +10625,20 @@ type TaskExecutionListEntry struct {
 	TaskExecutionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionListEntry) GoString() string {
 	return s.String()
 }
@@ -6536,44 +10661,51 @@ func (s *TaskExecutionListEntry) SetTaskExecutionArn(v string) *TaskExecutionLis
 type TaskExecutionResultDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Errors that AWS DataSync encountered during execution of the task. You can
-	// use this error code to help troubleshoot issues.
+	// Errors that DataSync encountered during execution of the task. You can use
+	// this error code to help troubleshoot issues.
 	ErrorCode *string `type:"string"`
 
 	// Detailed description of an error that was encountered during the task execution.
 	// You can use this information to help troubleshoot issues.
 	ErrorDetail *string `type:"string"`
 
-	// The total time in milliseconds that AWS DataSync spent in the PREPARING phase.
+	// The total time in milliseconds that DataSync spent in the PREPARING phase.
 	PrepareDuration *int64 `type:"long"`
 
 	// The status of the PREPARING phase.
 	PrepareStatus *string `type:"string" enum:"PhaseStatus"`
 
-	// The total time in milliseconds that AWS DataSync took to transfer the file
-	// from the source to the destination location.
+	// The total time in milliseconds that DataSync took to transfer the file from
+	// the source to the destination location.
 	TotalDuration *int64 `type:"long"`
 
-	// The total time in milliseconds that AWS DataSync spent in the TRANSFERRING
-	// phase.
+	// The total time in milliseconds that DataSync spent in the TRANSFERRING phase.
 	TransferDuration *int64 `type:"long"`
 
-	// The status of the TRANSFERRING Phase.
+	// The status of the TRANSFERRING phase.
 	TransferStatus *string `type:"string" enum:"PhaseStatus"`
 
-	// The total time in milliseconds that AWS DataSync spent in the VERIFYING phase.
+	// The total time in milliseconds that DataSync spent in the VERIFYING phase.
 	VerifyDuration *int64 `type:"long"`
 
-	// The status of the VERIFYING Phase.
+	// The status of the VERIFYING phase.
 	VerifyStatus *string `type:"string" enum:"PhaseStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionResultDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionResultDetail) GoString() string {
 	return s.String()
 }
@@ -6632,10 +10764,93 @@ func (s *TaskExecutionResultDetail) SetVerifyStatus(v string) *TaskExecutionResu
 	return s
 }
 
+// You can use API filters to narrow down the list of resources returned by
+// ListTasks. For example, to retrieve all tasks on a source location, you can
+// use ListTasks with filter name LocationId and Operator Equals with the ARN
+// for the location.
+//
+// For more information, see filtering DataSync resources (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
+type TaskFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter being used. Each API call supports a list of filters
+	// that are available for it. For example, LocationId for ListTasks.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"TaskFilterName"`
+
+	// The operator that is used to compare filter values (for example, Equals or
+	// Contains).
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"Operator"`
+
+	// The values that you want to filter for. For example, you might want to display
+	// only tasks for a specific destination location.
+	//
+	// Values is a required field
+	Values []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TaskFilter) SetName(v string) *TaskFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *TaskFilter) SetOperator(v string) *TaskFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *TaskFilter) SetValues(v []*string) *TaskFilter {
+	s.Values = v
+	return s
+}
+
 // Represents a single entry in a list of tasks. TaskListEntry returns an array
-// that contains a list of tasks when the ListTasks operation is called. A task
-// includes the source and destination file systems to sync and the options
-// to use for the tasks.
+// that contains a list of tasks when the ListTasks (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTasks.html)
+// operation is called. A task includes the source and destination file systems
+// to sync and the options to use for the tasks.
 type TaskListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -6649,12 +10864,20 @@ type TaskListEntry struct {
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskListEntry) GoString() string {
 	return s.String()
 }
@@ -6682,19 +10905,27 @@ func (s *TaskListEntry) SetTaskArn(v string) *TaskListEntry {
 type TaskSchedule struct {
 	_ struct{} `type:"structure"`
 
-	// A cron expression that specifies when AWS DataSync initiates a scheduled
-	// transfer from a source to a destination location.
+	// A cron expression that specifies when DataSync initiates a scheduled transfer
+	// from a source to a destination location.
 	//
 	// ScheduleExpression is a required field
 	ScheduleExpression *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskSchedule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskSchedule) GoString() string {
 	return s.String()
 }
@@ -6722,23 +10953,32 @@ func (s *TaskSchedule) SetScheduleExpression(v string) *TaskSchedule {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The keys in the key-value pair in the tag to remove.
+	// Specifies the keys in the tags that you want to remove.
 	//
 	// Keys is a required field
 	Keys []*string `min:"1" type:"list" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the resource to remove the tag from.
+	// Specifies the Amazon Resource Name (ARN) of the resource to remove the tags
+	// from.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6778,12 +11018,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6801,12 +11049,20 @@ type UpdateAgentInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentInput) GoString() string {
 	return s.String()
 }
@@ -6843,13 +11099,774 @@ type UpdateAgentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the agents that are used to connect to the HDFS cluster.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The type of authentication used to determine the identity of the user.
+	AuthenticationType *string `type:"string" enum:"HdfsAuthenticationType"`
+
+	// The size of the data blocks to write into the HDFS cluster.
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The Kerberos key table (keytab) that contains mappings between the defined
+	// Kerberos principal and the encrypted keys. You can load the keytab from a
+	// file by providing the file's address. If you use the CLI, it performs base64
+	// encoding for you. Otherwise, provide the base64-encoded text.
+	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
+	KerberosKeytab []byte `type:"blob"`
+
+	// The krb5.conf file that contains the Kerberos configuration information.
+	// You can load the krb5.conf file by providing the file's address. If you're
+	// using the CLI, it performs the base64 encoding for you. Otherwise, provide
+	// the base64-encoded text.
+	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
+	KerberosKrb5Conf []byte `type:"blob"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source HDFS cluster location.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// The NameNode that manages the HDFS namespace. The NameNode performs operations
+	// such as opening, closing, and renaming files and directories. The NameNode
+	// contains the information to map blocks of data to the DataNodes. You can
+	// use only one NameNode.
+	NameNodes []*HdfsNameNode `min:"1" type:"list"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed
+	// File System (HDFS) cluster.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system.
+	SimpleUser *string `min:"1" type:"string"`
+
+	// A subdirectory in the HDFS cluster. This subdirectory is used to read data
+	// from or write data to the HDFS cluster.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationHdfsInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.BlockSize != nil && *s.BlockSize < 1.048576e+06 {
+		invalidParams.Add(request.NewErrParamMinValue("BlockSize", 1.048576e+06))
+	}
+	if s.KerberosPrincipal != nil && len(*s.KerberosPrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KerberosPrincipal", 1))
+	}
+	if s.KmsKeyProviderUri != nil && len(*s.KmsKeyProviderUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyProviderUri", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.NameNodes != nil && len(s.NameNodes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameNodes", 1))
+	}
+	if s.ReplicationFactor != nil && *s.ReplicationFactor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReplicationFactor", 1))
+	}
+	if s.SimpleUser != nil && len(*s.SimpleUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimpleUser", 1))
+	}
+	if s.NameNodes != nil {
+		for i, v := range s.NameNodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NameNodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationHdfsInput) SetAgentArns(v []*string) *UpdateLocationHdfsInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *UpdateLocationHdfsInput) SetAuthenticationType(v string) *UpdateLocationHdfsInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *UpdateLocationHdfsInput) SetBlockSize(v int64) *UpdateLocationHdfsInput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetKerberosKeytab sets the KerberosKeytab field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosKeytab(v []byte) *UpdateLocationHdfsInput {
+	s.KerberosKeytab = v
+	return s
+}
+
+// SetKerberosKrb5Conf sets the KerberosKrb5Conf field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosKrb5Conf(v []byte) *UpdateLocationHdfsInput {
+	s.KerberosKrb5Conf = v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosPrincipal(v string) *UpdateLocationHdfsInput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *UpdateLocationHdfsInput) SetKmsKeyProviderUri(v string) *UpdateLocationHdfsInput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationHdfsInput) SetLocationArn(v string) *UpdateLocationHdfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *UpdateLocationHdfsInput) SetNameNodes(v []*HdfsNameNode) *UpdateLocationHdfsInput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *UpdateLocationHdfsInput) SetQopConfiguration(v *QopConfiguration) *UpdateLocationHdfsInput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *UpdateLocationHdfsInput) SetReplicationFactor(v int64) *UpdateLocationHdfsInput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *UpdateLocationHdfsInput) SetSimpleUser(v string) *UpdateLocationHdfsInput {
+	s.SimpleUser = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationHdfsInput) SetSubdirectory(v string) *UpdateLocationHdfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationNfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the NFS location to update.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Specifies how DataSync can access a location using the NFS protocol.
+	MountOptions *NfsMountOptions `type:"structure"`
+
+	// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
+	// System (NFS) location.
+	OnPremConfig *OnPremConfig `type:"structure"`
+
+	// The subdirectory in the NFS file system that is used to read data from the
+	// NFS source location or write data to the NFS destination. The NFS path should
+	// be a path that's exported by the NFS server, or a subdirectory of that path.
+	// The path should be such that it can be mounted by other NFS clients in your
+	// network.
+	//
+	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
+	// from an NFS client that has access to your server. You can specify any directory
+	// that appears in the results, and any subdirectory of that directory. Ensure
+	// that the NFS export is accessible without Kerberos authentication.
+	//
+	// To transfer all the data in the folder that you specified, DataSync must
+	// have permissions to read all the data. To ensure this, either configure the
+	// NFS export with no_root_squash, or ensure that the files you want DataSync
+	// to access have permissions that allow read access for all users. Doing either
+	// option enables the agent to read the files. For the agent to access directories,
+	// you must additionally enable all execute access.
+	//
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// for more information.
+	//
+	// For information about NFS export configuration, see 18.7. The /etc/exports
+	// Configuration File in the Red Hat Enterprise Linux documentation.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationNfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationNfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationNfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationNfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.OnPremConfig != nil {
+		if err := s.OnPremConfig.Validate(); err != nil {
+			invalidParams.AddNested("OnPremConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationNfsInput) SetLocationArn(v string) *UpdateLocationNfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *UpdateLocationNfsInput) SetMountOptions(v *NfsMountOptions) *UpdateLocationNfsInput {
+	s.MountOptions = v
+	return s
+}
+
+// SetOnPremConfig sets the OnPremConfig field's value.
+func (s *UpdateLocationNfsInput) SetOnPremConfig(v *OnPremConfig) *UpdateLocationNfsInput {
+	s.OnPremConfig = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationNfsInput) SetSubdirectory(v string) *UpdateLocationNfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationNfsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationNfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationNfsOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationObjectStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the access key (for example, a user name) if credentials are required
+	// to authenticate with the object storage server.
+	AccessKey *string `min:"8" type:"string"`
+
+	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
+	// securely connect with your location.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// Specifies the ARN of the object storage system location that you're updating.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Specifies the secret key (for example, a password) if credentials are required
+	// to authenticate with the object storage server.
+	//
+	// SecretKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLocationObjectStorageInput's
+	// String and GoString methods.
+	SecretKey *string `min:"8" type:"string" sensitive:"true"`
+
+	// Specifies a certificate to authenticate with an object storage system that
+	// uses a private or self-signed certificate authority (CA). You must specify
+	// a Base64-encoded .pem file (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
+	// The certificate can be up to 32768 bytes (before Base64 encoding).
+	//
+	// To use this parameter, configure ServerProtocol to HTTPS.
+	//
+	// Updating the certificate doesn't interfere with tasks that you have in progress.
+	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
+	ServerCertificate []byte `type:"blob"`
+
+	// Specifies the port that your object storage server accepts inbound network
+	// traffic on (for example, port 443).
+	ServerPort *int64 `min:"1" type:"integer"`
+
+	// Specifies the protocol that your object storage server uses to communicate.
+	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
+
+	// Specifies the object prefix for your object storage server. If this is a
+	// source location, DataSync only copies objects with this prefix. If this is
+	// a destination location, DataSync writes all objects with this prefix.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationObjectStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationObjectStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationObjectStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationObjectStorageInput"}
+	if s.AccessKey != nil && len(*s.AccessKey) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 8))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.SecretKey != nil && len(*s.SecretKey) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 8))
+	}
+	if s.ServerPort != nil && *s.ServerPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ServerPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessKey sets the AccessKey field's value.
+func (s *UpdateLocationObjectStorageInput) SetAccessKey(v string) *UpdateLocationObjectStorageInput {
+	s.AccessKey = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationObjectStorageInput) SetAgentArns(v []*string) *UpdateLocationObjectStorageInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationObjectStorageInput) SetLocationArn(v string) *UpdateLocationObjectStorageInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetSecretKey sets the SecretKey field's value.
+func (s *UpdateLocationObjectStorageInput) SetSecretKey(v string) *UpdateLocationObjectStorageInput {
+	s.SecretKey = &v
+	return s
+}
+
+// SetServerCertificate sets the ServerCertificate field's value.
+func (s *UpdateLocationObjectStorageInput) SetServerCertificate(v []byte) *UpdateLocationObjectStorageInput {
+	s.ServerCertificate = v
+	return s
+}
+
+// SetServerPort sets the ServerPort field's value.
+func (s *UpdateLocationObjectStorageInput) SetServerPort(v int64) *UpdateLocationObjectStorageInput {
+	s.ServerPort = &v
+	return s
+}
+
+// SetServerProtocol sets the ServerProtocol field's value.
+func (s *UpdateLocationObjectStorageInput) SetServerProtocol(v string) *UpdateLocationObjectStorageInput {
+	s.ServerProtocol = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationObjectStorageInput) SetSubdirectory(v string) *UpdateLocationObjectStorageInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationObjectStorageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationObjectStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationObjectStorageOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationSmbInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block
+	// (SMB) location.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The name of the Windows domain that the SMB server belongs to.
+	Domain *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the SMB location to update.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Specifies how DataSync can access a location using the SMB protocol.
+	MountOptions *SmbMountOptions `type:"structure"`
+
+	// The password of the user who can mount the share has the permissions to access
+	// files and folders in the SMB share.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLocationSmbInput's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// The subdirectory in the SMB file system that is used to read data from the
+	// SMB source location or write data to the SMB destination. The SMB path should
+	// be a path that's exported by the SMB server, or a subdirectory of that path.
+	// The path should be such that it can be mounted by other SMB clients in your
+	// network.
+	//
+	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
+	//
+	// To transfer all the data in the folder that you specified, DataSync must
+	// have permissions to mount the SMB share and to access all the data in that
+	// share. To ensure this, do either of the following:
+	//
+	//    * Ensure that the user/password specified belongs to the user who can
+	//    mount the share and who has the appropriate permissions for all of the
+	//    files and directories that you want DataSync to access.
+	//
+	//    * Use credentials of a member of the Backup Operators group to mount the
+	//    share.
+	//
+	// Doing either of these options enables the agent to access the data. For the
+	// agent to access directories, you must also enable all execute access.
+	Subdirectory *string `type:"string"`
+
+	// The user who can mount the share has the permissions to access files and
+	// folders in the SMB share.
+	User *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationSmbInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationSmbInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationSmbInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationSmbInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationSmbInput) SetAgentArns(v []*string) *UpdateLocationSmbInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *UpdateLocationSmbInput) SetDomain(v string) *UpdateLocationSmbInput {
+	s.Domain = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationSmbInput) SetLocationArn(v string) *UpdateLocationSmbInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *UpdateLocationSmbInput) SetMountOptions(v *SmbMountOptions) *UpdateLocationSmbInput {
+	s.MountOptions = v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *UpdateLocationSmbInput) SetPassword(v string) *UpdateLocationSmbInput {
+	s.Password = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationSmbInput) SetSubdirectory(v string) *UpdateLocationSmbInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *UpdateLocationSmbInput) SetUser(v string) *UpdateLocationSmbInput {
+	s.User = &v
+	return s
+}
+
+type UpdateLocationSmbOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationSmbOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationSmbOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateTaskExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configures your DataSync task settings. These options include how DataSync
+	// handles files, objects, and their associated metadata. You also can specify
+	// how DataSync verifies data integrity, set bandwidth limits for your task,
+	// among other options.
+	//
+	// Each task setting has a default value. Unless you need to, you don't have
+	// to configure any of these Options before starting your task.
+	//
+	// Options is a required field
+	Options *Options `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the specific task execution that is being
+	// updated.
+	//
+	// TaskExecutionArn is a required field
+	TaskExecutionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTaskExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTaskExecutionInput"}
+	if s.Options == nil {
+		invalidParams.Add(request.NewErrParamRequired("Options"))
+	}
+	if s.TaskExecutionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskExecutionArn"))
+	}
+	if s.Options != nil {
+		if err := s.Options.Validate(); err != nil {
+			invalidParams.AddNested("Options", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOptions sets the Options field's value.
+func (s *UpdateTaskExecutionInput) SetOptions(v *Options) *UpdateTaskExecutionInput {
+	s.Options = v
+	return s
+}
+
+// SetTaskExecutionArn sets the TaskExecutionArn field's value.
+func (s *UpdateTaskExecutionInput) SetTaskExecutionArn(v string) *UpdateTaskExecutionInput {
+	s.TaskExecutionArn = &v
+	return s
+}
+
+type UpdateTaskExecutionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskExecutionOutput) GoString() string {
 	return s.String()
 }
 
@@ -6857,34 +11874,37 @@ func (s UpdateAgentOutput) GoString() string {
 type UpdateTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource name of the CloudWatch LogGroup.
+	// The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch
+	// log group.
 	CloudWatchLogGroupArn *string `type:"string"`
 
-	// A list of filter rules that determines which files to exclude from a task.
-	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// Specifies a list of filter rules that exclude specific data during your transfer.
+	// For more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
+
+	// Specifies a list of filter rules that include specific data during your transfer.
+	// For more information and examples, see Filtering data transferred by DataSync
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	Includes []*FilterRule `type:"list"`
 
 	// The name of the task to update.
 	Name *string `min:"1" type:"string"`
 
-	// Represents the options that are available to control the behavior of a StartTaskExecution
-	// operation. Behavior includes preserving metadata such as user ID (UID), group
-	// ID (GID), and file permissions, and also overwriting files in the destination,
-	// data integrity verification, and so on.
+	// Configures your DataSync task settings. These options include how DataSync
+	// handles files, objects, and their associated metadata. You also can specify
+	// how DataSync verifies data integrity, set bandwidth limits for your task,
+	// among other options.
 	//
-	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// Each task setting has a default value. Unless you need to, you don't have
+	// to configure any of these Options before starting your task.
 	Options *Options `type:"structure"`
 
 	// Specifies a schedule used to periodically transfer files from a source to
 	// a destination location. You can configure your task to execute hourly, daily,
 	// weekly or on specific days of the week. You control when in the day or hour
 	// you want the task to execute. The time you specify is UTC time. For more
-	// information, see task-scheduling.
+	// information, see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resource name of the task to update.
@@ -6893,12 +11913,20 @@ type UpdateTaskInput struct {
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskInput) GoString() string {
 	return s.String()
 }
@@ -6941,6 +11969,12 @@ func (s *UpdateTaskInput) SetExcludes(v []*FilterRule) *UpdateTaskInput {
 	return s
 }
 
+// SetIncludes sets the Includes field's value.
+func (s *UpdateTaskInput) SetIncludes(v []*FilterRule) *UpdateTaskInput {
+	s.Includes = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateTaskInput) SetName(v string) *UpdateTaskInput {
 	s.Name = &v
@@ -6969,12 +12003,20 @@ type UpdateTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskOutput) GoString() string {
 	return s.String()
 }
@@ -6987,6 +12029,14 @@ const (
 	AgentStatusOffline = "OFFLINE"
 )
 
+// AgentStatus_Values returns all elements of the AgentStatus enum
+func AgentStatus_Values() []string {
+	return []string{
+		AgentStatusOnline,
+		AgentStatusOffline,
+	}
+}
+
 const (
 	// AtimeNone is a Atime enum value
 	AtimeNone = "NONE"
@@ -6994,6 +12044,30 @@ const (
 	// AtimeBestEffort is a Atime enum value
 	AtimeBestEffort = "BEST_EFFORT"
 )
+
+// Atime_Values returns all elements of the Atime enum
+func Atime_Values() []string {
+	return []string{
+		AtimeNone,
+		AtimeBestEffort,
+	}
+}
+
+const (
+	// EfsInTransitEncryptionNone is a EfsInTransitEncryption enum value
+	EfsInTransitEncryptionNone = "NONE"
+
+	// EfsInTransitEncryptionTls12 is a EfsInTransitEncryption enum value
+	EfsInTransitEncryptionTls12 = "TLS1_2"
+)
+
+// EfsInTransitEncryption_Values returns all elements of the EfsInTransitEncryption enum
+func EfsInTransitEncryption_Values() []string {
+	return []string{
+		EfsInTransitEncryptionNone,
+		EfsInTransitEncryptionTls12,
+	}
+}
 
 const (
 	// EndpointTypePublic is a EndpointType enum value
@@ -7006,10 +12080,26 @@ const (
 	EndpointTypeFips = "FIPS"
 )
 
+// EndpointType_Values returns all elements of the EndpointType enum
+func EndpointType_Values() []string {
+	return []string{
+		EndpointTypePublic,
+		EndpointTypePrivateLink,
+		EndpointTypeFips,
+	}
+}
+
 const (
 	// FilterTypeSimplePattern is a FilterType enum value
 	FilterTypeSimplePattern = "SIMPLE_PATTERN"
 )
+
+// FilterType_Values returns all elements of the FilterType enum
+func FilterType_Values() []string {
+	return []string{
+		FilterTypeSimplePattern,
+	}
+}
 
 const (
 	// GidNone is a Gid enum value
@@ -7025,6 +12115,100 @@ const (
 	GidBoth = "BOTH"
 )
 
+// Gid_Values returns all elements of the Gid enum
+func Gid_Values() []string {
+	return []string{
+		GidNone,
+		GidIntValue,
+		GidName,
+		GidBoth,
+	}
+}
+
+const (
+	// HdfsAuthenticationTypeSimple is a HdfsAuthenticationType enum value
+	HdfsAuthenticationTypeSimple = "SIMPLE"
+
+	// HdfsAuthenticationTypeKerberos is a HdfsAuthenticationType enum value
+	HdfsAuthenticationTypeKerberos = "KERBEROS"
+)
+
+// HdfsAuthenticationType_Values returns all elements of the HdfsAuthenticationType enum
+func HdfsAuthenticationType_Values() []string {
+	return []string{
+		HdfsAuthenticationTypeSimple,
+		HdfsAuthenticationTypeKerberos,
+	}
+}
+
+const (
+	// HdfsDataTransferProtectionDisabled is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionDisabled = "DISABLED"
+
+	// HdfsDataTransferProtectionAuthentication is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionAuthentication = "AUTHENTICATION"
+
+	// HdfsDataTransferProtectionIntegrity is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionIntegrity = "INTEGRITY"
+
+	// HdfsDataTransferProtectionPrivacy is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionPrivacy = "PRIVACY"
+)
+
+// HdfsDataTransferProtection_Values returns all elements of the HdfsDataTransferProtection enum
+func HdfsDataTransferProtection_Values() []string {
+	return []string{
+		HdfsDataTransferProtectionDisabled,
+		HdfsDataTransferProtectionAuthentication,
+		HdfsDataTransferProtectionIntegrity,
+		HdfsDataTransferProtectionPrivacy,
+	}
+}
+
+const (
+	// HdfsRpcProtectionDisabled is a HdfsRpcProtection enum value
+	HdfsRpcProtectionDisabled = "DISABLED"
+
+	// HdfsRpcProtectionAuthentication is a HdfsRpcProtection enum value
+	HdfsRpcProtectionAuthentication = "AUTHENTICATION"
+
+	// HdfsRpcProtectionIntegrity is a HdfsRpcProtection enum value
+	HdfsRpcProtectionIntegrity = "INTEGRITY"
+
+	// HdfsRpcProtectionPrivacy is a HdfsRpcProtection enum value
+	HdfsRpcProtectionPrivacy = "PRIVACY"
+)
+
+// HdfsRpcProtection_Values returns all elements of the HdfsRpcProtection enum
+func HdfsRpcProtection_Values() []string {
+	return []string{
+		HdfsRpcProtectionDisabled,
+		HdfsRpcProtectionAuthentication,
+		HdfsRpcProtectionIntegrity,
+		HdfsRpcProtectionPrivacy,
+	}
+}
+
+const (
+	// LocationFilterNameLocationUri is a LocationFilterName enum value
+	LocationFilterNameLocationUri = "LocationUri"
+
+	// LocationFilterNameLocationType is a LocationFilterName enum value
+	LocationFilterNameLocationType = "LocationType"
+
+	// LocationFilterNameCreationTime is a LocationFilterName enum value
+	LocationFilterNameCreationTime = "CreationTime"
+)
+
+// LocationFilterName_Values returns all elements of the LocationFilterName enum
+func LocationFilterName_Values() []string {
+	return []string{
+		LocationFilterNameLocationUri,
+		LocationFilterNameLocationType,
+		LocationFilterNameCreationTime,
+	}
+}
+
 const (
 	// LogLevelOff is a LogLevel enum value
 	LogLevelOff = "OFF"
@@ -7036,6 +12220,15 @@ const (
 	LogLevelTransfer = "TRANSFER"
 )
 
+// LogLevel_Values returns all elements of the LogLevel enum
+func LogLevel_Values() []string {
+	return []string{
+		LogLevelOff,
+		LogLevelBasic,
+		LogLevelTransfer,
+	}
+}
+
 const (
 	// MtimeNone is a Mtime enum value
 	MtimeNone = "NONE"
@@ -7043,6 +12236,14 @@ const (
 	// MtimePreserve is a Mtime enum value
 	MtimePreserve = "PRESERVE"
 )
+
+// Mtime_Values returns all elements of the Mtime enum
+func Mtime_Values() []string {
+	return []string{
+		MtimeNone,
+		MtimePreserve,
+	}
+}
 
 const (
 	// NfsVersionAutomatic is a NfsVersion enum value
@@ -7058,6 +12259,96 @@ const (
 	NfsVersionNfs41 = "NFS4_1"
 )
 
+// NfsVersion_Values returns all elements of the NfsVersion enum
+func NfsVersion_Values() []string {
+	return []string{
+		NfsVersionAutomatic,
+		NfsVersionNfs3,
+		NfsVersionNfs40,
+		NfsVersionNfs41,
+	}
+}
+
+const (
+	// ObjectStorageServerProtocolHttps is a ObjectStorageServerProtocol enum value
+	ObjectStorageServerProtocolHttps = "HTTPS"
+
+	// ObjectStorageServerProtocolHttp is a ObjectStorageServerProtocol enum value
+	ObjectStorageServerProtocolHttp = "HTTP"
+)
+
+// ObjectStorageServerProtocol_Values returns all elements of the ObjectStorageServerProtocol enum
+func ObjectStorageServerProtocol_Values() []string {
+	return []string{
+		ObjectStorageServerProtocolHttps,
+		ObjectStorageServerProtocolHttp,
+	}
+}
+
+const (
+	// ObjectTagsPreserve is a ObjectTags enum value
+	ObjectTagsPreserve = "PRESERVE"
+
+	// ObjectTagsNone is a ObjectTags enum value
+	ObjectTagsNone = "NONE"
+)
+
+// ObjectTags_Values returns all elements of the ObjectTags enum
+func ObjectTags_Values() []string {
+	return []string{
+		ObjectTagsPreserve,
+		ObjectTagsNone,
+	}
+}
+
+const (
+	// OperatorEquals is a Operator enum value
+	OperatorEquals = "Equals"
+
+	// OperatorNotEquals is a Operator enum value
+	OperatorNotEquals = "NotEquals"
+
+	// OperatorIn is a Operator enum value
+	OperatorIn = "In"
+
+	// OperatorLessThanOrEqual is a Operator enum value
+	OperatorLessThanOrEqual = "LessThanOrEqual"
+
+	// OperatorLessThan is a Operator enum value
+	OperatorLessThan = "LessThan"
+
+	// OperatorGreaterThanOrEqual is a Operator enum value
+	OperatorGreaterThanOrEqual = "GreaterThanOrEqual"
+
+	// OperatorGreaterThan is a Operator enum value
+	OperatorGreaterThan = "GreaterThan"
+
+	// OperatorContains is a Operator enum value
+	OperatorContains = "Contains"
+
+	// OperatorNotContains is a Operator enum value
+	OperatorNotContains = "NotContains"
+
+	// OperatorBeginsWith is a Operator enum value
+	OperatorBeginsWith = "BeginsWith"
+)
+
+// Operator_Values returns all elements of the Operator enum
+func Operator_Values() []string {
+	return []string{
+		OperatorEquals,
+		OperatorNotEquals,
+		OperatorIn,
+		OperatorLessThanOrEqual,
+		OperatorLessThan,
+		OperatorGreaterThanOrEqual,
+		OperatorGreaterThan,
+		OperatorContains,
+		OperatorNotContains,
+		OperatorBeginsWith,
+	}
+}
+
 const (
 	// OverwriteModeAlways is a OverwriteMode enum value
 	OverwriteModeAlways = "ALWAYS"
@@ -7065,6 +12356,14 @@ const (
 	// OverwriteModeNever is a OverwriteMode enum value
 	OverwriteModeNever = "NEVER"
 )
+
+// OverwriteMode_Values returns all elements of the OverwriteMode enum
+func OverwriteMode_Values() []string {
+	return []string{
+		OverwriteModeAlways,
+		OverwriteModeNever,
+	}
+}
 
 const (
 	// PhaseStatusPending is a PhaseStatus enum value
@@ -7077,6 +12376,15 @@ const (
 	PhaseStatusError = "ERROR"
 )
 
+// PhaseStatus_Values returns all elements of the PhaseStatus enum
+func PhaseStatus_Values() []string {
+	return []string{
+		PhaseStatusPending,
+		PhaseStatusSuccess,
+		PhaseStatusError,
+	}
+}
+
 const (
 	// PosixPermissionsNone is a PosixPermissions enum value
 	PosixPermissionsNone = "NONE"
@@ -7084,6 +12392,14 @@ const (
 	// PosixPermissionsPreserve is a PosixPermissions enum value
 	PosixPermissionsPreserve = "PRESERVE"
 )
+
+// PosixPermissions_Values returns all elements of the PosixPermissions enum
+func PosixPermissions_Values() []string {
+	return []string{
+		PosixPermissionsNone,
+		PosixPermissionsPreserve,
+	}
+}
 
 const (
 	// PreserveDeletedFilesPreserve is a PreserveDeletedFiles enum value
@@ -7093,6 +12409,14 @@ const (
 	PreserveDeletedFilesRemove = "REMOVE"
 )
 
+// PreserveDeletedFiles_Values returns all elements of the PreserveDeletedFiles enum
+func PreserveDeletedFiles_Values() []string {
+	return []string{
+		PreserveDeletedFilesPreserve,
+		PreserveDeletedFilesRemove,
+	}
+}
+
 const (
 	// PreserveDevicesNone is a PreserveDevices enum value
 	PreserveDevicesNone = "NONE"
@@ -7100,6 +12424,14 @@ const (
 	// PreserveDevicesPreserve is a PreserveDevices enum value
 	PreserveDevicesPreserve = "PRESERVE"
 )
+
+// PreserveDevices_Values returns all elements of the PreserveDevices enum
+func PreserveDevices_Values() []string {
+	return []string{
+		PreserveDevicesNone,
+		PreserveDevicesPreserve,
+	}
+}
 
 const (
 	// S3StorageClassStandard is a S3StorageClass enum value
@@ -7119,7 +12451,47 @@ const (
 
 	// S3StorageClassDeepArchive is a S3StorageClass enum value
 	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// S3StorageClassOutposts is a S3StorageClass enum value
+	S3StorageClassOutposts = "OUTPOSTS"
+
+	// S3StorageClassGlacierInstantRetrieval is a S3StorageClass enum value
+	S3StorageClassGlacierInstantRetrieval = "GLACIER_INSTANT_RETRIEVAL"
 )
+
+// S3StorageClass_Values returns all elements of the S3StorageClass enum
+func S3StorageClass_Values() []string {
+	return []string{
+		S3StorageClassStandard,
+		S3StorageClassStandardIa,
+		S3StorageClassOnezoneIa,
+		S3StorageClassIntelligentTiering,
+		S3StorageClassGlacier,
+		S3StorageClassDeepArchive,
+		S3StorageClassOutposts,
+		S3StorageClassGlacierInstantRetrieval,
+	}
+}
+
+const (
+	// SmbSecurityDescriptorCopyFlagsNone is a SmbSecurityDescriptorCopyFlags enum value
+	SmbSecurityDescriptorCopyFlagsNone = "NONE"
+
+	// SmbSecurityDescriptorCopyFlagsOwnerDacl is a SmbSecurityDescriptorCopyFlags enum value
+	SmbSecurityDescriptorCopyFlagsOwnerDacl = "OWNER_DACL"
+
+	// SmbSecurityDescriptorCopyFlagsOwnerDaclSacl is a SmbSecurityDescriptorCopyFlags enum value
+	SmbSecurityDescriptorCopyFlagsOwnerDaclSacl = "OWNER_DACL_SACL"
+)
+
+// SmbSecurityDescriptorCopyFlags_Values returns all elements of the SmbSecurityDescriptorCopyFlags enum
+func SmbSecurityDescriptorCopyFlags_Values() []string {
+	return []string{
+		SmbSecurityDescriptorCopyFlagsNone,
+		SmbSecurityDescriptorCopyFlagsOwnerDacl,
+		SmbSecurityDescriptorCopyFlagsOwnerDaclSacl,
+	}
+}
 
 const (
 	// SmbVersionAutomatic is a SmbVersion enum value
@@ -7131,6 +12503,15 @@ const (
 	// SmbVersionSmb3 is a SmbVersion enum value
 	SmbVersionSmb3 = "SMB3"
 )
+
+// SmbVersion_Values returns all elements of the SmbVersion enum
+func SmbVersion_Values() []string {
+	return []string{
+		SmbVersionAutomatic,
+		SmbVersionSmb2,
+		SmbVersionSmb3,
+	}
+}
 
 const (
 	// TaskExecutionStatusQueued is a TaskExecutionStatus enum value
@@ -7155,6 +12536,35 @@ const (
 	TaskExecutionStatusError = "ERROR"
 )
 
+// TaskExecutionStatus_Values returns all elements of the TaskExecutionStatus enum
+func TaskExecutionStatus_Values() []string {
+	return []string{
+		TaskExecutionStatusQueued,
+		TaskExecutionStatusLaunching,
+		TaskExecutionStatusPreparing,
+		TaskExecutionStatusTransferring,
+		TaskExecutionStatusVerifying,
+		TaskExecutionStatusSuccess,
+		TaskExecutionStatusError,
+	}
+}
+
+const (
+	// TaskFilterNameLocationId is a TaskFilterName enum value
+	TaskFilterNameLocationId = "LocationId"
+
+	// TaskFilterNameCreationTime is a TaskFilterName enum value
+	TaskFilterNameCreationTime = "CreationTime"
+)
+
+// TaskFilterName_Values returns all elements of the TaskFilterName enum
+func TaskFilterName_Values() []string {
+	return []string{
+		TaskFilterNameLocationId,
+		TaskFilterNameCreationTime,
+	}
+}
+
 const (
 	// TaskQueueingEnabled is a TaskQueueing enum value
 	TaskQueueingEnabled = "ENABLED"
@@ -7162,6 +12572,14 @@ const (
 	// TaskQueueingDisabled is a TaskQueueing enum value
 	TaskQueueingDisabled = "DISABLED"
 )
+
+// TaskQueueing_Values returns all elements of the TaskQueueing enum
+func TaskQueueing_Values() []string {
+	return []string{
+		TaskQueueingEnabled,
+		TaskQueueingDisabled,
+	}
+}
 
 const (
 	// TaskStatusAvailable is a TaskStatus enum value
@@ -7180,6 +12598,33 @@ const (
 	TaskStatusUnavailable = "UNAVAILABLE"
 )
 
+// TaskStatus_Values returns all elements of the TaskStatus enum
+func TaskStatus_Values() []string {
+	return []string{
+		TaskStatusAvailable,
+		TaskStatusCreating,
+		TaskStatusQueued,
+		TaskStatusRunning,
+		TaskStatusUnavailable,
+	}
+}
+
+const (
+	// TransferModeChanged is a TransferMode enum value
+	TransferModeChanged = "CHANGED"
+
+	// TransferModeAll is a TransferMode enum value
+	TransferModeAll = "ALL"
+)
+
+// TransferMode_Values returns all elements of the TransferMode enum
+func TransferMode_Values() []string {
+	return []string{
+		TransferModeChanged,
+		TransferModeAll,
+	}
+}
+
 const (
 	// UidNone is a Uid enum value
 	UidNone = "NONE"
@@ -7194,6 +12639,16 @@ const (
 	UidBoth = "BOTH"
 )
 
+// Uid_Values returns all elements of the Uid enum
+func Uid_Values() []string {
+	return []string{
+		UidNone,
+		UidIntValue,
+		UidName,
+		UidBoth,
+	}
+}
+
 const (
 	// VerifyModePointInTimeConsistent is a VerifyMode enum value
 	VerifyModePointInTimeConsistent = "POINT_IN_TIME_CONSISTENT"
@@ -7204,3 +12659,12 @@ const (
 	// VerifyModeNone is a VerifyMode enum value
 	VerifyModeNone = "NONE"
 )
+
+// VerifyMode_Values returns all elements of the VerifyMode enum
+func VerifyMode_Values() []string {
+	return []string{
+		VerifyModePointInTimeConsistent,
+		VerifyModeOnlyFilesTransferred,
+		VerifyModeNone,
+	}
+}

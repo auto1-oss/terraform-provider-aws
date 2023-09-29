@@ -57,6 +57,20 @@ const (
 	//
 	// We can’t locate the resource that you specified.
 	ErrCodeNotFoundException = "NotFoundException"
+
+	// ErrCodeResourceLockedException for service response error code
+	// "ResourceLockedException".
+	//
+	// The request was received and recognized by the server, but the server rejected
+	// that particular method for the requested resource.
+	ErrCodeResourceLockedException = "ResourceLockedException"
+
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The number of API requests has exceeded the maximum allowed API request throttling
+	// limit for the account.
+	ErrCodeThrottlingException = "ThrottlingException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -68,4 +82,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidNextTokenException":      newErrorInvalidNextTokenException,
 	"InvalidParameterException":      newErrorInvalidParameterException,
 	"NotFoundException":              newErrorNotFoundException,
+	"ResourceLockedException":        newErrorResourceLockedException,
+	"ThrottlingException":            newErrorThrottlingException,
 }

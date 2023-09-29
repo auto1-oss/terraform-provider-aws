@@ -28,14 +28,13 @@ const opDeleteReportDefinition = "DeleteReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReportDefinitionRequest method.
+//	req, resp := client.DeleteReportDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteReportDefinitionRequest method.
-//    req, resp := client.DeleteReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/DeleteReportDefinition
 func (c *CostandUsageReportService) DeleteReportDefinitionRequest(input *DeleteReportDefinitionInput) (req *request.Request, output *DeleteReportDefinitionOutput) {
@@ -66,12 +65,13 @@ func (c *CostandUsageReportService) DeleteReportDefinitionRequest(input *DeleteR
 // API operation DeleteReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   An error on the server occurred during the processing of your request. Try
-//   again later.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/DeleteReportDefinition
 func (c *CostandUsageReportService) DeleteReportDefinition(input *DeleteReportDefinitionInput) (*DeleteReportDefinitionOutput, error) {
@@ -111,14 +111,13 @@ const opDescribeReportDefinitions = "DescribeReportDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReportDefinitionsRequest method.
+//	req, resp := client.DescribeReportDefinitionsRequest(params)
 //
-//    // Example sending a request using the DescribeReportDefinitionsRequest method.
-//    req, resp := client.DescribeReportDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/DescribeReportDefinitions
 func (c *CostandUsageReportService) DescribeReportDefinitionsRequest(input *DescribeReportDefinitionsInput) (req *request.Request, output *DescribeReportDefinitionsOutput) {
@@ -155,9 +154,9 @@ func (c *CostandUsageReportService) DescribeReportDefinitionsRequest(input *Desc
 // API operation DescribeReportDefinitions for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   An error on the server occurred during the processing of your request. Try
-//   again later.
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/DescribeReportDefinitions
 func (c *CostandUsageReportService) DescribeReportDefinitions(input *DescribeReportDefinitionsInput) (*DescribeReportDefinitionsOutput, error) {
@@ -189,15 +188,14 @@ func (c *CostandUsageReportService) DescribeReportDefinitionsWithContext(ctx aws
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReportDefinitions operation.
-//    pageNum := 0
-//    err := client.DescribeReportDefinitionsPages(params,
-//        func(page *costandusagereportservice.DescribeReportDefinitionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReportDefinitions operation.
+//	pageNum := 0
+//	err := client.DescribeReportDefinitionsPages(params,
+//	    func(page *costandusagereportservice.DescribeReportDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *CostandUsageReportService) DescribeReportDefinitionsPages(input *DescribeReportDefinitionsInput, fn func(*DescribeReportDefinitionsOutput, bool) bool) error {
 	return c.DescribeReportDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -249,14 +247,13 @@ const opModifyReportDefinition = "ModifyReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReportDefinitionRequest method.
+//	req, resp := client.ModifyReportDefinitionRequest(params)
 //
-//    // Example sending a request using the ModifyReportDefinitionRequest method.
-//    req, resp := client.ModifyReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/ModifyReportDefinition
 func (c *CostandUsageReportService) ModifyReportDefinitionRequest(input *ModifyReportDefinitionInput) (req *request.Request, output *ModifyReportDefinitionOutput) {
@@ -288,12 +285,13 @@ func (c *CostandUsageReportService) ModifyReportDefinitionRequest(input *ModifyR
 // API operation ModifyReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * InternalErrorException
-//   An error on the server occurred during the processing of your request. Try
-//   again later.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/ModifyReportDefinition
 func (c *CostandUsageReportService) ModifyReportDefinition(input *ModifyReportDefinitionInput) (*ModifyReportDefinitionOutput, error) {
@@ -333,14 +331,13 @@ const opPutReportDefinition = "PutReportDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutReportDefinitionRequest method.
+//	req, resp := client.PutReportDefinitionRequest(params)
 //
-//    // Example sending a request using the PutReportDefinitionRequest method.
-//    req, resp := client.PutReportDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/PutReportDefinition
 func (c *CostandUsageReportService) PutReportDefinitionRequest(input *PutReportDefinitionInput) (req *request.Request, output *PutReportDefinitionOutput) {
@@ -372,20 +369,21 @@ func (c *CostandUsageReportService) PutReportDefinitionRequest(input *PutReportD
 // API operation PutReportDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * DuplicateReportNameException
-//   A report with the specified name already exists in the account. Specify a
-//   different report name.
 //
-//   * ReportLimitReachedException
-//   This account already has five reports defined. To define a new report, you
-//   must delete an existing report.
+//   - DuplicateReportNameException
+//     A report with the specified name already exists in the account. Specify a
+//     different report name.
 //
-//   * InternalErrorException
-//   An error on the server occurred during the processing of your request. Try
-//   again later.
+//   - ReportLimitReachedException
+//     This account already has five reports defined. To define a new report, you
+//     must delete an existing report.
 //
-//   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cur-2017-01-06/PutReportDefinition
 func (c *CostandUsageReportService) PutReportDefinition(input *PutReportDefinitionInput) (*PutReportDefinitionOutput, error) {
@@ -413,17 +411,25 @@ func (c *CostandUsageReportService) PutReportDefinitionWithContext(ctx aws.Conte
 type DeleteReportDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the report that you want to create. The name must be unique,
+	// The name of the report that you want to delete. The name must be unique,
 	// is case sensitive, and can't include spaces.
 	ReportName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -442,12 +448,20 @@ type DeleteReportDefinitionOutput struct {
 	ResponseMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -469,12 +483,20 @@ type DescribeReportDefinitionsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReportDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReportDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -515,12 +537,20 @@ type DescribeReportDefinitionsOutput struct {
 	ReportDefinitions []*ReportDefinition `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReportDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReportDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -547,12 +577,20 @@ type DuplicateReportNameException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateReportNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateReportNameException) GoString() string {
 	return s.String()
 }
@@ -605,12 +643,20 @@ type InternalErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalErrorException) GoString() string {
 	return s.String()
 }
@@ -670,12 +716,20 @@ type ModifyReportDefinitionInput struct {
 	ReportName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -717,12 +771,20 @@ type ModifyReportDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -738,12 +800,20 @@ type PutReportDefinitionInput struct {
 	ReportDefinition *ReportDefinition `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -778,12 +848,20 @@ type PutReportDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutReportDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -796,13 +874,17 @@ type ReportDefinition struct {
 
 	// A list of manifests that you want Amazon Web Services to create for this
 	// report.
-	AdditionalArtifacts []*string `type:"list"`
+	AdditionalArtifacts []*string `type:"list" enum:"AdditionalArtifact"`
 
 	// A list of strings that indicate additional content that Amazon Web Services
 	// includes in the report, such as individual resource IDs.
 	//
 	// AdditionalSchemaElements is a required field
-	AdditionalSchemaElements []*string `type:"list" required:"true"`
+	AdditionalSchemaElements []*string `type:"list" required:"true" enum:"SchemaElement"`
+
+	// The Amazon resource name of the billing view. You can get this value by using
+	// the billing view service public APIs.
+	BillingViewArn *string `type:"string"`
 
 	// The compression format that AWS uses for the report.
 	//
@@ -851,12 +933,20 @@ type ReportDefinition struct {
 	TimeUnit *string `type:"string" required:"true" enum:"TimeUnit"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportDefinition) GoString() string {
 	return s.String()
 }
@@ -904,6 +994,12 @@ func (s *ReportDefinition) SetAdditionalArtifacts(v []*string) *ReportDefinition
 // SetAdditionalSchemaElements sets the AdditionalSchemaElements field's value.
 func (s *ReportDefinition) SetAdditionalSchemaElements(v []*string) *ReportDefinition {
 	s.AdditionalSchemaElements = v
+	return s
+}
+
+// SetBillingViewArn sets the BillingViewArn field's value.
+func (s *ReportDefinition) SetBillingViewArn(v string) *ReportDefinition {
+	s.BillingViewArn = &v
 	return s
 }
 
@@ -971,12 +1067,20 @@ type ReportLimitReachedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportLimitReachedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportLimitReachedException) GoString() string {
 	return s.String()
 }
@@ -1028,12 +1132,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -1078,20 +1190,14 @@ func (s *ValidationException) RequestID() string {
 
 // The region of the S3 bucket that AWS delivers the report into.
 const (
-	// AWSRegionUsEast1 is a AWSRegion enum value
-	AWSRegionUsEast1 = "us-east-1"
+	// AWSRegionAfSouth1 is a AWSRegion enum value
+	AWSRegionAfSouth1 = "af-south-1"
 
-	// AWSRegionUsWest1 is a AWSRegion enum value
-	AWSRegionUsWest1 = "us-west-1"
+	// AWSRegionApEast1 is a AWSRegion enum value
+	AWSRegionApEast1 = "ap-east-1"
 
-	// AWSRegionUsWest2 is a AWSRegion enum value
-	AWSRegionUsWest2 = "us-west-2"
-
-	// AWSRegionEuCentral1 is a AWSRegion enum value
-	AWSRegionEuCentral1 = "eu-central-1"
-
-	// AWSRegionEuWest1 is a AWSRegion enum value
-	AWSRegionEuWest1 = "eu-west-1"
+	// AWSRegionApSouth1 is a AWSRegion enum value
+	AWSRegionApSouth1 = "ap-south-1"
 
 	// AWSRegionApSoutheast1 is a AWSRegion enum value
 	AWSRegionApSoutheast1 = "ap-southeast-1"
@@ -1099,18 +1205,101 @@ const (
 	// AWSRegionApSoutheast2 is a AWSRegion enum value
 	AWSRegionApSoutheast2 = "ap-southeast-2"
 
+	// AWSRegionApSoutheast3 is a AWSRegion enum value
+	AWSRegionApSoutheast3 = "ap-southeast-3"
+
 	// AWSRegionApNortheast1 is a AWSRegion enum value
 	AWSRegionApNortheast1 = "ap-northeast-1"
 
-	// AWSRegionEuNorth1 is a AWSRegion enum value
-	AWSRegionEuNorth1 = "eu-north-1"
+	// AWSRegionApNortheast2 is a AWSRegion enum value
+	AWSRegionApNortheast2 = "ap-northeast-2"
 
 	// AWSRegionApNortheast3 is a AWSRegion enum value
 	AWSRegionApNortheast3 = "ap-northeast-3"
 
-	// AWSRegionApEast1 is a AWSRegion enum value
-	AWSRegionApEast1 = "ap-east-1"
+	// AWSRegionCaCentral1 is a AWSRegion enum value
+	AWSRegionCaCentral1 = "ca-central-1"
+
+	// AWSRegionEuCentral1 is a AWSRegion enum value
+	AWSRegionEuCentral1 = "eu-central-1"
+
+	// AWSRegionEuWest1 is a AWSRegion enum value
+	AWSRegionEuWest1 = "eu-west-1"
+
+	// AWSRegionEuWest2 is a AWSRegion enum value
+	AWSRegionEuWest2 = "eu-west-2"
+
+	// AWSRegionEuWest3 is a AWSRegion enum value
+	AWSRegionEuWest3 = "eu-west-3"
+
+	// AWSRegionEuNorth1 is a AWSRegion enum value
+	AWSRegionEuNorth1 = "eu-north-1"
+
+	// AWSRegionEuSouth1 is a AWSRegion enum value
+	AWSRegionEuSouth1 = "eu-south-1"
+
+	// AWSRegionEuSouth2 is a AWSRegion enum value
+	AWSRegionEuSouth2 = "eu-south-2"
+
+	// AWSRegionMeCentral1 is a AWSRegion enum value
+	AWSRegionMeCentral1 = "me-central-1"
+
+	// AWSRegionMeSouth1 is a AWSRegion enum value
+	AWSRegionMeSouth1 = "me-south-1"
+
+	// AWSRegionSaEast1 is a AWSRegion enum value
+	AWSRegionSaEast1 = "sa-east-1"
+
+	// AWSRegionUsEast1 is a AWSRegion enum value
+	AWSRegionUsEast1 = "us-east-1"
+
+	// AWSRegionUsEast2 is a AWSRegion enum value
+	AWSRegionUsEast2 = "us-east-2"
+
+	// AWSRegionUsWest1 is a AWSRegion enum value
+	AWSRegionUsWest1 = "us-west-1"
+
+	// AWSRegionUsWest2 is a AWSRegion enum value
+	AWSRegionUsWest2 = "us-west-2"
+
+	// AWSRegionCnNorth1 is a AWSRegion enum value
+	AWSRegionCnNorth1 = "cn-north-1"
+
+	// AWSRegionCnNorthwest1 is a AWSRegion enum value
+	AWSRegionCnNorthwest1 = "cn-northwest-1"
 )
+
+// AWSRegion_Values returns all elements of the AWSRegion enum
+func AWSRegion_Values() []string {
+	return []string{
+		AWSRegionAfSouth1,
+		AWSRegionApEast1,
+		AWSRegionApSouth1,
+		AWSRegionApSoutheast1,
+		AWSRegionApSoutheast2,
+		AWSRegionApSoutheast3,
+		AWSRegionApNortheast1,
+		AWSRegionApNortheast2,
+		AWSRegionApNortheast3,
+		AWSRegionCaCentral1,
+		AWSRegionEuCentral1,
+		AWSRegionEuWest1,
+		AWSRegionEuWest2,
+		AWSRegionEuWest3,
+		AWSRegionEuNorth1,
+		AWSRegionEuSouth1,
+		AWSRegionEuSouth2,
+		AWSRegionMeCentral1,
+		AWSRegionMeSouth1,
+		AWSRegionSaEast1,
+		AWSRegionUsEast1,
+		AWSRegionUsEast2,
+		AWSRegionUsWest1,
+		AWSRegionUsWest2,
+		AWSRegionCnNorth1,
+		AWSRegionCnNorthwest1,
+	}
+}
 
 // The types of manifest that you want AWS to create for this report.
 const (
@@ -1124,6 +1313,15 @@ const (
 	AdditionalArtifactAthena = "ATHENA"
 )
 
+// AdditionalArtifact_Values returns all elements of the AdditionalArtifact enum
+func AdditionalArtifact_Values() []string {
+	return []string{
+		AdditionalArtifactRedshift,
+		AdditionalArtifactQuicksight,
+		AdditionalArtifactAthena,
+	}
+}
+
 // The compression format that AWS uses for the report.
 const (
 	// CompressionFormatZip is a CompressionFormat enum value
@@ -1136,6 +1334,15 @@ const (
 	CompressionFormatParquet = "Parquet"
 )
 
+// CompressionFormat_Values returns all elements of the CompressionFormat enum
+func CompressionFormat_Values() []string {
+	return []string{
+		CompressionFormatZip,
+		CompressionFormatGzip,
+		CompressionFormatParquet,
+	}
+}
+
 // The format that AWS saves the report in.
 const (
 	// ReportFormatTextOrcsv is a ReportFormat enum value
@@ -1145,6 +1352,14 @@ const (
 	ReportFormatParquet = "Parquet"
 )
 
+// ReportFormat_Values returns all elements of the ReportFormat enum
+func ReportFormat_Values() []string {
+	return []string{
+		ReportFormatTextOrcsv,
+		ReportFormatParquet,
+	}
+}
+
 const (
 	// ReportVersioningCreateNewReport is a ReportVersioning enum value
 	ReportVersioningCreateNewReport = "CREATE_NEW_REPORT"
@@ -1153,11 +1368,26 @@ const (
 	ReportVersioningOverwriteReport = "OVERWRITE_REPORT"
 )
 
+// ReportVersioning_Values returns all elements of the ReportVersioning enum
+func ReportVersioning_Values() []string {
+	return []string{
+		ReportVersioningCreateNewReport,
+		ReportVersioningOverwriteReport,
+	}
+}
+
 // Whether or not AWS includes resource IDs in the report.
 const (
 	// SchemaElementResources is a SchemaElement enum value
 	SchemaElementResources = "RESOURCES"
 )
+
+// SchemaElement_Values returns all elements of the SchemaElement enum
+func SchemaElement_Values() []string {
+	return []string{
+		SchemaElementResources,
+	}
+}
 
 // The length of time covered by the report.
 const (
@@ -1166,4 +1396,16 @@ const (
 
 	// TimeUnitDaily is a TimeUnit enum value
 	TimeUnitDaily = "DAILY"
+
+	// TimeUnitMonthly is a TimeUnit enum value
+	TimeUnitMonthly = "MONTHLY"
 )
+
+// TimeUnit_Values returns all elements of the TimeUnit enum
+func TimeUnit_Values() []string {
+	return []string{
+		TimeUnitHourly,
+		TimeUnitDaily,
+		TimeUnitMonthly,
+	}
+}

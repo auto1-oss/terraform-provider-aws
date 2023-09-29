@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCancelChangeSet = "CancelChangeSet"
@@ -27,14 +28,13 @@ const opCancelChangeSet = "CancelChangeSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelChangeSetRequest method.
+//	req, resp := client.CancelChangeSetRequest(params)
 //
-//    // Example sending a request using the CancelChangeSetRequest method.
-//    req, resp := client.CancelChangeSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/CancelChangeSet
 func (c *MarketplaceCatalog) CancelChangeSetRequest(input *CancelChangeSetInput) (req *request.Request, output *CancelChangeSetOutput) {
@@ -68,23 +68,24 @@ func (c *MarketplaceCatalog) CancelChangeSetRequest(input *CancelChangeSetInput)
 // API operation CancelChangeSet for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceException
-//   There was an internal service exception.
 //
-//   * AccessDeniedException
-//   Access is denied.
+//   - InternalServiceException
+//     There was an internal service exception.
 //
-//   * ValidationException
-//   An error occurred during validation.
+//   - AccessDeniedException
+//     Access is denied.
 //
-//   * ResourceNotFoundException
-//   The specified resource wasn't found.
+//   - ValidationException
+//     An error occurred during validation.
 //
-//   * ResourceInUseException
-//   The resource is currently in use.
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
 //
-//   * ThrottlingException
-//   Too many requests.
+//   - ResourceInUseException
+//     The resource is currently in use.
+//
+//   - ThrottlingException
+//     Too many requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/CancelChangeSet
 func (c *MarketplaceCatalog) CancelChangeSet(input *CancelChangeSetInput) (*CancelChangeSetOutput, error) {
@@ -124,14 +125,13 @@ const opDescribeChangeSet = "DescribeChangeSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeChangeSetRequest method.
+//	req, resp := client.DescribeChangeSetRequest(params)
 //
-//    // Example sending a request using the DescribeChangeSetRequest method.
-//    req, resp := client.DescribeChangeSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DescribeChangeSet
 func (c *MarketplaceCatalog) DescribeChangeSetRequest(input *DescribeChangeSetInput) (req *request.Request, output *DescribeChangeSetOutput) {
@@ -162,20 +162,21 @@ func (c *MarketplaceCatalog) DescribeChangeSetRequest(input *DescribeChangeSetIn
 // API operation DescribeChangeSet for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceException
-//   There was an internal service exception.
 //
-//   * AccessDeniedException
-//   Access is denied.
+//   - InternalServiceException
+//     There was an internal service exception.
 //
-//   * ValidationException
-//   An error occurred during validation.
+//   - AccessDeniedException
+//     Access is denied.
 //
-//   * ResourceNotFoundException
-//   The specified resource wasn't found.
+//   - ValidationException
+//     An error occurred during validation.
 //
-//   * ThrottlingException
-//   Too many requests.
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - ThrottlingException
+//     Too many requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DescribeChangeSet
 func (c *MarketplaceCatalog) DescribeChangeSet(input *DescribeChangeSetInput) (*DescribeChangeSetOutput, error) {
@@ -215,14 +216,13 @@ const opDescribeEntity = "DescribeEntity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEntityRequest method.
+//	req, resp := client.DescribeEntityRequest(params)
 //
-//    // Example sending a request using the DescribeEntityRequest method.
-//    req, resp := client.DescribeEntityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DescribeEntity
 func (c *MarketplaceCatalog) DescribeEntityRequest(input *DescribeEntityInput) (req *request.Request, output *DescribeEntityOutput) {
@@ -253,23 +253,24 @@ func (c *MarketplaceCatalog) DescribeEntityRequest(input *DescribeEntityInput) (
 // API operation DescribeEntity for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceException
-//   There was an internal service exception.
 //
-//   * AccessDeniedException
-//   Access is denied.
+//   - InternalServiceException
+//     There was an internal service exception.
 //
-//   * ValidationException
-//   An error occurred during validation.
+//   - AccessDeniedException
+//     Access is denied.
 //
-//   * ResourceNotSupportedException
-//   Currently, the specified resource is not supported.
+//   - ValidationException
+//     An error occurred during validation.
 //
-//   * ResourceNotFoundException
-//   The specified resource wasn't found.
+//   - ResourceNotSupportedException
+//     Currently, the specified resource is not supported.
 //
-//   * ThrottlingException
-//   Too many requests.
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - ThrottlingException
+//     Too many requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/DescribeEntity
 func (c *MarketplaceCatalog) DescribeEntity(input *DescribeEntityInput) (*DescribeEntityOutput, error) {
@@ -309,14 +310,13 @@ const opListChangeSets = "ListChangeSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListChangeSetsRequest method.
+//	req, resp := client.ListChangeSetsRequest(params)
 //
-//    // Example sending a request using the ListChangeSetsRequest method.
-//    req, resp := client.ListChangeSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListChangeSets
 func (c *MarketplaceCatalog) ListChangeSetsRequest(input *ListChangeSetsInput) (req *request.Request, output *ListChangeSetsOutput) {
@@ -359,17 +359,18 @@ func (c *MarketplaceCatalog) ListChangeSetsRequest(input *ListChangeSetsInput) (
 // API operation ListChangeSets for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceException
-//   There was an internal service exception.
 //
-//   * AccessDeniedException
-//   Access is denied.
+//   - InternalServiceException
+//     There was an internal service exception.
 //
-//   * ValidationException
-//   An error occurred during validation.
+//   - AccessDeniedException
+//     Access is denied.
 //
-//   * ThrottlingException
-//   Too many requests.
+//   - ValidationException
+//     An error occurred during validation.
+//
+//   - ThrottlingException
+//     Too many requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListChangeSets
 func (c *MarketplaceCatalog) ListChangeSets(input *ListChangeSetsInput) (*ListChangeSetsOutput, error) {
@@ -401,15 +402,14 @@ func (c *MarketplaceCatalog) ListChangeSetsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListChangeSets operation.
-//    pageNum := 0
-//    err := client.ListChangeSetsPages(params,
-//        func(page *marketplacecatalog.ListChangeSetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListChangeSets operation.
+//	pageNum := 0
+//	err := client.ListChangeSetsPages(params,
+//	    func(page *marketplacecatalog.ListChangeSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MarketplaceCatalog) ListChangeSetsPages(input *ListChangeSetsInput, fn func(*ListChangeSetsOutput, bool) bool) error {
 	return c.ListChangeSetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -461,14 +461,13 @@ const opListEntities = "ListEntities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEntitiesRequest method.
+//	req, resp := client.ListEntitiesRequest(params)
 //
-//    // Example sending a request using the ListEntitiesRequest method.
-//    req, resp := client.ListEntitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListEntities
 func (c *MarketplaceCatalog) ListEntitiesRequest(input *ListEntitiesInput) (req *request.Request, output *ListEntitiesOutput) {
@@ -505,20 +504,21 @@ func (c *MarketplaceCatalog) ListEntitiesRequest(input *ListEntitiesInput) (req 
 // API operation ListEntities for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceException
-//   There was an internal service exception.
 //
-//   * AccessDeniedException
-//   Access is denied.
+//   - InternalServiceException
+//     There was an internal service exception.
 //
-//   * ValidationException
-//   An error occurred during validation.
+//   - AccessDeniedException
+//     Access is denied.
 //
-//   * ResourceNotFoundException
-//   The specified resource wasn't found.
+//   - ValidationException
+//     An error occurred during validation.
 //
-//   * ThrottlingException
-//   Too many requests.
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - ThrottlingException
+//     Too many requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListEntities
 func (c *MarketplaceCatalog) ListEntities(input *ListEntitiesInput) (*ListEntitiesOutput, error) {
@@ -550,15 +550,14 @@ func (c *MarketplaceCatalog) ListEntitiesWithContext(ctx aws.Context, input *Lis
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEntities operation.
-//    pageNum := 0
-//    err := client.ListEntitiesPages(params,
-//        func(page *marketplacecatalog.ListEntitiesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEntities operation.
+//	pageNum := 0
+//	err := client.ListEntitiesPages(params,
+//	    func(page *marketplacecatalog.ListEntitiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *MarketplaceCatalog) ListEntitiesPages(input *ListEntitiesInput, fn func(*ListEntitiesOutput, bool) bool) error {
 	return c.ListEntitiesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -594,6 +593,98 @@ func (c *MarketplaceCatalog) ListEntitiesPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListTagsForResource
+func (c *MarketplaceCatalog) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListTagsForResource",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Marketplace Catalog Service.
+//
+// Lists all tags that have been added to a resource (either an entity (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities)
+// or change set (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets)).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/ListTagsForResource
+func (c *MarketplaceCatalog) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartChangeSet = "StartChangeSet"
 
 // StartChangeSetRequest generates a "aws/request.Request" representing the
@@ -610,14 +701,13 @@ const opStartChangeSet = "StartChangeSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartChangeSetRequest method.
+//	req, resp := client.StartChangeSetRequest(params)
 //
-//    // Example sending a request using the StartChangeSetRequest method.
-//    req, resp := client.StartChangeSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/StartChangeSet
 func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (req *request.Request, output *StartChangeSetOutput) {
@@ -638,7 +728,20 @@ func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (
 
 // StartChangeSet API operation for AWS Marketplace Catalog Service.
 //
-// This operation allows you to request changes in your entities.
+// Allows you to request changes for your entities. Within a single ChangeSet,
+// you can't start the same change type against the same entity multiple times.
+// Additionally, when a ChangeSet is running, all the entities targeted by the
+// different changes are locked until the change set has completed (either succeeded,
+// cancelled, or failed). If you try to start a change set containing a change
+// against an entity that is already locked, you will receive a ResourceInUseException
+// error.
+//
+// For example, you can't start the ChangeSet described in the example (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples)
+// later in this topic because it contains two changes to run the same change
+// type (AddRevisions) against the same entity (entity-id@1).
+//
+// For more information about working with change sets, see Working with change
+// sets (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -648,26 +751,27 @@ func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (
 // API operation StartChangeSet for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServiceException
-//   There was an internal service exception.
 //
-//   * AccessDeniedException
-//   Access is denied.
+//   - InternalServiceException
+//     There was an internal service exception.
 //
-//   * ValidationException
-//   An error occurred during validation.
+//   - AccessDeniedException
+//     Access is denied.
 //
-//   * ResourceNotFoundException
-//   The specified resource wasn't found.
+//   - ValidationException
+//     An error occurred during validation.
 //
-//   * ResourceInUseException
-//   The resource is currently in use.
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
 //
-//   * ThrottlingException
-//   Too many requests.
+//   - ResourceInUseException
+//     The resource is currently in use.
 //
-//   * ServiceQuotaExceededException
-//   The maximum number of open requests per account has been exceeded.
+//   - ThrottlingException
+//     Too many requests.
+//
+//   - ServiceQuotaExceededException
+//     The maximum number of open requests per account has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/StartChangeSet
 func (c *MarketplaceCatalog) StartChangeSet(input *StartChangeSetInput) (*StartChangeSetOutput, error) {
@@ -691,20 +795,214 @@ func (c *MarketplaceCatalog) StartChangeSetWithContext(ctx aws.Context, input *S
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/TagResource
+func (c *MarketplaceCatalog) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/TagResource",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Marketplace Catalog Service.
+//
+// Tags a resource (either an entity (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities)
+// or change set (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets)).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/TagResource
+func (c *MarketplaceCatalog) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/UntagResource
+func (c *MarketplaceCatalog) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UntagResource",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Marketplace Catalog Service.
+//
+// Removes a tag or list of tags from a resource (either an entity (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities)
+// or change set (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets)).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/UntagResource
+func (c *MarketplaceCatalog) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Access is denied.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -748,7 +1046,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 type CancelChangeSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. The catalog related to the request. Fixed value: AWSMarketplace.
 	//
@@ -762,12 +1060,20 @@ type CancelChangeSetInput struct {
 	ChangeSetId *string `location:"querystring" locationName:"changeSetId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelChangeSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelChangeSetInput) GoString() string {
 	return s.String()
 }
@@ -816,12 +1122,20 @@ type CancelChangeSetOutput struct {
 	ChangeSetId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelChangeSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelChangeSetOutput) GoString() string {
 	return s.String()
 }
@@ -842,6 +1156,9 @@ func (s *CancelChangeSetOutput) SetChangeSetId(v string) *CancelChangeSetOutput 
 type Change struct {
 	_ struct{} `type:"structure"`
 
+	// Optional name for the change.
+	ChangeName *string `min:"1" type:"string"`
+
 	// Change types are single string values that describe your intention for the
 	// change. Each change type is unique for each EntityType provided in the change's
 	// scope.
@@ -859,14 +1176,25 @@ type Change struct {
 	//
 	// Entity is a required field
 	Entity *Entity `type:"structure" required:"true"`
+
+	// The tags associated with the change.
+	EntityTags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Change) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Change) GoString() string {
 	return s.String()
 }
@@ -874,6 +1202,9 @@ func (s Change) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Change) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Change"}
+	if s.ChangeName != nil && len(*s.ChangeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangeName", 1))
+	}
 	if s.ChangeType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ChangeType"))
 	}
@@ -889,9 +1220,22 @@ func (s *Change) Validate() error {
 	if s.Entity == nil {
 		invalidParams.Add(request.NewErrParamRequired("Entity"))
 	}
+	if s.EntityTags != nil && len(s.EntityTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityTags", 1))
+	}
 	if s.Entity != nil {
 		if err := s.Entity.Validate(); err != nil {
 			invalidParams.AddNested("Entity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityTags != nil {
+		for i, v := range s.EntityTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EntityTags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -899,6 +1243,12 @@ func (s *Change) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChangeName sets the ChangeName field's value.
+func (s *Change) SetChangeName(v string) *Change {
+	s.ChangeName = &v
+	return s
 }
 
 // SetChangeType sets the ChangeType field's value.
@@ -916,6 +1266,12 @@ func (s *Change) SetDetails(v string) *Change {
 // SetEntity sets the Entity field's value.
 func (s *Change) SetEntity(v *Entity) *Change {
 	s.Entity = v
+	return s
+}
+
+// SetEntityTags sets the EntityTags field's value.
+func (s *Change) SetEntityTags(v []*Tag) *Change {
+	s.EntityTags = v
 	return s
 }
 
@@ -943,6 +1299,12 @@ type ChangeSetSummaryListItem struct {
 	// one entity.
 	EntityIdList []*string `type:"list"`
 
+	// Returned if the change set is in FAILED status. Can be either CLIENT_ERROR,
+	// which means that there are issues with the request (see the ErrorDetailList
+	// of DescribeChangeSet), or SERVER_FAULT, which means that there is a problem
+	// in the system, and you should retry your request.
+	FailureCode *string `type:"string" enum:"FailureCode"`
+
 	// The time, in ISO 8601 format (2018-02-27T13:45:22Z), when the change set
 	// was started.
 	StartTime *string `min:"20" type:"string"`
@@ -951,12 +1313,20 @@ type ChangeSetSummaryListItem struct {
 	Status *string `type:"string" enum:"ChangeStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChangeSetSummaryListItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChangeSetSummaryListItem) GoString() string {
 	return s.String()
 }
@@ -991,6 +1361,12 @@ func (s *ChangeSetSummaryListItem) SetEntityIdList(v []*string) *ChangeSetSummar
 	return s
 }
 
+// SetFailureCode sets the FailureCode field's value.
+func (s *ChangeSetSummaryListItem) SetFailureCode(v string) *ChangeSetSummaryListItem {
+	s.FailureCode = &v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *ChangeSetSummaryListItem) SetStartTime(v string) *ChangeSetSummaryListItem {
 	s.StartTime = &v
@@ -1008,8 +1384,15 @@ func (s *ChangeSetSummaryListItem) SetStatus(v string) *ChangeSetSummaryListItem
 type ChangeSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Optional name for the change.
+	ChangeName *string `min:"1" type:"string"`
+
 	// The type of the change.
 	ChangeType *string `min:"1" type:"string"`
+
+	// This object contains details specific to the change type of the requested
+	// change.
+	Details *string `min:"2" type:"string"`
 
 	// The entity to be changed.
 	Entity *Entity `type:"structure"`
@@ -1018,19 +1401,39 @@ type ChangeSummary struct {
 	ErrorDetailList []*ErrorDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChangeSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChangeSummary) GoString() string {
 	return s.String()
+}
+
+// SetChangeName sets the ChangeName field's value.
+func (s *ChangeSummary) SetChangeName(v string) *ChangeSummary {
+	s.ChangeName = &v
+	return s
 }
 
 // SetChangeType sets the ChangeType field's value.
 func (s *ChangeSummary) SetChangeType(v string) *ChangeSummary {
 	s.ChangeType = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *ChangeSummary) SetDetails(v string) *ChangeSummary {
+	s.Details = &v
 	return s
 }
 
@@ -1047,7 +1450,7 @@ func (s *ChangeSummary) SetErrorDetailList(v []*ErrorDetail) *ChangeSummary {
 }
 
 type DescribeChangeSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. The catalog related to the request. Fixed value: AWSMarketplace
 	//
@@ -1061,12 +1464,20 @@ type DescribeChangeSetInput struct {
 	ChangeSetId *string `location:"querystring" locationName:"changeSetId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeChangeSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeChangeSetInput) GoString() string {
 	return s.String()
 }
@@ -1127,9 +1538,15 @@ type DescribeChangeSetOutput struct {
 	// state. Null if the request is not in a terminal state.
 	EndTime *string `min:"20" type:"string"`
 
+	// Returned if the change set is in FAILED status. Can be either CLIENT_ERROR,
+	// which means that there are issues with the request (see the ErrorDetailList),
+	// or SERVER_FAULT, which means that there is a problem in the system, and you
+	// should retry your request.
+	FailureCode *string `type:"string" enum:"FailureCode"`
+
 	// Returned if there is a failure on the change set, but that failure is not
 	// related to any of the changes in the request.
-	FailureDescription *string `type:"string"`
+	FailureDescription *string `min:"1" type:"string"`
 
 	// The date and time, in ISO 8601 format (2018-02-27T13:45:22Z), the request
 	// started.
@@ -1139,12 +1556,20 @@ type DescribeChangeSetOutput struct {
 	Status *string `type:"string" enum:"ChangeStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeChangeSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeChangeSetOutput) GoString() string {
 	return s.String()
 }
@@ -1179,6 +1604,12 @@ func (s *DescribeChangeSetOutput) SetEndTime(v string) *DescribeChangeSetOutput 
 	return s
 }
 
+// SetFailureCode sets the FailureCode field's value.
+func (s *DescribeChangeSetOutput) SetFailureCode(v string) *DescribeChangeSetOutput {
+	s.FailureCode = &v
+	return s
+}
+
 // SetFailureDescription sets the FailureDescription field's value.
 func (s *DescribeChangeSetOutput) SetFailureDescription(v string) *DescribeChangeSetOutput {
 	s.FailureDescription = &v
@@ -1198,7 +1629,7 @@ func (s *DescribeChangeSetOutput) SetStatus(v string) *DescribeChangeSetOutput {
 }
 
 type DescribeEntityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. The catalog related to the request. Fixed value: AWSMarketplace
 	//
@@ -1211,12 +1642,20 @@ type DescribeEntityInput struct {
 	EntityId *string `location:"querystring" locationName:"entityId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntityInput) GoString() string {
 	return s.String()
 }
@@ -1261,8 +1700,8 @@ type DescribeEntityOutput struct {
 	// This stringified JSON object includes the details of the entity.
 	Details *string `min:"2" type:"string"`
 
-	// The ARN associated to the unique identifier for the change set referenced
-	// in this request.
+	// The ARN associated to the unique identifier for the entity referenced in
+	// this request.
 	EntityArn *string `min:"1" type:"string"`
 
 	// The identifier of the entity, in the format of EntityId@RevisionId.
@@ -1272,15 +1711,23 @@ type DescribeEntityOutput struct {
 	EntityType *string `min:"1" type:"string"`
 
 	// The last modified date of the entity, in ISO 8601 format (2018-02-27T13:45:22Z).
-	LastModifiedDate *string `type:"string"`
+	LastModifiedDate *string `min:"20" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEntityOutput) GoString() string {
 	return s.String()
 }
@@ -1315,8 +1762,8 @@ func (s *DescribeEntityOutput) SetLastModifiedDate(v string) *DescribeEntityOutp
 	return s
 }
 
-// A product entity contains data that describes your product, its supported
-// features, and how it can be used or launched by your customer.
+// An entity contains data that describes your product, its supported features,
+// and how it can be used or launched by your customer.
 type Entity struct {
 	_ struct{} `type:"structure"`
 
@@ -1329,12 +1776,20 @@ type Entity struct {
 	Type *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Entity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Entity) GoString() string {
 	return s.String()
 }
@@ -1386,24 +1841,32 @@ type EntitySummary struct {
 	EntityType *string `min:"1" type:"string"`
 
 	// The last time the entity was published, using ISO 8601 format (2018-02-27T13:45:22Z).
-	LastModifiedDate *string `type:"string"`
+	LastModifiedDate *string `min:"20" type:"string"`
 
-	// The name for the entity. This value is not unique. It is defined by the provider.
-	Name *string `type:"string"`
+	// The name for the entity. This value is not unique. It is defined by the seller.
+	Name *string `min:"1" type:"string"`
 
-	// The visibility status of the entity to subscribers. This value can be Public
-	// (everyone can view the entity), Limited (the entity is visible to limited
-	// accounts only), or Restricted (the entity was published and then unpublished
-	// and only existing subscribers can view it).
-	Visibility *string `type:"string"`
+	// The visibility status of the entity to buyers. This value can be Public (everyone
+	// can view the entity), Limited (the entity is visible to limited accounts
+	// only), or Restricted (the entity was published and then unpublished and only
+	// existing buyers can view it).
+	Visibility *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitySummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitySummary) GoString() string {
 	return s.String()
 }
@@ -1449,18 +1912,26 @@ type ErrorDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The error code that identifies the type of error.
-	ErrorCode *string `type:"string"`
+	ErrorCode *string `min:"1" type:"string"`
 
 	// The message for the error.
-	ErrorMessage *string `type:"string"`
+	ErrorMessage *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetail) GoString() string {
 	return s.String()
 }
@@ -1514,12 +1985,20 @@ type Filter struct {
 	ValueList []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -1557,15 +2036,23 @@ type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -1628,16 +2115,24 @@ type ListChangeSetsInput struct {
 	// results.
 	NextToken *string `min:"1" type:"string"`
 
-	// An object that contains two attributes, sortBy and sortOrder.
+	// An object that contains two attributes, SortBy and SortOrder.
 	Sort *Sort `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangeSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangeSetsInput) GoString() string {
 	return s.String()
 }
@@ -1722,12 +2217,20 @@ type ListChangeSetsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangeSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListChangeSetsOutput) GoString() string {
 	return s.String()
 }
@@ -1768,16 +2271,24 @@ type ListEntitiesInput struct {
 	// The value of the next token, if it exists. Null if there are no more results.
 	NextToken *string `min:"1" type:"string"`
 
-	// An object that contains two attributes, sortBy and sortOrder.
+	// An object that contains two attributes, SortBy and SortOrder.
 	Sort *Sort `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesInput) GoString() string {
 	return s.String()
 }
@@ -1874,12 +2385,20 @@ type ListEntitiesOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEntitiesOutput) GoString() string {
 	return s.String()
 }
@@ -1896,20 +2415,119 @@ func (s *ListEntitiesOutput) SetNextToken(v string) *ListEntitiesOutput {
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Required. The Amazon Resource Name (ARN) associated with the resource you
+	// want to list tags on.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Required. The ARN associated with the resource you want to list tags on.
+	ResourceArn *string `min:"1" type:"string"`
+
+	// Required. A list of objects specifying each key name and value. Number of
+	// objects allowed: 1-50.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceOutput) SetResourceArn(v string) *ListTagsForResourceOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // The resource is currently in use.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -1957,15 +2575,23 @@ type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2013,15 +2639,23 @@ type ResourceNotSupportedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotSupportedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotSupportedException) GoString() string {
 	return s.String()
 }
@@ -2069,15 +2703,23 @@ type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -2120,7 +2762,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An object that contains two attributes, sortBy and sortOrder.
+// An object that contains two attributes, SortBy and SortOrder.
 type Sort struct {
 	_ struct{} `type:"structure"`
 
@@ -2134,12 +2776,20 @@ type Sort struct {
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Sort) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Sort) GoString() string {
 	return s.String()
 }
@@ -2186,16 +2836,28 @@ type StartChangeSetInput struct {
 	// set name can be used to filter the list of change sets.
 	ChangeSetName *string `min:"1" type:"string"`
 
+	// A list of objects specifying each key name and value for the ChangeSetTags
+	// property.
+	ChangeSetTags []*Tag `min:"1" type:"list"`
+
 	// A unique token to identify the request to ensure idempotency.
-	ClientRequestToken *string `min:"1" type:"string"`
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChangeSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChangeSetInput) GoString() string {
 	return s.String()
 }
@@ -2218,6 +2880,9 @@ func (s *StartChangeSetInput) Validate() error {
 	if s.ChangeSetName != nil && len(*s.ChangeSetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ChangeSetName", 1))
 	}
+	if s.ChangeSetTags != nil && len(s.ChangeSetTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangeSetTags", 1))
+	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
@@ -2228,6 +2893,16 @@ func (s *StartChangeSetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ChangeSet", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ChangeSetTags != nil {
+		for i, v := range s.ChangeSetTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ChangeSetTags", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -2256,6 +2931,12 @@ func (s *StartChangeSetInput) SetChangeSetName(v string) *StartChangeSetInput {
 	return s
 }
 
+// SetChangeSetTags sets the ChangeSetTags field's value.
+func (s *StartChangeSetInput) SetChangeSetTags(v []*Tag) *StartChangeSetInput {
+	s.ChangeSetTags = v
+	return s
+}
+
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *StartChangeSetInput) SetClientRequestToken(v string) *StartChangeSetInput {
 	s.ClientRequestToken = &v
@@ -2272,12 +2953,20 @@ type StartChangeSetOutput struct {
 	ChangeSetId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChangeSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChangeSetOutput) GoString() string {
 	return s.String()
 }
@@ -2294,20 +2983,192 @@ func (s *StartChangeSetOutput) SetChangeSetId(v string) *StartChangeSetOutput {
 	return s
 }
 
+// A list of objects specifying each key name and value.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key associated with the tag.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value associated with the tag.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Required. The Amazon Resource Name (ARN) associated with the resource you
+	// want to tag.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// Required. A list of objects specifying each key name and value. Number of
+	// objects allowed: 1-50.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Too many requests.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -2350,20 +3211,118 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Required. The Amazon Resource Name (ARN) associated with the resource you
+	// want to remove the tag from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// Required. A list of key names of tags to be removed. Number of strings allowed:
+	// 0-256.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // An error occurred during validation.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -2423,6 +3382,33 @@ const (
 	ChangeStatusFailed = "FAILED"
 )
 
+// ChangeStatus_Values returns all elements of the ChangeStatus enum
+func ChangeStatus_Values() []string {
+	return []string{
+		ChangeStatusPreparing,
+		ChangeStatusApplying,
+		ChangeStatusSucceeded,
+		ChangeStatusCancelled,
+		ChangeStatusFailed,
+	}
+}
+
+const (
+	// FailureCodeClientError is a FailureCode enum value
+	FailureCodeClientError = "CLIENT_ERROR"
+
+	// FailureCodeServerFault is a FailureCode enum value
+	FailureCodeServerFault = "SERVER_FAULT"
+)
+
+// FailureCode_Values returns all elements of the FailureCode enum
+func FailureCode_Values() []string {
+	return []string{
+		FailureCodeClientError,
+		FailureCodeServerFault,
+	}
+}
+
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ASCENDING"
@@ -2430,3 +3416,11 @@ const (
 	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "DESCENDING"
 )
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}

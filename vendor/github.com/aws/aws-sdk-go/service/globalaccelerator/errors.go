@@ -48,6 +48,18 @@ const (
 	// The CIDR that you specified was not found or is incorrect.
 	ErrCodeByoipCidrNotFoundException = "ByoipCidrNotFoundException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// You can't use both of those options.
+	ErrCodeConflictException = "ConflictException"
+
+	// ErrCodeEndpointAlreadyExistsException for service response error code
+	// "EndpointAlreadyExistsException".
+	//
+	// The endpoint that you specified doesn't exist.
+	ErrCodeEndpointAlreadyExistsException = "EndpointAlreadyExistsException"
+
 	// ErrCodeEndpointGroupAlreadyExistsException for service response error code
 	// "EndpointGroupAlreadyExistsException".
 	//
@@ -60,6 +72,12 @@ const (
 	// The endpoint group that you specified doesn't exist.
 	ErrCodeEndpointGroupNotFoundException = "EndpointGroupNotFoundException"
 
+	// ErrCodeEndpointNotFoundException for service response error code
+	// "EndpointNotFoundException".
+	//
+	// The endpoint that you specified doesn't exist.
+	ErrCodeEndpointNotFoundException = "EndpointNotFoundException"
+
 	// ErrCodeIncorrectCidrStateException for service response error code
 	// "IncorrectCidrStateException".
 	//
@@ -70,7 +88,7 @@ const (
 	// ErrCodeInternalServiceErrorException for service response error code
 	// "InternalServiceErrorException".
 	//
-	// There was an internal error for AWS Global Accelerator.
+	// There was an internal error for Global Accelerator.
 	ErrCodeInternalServiceErrorException = "InternalServiceErrorException"
 
 	// ErrCodeInvalidArgumentException for service response error code
@@ -95,8 +113,7 @@ const (
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// Processing your request would cause you to exceed an AWS Global Accelerator
-	// limit.
+	// Processing your request would cause you to exceed an Global Accelerator limit.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeListenerNotFoundException for service response error code
@@ -104,6 +121,12 @@ const (
 	//
 	// The listener that you specified doesn't exist.
 	ErrCodeListenerNotFoundException = "ListenerNotFoundException"
+
+	// ErrCodeTransactionInProgressException for service response error code
+	// "TransactionInProgressException".
+	//
+	// There's already a transaction in progress. Another transaction can't be processed.
+	ErrCodeTransactionInProgressException = "TransactionInProgressException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -113,8 +136,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AssociatedEndpointGroupFoundException": newErrorAssociatedEndpointGroupFoundException,
 	"AssociatedListenerFoundException":      newErrorAssociatedListenerFoundException,
 	"ByoipCidrNotFoundException":            newErrorByoipCidrNotFoundException,
+	"ConflictException":                     newErrorConflictException,
+	"EndpointAlreadyExistsException":        newErrorEndpointAlreadyExistsException,
 	"EndpointGroupAlreadyExistsException":   newErrorEndpointGroupAlreadyExistsException,
 	"EndpointGroupNotFoundException":        newErrorEndpointGroupNotFoundException,
+	"EndpointNotFoundException":             newErrorEndpointNotFoundException,
 	"IncorrectCidrStateException":           newErrorIncorrectCidrStateException,
 	"InternalServiceErrorException":         newErrorInternalServiceErrorException,
 	"InvalidArgumentException":              newErrorInvalidArgumentException,
@@ -122,4 +148,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidPortRangeException":             newErrorInvalidPortRangeException,
 	"LimitExceededException":                newErrorLimitExceededException,
 	"ListenerNotFoundException":             newErrorListenerNotFoundException,
+	"TransactionInProgressException":        newErrorTransactionInProgressException,
 }

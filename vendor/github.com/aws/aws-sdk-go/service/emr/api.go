@@ -29,14 +29,13 @@ const opAddInstanceFleet = "AddInstanceFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddInstanceFleetRequest method.
+//	req, resp := client.AddInstanceFleetRequest(params)
 //
-//    // Example sending a request using the AddInstanceFleetRequest method.
-//    req, resp := client.AddInstanceFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceFleet
 func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *request.Request, output *AddInstanceFleetOutput) {
@@ -55,7 +54,7 @@ func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *reques
 	return
 }
 
-// AddInstanceFleet API operation for Amazon Elastic MapReduce.
+// AddInstanceFleet API operation for Amazon EMR.
 //
 // Adds an instance fleet to a running cluster.
 //
@@ -66,15 +65,17 @@ func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddInstanceFleet for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceFleet
 func (c *EMR) AddInstanceFleet(input *AddInstanceFleetInput) (*AddInstanceFleetOutput, error) {
@@ -114,14 +115,13 @@ const opAddInstanceGroups = "AddInstanceGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddInstanceGroupsRequest method.
+//	req, resp := client.AddInstanceGroupsRequest(params)
 //
-//    // Example sending a request using the AddInstanceGroupsRequest method.
-//    req, resp := client.AddInstanceGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceGroups
 func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *request.Request, output *AddInstanceGroupsOutput) {
@@ -140,7 +140,7 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *requ
 	return
 }
 
-// AddInstanceGroups API operation for Amazon Elastic MapReduce.
+// AddInstanceGroups API operation for Amazon EMR.
 //
 // Adds one or more instance groups to a running cluster.
 //
@@ -148,13 +148,13 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddInstanceGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceGroups
 func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGroupsOutput, error) {
@@ -194,14 +194,13 @@ const opAddJobFlowSteps = "AddJobFlowSteps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddJobFlowStepsRequest method.
+//	req, resp := client.AddJobFlowStepsRequest(params)
 //
-//    // Example sending a request using the AddJobFlowStepsRequest method.
-//    req, resp := client.AddJobFlowStepsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddJobFlowSteps
 func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.Request, output *AddJobFlowStepsOutput) {
@@ -220,7 +219,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 	return
 }
 
-// AddJobFlowSteps API operation for Amazon Elastic MapReduce.
+// AddJobFlowSteps API operation for Amazon EMR.
 //
 // AddJobFlowSteps adds new steps to a running cluster. A maximum of 256 steps
 // are allowed in each job flow.
@@ -229,9 +228,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 // you may require more than 256 steps to process your data. You can bypass
 // the 256-step limitation in various ways, including using SSH to connect to
 // the master node and submitting queries directly to the software running on
-// the master node, such as Hive and Hadoop. For more information on how to
-// do this, see Add More than 256 Steps to a Cluster (https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html)
-// in the Amazon EMR Management Guide.
+// the master node, such as Hive and Hadoop.
 //
 // A step specifies the location of a JAR file stored either on the master node
 // of the cluster or in Amazon S3. Each step is performed by the main function
@@ -246,17 +243,20 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 // You can only add steps to a cluster that is in one of the following states:
 // STARTING, BOOTSTRAPPING, RUNNING, or WAITING.
 //
+// The string values passed into HadoopJarStep object cannot exceed a total
+// of 10240 characters.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddJobFlowSteps for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddJobFlowSteps
 func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutput, error) {
@@ -296,14 +296,13 @@ const opAddTags = "AddTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddTagsRequest method.
+//	req, resp := client.AddTagsRequest(params)
 //
-//    // Example sending a request using the AddTagsRequest method.
-//    req, resp := client.AddTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddTags
 func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
@@ -323,25 +322,28 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 	return
 }
 
-// AddTags API operation for Amazon Elastic MapReduce.
+// AddTags API operation for Amazon EMR.
 //
-// Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters
-// in various ways, such as grouping clusters to track your Amazon EMR resource
-// allocation costs. For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
+// Adds tags to an Amazon EMR resource, such as a cluster or an Amazon EMR Studio.
+// Tags make it easier to associate resources in various ways, such as grouping
+// clusters to track your Amazon EMR resource allocation costs. For more information,
+// see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddTags for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddTags
 func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
@@ -381,14 +383,13 @@ const opCancelSteps = "CancelSteps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CancelStepsRequest method.
+//	req, resp := client.CancelStepsRequest(params)
 //
-//    // Example sending a request using the CancelStepsRequest method.
-//    req, resp := client.CancelStepsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CancelSteps
 func (c *EMR) CancelStepsRequest(input *CancelStepsInput) (req *request.Request, output *CancelStepsOutput) {
@@ -407,28 +408,31 @@ func (c *EMR) CancelStepsRequest(input *CancelStepsInput) (req *request.Request,
 	return
 }
 
-// CancelSteps API operation for Amazon Elastic MapReduce.
+// CancelSteps API operation for Amazon EMR.
 //
 // Cancels a pending step or steps in a running cluster. Available only in Amazon
 // EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps
 // are allowed in each CancelSteps request. CancelSteps is idempotent but asynchronous;
-// it does not guarantee a step will be canceled, even if the request is successfully
-// submitted. You can only cancel steps that are in a PENDING state.
+// it does not guarantee that a step will be canceled, even if the request is
+// successfully submitted. When you use Amazon EMR versions 5.28.0 and later,
+// you can cancel steps that are in a PENDING or RUNNING state. In earlier versions
+// of Amazon EMR, you can only cancel steps that are in a PENDING state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation CancelSteps for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CancelSteps
 func (c *EMR) CancelSteps(input *CancelStepsInput) (*CancelStepsOutput, error) {
@@ -468,14 +472,13 @@ const opCreateSecurityConfiguration = "CreateSecurityConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSecurityConfigurationRequest method.
+//	req, resp := client.CreateSecurityConfigurationRequest(params)
 //
-//    // Example sending a request using the CreateSecurityConfigurationRequest method.
-//    req, resp := client.CreateSecurityConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateSecurityConfiguration
 func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurationInput) (req *request.Request, output *CreateSecurityConfigurationOutput) {
@@ -494,7 +497,7 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 	return
 }
 
-// CreateSecurityConfiguration API operation for Amazon Elastic MapReduce.
+// CreateSecurityConfiguration API operation for Amazon EMR.
 //
 // Creates a security configuration, which is stored in the service and can
 // be specified when a cluster is created.
@@ -503,15 +506,17 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation CreateSecurityConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateSecurityConfiguration
 func (c *EMR) CreateSecurityConfiguration(input *CreateSecurityConfigurationInput) (*CreateSecurityConfigurationOutput, error) {
@@ -535,6 +540,178 @@ func (c *EMR) CreateSecurityConfigurationWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
+const opCreateStudio = "CreateStudio"
+
+// CreateStudioRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStudio operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStudio for more information on using the CreateStudio
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStudioRequest method.
+//	req, resp := client.CreateStudioRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateStudio
+func (c *EMR) CreateStudioRequest(input *CreateStudioInput) (req *request.Request, output *CreateStudioOutput) {
+	op := &request.Operation{
+		Name:       opCreateStudio,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStudioInput{}
+	}
+
+	output = &CreateStudioOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStudio API operation for Amazon EMR.
+//
+// Creates a new Amazon EMR Studio.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation CreateStudio for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateStudio
+func (c *EMR) CreateStudio(input *CreateStudioInput) (*CreateStudioOutput, error) {
+	req, out := c.CreateStudioRequest(input)
+	return out, req.Send()
+}
+
+// CreateStudioWithContext is the same as CreateStudio with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStudio for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) CreateStudioWithContext(ctx aws.Context, input *CreateStudioInput, opts ...request.Option) (*CreateStudioOutput, error) {
+	req, out := c.CreateStudioRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateStudioSessionMapping = "CreateStudioSessionMapping"
+
+// CreateStudioSessionMappingRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStudioSessionMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStudioSessionMapping for more information on using the CreateStudioSessionMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStudioSessionMappingRequest method.
+//	req, resp := client.CreateStudioSessionMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateStudioSessionMapping
+func (c *EMR) CreateStudioSessionMappingRequest(input *CreateStudioSessionMappingInput) (req *request.Request, output *CreateStudioSessionMappingOutput) {
+	op := &request.Operation{
+		Name:       opCreateStudioSessionMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStudioSessionMappingInput{}
+	}
+
+	output = &CreateStudioSessionMappingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateStudioSessionMapping API operation for Amazon EMR.
+//
+// Maps a user or group to the Amazon EMR Studio specified by StudioId, and
+// applies a session policy to refine Studio permissions for that user or group.
+// Use CreateStudioSessionMapping to assign users to a Studio when you use IAM
+// Identity Center authentication. For instructions on how to assign users to
+// a Studio when you use IAM authentication, see Assign a user or group to your
+// EMR Studio (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation CreateStudioSessionMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateStudioSessionMapping
+func (c *EMR) CreateStudioSessionMapping(input *CreateStudioSessionMappingInput) (*CreateStudioSessionMappingOutput, error) {
+	req, out := c.CreateStudioSessionMappingRequest(input)
+	return out, req.Send()
+}
+
+// CreateStudioSessionMappingWithContext is the same as CreateStudioSessionMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStudioSessionMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) CreateStudioSessionMappingWithContext(ctx aws.Context, input *CreateStudioSessionMappingInput, opts ...request.Option) (*CreateStudioSessionMappingOutput, error) {
+	req, out := c.CreateStudioSessionMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSecurityConfiguration = "DeleteSecurityConfiguration"
 
 // DeleteSecurityConfigurationRequest generates a "aws/request.Request" representing the
@@ -551,14 +728,13 @@ const opDeleteSecurityConfiguration = "DeleteSecurityConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSecurityConfigurationRequest method.
+//	req, resp := client.DeleteSecurityConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteSecurityConfigurationRequest method.
-//    req, resp := client.DeleteSecurityConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteSecurityConfiguration
 func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurationInput) (req *request.Request, output *DeleteSecurityConfigurationOutput) {
@@ -578,7 +754,7 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 	return
 }
 
-// DeleteSecurityConfiguration API operation for Amazon Elastic MapReduce.
+// DeleteSecurityConfiguration API operation for Amazon EMR.
 //
 // Deletes a security configuration.
 //
@@ -586,15 +762,17 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DeleteSecurityConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteSecurityConfiguration
 func (c *EMR) DeleteSecurityConfiguration(input *DeleteSecurityConfigurationInput) (*DeleteSecurityConfigurationOutput, error) {
@@ -618,6 +796,174 @@ func (c *EMR) DeleteSecurityConfigurationWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDeleteStudio = "DeleteStudio"
+
+// DeleteStudioRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStudio operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStudio for more information on using the DeleteStudio
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStudioRequest method.
+//	req, resp := client.DeleteStudioRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteStudio
+func (c *EMR) DeleteStudioRequest(input *DeleteStudioInput) (req *request.Request, output *DeleteStudioOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStudio,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStudioInput{}
+	}
+
+	output = &DeleteStudioOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStudio API operation for Amazon EMR.
+//
+// Removes an Amazon EMR Studio from the Studio metadata store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation DeleteStudio for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteStudio
+func (c *EMR) DeleteStudio(input *DeleteStudioInput) (*DeleteStudioOutput, error) {
+	req, out := c.DeleteStudioRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStudioWithContext is the same as DeleteStudio with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStudio for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) DeleteStudioWithContext(ctx aws.Context, input *DeleteStudioInput, opts ...request.Option) (*DeleteStudioOutput, error) {
+	req, out := c.DeleteStudioRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStudioSessionMapping = "DeleteStudioSessionMapping"
+
+// DeleteStudioSessionMappingRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStudioSessionMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStudioSessionMapping for more information on using the DeleteStudioSessionMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteStudioSessionMappingRequest method.
+//	req, resp := client.DeleteStudioSessionMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteStudioSessionMapping
+func (c *EMR) DeleteStudioSessionMappingRequest(input *DeleteStudioSessionMappingInput) (req *request.Request, output *DeleteStudioSessionMappingOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStudioSessionMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStudioSessionMappingInput{}
+	}
+
+	output = &DeleteStudioSessionMappingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStudioSessionMapping API operation for Amazon EMR.
+//
+// Removes a user or group from an Amazon EMR Studio.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation DeleteStudioSessionMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteStudioSessionMapping
+func (c *EMR) DeleteStudioSessionMapping(input *DeleteStudioSessionMappingInput) (*DeleteStudioSessionMappingOutput, error) {
+	req, out := c.DeleteStudioSessionMappingRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStudioSessionMappingWithContext is the same as DeleteStudioSessionMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStudioSessionMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) DeleteStudioSessionMappingWithContext(ctx aws.Context, input *DeleteStudioSessionMappingInput, opts ...request.Option) (*DeleteStudioSessionMappingOutput, error) {
+	req, out := c.DeleteStudioSessionMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeCluster = "DescribeCluster"
 
 // DescribeClusterRequest generates a "aws/request.Request" representing the
@@ -634,14 +980,13 @@ const opDescribeCluster = "DescribeCluster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeClusterRequest method.
+//	req, resp := client.DescribeClusterRequest(params)
 //
-//    // Example sending a request using the DescribeClusterRequest method.
-//    req, resp := client.DescribeClusterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeCluster
 func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.Request, output *DescribeClusterOutput) {
@@ -660,7 +1005,7 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 	return
 }
 
-// DescribeCluster API operation for Amazon Elastic MapReduce.
+// DescribeCluster API operation for Amazon EMR.
 //
 // Provides cluster-level details including status, hardware and software configuration,
 // VPC settings, and so on.
@@ -669,15 +1014,17 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeCluster for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeCluster
 func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutput, error) {
@@ -717,14 +1064,13 @@ const opDescribeJobFlows = "DescribeJobFlows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeJobFlowsRequest method.
+//	req, resp := client.DescribeJobFlowsRequest(params)
 //
-//    // Example sending a request using the DescribeJobFlowsRequest method.
-//    req, resp := client.DescribeJobFlowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeJobFlows
 //
@@ -748,11 +1094,11 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 	return
 }
 
-// DescribeJobFlows API operation for Amazon Elastic MapReduce.
+// DescribeJobFlows API operation for Amazon EMR.
 //
-// This API is deprecated and will eventually be removed. We recommend you use
-// ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and ListBootstrapActions
-// instead.
+// This API is no longer supported and will eventually be removed. We recommend
+// you use ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and
+// ListBootstrapActions instead.
 //
 // DescribeJobFlows returns a list of job flows that match all of the supplied
 // parameters. The parameters can include a list of job flow IDs, job flow states,
@@ -764,10 +1110,10 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 // If no parameters are supplied, then job flows matching either of the following
 // criteria are returned:
 //
-//    * Job flows created and completed in the last two weeks
+//   - Job flows created and completed in the last two weeks
 //
-//    * Job flows created within the last two months that are in one of the
-//    following states: RUNNING, WAITING, SHUTTING_DOWN, STARTING
+//   - Job flows created within the last two months that are in one of the
+//     following states: RUNNING, WAITING, SHUTTING_DOWN, STARTING
 //
 // Amazon EMR can return a maximum of 512 job flow descriptions.
 //
@@ -775,13 +1121,13 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeJobFlows for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeJobFlows
 //
@@ -809,6 +1155,175 @@ func (c *EMR) DescribeJobFlowsWithContext(ctx aws.Context, input *DescribeJobFlo
 	return out, req.Send()
 }
 
+const opDescribeNotebookExecution = "DescribeNotebookExecution"
+
+// DescribeNotebookExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeNotebookExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeNotebookExecution for more information on using the DescribeNotebookExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeNotebookExecutionRequest method.
+//	req, resp := client.DescribeNotebookExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeNotebookExecution
+func (c *EMR) DescribeNotebookExecutionRequest(input *DescribeNotebookExecutionInput) (req *request.Request, output *DescribeNotebookExecutionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeNotebookExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeNotebookExecutionInput{}
+	}
+
+	output = &DescribeNotebookExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeNotebookExecution API operation for Amazon EMR.
+//
+// Provides details of a notebook execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation DescribeNotebookExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeNotebookExecution
+func (c *EMR) DescribeNotebookExecution(input *DescribeNotebookExecutionInput) (*DescribeNotebookExecutionOutput, error) {
+	req, out := c.DescribeNotebookExecutionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeNotebookExecutionWithContext is the same as DescribeNotebookExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeNotebookExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) DescribeNotebookExecutionWithContext(ctx aws.Context, input *DescribeNotebookExecutionInput, opts ...request.Option) (*DescribeNotebookExecutionOutput, error) {
+	req, out := c.DescribeNotebookExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeReleaseLabel = "DescribeReleaseLabel"
+
+// DescribeReleaseLabelRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReleaseLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReleaseLabel for more information on using the DescribeReleaseLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReleaseLabelRequest method.
+//	req, resp := client.DescribeReleaseLabelRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeReleaseLabel
+func (c *EMR) DescribeReleaseLabelRequest(input *DescribeReleaseLabelInput) (req *request.Request, output *DescribeReleaseLabelOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReleaseLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeReleaseLabelInput{}
+	}
+
+	output = &DescribeReleaseLabelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReleaseLabel API operation for Amazon EMR.
+//
+// Provides EMR release label details, such as releases available the region
+// where the API request is run, and the available applications for a specific
+// EMR release label. Can also list EMR release versions that support a specified
+// version of Spark.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation DescribeReleaseLabel for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeReleaseLabel
+func (c *EMR) DescribeReleaseLabel(input *DescribeReleaseLabelInput) (*DescribeReleaseLabelOutput, error) {
+	req, out := c.DescribeReleaseLabelRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReleaseLabelWithContext is the same as DescribeReleaseLabel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReleaseLabel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) DescribeReleaseLabelWithContext(ctx aws.Context, input *DescribeReleaseLabelInput, opts ...request.Option) (*DescribeReleaseLabelOutput, error) {
+	req, out := c.DescribeReleaseLabelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSecurityConfiguration = "DescribeSecurityConfiguration"
 
 // DescribeSecurityConfigurationRequest generates a "aws/request.Request" representing the
@@ -825,14 +1340,13 @@ const opDescribeSecurityConfiguration = "DescribeSecurityConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSecurityConfigurationRequest method.
+//	req, resp := client.DescribeSecurityConfigurationRequest(params)
 //
-//    // Example sending a request using the DescribeSecurityConfigurationRequest method.
-//    req, resp := client.DescribeSecurityConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeSecurityConfiguration
 func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfigurationInput) (req *request.Request, output *DescribeSecurityConfigurationOutput) {
@@ -851,7 +1365,7 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 	return
 }
 
-// DescribeSecurityConfiguration API operation for Amazon Elastic MapReduce.
+// DescribeSecurityConfiguration API operation for Amazon EMR.
 //
 // Provides the details of a security configuration by returning the configuration
 // JSON.
@@ -860,15 +1374,17 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeSecurityConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeSecurityConfiguration
 func (c *EMR) DescribeSecurityConfiguration(input *DescribeSecurityConfigurationInput) (*DescribeSecurityConfigurationOutput, error) {
@@ -908,14 +1424,13 @@ const opDescribeStep = "DescribeStep"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeStepRequest method.
+//	req, resp := client.DescribeStepRequest(params)
 //
-//    // Example sending a request using the DescribeStepRequest method.
-//    req, resp := client.DescribeStepRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStep
 func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Request, output *DescribeStepOutput) {
@@ -934,7 +1449,7 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 	return
 }
 
-// DescribeStep API operation for Amazon Elastic MapReduce.
+// DescribeStep API operation for Amazon EMR.
 //
 // Provides more detail about the cluster step.
 //
@@ -942,15 +1457,17 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeStep for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStep
 func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error) {
@@ -974,6 +1491,163 @@ func (c *EMR) DescribeStepWithContext(ctx aws.Context, input *DescribeStepInput,
 	return out, req.Send()
 }
 
+const opDescribeStudio = "DescribeStudio"
+
+// DescribeStudioRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStudio operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStudio for more information on using the DescribeStudio
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeStudioRequest method.
+//	req, resp := client.DescribeStudioRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStudio
+func (c *EMR) DescribeStudioRequest(input *DescribeStudioInput) (req *request.Request, output *DescribeStudioOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStudio,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeStudioInput{}
+	}
+
+	output = &DescribeStudioOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStudio API operation for Amazon EMR.
+//
+// Returns details for the specified Amazon EMR Studio including ID, Name, VPC,
+// Studio access URL, and so on.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation DescribeStudio for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStudio
+func (c *EMR) DescribeStudio(input *DescribeStudioInput) (*DescribeStudioOutput, error) {
+	req, out := c.DescribeStudioRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStudioWithContext is the same as DescribeStudio with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStudio for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) DescribeStudioWithContext(ctx aws.Context, input *DescribeStudioInput, opts ...request.Option) (*DescribeStudioOutput, error) {
+	req, out := c.DescribeStudioRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAutoTerminationPolicy = "GetAutoTerminationPolicy"
+
+// GetAutoTerminationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetAutoTerminationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAutoTerminationPolicy for more information on using the GetAutoTerminationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAutoTerminationPolicyRequest method.
+//	req, resp := client.GetAutoTerminationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetAutoTerminationPolicy
+func (c *EMR) GetAutoTerminationPolicyRequest(input *GetAutoTerminationPolicyInput) (req *request.Request, output *GetAutoTerminationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetAutoTerminationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAutoTerminationPolicyInput{}
+	}
+
+	output = &GetAutoTerminationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAutoTerminationPolicy API operation for Amazon EMR.
+//
+// Returns the auto-termination policy for an Amazon EMR cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation GetAutoTerminationPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetAutoTerminationPolicy
+func (c *EMR) GetAutoTerminationPolicy(input *GetAutoTerminationPolicyInput) (*GetAutoTerminationPolicyOutput, error) {
+	req, out := c.GetAutoTerminationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetAutoTerminationPolicyWithContext is the same as GetAutoTerminationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAutoTerminationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) GetAutoTerminationPolicyWithContext(ctx aws.Context, input *GetAutoTerminationPolicyInput, opts ...request.Option) (*GetAutoTerminationPolicyOutput, error) {
+	req, out := c.GetAutoTerminationPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBlockPublicAccessConfiguration = "GetBlockPublicAccessConfiguration"
 
 // GetBlockPublicAccessConfigurationRequest generates a "aws/request.Request" representing the
@@ -990,14 +1664,13 @@ const opGetBlockPublicAccessConfiguration = "GetBlockPublicAccessConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBlockPublicAccessConfigurationRequest method.
+//	req, resp := client.GetBlockPublicAccessConfigurationRequest(params)
 //
-//    // Example sending a request using the GetBlockPublicAccessConfigurationRequest method.
-//    req, resp := client.GetBlockPublicAccessConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetBlockPublicAccessConfiguration
 func (c *EMR) GetBlockPublicAccessConfigurationRequest(input *GetBlockPublicAccessConfigurationInput) (req *request.Request, output *GetBlockPublicAccessConfigurationOutput) {
@@ -1016,26 +1689,28 @@ func (c *EMR) GetBlockPublicAccessConfigurationRequest(input *GetBlockPublicAcce
 	return
 }
 
-// GetBlockPublicAccessConfiguration API operation for Amazon Elastic MapReduce.
+// GetBlockPublicAccessConfiguration API operation for Amazon EMR.
 //
-// Returns the Amazon EMR block public access configuration for your AWS account
-// in the current Region. For more information see Configure Block Public Access
-// for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
+// Returns the Amazon EMR block public access configuration for your Amazon
+// Web Services account in the current Region. For more information see Configure
+// Block Public Access for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
 // in the Amazon EMR Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation GetBlockPublicAccessConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetBlockPublicAccessConfiguration
 func (c *EMR) GetBlockPublicAccessConfiguration(input *GetBlockPublicAccessConfigurationInput) (*GetBlockPublicAccessConfigurationOutput, error) {
@@ -1059,6 +1734,92 @@ func (c *EMR) GetBlockPublicAccessConfigurationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opGetClusterSessionCredentials = "GetClusterSessionCredentials"
+
+// GetClusterSessionCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the GetClusterSessionCredentials operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetClusterSessionCredentials for more information on using the GetClusterSessionCredentials
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetClusterSessionCredentialsRequest method.
+//	req, resp := client.GetClusterSessionCredentialsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetClusterSessionCredentials
+func (c *EMR) GetClusterSessionCredentialsRequest(input *GetClusterSessionCredentialsInput) (req *request.Request, output *GetClusterSessionCredentialsOutput) {
+	op := &request.Operation{
+		Name:       opGetClusterSessionCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetClusterSessionCredentialsInput{}
+	}
+
+	output = &GetClusterSessionCredentialsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetClusterSessionCredentials API operation for Amazon EMR.
+//
+// Provides Temporary, basic HTTP credentials that are associated with a given
+// runtime IAM role and used by a cluster with fine-grained access control activated.
+// You can use these credentials to connect to cluster endpoints that support
+// username-based and password-based authentication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation GetClusterSessionCredentials for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetClusterSessionCredentials
+func (c *EMR) GetClusterSessionCredentials(input *GetClusterSessionCredentialsInput) (*GetClusterSessionCredentialsOutput, error) {
+	req, out := c.GetClusterSessionCredentialsRequest(input)
+	return out, req.Send()
+}
+
+// GetClusterSessionCredentialsWithContext is the same as GetClusterSessionCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetClusterSessionCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) GetClusterSessionCredentialsWithContext(ctx aws.Context, input *GetClusterSessionCredentialsInput, opts ...request.Option) (*GetClusterSessionCredentialsOutput, error) {
+	req, out := c.GetClusterSessionCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetManagedScalingPolicy = "GetManagedScalingPolicy"
 
 // GetManagedScalingPolicyRequest generates a "aws/request.Request" representing the
@@ -1075,14 +1836,13 @@ const opGetManagedScalingPolicy = "GetManagedScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetManagedScalingPolicyRequest method.
+//	req, resp := client.GetManagedScalingPolicyRequest(params)
 //
-//    // Example sending a request using the GetManagedScalingPolicyRequest method.
-//    req, resp := client.GetManagedScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetManagedScalingPolicy
 func (c *EMR) GetManagedScalingPolicyRequest(input *GetManagedScalingPolicyInput) (req *request.Request, output *GetManagedScalingPolicyOutput) {
@@ -1101,7 +1861,7 @@ func (c *EMR) GetManagedScalingPolicyRequest(input *GetManagedScalingPolicyInput
 	return
 }
 
-// GetManagedScalingPolicy API operation for Amazon Elastic MapReduce.
+// GetManagedScalingPolicy API operation for Amazon EMR.
 //
 // Fetches the attached managed scaling policy for an Amazon EMR cluster.
 //
@@ -1109,7 +1869,7 @@ func (c *EMR) GetManagedScalingPolicyRequest(input *GetManagedScalingPolicyInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation GetManagedScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetManagedScalingPolicy
 func (c *EMR) GetManagedScalingPolicy(input *GetManagedScalingPolicyInput) (*GetManagedScalingPolicyOutput, error) {
@@ -1133,6 +1893,90 @@ func (c *EMR) GetManagedScalingPolicyWithContext(ctx aws.Context, input *GetMana
 	return out, req.Send()
 }
 
+const opGetStudioSessionMapping = "GetStudioSessionMapping"
+
+// GetStudioSessionMappingRequest generates a "aws/request.Request" representing the
+// client's request for the GetStudioSessionMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStudioSessionMapping for more information on using the GetStudioSessionMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetStudioSessionMappingRequest method.
+//	req, resp := client.GetStudioSessionMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetStudioSessionMapping
+func (c *EMR) GetStudioSessionMappingRequest(input *GetStudioSessionMappingInput) (req *request.Request, output *GetStudioSessionMappingOutput) {
+	op := &request.Operation{
+		Name:       opGetStudioSessionMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetStudioSessionMappingInput{}
+	}
+
+	output = &GetStudioSessionMappingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetStudioSessionMapping API operation for Amazon EMR.
+//
+// Fetches mapping details for the specified Amazon EMR Studio and identity
+// (user or group).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation GetStudioSessionMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetStudioSessionMapping
+func (c *EMR) GetStudioSessionMapping(input *GetStudioSessionMappingInput) (*GetStudioSessionMappingOutput, error) {
+	req, out := c.GetStudioSessionMappingRequest(input)
+	return out, req.Send()
+}
+
+// GetStudioSessionMappingWithContext is the same as GetStudioSessionMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStudioSessionMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) GetStudioSessionMappingWithContext(ctx aws.Context, input *GetStudioSessionMappingInput, opts ...request.Option) (*GetStudioSessionMappingOutput, error) {
+	req, out := c.GetStudioSessionMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListBootstrapActions = "ListBootstrapActions"
 
 // ListBootstrapActionsRequest generates a "aws/request.Request" representing the
@@ -1149,14 +1993,13 @@ const opListBootstrapActions = "ListBootstrapActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBootstrapActionsRequest method.
+//	req, resp := client.ListBootstrapActionsRequest(params)
 //
-//    // Example sending a request using the ListBootstrapActionsRequest method.
-//    req, resp := client.ListBootstrapActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListBootstrapActions
 func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *request.Request, output *ListBootstrapActionsOutput) {
@@ -1181,7 +2024,7 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 	return
 }
 
-// ListBootstrapActions API operation for Amazon Elastic MapReduce.
+// ListBootstrapActions API operation for Amazon EMR.
 //
 // Provides information about the bootstrap actions associated with a cluster.
 //
@@ -1189,15 +2032,17 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListBootstrapActions for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListBootstrapActions
 func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBootstrapActionsOutput, error) {
@@ -1229,15 +2074,14 @@ func (c *EMR) ListBootstrapActionsWithContext(ctx aws.Context, input *ListBootst
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBootstrapActions operation.
-//    pageNum := 0
-//    err := client.ListBootstrapActionsPages(params,
-//        func(page *emr.ListBootstrapActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBootstrapActions operation.
+//	pageNum := 0
+//	err := client.ListBootstrapActionsPages(params,
+//	    func(page *emr.ListBootstrapActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(*ListBootstrapActionsOutput, bool) bool) error {
 	return c.ListBootstrapActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1289,14 +2133,13 @@ const opListClusters = "ListClusters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListClustersRequest method.
+//	req, resp := client.ListClustersRequest(params)
 //
-//    // Example sending a request using the ListClustersRequest method.
-//    req, resp := client.ListClustersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListClusters
 func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Request, output *ListClustersOutput) {
@@ -1321,27 +2164,30 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 	return
 }
 
-// ListClusters API operation for Amazon Elastic MapReduce.
+// ListClusters API operation for Amazon EMR.
 //
-// Provides the status of all clusters visible to this AWS account. Allows you
-// to filter the list of clusters based on certain criteria; for example, filtering
-// by cluster creation date and time or by status. This call returns a maximum
-// of 50 clusters per call, but returns a marker to track the paging of the
-// cluster list across multiple ListClusters calls.
+// Provides the status of all clusters visible to this Amazon Web Services account.
+// Allows you to filter the list of clusters based on certain criteria; for
+// example, filtering by cluster creation date and time or by status. This call
+// returns a maximum of 50 clusters in unsorted order per call, but returns
+// a marker to track the paging of the cluster list across multiple ListClusters
+// calls.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListClusters for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListClusters
 func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error) {
@@ -1373,15 +2219,14 @@ func (c *EMR) ListClustersWithContext(ctx aws.Context, input *ListClustersInput,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListClusters operation.
-//    pageNum := 0
-//    err := client.ListClustersPages(params,
-//        func(page *emr.ListClustersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListClusters operation.
+//	pageNum := 0
+//	err := client.ListClustersPages(params,
+//	    func(page *emr.ListClustersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(*ListClustersOutput, bool) bool) error {
 	return c.ListClustersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1433,14 +2278,13 @@ const opListInstanceFleets = "ListInstanceFleets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstanceFleetsRequest method.
+//	req, resp := client.ListInstanceFleetsRequest(params)
 //
-//    // Example sending a request using the ListInstanceFleetsRequest method.
-//    req, resp := client.ListInstanceFleetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceFleets
 func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *request.Request, output *ListInstanceFleetsOutput) {
@@ -1465,7 +2309,7 @@ func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *re
 	return
 }
 
-// ListInstanceFleets API operation for Amazon Elastic MapReduce.
+// ListInstanceFleets API operation for Amazon EMR.
 //
 // Lists all available details about the instance fleets in a cluster.
 //
@@ -1476,15 +2320,17 @@ func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *re
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListInstanceFleets for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceFleets
 func (c *EMR) ListInstanceFleets(input *ListInstanceFleetsInput) (*ListInstanceFleetsOutput, error) {
@@ -1516,15 +2362,14 @@ func (c *EMR) ListInstanceFleetsWithContext(ctx aws.Context, input *ListInstance
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstanceFleets operation.
-//    pageNum := 0
-//    err := client.ListInstanceFleetsPages(params,
-//        func(page *emr.ListInstanceFleetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstanceFleets operation.
+//	pageNum := 0
+//	err := client.ListInstanceFleetsPages(params,
+//	    func(page *emr.ListInstanceFleetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListInstanceFleetsPages(input *ListInstanceFleetsInput, fn func(*ListInstanceFleetsOutput, bool) bool) error {
 	return c.ListInstanceFleetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1576,14 +2421,13 @@ const opListInstanceGroups = "ListInstanceGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstanceGroupsRequest method.
+//	req, resp := client.ListInstanceGroupsRequest(params)
 //
-//    // Example sending a request using the ListInstanceGroupsRequest method.
-//    req, resp := client.ListInstanceGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceGroups
 func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *request.Request, output *ListInstanceGroupsOutput) {
@@ -1608,7 +2452,7 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 	return
 }
 
-// ListInstanceGroups API operation for Amazon Elastic MapReduce.
+// ListInstanceGroups API operation for Amazon EMR.
 //
 // Provides all available details about the instance groups in a cluster.
 //
@@ -1616,15 +2460,17 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListInstanceGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceGroups
 func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceGroupsOutput, error) {
@@ -1656,15 +2502,14 @@ func (c *EMR) ListInstanceGroupsWithContext(ctx aws.Context, input *ListInstance
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstanceGroups operation.
-//    pageNum := 0
-//    err := client.ListInstanceGroupsPages(params,
-//        func(page *emr.ListInstanceGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstanceGroups operation.
+//	pageNum := 0
+//	err := client.ListInstanceGroupsPages(params,
+//	    func(page *emr.ListInstanceGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(*ListInstanceGroupsOutput, bool) bool) error {
 	return c.ListInstanceGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1716,14 +2561,13 @@ const opListInstances = "ListInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListInstancesRequest method.
+//	req, resp := client.ListInstancesRequest(params)
 //
-//    // Example sending a request using the ListInstancesRequest method.
-//    req, resp := client.ListInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstances
 func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
@@ -1748,7 +2592,7 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 	return
 }
 
-// ListInstances API operation for Amazon Elastic MapReduce.
+// ListInstances API operation for Amazon EMR.
 //
 // Provides information for all active EC2 instances and EC2 instances terminated
 // in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the
@@ -1759,15 +2603,17 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListInstances for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstances
 func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
@@ -1799,15 +2645,14 @@ func (c *EMR) ListInstancesWithContext(ctx aws.Context, input *ListInstancesInpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListInstances operation.
-//    pageNum := 0
-//    err := client.ListInstancesPages(params,
-//        func(page *emr.ListInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListInstances operation.
+//	pageNum := 0
+//	err := client.ListInstancesPages(params,
+//	    func(page *emr.ListInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool) error {
 	return c.ListInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1843,6 +2688,289 @@ func (c *EMR) ListInstancesPagesWithContext(ctx aws.Context, input *ListInstance
 	return p.Err()
 }
 
+const opListNotebookExecutions = "ListNotebookExecutions"
+
+// ListNotebookExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListNotebookExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListNotebookExecutions for more information on using the ListNotebookExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListNotebookExecutionsRequest method.
+//	req, resp := client.ListNotebookExecutionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListNotebookExecutions
+func (c *EMR) ListNotebookExecutionsRequest(input *ListNotebookExecutionsInput) (req *request.Request, output *ListNotebookExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opListNotebookExecutions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListNotebookExecutionsInput{}
+	}
+
+	output = &ListNotebookExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListNotebookExecutions API operation for Amazon EMR.
+//
+// Provides summaries of all notebook executions. You can filter the list based
+// on multiple criteria such as status, time range, and editor id. Returns a
+// maximum of 50 notebook executions and a marker to track the paging of a longer
+// notebook execution list across multiple ListNotebookExecution calls.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation ListNotebookExecutions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListNotebookExecutions
+func (c *EMR) ListNotebookExecutions(input *ListNotebookExecutionsInput) (*ListNotebookExecutionsOutput, error) {
+	req, out := c.ListNotebookExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// ListNotebookExecutionsWithContext is the same as ListNotebookExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListNotebookExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListNotebookExecutionsWithContext(ctx aws.Context, input *ListNotebookExecutionsInput, opts ...request.Option) (*ListNotebookExecutionsOutput, error) {
+	req, out := c.ListNotebookExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListNotebookExecutionsPages iterates over the pages of a ListNotebookExecutions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListNotebookExecutions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListNotebookExecutions operation.
+//	pageNum := 0
+//	err := client.ListNotebookExecutionsPages(params,
+//	    func(page *emr.ListNotebookExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMR) ListNotebookExecutionsPages(input *ListNotebookExecutionsInput, fn func(*ListNotebookExecutionsOutput, bool) bool) error {
+	return c.ListNotebookExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListNotebookExecutionsPagesWithContext same as ListNotebookExecutionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListNotebookExecutionsPagesWithContext(ctx aws.Context, input *ListNotebookExecutionsInput, fn func(*ListNotebookExecutionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListNotebookExecutionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListNotebookExecutionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListNotebookExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListReleaseLabels = "ListReleaseLabels"
+
+// ListReleaseLabelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListReleaseLabels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReleaseLabels for more information on using the ListReleaseLabels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListReleaseLabelsRequest method.
+//	req, resp := client.ListReleaseLabelsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListReleaseLabels
+func (c *EMR) ListReleaseLabelsRequest(input *ListReleaseLabelsInput) (req *request.Request, output *ListReleaseLabelsOutput) {
+	op := &request.Operation{
+		Name:       opListReleaseLabels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListReleaseLabelsInput{}
+	}
+
+	output = &ListReleaseLabelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListReleaseLabels API operation for Amazon EMR.
+//
+// Retrieves release labels of EMR services in the region where the API is called.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation ListReleaseLabels for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListReleaseLabels
+func (c *EMR) ListReleaseLabels(input *ListReleaseLabelsInput) (*ListReleaseLabelsOutput, error) {
+	req, out := c.ListReleaseLabelsRequest(input)
+	return out, req.Send()
+}
+
+// ListReleaseLabelsWithContext is the same as ListReleaseLabels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReleaseLabels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListReleaseLabelsWithContext(ctx aws.Context, input *ListReleaseLabelsInput, opts ...request.Option) (*ListReleaseLabelsOutput, error) {
+	req, out := c.ListReleaseLabelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListReleaseLabelsPages iterates over the pages of a ListReleaseLabels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListReleaseLabels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListReleaseLabels operation.
+//	pageNum := 0
+//	err := client.ListReleaseLabelsPages(params,
+//	    func(page *emr.ListReleaseLabelsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMR) ListReleaseLabelsPages(input *ListReleaseLabelsInput, fn func(*ListReleaseLabelsOutput, bool) bool) error {
+	return c.ListReleaseLabelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListReleaseLabelsPagesWithContext same as ListReleaseLabelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListReleaseLabelsPagesWithContext(ctx aws.Context, input *ListReleaseLabelsInput, fn func(*ListReleaseLabelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListReleaseLabelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListReleaseLabelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListReleaseLabelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSecurityConfigurations = "ListSecurityConfigurations"
 
 // ListSecurityConfigurationsRequest generates a "aws/request.Request" representing the
@@ -1859,14 +2987,13 @@ const opListSecurityConfigurations = "ListSecurityConfigurations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSecurityConfigurationsRequest method.
+//	req, resp := client.ListSecurityConfigurationsRequest(params)
 //
-//    // Example sending a request using the ListSecurityConfigurationsRequest method.
-//    req, resp := client.ListSecurityConfigurationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSecurityConfigurations
 func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfigurationsInput) (req *request.Request, output *ListSecurityConfigurationsOutput) {
@@ -1891,7 +3018,7 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 	return
 }
 
-// ListSecurityConfigurations API operation for Amazon Elastic MapReduce.
+// ListSecurityConfigurations API operation for Amazon EMR.
 //
 // Lists all the security configurations visible to this account, providing
 // their creation dates and times, and their names. This call returns a maximum
@@ -1902,15 +3029,17 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListSecurityConfigurations for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSecurityConfigurations
 func (c *EMR) ListSecurityConfigurations(input *ListSecurityConfigurationsInput) (*ListSecurityConfigurationsOutput, error) {
@@ -1942,15 +3071,14 @@ func (c *EMR) ListSecurityConfigurationsWithContext(ctx aws.Context, input *List
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSecurityConfigurations operation.
-//    pageNum := 0
-//    err := client.ListSecurityConfigurationsPages(params,
-//        func(page *emr.ListSecurityConfigurationsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSecurityConfigurations operation.
+//	pageNum := 0
+//	err := client.ListSecurityConfigurationsPages(params,
+//	    func(page *emr.ListSecurityConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListSecurityConfigurationsPages(input *ListSecurityConfigurationsInput, fn func(*ListSecurityConfigurationsOutput, bool) bool) error {
 	return c.ListSecurityConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2002,14 +3130,13 @@ const opListSteps = "ListSteps"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListStepsRequest method.
+//	req, resp := client.ListStepsRequest(params)
 //
-//    // Example sending a request using the ListStepsRequest method.
-//    req, resp := client.ListStepsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSteps
 func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, output *ListStepsOutput) {
@@ -2034,25 +3161,29 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 	return
 }
 
-// ListSteps API operation for Amazon Elastic MapReduce.
+// ListSteps API operation for Amazon EMR.
 //
 // Provides a list of steps for the cluster in reverse order unless you specify
-// stepIds with the request of filter by StepStates. You can specify a maximum
-// of ten stepIDs.
+// stepIds with the request or filter by StepStates. You can specify a maximum
+// of 10 stepIDs. The CLI automatically paginates results to return a list greater
+// than 50 steps. To return more than 50 steps using the CLI, specify a Marker,
+// which is a pagination token that indicates the next set of steps to retrieve.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListSteps for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSteps
 func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
@@ -2084,15 +3215,14 @@ func (c *EMR) ListStepsWithContext(ctx aws.Context, input *ListStepsInput, opts 
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSteps operation.
-//    pageNum := 0
-//    err := client.ListStepsPages(params,
-//        func(page *emr.ListStepsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSteps operation.
+//	pageNum := 0
+//	err := client.ListStepsPages(params,
+//	    func(page *emr.ListStepsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(*ListStepsOutput, bool) bool) error {
 	return c.ListStepsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2128,6 +3258,289 @@ func (c *EMR) ListStepsPagesWithContext(ctx aws.Context, input *ListStepsInput, 
 	return p.Err()
 }
 
+const opListStudioSessionMappings = "ListStudioSessionMappings"
+
+// ListStudioSessionMappingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStudioSessionMappings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStudioSessionMappings for more information on using the ListStudioSessionMappings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStudioSessionMappingsRequest method.
+//	req, resp := client.ListStudioSessionMappingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListStudioSessionMappings
+func (c *EMR) ListStudioSessionMappingsRequest(input *ListStudioSessionMappingsInput) (req *request.Request, output *ListStudioSessionMappingsOutput) {
+	op := &request.Operation{
+		Name:       opListStudioSessionMappings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStudioSessionMappingsInput{}
+	}
+
+	output = &ListStudioSessionMappingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStudioSessionMappings API operation for Amazon EMR.
+//
+// Returns a list of all user or group session mappings for the Amazon EMR Studio
+// specified by StudioId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation ListStudioSessionMappings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListStudioSessionMappings
+func (c *EMR) ListStudioSessionMappings(input *ListStudioSessionMappingsInput) (*ListStudioSessionMappingsOutput, error) {
+	req, out := c.ListStudioSessionMappingsRequest(input)
+	return out, req.Send()
+}
+
+// ListStudioSessionMappingsWithContext is the same as ListStudioSessionMappings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStudioSessionMappings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListStudioSessionMappingsWithContext(ctx aws.Context, input *ListStudioSessionMappingsInput, opts ...request.Option) (*ListStudioSessionMappingsOutput, error) {
+	req, out := c.ListStudioSessionMappingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStudioSessionMappingsPages iterates over the pages of a ListStudioSessionMappings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStudioSessionMappings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStudioSessionMappings operation.
+//	pageNum := 0
+//	err := client.ListStudioSessionMappingsPages(params,
+//	    func(page *emr.ListStudioSessionMappingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMR) ListStudioSessionMappingsPages(input *ListStudioSessionMappingsInput, fn func(*ListStudioSessionMappingsOutput, bool) bool) error {
+	return c.ListStudioSessionMappingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStudioSessionMappingsPagesWithContext same as ListStudioSessionMappingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListStudioSessionMappingsPagesWithContext(ctx aws.Context, input *ListStudioSessionMappingsInput, fn func(*ListStudioSessionMappingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStudioSessionMappingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStudioSessionMappingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStudioSessionMappingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStudios = "ListStudios"
+
+// ListStudiosRequest generates a "aws/request.Request" representing the
+// client's request for the ListStudios operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStudios for more information on using the ListStudios
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStudiosRequest method.
+//	req, resp := client.ListStudiosRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListStudios
+func (c *EMR) ListStudiosRequest(input *ListStudiosInput) (req *request.Request, output *ListStudiosOutput) {
+	op := &request.Operation{
+		Name:       opListStudios,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStudiosInput{}
+	}
+
+	output = &ListStudiosOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStudios API operation for Amazon EMR.
+//
+// Returns a list of all Amazon EMR Studios associated with the Amazon Web Services
+// account. The list includes details such as ID, Studio Access URL, and creation
+// time for each Studio.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation ListStudios for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListStudios
+func (c *EMR) ListStudios(input *ListStudiosInput) (*ListStudiosOutput, error) {
+	req, out := c.ListStudiosRequest(input)
+	return out, req.Send()
+}
+
+// ListStudiosWithContext is the same as ListStudios with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStudios for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListStudiosWithContext(ctx aws.Context, input *ListStudiosInput, opts ...request.Option) (*ListStudiosOutput, error) {
+	req, out := c.ListStudiosRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStudiosPages iterates over the pages of a ListStudios operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStudios method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListStudios operation.
+//	pageNum := 0
+//	err := client.ListStudiosPages(params,
+//	    func(page *emr.ListStudiosOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMR) ListStudiosPages(input *ListStudiosInput, fn func(*ListStudiosOutput, bool) bool) error {
+	return c.ListStudiosPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStudiosPagesWithContext same as ListStudiosPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) ListStudiosPagesWithContext(ctx aws.Context, input *ListStudiosInput, fn func(*ListStudiosOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStudiosInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStudiosRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStudiosOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opModifyCluster = "ModifyCluster"
 
 // ModifyClusterRequest generates a "aws/request.Request" representing the
@@ -2144,14 +3557,13 @@ const opModifyCluster = "ModifyCluster"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyClusterRequest method.
+//	req, resp := client.ModifyClusterRequest(params)
 //
-//    // Example sending a request using the ModifyClusterRequest method.
-//    req, resp := client.ModifyClusterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyCluster
 func (c *EMR) ModifyClusterRequest(input *ModifyClusterInput) (req *request.Request, output *ModifyClusterOutput) {
@@ -2170,7 +3582,7 @@ func (c *EMR) ModifyClusterRequest(input *ModifyClusterInput) (req *request.Requ
 	return
 }
 
-// ModifyCluster API operation for Amazon Elastic MapReduce.
+// ModifyCluster API operation for Amazon EMR.
 //
 // Modifies the number of steps that can be executed concurrently for the cluster
 // specified using ClusterID.
@@ -2179,16 +3591,17 @@ func (c *EMR) ModifyClusterRequest(input *ModifyClusterInput) (req *request.Requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ModifyCluster for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyCluster
 func (c *EMR) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
@@ -2228,14 +3641,13 @@ const opModifyInstanceFleet = "ModifyInstanceFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyInstanceFleetRequest method.
+//	req, resp := client.ModifyInstanceFleetRequest(params)
 //
-//    // Example sending a request using the ModifyInstanceFleetRequest method.
-//    req, resp := client.ModifyInstanceFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceFleet
 func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *request.Request, output *ModifyInstanceFleetOutput) {
@@ -2255,7 +3667,7 @@ func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *
 	return
 }
 
-// ModifyInstanceFleet API operation for Amazon Elastic MapReduce.
+// ModifyInstanceFleet API operation for Amazon EMR.
 //
 // Modifies the target On-Demand and target Spot capacities for the instance
 // fleet with the specified InstanceFleetID within the cluster specified using
@@ -2268,15 +3680,17 @@ func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ModifyInstanceFleet for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceFleet
 func (c *EMR) ModifyInstanceFleet(input *ModifyInstanceFleetInput) (*ModifyInstanceFleetOutput, error) {
@@ -2316,14 +3730,13 @@ const opModifyInstanceGroups = "ModifyInstanceGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyInstanceGroupsRequest method.
+//	req, resp := client.ModifyInstanceGroupsRequest(params)
 //
-//    // Example sending a request using the ModifyInstanceGroupsRequest method.
-//    req, resp := client.ModifyInstanceGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceGroups
 func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *request.Request, output *ModifyInstanceGroupsOutput) {
@@ -2343,7 +3756,7 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 	return
 }
 
-// ModifyInstanceGroups API operation for Amazon Elastic MapReduce.
+// ModifyInstanceGroups API operation for Amazon EMR.
 //
 // ModifyInstanceGroups modifies the number of nodes and configuration settings
 // of an instance group. The input parameters include the new target instance
@@ -2354,13 +3767,13 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ModifyInstanceGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceGroups
 func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyInstanceGroupsOutput, error) {
@@ -2400,14 +3813,13 @@ const opPutAutoScalingPolicy = "PutAutoScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutAutoScalingPolicyRequest method.
+//	req, resp := client.PutAutoScalingPolicyRequest(params)
 //
-//    // Example sending a request using the PutAutoScalingPolicyRequest method.
-//    req, resp := client.PutAutoScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoScalingPolicy
 func (c *EMR) PutAutoScalingPolicyRequest(input *PutAutoScalingPolicyInput) (req *request.Request, output *PutAutoScalingPolicyOutput) {
@@ -2426,7 +3838,7 @@ func (c *EMR) PutAutoScalingPolicyRequest(input *PutAutoScalingPolicyInput) (req
 	return
 }
 
-// PutAutoScalingPolicy API operation for Amazon Elastic MapReduce.
+// PutAutoScalingPolicy API operation for Amazon EMR.
 //
 // Creates or updates an automatic scaling policy for a core instance group
 // or task instance group in an Amazon EMR cluster. The automatic scaling policy
@@ -2437,7 +3849,7 @@ func (c *EMR) PutAutoScalingPolicyRequest(input *PutAutoScalingPolicyInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation PutAutoScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoScalingPolicy
 func (c *EMR) PutAutoScalingPolicy(input *PutAutoScalingPolicyInput) (*PutAutoScalingPolicyOutput, error) {
@@ -2461,6 +3873,86 @@ func (c *EMR) PutAutoScalingPolicyWithContext(ctx aws.Context, input *PutAutoSca
 	return out, req.Send()
 }
 
+const opPutAutoTerminationPolicy = "PutAutoTerminationPolicy"
+
+// PutAutoTerminationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutAutoTerminationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAutoTerminationPolicy for more information on using the PutAutoTerminationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutAutoTerminationPolicyRequest method.
+//	req, resp := client.PutAutoTerminationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoTerminationPolicy
+func (c *EMR) PutAutoTerminationPolicyRequest(input *PutAutoTerminationPolicyInput) (req *request.Request, output *PutAutoTerminationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutAutoTerminationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutAutoTerminationPolicyInput{}
+	}
+
+	output = &PutAutoTerminationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAutoTerminationPolicy API operation for Amazon EMR.
+//
+// Auto-termination is supported in Amazon EMR versions 5.30.0 and 6.1.0 and
+// later. For more information, see Using an auto-termination policy (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-auto-termination-policy.html).
+//
+// Creates or updates an auto-termination policy for an Amazon EMR cluster.
+// An auto-termination policy defines the amount of idle time in seconds after
+// which a cluster automatically terminates. For alternative cluster termination
+// options, see Control cluster termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation PutAutoTerminationPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoTerminationPolicy
+func (c *EMR) PutAutoTerminationPolicy(input *PutAutoTerminationPolicyInput) (*PutAutoTerminationPolicyOutput, error) {
+	req, out := c.PutAutoTerminationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutAutoTerminationPolicyWithContext is the same as PutAutoTerminationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAutoTerminationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) PutAutoTerminationPolicyWithContext(ctx aws.Context, input *PutAutoTerminationPolicyInput, opts ...request.Option) (*PutAutoTerminationPolicyOutput, error) {
+	req, out := c.PutAutoTerminationPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBlockPublicAccessConfiguration = "PutBlockPublicAccessConfiguration"
 
 // PutBlockPublicAccessConfigurationRequest generates a "aws/request.Request" representing the
@@ -2477,14 +3969,13 @@ const opPutBlockPublicAccessConfiguration = "PutBlockPublicAccessConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutBlockPublicAccessConfigurationRequest method.
+//	req, resp := client.PutBlockPublicAccessConfigurationRequest(params)
 //
-//    // Example sending a request using the PutBlockPublicAccessConfigurationRequest method.
-//    req, resp := client.PutBlockPublicAccessConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutBlockPublicAccessConfiguration
 func (c *EMR) PutBlockPublicAccessConfigurationRequest(input *PutBlockPublicAccessConfigurationInput) (req *request.Request, output *PutBlockPublicAccessConfigurationOutput) {
@@ -2504,26 +3995,28 @@ func (c *EMR) PutBlockPublicAccessConfigurationRequest(input *PutBlockPublicAcce
 	return
 }
 
-// PutBlockPublicAccessConfiguration API operation for Amazon Elastic MapReduce.
+// PutBlockPublicAccessConfiguration API operation for Amazon EMR.
 //
 // Creates or updates an Amazon EMR block public access configuration for your
-// AWS account in the current Region. For more information see Configure Block
-// Public Access for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
+// Amazon Web Services account in the current Region. For more information see
+// Configure Block Public Access for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
 // in the Amazon EMR Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation PutBlockPublicAccessConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutBlockPublicAccessConfiguration
 func (c *EMR) PutBlockPublicAccessConfiguration(input *PutBlockPublicAccessConfigurationInput) (*PutBlockPublicAccessConfigurationOutput, error) {
@@ -2563,14 +4056,13 @@ const opPutManagedScalingPolicy = "PutManagedScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutManagedScalingPolicyRequest method.
+//	req, resp := client.PutManagedScalingPolicyRequest(params)
 //
-//    // Example sending a request using the PutManagedScalingPolicyRequest method.
-//    req, resp := client.PutManagedScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutManagedScalingPolicy
 func (c *EMR) PutManagedScalingPolicyRequest(input *PutManagedScalingPolicyInput) (req *request.Request, output *PutManagedScalingPolicyOutput) {
@@ -2590,7 +4082,7 @@ func (c *EMR) PutManagedScalingPolicyRequest(input *PutManagedScalingPolicyInput
 	return
 }
 
-// PutManagedScalingPolicy API operation for Amazon Elastic MapReduce.
+// PutManagedScalingPolicy API operation for Amazon EMR.
 //
 // Creates or updates a managed scaling policy for an Amazon EMR cluster. The
 // managed scaling policy defines the limits for resources, such as EC2 instances
@@ -2601,7 +4093,7 @@ func (c *EMR) PutManagedScalingPolicyRequest(input *PutManagedScalingPolicyInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation PutManagedScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutManagedScalingPolicy
 func (c *EMR) PutManagedScalingPolicy(input *PutManagedScalingPolicyInput) (*PutManagedScalingPolicyOutput, error) {
@@ -2641,14 +4133,13 @@ const opRemoveAutoScalingPolicy = "RemoveAutoScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveAutoScalingPolicyRequest method.
+//	req, resp := client.RemoveAutoScalingPolicyRequest(params)
 //
-//    // Example sending a request using the RemoveAutoScalingPolicyRequest method.
-//    req, resp := client.RemoveAutoScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoScalingPolicy
 func (c *EMR) RemoveAutoScalingPolicyRequest(input *RemoveAutoScalingPolicyInput) (req *request.Request, output *RemoveAutoScalingPolicyOutput) {
@@ -2668,7 +4159,7 @@ func (c *EMR) RemoveAutoScalingPolicyRequest(input *RemoveAutoScalingPolicyInput
 	return
 }
 
-// RemoveAutoScalingPolicy API operation for Amazon Elastic MapReduce.
+// RemoveAutoScalingPolicy API operation for Amazon EMR.
 //
 // Removes an automatic scaling policy from a specified instance group within
 // an EMR cluster.
@@ -2677,7 +4168,7 @@ func (c *EMR) RemoveAutoScalingPolicyRequest(input *RemoveAutoScalingPolicyInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RemoveAutoScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoScalingPolicy
 func (c *EMR) RemoveAutoScalingPolicy(input *RemoveAutoScalingPolicyInput) (*RemoveAutoScalingPolicyOutput, error) {
@@ -2701,6 +4192,80 @@ func (c *EMR) RemoveAutoScalingPolicyWithContext(ctx aws.Context, input *RemoveA
 	return out, req.Send()
 }
 
+const opRemoveAutoTerminationPolicy = "RemoveAutoTerminationPolicy"
+
+// RemoveAutoTerminationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveAutoTerminationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveAutoTerminationPolicy for more information on using the RemoveAutoTerminationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RemoveAutoTerminationPolicyRequest method.
+//	req, resp := client.RemoveAutoTerminationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoTerminationPolicy
+func (c *EMR) RemoveAutoTerminationPolicyRequest(input *RemoveAutoTerminationPolicyInput) (req *request.Request, output *RemoveAutoTerminationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opRemoveAutoTerminationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveAutoTerminationPolicyInput{}
+	}
+
+	output = &RemoveAutoTerminationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RemoveAutoTerminationPolicy API operation for Amazon EMR.
+//
+// Removes an auto-termination policy from an Amazon EMR cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation RemoveAutoTerminationPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoTerminationPolicy
+func (c *EMR) RemoveAutoTerminationPolicy(input *RemoveAutoTerminationPolicyInput) (*RemoveAutoTerminationPolicyOutput, error) {
+	req, out := c.RemoveAutoTerminationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// RemoveAutoTerminationPolicyWithContext is the same as RemoveAutoTerminationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveAutoTerminationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) RemoveAutoTerminationPolicyWithContext(ctx aws.Context, input *RemoveAutoTerminationPolicyInput, opts ...request.Option) (*RemoveAutoTerminationPolicyOutput, error) {
+	req, out := c.RemoveAutoTerminationPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRemoveManagedScalingPolicy = "RemoveManagedScalingPolicy"
 
 // RemoveManagedScalingPolicyRequest generates a "aws/request.Request" representing the
@@ -2717,14 +4282,13 @@ const opRemoveManagedScalingPolicy = "RemoveManagedScalingPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveManagedScalingPolicyRequest method.
+//	req, resp := client.RemoveManagedScalingPolicyRequest(params)
 //
-//    // Example sending a request using the RemoveManagedScalingPolicyRequest method.
-//    req, resp := client.RemoveManagedScalingPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveManagedScalingPolicy
 func (c *EMR) RemoveManagedScalingPolicyRequest(input *RemoveManagedScalingPolicyInput) (req *request.Request, output *RemoveManagedScalingPolicyOutput) {
@@ -2744,7 +4308,7 @@ func (c *EMR) RemoveManagedScalingPolicyRequest(input *RemoveManagedScalingPolic
 	return
 }
 
-// RemoveManagedScalingPolicy API operation for Amazon Elastic MapReduce.
+// RemoveManagedScalingPolicy API operation for Amazon EMR.
 //
 // Removes a managed scaling policy from a specified EMR cluster.
 //
@@ -2752,7 +4316,7 @@ func (c *EMR) RemoveManagedScalingPolicyRequest(input *RemoveManagedScalingPolic
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RemoveManagedScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveManagedScalingPolicy
 func (c *EMR) RemoveManagedScalingPolicy(input *RemoveManagedScalingPolicyInput) (*RemoveManagedScalingPolicyOutput, error) {
@@ -2792,14 +4356,13 @@ const opRemoveTags = "RemoveTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveTagsRequest method.
+//	req, resp := client.RemoveTagsRequest(params)
 //
-//    // Example sending a request using the RemoveTagsRequest method.
-//    req, resp := client.RemoveTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveTags
 func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
@@ -2819,11 +4382,12 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 	return
 }
 
-// RemoveTags API operation for Amazon Elastic MapReduce.
+// RemoveTags API operation for Amazon EMR.
 //
-// Removes tags from an Amazon EMR resource. Tags make it easier to associate
-// clusters in various ways, such as grouping clusters to track your Amazon
-// EMR resource allocation costs. For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
+// Removes tags from an Amazon EMR resource, such as a cluster or Amazon EMR
+// Studio. Tags make it easier to associate resources in various ways, such
+// as grouping clusters to track your Amazon EMR resource allocation costs.
+// For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
 //
 // The following example removes the stack tag with value Prod from a cluster:
 //
@@ -2831,15 +4395,17 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RemoveTags for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
 //
-//   * InvalidRequestException
-//   This exception occurs when there is something wrong with user input.
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveTags
 func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
@@ -2879,14 +4445,13 @@ const opRunJobFlow = "RunJobFlow"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RunJobFlowRequest method.
+//	req, resp := client.RunJobFlowRequest(params)
 //
-//    // Example sending a request using the RunJobFlowRequest method.
-//    req, resp := client.RunJobFlowRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RunJobFlow
 func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, output *RunJobFlowOutput) {
@@ -2905,7 +4470,7 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 	return
 }
 
-// RunJobFlow API operation for Amazon Elastic MapReduce.
+// RunJobFlow API operation for Amazon EMR.
 //
 // RunJobFlow creates and starts running a new cluster (job flow). The cluster
 // runs the steps specified. After the steps complete, the cluster stops and
@@ -2924,11 +4489,9 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 // you may require more than 256 steps to process your data. You can bypass
 // the 256-step limitation in various ways, including using the SSH shell to
 // connect to the master node and submitting queries directly to the software
-// running on the master node, such as Hive and Hadoop. For more information
-// on how to do this, see Add More than 256 Steps to a Cluster (https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html)
-// in the Amazon EMR Management Guide.
+// running on the master node, such as Hive and Hadoop.
 //
-// For long running clusters, we recommend that you periodically store your
+// For long-running clusters, we recommend that you periodically store your
 // results.
 //
 // The instance fleets configuration is available only in Amazon EMR versions
@@ -2939,13 +4502,13 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RunJobFlow for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RunJobFlow
 func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
@@ -2985,14 +4548,13 @@ const opSetTerminationProtection = "SetTerminationProtection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetTerminationProtectionRequest method.
+//	req, resp := client.SetTerminationProtectionRequest(params)
 //
-//    // Example sending a request using the SetTerminationProtectionRequest method.
-//    req, resp := client.SetTerminationProtectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetTerminationProtection
 func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *request.Request, output *SetTerminationProtectionOutput) {
@@ -3012,7 +4574,7 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 	return
 }
 
-// SetTerminationProtection API operation for Amazon Elastic MapReduce.
+// SetTerminationProtection API operation for Amazon EMR.
 //
 // SetTerminationProtection locks a cluster (job flow) so the EC2 instances
 // in the cluster cannot be terminated by user intervention, an API call, or
@@ -3036,13 +4598,13 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation SetTerminationProtection for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetTerminationProtection
 func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*SetTerminationProtectionOutput, error) {
@@ -3082,14 +4644,13 @@ const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetVisibleToAllUsersRequest method.
+//	req, resp := client.SetVisibleToAllUsersRequest(params)
 //
-//    // Example sending a request using the SetVisibleToAllUsersRequest method.
-//    req, resp := client.SetVisibleToAllUsersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetVisibleToAllUsers
 func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *request.Request, output *SetVisibleToAllUsersOutput) {
@@ -3109,29 +4670,37 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 	return
 }
 
-// SetVisibleToAllUsers API operation for Amazon Elastic MapReduce.
+// SetVisibleToAllUsers API operation for Amazon EMR.
 //
-// Sets the Cluster$VisibleToAllUsers value, which determines whether the cluster
-// is visible to all IAM users of the AWS account associated with the cluster.
-// Only the IAM user who created the cluster or the AWS account root user can
-// call this action. The default value, true, indicates that all IAM users in
-// the AWS account can perform cluster actions if they have the proper IAM policy
-// permissions. If set to false, only the IAM user that created the cluster
-// can perform actions. This action works on running clusters. You can override
-// the default true setting when you create a cluster by using the VisibleToAllUsers
-// parameter with RunJobFlow.
+// The SetVisibleToAllUsers parameter is no longer supported. Your cluster may
+// be visible to all users in your account. To restrict cluster access using
+// an IAM policy, see Identity and Access Management for EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-access-iam.html).
+//
+// Sets the Cluster$VisibleToAllUsers value for an EMR cluster. When true, IAM
+// principals in the Amazon Web Services account can perform EMR cluster actions
+// that their IAM policies allow. When false, only the IAM principal that created
+// the cluster and the Amazon Web Services account root user can perform EMR
+// actions on the cluster, regardless of IAM permissions policies attached to
+// other IAM principals.
+//
+// This action works on running clusters. When you create a cluster, use the
+// RunJobFlowInput$VisibleToAllUsers parameter.
+//
+// For more information, see Understanding the EMR Cluster VisibleToAllUsers
+// Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+// in the Amazon EMRManagement Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation SetVisibleToAllUsers for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetVisibleToAllUsers
 func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibleToAllUsersOutput, error) {
@@ -3155,6 +4724,173 @@ func (c *EMR) SetVisibleToAllUsersWithContext(ctx aws.Context, input *SetVisible
 	return out, req.Send()
 }
 
+const opStartNotebookExecution = "StartNotebookExecution"
+
+// StartNotebookExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartNotebookExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartNotebookExecution for more information on using the StartNotebookExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartNotebookExecutionRequest method.
+//	req, resp := client.StartNotebookExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StartNotebookExecution
+func (c *EMR) StartNotebookExecutionRequest(input *StartNotebookExecutionInput) (req *request.Request, output *StartNotebookExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStartNotebookExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartNotebookExecutionInput{}
+	}
+
+	output = &StartNotebookExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartNotebookExecution API operation for Amazon EMR.
+//
+// Starts a notebook execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation StartNotebookExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StartNotebookExecution
+func (c *EMR) StartNotebookExecution(input *StartNotebookExecutionInput) (*StartNotebookExecutionOutput, error) {
+	req, out := c.StartNotebookExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StartNotebookExecutionWithContext is the same as StartNotebookExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartNotebookExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) StartNotebookExecutionWithContext(ctx aws.Context, input *StartNotebookExecutionInput, opts ...request.Option) (*StartNotebookExecutionOutput, error) {
+	req, out := c.StartNotebookExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopNotebookExecution = "StopNotebookExecution"
+
+// StopNotebookExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StopNotebookExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopNotebookExecution for more information on using the StopNotebookExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopNotebookExecutionRequest method.
+//	req, resp := client.StopNotebookExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StopNotebookExecution
+func (c *EMR) StopNotebookExecutionRequest(input *StopNotebookExecutionInput) (req *request.Request, output *StopNotebookExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStopNotebookExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopNotebookExecutionInput{}
+	}
+
+	output = &StopNotebookExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopNotebookExecution API operation for Amazon EMR.
+//
+// Stops a notebook execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation StopNotebookExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StopNotebookExecution
+func (c *EMR) StopNotebookExecution(input *StopNotebookExecutionInput) (*StopNotebookExecutionOutput, error) {
+	req, out := c.StopNotebookExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StopNotebookExecutionWithContext is the same as StopNotebookExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopNotebookExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) StopNotebookExecutionWithContext(ctx aws.Context, input *StopNotebookExecutionInput, opts ...request.Option) (*StopNotebookExecutionOutput, error) {
+	req, out := c.StopNotebookExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTerminateJobFlows = "TerminateJobFlows"
 
 // TerminateJobFlowsRequest generates a "aws/request.Request" representing the
@@ -3171,14 +4907,13 @@ const opTerminateJobFlows = "TerminateJobFlows"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TerminateJobFlowsRequest method.
+//	req, resp := client.TerminateJobFlowsRequest(params)
 //
-//    // Example sending a request using the TerminateJobFlowsRequest method.
-//    req, resp := client.TerminateJobFlowsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/TerminateJobFlows
 func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *request.Request, output *TerminateJobFlowsOutput) {
@@ -3198,7 +4933,7 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 	return
 }
 
-// TerminateJobFlows API operation for Amazon Elastic MapReduce.
+// TerminateJobFlows API operation for Amazon EMR.
 //
 // TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow
 // is shut down, any step not yet completed is canceled and the EC2 instances
@@ -3215,13 +4950,13 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation TerminateJobFlows for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerError
-//   Indicates that an error occurred while processing the request and that the
-//   request was not completed.
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/TerminateJobFlows
 func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (*TerminateJobFlowsOutput, error) {
@@ -3245,6 +4980,176 @@ func (c *EMR) TerminateJobFlowsWithContext(ctx aws.Context, input *TerminateJobF
 	return out, req.Send()
 }
 
+const opUpdateStudio = "UpdateStudio"
+
+// UpdateStudioRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStudio operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStudio for more information on using the UpdateStudio
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStudioRequest method.
+//	req, resp := client.UpdateStudioRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/UpdateStudio
+func (c *EMR) UpdateStudioRequest(input *UpdateStudioInput) (req *request.Request, output *UpdateStudioOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStudio,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStudioInput{}
+	}
+
+	output = &UpdateStudioOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateStudio API operation for Amazon EMR.
+//
+// Updates an Amazon EMR Studio configuration, including attributes such as
+// name, description, and subnets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation UpdateStudio for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Amazon EMR
+//     service.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/UpdateStudio
+func (c *EMR) UpdateStudio(input *UpdateStudioInput) (*UpdateStudioOutput, error) {
+	req, out := c.UpdateStudioRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStudioWithContext is the same as UpdateStudio with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStudio for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) UpdateStudioWithContext(ctx aws.Context, input *UpdateStudioInput, opts ...request.Option) (*UpdateStudioOutput, error) {
+	req, out := c.UpdateStudioRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateStudioSessionMapping = "UpdateStudioSessionMapping"
+
+// UpdateStudioSessionMappingRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStudioSessionMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStudioSessionMapping for more information on using the UpdateStudioSessionMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStudioSessionMappingRequest method.
+//	req, resp := client.UpdateStudioSessionMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/UpdateStudioSessionMapping
+func (c *EMR) UpdateStudioSessionMappingRequest(input *UpdateStudioSessionMappingInput) (req *request.Request, output *UpdateStudioSessionMappingOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStudioSessionMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStudioSessionMappingInput{}
+	}
+
+	output = &UpdateStudioSessionMappingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateStudioSessionMapping API operation for Amazon EMR.
+//
+// Updates the session policy attached to the user or group for the specified
+// Amazon EMR Studio.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation UpdateStudioSessionMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/UpdateStudioSessionMapping
+func (c *EMR) UpdateStudioSessionMapping(input *UpdateStudioSessionMappingInput) (*UpdateStudioSessionMappingOutput, error) {
+	req, out := c.UpdateStudioSessionMappingRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStudioSessionMappingWithContext is the same as UpdateStudioSessionMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStudioSessionMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) UpdateStudioSessionMappingWithContext(ctx aws.Context, input *UpdateStudioSessionMappingInput, opts ...request.Option) (*UpdateStudioSessionMappingOutput, error) {
+	req, out := c.UpdateStudioSessionMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AddInstanceFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3259,12 +5164,20 @@ type AddInstanceFleetInput struct {
 	InstanceFleet *InstanceFleetConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceFleetInput) GoString() string {
 	return s.String()
 }
@@ -3315,12 +5228,20 @@ type AddInstanceFleetOutput struct {
 	InstanceFleetId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceFleetOutput) GoString() string {
 	return s.String()
 }
@@ -3358,12 +5279,20 @@ type AddInstanceGroupsInput struct {
 	JobFlowId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceGroupsInput) GoString() string {
 	return s.String()
 }
@@ -3420,12 +5349,20 @@ type AddInstanceGroupsOutput struct {
 	JobFlowId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddInstanceGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -3452,6 +5389,15 @@ func (s *AddInstanceGroupsOutput) SetJobFlowId(v string) *AddInstanceGroupsOutpu
 type AddJobFlowStepsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the runtime role for a step on the cluster.
+	// The runtime role can be a cross-account IAM role. The runtime role ARN is
+	// a combination of account ID, role name, and role type using the following
+	// format: arn:partition:service:region:account:resource.
+	//
+	// For example, arn:aws:iam::1234567890:role/ReadOnly is a correctly formatted
+	// runtime role ARN.
+	ExecutionRoleArn *string `min:"20" type:"string"`
+
 	// A string that uniquely identifies the job flow. This identifier is returned
 	// by RunJobFlow and can also be obtained from ListClusters.
 	//
@@ -3464,12 +5410,20 @@ type AddJobFlowStepsInput struct {
 	Steps []*StepConfig `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddJobFlowStepsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddJobFlowStepsInput) GoString() string {
 	return s.String()
 }
@@ -3477,6 +5431,9 @@ func (s AddJobFlowStepsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AddJobFlowStepsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AddJobFlowStepsInput"}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
 	if s.JobFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobFlowId"))
 	}
@@ -3500,6 +5457,12 @@ func (s *AddJobFlowStepsInput) Validate() error {
 	return nil
 }
 
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *AddJobFlowStepsInput) SetExecutionRoleArn(v string) *AddJobFlowStepsInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
 // SetJobFlowId sets the JobFlowId field's value.
 func (s *AddJobFlowStepsInput) SetJobFlowId(v string) *AddJobFlowStepsInput {
 	s.JobFlowId = &v
@@ -3520,12 +5483,20 @@ type AddJobFlowStepsOutput struct {
 	StepIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddJobFlowStepsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddJobFlowStepsOutput) GoString() string {
 	return s.String()
 }
@@ -3536,31 +5507,38 @@ func (s *AddJobFlowStepsOutput) SetStepIds(v []*string) *AddJobFlowStepsOutput {
 	return s
 }
 
-// This input identifies a cluster and a list of tags to attach.
+// This input identifies an Amazon EMR resource and a list of tags to attach.
 type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EMR resource identifier to which tags will be added. This value
-	// must be a cluster identifier.
+	// The Amazon EMR resource identifier to which tags will be added. For example,
+	// a cluster identifier or an Amazon EMR Studio ID.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// A list of tags to associate with a cluster and propagate to EC2 instances.
-	// Tags are user-defined key/value pairs that consist of a required key string
-	// with a maximum of 128 characters, and an optional value string with a maximum
-	// of 256 characters.
+	// A list of tags to associate with a resource. Tags are user-defined key-value
+	// pairs that consist of a required key string with a maximum of 128 characters,
+	// and an optional value string with a maximum of 256 characters.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsInput) GoString() string {
 	return s.String()
 }
@@ -3598,12 +5576,20 @@ type AddTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsOutput) GoString() string {
 	return s.String()
 }
@@ -3635,12 +5621,20 @@ type Application struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Application) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Application) GoString() string {
 	return s.String()
 }
@@ -3689,12 +5683,20 @@ type AutoScalingPolicy struct {
 	Rules []*ScalingRule `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicy) GoString() string {
 	return s.String()
 }
@@ -3761,12 +5763,20 @@ type AutoScalingPolicyDescription struct {
 	Status *AutoScalingPolicyStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicyDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicyDescription) GoString() string {
 	return s.String()
 }
@@ -3804,12 +5814,20 @@ type AutoScalingPolicyStateChangeReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicyStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicyStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -3837,12 +5855,20 @@ type AutoScalingPolicyStatus struct {
 	StateChangeReason *AutoScalingPolicyStateChangeReason `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicyStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingPolicyStatus) GoString() string {
 	return s.String()
 }
@@ -3859,6 +5885,43 @@ func (s *AutoScalingPolicyStatus) SetStateChangeReason(v *AutoScalingPolicyState
 	return s
 }
 
+// An auto-termination policy for an Amazon EMR cluster. An auto-termination
+// policy defines the amount of idle time in seconds after which a cluster automatically
+// terminates. For alternative cluster termination options, see Control cluster
+// termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html).
+type AutoTerminationPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the amount of idle time in seconds after which the cluster automatically
+	// terminates. You can specify a minimum of 60 seconds and a maximum of 604800
+	// seconds (seven days).
+	IdleTimeout *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoTerminationPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoTerminationPolicy) GoString() string {
+	return s.String()
+}
+
+// SetIdleTimeout sets the IdleTimeout field's value.
+func (s *AutoTerminationPolicy) SetIdleTimeout(v int64) *AutoTerminationPolicy {
+	s.IdleTimeout = &v
+	return s
+}
+
 // A configuration for Amazon EMR block public access. When BlockPublicSecurityGroupRules
 // is set to true, Amazon EMR prevents cluster creation if one of the cluster's
 // security groups has a rule that allows inbound traffic from 0.0.0.0/0 or
@@ -3866,9 +5929,10 @@ func (s *AutoScalingPolicyStatus) SetStateChangeReason(v *AutoScalingPolicyState
 type BlockPublicAccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether EMR block public access is enabled (true) or disabled (false).
-	// By default, the value is false for accounts that have created EMR clusters
-	// before July 2019. For accounts created after this, the default is true.
+	// Indicates whether Amazon EMR block public access is enabled (true) or disabled
+	// (false). By default, the value is false for accounts that have created EMR
+	// clusters before July 2019. For accounts created after this, the default is
+	// true.
 	//
 	// BlockPublicSecurityGroupRules is a required field
 	BlockPublicSecurityGroupRules *bool `type:"boolean" required:"true"`
@@ -3885,12 +5949,20 @@ type BlockPublicAccessConfiguration struct {
 	PermittedPublicSecurityGroupRuleRanges []*PortRange `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockPublicAccessConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockPublicAccessConfiguration) GoString() string {
 	return s.String()
 }
@@ -3930,10 +6002,11 @@ func (s *BlockPublicAccessConfiguration) SetPermittedPublicSecurityGroupRuleRang
 	return s
 }
 
-// Properties that describe the AWS principal that created the BlockPublicAccessConfiguration
-// using the PutBlockPublicAccessConfiguration action as well as the date and
-// time that the configuration was created. Each time a configuration for block
-// public access is updated, Amazon EMR updates this metadata.
+// Properties that describe the Amazon Web Services principal that created the
+// BlockPublicAccessConfiguration using the PutBlockPublicAccessConfiguration
+// action as well as the date and time that the configuration was created. Each
+// time a configuration for block public access is updated, Amazon EMR updates
+// this metadata.
 type BlockPublicAccessConfigurationMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -3948,12 +6021,20 @@ type BlockPublicAccessConfigurationMetadata struct {
 	CreationDateTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockPublicAccessConfigurationMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockPublicAccessConfigurationMetadata) GoString() string {
 	return s.String()
 }
@@ -3985,12 +6066,20 @@ type BootstrapActionConfig struct {
 	ScriptBootstrapAction *ScriptBootstrapActionConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BootstrapActionConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BootstrapActionConfig) GoString() string {
 	return s.String()
 }
@@ -4036,12 +6125,20 @@ type BootstrapActionDetail struct {
 	BootstrapActionConfig *BootstrapActionConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BootstrapActionDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BootstrapActionDetail) GoString() string {
 	return s.String()
 }
@@ -4067,12 +6164,20 @@ type CancelStepsInfo struct {
 	StepId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStepsInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStepsInfo) GoString() string {
 	return s.String()
 }
@@ -4099,14 +6204,13 @@ func (s *CancelStepsInfo) SetStepId(v string) *CancelStepsInfo {
 type CancelStepsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ClusterID for which specified steps will be canceled. Use RunJobFlow
+	// The ClusterID for the specified steps that will be canceled. Use RunJobFlow
 	// and ListClusters to get ClusterIDs.
 	//
 	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
-	// The option to choose for cancelling RUNNING steps. By default, the value
-	// is SEND_INTERRUPT.
+	// The option to choose to cancel RUNNING steps. By default, the value is SEND_INTERRUPT.
 	StepCancellationOption *string `type:"string" enum:"StepCancellationOption"`
 
 	// The list of StepIDs to cancel. Use ListSteps to get steps and their states
@@ -4116,12 +6220,20 @@ type CancelStepsInput struct {
 	StepIds []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStepsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStepsInput) GoString() string {
 	return s.String()
 }
@@ -4169,12 +6281,20 @@ type CancelStepsOutput struct {
 	CancelStepsInfoList []*CancelStepsInfo `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStepsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelStepsOutput) GoString() string {
 	return s.String()
 }
@@ -4235,12 +6355,20 @@ type CloudWatchAlarmDefinition struct {
 	Unit *string `type:"string" enum:"Unit"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchAlarmDefinition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchAlarmDefinition) GoString() string {
 	return s.String()
 }
@@ -4347,8 +6475,8 @@ type Cluster struct {
 	// Amazon EBS-backed Linux AMI if the cluster uses a custom AMI.
 	CustomAmiId *string `type:"string"`
 
-	// The size, in GiB, of the EBS root device volume of the Linux AMI that is
-	// used for each EC2 instance. Available in Amazon EMR version 4.x and later.
+	// The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that
+	// is used for each EC2 instance. Available in Amazon EMR version 4.x and later.
 	EbsRootVolumeSize *int64 `type:"integer"`
 
 	// Provides information about the EC2 instances in a cluster grouped by category.
@@ -4370,8 +6498,12 @@ type Cluster struct {
 	// Attributes for Kerberos configuration when Kerberos authentication is enabled
 	// using a security configuration. For more information see Use Kerberos Authentication
 	// (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-kerberos.html)
-	// in the EMR Management Guide.
+	// in the Amazon EMR Management Guide.
 	KerberosAttributes *KerberosAttributes `type:"structure"`
+
+	// The KMS key used for encrypting log files. This attribute is only available
+	// with EMR version 5.30.0 and later, excluding EMR 6.0.0.
+	LogEncryptionKmsKeyId *string `type:"string"`
 
 	// The path to the Amazon S3 location where logs for this cluster are stored.
 	LogUri *string `type:"string"`
@@ -4391,8 +6523,16 @@ type Cluster struct {
 	// the actual billing rate.
 	NormalizedInstanceHours *int64 `type:"integer"`
 
+	// The Amazon Linux release specified in a cluster launch RunJobFlow request.
+	// If no Amazon Linux release was specified, the default Amazon Linux release
+	// is shown in the response.
+	OSReleaseLabel *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the Outpost where the cluster is launched.
 	OutpostArn *string `type:"string"`
+
+	// Placement group configured for an Amazon EMR cluster.
+	PlacementGroups []*PlacementGroupConfig `type:"list"`
 
 	// The Amazon EMR release label, which determines the version of open-source
 	// application packages installed on the cluster. Release labels are in the
@@ -4421,10 +6561,10 @@ type Cluster struct {
 	// regardless of when the request to terminate the instance was submitted. This
 	// option is only available with Amazon EMR 5.1.0 and later and is the default
 	// for clusters created using that version. TERMINATE_AT_TASK_COMPLETION indicates
-	// that Amazon EMR blacklists and drains tasks from nodes before terminating
-	// the Amazon EC2 instances, regardless of the instance-hour boundary. With
-	// either behavior, Amazon EMR removes the least active nodes first and blocks
-	// instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
+	// that Amazon EMR adds nodes to a deny list and drains tasks from nodes before
+	// terminating the Amazon EC2 instances, regardless of the instance-hour boundary.
+	// With either behavior, Amazon EMR removes the least active nodes first and
+	// blocks instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
 	// is available only in Amazon EMR version 4.1.0 and later, and is the default
 	// for versions of Amazon EMR earlier than 5.1.0.
 	ScaleDownBehavior *string `type:"string" enum:"ScaleDownBehavior"`
@@ -4432,7 +6572,7 @@ type Cluster struct {
 	// The name of the security configuration applied to the cluster.
 	SecurityConfiguration *string `type:"string"`
 
-	// The IAM role that will be assumed by the Amazon EMR service to access AWS
+	// The IAM role that Amazon EMR assumes in order to access Amazon Web Services
 	// resources on your behalf.
 	ServiceRole *string `type:"string"`
 
@@ -4450,23 +6590,34 @@ type Cluster struct {
 	// of a cluster error.
 	TerminationProtected *bool `type:"boolean"`
 
-	// Indicates whether the cluster is visible to all IAM users of the AWS account
-	// associated with the cluster. The default value, true, indicates that all
-	// IAM users in the AWS account can perform cluster actions if they have the
-	// proper IAM policy permissions. If this value is false, only the IAM user
-	// that created the cluster can perform actions. This value can be changed on
-	// a running cluster by using the SetVisibleToAllUsers action. You can override
-	// the default value of true when you create a cluster by using the VisibleToAllUsers
-	// parameter of the RunJobFlow action.
+	// Indicates whether the cluster is visible to IAM principals in the Amazon
+	// Web Services account associated with the cluster. When true, IAM principals
+	// in the Amazon Web Services account can perform EMR cluster actions on the
+	// cluster that their IAM policies allow. When false, only the IAM principal
+	// that created the cluster and the Amazon Web Services account root user can
+	// perform EMR actions, regardless of IAM permissions policies attached to other
+	// IAM principals.
+	//
+	// The default value is true if a value is not provided when creating a cluster
+	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
+	// command, or the Amazon Web Services Management Console.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Cluster) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Cluster) GoString() string {
 	return s.String()
 }
@@ -4537,6 +6688,12 @@ func (s *Cluster) SetKerberosAttributes(v *KerberosAttributes) *Cluster {
 	return s
 }
 
+// SetLogEncryptionKmsKeyId sets the LogEncryptionKmsKeyId field's value.
+func (s *Cluster) SetLogEncryptionKmsKeyId(v string) *Cluster {
+	s.LogEncryptionKmsKeyId = &v
+	return s
+}
+
 // SetLogUri sets the LogUri field's value.
 func (s *Cluster) SetLogUri(v string) *Cluster {
 	s.LogUri = &v
@@ -4561,9 +6718,21 @@ func (s *Cluster) SetNormalizedInstanceHours(v int64) *Cluster {
 	return s
 }
 
+// SetOSReleaseLabel sets the OSReleaseLabel field's value.
+func (s *Cluster) SetOSReleaseLabel(v string) *Cluster {
+	s.OSReleaseLabel = &v
+	return s
+}
+
 // SetOutpostArn sets the OutpostArn field's value.
 func (s *Cluster) SetOutpostArn(v string) *Cluster {
 	s.OutpostArn = &v
+	return s
+}
+
+// SetPlacementGroups sets the PlacementGroups field's value.
+func (s *Cluster) SetPlacementGroups(v []*PlacementGroupConfig) *Cluster {
+	s.PlacementGroups = v
 	return s
 }
 
@@ -4650,12 +6819,20 @@ type ClusterStateChangeReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -4687,12 +6864,20 @@ type ClusterStatus struct {
 	Timeline *ClusterTimeline `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterStatus) GoString() string {
 	return s.String()
 }
@@ -4743,12 +6928,20 @@ type ClusterSummary struct {
 	Status *ClusterStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterSummary) GoString() string {
 	return s.String()
 }
@@ -4799,16 +6992,24 @@ type ClusterTimeline struct {
 	// The date and time when the cluster was terminated.
 	EndDateTime *time.Time `type:"timestamp"`
 
-	// The date and time when the cluster was ready to execute steps.
+	// The date and time when the cluster was ready to run steps.
 	ReadyDateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterTimeline) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClusterTimeline) GoString() string {
 	return s.String()
 }
@@ -4845,12 +7046,20 @@ type Command struct {
 	ScriptPath *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Command) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Command) GoString() string {
 	return s.String()
 }
@@ -4880,7 +7089,7 @@ func (s *Command) SetScriptPath(v string) *Command {
 type ComputeLimits struct {
 	_ struct{} `type:"structure"`
 
-	// The upper boundary of EC2 units. It is measured through VCPU cores or instances
+	// The upper boundary of EC2 units. It is measured through vCPU cores or instances
 	// for instance groups and measured through units for instance fleets. Managed
 	// scaling activities are not allowed beyond this boundary. The limit only applies
 	// to the core and task nodes. The master node cannot be scaled after initial
@@ -4889,14 +7098,21 @@ type ComputeLimits struct {
 	// MaximumCapacityUnits is a required field
 	MaximumCapacityUnits *int64 `type:"integer" required:"true"`
 
-	// The upper boundary of on-demand EC2 units. It is measured through VCPU cores
+	// The upper boundary of EC2 units for core node type in a cluster. It is measured
+	// through vCPU cores or instances for instance groups and measured through
+	// units for instance fleets. The core units are not allowed to scale beyond
+	// this boundary. The parameter is used to split capacity allocation between
+	// core and task nodes.
+	MaximumCoreCapacityUnits *int64 `type:"integer"`
+
+	// The upper boundary of On-Demand EC2 units. It is measured through vCPU cores
 	// or instances for instance groups and measured through units for instance
-	// fleets. The on-demand units are not allowed to scale beyond this boundary.
-	// The limit only applies to the core and task nodes. The master node cannot
-	// be scaled after initial configuration.
+	// fleets. The On-Demand units are not allowed to scale beyond this boundary.
+	// The parameter is used to split capacity allocation between On-Demand and
+	// Spot Instances.
 	MaximumOnDemandCapacityUnits *int64 `type:"integer"`
 
-	// The lower boundary of EC2 units. It is measured through VCPU cores or instances
+	// The lower boundary of EC2 units. It is measured through vCPU cores or instances
 	// for instance groups and measured through units for instance fleets. Managed
 	// scaling activities are not allowed beyond this boundary. The limit only applies
 	// to the core and task nodes. The master node cannot be scaled after initial
@@ -4911,12 +7127,20 @@ type ComputeLimits struct {
 	UnitType *string `type:"string" required:"true" enum:"ComputeLimitsUnitType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeLimits) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeLimits) GoString() string {
 	return s.String()
 }
@@ -4946,6 +7170,12 @@ func (s *ComputeLimits) SetMaximumCapacityUnits(v int64) *ComputeLimits {
 	return s
 }
 
+// SetMaximumCoreCapacityUnits sets the MaximumCoreCapacityUnits field's value.
+func (s *ComputeLimits) SetMaximumCoreCapacityUnits(v int64) *ComputeLimits {
+	s.MaximumCoreCapacityUnits = &v
+	return s
+}
+
 // SetMaximumOnDemandCapacityUnits sets the MaximumOnDemandCapacityUnits field's value.
 func (s *ComputeLimits) SetMaximumOnDemandCapacityUnits(v int64) *ComputeLimits {
 	s.MaximumOnDemandCapacityUnits = &v
@@ -4964,7 +7194,6 @@ func (s *ComputeLimits) SetUnitType(v string) *ComputeLimits {
 	return s
 }
 
-//
 // Amazon EMR releases 4.x or later.
 //
 // An optional configuration specification to be used when provisioning cluster
@@ -4986,12 +7215,20 @@ type Configuration struct {
 	Properties map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Configuration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Configuration) GoString() string {
 	return s.String()
 }
@@ -5030,12 +7267,20 @@ type CreateSecurityConfigurationInput struct {
 	SecurityConfiguration *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSecurityConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSecurityConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5082,12 +7327,20 @@ type CreateSecurityConfigurationOutput struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSecurityConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSecurityConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -5104,6 +7357,419 @@ func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityCon
 	return s
 }
 
+type CreateStudioInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the Studio authenticates users using IAM or IAM Identity
+	// Center.
+	//
+	// AuthMode is a required field
+	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
+
+	// The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook
+	// files.
+	//
+	// DefaultS3Location is a required field
+	DefaultS3Location *string `type:"string" required:"true"`
+
+	// A detailed description of the Amazon EMR Studio.
+	Description *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio Engine security group. The Engine security
+	// group allows inbound network traffic from the Workspace security group, and
+	// it must be in the same VPC specified by VpcId.
+	//
+	// EngineSecurityGroupId is a required field
+	EngineSecurityGroupId *string `type:"string" required:"true"`
+
+	// The authentication endpoint of your identity provider (IdP). Specify this
+	// value when you use IAM authentication and want to let federated users log
+	// in to a Studio with the Studio URL and credentials from your IdP. Amazon
+	// EMR Studio redirects users to this endpoint to enter credentials.
+	IdpAuthUrl *string `type:"string"`
+
+	// The name that your identity provider (IdP) uses for its RelayState parameter.
+	// For example, RelayState or TargetSource. Specify this value when you use
+	// IAM authentication and want to let federated users log in to a Studio using
+	// the Studio URL. The RelayState parameter differs by IdP.
+	IdpRelayStateParameterName *string `type:"string"`
+
+	// A descriptive name for the Amazon EMR Studio.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The IAM role that the Amazon EMR Studio assumes. The service role provides
+	// a way for Amazon EMR Studio to interoperate with other Amazon Web Services
+	// services.
+	//
+	// ServiceRole is a required field
+	ServiceRole *string `type:"string" required:"true"`
+
+	// A list of subnet IDs to associate with the Amazon EMR Studio. A Studio can
+	// have a maximum of 5 subnets. The subnets must belong to the VPC specified
+	// by VpcId. Studio users can create a Workspace in any of the specified subnets.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `type:"list" required:"true"`
+
+	// A list of tags to associate with the Amazon EMR Studio. Tags are user-defined
+	// key-value pairs that consist of a required key string with a maximum of 128
+	// characters, and an optional value string with a maximum of 256 characters.
+	Tags []*Tag `type:"list"`
+
+	// The IAM user role that users and groups assume when logged in to an Amazon
+	// EMR Studio. Only specify a UserRole when you use IAM Identity Center authentication.
+	// The permissions attached to the UserRole can be scoped down for each user
+	// or group using session policies.
+	UserRole *string `type:"string"`
+
+	// The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with
+	// the Studio.
+	//
+	// VpcId is a required field
+	VpcId *string `type:"string" required:"true"`
+
+	// The ID of the Amazon EMR Studio Workspace security group. The Workspace security
+	// group allows outbound network traffic to resources in the Engine security
+	// group, and it must be in the same VPC specified by VpcId.
+	//
+	// WorkspaceSecurityGroupId is a required field
+	WorkspaceSecurityGroupId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStudioInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStudioInput"}
+	if s.AuthMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthMode"))
+	}
+	if s.DefaultS3Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultS3Location"))
+	}
+	if s.EngineSecurityGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineSecurityGroupId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.ServiceRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceRole"))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.WorkspaceSecurityGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceSecurityGroupId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthMode sets the AuthMode field's value.
+func (s *CreateStudioInput) SetAuthMode(v string) *CreateStudioInput {
+	s.AuthMode = &v
+	return s
+}
+
+// SetDefaultS3Location sets the DefaultS3Location field's value.
+func (s *CreateStudioInput) SetDefaultS3Location(v string) *CreateStudioInput {
+	s.DefaultS3Location = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateStudioInput) SetDescription(v string) *CreateStudioInput {
+	s.Description = &v
+	return s
+}
+
+// SetEngineSecurityGroupId sets the EngineSecurityGroupId field's value.
+func (s *CreateStudioInput) SetEngineSecurityGroupId(v string) *CreateStudioInput {
+	s.EngineSecurityGroupId = &v
+	return s
+}
+
+// SetIdpAuthUrl sets the IdpAuthUrl field's value.
+func (s *CreateStudioInput) SetIdpAuthUrl(v string) *CreateStudioInput {
+	s.IdpAuthUrl = &v
+	return s
+}
+
+// SetIdpRelayStateParameterName sets the IdpRelayStateParameterName field's value.
+func (s *CreateStudioInput) SetIdpRelayStateParameterName(v string) *CreateStudioInput {
+	s.IdpRelayStateParameterName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateStudioInput) SetName(v string) *CreateStudioInput {
+	s.Name = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *CreateStudioInput) SetServiceRole(v string) *CreateStudioInput {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *CreateStudioInput) SetSubnetIds(v []*string) *CreateStudioInput {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStudioInput) SetTags(v []*Tag) *CreateStudioInput {
+	s.Tags = v
+	return s
+}
+
+// SetUserRole sets the UserRole field's value.
+func (s *CreateStudioInput) SetUserRole(v string) *CreateStudioInput {
+	s.UserRole = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateStudioInput) SetVpcId(v string) *CreateStudioInput {
+	s.VpcId = &v
+	return s
+}
+
+// SetWorkspaceSecurityGroupId sets the WorkspaceSecurityGroupId field's value.
+func (s *CreateStudioInput) SetWorkspaceSecurityGroupId(v string) *CreateStudioInput {
+	s.WorkspaceSecurityGroupId = &v
+	return s
+}
+
+type CreateStudioOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon EMR Studio.
+	StudioId *string `type:"string"`
+
+	// The unique Studio access URL.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioOutput) GoString() string {
+	return s.String()
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *CreateStudioOutput) SetStudioId(v string) *CreateStudioOutput {
+	s.StudioId = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *CreateStudioOutput) SetUrl(v string) *CreateStudioOutput {
+	s.Url = &v
+	return s
+}
+
+type CreateStudioSessionMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The globally unique identifier (GUID) of the user or group from the IAM Identity
+	// Center Identity Store. For more information, see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified, but not both.
+	IdentityId *string `type:"string"`
+
+	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
+	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified, but not both.
+	IdentityName *string `type:"string"`
+
+	// Specifies whether the identity to map to the Amazon EMR Studio is a user
+	// or a group.
+	//
+	// IdentityType is a required field
+	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
+
+	// The Amazon Resource Name (ARN) for the session policy that will be applied
+	// to the user or group. You should specify the ARN for the session policy that
+	// you want to apply, not the ARN of your user role. For more information, see
+	// Create an EMR Studio User Role with Session Policies (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-user-role.html).
+	//
+	// SessionPolicyArn is a required field
+	SessionPolicyArn *string `type:"string" required:"true"`
+
+	// The ID of the Amazon EMR Studio to which the user or group will be mapped.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioSessionMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioSessionMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStudioSessionMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStudioSessionMappingInput"}
+	if s.IdentityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityType"))
+	}
+	if s.SessionPolicyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionPolicyArn"))
+	}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *CreateStudioSessionMappingInput) SetIdentityId(v string) *CreateStudioSessionMappingInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityName sets the IdentityName field's value.
+func (s *CreateStudioSessionMappingInput) SetIdentityName(v string) *CreateStudioSessionMappingInput {
+	s.IdentityName = &v
+	return s
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *CreateStudioSessionMappingInput) SetIdentityType(v string) *CreateStudioSessionMappingInput {
+	s.IdentityType = &v
+	return s
+}
+
+// SetSessionPolicyArn sets the SessionPolicyArn field's value.
+func (s *CreateStudioSessionMappingInput) SetSessionPolicyArn(v string) *CreateStudioSessionMappingInput {
+	s.SessionPolicyArn = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *CreateStudioSessionMappingInput) SetStudioId(v string) *CreateStudioSessionMappingInput {
+	s.StudioId = &v
+	return s
+}
+
+type CreateStudioSessionMappingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioSessionMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStudioSessionMappingOutput) GoString() string {
+	return s.String()
+}
+
+// The credentials that you can use to connect to cluster endpoints. Credentials
+// consist of a username and a password.
+type Credentials struct {
+	_ struct{} `type:"structure"`
+
+	// The username and password that you use to connect to cluster endpoints.
+	//
+	// UsernamePassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	UsernamePassword *UsernamePassword `type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
+// SetUsernamePassword sets the UsernamePassword field's value.
+func (s *Credentials) SetUsernamePassword(v *UsernamePassword) *Credentials {
+	s.UsernamePassword = v
+	return s
+}
+
 type DeleteSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5113,12 +7779,20 @@ type DeleteSecurityConfigurationInput struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSecurityConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSecurityConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5146,13 +7820,198 @@ type DeleteSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSecurityConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSecurityConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStudioInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon EMR Studio.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStudioInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStudioInput"}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *DeleteStudioInput) SetStudioId(v string) *DeleteStudioInput {
+	s.StudioId = &v
+	return s
+}
+
+type DeleteStudioOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStudioSessionMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The globally unique identifier (GUID) of the user or group to remove from
+	// the Amazon EMR Studio. For more information, see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified.
+	IdentityId *string `type:"string"`
+
+	// The name of the user name or group to remove from the Amazon EMR Studio.
+	// For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
+	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
+	// in the IAM Identity Center Store API Reference. Either IdentityName or IdentityId
+	// must be specified.
+	IdentityName *string `type:"string"`
+
+	// Specifies whether the identity to delete from the Amazon EMR Studio is a
+	// user or a group.
+	//
+	// IdentityType is a required field
+	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
+
+	// The ID of the Amazon EMR Studio.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioSessionMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioSessionMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStudioSessionMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStudioSessionMappingInput"}
+	if s.IdentityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityType"))
+	}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *DeleteStudioSessionMappingInput) SetIdentityId(v string) *DeleteStudioSessionMappingInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityName sets the IdentityName field's value.
+func (s *DeleteStudioSessionMappingInput) SetIdentityName(v string) *DeleteStudioSessionMappingInput {
+	s.IdentityName = &v
+	return s
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *DeleteStudioSessionMappingInput) SetIdentityType(v string) *DeleteStudioSessionMappingInput {
+	s.IdentityType = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *DeleteStudioSessionMappingInput) SetStudioId(v string) *DeleteStudioSessionMappingInput {
+	s.StudioId = &v
+	return s
+}
+
+type DeleteStudioSessionMappingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioSessionMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteStudioSessionMappingOutput) GoString() string {
 	return s.String()
 }
 
@@ -5166,12 +8025,20 @@ type DescribeClusterInput struct {
 	ClusterId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClusterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClusterInput) GoString() string {
 	return s.String()
 }
@@ -5203,12 +8070,20 @@ type DescribeClusterOutput struct {
 	Cluster *Cluster `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClusterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeClusterOutput) GoString() string {
 	return s.String()
 }
@@ -5233,15 +8108,23 @@ type DescribeJobFlowsInput struct {
 	JobFlowIds []*string `type:"list"`
 
 	// Return only job flows whose state is contained in this list.
-	JobFlowStates []*string `type:"list"`
+	JobFlowStates []*string `type:"list" enum:"JobFlowExecutionState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobFlowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobFlowsInput) GoString() string {
 	return s.String()
 }
@@ -5278,12 +8161,20 @@ type DescribeJobFlowsOutput struct {
 	JobFlows []*JobFlowDetail `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobFlowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobFlowsOutput) GoString() string {
 	return s.String()
 }
@@ -5291,6 +8182,207 @@ func (s DescribeJobFlowsOutput) GoString() string {
 // SetJobFlows sets the JobFlows field's value.
 func (s *DescribeJobFlowsOutput) SetJobFlows(v []*JobFlowDetail) *DescribeJobFlowsOutput {
 	s.JobFlows = v
+	return s
+}
+
+type DescribeNotebookExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the notebook execution.
+	//
+	// NotebookExecutionId is a required field
+	NotebookExecutionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotebookExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotebookExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeNotebookExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeNotebookExecutionInput"}
+	if s.NotebookExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookExecutionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotebookExecutionId sets the NotebookExecutionId field's value.
+func (s *DescribeNotebookExecutionInput) SetNotebookExecutionId(v string) *DescribeNotebookExecutionInput {
+	s.NotebookExecutionId = &v
+	return s
+}
+
+type DescribeNotebookExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Properties of the notebook execution.
+	NotebookExecution *NotebookExecution `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotebookExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeNotebookExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotebookExecution sets the NotebookExecution field's value.
+func (s *DescribeNotebookExecutionOutput) SetNotebookExecution(v *NotebookExecution) *DescribeNotebookExecutionOutput {
+	s.NotebookExecution = v
+	return s
+}
+
+type DescribeReleaseLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// Reserved for future use. Currently set to null.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token. Reserved for future use. Currently set to null.
+	NextToken *string `type:"string"`
+
+	// The target release label to be described.
+	ReleaseLabel *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReleaseLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReleaseLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReleaseLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReleaseLabelInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeReleaseLabelInput) SetMaxResults(v int64) *DescribeReleaseLabelInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReleaseLabelInput) SetNextToken(v string) *DescribeReleaseLabelInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *DescribeReleaseLabelInput) SetReleaseLabel(v string) *DescribeReleaseLabelInput {
+	s.ReleaseLabel = &v
+	return s
+}
+
+type DescribeReleaseLabelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of applications available for the target release label. Name is
+	// the name of the application. Version is the concise version of the application.
+	Applications []*SimplifiedApplication `type:"list"`
+
+	// The list of available Amazon Linux release versions for an Amazon EMR release.
+	// Contains a Label field that is formatted as shown in Amazon Linux 2 Release
+	// Notes (https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-al2.html).
+	// For example, 2.0.20220218.1 (https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-20220218.html).
+	AvailableOSReleases []*OSRelease `type:"list"`
+
+	// The pagination token. Reserved for future use. Currently set to null.
+	NextToken *string `type:"string"`
+
+	// The target release label described in the response.
+	ReleaseLabel *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReleaseLabelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReleaseLabelOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplications sets the Applications field's value.
+func (s *DescribeReleaseLabelOutput) SetApplications(v []*SimplifiedApplication) *DescribeReleaseLabelOutput {
+	s.Applications = v
+	return s
+}
+
+// SetAvailableOSReleases sets the AvailableOSReleases field's value.
+func (s *DescribeReleaseLabelOutput) SetAvailableOSReleases(v []*OSRelease) *DescribeReleaseLabelOutput {
+	s.AvailableOSReleases = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReleaseLabelOutput) SetNextToken(v string) *DescribeReleaseLabelOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *DescribeReleaseLabelOutput) SetReleaseLabel(v string) *DescribeReleaseLabelOutput {
+	s.ReleaseLabel = &v
 	return s
 }
 
@@ -5303,12 +8395,20 @@ type DescribeSecurityConfigurationInput struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSecurityConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSecurityConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5345,12 +8445,20 @@ type DescribeSecurityConfigurationOutput struct {
 	SecurityConfiguration *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSecurityConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSecurityConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -5388,12 +8496,20 @@ type DescribeStepInput struct {
 	StepId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStepInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStepInput) GoString() string {
 	return s.String()
 }
@@ -5434,12 +8550,20 @@ type DescribeStepOutput struct {
 	Step *Step `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStepOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStepOutput) GoString() string {
 	return s.String()
 }
@@ -5447,6 +8571,83 @@ func (s DescribeStepOutput) GoString() string {
 // SetStep sets the Step field's value.
 func (s *DescribeStepOutput) SetStep(v *Step) *DescribeStepOutput {
 	s.Step = v
+	return s
+}
+
+type DescribeStudioInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon EMR Studio ID.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStudioInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStudioInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStudioInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStudioInput"}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *DescribeStudioInput) SetStudioId(v string) *DescribeStudioInput {
+	s.StudioId = &v
+	return s
+}
+
+type DescribeStudioOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon EMR Studio details.
+	Studio *Studio `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStudioOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeStudioOutput) GoString() string {
+	return s.String()
+}
+
+// SetStudio sets the Studio field's value.
+func (s *DescribeStudioOutput) SetStudio(v *Studio) *DescribeStudioOutput {
+	s.Studio = v
 	return s
 }
 
@@ -5458,17 +8659,26 @@ type EbsBlockDevice struct {
 	// The device name that is exposed to the instance, such as /dev/sdh.
 	Device *string `type:"string"`
 
-	// EBS volume specifications such as volume type, IOPS, and size (GiB) that
-	// will be requested for the EBS volume attached to an EC2 instance in the cluster.
+	// EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
+	// (MiB/s) that are requested for the EBS volume attached to an EC2 instance
+	// in the cluster.
 	VolumeSpecification *VolumeSpecification `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsBlockDevice) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsBlockDevice) GoString() string {
 	return s.String()
 }
@@ -5486,27 +8696,36 @@ func (s *EbsBlockDevice) SetVolumeSpecification(v *VolumeSpecification) *EbsBloc
 }
 
 // Configuration of requested EBS block device associated with the instance
-// group with count of volumes that will be associated to every instance.
+// group with count of volumes that are associated to every instance.
 type EbsBlockDeviceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// EBS volume specifications such as volume type, IOPS, and size (GiB) that
-	// will be requested for the EBS volume attached to an EC2 instance in the cluster.
+	// EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
+	// (MiB/s) that are requested for the EBS volume attached to an EC2 instance
+	// in the cluster.
 	//
 	// VolumeSpecification is a required field
 	VolumeSpecification *VolumeSpecification `type:"structure" required:"true"`
 
-	// Number of EBS volumes with a specific volume configuration that will be associated
+	// Number of EBS volumes with a specific volume configuration that are associated
 	// with every instance in the instance group
 	VolumesPerInstance *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsBlockDeviceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsBlockDeviceConfig) GoString() string {
 	return s.String()
 }
@@ -5552,12 +8771,20 @@ type EbsConfiguration struct {
 	EbsOptimized *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsConfiguration) GoString() string {
 	return s.String()
 }
@@ -5605,12 +8832,20 @@ type EbsVolume struct {
 	VolumeId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsVolume) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EbsVolume) GoString() string {
 	return s.String()
 }
@@ -5688,12 +8923,20 @@ type Ec2InstanceAttributes struct {
 	ServiceAccessSecurityGroup *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ec2InstanceAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ec2InstanceAttributes) GoString() string {
 	return s.String()
 }
@@ -5764,6 +9007,76 @@ func (s *Ec2InstanceAttributes) SetServiceAccessSecurityGroup(v string) *Ec2Inst
 	return s
 }
 
+// Specifies the execution engine (cluster) to run the notebook and perform
+// the notebook execution, for example, an EMR cluster.
+type ExecutionEngineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the execution engine. For an EMR cluster, this is
+	// the cluster ID.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// An optional unique ID of an EC2 security group to associate with the master
+	// instance of the EMR cluster for this notebook execution. For more information
+	// see Specifying EC2 Security Groups for EMR Notebooks (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-security-groups.html)
+	// in the EMR Management Guide.
+	MasterInstanceSecurityGroupId *string `type:"string"`
+
+	// The type of execution engine. A value of EMR specifies an EMR cluster.
+	Type *string `type:"string" enum:"ExecutionEngineType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionEngineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionEngineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExecutionEngineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExecutionEngineConfig"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ExecutionEngineConfig) SetId(v string) *ExecutionEngineConfig {
+	s.Id = &v
+	return s
+}
+
+// SetMasterInstanceSecurityGroupId sets the MasterInstanceSecurityGroupId field's value.
+func (s *ExecutionEngineConfig) SetMasterInstanceSecurityGroupId(v string) *ExecutionEngineConfig {
+	s.MasterInstanceSecurityGroupId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ExecutionEngineConfig) SetType(v string) *ExecutionEngineConfig {
+	s.Type = &v
+	return s
+}
+
 // The details of the step failure. The service attempts to detect the root
 // cause for many common failures.
 type FailureDetails struct {
@@ -5773,7 +9086,7 @@ type FailureDetails struct {
 	// recorded.
 	LogFile *string `type:"string"`
 
-	// The descriptive message including the error the EMR service has identified
+	// The descriptive message including the error the Amazon EMR service has identified
 	// as the cause of step failure. This is text from an error log that describes
 	// the root cause of the failure.
 	Message *string `type:"string"`
@@ -5784,12 +9097,20 @@ type FailureDetails struct {
 	Reason *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailureDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailureDetails) GoString() string {
 	return s.String()
 }
@@ -5812,16 +9133,102 @@ func (s *FailureDetails) SetReason(v string) *FailureDetails {
 	return s
 }
 
+type GetAutoTerminationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ID of the Amazon EMR cluster for which the auto-termination
+	// policy will be fetched.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoTerminationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoTerminationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAutoTerminationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAutoTerminationPolicyInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *GetAutoTerminationPolicyInput) SetClusterId(v string) *GetAutoTerminationPolicyInput {
+	s.ClusterId = &v
+	return s
+}
+
+type GetAutoTerminationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the auto-termination policy that is attached to an Amazon EMR cluster.
+	AutoTerminationPolicy *AutoTerminationPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoTerminationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoTerminationPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutoTerminationPolicy sets the AutoTerminationPolicy field's value.
+func (s *GetAutoTerminationPolicyOutput) SetAutoTerminationPolicy(v *AutoTerminationPolicy) *GetAutoTerminationPolicyOutput {
+	s.AutoTerminationPolicy = v
+	return s
+}
+
 type GetBlockPublicAccessConfigurationInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlockPublicAccessConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlockPublicAccessConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5848,21 +9255,30 @@ type GetBlockPublicAccessConfigurationOutput struct {
 	// BlockPublicAccessConfiguration is a required field
 	BlockPublicAccessConfiguration *BlockPublicAccessConfiguration `type:"structure" required:"true"`
 
-	// Properties that describe the AWS principal that created the BlockPublicAccessConfiguration
-	// using the PutBlockPublicAccessConfiguration action as well as the date and
-	// time that the configuration was created. Each time a configuration for block
-	// public access is updated, Amazon EMR updates this metadata.
+	// Properties that describe the Amazon Web Services principal that created the
+	// BlockPublicAccessConfiguration using the PutBlockPublicAccessConfiguration
+	// action as well as the date and time that the configuration was created. Each
+	// time a configuration for block public access is updated, Amazon EMR updates
+	// this metadata.
 	//
 	// BlockPublicAccessConfigurationMetadata is a required field
 	BlockPublicAccessConfigurationMetadata *BlockPublicAccessConfigurationMetadata `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlockPublicAccessConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBlockPublicAccessConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -5879,6 +9295,114 @@ func (s *GetBlockPublicAccessConfigurationOutput) SetBlockPublicAccessConfigurat
 	return s
 }
 
+type GetClusterSessionCredentialsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the cluster.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the runtime role for interactive workload
+	// submission on the cluster. The runtime role can be a cross-account IAM role.
+	// The runtime role ARN is a combination of account ID, role name, and role
+	// type using the following format: arn:partition:service:region:account:resource.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetClusterSessionCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetClusterSessionCredentialsInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *GetClusterSessionCredentialsInput) SetClusterId(v string) *GetClusterSessionCredentialsInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *GetClusterSessionCredentialsInput) SetExecutionRoleArn(v string) *GetClusterSessionCredentialsInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+type GetClusterSessionCredentialsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The credentials that you can use to connect to cluster endpoints that support
+	// username-based and password-based authentication.
+	Credentials *Credentials `type:"structure"`
+
+	// The time when the credentials that are returned by the GetClusterSessionCredentials
+	// API expire.
+	ExpiresAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *GetClusterSessionCredentialsOutput) SetCredentials(v *Credentials) *GetClusterSessionCredentialsOutput {
+	s.Credentials = v
+	return s
+}
+
+// SetExpiresAt sets the ExpiresAt field's value.
+func (s *GetClusterSessionCredentialsOutput) SetExpiresAt(v time.Time) *GetClusterSessionCredentialsOutput {
+	s.ExpiresAt = &v
+	return s
+}
+
 type GetManagedScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5889,12 +9413,20 @@ type GetManagedScalingPolicyInput struct {
 	ClusterId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -5925,12 +9457,20 @@ type GetManagedScalingPolicyOutput struct {
 	ManagedScalingPolicy *ManagedScalingPolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedScalingPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -5938,6 +9478,124 @@ func (s GetManagedScalingPolicyOutput) GoString() string {
 // SetManagedScalingPolicy sets the ManagedScalingPolicy field's value.
 func (s *GetManagedScalingPolicyOutput) SetManagedScalingPolicy(v *ManagedScalingPolicy) *GetManagedScalingPolicyOutput {
 	s.ManagedScalingPolicy = v
+	return s
+}
+
+type GetStudioSessionMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The globally unique identifier (GUID) of the user or group. For more information,
+	// see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified.
+	IdentityId *string `type:"string"`
+
+	// The name of the user or group to fetch. For more information, see UserName
+	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
+	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified.
+	IdentityName *string `type:"string"`
+
+	// Specifies whether the identity to fetch is a user or a group.
+	//
+	// IdentityType is a required field
+	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
+
+	// The ID of the Amazon EMR Studio.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStudioSessionMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStudioSessionMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStudioSessionMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStudioSessionMappingInput"}
+	if s.IdentityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityType"))
+	}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetStudioSessionMappingInput) SetIdentityId(v string) *GetStudioSessionMappingInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityName sets the IdentityName field's value.
+func (s *GetStudioSessionMappingInput) SetIdentityName(v string) *GetStudioSessionMappingInput {
+	s.IdentityName = &v
+	return s
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *GetStudioSessionMappingInput) SetIdentityType(v string) *GetStudioSessionMappingInput {
+	s.IdentityType = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *GetStudioSessionMappingInput) SetStudioId(v string) *GetStudioSessionMappingInput {
+	s.StudioId = &v
+	return s
+}
+
+type GetStudioSessionMappingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The session mapping details for the specified Amazon EMR Studio and identity,
+	// including session policy ARN and creation time.
+	SessionMapping *SessionMappingDetail `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStudioSessionMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStudioSessionMappingOutput) GoString() string {
+	return s.String()
+}
+
+// SetSessionMapping sets the SessionMapping field's value.
+func (s *GetStudioSessionMappingOutput) SetSessionMapping(v *SessionMappingDetail) *GetStudioSessionMappingOutput {
+	s.SessionMapping = v
 	return s
 }
 
@@ -5961,16 +9619,24 @@ type HadoopJarStepConfig struct {
 	MainClass *string `type:"string"`
 
 	// A list of Java properties that are set when the step runs. You can use these
-	// properties to pass key value pairs to your main function.
+	// properties to pass key-value pairs to your main function.
 	Properties []*KeyValue `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HadoopJarStepConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HadoopJarStepConfig) GoString() string {
 	return s.String()
 }
@@ -6030,16 +9696,24 @@ type HadoopStepConfig struct {
 	MainClass *string `type:"string"`
 
 	// The list of Java properties that are set when the step runs. You can use
-	// these properties to pass key value pairs to your main function.
+	// these properties to pass key-value pairs to your main function.
 	Properties map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HadoopStepConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HadoopStepConfig) GoString() string {
 	return s.String()
 }
@@ -6072,7 +9746,7 @@ func (s *HadoopStepConfig) SetProperties(v map[string]*string) *HadoopStepConfig
 type Instance struct {
 	_ struct{} `type:"structure"`
 
-	// The list of EBS volumes that are attached to this instance.
+	// The list of Amazon EBS volumes that are attached to this instance.
 	EbsVolumes []*EbsVolume `type:"list"`
 
 	// The unique identifier of the instance in Amazon EC2.
@@ -6109,12 +9783,20 @@ type Instance struct {
 	Status *InstanceStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Instance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Instance) GoString() string {
 	return s.String()
 }
@@ -6194,7 +9876,7 @@ func (s *Instance) SetStatus(v *InstanceStatus) *Instance {
 // Describes an instance fleet, which is a group of EC2 instances that host
 // a particular node type (master, core, or task) in an Amazon EMR cluster.
 // Instance fleets can consist of a mix of instance types and On-Demand and
-// Spot instances, which are provisioned to meet a defined target capacity.
+// Spot Instances, which are provisioned to meet a defined target capacity.
 //
 // The instance fleet configuration is available only in Amazon EMR versions
 // 4.8.0 and later, excluding 5.0.x versions.
@@ -6208,8 +9890,7 @@ type InstanceFleet struct {
 	// or TASK.
 	InstanceFleetType *string `type:"string" enum:"InstanceFleetType"`
 
-	// The specification for the instance types that comprise an instance fleet.
-	// Up to five unique instance specifications may be defined for each instance
+	// An array of specifications for the instance types that comprise an instance
 	// fleet.
 	InstanceTypeSpecifications []*InstanceTypeSpecification `type:"list"`
 
@@ -6233,10 +9914,10 @@ type InstanceFleet struct {
 	Status *InstanceFleetStatus `type:"structure"`
 
 	// The target capacity of On-Demand units for the instance fleet, which determines
-	// how many On-Demand instances to provision. When the instance fleet launches,
-	// Amazon EMR tries to provision On-Demand instances as specified by InstanceTypeConfig.
+	// how many On-Demand Instances to provision. When the instance fleet launches,
+	// Amazon EMR tries to provision On-Demand Instances as specified by InstanceTypeConfig.
 	// Each instance configuration has a specified WeightedCapacity. When an On-Demand
-	// instance is provisioned, the WeightedCapacity units count toward the target
+	// Instance is provisioned, the WeightedCapacity units count toward the target
 	// capacity. Amazon EMR provisions instances until the target capacity is totally
 	// fulfilled, even if this results in an overage. For example, if there are
 	// 2 units remaining to fulfill capacity, and Amazon EMR can only provision
@@ -6245,7 +9926,7 @@ type InstanceFleet struct {
 	// to determine the Spot capacity units that have been provisioned for the instance
 	// fleet.
 	//
-	// If not specified or set to 0, only Spot instances are provisioned for the
+	// If not specified or set to 0, only Spot Instances are provisioned for the
 	// instance fleet using TargetSpotCapacity. At least one of TargetSpotCapacity
 	// and TargetOnDemandCapacity should be greater than 0. For a master instance
 	// fleet, only one of TargetSpotCapacity and TargetOnDemandCapacity can be specified,
@@ -6253,8 +9934,8 @@ type InstanceFleet struct {
 	TargetOnDemandCapacity *int64 `type:"integer"`
 
 	// The target capacity of Spot units for the instance fleet, which determines
-	// how many Spot instances to provision. When the instance fleet launches, Amazon
-	// EMR tries to provision Spot instances as specified by InstanceTypeConfig.
+	// how many Spot Instances to provision. When the instance fleet launches, Amazon
+	// EMR tries to provision Spot Instances as specified by InstanceTypeConfig.
 	// Each instance configuration has a specified WeightedCapacity. When a Spot
 	// instance is provisioned, the WeightedCapacity units count toward the target
 	// capacity. Amazon EMR provisions instances until the target capacity is totally
@@ -6265,19 +9946,27 @@ type InstanceFleet struct {
 	// to determine the Spot capacity units that have been provisioned for the instance
 	// fleet.
 	//
-	// If not specified or set to 0, only On-Demand instances are provisioned for
+	// If not specified or set to 0, only On-Demand Instances are provisioned for
 	// the instance fleet. At least one of TargetSpotCapacity and TargetOnDemandCapacity
 	// should be greater than 0. For a master instance fleet, only one of TargetSpotCapacity
 	// and TargetOnDemandCapacity can be specified, and its value must be 1.
 	TargetSpotCapacity *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleet) GoString() string {
 	return s.String()
 }
@@ -6349,8 +10038,8 @@ func (s *InstanceFleet) SetTargetSpotCapacity(v int64) *InstanceFleet {
 type InstanceFleetConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The node type that the instance fleet hosts. Valid values are MASTER,CORE,and
-	// TASK.
+	// The node type that the instance fleet hosts. Valid values are MASTER, CORE,
+	// and TASK.
 	//
 	// InstanceFleetType is a required field
 	InstanceFleetType *string `type:"string" required:"true" enum:"InstanceFleetType"`
@@ -6366,17 +10055,17 @@ type InstanceFleetConfig struct {
 	Name *string `type:"string"`
 
 	// The target capacity of On-Demand units for the instance fleet, which determines
-	// how many On-Demand instances to provision. When the instance fleet launches,
-	// Amazon EMR tries to provision On-Demand instances as specified by InstanceTypeConfig.
+	// how many On-Demand Instances to provision. When the instance fleet launches,
+	// Amazon EMR tries to provision On-Demand Instances as specified by InstanceTypeConfig.
 	// Each instance configuration has a specified WeightedCapacity. When an On-Demand
-	// instance is provisioned, the WeightedCapacity units count toward the target
+	// Instance is provisioned, the WeightedCapacity units count toward the target
 	// capacity. Amazon EMR provisions instances until the target capacity is totally
 	// fulfilled, even if this results in an overage. For example, if there are
 	// 2 units remaining to fulfill capacity, and Amazon EMR can only provision
 	// an instance with a WeightedCapacity of 5 units, the instance is provisioned,
 	// and the target capacity is exceeded by 3 units.
 	//
-	// If not specified or set to 0, only Spot instances are provisioned for the
+	// If not specified or set to 0, only Spot Instances are provisioned for the
 	// instance fleet using TargetSpotCapacity. At least one of TargetSpotCapacity
 	// and TargetOnDemandCapacity should be greater than 0. For a master instance
 	// fleet, only one of TargetSpotCapacity and TargetOnDemandCapacity can be specified,
@@ -6384,29 +10073,37 @@ type InstanceFleetConfig struct {
 	TargetOnDemandCapacity *int64 `type:"integer"`
 
 	// The target capacity of Spot units for the instance fleet, which determines
-	// how many Spot instances to provision. When the instance fleet launches, Amazon
-	// EMR tries to provision Spot instances as specified by InstanceTypeConfig.
+	// how many Spot Instances to provision. When the instance fleet launches, Amazon
+	// EMR tries to provision Spot Instances as specified by InstanceTypeConfig.
 	// Each instance configuration has a specified WeightedCapacity. When a Spot
-	// instance is provisioned, the WeightedCapacity units count toward the target
+	// Instance is provisioned, the WeightedCapacity units count toward the target
 	// capacity. Amazon EMR provisions instances until the target capacity is totally
 	// fulfilled, even if this results in an overage. For example, if there are
 	// 2 units remaining to fulfill capacity, and Amazon EMR can only provision
 	// an instance with a WeightedCapacity of 5 units, the instance is provisioned,
 	// and the target capacity is exceeded by 3 units.
 	//
-	// If not specified or set to 0, only On-Demand instances are provisioned for
+	// If not specified or set to 0, only On-Demand Instances are provisioned for
 	// the instance fleet. At least one of TargetSpotCapacity and TargetOnDemandCapacity
 	// should be greater than 0. For a master instance fleet, only one of TargetSpotCapacity
 	// and TargetOnDemandCapacity can be specified, and its value must be 1.
 	TargetSpotCapacity *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetConfig) GoString() string {
 	return s.String()
 }
@@ -6496,12 +10193,20 @@ type InstanceFleetModifyConfig struct {
 	TargetSpotCapacity *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetModifyConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetModifyConfig) GoString() string {
 	return s.String()
 }
@@ -6537,27 +10242,42 @@ func (s *InstanceFleetModifyConfig) SetTargetSpotCapacity(v int64) *InstanceFlee
 	return s
 }
 
-// The launch specification for Spot instances in the fleet, which determines
-// the defined duration and provisioning timeout behavior.
+// The launch specification for Spot Instances in the fleet, which determines
+// the defined duration, provisioning timeout behavior, and allocation strategy.
 //
 // The instance fleet configuration is available only in Amazon EMR versions
-// 4.8.0 and later, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot Instance allocation
+// strategies are available in Amazon EMR version 5.12.1 and later.
 type InstanceFleetProvisioningSpecifications struct {
 	_ struct{} `type:"structure"`
 
-	// The launch specification for Spot instances in the fleet, which determines
-	// the defined duration and provisioning timeout behavior.
+	// The launch specification for On-Demand Instances in the instance fleet, which
+	// determines the allocation strategy.
 	//
-	// SpotSpecification is a required field
-	SpotSpecification *SpotProvisioningSpecification `type:"structure" required:"true"`
+	// The instance fleet configuration is available only in Amazon EMR versions
+	// 4.8.0 and later, excluding 5.0.x versions. On-Demand Instances allocation
+	// strategy is available in Amazon EMR version 5.12.1 and later.
+	OnDemandSpecification *OnDemandProvisioningSpecification `type:"structure"`
+
+	// The launch specification for Spot Instances in the fleet, which determines
+	// the defined duration, provisioning timeout behavior, and allocation strategy.
+	SpotSpecification *SpotProvisioningSpecification `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetProvisioningSpecifications) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetProvisioningSpecifications) GoString() string {
 	return s.String()
 }
@@ -6565,8 +10285,10 @@ func (s InstanceFleetProvisioningSpecifications) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *InstanceFleetProvisioningSpecifications) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InstanceFleetProvisioningSpecifications"}
-	if s.SpotSpecification == nil {
-		invalidParams.Add(request.NewErrParamRequired("SpotSpecification"))
+	if s.OnDemandSpecification != nil {
+		if err := s.OnDemandSpecification.Validate(); err != nil {
+			invalidParams.AddNested("OnDemandSpecification", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SpotSpecification != nil {
 		if err := s.SpotSpecification.Validate(); err != nil {
@@ -6578,6 +10300,12 @@ func (s *InstanceFleetProvisioningSpecifications) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOnDemandSpecification sets the OnDemandSpecification field's value.
+func (s *InstanceFleetProvisioningSpecifications) SetOnDemandSpecification(v *OnDemandProvisioningSpecification) *InstanceFleetProvisioningSpecifications {
+	s.OnDemandSpecification = v
+	return s
 }
 
 // SetSpotSpecification sets the SpotSpecification field's value.
@@ -6600,12 +10328,20 @@ type InstanceFleetStateChangeReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -6660,12 +10396,20 @@ type InstanceFleetStatus struct {
 	Timeline *InstanceFleetTimeline `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetStatus) GoString() string {
 	return s.String()
 }
@@ -6706,12 +10450,20 @@ type InstanceFleetTimeline struct {
 	ReadyDateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetTimeline) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceFleetTimeline) GoString() string {
 	return s.String()
 }
@@ -6745,22 +10497,25 @@ type InstanceGroup struct {
 	// of a CloudWatch metric. See PutAutoScalingPolicy.
 	AutoScalingPolicy *AutoScalingPolicyDescription `type:"structure"`
 
-	// The bid price for each EC2 Spot instance type as defined by InstanceType.
-	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
-	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// If specified, indicates that the instance group uses Spot Instances. This
+	// is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice
+	// to set the amount equal to the On-Demand price, or specify an amount in USD.
 	BidPrice *string `type:"string"`
 
 	//
 	// Amazon EMR releases 4.x or later.
 	//
-	// The list of configurations supplied for an EMR cluster instance group. You
-	// can specify a separate configuration for each instance group (master, core,
-	// and task).
+	// The list of configurations supplied for an Amazon EMR cluster instance group.
+	// You can specify a separate configuration for each instance group (master,
+	// core, and task).
 	Configurations []*Configuration `type:"list"`
 
 	// The version number of the requested configuration specification for this
 	// instance group.
 	ConfigurationsVersion *int64 `type:"long"`
+
+	// The custom AMI ID to use for the provisioned instance group.
+	CustomAmiId *string `type:"string"`
 
 	// The EBS block devices that are mapped to this instance group.
 	EbsBlockDevices []*EbsBlockDevice `type:"list"`
@@ -6807,12 +10562,20 @@ type InstanceGroup struct {
 	Status *InstanceGroupStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroup) GoString() string {
 	return s.String()
 }
@@ -6838,6 +10601,12 @@ func (s *InstanceGroup) SetConfigurations(v []*Configuration) *InstanceGroup {
 // SetConfigurationsVersion sets the ConfigurationsVersion field's value.
 func (s *InstanceGroup) SetConfigurationsVersion(v int64) *InstanceGroup {
 	s.ConfigurationsVersion = &v
+	return s
+}
+
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceGroup) SetCustomAmiId(v string) *InstanceGroup {
+	s.CustomAmiId = &v
 	return s
 }
 
@@ -6929,9 +10698,9 @@ type InstanceGroupConfig struct {
 	// of a CloudWatch metric. See PutAutoScalingPolicy.
 	AutoScalingPolicy *AutoScalingPolicy `type:"structure"`
 
-	// The bid price for each EC2 Spot instance type as defined by InstanceType.
-	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
-	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// If specified, indicates that the instance group uses Spot Instances. This
+	// is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice
+	// to set the amount equal to the On-Demand price, or specify an amount in USD.
 	BidPrice *string `type:"string"`
 
 	//
@@ -6941,6 +10710,9 @@ type InstanceGroupConfig struct {
 	// can specify a separate configuration for each instance group (master, core,
 	// and task).
 	Configurations []*Configuration `type:"list"`
+
+	// The custom AMI ID to use for the provisioned instance group.
+	CustomAmiId *string `type:"string"`
 
 	// EBS configurations that will be attached to each EC2 instance in the instance
 	// group.
@@ -6968,12 +10740,20 @@ type InstanceGroupConfig struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupConfig) GoString() string {
 	return s.String()
 }
@@ -7028,6 +10808,12 @@ func (s *InstanceGroupConfig) SetConfigurations(v []*Configuration) *InstanceGro
 	return s
 }
 
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceGroupConfig) SetCustomAmiId(v string) *InstanceGroupConfig {
+	s.CustomAmiId = &v
+	return s
+}
+
 // SetEbsConfiguration sets the EbsConfiguration field's value.
 func (s *InstanceGroupConfig) SetEbsConfiguration(v *EbsConfiguration) *InstanceGroupConfig {
 	s.EbsConfiguration = v
@@ -7068,15 +10854,18 @@ func (s *InstanceGroupConfig) SetName(v string) *InstanceGroupConfig {
 type InstanceGroupDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The bid price for each EC2 Spot instance type as defined by InstanceType.
-	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
-	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// If specified, indicates that the instance group uses Spot Instances. This
+	// is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice
+	// to set the amount equal to the On-Demand price, or specify an amount in USD.
 	BidPrice *string `type:"string"`
 
 	// The date/time the instance group was created.
 	//
 	// CreationDateTime is a required field
 	CreationDateTime *time.Time `type:"timestamp" required:"true"`
+
+	// The custom AMI ID to use for the provisioned instance group.
+	CustomAmiId *string `type:"string"`
 
 	// The date/time the instance group was terminated.
 	EndDateTime *time.Time `type:"timestamp"`
@@ -7121,19 +10910,27 @@ type InstanceGroupDetail struct {
 	// The date/time the instance group was started.
 	StartDateTime *time.Time `type:"timestamp"`
 
-	// State of instance group. The following values are deprecated: STARTING, TERMINATED,
-	// and FAILED.
+	// State of instance group. The following values are no longer supported: STARTING,
+	// TERMINATED, and FAILED.
 	//
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"InstanceGroupState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupDetail) GoString() string {
 	return s.String()
 }
@@ -7147,6 +10944,12 @@ func (s *InstanceGroupDetail) SetBidPrice(v string) *InstanceGroupDetail {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *InstanceGroupDetail) SetCreationDateTime(v time.Time) *InstanceGroupDetail {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceGroupDetail) SetCustomAmiId(v string) *InstanceGroupDetail {
+	s.CustomAmiId = &v
 	return s
 }
 
@@ -7236,21 +11039,32 @@ type InstanceGroupModifyConfig struct {
 	// Target size for the instance group.
 	InstanceCount *int64 `type:"integer"`
 
-	// Unique ID of the instance group to expand or shrink.
+	// Unique ID of the instance group to modify.
 	//
 	// InstanceGroupId is a required field
 	InstanceGroupId *string `type:"string" required:"true"`
+
+	// Type of reconfiguration requested. Valid values are MERGE and OVERWRITE.
+	ReconfigurationType *string `type:"string" enum:"ReconfigurationType"`
 
 	// Policy for customizing shrink operations.
 	ShrinkPolicy *ShrinkPolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupModifyConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupModifyConfig) GoString() string {
 	return s.String()
 }
@@ -7292,6 +11106,12 @@ func (s *InstanceGroupModifyConfig) SetInstanceGroupId(v string) *InstanceGroupM
 	return s
 }
 
+// SetReconfigurationType sets the ReconfigurationType field's value.
+func (s *InstanceGroupModifyConfig) SetReconfigurationType(v string) *InstanceGroupModifyConfig {
+	s.ReconfigurationType = &v
+	return s
+}
+
 // SetShrinkPolicy sets the ShrinkPolicy field's value.
 func (s *InstanceGroupModifyConfig) SetShrinkPolicy(v *ShrinkPolicy) *InstanceGroupModifyConfig {
 	s.ShrinkPolicy = v
@@ -7309,12 +11129,20 @@ type InstanceGroupStateChangeReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -7345,12 +11173,20 @@ type InstanceGroupStatus struct {
 	Timeline *InstanceGroupTimeline `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupStatus) GoString() string {
 	return s.String()
 }
@@ -7387,12 +11223,20 @@ type InstanceGroupTimeline struct {
 	ReadyDateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupTimeline) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceGroupTimeline) GoString() string {
 	return s.String()
 }
@@ -7431,12 +11275,20 @@ type InstanceResizePolicy struct {
 	InstancesToTerminate []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceResizePolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceResizePolicy) GoString() string {
 	return s.String()
 }
@@ -7470,12 +11322,20 @@ type InstanceStateChangeReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -7506,12 +11366,20 @@ type InstanceStatus struct {
 	Timeline *InstanceTimeline `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStatus) GoString() string {
 	return s.String()
 }
@@ -7548,12 +11416,20 @@ type InstanceTimeline struct {
 	ReadyDateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceTimeline) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceTimeline) GoString() string {
 	return s.String()
 }
@@ -7578,20 +11454,24 @@ func (s *InstanceTimeline) SetReadyDateTime(v time.Time) *InstanceTimeline {
 
 // An instance type configuration for each instance type in an instance fleet,
 // which determines the EC2 instances Amazon EMR attempts to provision to fulfill
-// On-Demand and Spot target capacities. There can be a maximum of 5 instance
-// type configurations in a fleet.
+// On-Demand and Spot target capacities. When you use an allocation strategy,
+// you can include a maximum of 30 instance type configurations for a fleet.
+// For more information about how to use an allocation strategy, see Configure
+// Instance Fleets (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-fleet.html).
+// Without an allocation strategy, you may specify a maximum of five instance
+// type configurations for a fleet.
 //
 // The instance fleet configuration is available only in Amazon EMR versions
 // 4.8.0 and later, excluding 5.0.x versions.
 type InstanceTypeConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The bid price for each EC2 Spot instance type as defined by InstanceType.
+	// The bid price for each EC2 Spot Instance type as defined by InstanceType.
 	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
 	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
 	BidPrice *string `type:"string"`
 
-	// The bid price, as a percentage of On-Demand price, for each EC2 Spot instance
+	// The bid price, as a percentage of On-Demand price, for each EC2 Spot Instance
 	// as defined by InstanceType. Expressed as a number (for example, 20 specifies
 	// 20%). If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided,
 	// BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
@@ -7602,8 +11482,11 @@ type InstanceTypeConfig struct {
 	// the cluster.
 	Configurations []*Configuration `type:"list"`
 
-	// The configuration of Amazon Elastic Block Storage (EBS) attached to each
-	// instance as defined by InstanceType.
+	// The custom AMI ID to use for the instance type.
+	CustomAmiId *string `type:"string"`
+
+	// The configuration of Amazon Elastic Block Store (Amazon EBS) attached to
+	// each instance as defined by InstanceType.
 	EbsConfiguration *EbsConfiguration `type:"structure"`
 
 	// An EC2 instance type, such as m3.xlarge.
@@ -7618,12 +11501,20 @@ type InstanceTypeConfig struct {
 	WeightedCapacity *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceTypeConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceTypeConfig) GoString() string {
 	return s.String()
 }
@@ -7667,6 +11558,12 @@ func (s *InstanceTypeConfig) SetConfigurations(v []*Configuration) *InstanceType
 	return s
 }
 
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceTypeConfig) SetCustomAmiId(v string) *InstanceTypeConfig {
+	s.CustomAmiId = &v
+	return s
+}
+
 // SetEbsConfiguration sets the EbsConfiguration field's value.
 func (s *InstanceTypeConfig) SetEbsConfiguration(v *EbsConfiguration) *InstanceTypeConfig {
 	s.EbsConfiguration = v
@@ -7692,11 +11589,11 @@ func (s *InstanceTypeConfig) SetWeightedCapacity(v int64) *InstanceTypeConfig {
 type InstanceTypeSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// The bid price for each EC2 Spot instance type as defined by InstanceType.
+	// The bid price for each EC2 Spot Instance type as defined by InstanceType.
 	// Expressed in USD.
 	BidPrice *string `type:"string"`
 
-	// The bid price, as a percentage of On-Demand price, for each EC2 Spot instance
+	// The bid price, as a percentage of On-Demand price, for each EC2 Spot Instance
 	// as defined by InstanceType. Expressed as a number (for example, 20 specifies
 	// 20%).
 	BidPriceAsPercentageOfOnDemandPrice *float64 `type:"double"`
@@ -7706,8 +11603,11 @@ type InstanceTypeSpecification struct {
 	// Amazon EMR.
 	Configurations []*Configuration `type:"list"`
 
-	// The configuration of Amazon Elastic Block Storage (EBS) attached to each
-	// instance as defined by InstanceType.
+	// The custom AMI ID to use for the instance type.
+	CustomAmiId *string `type:"string"`
+
+	// The configuration of Amazon Elastic Block Store (Amazon EBS) attached to
+	// each instance as defined by InstanceType.
 	EbsBlockDevices []*EbsBlockDevice `type:"list"`
 
 	// Evaluates to TRUE when the specified InstanceType is EBS-optimized.
@@ -7723,12 +11623,20 @@ type InstanceTypeSpecification struct {
 	WeightedCapacity *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceTypeSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceTypeSpecification) GoString() string {
 	return s.String()
 }
@@ -7748,6 +11656,12 @@ func (s *InstanceTypeSpecification) SetBidPriceAsPercentageOfOnDemandPrice(v flo
 // SetConfigurations sets the Configurations field's value.
 func (s *InstanceTypeSpecification) SetConfigurations(v []*Configuration) *InstanceTypeSpecification {
 	s.Configurations = v
+	return s
+}
+
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceTypeSpecification) SetCustomAmiId(v string) *InstanceTypeSpecification {
+	s.CustomAmiId = &v
 	return s
 }
 
@@ -7784,12 +11698,20 @@ type InternalServerError struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerError) GoString() string {
 	return s.String()
 }
@@ -7832,7 +11754,8 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception occurs when there is an internal failure in the EMR service.
+// This exception occurs when there is an internal failure in the Amazon EMR
+// service.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7841,12 +11764,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -7901,12 +11832,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -7985,6 +11924,10 @@ type JobFlowDetail struct {
 	// of the job flow assume this role.
 	JobFlowRole *string `type:"string"`
 
+	// The KMS key used for encrypting log files. This attribute is only available
+	// with EMR version 5.30.0 and later, excluding EMR 6.0.0.
+	LogEncryptionKmsKeyId *string `type:"string"`
+
 	// The location in Amazon S3 where log files for the job are stored.
 	LogUri *string `type:"string"`
 
@@ -7999,43 +11942,53 @@ type JobFlowDetail struct {
 	// regardless of when the request to terminate the instance was submitted. This
 	// option is only available with Amazon EMR 5.1.0 and later and is the default
 	// for clusters created using that version. TERMINATE_AT_TASK_COMPLETION indicates
-	// that Amazon EMR blacklists and drains tasks from nodes before terminating
-	// the Amazon EC2 instances, regardless of the instance-hour boundary. With
-	// either behavior, Amazon EMR removes the least active nodes first and blocks
-	// instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
+	// that Amazon EMR adds nodes to a deny list and drains tasks from nodes before
+	// terminating the Amazon EC2 instances, regardless of the instance-hour boundary.
+	// With either behavior, Amazon EMR removes the least active nodes first and
+	// blocks instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
 	// available only in Amazon EMR version 4.1.0 and later, and is the default
 	// for versions of Amazon EMR earlier than 5.1.0.
 	ScaleDownBehavior *string `type:"string" enum:"ScaleDownBehavior"`
 
-	// The IAM role that will be assumed by the Amazon EMR service to access AWS
-	// resources on your behalf.
+	// The IAM role that is assumed by the Amazon EMR service to access Amazon Web
+	// Services resources on your behalf.
 	ServiceRole *string `type:"string"`
 
 	// A list of steps run by the job flow.
 	Steps []*StepDetail `type:"list"`
 
-	// A list of strings set by third party software when the job flow is launched.
-	// If you are not using third party software to manage the job flow this value
+	// A list of strings set by third-party software when the job flow is launched.
+	// If you are not using third-party software to manage the job flow, this value
 	// is empty.
 	SupportedProducts []*string `type:"list"`
 
-	// Indicates whether the cluster is visible to all IAM users of the AWS account
-	// associated with the cluster. The default value, true, indicates that all
-	// IAM users in the AWS account can perform cluster actions if they have the
-	// proper IAM policy permissions. If this value is false, only the IAM user
-	// that created the cluster can perform actions. This value can be changed on
-	// a running cluster by using the SetVisibleToAllUsers action. You can override
-	// the default value of true when you create a cluster by using the VisibleToAllUsers
-	// parameter of the RunJobFlow action.
+	// Indicates whether the cluster is visible to IAM principals in the Amazon
+	// Web Services account associated with the cluster. When true, IAM principals
+	// in the Amazon Web Services account can perform EMR cluster actions that their
+	// IAM policies allow. When false, only the IAM principal that created the cluster
+	// and the Amazon Web Services account root user can perform EMR actions, regardless
+	// of IAM permissions policies attached to other IAM principals.
+	//
+	// The default value is true if a value is not provided when creating a cluster
+	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
+	// command, or the Amazon Web Services Management Console.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowDetail) GoString() string {
 	return s.String()
 }
@@ -8079,6 +12032,12 @@ func (s *JobFlowDetail) SetJobFlowId(v string) *JobFlowDetail {
 // SetJobFlowRole sets the JobFlowRole field's value.
 func (s *JobFlowDetail) SetJobFlowRole(v string) *JobFlowDetail {
 	s.JobFlowRole = &v
+	return s
+}
+
+// SetLogEncryptionKmsKeyId sets the LogEncryptionKmsKeyId field's value.
+func (s *JobFlowDetail) SetLogEncryptionKmsKeyId(v string) *JobFlowDetail {
+	s.LogEncryptionKmsKeyId = &v
 	return s
 }
 
@@ -8152,12 +12111,20 @@ type JobFlowExecutionStatusDetail struct {
 	State *string `type:"string" required:"true" enum:"JobFlowExecutionState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowExecutionStatusDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowExecutionStatusDetail) GoString() string {
 	return s.String()
 }
@@ -8200,9 +12167,9 @@ func (s *JobFlowExecutionStatusDetail) SetState(v string) *JobFlowExecutionStatu
 
 // A description of the Amazon EC2 instance on which the cluster (job flow)
 // runs. A valid JobFlowInstancesConfig must contain either InstanceGroups or
-// InstanceFleets, which is the recommended configuration. They cannot be used
-// together. You may also have MasterInstanceType, SlaveInstanceType, and InstanceCount
-// (all three must be present), but we don't recommend this configuration.
+// InstanceFleets. They cannot be used together. You may also have MasterInstanceType,
+// SlaveInstanceType, and InstanceCount (all three must be present), but we
+// don't recommend this configuration.
 type JobFlowInstancesConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8213,8 +12180,8 @@ type JobFlowInstancesConfig struct {
 	// nodes.
 	AdditionalSlaveSecurityGroups []*string `type:"list"`
 
-	// The name of the EC2 key pair that can be used to ssh to the master node as
-	// the user called "hadoop."
+	// The name of the EC2 key pair that can be used to connect to the master node
+	// using SSH as the user called "hadoop."
 	Ec2KeyName *string `type:"string"`
 
 	// Applies to clusters that use the uniform instance group configuration. To
@@ -8232,18 +12199,20 @@ type JobFlowInstancesConfig struct {
 	// 4.8.0 and later, excluding 5.0.x versions.
 	Ec2SubnetIds []*string `type:"list"`
 
-	// The identifier of the Amazon EC2 security group for the master node.
+	// The identifier of the Amazon EC2 security group for the master node. If you
+	// specify EmrManagedMasterSecurityGroup, you must also specify EmrManagedSlaveSecurityGroup.
 	EmrManagedMasterSecurityGroup *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group for the core and task nodes.
+	// If you specify EmrManagedSlaveSecurityGroup, you must also specify EmrManagedMasterSecurityGroup.
 	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
 	// Applies only to Amazon EMR release versions earlier than 4.0. The Hadoop
-	// version for the cluster. Valid inputs are "0.18" (deprecated), "0.20" (deprecated),
-	// "0.20.205" (deprecated), "1.0.3", "2.2.0", or "2.4.0". If you do not set
-	// this value, the default of 0.18 is used, unless the AmiVersion parameter
-	// is set in the RunJobFlow call, in which case the default version of Hadoop
-	// for that AMI version is used.
+	// version for the cluster. Valid inputs are "0.18" (no longer maintained),
+	// "0.20" (no longer maintained), "0.20.205" (no longer maintained), "1.0.3",
+	// "2.2.0", or "2.4.0". If you do not set this value, the default of 0.18 is
+	// used, unless the AmiVersion parameter is set in the RunJobFlow call, in which
+	// case the default version of Hadoop for that AMI version is used.
 	HadoopVersion *string `type:"string"`
 
 	// The number of EC2 instances in the cluster.
@@ -8261,7 +12230,9 @@ type JobFlowInstancesConfig struct {
 	InstanceGroups []*InstanceGroupConfig `type:"list"`
 
 	// Specifies whether the cluster should remain available after completing all
-	// steps.
+	// steps. Defaults to true. For more information about configuring cluster termination,
+	// see Control Cluster Termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html)
+	// in the EMR Management Guide.
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 
 	// The EC2 instance type of the master node.
@@ -8283,12 +12254,20 @@ type JobFlowInstancesConfig struct {
 	TerminationProtected *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowInstancesConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowInstancesConfig) GoString() string {
 	return s.String()
 }
@@ -8436,8 +12415,8 @@ func (s *JobFlowInstancesConfig) SetTerminationProtected(v bool) *JobFlowInstanc
 type JobFlowInstancesDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an Amazon EC2 key pair that can be used to ssh to the master
-	// node.
+	// The name of an Amazon EC2 key pair that can be used to connect to the master
+	// node using SSH.
 	Ec2KeyName *string `type:"string"`
 
 	// For clusters launched within Amazon Virtual Private Cloud, this is the identifier
@@ -8475,11 +12454,11 @@ type JobFlowInstancesDetail struct {
 	MasterPublicDnsName *string `type:"string"`
 
 	// An approximation of the cost of the cluster, represented in m1.small/hours.
-	// This value is incremented one time for every hour that an m1.small runs.
-	// Larger instances are weighted more, so an Amazon EC2 instance that is roughly
-	// four times more expensive would result in the normalized instance hours being
-	// incremented by four. This result is only an approximation and does not reflect
-	// the actual billing rate.
+	// This value is increased one time for every hour that an m1.small instance
+	// runs. Larger instances are weighted more heavily, so an Amazon EC2 instance
+	// that is roughly four times more expensive would result in the normalized
+	// instance hours being increased incrementally four times. This result is only
+	// an approximation and does not reflect the actual billing rate.
 	NormalizedInstanceHours *int64 `type:"integer"`
 
 	// The Amazon EC2 Availability Zone for the cluster.
@@ -8496,12 +12475,20 @@ type JobFlowInstancesDetail struct {
 	TerminationProtected *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowInstancesDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFlowInstancesDetail) GoString() string {
 	return s.String()
 }
@@ -8587,7 +12574,7 @@ func (s *JobFlowInstancesDetail) SetTerminationProtected(v bool) *JobFlowInstanc
 // Attributes for Kerberos configuration when Kerberos authentication is enabled
 // using a security configuration. For more information see Use Kerberos Authentication
 // (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-kerberos.html)
-// in the EMR Management Guide.
+// in the Amazon EMR Management Guide.
 type KerberosAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -8617,12 +12604,20 @@ type KerberosAttributes struct {
 	Realm *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KerberosAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KerberosAttributes) GoString() string {
 	return s.String()
 }
@@ -8673,23 +12668,31 @@ func (s *KerberosAttributes) SetRealm(v string) *KerberosAttributes {
 	return s
 }
 
-// A key value pair.
+// A key-value pair.
 type KeyValue struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of a key value pair.
+	// The unique identifier of a key-value pair.
 	Key *string `type:"string"`
 
 	// The value part of the identified key.
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KeyValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KeyValue) GoString() string {
 	return s.String()
 }
@@ -8719,12 +12722,20 @@ type ListBootstrapActionsInput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBootstrapActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBootstrapActionsInput) GoString() string {
 	return s.String()
 }
@@ -8765,12 +12776,20 @@ type ListBootstrapActionsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBootstrapActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBootstrapActionsOutput) GoString() string {
 	return s.String()
 }
@@ -8792,8 +12811,10 @@ func (s *ListBootstrapActionsOutput) SetMarker(v string) *ListBootstrapActionsOu
 type ListClustersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster state filters to apply when listing clusters.
-	ClusterStates []*string `type:"list"`
+	// The cluster state filters to apply when listing clusters. Clusters that change
+	// state while this action runs may be not be returned as expected in the list
+	// of clusters.
+	ClusterStates []*string `type:"list" enum:"ClusterState"`
 
 	// The creation date and time beginning value filter for listing clusters.
 	CreatedAfter *time.Time `type:"timestamp"`
@@ -8805,12 +12826,20 @@ type ListClustersInput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListClustersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListClustersInput) GoString() string {
 	return s.String()
 }
@@ -8851,12 +12880,20 @@ type ListClustersOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListClustersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListClustersOutput) GoString() string {
 	return s.String()
 }
@@ -8885,12 +12922,20 @@ type ListInstanceFleetsInput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceFleetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceFleetsInput) GoString() string {
 	return s.String()
 }
@@ -8930,12 +12975,20 @@ type ListInstanceFleetsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceFleetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceFleetsOutput) GoString() string {
 	return s.String()
 }
@@ -8965,12 +13018,20 @@ type ListInstanceGroupsInput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceGroupsInput) GoString() string {
 	return s.String()
 }
@@ -9011,12 +13072,20 @@ type ListInstanceGroupsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -9052,22 +13121,30 @@ type ListInstancesInput struct {
 	InstanceGroupId *string `type:"string"`
 
 	// The type of instance group for which to list the instances.
-	InstanceGroupTypes []*string `type:"list"`
+	InstanceGroupTypes []*string `type:"list" enum:"InstanceGroupType"`
 
 	// A list of instance states that will filter the instances returned with this
 	// request.
-	InstanceStates []*string `type:"list"`
+	InstanceStates []*string `type:"list" enum:"InstanceState"`
 
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesInput) GoString() string {
 	return s.String()
 }
@@ -9138,12 +13215,20 @@ type ListInstancesOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesOutput) GoString() string {
 	return s.String()
 }
@@ -9160,6 +13245,253 @@ func (s *ListInstancesOutput) SetMarker(v string) *ListInstancesOutput {
 	return s
 }
 
+type ListNotebookExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the editor associated with the notebook execution.
+	EditorId *string `type:"string"`
+
+	// The beginning of time range filter for listing notebook executions. The default
+	// is the timestamp of 30 days ago.
+	From *time.Time `type:"timestamp"`
+
+	// The pagination token, returned by a previous ListNotebookExecutions call,
+	// that indicates the start of the list for this ListNotebookExecutions call.
+	Marker *string `type:"string"`
+
+	// The status filter for listing notebook executions.
+	//
+	//    * START_PENDING indicates that the cluster has received the execution
+	//    request but execution has not begun.
+	//
+	//    * STARTING indicates that the execution is starting on the cluster.
+	//
+	//    * RUNNING indicates that the execution is being processed by the cluster.
+	//
+	//    * FINISHING indicates that execution processing is in the final stages.
+	//
+	//    * FINISHED indicates that the execution has completed without error.
+	//
+	//    * FAILING indicates that the execution is failing and will not finish
+	//    successfully.
+	//
+	//    * FAILED indicates that the execution failed.
+	//
+	//    * STOP_PENDING indicates that the cluster has received a StopNotebookExecution
+	//    request and the stop is pending.
+	//
+	//    * STOPPING indicates that the cluster is in the process of stopping the
+	//    execution as a result of a StopNotebookExecution request.
+	//
+	//    * STOPPED indicates that the execution stopped because of a StopNotebookExecution
+	//    request.
+	Status *string `type:"string" enum:"NotebookExecutionStatus"`
+
+	// The end of time range filter for listing notebook executions. The default
+	// is the current timestamp.
+	To *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// SetEditorId sets the EditorId field's value.
+func (s *ListNotebookExecutionsInput) SetEditorId(v string) *ListNotebookExecutionsInput {
+	s.EditorId = &v
+	return s
+}
+
+// SetFrom sets the From field's value.
+func (s *ListNotebookExecutionsInput) SetFrom(v time.Time) *ListNotebookExecutionsInput {
+	s.From = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListNotebookExecutionsInput) SetMarker(v string) *ListNotebookExecutionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListNotebookExecutionsInput) SetStatus(v string) *ListNotebookExecutionsInput {
+	s.Status = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *ListNotebookExecutionsInput) SetTo(v time.Time) *ListNotebookExecutionsInput {
+	s.To = &v
+	return s
+}
+
+type ListNotebookExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token that a subsequent ListNotebookExecutions can use to determine
+	// the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// A list of notebook executions.
+	NotebookExecutions []*NotebookExecutionSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListNotebookExecutionsOutput) SetMarker(v string) *ListNotebookExecutionsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetNotebookExecutions sets the NotebookExecutions field's value.
+func (s *ListNotebookExecutionsOutput) SetNotebookExecutions(v []*NotebookExecutionSummary) *ListNotebookExecutionsOutput {
+	s.NotebookExecutions = v
+	return s
+}
+
+type ListReleaseLabelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the results of the request. Prefix specifies the prefix of release
+	// labels to return. Application specifies the application (with/without version)
+	// of release labels to return.
+	Filters *ReleaseLabelFilter `type:"structure"`
+
+	// Defines the maximum number of release labels to return in a single response.
+	// The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specifies the next page of results. If NextToken is not specified, which
+	// is usually the case for the first request of ListReleaseLabels, the first
+	// page of results are determined by other filtering parameters or by the latest
+	// version. The ListReleaseLabels request fails if the identity (Amazon Web
+	// Services account ID) and all filtering parameters are different from the
+	// original request, or if the NextToken is expired or tampered with.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReleaseLabelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReleaseLabelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReleaseLabelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReleaseLabelsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListReleaseLabelsInput) SetFilters(v *ReleaseLabelFilter) *ListReleaseLabelsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListReleaseLabelsInput) SetMaxResults(v int64) *ListReleaseLabelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReleaseLabelsInput) SetNextToken(v string) *ListReleaseLabelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListReleaseLabelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Used to paginate the next page of results if specified in the next ListReleaseLabels
+	// request.
+	NextToken *string `type:"string"`
+
+	// The returned release labels.
+	ReleaseLabels []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReleaseLabelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListReleaseLabelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReleaseLabelsOutput) SetNextToken(v string) *ListReleaseLabelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReleaseLabels sets the ReleaseLabels field's value.
+func (s *ListReleaseLabelsOutput) SetReleaseLabels(v []*string) *ListReleaseLabelsOutput {
+	s.ReleaseLabels = v
+	return s
+}
+
 type ListSecurityConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9167,12 +13499,20 @@ type ListSecurityConfigurationsInput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -9195,12 +13535,20 @@ type ListSecurityConfigurationsOutput struct {
 	SecurityConfigurations []*SecurityConfigurationSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -9226,7 +13574,10 @@ type ListStepsInput struct {
 	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
-	// The pagination token that indicates the next set of results to retrieve.
+	// The maximum number of steps that a single ListSteps action returns is 50.
+	// To return a longer list of steps, use multiple ListSteps actions along with
+	// the Marker parameter, which is a pagination token that indicates the next
+	// set of results to retrieve.
 	Marker *string `type:"string"`
 
 	// The filter to limit the step list based on the identifier of the steps. You
@@ -9235,15 +13586,23 @@ type ListStepsInput struct {
 	StepIds []*string `type:"list"`
 
 	// The filter to limit the step list based on certain states.
-	StepStates []*string `type:"list"`
+	StepStates []*string `type:"list" enum:"StepState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStepsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStepsInput) GoString() string {
 	return s.String()
 }
@@ -9290,19 +13649,30 @@ func (s *ListStepsInput) SetStepStates(v []*string) *ListStepsInput {
 type ListStepsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token that indicates the next set of results to retrieve.
+	// The maximum number of steps that a single ListSteps action returns is 50.
+	// To return a longer list of steps, use multiple ListSteps actions along with
+	// the Marker parameter, which is a pagination token that indicates the next
+	// set of results to retrieve.
 	Marker *string `type:"string"`
 
 	// The filtered list of steps for the cluster.
 	Steps []*StepSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStepsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStepsOutput) GoString() string {
 	return s.String()
 }
@@ -9316,6 +13686,170 @@ func (s *ListStepsOutput) SetMarker(v string) *ListStepsOutput {
 // SetSteps sets the Steps field's value.
 func (s *ListStepsOutput) SetSteps(v []*StepSummary) *ListStepsOutput {
 	s.Steps = v
+	return s
+}
+
+type ListStudioSessionMappingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to return session mappings for users or groups. If not
+	// specified, the results include session mapping details for both users and
+	// groups.
+	IdentityType *string `type:"string" enum:"IdentityType"`
+
+	// The pagination token that indicates the set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio.
+	StudioId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudioSessionMappingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudioSessionMappingsInput) GoString() string {
+	return s.String()
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *ListStudioSessionMappingsInput) SetIdentityType(v string) *ListStudioSessionMappingsInput {
+	s.IdentityType = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListStudioSessionMappingsInput) SetMarker(v string) *ListStudioSessionMappingsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *ListStudioSessionMappingsInput) SetStudioId(v string) *ListStudioSessionMappingsInput {
+	s.StudioId = &v
+	return s
+}
+
+type ListStudioSessionMappingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// A list of session mapping summary objects. Each object includes session mapping
+	// details such as creation time, identity type (user or group), and Amazon
+	// EMR Studio ID.
+	SessionMappings []*SessionMappingSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudioSessionMappingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudioSessionMappingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListStudioSessionMappingsOutput) SetMarker(v string) *ListStudioSessionMappingsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSessionMappings sets the SessionMappings field's value.
+func (s *ListStudioSessionMappingsOutput) SetSessionMappings(v []*SessionMappingSummary) *ListStudioSessionMappingsOutput {
+	s.SessionMappings = v
+	return s
+}
+
+type ListStudiosInput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token that indicates the set of results to retrieve.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudiosInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudiosInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListStudiosInput) SetMarker(v string) *ListStudiosInput {
+	s.Marker = &v
+	return s
+}
+
+type ListStudiosOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// The list of Studio summary objects.
+	Studios []*StudioSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudiosOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStudiosOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListStudiosOutput) SetMarker(v string) *ListStudiosOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetStudios sets the Studios field's value.
+func (s *ListStudiosOutput) SetStudios(v []*StudioSummary) *ListStudiosOutput {
+	s.Studios = v
 	return s
 }
 
@@ -9333,12 +13867,20 @@ type ManagedScalingPolicy struct {
 	ComputeLimits *ComputeLimits `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedScalingPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedScalingPolicy) GoString() string {
 	return s.String()
 }
@@ -9379,12 +13921,20 @@ type MetricDimension struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricDimension) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MetricDimension) GoString() string {
 	return s.String()
 }
@@ -9410,16 +13960,26 @@ type ModifyClusterInput struct {
 	ClusterId *string `type:"string" required:"true"`
 
 	// The number of steps that can be executed concurrently. You can specify a
-	// maximum of 256 steps.
+	// minimum of 1 step and a maximum of 256 steps. We recommend that you do not
+	// change this parameter while steps are running or the ActionOnFailure setting
+	// may not behave as expected. For more information see Step$ActionOnFailure.
 	StepConcurrencyLevel *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterInput) GoString() string {
 	return s.String()
 }
@@ -9456,12 +14016,20 @@ type ModifyClusterOutput struct {
 	StepConcurrencyLevel *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyClusterOutput) GoString() string {
 	return s.String()
 }
@@ -9480,18 +14048,26 @@ type ModifyInstanceFleetInput struct {
 	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
-	// The unique identifier of the instance fleet.
+	// The configuration parameters of the instance fleet.
 	//
 	// InstanceFleet is a required field
 	InstanceFleet *InstanceFleetModifyConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceFleetInput) GoString() string {
 	return s.String()
 }
@@ -9533,12 +14109,20 @@ type ModifyInstanceFleetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceFleetOutput) GoString() string {
 	return s.String()
 }
@@ -9554,12 +14138,20 @@ type ModifyInstanceGroupsInput struct {
 	InstanceGroups []*InstanceGroupModifyConfig `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceGroupsInput) GoString() string {
 	return s.String()
 }
@@ -9600,14 +14192,533 @@ type ModifyInstanceGroupsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyInstanceGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// A notebook execution. An execution is a specific instance that an EMR Notebook
+// is run using the StartNotebookExecution action.
+type NotebookExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the notebook execution.
+	Arn *string `type:"string"`
+
+	// The unique identifier of the EMR Notebook that is used for the notebook execution.
+	EditorId *string `type:"string"`
+
+	// The timestamp when notebook execution ended.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The execution engine, such as an EMR cluster, used to run the EMR notebook
+	// and perform the notebook execution.
+	ExecutionEngine *ExecutionEngineConfig `type:"structure"`
+
+	// The reason for the latest status change of the notebook execution.
+	LastStateChangeReason *string `type:"string"`
+
+	// The unique identifier of a notebook execution.
+	NotebookExecutionId *string `type:"string"`
+
+	// A name for the notebook execution.
+	NotebookExecutionName *string `type:"string"`
+
+	// The unique identifier of the EC2 security group associated with the EMR Notebook
+	// instance. For more information see Specifying EC2 Security Groups for EMR
+	// Notebooks (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-security-groups.html)
+	// in the EMR Management Guide.
+	NotebookInstanceSecurityGroupId *string `type:"string"`
+
+	// Input parameters in JSON format passed to the EMR Notebook at runtime for
+	// execution.
+	NotebookParams *string `type:"string"`
+
+	// The location of the notebook execution's output file in Amazon S3.
+	OutputNotebookURI *string `type:"string"`
+
+	// The timestamp when notebook execution started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The status of the notebook execution.
+	//
+	//    * START_PENDING indicates that the cluster has received the execution
+	//    request but execution has not begun.
+	//
+	//    * STARTING indicates that the execution is starting on the cluster.
+	//
+	//    * RUNNING indicates that the execution is being processed by the cluster.
+	//
+	//    * FINISHING indicates that execution processing is in the final stages.
+	//
+	//    * FINISHED indicates that the execution has completed without error.
+	//
+	//    * FAILING indicates that the execution is failing and will not finish
+	//    successfully.
+	//
+	//    * FAILED indicates that the execution failed.
+	//
+	//    * STOP_PENDING indicates that the cluster has received a StopNotebookExecution
+	//    request and the stop is pending.
+	//
+	//    * STOPPING indicates that the cluster is in the process of stopping the
+	//    execution as a result of a StopNotebookExecution request.
+	//
+	//    * STOPPED indicates that the execution stopped because of a StopNotebookExecution
+	//    request.
+	Status *string `type:"string" enum:"NotebookExecutionStatus"`
+
+	// A list of tags associated with a notebook execution. Tags are user-defined
+	// key-value pairs that consist of a required key string with a maximum of 128
+	// characters and an optional value string with a maximum of 256 characters.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookExecution) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *NotebookExecution) SetArn(v string) *NotebookExecution {
+	s.Arn = &v
+	return s
+}
+
+// SetEditorId sets the EditorId field's value.
+func (s *NotebookExecution) SetEditorId(v string) *NotebookExecution {
+	s.EditorId = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *NotebookExecution) SetEndTime(v time.Time) *NotebookExecution {
+	s.EndTime = &v
+	return s
+}
+
+// SetExecutionEngine sets the ExecutionEngine field's value.
+func (s *NotebookExecution) SetExecutionEngine(v *ExecutionEngineConfig) *NotebookExecution {
+	s.ExecutionEngine = v
+	return s
+}
+
+// SetLastStateChangeReason sets the LastStateChangeReason field's value.
+func (s *NotebookExecution) SetLastStateChangeReason(v string) *NotebookExecution {
+	s.LastStateChangeReason = &v
+	return s
+}
+
+// SetNotebookExecutionId sets the NotebookExecutionId field's value.
+func (s *NotebookExecution) SetNotebookExecutionId(v string) *NotebookExecution {
+	s.NotebookExecutionId = &v
+	return s
+}
+
+// SetNotebookExecutionName sets the NotebookExecutionName field's value.
+func (s *NotebookExecution) SetNotebookExecutionName(v string) *NotebookExecution {
+	s.NotebookExecutionName = &v
+	return s
+}
+
+// SetNotebookInstanceSecurityGroupId sets the NotebookInstanceSecurityGroupId field's value.
+func (s *NotebookExecution) SetNotebookInstanceSecurityGroupId(v string) *NotebookExecution {
+	s.NotebookInstanceSecurityGroupId = &v
+	return s
+}
+
+// SetNotebookParams sets the NotebookParams field's value.
+func (s *NotebookExecution) SetNotebookParams(v string) *NotebookExecution {
+	s.NotebookParams = &v
+	return s
+}
+
+// SetOutputNotebookURI sets the OutputNotebookURI field's value.
+func (s *NotebookExecution) SetOutputNotebookURI(v string) *NotebookExecution {
+	s.OutputNotebookURI = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *NotebookExecution) SetStartTime(v time.Time) *NotebookExecution {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotebookExecution) SetStatus(v string) *NotebookExecution {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *NotebookExecution) SetTags(v []*Tag) *NotebookExecution {
+	s.Tags = v
+	return s
+}
+
+// Details for a notebook execution. The details include information such as
+// the unique ID and status of the notebook execution.
+type NotebookExecutionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the editor associated with the notebook execution.
+	EditorId *string `type:"string"`
+
+	// The timestamp when notebook execution started.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The unique identifier of the notebook execution.
+	NotebookExecutionId *string `type:"string"`
+
+	// The name of the notebook execution.
+	NotebookExecutionName *string `type:"string"`
+
+	// The timestamp when notebook execution started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The status of the notebook execution.
+	//
+	//    * START_PENDING indicates that the cluster has received the execution
+	//    request but execution has not begun.
+	//
+	//    * STARTING indicates that the execution is starting on the cluster.
+	//
+	//    * RUNNING indicates that the execution is being processed by the cluster.
+	//
+	//    * FINISHING indicates that execution processing is in the final stages.
+	//
+	//    * FINISHED indicates that the execution has completed without error.
+	//
+	//    * FAILING indicates that the execution is failing and will not finish
+	//    successfully.
+	//
+	//    * FAILED indicates that the execution failed.
+	//
+	//    * STOP_PENDING indicates that the cluster has received a StopNotebookExecution
+	//    request and the stop is pending.
+	//
+	//    * STOPPING indicates that the cluster is in the process of stopping the
+	//    execution as a result of a StopNotebookExecution request.
+	//
+	//    * STOPPED indicates that the execution stopped because of a StopNotebookExecution
+	//    request.
+	Status *string `type:"string" enum:"NotebookExecutionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookExecutionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookExecutionSummary) GoString() string {
+	return s.String()
+}
+
+// SetEditorId sets the EditorId field's value.
+func (s *NotebookExecutionSummary) SetEditorId(v string) *NotebookExecutionSummary {
+	s.EditorId = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *NotebookExecutionSummary) SetEndTime(v time.Time) *NotebookExecutionSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetNotebookExecutionId sets the NotebookExecutionId field's value.
+func (s *NotebookExecutionSummary) SetNotebookExecutionId(v string) *NotebookExecutionSummary {
+	s.NotebookExecutionId = &v
+	return s
+}
+
+// SetNotebookExecutionName sets the NotebookExecutionName field's value.
+func (s *NotebookExecutionSummary) SetNotebookExecutionName(v string) *NotebookExecutionSummary {
+	s.NotebookExecutionName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *NotebookExecutionSummary) SetStartTime(v time.Time) *NotebookExecutionSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotebookExecutionSummary) SetStatus(v string) *NotebookExecutionSummary {
+	s.Status = &v
+	return s
+}
+
+// The Amazon Linux release specified for a cluster in the RunJobFlow request.
+type OSRelease struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Linux release specified for a cluster in the RunJobFlow request.
+	// The format is as shown in Amazon Linux 2 Release Notes (https://docs.aws.amazon.com/AL2/latest/relnotes/relnotes-20220218.html).
+	// For example, 2.0.20220218.1.
+	Label *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OSRelease) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OSRelease) GoString() string {
+	return s.String()
+}
+
+// SetLabel sets the Label field's value.
+func (s *OSRelease) SetLabel(v string) *OSRelease {
+	s.Label = &v
+	return s
+}
+
+// Describes the strategy for using unused Capacity Reservations for fulfilling
+// On-Demand capacity.
+type OnDemandCapacityReservationOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the instance's Capacity Reservation preferences. Possible preferences
+	// include:
+	//
+	//    * open - The instance can run in any open Capacity Reservation that has
+	//    matching attributes (instance type, platform, Availability Zone).
+	//
+	//    * none - The instance avoids running in a Capacity Reservation even if
+	//    one is available. The instance runs as an On-Demand Instance.
+	CapacityReservationPreference *string `type:"string" enum:"OnDemandCapacityReservationPreference"`
+
+	// The ARN of the Capacity Reservation resource group in which to run the instance.
+	CapacityReservationResourceGroupArn *string `type:"string"`
+
+	// Indicates whether to use unused Capacity Reservations for fulfilling On-Demand
+	// capacity.
+	//
+	// If you specify use-capacity-reservations-first, the fleet uses unused Capacity
+	// Reservations to fulfill On-Demand capacity up to the target On-Demand capacity.
+	// If multiple instance pools have unused Capacity Reservations, the On-Demand
+	// allocation strategy (lowest-price) is applied. If the number of unused Capacity
+	// Reservations is less than the On-Demand target capacity, the remaining On-Demand
+	// target capacity is launched according to the On-Demand allocation strategy
+	// (lowest-price).
+	//
+	// If you do not specify a value, the fleet fulfills the On-Demand capacity
+	// according to the chosen On-Demand allocation strategy.
+	UsageStrategy *string `type:"string" enum:"OnDemandCapacityReservationUsageStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandCapacityReservationOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandCapacityReservationOptions) GoString() string {
+	return s.String()
+}
+
+// SetCapacityReservationPreference sets the CapacityReservationPreference field's value.
+func (s *OnDemandCapacityReservationOptions) SetCapacityReservationPreference(v string) *OnDemandCapacityReservationOptions {
+	s.CapacityReservationPreference = &v
+	return s
+}
+
+// SetCapacityReservationResourceGroupArn sets the CapacityReservationResourceGroupArn field's value.
+func (s *OnDemandCapacityReservationOptions) SetCapacityReservationResourceGroupArn(v string) *OnDemandCapacityReservationOptions {
+	s.CapacityReservationResourceGroupArn = &v
+	return s
+}
+
+// SetUsageStrategy sets the UsageStrategy field's value.
+func (s *OnDemandCapacityReservationOptions) SetUsageStrategy(v string) *OnDemandCapacityReservationOptions {
+	s.UsageStrategy = &v
+	return s
+}
+
+// The launch specification for On-Demand Instances in the instance fleet, which
+// determines the allocation strategy.
+//
+// The instance fleet configuration is available only in Amazon EMR versions
+// 4.8.0 and later, excluding 5.0.x versions. On-Demand Instances allocation
+// strategy is available in Amazon EMR version 5.12.1 and later.
+type OnDemandProvisioningSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the strategy to use in launching On-Demand instance fleets. Currently,
+	// the only option is lowest-price (the default), which launches the lowest
+	// price first.
+	//
+	// AllocationStrategy is a required field
+	AllocationStrategy *string `type:"string" required:"true" enum:"OnDemandProvisioningAllocationStrategy"`
+
+	// The launch specification for On-Demand instances in the instance fleet, which
+	// determines the allocation strategy.
+	CapacityReservationOptions *OnDemandCapacityReservationOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandProvisioningSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandProvisioningSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OnDemandProvisioningSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OnDemandProvisioningSpecification"}
+	if s.AllocationStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllocationStrategy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllocationStrategy sets the AllocationStrategy field's value.
+func (s *OnDemandProvisioningSpecification) SetAllocationStrategy(v string) *OnDemandProvisioningSpecification {
+	s.AllocationStrategy = &v
+	return s
+}
+
+// SetCapacityReservationOptions sets the CapacityReservationOptions field's value.
+func (s *OnDemandProvisioningSpecification) SetCapacityReservationOptions(v *OnDemandCapacityReservationOptions) *OnDemandProvisioningSpecification {
+	s.CapacityReservationOptions = v
+	return s
+}
+
+// Placement group configuration for an Amazon EMR cluster. The configuration
+// specifies the placement strategy that can be applied to instance roles during
+// cluster creation.
+//
+// To use this configuration, consider attaching managed policy AmazonElasticMapReducePlacementGroupPolicy
+// to the EMR role.
+type PlacementGroupConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Role of the instance in the cluster.
+	//
+	// Starting with Amazon EMR version 5.23.0, the only supported instance role
+	// is MASTER.
+	//
+	// InstanceRole is a required field
+	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
+
+	// EC2 Placement Group strategy associated with instance role.
+	//
+	// Starting with Amazon EMR version 5.23.0, the only supported placement strategy
+	// is SPREAD for the MASTER instance role.
+	PlacementStrategy *string `type:"string" enum:"PlacementGroupStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlacementGroupConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlacementGroupConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PlacementGroupConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PlacementGroupConfig"}
+	if s.InstanceRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceRole"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceRole sets the InstanceRole field's value.
+func (s *PlacementGroupConfig) SetInstanceRole(v string) *PlacementGroupConfig {
+	s.InstanceRole = &v
+	return s
+}
+
+// SetPlacementStrategy sets the PlacementStrategy field's value.
+func (s *PlacementGroupConfig) SetPlacementStrategy(v string) *PlacementGroupConfig {
+	s.PlacementStrategy = &v
+	return s
 }
 
 // The Amazon EC2 Availability Zone configuration of the cluster (job flow).
@@ -9629,12 +14740,20 @@ type PlacementType struct {
 	AvailabilityZones []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlacementType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlacementType) GoString() string {
 	return s.String()
 }
@@ -9666,12 +14785,20 @@ type PortRange struct {
 	MinRange *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PortRange) GoString() string {
 	return s.String()
 }
@@ -9679,8 +14806,14 @@ func (s PortRange) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PortRange) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PortRange"}
+	if s.MaxRange != nil && *s.MaxRange < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRange", -1))
+	}
 	if s.MinRange == nil {
 		invalidParams.Add(request.NewErrParamRequired("MinRange"))
+	}
+	if s.MinRange != nil && *s.MinRange < -1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinRange", -1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -9722,12 +14855,20 @@ type PutAutoScalingPolicyInput struct {
 	InstanceGroupId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAutoScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAutoScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -9780,7 +14921,7 @@ type PutAutoScalingPolicyOutput struct {
 	// The automatic scaling policy definition.
 	AutoScalingPolicy *AutoScalingPolicyDescription `type:"structure"`
 
-	// The Amazon Resource Name of the cluster.
+	// The Amazon Resource Name (ARN) of the cluster.
 	ClusterArn *string `min:"20" type:"string"`
 
 	// Specifies the ID of a cluster. The instance group to which the automatic
@@ -9791,12 +14932,20 @@ type PutAutoScalingPolicyOutput struct {
 	InstanceGroupId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAutoScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAutoScalingPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -9825,6 +14974,84 @@ func (s *PutAutoScalingPolicyOutput) SetInstanceGroupId(v string) *PutAutoScalin
 	return s
 }
 
+type PutAutoTerminationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the auto-termination policy to attach to the cluster.
+	AutoTerminationPolicy *AutoTerminationPolicy `type:"structure"`
+
+	// Specifies the ID of the Amazon EMR cluster to which the auto-termination
+	// policy will be attached.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAutoTerminationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAutoTerminationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAutoTerminationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAutoTerminationPolicyInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoTerminationPolicy sets the AutoTerminationPolicy field's value.
+func (s *PutAutoTerminationPolicyInput) SetAutoTerminationPolicy(v *AutoTerminationPolicy) *PutAutoTerminationPolicyInput {
+	s.AutoTerminationPolicy = v
+	return s
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *PutAutoTerminationPolicyInput) SetClusterId(v string) *PutAutoTerminationPolicyInput {
+	s.ClusterId = &v
+	return s
+}
+
+type PutAutoTerminationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAutoTerminationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAutoTerminationPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type PutBlockPublicAccessConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9848,12 +15075,20 @@ type PutBlockPublicAccessConfigurationInput struct {
 	BlockPublicAccessConfiguration *BlockPublicAccessConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBlockPublicAccessConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBlockPublicAccessConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -9886,12 +15121,20 @@ type PutBlockPublicAccessConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBlockPublicAccessConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBlockPublicAccessConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -9910,12 +15153,20 @@ type PutManagedScalingPolicyInput struct {
 	ManagedScalingPolicy *ManagedScalingPolicy `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -9957,14 +15208,63 @@ type PutManagedScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedScalingPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// The release label filters by application or version prefix.
+type ReleaseLabelFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Optional release label application filter. For example, spark@2.1.0.
+	Application *string `type:"string"`
+
+	// Optional release label version prefix filter. For example, emr-5.
+	Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseLabelFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseLabelFilter) GoString() string {
+	return s.String()
+}
+
+// SetApplication sets the Application field's value.
+func (s *ReleaseLabelFilter) SetApplication(v string) *ReleaseLabelFilter {
+	s.Application = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ReleaseLabelFilter) SetPrefix(v string) *ReleaseLabelFilter {
+	s.Prefix = &v
+	return s
 }
 
 type RemoveAutoScalingPolicyInput struct {
@@ -9982,12 +15282,20 @@ type RemoveAutoScalingPolicyInput struct {
 	InstanceGroupId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAutoScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAutoScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -10024,13 +15332,90 @@ type RemoveAutoScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAutoScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveAutoScalingPolicyOutput) GoString() string {
+	return s.String()
+}
+
+type RemoveAutoTerminationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ID of the Amazon EMR cluster from which the auto-termination
+	// policy will be removed.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveAutoTerminationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveAutoTerminationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveAutoTerminationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveAutoTerminationPolicyInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *RemoveAutoTerminationPolicyInput) SetClusterId(v string) *RemoveAutoTerminationPolicyInput {
+	s.ClusterId = &v
+	return s
+}
+
+type RemoveAutoTerminationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveAutoTerminationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveAutoTerminationPolicyOutput) GoString() string {
 	return s.String()
 }
 
@@ -10044,12 +15429,20 @@ type RemoveManagedScalingPolicyInput struct {
 	ClusterId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveManagedScalingPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveManagedScalingPolicyInput) GoString() string {
 	return s.String()
 }
@@ -10077,38 +15470,54 @@ type RemoveManagedScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveManagedScalingPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveManagedScalingPolicyOutput) GoString() string {
 	return s.String()
 }
 
-// This input identifies a cluster and a list of tags to remove.
+// This input identifies an Amazon EMR resource and a list of tags to remove.
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EMR resource identifier from which tags will be removed. This
-	// value must be a cluster identifier.
+	// The Amazon EMR resource identifier from which tags will be removed. For example,
+	// a cluster identifier or an Amazon EMR Studio ID.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// A list of tag keys to remove from a resource.
+	// A list of tag keys to remove from the resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsInput) GoString() string {
 	return s.String()
 }
@@ -10141,17 +15550,25 @@ func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
 	return s
 }
 
-// This output indicates the result of removing tags from a resource.
+// This output indicates the result of removing tags from the resource.
 type RemoveTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsOutput) GoString() string {
 	return s.String()
 }
@@ -10170,13 +15587,19 @@ type RunJobFlowInput struct {
 	// Applies to Amazon EMR releases 4.0 and later. A case-insensitive list of
 	// applications for Amazon EMR to install and configure when launching the cluster.
 	// For a list of applications available for each Amazon EMR release version,
-	// see the Amazon EMR Release Guide (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/).
+	// see the Amazon EMRRelease Guide (https://docs.aws.amazon.com/emr/latest/ReleaseGuide/).
 	Applications []*Application `type:"list"`
 
 	// An IAM role for automatic scaling policies. The default role is EMR_AutoScaling_DefaultRole.
 	// The IAM role provides permissions that the automatic scaling feature requires
 	// to launch and terminate EC2 instances in an instance group.
 	AutoScalingRole *string `type:"string"`
+
+	// An auto-termination policy for an Amazon EMR cluster. An auto-termination
+	// policy defines the amount of idle time in seconds after which a cluster automatically
+	// terminates. For alternative cluster termination options, see Control cluster
+	// termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html).
+	AutoTerminationPolicy *AutoTerminationPolicy `type:"structure"`
 
 	// A list of bootstrap actions to run before Hadoop starts on the cluster nodes.
 	BootstrapActions []*BootstrapActionConfig `type:"list"`
@@ -10199,8 +15622,8 @@ type RunJobFlowInput struct {
 	// about finding an AMI ID, see Finding a Linux AMI (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html).
 	CustomAmiId *string `type:"string"`
 
-	// The size, in GiB, of the EBS root device volume of the Linux AMI that is
-	// used for each EC2 instance. Available in Amazon EMR version 4.x and later.
+	// The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that
+	// is used for each EC2 instance. Available in Amazon EMR version 4.x and later.
 	EbsRootVolumeSize *int64 `type:"integer"`
 
 	// A specification of the number and type of Amazon EC2 instances.
@@ -10217,8 +15640,13 @@ type RunJobFlowInput struct {
 	// Attributes for Kerberos configuration when Kerberos authentication is enabled
 	// using a security configuration. For more information see Use Kerberos Authentication
 	// (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-kerberos.html)
-	// in the EMR Management Guide.
+	// in the Amazon EMR Management Guide.
 	KerberosAttributes *KerberosAttributes `type:"structure"`
+
+	// The KMS key used for encrypting log files. If a value is not provided, the
+	// logs remain encrypted by AES-256. This attribute is only available with Amazon
+	// EMR version 5.30.0 and later, excluding Amazon EMR 6.0.0.
+	LogEncryptionKmsKeyId *string `type:"string"`
 
 	// The location in Amazon S3 to write the log files of the job flow. If a value
 	// is not provided, logs are not created.
@@ -10252,7 +15680,7 @@ type RunJobFlowInput struct {
 	//
 	//    * "mapr-m7" - launch the cluster using MapR M7 Edition.
 	//
-	//    * "hunk" - launch the cluster with the Hunk Big Data Analtics Platform.
+	//    * "hunk" - launch the cluster with the Hunk Big Data Analytics Platform.
 	//
 	//    * "hue"- launch the cluster with Hue installed.
 	//
@@ -10260,6 +15688,14 @@ type RunJobFlowInput struct {
 	//
 	//    * "ganglia" - launch the cluster with the Ganglia Monitoring System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
+
+	// Specifies a particular Amazon Linux release for all nodes in a cluster launch
+	// RunJobFlow request. If a release is not specified, Amazon EMR uses the latest
+	// validated Amazon Linux release for cluster launch.
+	OSReleaseLabel *string `type:"string"`
+
+	// The specified placement group configuration for an Amazon EMR cluster.
+	PlacementGroupConfigs []*PlacementGroupConfig `type:"list"`
 
 	// The Amazon EMR release label, which determines the version of open-source
 	// application packages installed on the cluster. Release labels are in the
@@ -10284,10 +15720,10 @@ type RunJobFlowInput struct {
 	// regardless of when the request to terminate the instance was submitted. This
 	// option is only available with Amazon EMR 5.1.0 and later and is the default
 	// for clusters created using that version. TERMINATE_AT_TASK_COMPLETION indicates
-	// that Amazon EMR blacklists and drains tasks from nodes before terminating
-	// the Amazon EC2 instances, regardless of the instance-hour boundary. With
-	// either behavior, Amazon EMR removes the least active nodes first and blocks
-	// instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
+	// that Amazon EMR adds nodes to a deny list and drains tasks from nodes before
+	// terminating the Amazon EC2 instances, regardless of the instance-hour boundary.
+	// With either behavior, Amazon EMR removes the least active nodes first and
+	// blocks instance termination if it could lead to HDFS corruption. TERMINATE_AT_TASK_COMPLETION
 	// available only in Amazon EMR version 4.1.0 and later, and is the default
 	// for versions of Amazon EMR earlier than 5.1.0.
 	ScaleDownBehavior *string `type:"string" enum:"ScaleDownBehavior"`
@@ -10295,8 +15731,9 @@ type RunJobFlowInput struct {
 	// The name of a security configuration to apply to the cluster.
 	SecurityConfiguration *string `type:"string"`
 
-	// The IAM role that will be assumed by the Amazon EMR service to access AWS
-	// resources on your behalf.
+	// The IAM role that Amazon EMR assumes in order to access Amazon Web Services
+	// resources on your behalf. If you've created a custom service role path, you
+	// must specify it for the service role when you launch your cluster.
 	ServiceRole *string `type:"string"`
 
 	// Specifies the number of steps that can be executed concurrently. The default
@@ -10322,19 +15759,39 @@ type RunJobFlowInput struct {
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
 	Tags []*Tag `type:"list"`
 
-	// A value of true indicates that all IAM users in the AWS account can perform
-	// cluster actions if they have the proper IAM policy permissions. This is the
-	// default. A value of false indicates that only the IAM user who created the
-	// cluster can perform actions.
+	//
+	// The VisibleToAllUsers parameter is no longer supported. By default, the value
+	// is set to true. Setting it to false now has no effect.
+	//
+	// Set this value to true so that IAM principals in the Amazon Web Services
+	// account associated with the cluster can perform EMR actions on the cluster
+	// that their IAM policies allow. This value defaults to true for clusters created
+	// using the EMR API or the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
+	// command.
+	//
+	// When set to false, only the IAM principal that created the cluster and the
+	// Amazon Web Services account root user can perform EMR actions for the cluster,
+	// regardless of the IAM permissions policies attached to other IAM principals.
+	// For more information, see Understanding the EMR Cluster VisibleToAllUsers
+	// Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RunJobFlowInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RunJobFlowInput) GoString() string {
 	return s.String()
 }
@@ -10371,6 +15828,16 @@ func (s *RunJobFlowInput) Validate() error {
 	if s.ManagedScalingPolicy != nil {
 		if err := s.ManagedScalingPolicy.Validate(); err != nil {
 			invalidParams.AddNested("ManagedScalingPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PlacementGroupConfigs != nil {
+		for i, v := range s.PlacementGroupConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PlacementGroupConfigs", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.Steps != nil {
@@ -10411,6 +15878,12 @@ func (s *RunJobFlowInput) SetApplications(v []*Application) *RunJobFlowInput {
 // SetAutoScalingRole sets the AutoScalingRole field's value.
 func (s *RunJobFlowInput) SetAutoScalingRole(v string) *RunJobFlowInput {
 	s.AutoScalingRole = &v
+	return s
+}
+
+// SetAutoTerminationPolicy sets the AutoTerminationPolicy field's value.
+func (s *RunJobFlowInput) SetAutoTerminationPolicy(v *AutoTerminationPolicy) *RunJobFlowInput {
+	s.AutoTerminationPolicy = v
 	return s
 }
 
@@ -10456,6 +15929,12 @@ func (s *RunJobFlowInput) SetKerberosAttributes(v *KerberosAttributes) *RunJobFl
 	return s
 }
 
+// SetLogEncryptionKmsKeyId sets the LogEncryptionKmsKeyId field's value.
+func (s *RunJobFlowInput) SetLogEncryptionKmsKeyId(v string) *RunJobFlowInput {
+	s.LogEncryptionKmsKeyId = &v
+	return s
+}
+
 // SetLogUri sets the LogUri field's value.
 func (s *RunJobFlowInput) SetLogUri(v string) *RunJobFlowInput {
 	s.LogUri = &v
@@ -10477,6 +15956,18 @@ func (s *RunJobFlowInput) SetName(v string) *RunJobFlowInput {
 // SetNewSupportedProducts sets the NewSupportedProducts field's value.
 func (s *RunJobFlowInput) SetNewSupportedProducts(v []*SupportedProductConfig) *RunJobFlowInput {
 	s.NewSupportedProducts = v
+	return s
+}
+
+// SetOSReleaseLabel sets the OSReleaseLabel field's value.
+func (s *RunJobFlowInput) SetOSReleaseLabel(v string) *RunJobFlowInput {
+	s.OSReleaseLabel = &v
+	return s
+}
+
+// SetPlacementGroupConfigs sets the PlacementGroupConfigs field's value.
+func (s *RunJobFlowInput) SetPlacementGroupConfigs(v []*PlacementGroupConfig) *RunJobFlowInput {
+	s.PlacementGroupConfigs = v
 	return s
 }
 
@@ -10544,19 +16035,27 @@ func (s *RunJobFlowInput) SetVisibleToAllUsers(v bool) *RunJobFlowInput {
 type RunJobFlowOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name of the cluster.
+	// The Amazon Resource Name (ARN) of the cluster.
 	ClusterArn *string `min:"20" type:"string"`
 
-	// An unique identifier for the job flow.
+	// A unique identifier for the job flow.
 	JobFlowId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RunJobFlowOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RunJobFlowOutput) GoString() string {
 	return s.String()
 }
@@ -10589,12 +16088,20 @@ type ScalingAction struct {
 	SimpleScalingPolicyConfiguration *SimpleScalingPolicyConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingAction) GoString() string {
 	return s.String()
 }
@@ -10650,12 +16157,20 @@ type ScalingConstraints struct {
 	MinCapacity *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingConstraints) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingConstraints) GoString() string {
 	return s.String()
 }
@@ -10716,12 +16231,20 @@ type ScalingRule struct {
 	Trigger *ScalingTrigger `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingRule) GoString() string {
 	return s.String()
 }
@@ -10790,12 +16313,20 @@ type ScalingTrigger struct {
 	CloudWatchAlarmDefinition *CloudWatchAlarmDefinition `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingTrigger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScalingTrigger) GoString() string {
 	return s.String()
 }
@@ -10831,19 +16362,26 @@ type ScriptBootstrapActionConfig struct {
 	// A list of command line arguments to pass to the bootstrap action script.
 	Args []*string `type:"list"`
 
-	// Location of the script to run during a bootstrap action. Can be either a
-	// location in Amazon S3 or on a local file system.
+	// Location in Amazon S3 of the script to run during a bootstrap action.
 	//
 	// Path is a required field
 	Path *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScriptBootstrapActionConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScriptBootstrapActionConfig) GoString() string {
 	return s.String()
 }
@@ -10884,12 +16422,20 @@ type SecurityConfigurationSummary struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityConfigurationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityConfigurationSummary) GoString() string {
 	return s.String()
 }
@@ -10903,6 +16449,180 @@ func (s *SecurityConfigurationSummary) SetCreationDateTime(v time.Time) *Securit
 // SetName sets the Name field's value.
 func (s *SecurityConfigurationSummary) SetName(v string) *SecurityConfigurationSummary {
 	s.Name = &v
+	return s
+}
+
+// Details for an Amazon EMR Studio session mapping including creation time,
+// user or group ID, Studio ID, and so on.
+type SessionMappingDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The time the session mapping was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The globally unique identifier (GUID) of the user or group.
+	IdentityId *string `type:"string"`
+
+	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
+	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
+	// in the IAM Identity Center Identity Store API Reference.
+	IdentityName *string `type:"string"`
+
+	// Specifies whether the identity mapped to the Amazon EMR Studio is a user
+	// or a group.
+	IdentityType *string `type:"string" enum:"IdentityType"`
+
+	// The time the session mapping was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the session policy associated with the
+	// user or group.
+	SessionPolicyArn *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio.
+	StudioId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionMappingDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionMappingDetail) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *SessionMappingDetail) SetCreationTime(v time.Time) *SessionMappingDetail {
+	s.CreationTime = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *SessionMappingDetail) SetIdentityId(v string) *SessionMappingDetail {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityName sets the IdentityName field's value.
+func (s *SessionMappingDetail) SetIdentityName(v string) *SessionMappingDetail {
+	s.IdentityName = &v
+	return s
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *SessionMappingDetail) SetIdentityType(v string) *SessionMappingDetail {
+	s.IdentityType = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *SessionMappingDetail) SetLastModifiedTime(v time.Time) *SessionMappingDetail {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSessionPolicyArn sets the SessionPolicyArn field's value.
+func (s *SessionMappingDetail) SetSessionPolicyArn(v string) *SessionMappingDetail {
+	s.SessionPolicyArn = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *SessionMappingDetail) SetStudioId(v string) *SessionMappingDetail {
+	s.StudioId = &v
+	return s
+}
+
+// Details for an Amazon EMR Studio session mapping. The details do not include
+// the time the session mapping was last modified.
+type SessionMappingSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time the session mapping was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The globally unique identifier (GUID) of the user or group from the IAM Identity
+	// Center Identity Store.
+	IdentityId *string `type:"string"`
+
+	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
+	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
+	// in the IAM Identity Center Identity Store API Reference.
+	IdentityName *string `type:"string"`
+
+	// Specifies whether the identity mapped to the Amazon EMR Studio is a user
+	// or a group.
+	IdentityType *string `type:"string" enum:"IdentityType"`
+
+	// The Amazon Resource Name (ARN) of the session policy associated with the
+	// user or group.
+	SessionPolicyArn *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio.
+	StudioId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionMappingSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionMappingSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *SessionMappingSummary) SetCreationTime(v time.Time) *SessionMappingSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *SessionMappingSummary) SetIdentityId(v string) *SessionMappingSummary {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityName sets the IdentityName field's value.
+func (s *SessionMappingSummary) SetIdentityName(v string) *SessionMappingSummary {
+	s.IdentityName = &v
+	return s
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *SessionMappingSummary) SetIdentityType(v string) *SessionMappingSummary {
+	s.IdentityType = &v
+	return s
+}
+
+// SetSessionPolicyArn sets the SessionPolicyArn field's value.
+func (s *SessionMappingSummary) SetSessionPolicyArn(v string) *SessionMappingSummary {
+	s.SessionPolicyArn = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *SessionMappingSummary) SetStudioId(v string) *SessionMappingSummary {
+	s.StudioId = &v
 	return s
 }
 
@@ -10924,12 +16644,20 @@ type SetTerminationProtectionInput struct {
 	TerminationProtected *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetTerminationProtectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetTerminationProtectionInput) GoString() string {
 	return s.String()
 }
@@ -10966,12 +16694,20 @@ type SetTerminationProtectionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetTerminationProtectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetTerminationProtectionOutput) GoString() string {
 	return s.String()
 }
@@ -10985,21 +16721,30 @@ type SetVisibleToAllUsersInput struct {
 	// JobFlowIds is a required field
 	JobFlowIds []*string `type:"list" required:"true"`
 
-	// A value of true indicates that all IAM users in the AWS account can perform
-	// cluster actions if they have the proper IAM policy permissions. This is the
-	// default. A value of false indicates that only the IAM user who created the
-	// cluster can perform actions.
+	// A value of true indicates that an IAM principal in the Amazon Web Services
+	// account can perform EMR actions on the cluster that the IAM policies attached
+	// to the principal allow. A value of false indicates that only the IAM principal
+	// that created the cluster and the Amazon Web Services root user can perform
+	// EMR actions on the cluster.
 	//
 	// VisibleToAllUsers is a required field
 	VisibleToAllUsers *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetVisibleToAllUsersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetVisibleToAllUsersInput) GoString() string {
 	return s.String()
 }
@@ -11036,12 +16781,20 @@ type SetVisibleToAllUsersOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetVisibleToAllUsersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetVisibleToAllUsersOutput) GoString() string {
 	return s.String()
 }
@@ -11060,12 +16813,20 @@ type ShrinkPolicy struct {
 	InstanceResizePolicy *InstanceResizePolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShrinkPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShrinkPolicy) GoString() string {
 	return s.String()
 }
@@ -11118,12 +16879,20 @@ type SimpleScalingPolicyConfiguration struct {
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimpleScalingPolicyConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SimpleScalingPolicyConfiguration) GoString() string {
 	return s.String()
 }
@@ -11159,35 +16928,94 @@ func (s *SimpleScalingPolicyConfiguration) SetScalingAdjustment(v int64) *Simple
 	return s
 }
 
-// The launch specification for Spot instances in the instance fleet, which
-// determines the defined duration and provisioning timeout behavior.
+// The returned release label application names or versions.
+type SimplifiedApplication struct {
+	_ struct{} `type:"structure"`
+
+	// The returned release label application name. For example, hadoop.
+	Name *string `type:"string"`
+
+	// The returned release label application version. For example, 3.2.1.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SimplifiedApplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SimplifiedApplication) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *SimplifiedApplication) SetName(v string) *SimplifiedApplication {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *SimplifiedApplication) SetVersion(v string) *SimplifiedApplication {
+	s.Version = &v
+	return s
+}
+
+// The launch specification for Spot Instances in the instance fleet, which
+// determines the defined duration, provisioning timeout behavior, and allocation
+// strategy.
 //
 // The instance fleet configuration is available only in Amazon EMR versions
-// 4.8.0 and later, excluding 5.0.x versions.
+// 4.8.0 and later, excluding 5.0.x versions. Spot Instance allocation strategy
+// is available in Amazon EMR version 5.12.1 and later.
+//
+// Spot Instances with a defined duration (also known as Spot blocks) are no
+// longer available to new customers from July 1, 2021. For customers who have
+// previously used the feature, we will continue to support Spot Instances with
+// a defined duration until December 31, 2022.
 type SpotProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// The defined duration for Spot instances (also known as Spot blocks) in minutes.
-	// When specified, the Spot instance does not terminate before the defined duration
-	// expires, and defined duration pricing for Spot instances applies. Valid values
+	// Specifies the strategy to use in launching Spot Instance fleets. Currently,
+	// the only option is capacity-optimized (the default), which launches instances
+	// from Spot Instance pools with optimal capacity for the number of instances
+	// that are launching.
+	AllocationStrategy *string `type:"string" enum:"SpotProvisioningAllocationStrategy"`
+
+	// The defined duration for Spot Instances (also known as Spot blocks) in minutes.
+	// When specified, the Spot Instance does not terminate before the defined duration
+	// expires, and defined duration pricing for Spot Instances applies. Valid values
 	// are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as
-	// a Spot instance receives its instance ID. At the end of the duration, Amazon
-	// EC2 marks the Spot instance for termination and provides a Spot instance
+	// a Spot Instance receives its instance ID. At the end of the duration, Amazon
+	// EC2 marks the Spot Instance for termination and provides a Spot Instance
 	// termination notice, which gives the instance a two-minute warning before
 	// it terminates.
+	//
+	// Spot Instances with a defined duration (also known as Spot blocks) are no
+	// longer available to new customers from July 1, 2021. For customers who have
+	// previously used the feature, we will continue to support Spot Instances with
+	// a defined duration until December 31, 2022.
 	BlockDurationMinutes *int64 `type:"integer"`
 
 	// The action to take when TargetSpotCapacity has not been fulfilled when the
-	// TimeoutDurationMinutes has expired; that is, when all Spot instances could
+	// TimeoutDurationMinutes has expired; that is, when all Spot Instances could
 	// not be provisioned within the Spot provisioning timeout. Valid values are
 	// TERMINATE_CLUSTER and SWITCH_TO_ON_DEMAND. SWITCH_TO_ON_DEMAND specifies
-	// that if no Spot instances are available, On-Demand Instances should be provisioned
+	// that if no Spot Instances are available, On-Demand Instances should be provisioned
 	// to fulfill any remaining Spot capacity.
 	//
 	// TimeoutAction is a required field
 	TimeoutAction *string `type:"string" required:"true" enum:"SpotProvisioningTimeoutAction"`
 
-	// The spot provisioning timeout period in minutes. If Spot instances are not
+	// The spot provisioning timeout period in minutes. If Spot Instances are not
 	// provisioned within this time period, the TimeOutAction is taken. Minimum
 	// value is 5 and maximum value is 1440. The timeout applies only during initial
 	// provisioning, when the cluster is first created.
@@ -11196,12 +17024,20 @@ type SpotProvisioningSpecification struct {
 	TimeoutDurationMinutes *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SpotProvisioningSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SpotProvisioningSpecification) GoString() string {
 	return s.String()
 }
@@ -11222,6 +17058,12 @@ func (s *SpotProvisioningSpecification) Validate() error {
 	return nil
 }
 
+// SetAllocationStrategy sets the AllocationStrategy field's value.
+func (s *SpotProvisioningSpecification) SetAllocationStrategy(v string) *SpotProvisioningSpecification {
+	s.AllocationStrategy = &v
+	return s
+}
+
 // SetBlockDurationMinutes sets the BlockDurationMinutes field's value.
 func (s *SpotProvisioningSpecification) SetBlockDurationMinutes(v int64) *SpotProvisioningSpecification {
 	s.BlockDurationMinutes = &v
@@ -11240,6 +17082,176 @@ func (s *SpotProvisioningSpecification) SetTimeoutDurationMinutes(v int64) *Spot
 	return s
 }
 
+type StartNotebookExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the EMR Notebook to use for notebook execution.
+	//
+	// EditorId is a required field
+	EditorId *string `type:"string" required:"true"`
+
+	// Specifies the execution engine (cluster) that runs the notebook execution.
+	//
+	// ExecutionEngine is a required field
+	ExecutionEngine *ExecutionEngineConfig `type:"structure" required:"true"`
+
+	// An optional name for the notebook execution.
+	NotebookExecutionName *string `type:"string"`
+
+	// The unique identifier of the Amazon EC2 security group to associate with
+	// the EMR Notebook for this notebook execution.
+	NotebookInstanceSecurityGroupId *string `type:"string"`
+
+	// Input parameters in JSON format passed to the EMR Notebook at runtime for
+	// execution.
+	NotebookParams *string `type:"string"`
+
+	// The path and file name of the notebook file for this execution, relative
+	// to the path specified for the EMR Notebook. For example, if you specify a
+	// path of s3://MyBucket/MyNotebooks when you create an EMR Notebook for a notebook
+	// with an ID of e-ABCDEFGHIJK1234567890ABCD (the EditorID of this request),
+	// and you specify a RelativePath of my_notebook_executions/notebook_execution.ipynb,
+	// the location of the file for the notebook execution is s3://MyBucket/MyNotebooks/e-ABCDEFGHIJK1234567890ABCD/my_notebook_executions/notebook_execution.ipynb.
+	//
+	// RelativePath is a required field
+	RelativePath *string `type:"string" required:"true"`
+
+	// The name or ARN of the IAM role that is used as the service role for Amazon
+	// EMR (the EMR role) for the notebook execution.
+	//
+	// ServiceRole is a required field
+	ServiceRole *string `type:"string" required:"true"`
+
+	// A list of tags associated with a notebook execution. Tags are user-defined
+	// key-value pairs that consist of a required key string with a maximum of 128
+	// characters and an optional value string with a maximum of 256 characters.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNotebookExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNotebookExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartNotebookExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartNotebookExecutionInput"}
+	if s.EditorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EditorId"))
+	}
+	if s.ExecutionEngine == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionEngine"))
+	}
+	if s.RelativePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("RelativePath"))
+	}
+	if s.ServiceRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceRole"))
+	}
+	if s.ExecutionEngine != nil {
+		if err := s.ExecutionEngine.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionEngine", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEditorId sets the EditorId field's value.
+func (s *StartNotebookExecutionInput) SetEditorId(v string) *StartNotebookExecutionInput {
+	s.EditorId = &v
+	return s
+}
+
+// SetExecutionEngine sets the ExecutionEngine field's value.
+func (s *StartNotebookExecutionInput) SetExecutionEngine(v *ExecutionEngineConfig) *StartNotebookExecutionInput {
+	s.ExecutionEngine = v
+	return s
+}
+
+// SetNotebookExecutionName sets the NotebookExecutionName field's value.
+func (s *StartNotebookExecutionInput) SetNotebookExecutionName(v string) *StartNotebookExecutionInput {
+	s.NotebookExecutionName = &v
+	return s
+}
+
+// SetNotebookInstanceSecurityGroupId sets the NotebookInstanceSecurityGroupId field's value.
+func (s *StartNotebookExecutionInput) SetNotebookInstanceSecurityGroupId(v string) *StartNotebookExecutionInput {
+	s.NotebookInstanceSecurityGroupId = &v
+	return s
+}
+
+// SetNotebookParams sets the NotebookParams field's value.
+func (s *StartNotebookExecutionInput) SetNotebookParams(v string) *StartNotebookExecutionInput {
+	s.NotebookParams = &v
+	return s
+}
+
+// SetRelativePath sets the RelativePath field's value.
+func (s *StartNotebookExecutionInput) SetRelativePath(v string) *StartNotebookExecutionInput {
+	s.RelativePath = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *StartNotebookExecutionInput) SetServiceRole(v string) *StartNotebookExecutionInput {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartNotebookExecutionInput) SetTags(v []*Tag) *StartNotebookExecutionInput {
+	s.Tags = v
+	return s
+}
+
+type StartNotebookExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the notebook execution.
+	NotebookExecutionId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNotebookExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartNotebookExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotebookExecutionId sets the NotebookExecutionId field's value.
+func (s *StartNotebookExecutionOutput) SetNotebookExecutionId(v string) *StartNotebookExecutionOutput {
+	s.NotebookExecutionId = &v
+	return s
+}
+
 // This represents a step in a cluster.
 type Step struct {
 	_ struct{} `type:"structure"`
@@ -11247,10 +17259,30 @@ type Step struct {
 	// The action to take when the cluster step fails. Possible values are TERMINATE_CLUSTER,
 	// CANCEL_AND_WAIT, and CONTINUE. TERMINATE_JOB_FLOW is provided for backward
 	// compatibility. We recommend using TERMINATE_CLUSTER instead.
+	//
+	// If a cluster's StepConcurrencyLevel is greater than 1, do not use AddJobFlowSteps
+	// to submit a step with this parameter set to CANCEL_AND_WAIT or TERMINATE_CLUSTER.
+	// The step is not submitted and the action fails with a message that the ActionOnFailure
+	// setting is not valid.
+	//
+	// If you change a cluster's StepConcurrencyLevel to be greater than 1 while
+	// a step is running, the ActionOnFailure parameter may not behave as you expect.
+	// In this case, for a step that fails with this parameter set to CANCEL_AND_WAIT,
+	// pending steps and the running step are not canceled; for a step that fails
+	// with this parameter set to TERMINATE_CLUSTER, the cluster does not terminate.
 	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The Hadoop job configuration of the cluster step.
 	Config *HadoopStepConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the runtime role for a step on the cluster.
+	// The runtime role can be a cross-account IAM role. The runtime role ARN is
+	// a combination of account ID, role name, and role type using the following
+	// format: arn:partition:service:region:account:resource.
+	//
+	// For example, arn:aws:iam::1234567890:role/ReadOnly is a correctly formatted
+	// runtime role ARN.
+	ExecutionRoleArn *string `type:"string"`
 
 	// The identifier of the cluster step.
 	Id *string `type:"string"`
@@ -11262,12 +17294,20 @@ type Step struct {
 	Status *StepStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Step) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Step) GoString() string {
 	return s.String()
 }
@@ -11281,6 +17321,12 @@ func (s *Step) SetActionOnFailure(v string) *Step {
 // SetConfig sets the Config field's value.
 func (s *Step) SetConfig(v *HadoopStepConfig) *Step {
 	s.Config = v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *Step) SetExecutionRoleArn(v string) *Step {
+	s.ExecutionRoleArn = &v
 	return s
 }
 
@@ -11302,13 +17348,32 @@ func (s *Step) SetStatus(v *StepStatus) *Step {
 	return s
 }
 
-// Specification of a cluster (job flow) step.
+// Specification for a cluster (job flow) step.
 type StepConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The action to take when the cluster step fails. Possible values are TERMINATE_CLUSTER,
-	// CANCEL_AND_WAIT, and CONTINUE. TERMINATE_JOB_FLOW is provided for backward
-	// compatibility. We recommend using TERMINATE_CLUSTER instead.
+	// The action to take when the step fails. Use one of the following values:
+	//
+	//    * TERMINATE_CLUSTER - Shuts down the cluster.
+	//
+	//    * CANCEL_AND_WAIT - Cancels any pending steps and returns the cluster
+	//    to the WAITING state.
+	//
+	//    * CONTINUE - Continues to the next step in the queue.
+	//
+	//    * TERMINATE_JOB_FLOW - Shuts down the cluster. TERMINATE_JOB_FLOW is provided
+	//    for backward compatibility. We recommend using TERMINATE_CLUSTER instead.
+	//
+	// If a cluster's StepConcurrencyLevel is greater than 1, do not use AddJobFlowSteps
+	// to submit a step with this parameter set to CANCEL_AND_WAIT or TERMINATE_CLUSTER.
+	// The step is not submitted and the action fails with a message that the ActionOnFailure
+	// setting is not valid.
+	//
+	// If you change a cluster's StepConcurrencyLevel to be greater than 1 while
+	// a step is running, the ActionOnFailure parameter may not behave as you expect.
+	// In this case, for a step that fails with this parameter set to CANCEL_AND_WAIT,
+	// pending steps and the running step are not canceled; for a step that fails
+	// with this parameter set to TERMINATE_CLUSTER, the cluster does not terminate.
 	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The JAR file used for the step.
@@ -11322,12 +17387,20 @@ type StepConfig struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepConfig) GoString() string {
 	return s.String()
 }
@@ -11386,12 +17459,20 @@ type StepDetail struct {
 	StepConfig *StepConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepDetail) GoString() string {
 	return s.String()
 }
@@ -11432,12 +17513,20 @@ type StepExecutionStatusDetail struct {
 	State *string `type:"string" required:"true" enum:"StepExecutionState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepExecutionStatusDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepExecutionStatusDetail) GoString() string {
 	return s.String()
 }
@@ -11484,12 +17573,20 @@ type StepStateChangeReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -11524,12 +17621,20 @@ type StepStatus struct {
 	Timeline *StepTimeline `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepStatus) GoString() string {
 	return s.String()
 }
@@ -11564,7 +17669,7 @@ type StepSummary struct {
 
 	// The action to take when the cluster step fails. Possible values are TERMINATE_CLUSTER,
 	// CANCEL_AND_WAIT, and CONTINUE. TERMINATE_JOB_FLOW is available for backward
-	// compatibility. We recommend using TERMINATE_CLUSTER instead.
+	// compatibility.
 	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The Hadoop job configuration of the cluster step.
@@ -11580,12 +17685,20 @@ type StepSummary struct {
 	Status *StepStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepSummary) GoString() string {
 	return s.String()
 }
@@ -11634,12 +17747,20 @@ type StepTimeline struct {
 	StartDateTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepTimeline) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StepTimeline) GoString() string {
 	return s.String()
 }
@@ -11662,7 +17783,351 @@ func (s *StepTimeline) SetStartDateTime(v time.Time) *StepTimeline {
 	return s
 }
 
-// The list of supported product configurations which allow user-supplied arguments.
+type StopNotebookExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the notebook execution.
+	//
+	// NotebookExecutionId is a required field
+	NotebookExecutionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopNotebookExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopNotebookExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopNotebookExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopNotebookExecutionInput"}
+	if s.NotebookExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookExecutionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotebookExecutionId sets the NotebookExecutionId field's value.
+func (s *StopNotebookExecutionInput) SetNotebookExecutionId(v string) *StopNotebookExecutionInput {
+	s.NotebookExecutionId = &v
+	return s
+}
+
+type StopNotebookExecutionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopNotebookExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopNotebookExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// Details for an Amazon EMR Studio including ID, creation time, name, and so
+// on.
+type Studio struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the Amazon EMR Studio authenticates users using IAM or
+	// IAM Identity Center.
+	AuthMode *string `type:"string" enum:"AuthMode"`
+
+	// The time the Amazon EMR Studio was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook
+	// files.
+	DefaultS3Location *string `type:"string"`
+
+	// The detailed description of the Amazon EMR Studio.
+	Description *string `type:"string"`
+
+	// The ID of the Engine security group associated with the Amazon EMR Studio.
+	// The Engine security group allows inbound network traffic from resources in
+	// the Workspace security group.
+	EngineSecurityGroupId *string `type:"string"`
+
+	// Your identity provider's authentication endpoint. Amazon EMR Studio redirects
+	// federated users to this endpoint for authentication when logging in to a
+	// Studio with the Studio URL.
+	IdpAuthUrl *string `type:"string"`
+
+	// The name of your identity provider's RelayState parameter.
+	IdpRelayStateParameterName *string `type:"string"`
+
+	// The name of the Amazon EMR Studio.
+	Name *string `type:"string"`
+
+	// The name of the IAM role assumed by the Amazon EMR Studio.
+	ServiceRole *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Amazon EMR Studio.
+	StudioArn *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio.
+	StudioId *string `type:"string"`
+
+	// The list of IDs of the subnets associated with the Amazon EMR Studio.
+	SubnetIds []*string `type:"list"`
+
+	// A list of tags associated with the Amazon EMR Studio.
+	Tags []*Tag `type:"list"`
+
+	// The unique access URL of the Amazon EMR Studio.
+	Url *string `type:"string"`
+
+	// The name of the IAM role assumed by users logged in to the Amazon EMR Studio.
+	// A Studio only requires a UserRole when you use IAM authentication.
+	UserRole *string `type:"string"`
+
+	// The ID of the VPC associated with the Amazon EMR Studio.
+	VpcId *string `type:"string"`
+
+	// The ID of the Workspace security group associated with the Amazon EMR Studio.
+	// The Workspace security group allows outbound network traffic to resources
+	// in the Engine security group and to the internet.
+	WorkspaceSecurityGroupId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Studio) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Studio) GoString() string {
+	return s.String()
+}
+
+// SetAuthMode sets the AuthMode field's value.
+func (s *Studio) SetAuthMode(v string) *Studio {
+	s.AuthMode = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Studio) SetCreationTime(v time.Time) *Studio {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDefaultS3Location sets the DefaultS3Location field's value.
+func (s *Studio) SetDefaultS3Location(v string) *Studio {
+	s.DefaultS3Location = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Studio) SetDescription(v string) *Studio {
+	s.Description = &v
+	return s
+}
+
+// SetEngineSecurityGroupId sets the EngineSecurityGroupId field's value.
+func (s *Studio) SetEngineSecurityGroupId(v string) *Studio {
+	s.EngineSecurityGroupId = &v
+	return s
+}
+
+// SetIdpAuthUrl sets the IdpAuthUrl field's value.
+func (s *Studio) SetIdpAuthUrl(v string) *Studio {
+	s.IdpAuthUrl = &v
+	return s
+}
+
+// SetIdpRelayStateParameterName sets the IdpRelayStateParameterName field's value.
+func (s *Studio) SetIdpRelayStateParameterName(v string) *Studio {
+	s.IdpRelayStateParameterName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Studio) SetName(v string) *Studio {
+	s.Name = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *Studio) SetServiceRole(v string) *Studio {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetStudioArn sets the StudioArn field's value.
+func (s *Studio) SetStudioArn(v string) *Studio {
+	s.StudioArn = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *Studio) SetStudioId(v string) *Studio {
+	s.StudioId = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *Studio) SetSubnetIds(v []*string) *Studio {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Studio) SetTags(v []*Tag) *Studio {
+	s.Tags = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *Studio) SetUrl(v string) *Studio {
+	s.Url = &v
+	return s
+}
+
+// SetUserRole sets the UserRole field's value.
+func (s *Studio) SetUserRole(v string) *Studio {
+	s.UserRole = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *Studio) SetVpcId(v string) *Studio {
+	s.VpcId = &v
+	return s
+}
+
+// SetWorkspaceSecurityGroupId sets the WorkspaceSecurityGroupId field's value.
+func (s *Studio) SetWorkspaceSecurityGroupId(v string) *Studio {
+	s.WorkspaceSecurityGroupId = &v
+	return s
+}
+
+// Details for an Amazon EMR Studio, including ID, Name, VPC, and Description.
+// The details do not include subnets, IAM roles, security groups, or tags associated
+// with the Studio.
+type StudioSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the Studio authenticates users using IAM or IAM Identity
+	// Center.
+	AuthMode *string `type:"string" enum:"AuthMode"`
+
+	// The time when the Amazon EMR Studio was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The detailed description of the Amazon EMR Studio.
+	Description *string `type:"string"`
+
+	// The name of the Amazon EMR Studio.
+	Name *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio.
+	StudioId *string `type:"string"`
+
+	// The unique access URL of the Amazon EMR Studio.
+	Url *string `type:"string"`
+
+	// The ID of the Virtual Private Cloud (Amazon VPC) associated with the Amazon
+	// EMR Studio.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StudioSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StudioSummary) GoString() string {
+	return s.String()
+}
+
+// SetAuthMode sets the AuthMode field's value.
+func (s *StudioSummary) SetAuthMode(v string) *StudioSummary {
+	s.AuthMode = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *StudioSummary) SetCreationTime(v time.Time) *StudioSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StudioSummary) SetDescription(v string) *StudioSummary {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StudioSummary) SetName(v string) *StudioSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *StudioSummary) SetStudioId(v string) *StudioSummary {
+	s.StudioId = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *StudioSummary) SetUrl(v string) *StudioSummary {
+	s.Url = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *StudioSummary) SetVpcId(v string) *StudioSummary {
+	s.VpcId = &v
+	return s
+}
+
+// The list of supported product configurations that allow user-supplied arguments.
 // EMR accepts these arguments and forwards them to the corresponding installation
 // script as bootstrap action arguments.
 type SupportedProductConfig struct {
@@ -11675,12 +18140,20 @@ type SupportedProductConfig struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SupportedProductConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SupportedProductConfig) GoString() string {
 	return s.String()
 }
@@ -11697,7 +18170,7 @@ func (s *SupportedProductConfig) SetName(v string) *SupportedProductConfig {
 	return s
 }
 
-// A key/value pair containing user-defined metadata that you can associate
+// A key-value pair containing user-defined metadata that you can associate
 // with an Amazon EMR resource. Tags make it easier to associate clusters in
 // various ways, such as grouping clusters to track your Amazon EMR resource
 // allocation costs. For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
@@ -11713,12 +18186,20 @@ type Tag struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -11739,18 +18220,26 @@ func (s *Tag) SetValue(v string) *Tag {
 type TerminateJobFlowsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of job flows to be shutdown.
+	// A list of job flows to be shut down.
 	//
 	// JobFlowIds is a required field
 	JobFlowIds []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateJobFlowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateJobFlowsInput) GoString() string {
 	return s.String()
 }
@@ -11778,18 +18267,302 @@ type TerminateJobFlowsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateJobFlowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateJobFlowsOutput) GoString() string {
 	return s.String()
 }
 
-// EBS volume specifications such as volume type, IOPS, and size (GiB) that
-// will be requested for the EBS volume attached to an EC2 instance in the cluster.
+type UpdateStudioInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location to back up Workspaces and notebook files for the Amazon
+	// EMR Studio.
+	DefaultS3Location *string `type:"string"`
+
+	// A detailed description to assign to the Amazon EMR Studio.
+	Description *string `type:"string"`
+
+	// A descriptive name for the Amazon EMR Studio.
+	Name *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio to update.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+
+	// A list of subnet IDs to associate with the Amazon EMR Studio. The list can
+	// include new subnet IDs, but must also include all of the subnet IDs previously
+	// associated with the Studio. The list order does not matter. A Studio can
+	// have a maximum of 5 subnets. The subnets must belong to the same VPC as the
+	// Studio.
+	SubnetIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStudioInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStudioInput"}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultS3Location sets the DefaultS3Location field's value.
+func (s *UpdateStudioInput) SetDefaultS3Location(v string) *UpdateStudioInput {
+	s.DefaultS3Location = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateStudioInput) SetDescription(v string) *UpdateStudioInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateStudioInput) SetName(v string) *UpdateStudioInput {
+	s.Name = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *UpdateStudioInput) SetStudioId(v string) *UpdateStudioInput {
+	s.StudioId = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *UpdateStudioInput) SetSubnetIds(v []*string) *UpdateStudioInput {
+	s.SubnetIds = v
+	return s
+}
+
+type UpdateStudioOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateStudioSessionMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The globally unique identifier (GUID) of the user or group. For more information,
+	// see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified.
+	IdentityId *string `type:"string"`
+
+	// The name of the user or group to update. For more information, see UserName
+	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
+	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
+	// or IdentityId must be specified.
+	IdentityName *string `type:"string"`
+
+	// Specifies whether the identity to update is a user or a group.
+	//
+	// IdentityType is a required field
+	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
+
+	// The Amazon Resource Name (ARN) of the session policy to associate with the
+	// specified user or group.
+	//
+	// SessionPolicyArn is a required field
+	SessionPolicyArn *string `type:"string" required:"true"`
+
+	// The ID of the Amazon EMR Studio.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioSessionMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioSessionMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStudioSessionMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStudioSessionMappingInput"}
+	if s.IdentityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityType"))
+	}
+	if s.SessionPolicyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionPolicyArn"))
+	}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *UpdateStudioSessionMappingInput) SetIdentityId(v string) *UpdateStudioSessionMappingInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityName sets the IdentityName field's value.
+func (s *UpdateStudioSessionMappingInput) SetIdentityName(v string) *UpdateStudioSessionMappingInput {
+	s.IdentityName = &v
+	return s
+}
+
+// SetIdentityType sets the IdentityType field's value.
+func (s *UpdateStudioSessionMappingInput) SetIdentityType(v string) *UpdateStudioSessionMappingInput {
+	s.IdentityType = &v
+	return s
+}
+
+// SetSessionPolicyArn sets the SessionPolicyArn field's value.
+func (s *UpdateStudioSessionMappingInput) SetSessionPolicyArn(v string) *UpdateStudioSessionMappingInput {
+	s.SessionPolicyArn = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *UpdateStudioSessionMappingInput) SetStudioId(v string) *UpdateStudioSessionMappingInput {
+	s.StudioId = &v
+	return s
+}
+
+type UpdateStudioSessionMappingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioSessionMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStudioSessionMappingOutput) GoString() string {
+	return s.String()
+}
+
+// The username and password that you use to connect to cluster endpoints.
+type UsernamePassword struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The password associated with the temporary credentials that you use to connect
+	// to cluster endpoints.
+	Password *string `type:"string"`
+
+	// The username associated with the temporary credentials that you use to connect
+	// to cluster endpoints.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernamePassword) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernamePassword) GoString() string {
+	return s.String()
+}
+
+// SetPassword sets the Password field's value.
+func (s *UsernamePassword) SetPassword(v string) *UsernamePassword {
+	s.Password = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *UsernamePassword) SetUsername(v string) *UsernamePassword {
+	s.Username = &v
+	return s
+}
+
+// EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
+// (MiB/s) that are requested for the EBS volume attached to an EC2 instance
+// in the cluster.
 type VolumeSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -11802,18 +18575,31 @@ type VolumeSpecification struct {
 	// SizeInGB is a required field
 	SizeInGB *int64 `type:"integer" required:"true"`
 
-	// The volume type. Volume types supported are gp2, io1, standard.
+	// The throughput, in mebibyte per second (MiB/s). This optional parameter can
+	// be a number from 125 - 1000 and is valid only for gp3 volumes.
+	Throughput *int64 `type:"integer"`
+
+	// The volume type. Volume types supported are gp3, gp2, io1, st1, sc1, and
+	// standard.
 	//
 	// VolumeType is a required field
 	VolumeType *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VolumeSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VolumeSpecification) GoString() string {
 	return s.String()
 }
@@ -11846,6 +18632,12 @@ func (s *VolumeSpecification) SetSizeInGB(v int64) *VolumeSpecification {
 	return s
 }
 
+// SetThroughput sets the Throughput field's value.
+func (s *VolumeSpecification) SetThroughput(v int64) *VolumeSpecification {
+	s.Throughput = &v
+	return s
+}
+
 // SetVolumeType sets the VolumeType field's value.
 func (s *VolumeSpecification) SetVolumeType(v string) *VolumeSpecification {
 	s.VolumeType = &v
@@ -11866,6 +18658,16 @@ const (
 	ActionOnFailureContinue = "CONTINUE"
 )
 
+// ActionOnFailure_Values returns all elements of the ActionOnFailure enum
+func ActionOnFailure_Values() []string {
+	return []string{
+		ActionOnFailureTerminateJobFlow,
+		ActionOnFailureTerminateCluster,
+		ActionOnFailureCancelAndWait,
+		ActionOnFailureContinue,
+	}
+}
+
 const (
 	// AdjustmentTypeChangeInCapacity is a AdjustmentType enum value
 	AdjustmentTypeChangeInCapacity = "CHANGE_IN_CAPACITY"
@@ -11876,6 +18678,31 @@ const (
 	// AdjustmentTypeExactCapacity is a AdjustmentType enum value
 	AdjustmentTypeExactCapacity = "EXACT_CAPACITY"
 )
+
+// AdjustmentType_Values returns all elements of the AdjustmentType enum
+func AdjustmentType_Values() []string {
+	return []string{
+		AdjustmentTypeChangeInCapacity,
+		AdjustmentTypePercentChangeInCapacity,
+		AdjustmentTypeExactCapacity,
+	}
+}
+
+const (
+	// AuthModeSso is a AuthMode enum value
+	AuthModeSso = "SSO"
+
+	// AuthModeIam is a AuthMode enum value
+	AuthModeIam = "IAM"
+)
+
+// AuthMode_Values returns all elements of the AuthMode enum
+func AuthMode_Values() []string {
+	return []string{
+		AuthModeSso,
+		AuthModeIam,
+	}
+}
 
 const (
 	// AutoScalingPolicyStatePending is a AutoScalingPolicyState enum value
@@ -11897,6 +18724,18 @@ const (
 	AutoScalingPolicyStateFailed = "FAILED"
 )
 
+// AutoScalingPolicyState_Values returns all elements of the AutoScalingPolicyState enum
+func AutoScalingPolicyState_Values() []string {
+	return []string{
+		AutoScalingPolicyStatePending,
+		AutoScalingPolicyStateAttaching,
+		AutoScalingPolicyStateAttached,
+		AutoScalingPolicyStateDetaching,
+		AutoScalingPolicyStateDetached,
+		AutoScalingPolicyStateFailed,
+	}
+}
+
 const (
 	// AutoScalingPolicyStateChangeReasonCodeUserRequest is a AutoScalingPolicyStateChangeReasonCode enum value
 	AutoScalingPolicyStateChangeReasonCodeUserRequest = "USER_REQUEST"
@@ -11908,6 +18747,15 @@ const (
 	AutoScalingPolicyStateChangeReasonCodeCleanupFailure = "CLEANUP_FAILURE"
 )
 
+// AutoScalingPolicyStateChangeReasonCode_Values returns all elements of the AutoScalingPolicyStateChangeReasonCode enum
+func AutoScalingPolicyStateChangeReasonCode_Values() []string {
+	return []string{
+		AutoScalingPolicyStateChangeReasonCodeUserRequest,
+		AutoScalingPolicyStateChangeReasonCodeProvisionFailure,
+		AutoScalingPolicyStateChangeReasonCodeCleanupFailure,
+	}
+}
+
 const (
 	// CancelStepsRequestStatusSubmitted is a CancelStepsRequestStatus enum value
 	CancelStepsRequestStatusSubmitted = "SUBMITTED"
@@ -11915,6 +18763,14 @@ const (
 	// CancelStepsRequestStatusFailed is a CancelStepsRequestStatus enum value
 	CancelStepsRequestStatusFailed = "FAILED"
 )
+
+// CancelStepsRequestStatus_Values returns all elements of the CancelStepsRequestStatus enum
+func CancelStepsRequestStatus_Values() []string {
+	return []string{
+		CancelStepsRequestStatusSubmitted,
+		CancelStepsRequestStatusFailed,
+	}
+}
 
 const (
 	// ClusterStateStarting is a ClusterState enum value
@@ -11938,6 +18794,19 @@ const (
 	// ClusterStateTerminatedWithErrors is a ClusterState enum value
 	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
 )
+
+// ClusterState_Values returns all elements of the ClusterState enum
+func ClusterState_Values() []string {
+	return []string{
+		ClusterStateStarting,
+		ClusterStateBootstrapping,
+		ClusterStateRunning,
+		ClusterStateWaiting,
+		ClusterStateTerminating,
+		ClusterStateTerminated,
+		ClusterStateTerminatedWithErrors,
+	}
+}
 
 const (
 	// ClusterStateChangeReasonCodeInternalError is a ClusterStateChangeReasonCode enum value
@@ -11965,6 +18834,20 @@ const (
 	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
 )
 
+// ClusterStateChangeReasonCode_Values returns all elements of the ClusterStateChangeReasonCode enum
+func ClusterStateChangeReasonCode_Values() []string {
+	return []string{
+		ClusterStateChangeReasonCodeInternalError,
+		ClusterStateChangeReasonCodeValidationError,
+		ClusterStateChangeReasonCodeInstanceFailure,
+		ClusterStateChangeReasonCodeInstanceFleetTimeout,
+		ClusterStateChangeReasonCodeBootstrapFailure,
+		ClusterStateChangeReasonCodeUserRequest,
+		ClusterStateChangeReasonCodeStepFailure,
+		ClusterStateChangeReasonCodeAllStepsCompleted,
+	}
+}
+
 const (
 	// ComparisonOperatorGreaterThanOrEqual is a ComparisonOperator enum value
 	ComparisonOperatorGreaterThanOrEqual = "GREATER_THAN_OR_EQUAL"
@@ -11979,6 +18862,16 @@ const (
 	ComparisonOperatorLessThanOrEqual = "LESS_THAN_OR_EQUAL"
 )
 
+// ComparisonOperator_Values returns all elements of the ComparisonOperator enum
+func ComparisonOperator_Values() []string {
+	return []string{
+		ComparisonOperatorGreaterThanOrEqual,
+		ComparisonOperatorGreaterThan,
+		ComparisonOperatorLessThan,
+		ComparisonOperatorLessThanOrEqual,
+	}
+}
+
 const (
 	// ComputeLimitsUnitTypeInstanceFleetUnits is a ComputeLimitsUnitType enum value
 	ComputeLimitsUnitTypeInstanceFleetUnits = "InstanceFleetUnits"
@@ -11990,6 +18883,43 @@ const (
 	ComputeLimitsUnitTypeVcpu = "VCPU"
 )
 
+// ComputeLimitsUnitType_Values returns all elements of the ComputeLimitsUnitType enum
+func ComputeLimitsUnitType_Values() []string {
+	return []string{
+		ComputeLimitsUnitTypeInstanceFleetUnits,
+		ComputeLimitsUnitTypeInstances,
+		ComputeLimitsUnitTypeVcpu,
+	}
+}
+
+const (
+	// ExecutionEngineTypeEmr is a ExecutionEngineType enum value
+	ExecutionEngineTypeEmr = "EMR"
+)
+
+// ExecutionEngineType_Values returns all elements of the ExecutionEngineType enum
+func ExecutionEngineType_Values() []string {
+	return []string{
+		ExecutionEngineTypeEmr,
+	}
+}
+
+const (
+	// IdentityTypeUser is a IdentityType enum value
+	IdentityTypeUser = "USER"
+
+	// IdentityTypeGroup is a IdentityType enum value
+	IdentityTypeGroup = "GROUP"
+)
+
+// IdentityType_Values returns all elements of the IdentityType enum
+func IdentityType_Values() []string {
+	return []string{
+		IdentityTypeUser,
+		IdentityTypeGroup,
+	}
+}
+
 const (
 	// InstanceCollectionTypeInstanceFleet is a InstanceCollectionType enum value
 	InstanceCollectionTypeInstanceFleet = "INSTANCE_FLEET"
@@ -11997,6 +18927,14 @@ const (
 	// InstanceCollectionTypeInstanceGroup is a InstanceCollectionType enum value
 	InstanceCollectionTypeInstanceGroup = "INSTANCE_GROUP"
 )
+
+// InstanceCollectionType_Values returns all elements of the InstanceCollectionType enum
+func InstanceCollectionType_Values() []string {
+	return []string{
+		InstanceCollectionTypeInstanceFleet,
+		InstanceCollectionTypeInstanceGroup,
+	}
+}
 
 const (
 	// InstanceFleetStateProvisioning is a InstanceFleetState enum value
@@ -12021,6 +18959,19 @@ const (
 	InstanceFleetStateTerminated = "TERMINATED"
 )
 
+// InstanceFleetState_Values returns all elements of the InstanceFleetState enum
+func InstanceFleetState_Values() []string {
+	return []string{
+		InstanceFleetStateProvisioning,
+		InstanceFleetStateBootstrapping,
+		InstanceFleetStateRunning,
+		InstanceFleetStateResizing,
+		InstanceFleetStateSuspended,
+		InstanceFleetStateTerminating,
+		InstanceFleetStateTerminated,
+	}
+}
+
 const (
 	// InstanceFleetStateChangeReasonCodeInternalError is a InstanceFleetStateChangeReasonCode enum value
 	InstanceFleetStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -12035,6 +18986,16 @@ const (
 	InstanceFleetStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
 
+// InstanceFleetStateChangeReasonCode_Values returns all elements of the InstanceFleetStateChangeReasonCode enum
+func InstanceFleetStateChangeReasonCode_Values() []string {
+	return []string{
+		InstanceFleetStateChangeReasonCodeInternalError,
+		InstanceFleetStateChangeReasonCodeValidationError,
+		InstanceFleetStateChangeReasonCodeInstanceFailure,
+		InstanceFleetStateChangeReasonCodeClusterTerminated,
+	}
+}
+
 const (
 	// InstanceFleetTypeMaster is a InstanceFleetType enum value
 	InstanceFleetTypeMaster = "MASTER"
@@ -12045,6 +19006,15 @@ const (
 	// InstanceFleetTypeTask is a InstanceFleetType enum value
 	InstanceFleetTypeTask = "TASK"
 )
+
+// InstanceFleetType_Values returns all elements of the InstanceFleetType enum
+func InstanceFleetType_Values() []string {
+	return []string{
+		InstanceFleetTypeMaster,
+		InstanceFleetTypeCore,
+		InstanceFleetTypeTask,
+	}
+}
 
 const (
 	// InstanceGroupStateProvisioning is a InstanceGroupState enum value
@@ -12081,6 +19051,23 @@ const (
 	InstanceGroupStateEnded = "ENDED"
 )
 
+// InstanceGroupState_Values returns all elements of the InstanceGroupState enum
+func InstanceGroupState_Values() []string {
+	return []string{
+		InstanceGroupStateProvisioning,
+		InstanceGroupStateBootstrapping,
+		InstanceGroupStateRunning,
+		InstanceGroupStateReconfiguring,
+		InstanceGroupStateResizing,
+		InstanceGroupStateSuspended,
+		InstanceGroupStateTerminating,
+		InstanceGroupStateTerminated,
+		InstanceGroupStateArrested,
+		InstanceGroupStateShuttingDown,
+		InstanceGroupStateEnded,
+	}
+}
+
 const (
 	// InstanceGroupStateChangeReasonCodeInternalError is a InstanceGroupStateChangeReasonCode enum value
 	InstanceGroupStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -12095,6 +19082,16 @@ const (
 	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
 
+// InstanceGroupStateChangeReasonCode_Values returns all elements of the InstanceGroupStateChangeReasonCode enum
+func InstanceGroupStateChangeReasonCode_Values() []string {
+	return []string{
+		InstanceGroupStateChangeReasonCodeInternalError,
+		InstanceGroupStateChangeReasonCodeValidationError,
+		InstanceGroupStateChangeReasonCodeInstanceFailure,
+		InstanceGroupStateChangeReasonCodeClusterTerminated,
+	}
+}
+
 const (
 	// InstanceGroupTypeMaster is a InstanceGroupType enum value
 	InstanceGroupTypeMaster = "MASTER"
@@ -12106,6 +19103,15 @@ const (
 	InstanceGroupTypeTask = "TASK"
 )
 
+// InstanceGroupType_Values returns all elements of the InstanceGroupType enum
+func InstanceGroupType_Values() []string {
+	return []string{
+		InstanceGroupTypeMaster,
+		InstanceGroupTypeCore,
+		InstanceGroupTypeTask,
+	}
+}
+
 const (
 	// InstanceRoleTypeMaster is a InstanceRoleType enum value
 	InstanceRoleTypeMaster = "MASTER"
@@ -12116,6 +19122,15 @@ const (
 	// InstanceRoleTypeTask is a InstanceRoleType enum value
 	InstanceRoleTypeTask = "TASK"
 )
+
+// InstanceRoleType_Values returns all elements of the InstanceRoleType enum
+func InstanceRoleType_Values() []string {
+	return []string{
+		InstanceRoleTypeMaster,
+		InstanceRoleTypeCore,
+		InstanceRoleTypeTask,
+	}
+}
 
 const (
 	// InstanceStateAwaitingFulfillment is a InstanceState enum value
@@ -12134,6 +19149,17 @@ const (
 	InstanceStateTerminated = "TERMINATED"
 )
 
+// InstanceState_Values returns all elements of the InstanceState enum
+func InstanceState_Values() []string {
+	return []string{
+		InstanceStateAwaitingFulfillment,
+		InstanceStateProvisioning,
+		InstanceStateBootstrapping,
+		InstanceStateRunning,
+		InstanceStateTerminated,
+	}
+}
+
 const (
 	// InstanceStateChangeReasonCodeInternalError is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -12150,6 +19176,17 @@ const (
 	// InstanceStateChangeReasonCodeClusterTerminated is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
+
+// InstanceStateChangeReasonCode_Values returns all elements of the InstanceStateChangeReasonCode enum
+func InstanceStateChangeReasonCode_Values() []string {
+	return []string{
+		InstanceStateChangeReasonCodeInternalError,
+		InstanceStateChangeReasonCodeValidationError,
+		InstanceStateChangeReasonCodeInstanceFailure,
+		InstanceStateChangeReasonCodeBootstrapFailure,
+		InstanceStateChangeReasonCodeClusterTerminated,
+	}
+}
 
 // The type of instance.
 const (
@@ -12178,6 +19215,20 @@ const (
 	JobFlowExecutionStateFailed = "FAILED"
 )
 
+// JobFlowExecutionState_Values returns all elements of the JobFlowExecutionState enum
+func JobFlowExecutionState_Values() []string {
+	return []string{
+		JobFlowExecutionStateStarting,
+		JobFlowExecutionStateBootstrapping,
+		JobFlowExecutionStateRunning,
+		JobFlowExecutionStateWaiting,
+		JobFlowExecutionStateShuttingDown,
+		JobFlowExecutionStateTerminated,
+		JobFlowExecutionStateCompleted,
+		JobFlowExecutionStateFailed,
+	}
+}
+
 const (
 	// MarketTypeOnDemand is a MarketType enum value
 	MarketTypeOnDemand = "ON_DEMAND"
@@ -12185,6 +19236,142 @@ const (
 	// MarketTypeSpot is a MarketType enum value
 	MarketTypeSpot = "SPOT"
 )
+
+// MarketType_Values returns all elements of the MarketType enum
+func MarketType_Values() []string {
+	return []string{
+		MarketTypeOnDemand,
+		MarketTypeSpot,
+	}
+}
+
+const (
+	// NotebookExecutionStatusStartPending is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusStartPending = "START_PENDING"
+
+	// NotebookExecutionStatusStarting is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusStarting = "STARTING"
+
+	// NotebookExecutionStatusRunning is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusRunning = "RUNNING"
+
+	// NotebookExecutionStatusFinishing is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusFinishing = "FINISHING"
+
+	// NotebookExecutionStatusFinished is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusFinished = "FINISHED"
+
+	// NotebookExecutionStatusFailing is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusFailing = "FAILING"
+
+	// NotebookExecutionStatusFailed is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusFailed = "FAILED"
+
+	// NotebookExecutionStatusStopPending is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusStopPending = "STOP_PENDING"
+
+	// NotebookExecutionStatusStopping is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusStopping = "STOPPING"
+
+	// NotebookExecutionStatusStopped is a NotebookExecutionStatus enum value
+	NotebookExecutionStatusStopped = "STOPPED"
+)
+
+// NotebookExecutionStatus_Values returns all elements of the NotebookExecutionStatus enum
+func NotebookExecutionStatus_Values() []string {
+	return []string{
+		NotebookExecutionStatusStartPending,
+		NotebookExecutionStatusStarting,
+		NotebookExecutionStatusRunning,
+		NotebookExecutionStatusFinishing,
+		NotebookExecutionStatusFinished,
+		NotebookExecutionStatusFailing,
+		NotebookExecutionStatusFailed,
+		NotebookExecutionStatusStopPending,
+		NotebookExecutionStatusStopping,
+		NotebookExecutionStatusStopped,
+	}
+}
+
+const (
+	// OnDemandCapacityReservationPreferenceOpen is a OnDemandCapacityReservationPreference enum value
+	OnDemandCapacityReservationPreferenceOpen = "open"
+
+	// OnDemandCapacityReservationPreferenceNone is a OnDemandCapacityReservationPreference enum value
+	OnDemandCapacityReservationPreferenceNone = "none"
+)
+
+// OnDemandCapacityReservationPreference_Values returns all elements of the OnDemandCapacityReservationPreference enum
+func OnDemandCapacityReservationPreference_Values() []string {
+	return []string{
+		OnDemandCapacityReservationPreferenceOpen,
+		OnDemandCapacityReservationPreferenceNone,
+	}
+}
+
+const (
+	// OnDemandCapacityReservationUsageStrategyUseCapacityReservationsFirst is a OnDemandCapacityReservationUsageStrategy enum value
+	OnDemandCapacityReservationUsageStrategyUseCapacityReservationsFirst = "use-capacity-reservations-first"
+)
+
+// OnDemandCapacityReservationUsageStrategy_Values returns all elements of the OnDemandCapacityReservationUsageStrategy enum
+func OnDemandCapacityReservationUsageStrategy_Values() []string {
+	return []string{
+		OnDemandCapacityReservationUsageStrategyUseCapacityReservationsFirst,
+	}
+}
+
+const (
+	// OnDemandProvisioningAllocationStrategyLowestPrice is a OnDemandProvisioningAllocationStrategy enum value
+	OnDemandProvisioningAllocationStrategyLowestPrice = "lowest-price"
+)
+
+// OnDemandProvisioningAllocationStrategy_Values returns all elements of the OnDemandProvisioningAllocationStrategy enum
+func OnDemandProvisioningAllocationStrategy_Values() []string {
+	return []string{
+		OnDemandProvisioningAllocationStrategyLowestPrice,
+	}
+}
+
+const (
+	// PlacementGroupStrategySpread is a PlacementGroupStrategy enum value
+	PlacementGroupStrategySpread = "SPREAD"
+
+	// PlacementGroupStrategyPartition is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyPartition = "PARTITION"
+
+	// PlacementGroupStrategyCluster is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyCluster = "CLUSTER"
+
+	// PlacementGroupStrategyNone is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyNone = "NONE"
+)
+
+// PlacementGroupStrategy_Values returns all elements of the PlacementGroupStrategy enum
+func PlacementGroupStrategy_Values() []string {
+	return []string{
+		PlacementGroupStrategySpread,
+		PlacementGroupStrategyPartition,
+		PlacementGroupStrategyCluster,
+		PlacementGroupStrategyNone,
+	}
+}
+
+const (
+	// ReconfigurationTypeOverwrite is a ReconfigurationType enum value
+	ReconfigurationTypeOverwrite = "OVERWRITE"
+
+	// ReconfigurationTypeMerge is a ReconfigurationType enum value
+	ReconfigurationTypeMerge = "MERGE"
+)
+
+// ReconfigurationType_Values returns all elements of the ReconfigurationType enum
+func ReconfigurationType_Values() []string {
+	return []string{
+		ReconfigurationTypeOverwrite,
+		ReconfigurationTypeMerge,
+	}
+}
 
 const (
 	// RepoUpgradeOnBootSecurity is a RepoUpgradeOnBoot enum value
@@ -12194,6 +19381,14 @@ const (
 	RepoUpgradeOnBootNone = "NONE"
 )
 
+// RepoUpgradeOnBoot_Values returns all elements of the RepoUpgradeOnBoot enum
+func RepoUpgradeOnBoot_Values() []string {
+	return []string{
+		RepoUpgradeOnBootSecurity,
+		RepoUpgradeOnBootNone,
+	}
+}
+
 const (
 	// ScaleDownBehaviorTerminateAtInstanceHour is a ScaleDownBehavior enum value
 	ScaleDownBehaviorTerminateAtInstanceHour = "TERMINATE_AT_INSTANCE_HOUR"
@@ -12202,6 +19397,26 @@ const (
 	ScaleDownBehaviorTerminateAtTaskCompletion = "TERMINATE_AT_TASK_COMPLETION"
 )
 
+// ScaleDownBehavior_Values returns all elements of the ScaleDownBehavior enum
+func ScaleDownBehavior_Values() []string {
+	return []string{
+		ScaleDownBehaviorTerminateAtInstanceHour,
+		ScaleDownBehaviorTerminateAtTaskCompletion,
+	}
+}
+
+const (
+	// SpotProvisioningAllocationStrategyCapacityOptimized is a SpotProvisioningAllocationStrategy enum value
+	SpotProvisioningAllocationStrategyCapacityOptimized = "capacity-optimized"
+)
+
+// SpotProvisioningAllocationStrategy_Values returns all elements of the SpotProvisioningAllocationStrategy enum
+func SpotProvisioningAllocationStrategy_Values() []string {
+	return []string{
+		SpotProvisioningAllocationStrategyCapacityOptimized,
+	}
+}
+
 const (
 	// SpotProvisioningTimeoutActionSwitchToOnDemand is a SpotProvisioningTimeoutAction enum value
 	SpotProvisioningTimeoutActionSwitchToOnDemand = "SWITCH_TO_ON_DEMAND"
@@ -12209,6 +19424,14 @@ const (
 	// SpotProvisioningTimeoutActionTerminateCluster is a SpotProvisioningTimeoutAction enum value
 	SpotProvisioningTimeoutActionTerminateCluster = "TERMINATE_CLUSTER"
 )
+
+// SpotProvisioningTimeoutAction_Values returns all elements of the SpotProvisioningTimeoutAction enum
+func SpotProvisioningTimeoutAction_Values() []string {
+	return []string{
+		SpotProvisioningTimeoutActionSwitchToOnDemand,
+		SpotProvisioningTimeoutActionTerminateCluster,
+	}
+}
 
 const (
 	// StatisticSampleCount is a Statistic enum value
@@ -12227,6 +19450,17 @@ const (
 	StatisticMaximum = "MAXIMUM"
 )
 
+// Statistic_Values returns all elements of the Statistic enum
+func Statistic_Values() []string {
+	return []string{
+		StatisticSampleCount,
+		StatisticAverage,
+		StatisticSum,
+		StatisticMinimum,
+		StatisticMaximum,
+	}
+}
+
 const (
 	// StepCancellationOptionSendInterrupt is a StepCancellationOption enum value
 	StepCancellationOptionSendInterrupt = "SEND_INTERRUPT"
@@ -12234,6 +19468,14 @@ const (
 	// StepCancellationOptionTerminateProcess is a StepCancellationOption enum value
 	StepCancellationOptionTerminateProcess = "TERMINATE_PROCESS"
 )
+
+// StepCancellationOption_Values returns all elements of the StepCancellationOption enum
+func StepCancellationOption_Values() []string {
+	return []string{
+		StepCancellationOptionSendInterrupt,
+		StepCancellationOptionTerminateProcess,
+	}
+}
 
 const (
 	// StepExecutionStatePending is a StepExecutionState enum value
@@ -12258,6 +19500,19 @@ const (
 	StepExecutionStateInterrupted = "INTERRUPTED"
 )
 
+// StepExecutionState_Values returns all elements of the StepExecutionState enum
+func StepExecutionState_Values() []string {
+	return []string{
+		StepExecutionStatePending,
+		StepExecutionStateRunning,
+		StepExecutionStateContinue,
+		StepExecutionStateCompleted,
+		StepExecutionStateCancelled,
+		StepExecutionStateFailed,
+		StepExecutionStateInterrupted,
+	}
+}
+
 const (
 	// StepStatePending is a StepState enum value
 	StepStatePending = "PENDING"
@@ -12281,10 +19536,30 @@ const (
 	StepStateInterrupted = "INTERRUPTED"
 )
 
+// StepState_Values returns all elements of the StepState enum
+func StepState_Values() []string {
+	return []string{
+		StepStatePending,
+		StepStateCancelPending,
+		StepStateRunning,
+		StepStateCompleted,
+		StepStateCancelled,
+		StepStateFailed,
+		StepStateInterrupted,
+	}
+}
+
 const (
 	// StepStateChangeReasonCodeNone is a StepStateChangeReasonCode enum value
 	StepStateChangeReasonCodeNone = "NONE"
 )
+
+// StepStateChangeReasonCode_Values returns all elements of the StepStateChangeReasonCode enum
+func StepStateChangeReasonCode_Values() []string {
+	return []string{
+		StepStateChangeReasonCodeNone,
+	}
+}
 
 const (
 	// UnitNone is a Unit enum value
@@ -12368,3 +19643,36 @@ const (
 	// UnitCountPerSecond is a Unit enum value
 	UnitCountPerSecond = "COUNT_PER_SECOND"
 )
+
+// Unit_Values returns all elements of the Unit enum
+func Unit_Values() []string {
+	return []string{
+		UnitNone,
+		UnitSeconds,
+		UnitMicroSeconds,
+		UnitMilliSeconds,
+		UnitBytes,
+		UnitKiloBytes,
+		UnitMegaBytes,
+		UnitGigaBytes,
+		UnitTeraBytes,
+		UnitBits,
+		UnitKiloBits,
+		UnitMegaBits,
+		UnitGigaBits,
+		UnitTeraBits,
+		UnitPercent,
+		UnitCount,
+		UnitBytesPerSecond,
+		UnitKiloBytesPerSecond,
+		UnitMegaBytesPerSecond,
+		UnitGigaBytesPerSecond,
+		UnitTeraBytesPerSecond,
+		UnitBitsPerSecond,
+		UnitKiloBitsPerSecond,
+		UnitMegaBitsPerSecond,
+		UnitGigaBitsPerSecond,
+		UnitTeraBitsPerSecond,
+		UnitCountPerSecond,
+	}
+}

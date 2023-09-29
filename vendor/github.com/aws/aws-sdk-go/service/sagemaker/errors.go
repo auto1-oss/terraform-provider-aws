@@ -11,8 +11,8 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// There was a conflict when you attempted to modify an experiment, trial, or
-	// trial component.
+	// There was a conflict when you attempted to modify a SageMaker entity such
+	// as an Experiment or Artifact.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeResourceInUse for service response error code
@@ -24,8 +24,8 @@ const (
 	// ErrCodeResourceLimitExceeded for service response error code
 	// "ResourceLimitExceeded".
 	//
-	// You have exceeded an Amazon SageMaker resource limit. For example, you might
-	// have too many training jobs created.
+	// You have exceeded an SageMaker resource limit. For example, you might have
+	// too many training jobs created.
 	ErrCodeResourceLimitExceeded = "ResourceLimitExceeded"
 
 	// ErrCodeResourceNotFound for service response error code
