@@ -29,14 +29,13 @@ const opAddTagsToResource = "AddTagsToResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AddTagsToResourceRequest method.
+//	req, resp := client.AddTagsToResourceRequest(params)
 //
-//    // Example sending a request using the AddTagsToResourceRequest method.
-//    req, resp := client.AddTagsToResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AddTagsToResource
 func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
@@ -58,10 +57,12 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 
 // AddTagsToResource API operation for AWS Database Migration Service.
 //
-// Adds metadata tags to an AWS DMS resource, including replication instance,
-// endpoint, security group, and migration task. These tags can also be used
-// with cost allocation reporting to track cost associated with DMS resources,
-// or used in a Condition statement in an IAM policy for DMS.
+// Adds metadata tags to an DMS resource, including replication instance, endpoint,
+// security group, and migration task. These tags can also be used with cost
+// allocation reporting to track cost associated with DMS resources, or used
+// in a Condition statement in an IAM policy for DMS. For more information,
+// see Tag (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html)
+// data type description.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -71,8 +72,8 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 // API operation AddTagsToResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AddTagsToResource
 func (c *DatabaseMigrationService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
@@ -112,14 +113,13 @@ const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ApplyPendingMaintenanceActionRequest method.
+//	req, resp := client.ApplyPendingMaintenanceActionRequest(params)
 //
-//    // Example sending a request using the ApplyPendingMaintenanceActionRequest method.
-//    req, resp := client.ApplyPendingMaintenanceActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ApplyPendingMaintenanceAction
 func (c *DatabaseMigrationService) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *request.Request, output *ApplyPendingMaintenanceActionOutput) {
@@ -151,8 +151,8 @@ func (c *DatabaseMigrationService) ApplyPendingMaintenanceActionRequest(input *A
 // API operation ApplyPendingMaintenanceAction for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ApplyPendingMaintenanceAction
 func (c *DatabaseMigrationService) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, error) {
@@ -176,6 +176,96 @@ func (c *DatabaseMigrationService) ApplyPendingMaintenanceActionWithContext(ctx 
 	return out, req.Send()
 }
 
+const opCancelReplicationTaskAssessmentRun = "CancelReplicationTaskAssessmentRun"
+
+// CancelReplicationTaskAssessmentRunRequest generates a "aws/request.Request" representing the
+// client's request for the CancelReplicationTaskAssessmentRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelReplicationTaskAssessmentRun for more information on using the CancelReplicationTaskAssessmentRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelReplicationTaskAssessmentRunRequest method.
+//	req, resp := client.CancelReplicationTaskAssessmentRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CancelReplicationTaskAssessmentRun
+func (c *DatabaseMigrationService) CancelReplicationTaskAssessmentRunRequest(input *CancelReplicationTaskAssessmentRunInput) (req *request.Request, output *CancelReplicationTaskAssessmentRunOutput) {
+	op := &request.Operation{
+		Name:       opCancelReplicationTaskAssessmentRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelReplicationTaskAssessmentRunInput{}
+	}
+
+	output = &CancelReplicationTaskAssessmentRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CancelReplicationTaskAssessmentRun API operation for AWS Database Migration Service.
+//
+// Cancels a single premigration assessment run.
+//
+// This operation prevents any individual assessments from running if they haven't
+// started running. It also attempts to cancel any individual assessments that
+// are currently running.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CancelReplicationTaskAssessmentRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CancelReplicationTaskAssessmentRun
+func (c *DatabaseMigrationService) CancelReplicationTaskAssessmentRun(input *CancelReplicationTaskAssessmentRunInput) (*CancelReplicationTaskAssessmentRunOutput, error) {
+	req, out := c.CancelReplicationTaskAssessmentRunRequest(input)
+	return out, req.Send()
+}
+
+// CancelReplicationTaskAssessmentRunWithContext is the same as CancelReplicationTaskAssessmentRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelReplicationTaskAssessmentRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) CancelReplicationTaskAssessmentRunWithContext(ctx aws.Context, input *CancelReplicationTaskAssessmentRunInput, opts ...request.Option) (*CancelReplicationTaskAssessmentRunOutput, error) {
+	req, out := c.CancelReplicationTaskAssessmentRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateEndpoint = "CreateEndpoint"
 
 // CreateEndpointRequest generates a "aws/request.Request" representing the
@@ -192,14 +282,13 @@ const opCreateEndpoint = "CreateEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEndpointRequest method.
+//	req, resp := client.CreateEndpointRequest(params)
 //
-//    // Example sending a request using the CreateEndpointRequest method.
-//    req, resp := client.CreateEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEndpoint
 func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointInput) (req *request.Request, output *CreateEndpointOutput) {
@@ -222,6 +311,13 @@ func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointIn
 //
 // Creates an endpoint using the provided settings.
 //
+// For a MySQL source or target endpoint, don't explicitly specify the database
+// using the DatabaseName request parameter on the CreateEndpoint API call.
+// Specifying DatabaseName when you create a MySQL endpoint replicates all the
+// task tables to this single database. For MySQL endpoints, you specify the
+// database only when you specify the schema in the table-mapping rules of the
+// DMS task.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -230,25 +326,28 @@ func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointIn
 // API operation CreateEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - S3AccessDeniedFault
+//     Insufficient privileges are preventing access to an Amazon S3 object.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEndpoint
 func (c *DatabaseMigrationService) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
@@ -288,14 +387,13 @@ const opCreateEventSubscription = "CreateEventSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEventSubscriptionRequest method.
+//	req, resp := client.CreateEventSubscriptionRequest(params)
 //
-//    // Example sending a request using the CreateEventSubscriptionRequest method.
-//    req, resp := client.CreateEventSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEventSubscription
 func (c *DatabaseMigrationService) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *request.Request, output *CreateEventSubscriptionOutput) {
@@ -316,23 +414,23 @@ func (c *DatabaseMigrationService) CreateEventSubscriptionRequest(input *CreateE
 
 // CreateEventSubscription API operation for AWS Database Migration Service.
 //
-// Creates an AWS DMS event notification subscription.
+// Creates an DMS event notification subscription.
 //
 // You can specify the type of source (SourceType) you want to be notified of,
-// provide a list of AWS DMS source IDs (SourceIds) that triggers the events,
-// and provide a list of event categories (EventCategories) for events you want
+// provide a list of DMS source IDs (SourceIds) that triggers the events, and
+// provide a list of event categories (EventCategories) for events you want
 // to be notified of. If you specify both the SourceType and SourceIds, such
 // as SourceType = replication-instance and SourceIdentifier = my-replinstance,
 // you will be notified of all the replication instance events for the specified
 // source. If you specify a SourceType but don't specify a SourceIdentifier,
-// you receive notice of the events for that source type for all your AWS DMS
-// sources. If you don't specify either SourceType nor SourceIdentifier, you
-// will be notified of events generated from all AWS DMS sources belonging to
-// your customer account.
+// you receive notice of the events for that source type for all your DMS sources.
+// If you don't specify either SourceType nor SourceIdentifier, you will be
+// notified of events generated from all DMS sources belonging to your customer
+// account.
 //
-// For more information about AWS DMS events, see Working with Events and Notifications
+// For more information about DMS events, see Working with Events and Notifications
 // (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html) in the
-// AWS Database Migration Service User Guide.
+// Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -342,36 +440,37 @@ func (c *DatabaseMigrationService) CreateEventSubscriptionRequest(input *CreateE
 // API operation CreateEventSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * SNSInvalidTopicFault
-//   The SNS topic is invalid.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * SNSNoAuthorizationFault
-//   You are not authorized for the SNS subscription.
+//   - SNSInvalidTopicFault
+//     The SNS topic is invalid.
 //
-//   * KMSAccessDeniedFault
-//   The ciphertext references a key that doesn't exist or that the DMS account
-//   doesn't have access to.
+//   - SNSNoAuthorizationFault
+//     You are not authorized for the SNS subscription.
 //
-//   * KMSDisabledFault
-//   The specified master key (CMK) isn't enabled.
+//   - KMSAccessDeniedFault
+//     The ciphertext references a key that doesn't exist or that the DMS account
+//     doesn't have access to.
 //
-//   * KMSInvalidStateFault
-//   The state of the specified AWS KMS resource isn't valid for this request.
+//   - KMSDisabledFault
+//     The specified KMS key isn't enabled.
 //
-//   * KMSNotFoundFault
-//   The specified AWS KMS entity or resource can't be found.
+//   - KMSInvalidStateFault
+//     The state of the specified KMS resource isn't valid for this request.
 //
-//   * KMSThrottlingFault
-//   This request triggered AWS KMS request throttling.
+//   - KMSNotFoundFault
+//     The specified KMS entity or resource can't be found.
+//
+//   - KMSThrottlingFault
+//     This request triggered KMS request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEventSubscription
 func (c *DatabaseMigrationService) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
@@ -395,6 +494,98 @@ func (c *DatabaseMigrationService) CreateEventSubscriptionWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opCreateFleetAdvisorCollector = "CreateFleetAdvisorCollector"
+
+// CreateFleetAdvisorCollectorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFleetAdvisorCollector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFleetAdvisorCollector for more information on using the CreateFleetAdvisorCollector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFleetAdvisorCollectorRequest method.
+//	req, resp := client.CreateFleetAdvisorCollectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateFleetAdvisorCollector
+func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorRequest(input *CreateFleetAdvisorCollectorInput) (req *request.Request, output *CreateFleetAdvisorCollectorOutput) {
+	op := &request.Operation{
+		Name:       opCreateFleetAdvisorCollector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFleetAdvisorCollectorInput{}
+	}
+
+	output = &CreateFleetAdvisorCollectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFleetAdvisorCollector API operation for AWS Database Migration Service.
+//
+// Creates a Fleet Advisor collector using the specified parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateFleetAdvisorCollector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - S3AccessDeniedFault
+//     Insufficient privileges are preventing access to an Amazon S3 object.
+//
+//   - S3ResourceNotFoundFault
+//     A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateFleetAdvisorCollector
+func (c *DatabaseMigrationService) CreateFleetAdvisorCollector(input *CreateFleetAdvisorCollectorInput) (*CreateFleetAdvisorCollectorOutput, error) {
+	req, out := c.CreateFleetAdvisorCollectorRequest(input)
+	return out, req.Send()
+}
+
+// CreateFleetAdvisorCollectorWithContext is the same as CreateFleetAdvisorCollector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFleetAdvisorCollector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) CreateFleetAdvisorCollectorWithContext(ctx aws.Context, input *CreateFleetAdvisorCollectorInput, opts ...request.Option) (*CreateFleetAdvisorCollectorOutput, error) {
+	req, out := c.CreateFleetAdvisorCollectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateReplicationInstance = "CreateReplicationInstance"
 
 // CreateReplicationInstanceRequest generates a "aws/request.Request" representing the
@@ -411,14 +602,13 @@ const opCreateReplicationInstance = "CreateReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationInstanceRequest method.
+//	req, resp := client.CreateReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the CreateReplicationInstanceRequest method.
-//    req, resp := client.CreateReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationInstance
 func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *CreateReplicationInstanceInput) (req *request.Request, output *CreateReplicationInstanceOutput) {
@@ -441,12 +631,11 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 //
 // Creates the replication instance using the specified parameters.
 //
-// AWS DMS requires that your account have certain roles with appropriate permissions
+// DMS requires that your account have certain roles with appropriate permissions
 // before you can create a replication instance. For information on the required
-// roles, see Creating the IAM Roles to Use With the AWS CLI and AWS DMS API
-// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.APIRole.html).
+// roles, see Creating the IAM Roles to Use With the CLI and DMS API (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#CHAP_Security.APIRole).
 // For information on the required permissions, see IAM Permissions Needed to
-// Use AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.IAMPermissions.html).
+// Use DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#CHAP_Security.IAMPermissions).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -456,38 +645,38 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 // API operation CreateReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InsufficientResourceCapacityFault
-//   There are not enough resources allocated to the database migration.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - InsufficientResourceCapacityFault
+//     There are not enough resources allocated to the database migration.
 //
-//   * StorageQuotaExceededFault
-//   The storage quota has been exceeded.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - StorageQuotaExceededFault
+//     The storage quota has been exceeded.
 //
-//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
-//   The replication subnet group does not cover enough Availability Zones (AZs).
-//   Edit the replication subnet group and add more AZs.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
 //
-//   * InvalidSubnet
-//   The subnet provided is invalid.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
+//   - InvalidSubnet
+//     The subnet provided is invalid.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationInstance
 func (c *DatabaseMigrationService) CreateReplicationInstance(input *CreateReplicationInstanceInput) (*CreateReplicationInstanceOutput, error) {
@@ -527,14 +716,13 @@ const opCreateReplicationSubnetGroup = "CreateReplicationSubnetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationSubnetGroupRequest method.
+//	req, resp := client.CreateReplicationSubnetGroupRequest(params)
 //
-//    // Example sending a request using the CreateReplicationSubnetGroupRequest method.
-//    req, resp := client.CreateReplicationSubnetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationSubnetGroup
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *CreateReplicationSubnetGroupInput) (req *request.Request, output *CreateReplicationSubnetGroupOutput) {
@@ -557,6 +745,10 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 //
 // Creates a replication subnet group given a list of the subnet IDs in a VPC.
 //
+// The VPC needs to have at least one subnet in at least two availability zones
+// in the Amazon Web Services Region, otherwise the service will throw a ReplicationSubnetGroupDoesNotCoverEnoughAZs
+// exception.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -565,25 +757,25 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 // API operation CreateReplicationSubnetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
-//   The replication subnet group does not cover enough Availability Zones (AZs).
-//   Edit the replication subnet group and add more AZs.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * InvalidSubnet
-//   The subnet provided is invalid.
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
+//
+//   - InvalidSubnet
+//     The subnet provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationSubnetGroup
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroup(input *CreateReplicationSubnetGroupInput) (*CreateReplicationSubnetGroupOutput, error) {
@@ -623,14 +815,13 @@ const opCreateReplicationTask = "CreateReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReplicationTaskRequest method.
+//	req, resp := client.CreateReplicationTaskRequest(params)
 //
-//    // Example sending a request using the CreateReplicationTaskRequest method.
-//    req, resp := client.CreateReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationTask
 func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateReplicationTaskInput) (req *request.Request, output *CreateReplicationTaskOutput) {
@@ -661,25 +852,25 @@ func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateRep
 // API operation CreateReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationTask
 func (c *DatabaseMigrationService) CreateReplicationTask(input *CreateReplicationTaskInput) (*CreateReplicationTaskOutput, error) {
@@ -719,14 +910,13 @@ const opDeleteCertificate = "DeleteCertificate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCertificateRequest method.
+//	req, resp := client.DeleteCertificateRequest(params)
 //
-//    // Example sending a request using the DeleteCertificateRequest method.
-//    req, resp := client.DeleteCertificateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteCertificate
 func (c *DatabaseMigrationService) DeleteCertificateRequest(input *DeleteCertificateInput) (req *request.Request, output *DeleteCertificateOutput) {
@@ -757,12 +947,13 @@ func (c *DatabaseMigrationService) DeleteCertificateRequest(input *DeleteCertifi
 // API operation DeleteCertificate for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteCertificate
 func (c *DatabaseMigrationService) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
@@ -802,14 +993,13 @@ const opDeleteConnection = "DeleteConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConnectionRequest method.
+//	req, resp := client.DeleteConnectionRequest(params)
 //
-//    // Example sending a request using the DeleteConnectionRequest method.
-//    req, resp := client.DeleteConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteConnection
 func (c *DatabaseMigrationService) DeleteConnectionRequest(input *DeleteConnectionInput) (req *request.Request, output *DeleteConnectionOutput) {
@@ -840,16 +1030,16 @@ func (c *DatabaseMigrationService) DeleteConnectionRequest(input *DeleteConnecti
 // API operation DeleteConnection for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteConnection
 func (c *DatabaseMigrationService) DeleteConnection(input *DeleteConnectionInput) (*DeleteConnectionOutput, error) {
@@ -889,14 +1079,13 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEndpointRequest method.
+//	req, resp := client.DeleteEndpointRequest(params)
 //
-//    // Example sending a request using the DeleteEndpointRequest method.
-//    req, resp := client.DeleteEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEndpoint
 func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
@@ -930,12 +1119,13 @@ func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointIn
 // API operation DeleteEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEndpoint
 func (c *DatabaseMigrationService) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
@@ -975,14 +1165,13 @@ const opDeleteEventSubscription = "DeleteEventSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventSubscriptionRequest method.
+//	req, resp := client.DeleteEventSubscriptionRequest(params)
 //
-//    // Example sending a request using the DeleteEventSubscriptionRequest method.
-//    req, resp := client.DeleteEventSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEventSubscription
 func (c *DatabaseMigrationService) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *request.Request, output *DeleteEventSubscriptionOutput) {
@@ -1003,7 +1192,7 @@ func (c *DatabaseMigrationService) DeleteEventSubscriptionRequest(input *DeleteE
 
 // DeleteEventSubscription API operation for AWS Database Migration Service.
 //
-// Deletes an AWS DMS event subscription.
+// Deletes an DMS event subscription.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1013,12 +1202,13 @@ func (c *DatabaseMigrationService) DeleteEventSubscriptionRequest(input *DeleteE
 // API operation DeleteEventSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEventSubscription
 func (c *DatabaseMigrationService) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
@@ -1042,6 +1232,172 @@ func (c *DatabaseMigrationService) DeleteEventSubscriptionWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opDeleteFleetAdvisorCollector = "DeleteFleetAdvisorCollector"
+
+// DeleteFleetAdvisorCollectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFleetAdvisorCollector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFleetAdvisorCollector for more information on using the DeleteFleetAdvisorCollector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFleetAdvisorCollectorRequest method.
+//	req, resp := client.DeleteFleetAdvisorCollectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorCollector
+func (c *DatabaseMigrationService) DeleteFleetAdvisorCollectorRequest(input *DeleteFleetAdvisorCollectorInput) (req *request.Request, output *DeleteFleetAdvisorCollectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFleetAdvisorCollector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFleetAdvisorCollectorInput{}
+	}
+
+	output = &DeleteFleetAdvisorCollectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFleetAdvisorCollector API operation for AWS Database Migration Service.
+//
+// Deletes the specified Fleet Advisor collector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteFleetAdvisorCollector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - CollectorNotFoundFault
+//     The specified collector doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorCollector
+func (c *DatabaseMigrationService) DeleteFleetAdvisorCollector(input *DeleteFleetAdvisorCollectorInput) (*DeleteFleetAdvisorCollectorOutput, error) {
+	req, out := c.DeleteFleetAdvisorCollectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFleetAdvisorCollectorWithContext is the same as DeleteFleetAdvisorCollector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFleetAdvisorCollector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DeleteFleetAdvisorCollectorWithContext(ctx aws.Context, input *DeleteFleetAdvisorCollectorInput, opts ...request.Option) (*DeleteFleetAdvisorCollectorOutput, error) {
+	req, out := c.DeleteFleetAdvisorCollectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFleetAdvisorDatabases = "DeleteFleetAdvisorDatabases"
+
+// DeleteFleetAdvisorDatabasesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFleetAdvisorDatabases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFleetAdvisorDatabases for more information on using the DeleteFleetAdvisorDatabases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFleetAdvisorDatabasesRequest method.
+//	req, resp := client.DeleteFleetAdvisorDatabasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesRequest(input *DeleteFleetAdvisorDatabasesInput) (req *request.Request, output *DeleteFleetAdvisorDatabasesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFleetAdvisorDatabases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFleetAdvisorDatabasesInput{}
+	}
+
+	output = &DeleteFleetAdvisorDatabasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFleetAdvisorDatabases API operation for AWS Database Migration Service.
+//
+// Deletes the specified Fleet Advisor collector databases.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteFleetAdvisorDatabases for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidOperationFault
+//     The action or operation requested isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabases(input *DeleteFleetAdvisorDatabasesInput) (*DeleteFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DeleteFleetAdvisorDatabasesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFleetAdvisorDatabasesWithContext is the same as DeleteFleetAdvisorDatabases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFleetAdvisorDatabases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DeleteFleetAdvisorDatabasesWithContext(ctx aws.Context, input *DeleteFleetAdvisorDatabasesInput, opts ...request.Option) (*DeleteFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DeleteFleetAdvisorDatabasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteReplicationInstance = "DeleteReplicationInstance"
 
 // DeleteReplicationInstanceRequest generates a "aws/request.Request" representing the
@@ -1058,14 +1414,13 @@ const opDeleteReplicationInstance = "DeleteReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationInstanceRequest method.
+//	req, resp := client.DeleteReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationInstanceRequest method.
-//    req, resp := client.DeleteReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationInstance
 func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *DeleteReplicationInstanceInput) (req *request.Request, output *DeleteReplicationInstanceOutput) {
@@ -1099,12 +1454,13 @@ func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *Delet
 // API operation DeleteReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationInstance
 func (c *DatabaseMigrationService) DeleteReplicationInstance(input *DeleteReplicationInstanceInput) (*DeleteReplicationInstanceOutput, error) {
@@ -1144,14 +1500,13 @@ const opDeleteReplicationSubnetGroup = "DeleteReplicationSubnetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationSubnetGroupRequest method.
+//	req, resp := client.DeleteReplicationSubnetGroupRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationSubnetGroupRequest method.
-//    req, resp := client.DeleteReplicationSubnetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationSubnetGroup
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *DeleteReplicationSubnetGroupInput) (req *request.Request, output *DeleteReplicationSubnetGroupOutput) {
@@ -1183,12 +1538,13 @@ func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *De
 // API operation DeleteReplicationSubnetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationSubnetGroup
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroup(input *DeleteReplicationSubnetGroupInput) (*DeleteReplicationSubnetGroupOutput, error) {
@@ -1228,14 +1584,13 @@ const opDeleteReplicationTask = "DeleteReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReplicationTaskRequest method.
+//	req, resp := client.DeleteReplicationTaskRequest(params)
 //
-//    // Example sending a request using the DeleteReplicationTaskRequest method.
-//    req, resp := client.DeleteReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTask
 func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteReplicationTaskInput) (req *request.Request, output *DeleteReplicationTaskOutput) {
@@ -1266,12 +1621,13 @@ func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteRep
 // API operation DeleteReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTask
 func (c *DatabaseMigrationService) DeleteReplicationTask(input *DeleteReplicationTaskInput) (*DeleteReplicationTaskOutput, error) {
@@ -1295,6 +1651,96 @@ func (c *DatabaseMigrationService) DeleteReplicationTaskWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opDeleteReplicationTaskAssessmentRun = "DeleteReplicationTaskAssessmentRun"
+
+// DeleteReplicationTaskAssessmentRunRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationTaskAssessmentRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteReplicationTaskAssessmentRun for more information on using the DeleteReplicationTaskAssessmentRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteReplicationTaskAssessmentRunRequest method.
+//	req, resp := client.DeleteReplicationTaskAssessmentRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTaskAssessmentRun
+func (c *DatabaseMigrationService) DeleteReplicationTaskAssessmentRunRequest(input *DeleteReplicationTaskAssessmentRunInput) (req *request.Request, output *DeleteReplicationTaskAssessmentRunOutput) {
+	op := &request.Operation{
+		Name:       opDeleteReplicationTaskAssessmentRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteReplicationTaskAssessmentRunInput{}
+	}
+
+	output = &DeleteReplicationTaskAssessmentRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteReplicationTaskAssessmentRun API operation for AWS Database Migration Service.
+//
+// Deletes the record of a single premigration assessment run.
+//
+// This operation removes all metadata that DMS maintains about this assessment
+// run. However, the operation leaves untouched all information about this assessment
+// run that is stored in your Amazon S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteReplicationTaskAssessmentRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTaskAssessmentRun
+func (c *DatabaseMigrationService) DeleteReplicationTaskAssessmentRun(input *DeleteReplicationTaskAssessmentRunInput) (*DeleteReplicationTaskAssessmentRunOutput, error) {
+	req, out := c.DeleteReplicationTaskAssessmentRunRequest(input)
+	return out, req.Send()
+}
+
+// DeleteReplicationTaskAssessmentRunWithContext is the same as DeleteReplicationTaskAssessmentRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteReplicationTaskAssessmentRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DeleteReplicationTaskAssessmentRunWithContext(ctx aws.Context, input *DeleteReplicationTaskAssessmentRunInput, opts ...request.Option) (*DeleteReplicationTaskAssessmentRunOutput, error) {
+	req, out := c.DeleteReplicationTaskAssessmentRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
 // DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
@@ -1311,14 +1757,13 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccountAttributesRequest method.
+//	req, resp := client.DescribeAccountAttributesRequest(params)
 //
-//    // Example sending a request using the DescribeAccountAttributesRequest method.
-//    req, resp := client.DescribeAccountAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeAccountAttributes
 func (c *DatabaseMigrationService) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
@@ -1339,13 +1784,13 @@ func (c *DatabaseMigrationService) DescribeAccountAttributesRequest(input *Descr
 
 // DescribeAccountAttributes API operation for AWS Database Migration Service.
 //
-// Lists all of the AWS DMS attributes for a customer account. These attributes
-// include AWS DMS quotas for the account and a unique account identifier in
-// a particular DMS region. DMS quotas include a list of resource quotas supported
-// by the account, such as the number of replication instances allowed. The
-// description for each resource quota, includes the quota name, current usage
-// toward that quota, and the quota's maximum value. DMS uses the unique account
-// identifier to name each artifact used by DMS in the given region.
+// Lists all of the DMS attributes for a customer account. These attributes
+// include DMS quotas for the account and a unique account identifier in a particular
+// DMS region. DMS quotas include a list of resource quotas supported by the
+// account, such as the number of replication instances allowed. The description
+// for each resource quota, includes the quota name, current usage toward that
+// quota, and the quota's maximum value. DMS uses the unique account identifier
+// to name each artifact used by DMS in the given region.
 //
 // This command does not take any parameters.
 //
@@ -1377,6 +1822,169 @@ func (c *DatabaseMigrationService) DescribeAccountAttributesWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opDescribeApplicableIndividualAssessments = "DescribeApplicableIndividualAssessments"
+
+// DescribeApplicableIndividualAssessmentsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeApplicableIndividualAssessments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeApplicableIndividualAssessments for more information on using the DescribeApplicableIndividualAssessments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeApplicableIndividualAssessmentsRequest method.
+//	req, resp := client.DescribeApplicableIndividualAssessmentsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeApplicableIndividualAssessments
+func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsRequest(input *DescribeApplicableIndividualAssessmentsInput) (req *request.Request, output *DescribeApplicableIndividualAssessmentsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeApplicableIndividualAssessments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeApplicableIndividualAssessmentsInput{}
+	}
+
+	output = &DescribeApplicableIndividualAssessmentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeApplicableIndividualAssessments API operation for AWS Database Migration Service.
+//
+// Provides a list of individual assessments that you can specify for a new
+// premigration assessment run, given one or more parameters.
+//
+// If you specify an existing migration task, this operation provides the default
+// individual assessments you can specify for that task. Otherwise, the specified
+// parameters model elements of a possible migration task on which to base a
+// premigration assessment run.
+//
+// To use these migration task modeling parameters, you must specify an existing
+// replication instance, a source database engine, a target database engine,
+// and a migration type. This combination of parameters potentially limits the
+// default individual assessments available for an assessment run created for
+// a corresponding migration task.
+//
+// If you specify no parameters, this operation provides a list of all possible
+// individual assessments that you can specify for an assessment run. If you
+// specify any one of the task modeling parameters, you must specify all of
+// them or the operation cannot provide a list of individual assessments. The
+// only parameter that you can specify alone is for an existing migration task.
+// The specified task definition then determines the default list of individual
+// assessments that you can specify in an assessment run for the task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeApplicableIndividualAssessments for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeApplicableIndividualAssessments
+func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessments(input *DescribeApplicableIndividualAssessmentsInput) (*DescribeApplicableIndividualAssessmentsOutput, error) {
+	req, out := c.DescribeApplicableIndividualAssessmentsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeApplicableIndividualAssessmentsWithContext is the same as DescribeApplicableIndividualAssessments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeApplicableIndividualAssessments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsWithContext(ctx aws.Context, input *DescribeApplicableIndividualAssessmentsInput, opts ...request.Option) (*DescribeApplicableIndividualAssessmentsOutput, error) {
+	req, out := c.DescribeApplicableIndividualAssessmentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeApplicableIndividualAssessmentsPages iterates over the pages of a DescribeApplicableIndividualAssessments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeApplicableIndividualAssessments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeApplicableIndividualAssessments operation.
+//	pageNum := 0
+//	err := client.DescribeApplicableIndividualAssessmentsPages(params,
+//	    func(page *databasemigrationservice.DescribeApplicableIndividualAssessmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsPages(input *DescribeApplicableIndividualAssessmentsInput, fn func(*DescribeApplicableIndividualAssessmentsOutput, bool) bool) error {
+	return c.DescribeApplicableIndividualAssessmentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeApplicableIndividualAssessmentsPagesWithContext same as DescribeApplicableIndividualAssessmentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeApplicableIndividualAssessmentsPagesWithContext(ctx aws.Context, input *DescribeApplicableIndividualAssessmentsInput, fn func(*DescribeApplicableIndividualAssessmentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeApplicableIndividualAssessmentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeApplicableIndividualAssessmentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeApplicableIndividualAssessmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeCertificates = "DescribeCertificates"
 
 // DescribeCertificatesRequest generates a "aws/request.Request" representing the
@@ -1393,14 +2001,13 @@ const opDescribeCertificates = "DescribeCertificates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCertificatesRequest method.
+//	req, resp := client.DescribeCertificatesRequest(params)
 //
-//    // Example sending a request using the DescribeCertificatesRequest method.
-//    req, resp := client.DescribeCertificatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeCertificates
 func (c *DatabaseMigrationService) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req *request.Request, output *DescribeCertificatesOutput) {
@@ -1437,8 +2044,8 @@ func (c *DatabaseMigrationService) DescribeCertificatesRequest(input *DescribeCe
 // API operation DescribeCertificates for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeCertificates
 func (c *DatabaseMigrationService) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeCertificatesOutput, error) {
@@ -1470,15 +2077,14 @@ func (c *DatabaseMigrationService) DescribeCertificatesWithContext(ctx aws.Conte
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeCertificates operation.
-//    pageNum := 0
-//    err := client.DescribeCertificatesPages(params,
-//        func(page *databasemigrationservice.DescribeCertificatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeCertificates operation.
+//	pageNum := 0
+//	err := client.DescribeCertificatesPages(params,
+//	    func(page *databasemigrationservice.DescribeCertificatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeCertificatesPages(input *DescribeCertificatesInput, fn func(*DescribeCertificatesOutput, bool) bool) error {
 	return c.DescribeCertificatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1530,14 +2136,13 @@ const opDescribeConnections = "DescribeConnections"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConnectionsRequest method.
+//	req, resp := client.DescribeConnectionsRequest(params)
 //
-//    // Example sending a request using the DescribeConnectionsRequest method.
-//    req, resp := client.DescribeConnectionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeConnections
 func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *request.Request, output *DescribeConnectionsOutput) {
@@ -1575,8 +2180,8 @@ func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeCon
 // API operation DescribeConnections for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeConnections
 func (c *DatabaseMigrationService) DescribeConnections(input *DescribeConnectionsInput) (*DescribeConnectionsOutput, error) {
@@ -1608,15 +2213,14 @@ func (c *DatabaseMigrationService) DescribeConnectionsWithContext(ctx aws.Contex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeConnections operation.
-//    pageNum := 0
-//    err := client.DescribeConnectionsPages(params,
-//        func(page *databasemigrationservice.DescribeConnectionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeConnections operation.
+//	pageNum := 0
+//	err := client.DescribeConnectionsPages(params,
+//	    func(page *databasemigrationservice.DescribeConnectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeConnectionsPages(input *DescribeConnectionsInput, fn func(*DescribeConnectionsOutput, bool) bool) error {
 	return c.DescribeConnectionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1652,6 +2256,137 @@ func (c *DatabaseMigrationService) DescribeConnectionsPagesWithContext(ctx aws.C
 	return p.Err()
 }
 
+const opDescribeEndpointSettings = "DescribeEndpointSettings"
+
+// DescribeEndpointSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpointSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEndpointSettings for more information on using the DescribeEndpointSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEndpointSettingsRequest method.
+//	req, resp := client.DescribeEndpointSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointSettings
+func (c *DatabaseMigrationService) DescribeEndpointSettingsRequest(input *DescribeEndpointSettingsInput) (req *request.Request, output *DescribeEndpointSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEndpointSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeEndpointSettingsInput{}
+	}
+
+	output = &DescribeEndpointSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEndpointSettings API operation for AWS Database Migration Service.
+//
+// Returns information about the possible endpoint settings available when you
+// create an endpoint for a specific database engine.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeEndpointSettings for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointSettings
+func (c *DatabaseMigrationService) DescribeEndpointSettings(input *DescribeEndpointSettingsInput) (*DescribeEndpointSettingsOutput, error) {
+	req, out := c.DescribeEndpointSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEndpointSettingsWithContext is the same as DescribeEndpointSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEndpointSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeEndpointSettingsWithContext(ctx aws.Context, input *DescribeEndpointSettingsInput, opts ...request.Option) (*DescribeEndpointSettingsOutput, error) {
+	req, out := c.DescribeEndpointSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeEndpointSettingsPages iterates over the pages of a DescribeEndpointSettings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEndpointSettings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeEndpointSettings operation.
+//	pageNum := 0
+//	err := client.DescribeEndpointSettingsPages(params,
+//	    func(page *databasemigrationservice.DescribeEndpointSettingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeEndpointSettingsPages(input *DescribeEndpointSettingsInput, fn func(*DescribeEndpointSettingsOutput, bool) bool) error {
+	return c.DescribeEndpointSettingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEndpointSettingsPagesWithContext same as DescribeEndpointSettingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeEndpointSettingsPagesWithContext(ctx aws.Context, input *DescribeEndpointSettingsInput, fn func(*DescribeEndpointSettingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEndpointSettingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEndpointSettingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEndpointSettingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEndpointTypes = "DescribeEndpointTypes"
 
 // DescribeEndpointTypesRequest generates a "aws/request.Request" representing the
@@ -1668,14 +2403,13 @@ const opDescribeEndpointTypes = "DescribeEndpointTypes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointTypesRequest method.
+//	req, resp := client.DescribeEndpointTypesRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointTypesRequest method.
-//    req, resp := client.DescribeEndpointTypesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointTypes
 func (c *DatabaseMigrationService) DescribeEndpointTypesRequest(input *DescribeEndpointTypesInput) (req *request.Request, output *DescribeEndpointTypesOutput) {
@@ -1740,15 +2474,14 @@ func (c *DatabaseMigrationService) DescribeEndpointTypesWithContext(ctx aws.Cont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEndpointTypes operation.
-//    pageNum := 0
-//    err := client.DescribeEndpointTypesPages(params,
-//        func(page *databasemigrationservice.DescribeEndpointTypesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEndpointTypes operation.
+//	pageNum := 0
+//	err := client.DescribeEndpointTypesPages(params,
+//	    func(page *databasemigrationservice.DescribeEndpointTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEndpointTypesPages(input *DescribeEndpointTypesInput, fn func(*DescribeEndpointTypesOutput, bool) bool) error {
 	return c.DescribeEndpointTypesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1800,14 +2533,13 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEndpointsRequest method.
+//	req, resp := client.DescribeEndpointsRequest(params)
 //
-//    // Example sending a request using the DescribeEndpointsRequest method.
-//    req, resp := client.DescribeEndpointsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpoints
 func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpointsInput) (req *request.Request, output *DescribeEndpointsOutput) {
@@ -1844,8 +2576,8 @@ func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpo
 // API operation DescribeEndpoints for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpoints
 func (c *DatabaseMigrationService) DescribeEndpoints(input *DescribeEndpointsInput) (*DescribeEndpointsOutput, error) {
@@ -1877,15 +2609,14 @@ func (c *DatabaseMigrationService) DescribeEndpointsWithContext(ctx aws.Context,
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEndpoints operation.
-//    pageNum := 0
-//    err := client.DescribeEndpointsPages(params,
-//        func(page *databasemigrationservice.DescribeEndpointsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEndpoints operation.
+//	pageNum := 0
+//	err := client.DescribeEndpointsPages(params,
+//	    func(page *databasemigrationservice.DescribeEndpointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEndpointsPages(input *DescribeEndpointsInput, fn func(*DescribeEndpointsOutput, bool) bool) error {
 	return c.DescribeEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1937,14 +2668,13 @@ const opDescribeEventCategories = "DescribeEventCategories"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventCategoriesRequest method.
+//	req, resp := client.DescribeEventCategoriesRequest(params)
 //
-//    // Example sending a request using the DescribeEventCategoriesRequest method.
-//    req, resp := client.DescribeEventCategoriesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEventCategories
 func (c *DatabaseMigrationService) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *request.Request, output *DescribeEventCategoriesOutput) {
@@ -1968,7 +2698,7 @@ func (c *DatabaseMigrationService) DescribeEventCategoriesRequest(input *Describ
 // Lists categories for all event source types, or, if specified, for a specified
 // source type. You can see a list of the event categories and source types
 // in Working with Events and Notifications (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html)
-// in the AWS Database Migration Service User Guide.
+// in the Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2014,14 +2744,13 @@ const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventSubscriptionsRequest method.
+//	req, resp := client.DescribeEventSubscriptionsRequest(params)
 //
-//    // Example sending a request using the DescribeEventSubscriptionsRequest method.
-//    req, resp := client.DescribeEventSubscriptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEventSubscriptions
 func (c *DatabaseMigrationService) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *request.Request, output *DescribeEventSubscriptionsOutput) {
@@ -2063,8 +2792,8 @@ func (c *DatabaseMigrationService) DescribeEventSubscriptionsRequest(input *Desc
 // API operation DescribeEventSubscriptions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEventSubscriptions
 func (c *DatabaseMigrationService) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
@@ -2096,15 +2825,14 @@ func (c *DatabaseMigrationService) DescribeEventSubscriptionsWithContext(ctx aws
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEventSubscriptions operation.
-//    pageNum := 0
-//    err := client.DescribeEventSubscriptionsPages(params,
-//        func(page *databasemigrationservice.DescribeEventSubscriptionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEventSubscriptions operation.
+//	pageNum := 0
+//	err := client.DescribeEventSubscriptionsPages(params,
+//	    func(page *databasemigrationservice.DescribeEventSubscriptionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, bool) bool) error {
 	return c.DescribeEventSubscriptionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2156,14 +2884,13 @@ const opDescribeEvents = "DescribeEvents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventsRequest method.
+//	req, resp := client.DescribeEventsRequest(params)
 //
-//    // Example sending a request using the DescribeEventsRequest method.
-//    req, resp := client.DescribeEventsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEvents
 func (c *DatabaseMigrationService) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
@@ -2191,9 +2918,9 @@ func (c *DatabaseMigrationService) DescribeEventsRequest(input *DescribeEventsIn
 // DescribeEvents API operation for AWS Database Migration Service.
 //
 // Lists events for a given source identifier and source type. You can also
-// specify a start and end time. For more information on AWS DMS events, see
-// Working with Events and Notifications (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html)
-// in the AWS Database Migration User Guide.
+// specify a start and end time. For more information on DMS events, see Working
+// with Events and Notifications (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html)
+// in the Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2231,15 +2958,14 @@ func (c *DatabaseMigrationService) DescribeEventsWithContext(ctx aws.Context, in
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEvents operation.
-//    pageNum := 0
-//    err := client.DescribeEventsPages(params,
-//        func(page *databasemigrationservice.DescribeEventsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEvents operation.
+//	pageNum := 0
+//	err := client.DescribeEventsPages(params,
+//	    func(page *databasemigrationservice.DescribeEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
 	return c.DescribeEventsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2275,6 +3001,687 @@ func (c *DatabaseMigrationService) DescribeEventsPagesWithContext(ctx aws.Contex
 	return p.Err()
 }
 
+const opDescribeFleetAdvisorCollectors = "DescribeFleetAdvisorCollectors"
+
+// DescribeFleetAdvisorCollectorsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorCollectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorCollectors for more information on using the DescribeFleetAdvisorCollectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFleetAdvisorCollectorsRequest method.
+//	req, resp := client.DescribeFleetAdvisorCollectorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorCollectors
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsRequest(input *DescribeFleetAdvisorCollectorsInput) (req *request.Request, output *DescribeFleetAdvisorCollectorsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorCollectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorCollectorsInput{}
+	}
+
+	output = &DescribeFleetAdvisorCollectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorCollectors API operation for AWS Database Migration Service.
+//
+// Returns a list of the Fleet Advisor collectors in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorCollectors for usage and error information.
+//
+// Returned Error Types:
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorCollectors
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectors(input *DescribeFleetAdvisorCollectorsInput) (*DescribeFleetAdvisorCollectorsOutput, error) {
+	req, out := c.DescribeFleetAdvisorCollectorsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorCollectorsWithContext is the same as DescribeFleetAdvisorCollectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorCollectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsWithContext(ctx aws.Context, input *DescribeFleetAdvisorCollectorsInput, opts ...request.Option) (*DescribeFleetAdvisorCollectorsOutput, error) {
+	req, out := c.DescribeFleetAdvisorCollectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorCollectorsPages iterates over the pages of a DescribeFleetAdvisorCollectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorCollectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorCollectors operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorCollectorsPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorCollectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsPages(input *DescribeFleetAdvisorCollectorsInput, fn func(*DescribeFleetAdvisorCollectorsOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorCollectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorCollectorsPagesWithContext same as DescribeFleetAdvisorCollectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorCollectorsPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorCollectorsInput, fn func(*DescribeFleetAdvisorCollectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorCollectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorCollectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorCollectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorDatabases = "DescribeFleetAdvisorDatabases"
+
+// DescribeFleetAdvisorDatabasesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorDatabases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorDatabases for more information on using the DescribeFleetAdvisorDatabases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFleetAdvisorDatabasesRequest method.
+//	req, resp := client.DescribeFleetAdvisorDatabasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesRequest(input *DescribeFleetAdvisorDatabasesInput) (req *request.Request, output *DescribeFleetAdvisorDatabasesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorDatabases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorDatabasesInput{}
+	}
+
+	output = &DescribeFleetAdvisorDatabasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorDatabases API operation for AWS Database Migration Service.
+//
+// Returns a list of Fleet Advisor databases in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorDatabases for usage and error information.
+//
+// Returned Error Types:
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorDatabases
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabases(input *DescribeFleetAdvisorDatabasesInput) (*DescribeFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DescribeFleetAdvisorDatabasesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorDatabasesWithContext is the same as DescribeFleetAdvisorDatabases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorDatabases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesWithContext(ctx aws.Context, input *DescribeFleetAdvisorDatabasesInput, opts ...request.Option) (*DescribeFleetAdvisorDatabasesOutput, error) {
+	req, out := c.DescribeFleetAdvisorDatabasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorDatabasesPages iterates over the pages of a DescribeFleetAdvisorDatabases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorDatabases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorDatabases operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorDatabasesPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorDatabasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesPages(input *DescribeFleetAdvisorDatabasesInput, fn func(*DescribeFleetAdvisorDatabasesOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorDatabasesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorDatabasesPagesWithContext same as DescribeFleetAdvisorDatabasesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorDatabasesPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorDatabasesInput, fn func(*DescribeFleetAdvisorDatabasesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorDatabasesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorDatabasesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorDatabasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorLsaAnalysis = "DescribeFleetAdvisorLsaAnalysis"
+
+// DescribeFleetAdvisorLsaAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorLsaAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorLsaAnalysis for more information on using the DescribeFleetAdvisorLsaAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFleetAdvisorLsaAnalysisRequest method.
+//	req, resp := client.DescribeFleetAdvisorLsaAnalysisRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisRequest(input *DescribeFleetAdvisorLsaAnalysisInput) (req *request.Request, output *DescribeFleetAdvisorLsaAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorLsaAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorLsaAnalysisInput{}
+	}
+
+	output = &DescribeFleetAdvisorLsaAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorLsaAnalysis API operation for AWS Database Migration Service.
+//
+// Provides descriptions of large-scale assessment (LSA) analyses produced by
+// your Fleet Advisor collectors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorLsaAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysis(input *DescribeFleetAdvisorLsaAnalysisInput) (*DescribeFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.DescribeFleetAdvisorLsaAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorLsaAnalysisWithContext is the same as DescribeFleetAdvisorLsaAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorLsaAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisWithContext(ctx aws.Context, input *DescribeFleetAdvisorLsaAnalysisInput, opts ...request.Option) (*DescribeFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.DescribeFleetAdvisorLsaAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorLsaAnalysisPages iterates over the pages of a DescribeFleetAdvisorLsaAnalysis operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorLsaAnalysis method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorLsaAnalysis operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorLsaAnalysisPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorLsaAnalysisOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisPages(input *DescribeFleetAdvisorLsaAnalysisInput, fn func(*DescribeFleetAdvisorLsaAnalysisOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorLsaAnalysisPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorLsaAnalysisPagesWithContext same as DescribeFleetAdvisorLsaAnalysisPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorLsaAnalysisPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorLsaAnalysisInput, fn func(*DescribeFleetAdvisorLsaAnalysisOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorLsaAnalysisInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorLsaAnalysisRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorLsaAnalysisOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorSchemaObjectSummary = "DescribeFleetAdvisorSchemaObjectSummary"
+
+// DescribeFleetAdvisorSchemaObjectSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorSchemaObjectSummary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorSchemaObjectSummary for more information on using the DescribeFleetAdvisorSchemaObjectSummary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFleetAdvisorSchemaObjectSummaryRequest method.
+//	req, resp := client.DescribeFleetAdvisorSchemaObjectSummaryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemaObjectSummary
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryRequest(input *DescribeFleetAdvisorSchemaObjectSummaryInput) (req *request.Request, output *DescribeFleetAdvisorSchemaObjectSummaryOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorSchemaObjectSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorSchemaObjectSummaryInput{}
+	}
+
+	output = &DescribeFleetAdvisorSchemaObjectSummaryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorSchemaObjectSummary API operation for AWS Database Migration Service.
+//
+// Provides descriptions of the schemas discovered by your Fleet Advisor collectors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorSchemaObjectSummary for usage and error information.
+//
+// Returned Error Types:
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemaObjectSummary
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummary(input *DescribeFleetAdvisorSchemaObjectSummaryInput) (*DescribeFleetAdvisorSchemaObjectSummaryOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemaObjectSummaryRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemaObjectSummaryWithContext is the same as DescribeFleetAdvisorSchemaObjectSummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorSchemaObjectSummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemaObjectSummaryInput, opts ...request.Option) (*DescribeFleetAdvisorSchemaObjectSummaryOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemaObjectSummaryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemaObjectSummaryPages iterates over the pages of a DescribeFleetAdvisorSchemaObjectSummary operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorSchemaObjectSummary method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemaObjectSummary operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorSchemaObjectSummaryPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorSchemaObjectSummaryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryPages(input *DescribeFleetAdvisorSchemaObjectSummaryInput, fn func(*DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext same as DescribeFleetAdvisorSchemaObjectSummaryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemaObjectSummaryPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemaObjectSummaryInput, fn func(*DescribeFleetAdvisorSchemaObjectSummaryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorSchemaObjectSummaryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorSchemaObjectSummaryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorSchemaObjectSummaryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeFleetAdvisorSchemas = "DescribeFleetAdvisorSchemas"
+
+// DescribeFleetAdvisorSchemasRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAdvisorSchemas operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetAdvisorSchemas for more information on using the DescribeFleetAdvisorSchemas
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFleetAdvisorSchemasRequest method.
+//	req, resp := client.DescribeFleetAdvisorSchemasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemas
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasRequest(input *DescribeFleetAdvisorSchemasInput) (req *request.Request, output *DescribeFleetAdvisorSchemasOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetAdvisorSchemas,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeFleetAdvisorSchemasInput{}
+	}
+
+	output = &DescribeFleetAdvisorSchemasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetAdvisorSchemas API operation for AWS Database Migration Service.
+//
+// Returns a list of schemas detected by Fleet Advisor Collectors in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeFleetAdvisorSchemas for usage and error information.
+//
+// Returned Error Types:
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeFleetAdvisorSchemas
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemas(input *DescribeFleetAdvisorSchemasInput) (*DescribeFleetAdvisorSchemasOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemasRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemasWithContext is the same as DescribeFleetAdvisorSchemas with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetAdvisorSchemas for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemasInput, opts ...request.Option) (*DescribeFleetAdvisorSchemasOutput, error) {
+	req, out := c.DescribeFleetAdvisorSchemasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeFleetAdvisorSchemasPages iterates over the pages of a DescribeFleetAdvisorSchemas operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeFleetAdvisorSchemas method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeFleetAdvisorSchemas operation.
+//	pageNum := 0
+//	err := client.DescribeFleetAdvisorSchemasPages(params,
+//	    func(page *databasemigrationservice.DescribeFleetAdvisorSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasPages(input *DescribeFleetAdvisorSchemasInput, fn func(*DescribeFleetAdvisorSchemasOutput, bool) bool) error {
+	return c.DescribeFleetAdvisorSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeFleetAdvisorSchemasPagesWithContext same as DescribeFleetAdvisorSchemasPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeFleetAdvisorSchemasPagesWithContext(ctx aws.Context, input *DescribeFleetAdvisorSchemasInput, fn func(*DescribeFleetAdvisorSchemasOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeFleetAdvisorSchemasInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeFleetAdvisorSchemasRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeFleetAdvisorSchemasOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeOrderableReplicationInstances = "DescribeOrderableReplicationInstances"
 
 // DescribeOrderableReplicationInstancesRequest generates a "aws/request.Request" representing the
@@ -2291,14 +3698,13 @@ const opDescribeOrderableReplicationInstances = "DescribeOrderableReplicationIns
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeOrderableReplicationInstancesRequest method.
+//	req, resp := client.DescribeOrderableReplicationInstancesRequest(params)
 //
-//    // Example sending a request using the DescribeOrderableReplicationInstancesRequest method.
-//    req, resp := client.DescribeOrderableReplicationInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeOrderableReplicationInstances
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesRequest(input *DescribeOrderableReplicationInstancesInput) (req *request.Request, output *DescribeOrderableReplicationInstancesOutput) {
@@ -2364,15 +3770,14 @@ func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesWithCont
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeOrderableReplicationInstances operation.
-//    pageNum := 0
-//    err := client.DescribeOrderableReplicationInstancesPages(params,
-//        func(page *databasemigrationservice.DescribeOrderableReplicationInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeOrderableReplicationInstances operation.
+//	pageNum := 0
+//	err := client.DescribeOrderableReplicationInstancesPages(params,
+//	    func(page *databasemigrationservice.DescribeOrderableReplicationInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesPages(input *DescribeOrderableReplicationInstancesInput, fn func(*DescribeOrderableReplicationInstancesOutput, bool) bool) error {
 	return c.DescribeOrderableReplicationInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2424,14 +3829,13 @@ const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePendingMaintenanceActionsRequest method.
+//	req, resp := client.DescribePendingMaintenanceActionsRequest(params)
 //
-//    // Example sending a request using the DescribePendingMaintenanceActionsRequest method.
-//    req, resp := client.DescribePendingMaintenanceActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribePendingMaintenanceActions
 func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *request.Request, output *DescribePendingMaintenanceActionsOutput) {
@@ -2458,7 +3862,7 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsRequest(inpu
 
 // DescribePendingMaintenanceActions API operation for AWS Database Migration Service.
 //
-// For internal use only
+// # For internal use only
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2468,8 +3872,8 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsRequest(inpu
 // API operation DescribePendingMaintenanceActions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribePendingMaintenanceActions
 func (c *DatabaseMigrationService) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (*DescribePendingMaintenanceActionsOutput, error) {
@@ -2501,15 +3905,14 @@ func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsWithContext(
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribePendingMaintenanceActions operation.
-//    pageNum := 0
-//    err := client.DescribePendingMaintenanceActionsPages(params,
-//        func(page *databasemigrationservice.DescribePendingMaintenanceActionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribePendingMaintenanceActions operation.
+//	pageNum := 0
+//	err := client.DescribePendingMaintenanceActionsPages(params,
+//	    func(page *databasemigrationservice.DescribePendingMaintenanceActionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribePendingMaintenanceActionsPages(input *DescribePendingMaintenanceActionsInput, fn func(*DescribePendingMaintenanceActionsOutput, bool) bool) error {
 	return c.DescribePendingMaintenanceActionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2561,14 +3964,13 @@ const opDescribeRefreshSchemasStatus = "DescribeRefreshSchemasStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRefreshSchemasStatusRequest method.
+//	req, resp := client.DescribeRefreshSchemasStatusRequest(params)
 //
-//    // Example sending a request using the DescribeRefreshSchemasStatusRequest method.
-//    req, resp := client.DescribeRefreshSchemasStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRefreshSchemasStatus
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *DescribeRefreshSchemasStatusInput) (req *request.Request, output *DescribeRefreshSchemasStatusOutput) {
@@ -2599,12 +4001,13 @@ func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *De
 // API operation DescribeRefreshSchemasStatus for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRefreshSchemasStatus
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatus(input *DescribeRefreshSchemasStatusInput) (*DescribeRefreshSchemasStatusOutput, error) {
@@ -2644,14 +4047,13 @@ const opDescribeReplicationInstanceTaskLogs = "DescribeReplicationInstanceTaskLo
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationInstanceTaskLogsRequest method.
+//	req, resp := client.DescribeReplicationInstanceTaskLogsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationInstanceTaskLogsRequest method.
-//    req, resp := client.DescribeReplicationInstanceTaskLogsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstanceTaskLogs
 func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsRequest(input *DescribeReplicationInstanceTaskLogsInput) (req *request.Request, output *DescribeReplicationInstanceTaskLogsOutput) {
@@ -2688,12 +4090,13 @@ func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsRequest(in
 // API operation DescribeReplicationInstanceTaskLogs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstanceTaskLogs
 func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogs(input *DescribeReplicationInstanceTaskLogsInput) (*DescribeReplicationInstanceTaskLogsOutput, error) {
@@ -2725,15 +4128,14 @@ func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsWithContex
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationInstanceTaskLogs operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationInstanceTaskLogsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationInstanceTaskLogsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationInstanceTaskLogs operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationInstanceTaskLogsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationInstanceTaskLogsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationInstanceTaskLogsPages(input *DescribeReplicationInstanceTaskLogsInput, fn func(*DescribeReplicationInstanceTaskLogsOutput, bool) bool) error {
 	return c.DescribeReplicationInstanceTaskLogsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2785,14 +4187,13 @@ const opDescribeReplicationInstances = "DescribeReplicationInstances"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationInstancesRequest method.
+//	req, resp := client.DescribeReplicationInstancesRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationInstancesRequest method.
-//    req, resp := client.DescribeReplicationInstancesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstances
 func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *DescribeReplicationInstancesInput) (req *request.Request, output *DescribeReplicationInstancesOutput) {
@@ -2830,8 +4231,8 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *De
 // API operation DescribeReplicationInstances for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstances
 func (c *DatabaseMigrationService) DescribeReplicationInstances(input *DescribeReplicationInstancesInput) (*DescribeReplicationInstancesOutput, error) {
@@ -2863,15 +4264,14 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesWithContext(ctx a
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationInstances operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationInstancesPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationInstancesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationInstances operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationInstancesPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationInstancesPages(input *DescribeReplicationInstancesInput, fn func(*DescribeReplicationInstancesOutput, bool) bool) error {
 	return c.DescribeReplicationInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2923,14 +4323,13 @@ const opDescribeReplicationSubnetGroups = "DescribeReplicationSubnetGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationSubnetGroupsRequest method.
+//	req, resp := client.DescribeReplicationSubnetGroupsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationSubnetGroupsRequest method.
-//    req, resp := client.DescribeReplicationSubnetGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationSubnetGroups
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input *DescribeReplicationSubnetGroupsInput) (req *request.Request, output *DescribeReplicationSubnetGroupsOutput) {
@@ -2967,8 +4366,8 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input 
 // API operation DescribeReplicationSubnetGroups for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationSubnetGroups
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroups(input *DescribeReplicationSubnetGroupsInput) (*DescribeReplicationSubnetGroupsOutput, error) {
@@ -3000,15 +4399,14 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsWithContext(ct
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationSubnetGroups operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationSubnetGroupsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationSubnetGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationSubnetGroups operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationSubnetGroupsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationSubnetGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsPages(input *DescribeReplicationSubnetGroupsInput, fn func(*DescribeReplicationSubnetGroupsOutput, bool) bool) error {
 	return c.DescribeReplicationSubnetGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3060,14 +4458,13 @@ const opDescribeReplicationTaskAssessmentResults = "DescribeReplicationTaskAsses
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationTaskAssessmentResultsRequest method.
+//	req, resp := client.DescribeReplicationTaskAssessmentResultsRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationTaskAssessmentResultsRequest method.
-//    req, resp := client.DescribeReplicationTaskAssessmentResultsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentResults
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsRequest(input *DescribeReplicationTaskAssessmentResultsInput) (req *request.Request, output *DescribeReplicationTaskAssessmentResultsOutput) {
@@ -3094,8 +4491,13 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsReque
 
 // DescribeReplicationTaskAssessmentResults API operation for AWS Database Migration Service.
 //
-// Returns the task assessment results from Amazon S3. This action always returns
-// the latest results.
+// Returns the task assessment results from the Amazon S3 bucket that DMS creates
+// in your Amazon Web Services account. This action always returns the latest
+// results.
+//
+// For more information about DMS task assessments, see Creating a task assessment
+// report (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html)
+// in the Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3105,8 +4507,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsReque
 // API operation DescribeReplicationTaskAssessmentResults for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentResults
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResults(input *DescribeReplicationTaskAssessmentResultsInput) (*DescribeReplicationTaskAssessmentResultsOutput, error) {
@@ -3138,15 +4540,14 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsWithC
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentResults operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationTaskAssessmentResultsPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationTaskAssessmentResultsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentResults operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTaskAssessmentResultsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTaskAssessmentResultsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsPages(input *DescribeReplicationTaskAssessmentResultsInput, fn func(*DescribeReplicationTaskAssessmentResultsOutput, bool) bool) error {
 	return c.DescribeReplicationTaskAssessmentResultsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3182,6 +4583,286 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsPages
 	return p.Err()
 }
 
+const opDescribeReplicationTaskAssessmentRuns = "DescribeReplicationTaskAssessmentRuns"
+
+// DescribeReplicationTaskAssessmentRunsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationTaskAssessmentRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicationTaskAssessmentRuns for more information on using the DescribeReplicationTaskAssessmentRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicationTaskAssessmentRunsRequest method.
+//	req, resp := client.DescribeReplicationTaskAssessmentRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentRuns
+func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsRequest(input *DescribeReplicationTaskAssessmentRunsInput) (req *request.Request, output *DescribeReplicationTaskAssessmentRunsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicationTaskAssessmentRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReplicationTaskAssessmentRunsInput{}
+	}
+
+	output = &DescribeReplicationTaskAssessmentRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicationTaskAssessmentRuns API operation for AWS Database Migration Service.
+//
+// Returns a paginated list of premigration assessment runs based on filter
+// settings.
+//
+// These filter settings can specify a combination of premigration assessment
+// runs, migration tasks, replication instances, and assessment run status values.
+//
+// This operation doesn't return information about individual assessments. For
+// this information, see the DescribeReplicationTaskIndividualAssessments operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationTaskAssessmentRuns for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskAssessmentRuns
+func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRuns(input *DescribeReplicationTaskAssessmentRunsInput) (*DescribeReplicationTaskAssessmentRunsOutput, error) {
+	req, out := c.DescribeReplicationTaskAssessmentRunsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationTaskAssessmentRunsWithContext is the same as DescribeReplicationTaskAssessmentRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicationTaskAssessmentRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsWithContext(ctx aws.Context, input *DescribeReplicationTaskAssessmentRunsInput, opts ...request.Option) (*DescribeReplicationTaskAssessmentRunsOutput, error) {
+	req, out := c.DescribeReplicationTaskAssessmentRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReplicationTaskAssessmentRunsPages iterates over the pages of a DescribeReplicationTaskAssessmentRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationTaskAssessmentRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTaskAssessmentRuns operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTaskAssessmentRunsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTaskAssessmentRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsPages(input *DescribeReplicationTaskAssessmentRunsInput, fn func(*DescribeReplicationTaskAssessmentRunsOutput, bool) bool) error {
+	return c.DescribeReplicationTaskAssessmentRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationTaskAssessmentRunsPagesWithContext same as DescribeReplicationTaskAssessmentRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentRunsPagesWithContext(ctx aws.Context, input *DescribeReplicationTaskAssessmentRunsInput, fn func(*DescribeReplicationTaskAssessmentRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationTaskAssessmentRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationTaskAssessmentRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationTaskAssessmentRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeReplicationTaskIndividualAssessments = "DescribeReplicationTaskIndividualAssessments"
+
+// DescribeReplicationTaskIndividualAssessmentsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationTaskIndividualAssessments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplicationTaskIndividualAssessments for more information on using the DescribeReplicationTaskIndividualAssessments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeReplicationTaskIndividualAssessmentsRequest method.
+//	req, resp := client.DescribeReplicationTaskIndividualAssessmentsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskIndividualAssessments
+func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsRequest(input *DescribeReplicationTaskIndividualAssessmentsInput) (req *request.Request, output *DescribeReplicationTaskIndividualAssessmentsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplicationTaskIndividualAssessments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReplicationTaskIndividualAssessmentsInput{}
+	}
+
+	output = &DescribeReplicationTaskIndividualAssessmentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplicationTaskIndividualAssessments API operation for AWS Database Migration Service.
+//
+// Returns a paginated list of individual assessments based on filter settings.
+//
+// These filter settings can specify a combination of premigration assessment
+// runs, migration tasks, and assessment status values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationTaskIndividualAssessments for usage and error information.
+//
+// Returned Error Types:
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTaskIndividualAssessments
+func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessments(input *DescribeReplicationTaskIndividualAssessmentsInput) (*DescribeReplicationTaskIndividualAssessmentsOutput, error) {
+	req, out := c.DescribeReplicationTaskIndividualAssessmentsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplicationTaskIndividualAssessmentsWithContext is the same as DescribeReplicationTaskIndividualAssessments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplicationTaskIndividualAssessments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsWithContext(ctx aws.Context, input *DescribeReplicationTaskIndividualAssessmentsInput, opts ...request.Option) (*DescribeReplicationTaskIndividualAssessmentsOutput, error) {
+	req, out := c.DescribeReplicationTaskIndividualAssessmentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReplicationTaskIndividualAssessmentsPages iterates over the pages of a DescribeReplicationTaskIndividualAssessments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationTaskIndividualAssessments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTaskIndividualAssessments operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTaskIndividualAssessmentsPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTaskIndividualAssessmentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsPages(input *DescribeReplicationTaskIndividualAssessmentsInput, fn func(*DescribeReplicationTaskIndividualAssessmentsOutput, bool) bool) error {
+	return c.DescribeReplicationTaskIndividualAssessmentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationTaskIndividualAssessmentsPagesWithContext same as DescribeReplicationTaskIndividualAssessmentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeReplicationTaskIndividualAssessmentsPagesWithContext(ctx aws.Context, input *DescribeReplicationTaskIndividualAssessmentsInput, fn func(*DescribeReplicationTaskIndividualAssessmentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationTaskIndividualAssessmentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationTaskIndividualAssessmentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationTaskIndividualAssessmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeReplicationTasks = "DescribeReplicationTasks"
 
 // DescribeReplicationTasksRequest generates a "aws/request.Request" representing the
@@ -3198,14 +4879,13 @@ const opDescribeReplicationTasks = "DescribeReplicationTasks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReplicationTasksRequest method.
+//	req, resp := client.DescribeReplicationTasksRequest(params)
 //
-//    // Example sending a request using the DescribeReplicationTasksRequest method.
-//    req, resp := client.DescribeReplicationTasksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTasks
 func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *DescribeReplicationTasksInput) (req *request.Request, output *DescribeReplicationTasksOutput) {
@@ -3243,8 +4923,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *Descri
 // API operation DescribeReplicationTasks for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTasks
 func (c *DatabaseMigrationService) DescribeReplicationTasks(input *DescribeReplicationTasksInput) (*DescribeReplicationTasksOutput, error) {
@@ -3276,15 +4956,14 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksWithContext(ctx aws.C
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeReplicationTasks operation.
-//    pageNum := 0
-//    err := client.DescribeReplicationTasksPages(params,
-//        func(page *databasemigrationservice.DescribeReplicationTasksOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeReplicationTasks operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationTasksPages(params,
+//	    func(page *databasemigrationservice.DescribeReplicationTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeReplicationTasksPages(input *DescribeReplicationTasksInput, fn func(*DescribeReplicationTasksOutput, bool) bool) error {
 	return c.DescribeReplicationTasksPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3336,14 +5015,13 @@ const opDescribeSchemas = "DescribeSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSchemasRequest method.
+//	req, resp := client.DescribeSchemasRequest(params)
 //
-//    // Example sending a request using the DescribeSchemasRequest method.
-//    req, resp := client.DescribeSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeSchemas
 func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemasInput) (req *request.Request, output *DescribeSchemasOutput) {
@@ -3380,12 +5058,13 @@ func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemas
 // API operation DescribeSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeSchemas
 func (c *DatabaseMigrationService) DescribeSchemas(input *DescribeSchemasInput) (*DescribeSchemasOutput, error) {
@@ -3417,15 +5096,14 @@ func (c *DatabaseMigrationService) DescribeSchemasWithContext(ctx aws.Context, i
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeSchemas operation.
-//    pageNum := 0
-//    err := client.DescribeSchemasPages(params,
-//        func(page *databasemigrationservice.DescribeSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeSchemas operation.
+//	pageNum := 0
+//	err := client.DescribeSchemasPages(params,
+//	    func(page *databasemigrationservice.DescribeSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeSchemasPages(input *DescribeSchemasInput, fn func(*DescribeSchemasOutput, bool) bool) error {
 	return c.DescribeSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3477,14 +5155,13 @@ const opDescribeTableStatistics = "DescribeTableStatistics"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeTableStatisticsRequest method.
+//	req, resp := client.DescribeTableStatisticsRequest(params)
 //
-//    // Example sending a request using the DescribeTableStatisticsRequest method.
-//    req, resp := client.DescribeTableStatisticsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeTableStatistics
 func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *DescribeTableStatisticsInput) (req *request.Request, output *DescribeTableStatisticsOutput) {
@@ -3515,8 +5192,8 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *Describ
 // name, rows inserted, rows updated, and rows deleted.
 //
 // Note that the "last updated" column the DMS console only indicates the time
-// that AWS DMS last updated the table statistics record for a table. It does
-// not indicate the time of the last update to the table.
+// that DMS last updated the table statistics record for a table. It does not
+// indicate the time of the last update to the table.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3526,12 +5203,13 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *Describ
 // API operation DescribeTableStatistics for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeTableStatistics
 func (c *DatabaseMigrationService) DescribeTableStatistics(input *DescribeTableStatisticsInput) (*DescribeTableStatisticsOutput, error) {
@@ -3563,15 +5241,14 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsWithContext(ctx aws.Co
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeTableStatistics operation.
-//    pageNum := 0
-//    err := client.DescribeTableStatisticsPages(params,
-//        func(page *databasemigrationservice.DescribeTableStatisticsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeTableStatistics operation.
+//	pageNum := 0
+//	err := client.DescribeTableStatisticsPages(params,
+//	    func(page *databasemigrationservice.DescribeTableStatisticsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *DatabaseMigrationService) DescribeTableStatisticsPages(input *DescribeTableStatisticsInput, fn func(*DescribeTableStatisticsOutput, bool) bool) error {
 	return c.DescribeTableStatisticsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3623,14 +5300,13 @@ const opImportCertificate = "ImportCertificate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ImportCertificateRequest method.
+//	req, resp := client.ImportCertificateRequest(params)
 //
-//    // Example sending a request using the ImportCertificateRequest method.
-//    req, resp := client.ImportCertificateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ImportCertificate
 func (c *DatabaseMigrationService) ImportCertificateRequest(input *ImportCertificateInput) (req *request.Request, output *ImportCertificateOutput) {
@@ -3661,14 +5337,15 @@ func (c *DatabaseMigrationService) ImportCertificateRequest(input *ImportCertifi
 // API operation ImportCertificate for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
 //
-//   * InvalidCertificateFault
-//   The certificate was not valid.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - InvalidCertificateFault
+//     The certificate was not valid.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ImportCertificate
 func (c *DatabaseMigrationService) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
@@ -3708,14 +5385,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ListTagsForResource
 func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -3736,7 +5412,10 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 
 // ListTagsForResource API operation for AWS Database Migration Service.
 //
-// Lists all tags for an AWS DMS resource.
+// Lists all metadata tags attached to an DMS resource, including replication
+// instance, endpoint, security group, and migration task. For more information,
+// see Tag (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html)
+// data type description.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3746,8 +5425,8 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ListTagsForResource
 func (c *DatabaseMigrationService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3787,14 +5466,13 @@ const opModifyEndpoint = "ModifyEndpoint"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyEndpointRequest method.
+//	req, resp := client.ModifyEndpointRequest(params)
 //
-//    // Example sending a request using the ModifyEndpointRequest method.
-//    req, resp := client.ModifyEndpointRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEndpoint
 func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointInput) (req *request.Request, output *ModifyEndpointOutput) {
@@ -3817,6 +5495,13 @@ func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointIn
 //
 // Modifies the specified endpoint.
 //
+// For a MySQL source or target endpoint, don't explicitly specify the database
+// using the DatabaseName request parameter on the ModifyEndpoint API call.
+// Specifying DatabaseName when you modify a MySQL endpoint replicates all the
+// task tables to this single database. For MySQL endpoints, you specify the
+// database only when you specify the schema in the table-mapping rules of the
+// DMS task.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3825,22 +5510,22 @@ func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointIn
 // API operation ModifyEndpoint for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEndpoint
 func (c *DatabaseMigrationService) ModifyEndpoint(input *ModifyEndpointInput) (*ModifyEndpointOutput, error) {
@@ -3880,14 +5565,13 @@ const opModifyEventSubscription = "ModifyEventSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyEventSubscriptionRequest method.
+//	req, resp := client.ModifyEventSubscriptionRequest(params)
 //
-//    // Example sending a request using the ModifyEventSubscriptionRequest method.
-//    req, resp := client.ModifyEventSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEventSubscription
 func (c *DatabaseMigrationService) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *request.Request, output *ModifyEventSubscriptionOutput) {
@@ -3908,7 +5592,7 @@ func (c *DatabaseMigrationService) ModifyEventSubscriptionRequest(input *ModifyE
 
 // ModifyEventSubscription API operation for AWS Database Migration Service.
 //
-// Modifies an existing AWS DMS event notification subscription.
+// Modifies an existing DMS event notification subscription.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3918,33 +5602,34 @@ func (c *DatabaseMigrationService) ModifyEventSubscriptionRequest(input *ModifyE
 // API operation ModifyEventSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * SNSInvalidTopicFault
-//   The SNS topic is invalid.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * SNSNoAuthorizationFault
-//   You are not authorized for the SNS subscription.
+//   - SNSInvalidTopicFault
+//     The SNS topic is invalid.
 //
-//   * KMSAccessDeniedFault
-//   The ciphertext references a key that doesn't exist or that the DMS account
-//   doesn't have access to.
+//   - SNSNoAuthorizationFault
+//     You are not authorized for the SNS subscription.
 //
-//   * KMSDisabledFault
-//   The specified master key (CMK) isn't enabled.
+//   - KMSAccessDeniedFault
+//     The ciphertext references a key that doesn't exist or that the DMS account
+//     doesn't have access to.
 //
-//   * KMSInvalidStateFault
-//   The state of the specified AWS KMS resource isn't valid for this request.
+//   - KMSDisabledFault
+//     The specified KMS key isn't enabled.
 //
-//   * KMSNotFoundFault
-//   The specified AWS KMS entity or resource can't be found.
+//   - KMSInvalidStateFault
+//     The state of the specified KMS resource isn't valid for this request.
 //
-//   * KMSThrottlingFault
-//   This request triggered AWS KMS request throttling.
+//   - KMSNotFoundFault
+//     The specified KMS entity or resource can't be found.
+//
+//   - KMSThrottlingFault
+//     This request triggered KMS request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEventSubscription
 func (c *DatabaseMigrationService) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
@@ -3984,14 +5669,13 @@ const opModifyReplicationInstance = "ModifyReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReplicationInstanceRequest method.
+//	req, resp := client.ModifyReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the ModifyReplicationInstanceRequest method.
-//    req, resp := client.ModifyReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationInstance
 func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *ModifyReplicationInstanceInput) (req *request.Request, output *ModifyReplicationInstanceOutput) {
@@ -4026,28 +5710,28 @@ func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *Modif
 // API operation ModifyReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
 //
-//   * InsufficientResourceCapacityFault
-//   There are not enough resources allocated to the database migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * StorageQuotaExceededFault
-//   The storage quota has been exceeded.
+//   - InsufficientResourceCapacityFault
+//     There are not enough resources allocated to the database migration.
 //
-//   * UpgradeDependencyFailureFault
-//   An upgrade dependency is preventing the database migration.
+//   - StorageQuotaExceededFault
+//     The storage quota has been exceeded.
+//
+//   - UpgradeDependencyFailureFault
+//     An upgrade dependency is preventing the database migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationInstance
 func (c *DatabaseMigrationService) ModifyReplicationInstance(input *ModifyReplicationInstanceInput) (*ModifyReplicationInstanceOutput, error) {
@@ -4087,14 +5771,13 @@ const opModifyReplicationSubnetGroup = "ModifyReplicationSubnetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReplicationSubnetGroupRequest method.
+//	req, resp := client.ModifyReplicationSubnetGroupRequest(params)
 //
-//    // Example sending a request using the ModifyReplicationSubnetGroupRequest method.
-//    req, resp := client.ModifyReplicationSubnetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationSubnetGroup
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *ModifyReplicationSubnetGroupInput) (req *request.Request, output *ModifyReplicationSubnetGroupOutput) {
@@ -4125,25 +5808,25 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *Mo
 // API operation ModifyReplicationSubnetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * SubnetAlreadyInUse
-//   The specified subnet is already in use.
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
-//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
-//   The replication subnet group does not cover enough Availability Zones (AZs).
-//   Edit the replication subnet group and add more AZs.
+//   - SubnetAlreadyInUse
+//     The specified subnet is already in use.
 //
-//   * InvalidSubnet
-//   The subnet provided is invalid.
+//   - ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//     The replication subnet group does not cover enough Availability Zones (AZs).
+//     Edit the replication subnet group and add more AZs.
+//
+//   - InvalidSubnet
+//     The subnet provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationSubnetGroup
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyReplicationSubnetGroupInput) (*ModifyReplicationSubnetGroupOutput, error) {
@@ -4183,14 +5866,13 @@ const opModifyReplicationTask = "ModifyReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ModifyReplicationTaskRequest method.
+//	req, resp := client.ModifyReplicationTaskRequest(params)
 //
-//    // Example sending a request using the ModifyReplicationTaskRequest method.
-//    req, resp := client.ModifyReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationTask
 func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyReplicationTaskInput) (req *request.Request, output *ModifyReplicationTaskOutput) {
@@ -4216,9 +5898,8 @@ func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyRep
 // You can't modify the task endpoints. The task must be stopped before you
 // can modify it.
 //
-// For more information about AWS DMS tasks, see Working with Migration Tasks
-// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html) in the
-// AWS Database Migration Service User Guide.
+// For more information about DMS tasks, see Working with Migration Tasks (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html)
+// in the Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4228,18 +5909,19 @@ func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyRep
 // API operation ModifyReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceAlreadyExistsFault
-//   The resource you are attempting to create already exists.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationTask
 func (c *DatabaseMigrationService) ModifyReplicationTask(input *ModifyReplicationTaskInput) (*ModifyReplicationTaskOutput, error) {
@@ -4263,6 +5945,101 @@ func (c *DatabaseMigrationService) ModifyReplicationTaskWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opMoveReplicationTask = "MoveReplicationTask"
+
+// MoveReplicationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the MoveReplicationTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See MoveReplicationTask for more information on using the MoveReplicationTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the MoveReplicationTaskRequest method.
+//	req, resp := client.MoveReplicationTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/MoveReplicationTask
+func (c *DatabaseMigrationService) MoveReplicationTaskRequest(input *MoveReplicationTaskInput) (req *request.Request, output *MoveReplicationTaskOutput) {
+	op := &request.Operation{
+		Name:       opMoveReplicationTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &MoveReplicationTaskInput{}
+	}
+
+	output = &MoveReplicationTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// MoveReplicationTask API operation for AWS Database Migration Service.
+//
+// Moves a replication task from its current replication instance to a different
+// target replication instance using the specified parameters. The target replication
+// instance must be created with the same or later DMS version as the current
+// replication instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation MoveReplicationTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/MoveReplicationTask
+func (c *DatabaseMigrationService) MoveReplicationTask(input *MoveReplicationTaskInput) (*MoveReplicationTaskOutput, error) {
+	req, out := c.MoveReplicationTaskRequest(input)
+	return out, req.Send()
+}
+
+// MoveReplicationTaskWithContext is the same as MoveReplicationTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See MoveReplicationTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) MoveReplicationTaskWithContext(ctx aws.Context, input *MoveReplicationTaskInput, opts ...request.Option) (*MoveReplicationTaskOutput, error) {
+	req, out := c.MoveReplicationTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRebootReplicationInstance = "RebootReplicationInstance"
 
 // RebootReplicationInstanceRequest generates a "aws/request.Request" representing the
@@ -4279,14 +6056,13 @@ const opRebootReplicationInstance = "RebootReplicationInstance"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RebootReplicationInstanceRequest method.
+//	req, resp := client.RebootReplicationInstanceRequest(params)
 //
-//    // Example sending a request using the RebootReplicationInstanceRequest method.
-//    req, resp := client.RebootReplicationInstanceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RebootReplicationInstance
 func (c *DatabaseMigrationService) RebootReplicationInstanceRequest(input *RebootReplicationInstanceInput) (req *request.Request, output *RebootReplicationInstanceOutput) {
@@ -4318,12 +6094,13 @@ func (c *DatabaseMigrationService) RebootReplicationInstanceRequest(input *Reboo
 // API operation RebootReplicationInstance for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RebootReplicationInstance
 func (c *DatabaseMigrationService) RebootReplicationInstance(input *RebootReplicationInstanceInput) (*RebootReplicationInstanceOutput, error) {
@@ -4363,14 +6140,13 @@ const opRefreshSchemas = "RefreshSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RefreshSchemasRequest method.
+//	req, resp := client.RefreshSchemasRequest(params)
 //
-//    // Example sending a request using the RefreshSchemasRequest method.
-//    req, resp := client.RefreshSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RefreshSchemas
 func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasInput) (req *request.Request, output *RefreshSchemasOutput) {
@@ -4403,18 +6179,19 @@ func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasIn
 // API operation RefreshSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RefreshSchemas
 func (c *DatabaseMigrationService) RefreshSchemas(input *RefreshSchemasInput) (*RefreshSchemasOutput, error) {
@@ -4454,14 +6231,13 @@ const opReloadTables = "ReloadTables"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ReloadTablesRequest method.
+//	req, resp := client.ReloadTablesRequest(params)
 //
-//    // Example sending a request using the ReloadTablesRequest method.
-//    req, resp := client.ReloadTablesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReloadTables
 func (c *DatabaseMigrationService) ReloadTablesRequest(input *ReloadTablesInput) (req *request.Request, output *ReloadTablesOutput) {
@@ -4484,6 +6260,9 @@ func (c *DatabaseMigrationService) ReloadTablesRequest(input *ReloadTablesInput)
 //
 // Reloads the target database table with the source data.
 //
+// You can only use this operation with a task in the RUNNING state, otherwise
+// the service will throw an InvalidResourceStateFault exception.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4492,12 +6271,13 @@ func (c *DatabaseMigrationService) ReloadTablesRequest(input *ReloadTablesInput)
 // API operation ReloadTables for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReloadTables
 func (c *DatabaseMigrationService) ReloadTables(input *ReloadTablesInput) (*ReloadTablesOutput, error) {
@@ -4537,14 +6317,13 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RemoveTagsFromResourceRequest method.
+//	req, resp := client.RemoveTagsFromResourceRequest(params)
 //
-//    // Example sending a request using the RemoveTagsFromResourceRequest method.
-//    req, resp := client.RemoveTagsFromResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RemoveTagsFromResource
 func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
@@ -4566,7 +6345,10 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 
 // RemoveTagsFromResource API operation for AWS Database Migration Service.
 //
-// Removes metadata tags from a DMS resource.
+// Removes metadata tags from an DMS resource, including replication instance,
+// endpoint, security group, and migration task. For more information, see Tag
+// (https://docs.aws.amazon.com/dms/latest/APIReference/API_Tag.html) data type
+// description.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4576,8 +6358,8 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 // API operation RemoveTagsFromResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RemoveTagsFromResource
 func (c *DatabaseMigrationService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
@@ -4601,6 +6383,90 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opRunFleetAdvisorLsaAnalysis = "RunFleetAdvisorLsaAnalysis"
+
+// RunFleetAdvisorLsaAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the RunFleetAdvisorLsaAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RunFleetAdvisorLsaAnalysis for more information on using the RunFleetAdvisorLsaAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RunFleetAdvisorLsaAnalysisRequest method.
+//	req, resp := client.RunFleetAdvisorLsaAnalysisRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisRequest(input *RunFleetAdvisorLsaAnalysisInput) (req *request.Request, output *RunFleetAdvisorLsaAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opRunFleetAdvisorLsaAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RunFleetAdvisorLsaAnalysisInput{}
+	}
+
+	output = &RunFleetAdvisorLsaAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RunFleetAdvisorLsaAnalysis API operation for AWS Database Migration Service.
+//
+// Runs large-scale assessment (LSA) analysis on every Fleet Advisor collector
+// in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation RunFleetAdvisorLsaAnalysis for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RunFleetAdvisorLsaAnalysis
+func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysis(input *RunFleetAdvisorLsaAnalysisInput) (*RunFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.RunFleetAdvisorLsaAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// RunFleetAdvisorLsaAnalysisWithContext is the same as RunFleetAdvisorLsaAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RunFleetAdvisorLsaAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) RunFleetAdvisorLsaAnalysisWithContext(ctx aws.Context, input *RunFleetAdvisorLsaAnalysisInput, opts ...request.Option) (*RunFleetAdvisorLsaAnalysisOutput, error) {
+	req, out := c.RunFleetAdvisorLsaAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartReplicationTask = "StartReplicationTask"
 
 // StartReplicationTaskRequest generates a "aws/request.Request" representing the
@@ -4617,14 +6483,13 @@ const opStartReplicationTask = "StartReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartReplicationTaskRequest method.
+//	req, resp := client.StartReplicationTaskRequest(params)
 //
-//    // Example sending a request using the StartReplicationTaskRequest method.
-//    req, resp := client.StartReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTask
 func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartReplicationTaskInput) (req *request.Request, output *StartReplicationTaskOutput) {
@@ -4647,9 +6512,8 @@ func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartRepli
 //
 // Starts the replication task.
 //
-// For more information about AWS DMS tasks, see Working with Migration Tasks
-// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html) in the
-// AWS Database Migration Service User Guide.
+// For more information about DMS tasks, see Working with Migration Tasks (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.html)
+// in the Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4659,16 +6523,16 @@ func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartRepli
 // API operation StartReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * AccessDeniedFault
-//   AWS DMS was denied access to the endpoint. Check that the role is correctly
-//   configured.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTask
 func (c *DatabaseMigrationService) StartReplicationTask(input *StartReplicationTaskInput) (*StartReplicationTaskOutput, error) {
@@ -4708,14 +6572,13 @@ const opStartReplicationTaskAssessment = "StartReplicationTaskAssessment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartReplicationTaskAssessmentRequest method.
+//	req, resp := client.StartReplicationTaskAssessmentRequest(params)
 //
-//    // Example sending a request using the StartReplicationTaskAssessmentRequest method.
-//    req, resp := client.StartReplicationTaskAssessmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessment
 func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *StartReplicationTaskAssessmentInput) (req *request.Request, output *StartReplicationTaskAssessmentOutput) {
@@ -4739,6 +6602,20 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *
 // Starts the replication task assessment for unsupported data types in the
 // source database.
 //
+// You can only use this operation for a task if the following conditions are
+// true:
+//
+//   - The task must be in the stopped state.
+//
+//   - The task must have successful connections to the source and target.
+//
+// If either of these conditions are not met, an InvalidResourceStateFault error
+// will result.
+//
+// For information about DMS task assessments, see Creating a task assessment
+// report (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html)
+// in the Database Migration Service User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4747,12 +6624,13 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *
 // API operation StartReplicationTaskAssessment for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
 //
-//   * ResourceNotFoundFault
-//   The resource could not be found.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessment
 func (c *DatabaseMigrationService) StartReplicationTaskAssessment(input *StartReplicationTaskAssessmentInput) (*StartReplicationTaskAssessmentOutput, error) {
@@ -4776,6 +6654,128 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentWithContext(ctx
 	return out, req.Send()
 }
 
+const opStartReplicationTaskAssessmentRun = "StartReplicationTaskAssessmentRun"
+
+// StartReplicationTaskAssessmentRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartReplicationTaskAssessmentRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartReplicationTaskAssessmentRun for more information on using the StartReplicationTaskAssessmentRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartReplicationTaskAssessmentRunRequest method.
+//	req, resp := client.StartReplicationTaskAssessmentRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessmentRun
+func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRunRequest(input *StartReplicationTaskAssessmentRunInput) (req *request.Request, output *StartReplicationTaskAssessmentRunOutput) {
+	op := &request.Operation{
+		Name:       opStartReplicationTaskAssessmentRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartReplicationTaskAssessmentRunInput{}
+	}
+
+	output = &StartReplicationTaskAssessmentRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartReplicationTaskAssessmentRun API operation for AWS Database Migration Service.
+//
+// Starts a new premigration assessment run for one or more individual assessments
+// of a migration task.
+//
+// The assessments that you can specify depend on the source and target database
+// engine and the migration type defined for the given task. To run this operation,
+// your migration task must already be created. After you run this operation,
+// you can review the status of each individual assessment. You can also run
+// the migration task manually after the assessment run and its individual assessments
+// complete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation StartReplicationTaskAssessmentRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+//   - KMSAccessDeniedFault
+//     The ciphertext references a key that doesn't exist or that the DMS account
+//     doesn't have access to.
+//
+//   - KMSDisabledFault
+//     The specified KMS key isn't enabled.
+//
+//   - KMSFault
+//     An Key Management Service (KMS) error is preventing access to KMS.
+//
+//   - KMSInvalidStateFault
+//     The state of the specified KMS resource isn't valid for this request.
+//
+//   - KMSNotFoundFault
+//     The specified KMS entity or resource can't be found.
+//
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - S3AccessDeniedFault
+//     Insufficient privileges are preventing access to an Amazon S3 object.
+//
+//   - S3ResourceNotFoundFault
+//     A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+//
+//   - ResourceAlreadyExistsFault
+//     The resource you are attempting to create already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTaskAssessmentRun
+func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRun(input *StartReplicationTaskAssessmentRunInput) (*StartReplicationTaskAssessmentRunOutput, error) {
+	req, out := c.StartReplicationTaskAssessmentRunRequest(input)
+	return out, req.Send()
+}
+
+// StartReplicationTaskAssessmentRunWithContext is the same as StartReplicationTaskAssessmentRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartReplicationTaskAssessmentRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRunWithContext(ctx aws.Context, input *StartReplicationTaskAssessmentRunInput, opts ...request.Option) (*StartReplicationTaskAssessmentRunOutput, error) {
+	req, out := c.StartReplicationTaskAssessmentRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopReplicationTask = "StopReplicationTask"
 
 // StopReplicationTaskRequest generates a "aws/request.Request" representing the
@@ -4792,14 +6792,13 @@ const opStopReplicationTask = "StopReplicationTask"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopReplicationTaskRequest method.
+//	req, resp := client.StopReplicationTaskRequest(params)
 //
-//    // Example sending a request using the StopReplicationTaskRequest method.
-//    req, resp := client.StopReplicationTaskRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplicationTask
 func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplicationTaskInput) (req *request.Request, output *StopReplicationTaskOutput) {
@@ -4830,12 +6829,13 @@ func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplica
 // API operation StopReplicationTask for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplicationTask
 func (c *DatabaseMigrationService) StopReplicationTask(input *StopReplicationTaskInput) (*StopReplicationTaskOutput, error) {
@@ -4875,14 +6875,13 @@ const opTestConnection = "TestConnection"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestConnectionRequest method.
+//	req, resp := client.TestConnectionRequest(params)
 //
-//    // Example sending a request using the TestConnectionRequest method.
-//    req, resp := client.TestConnectionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TestConnection
 func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionInput) (req *request.Request, output *TestConnectionOutput) {
@@ -4913,18 +6912,22 @@ func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionIn
 // API operation TestConnection for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundFault
-//   The resource could not be found.
 //
-//   * InvalidResourceStateFault
-//   The resource is in a state that prevents it from being used for database
-//   migration.
+//   - ResourceNotFoundFault
+//     The resource could not be found.
 //
-//   * KMSKeyNotAccessibleFault
-//   AWS DMS cannot access the AWS KMS key.
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
 //
-//   * ResourceQuotaExceededFault
-//   The quota for this resource quota has been exceeded.
+//   - KMSKeyNotAccessibleFault
+//     DMS cannot access the KMS key.
+//
+//   - ResourceQuotaExceededFault
+//     The quota for this resource quota has been exceeded.
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TestConnection
 func (c *DatabaseMigrationService) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
@@ -4948,8 +6951,103 @@ func (c *DatabaseMigrationService) TestConnectionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// AWS DMS was denied access to the endpoint. Check that the role is correctly
-// configured.
+const opUpdateSubscriptionsToEventBridge = "UpdateSubscriptionsToEventBridge"
+
+// UpdateSubscriptionsToEventBridgeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSubscriptionsToEventBridge operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSubscriptionsToEventBridge for more information on using the UpdateSubscriptionsToEventBridge
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSubscriptionsToEventBridgeRequest method.
+//	req, resp := client.UpdateSubscriptionsToEventBridgeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/UpdateSubscriptionsToEventBridge
+func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeRequest(input *UpdateSubscriptionsToEventBridgeInput) (req *request.Request, output *UpdateSubscriptionsToEventBridgeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSubscriptionsToEventBridge,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSubscriptionsToEventBridgeInput{}
+	}
+
+	output = &UpdateSubscriptionsToEventBridgeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSubscriptionsToEventBridge API operation for AWS Database Migration Service.
+//
+// Migrates 10 active and enabled Amazon SNS subscriptions at a time and converts
+// them to corresponding Amazon EventBridge rules. By default, this operation
+// migrates subscriptions only when all your replication instance versions are
+// 3.4.6 or higher. If any replication instances are from versions earlier than
+// 3.4.6, the operation raises an error and tells you to upgrade these instances
+// to version 3.4.6 or higher. To enable migration regardless of version, set
+// the Force option to true. However, if you don't upgrade instances earlier
+// than version 3.4.6, some types of events might not be available when you
+// use Amazon EventBridge.
+//
+// To call this operation, make sure that you have certain permissions added
+// to your user account. For more information, see Migrating event subscriptions
+// to Amazon EventBridge (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html#CHAP_Events-migrate-to-eventbridge)
+// in the Amazon Web Services Database Migration Service User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation UpdateSubscriptionsToEventBridge for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedFault
+//     DMS was denied access to the endpoint. Check that the role is correctly configured.
+//
+//   - InvalidResourceStateFault
+//     The resource is in a state that prevents it from being used for database
+//     migration.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/UpdateSubscriptionsToEventBridge
+func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridge(input *UpdateSubscriptionsToEventBridgeInput) (*UpdateSubscriptionsToEventBridgeOutput, error) {
+	req, out := c.UpdateSubscriptionsToEventBridgeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSubscriptionsToEventBridgeWithContext is the same as UpdateSubscriptionsToEventBridge with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSubscriptionsToEventBridge for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) UpdateSubscriptionsToEventBridgeWithContext(ctx aws.Context, input *UpdateSubscriptionsToEventBridgeInput, opts ...request.Option) (*UpdateSubscriptionsToEventBridgeOutput, error) {
+	req, out := c.UpdateSubscriptionsToEventBridgeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DMS was denied access to the endpoint. Check that the role is correctly configured.
 type AccessDeniedFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4957,12 +7055,20 @@ type AccessDeniedFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedFault) GoString() string {
 	return s.String()
 }
@@ -5005,12 +7111,12 @@ func (s *AccessDeniedFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a quota for an AWS account, for example, the number of replication
-// instances allowed.
+// Describes a quota for an Amazon Web Services account, for example the number
+// of replication instances allowed.
 type AccountQuota struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS DMS quota for this AWS account.
+	// The name of the DMS quota for this Amazon Web Services account.
 	AccountQuotaName *string `type:"string"`
 
 	// The maximum allowed value for the quota.
@@ -5020,12 +7126,20 @@ type AccountQuota struct {
 	Used *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountQuota) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountQuota) GoString() string {
 	return s.String()
 }
@@ -5048,14 +7162,14 @@ func (s *AccountQuota) SetUsed(v int64) *AccountQuota {
 	return s
 }
 
-// Associates a set of tags with an AWS DMS resource.
+// Associates a set of tags with an DMS resource.
 type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifies the AWS DMS resource to which tags should be added. The value
-	// for this parameter is an Amazon Resource Name (ARN).
+	// Identifies the DMS resource to which tags should be added. The value for
+	// this parameter is an Amazon Resource Name (ARN).
 	//
-	// For AWS DMS, you can tag a replication instance, an endpoint, or a replication
+	// For DMS, you can tag a replication instance, an endpoint, or a replication
 	// task.
 	//
 	// ResourceArn is a required field
@@ -5067,12 +7181,20 @@ type AddTagsToResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsToResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsToResourceInput) GoString() string {
 	return s.String()
 }
@@ -5109,12 +7231,20 @@ type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsToResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsToResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5123,6 +7253,8 @@ type ApplyPendingMaintenanceActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The pending maintenance action to apply to this resource.
+	//
+	// Valid values: os-upgrade, system-update, db-upgrade
 	//
 	// ApplyAction is a required field
 	ApplyAction *string `type:"string" required:"true"`
@@ -5142,19 +7274,27 @@ type ApplyPendingMaintenanceActionInput struct {
 	// OptInType is a required field
 	OptInType *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS DMS resource that the pending maintenance
+	// The Amazon Resource Name (ARN) of the DMS resource that the pending maintenance
 	// action applies to.
 	//
 	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyPendingMaintenanceActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyPendingMaintenanceActionInput) GoString() string {
 	return s.String()
 }
@@ -5199,17 +7339,24 @@ func (s *ApplyPendingMaintenanceActionInput) SetReplicationInstanceArn(v string)
 type ApplyPendingMaintenanceActionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS DMS resource that the pending maintenance action will be applied
-	// to.
+	// The DMS resource that the pending maintenance action will be applied to.
 	ResourcePendingMaintenanceActions *ResourcePendingMaintenanceActions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyPendingMaintenanceActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyPendingMaintenanceActionOutput) GoString() string {
 	return s.String()
 }
@@ -5220,7 +7367,11 @@ func (s *ApplyPendingMaintenanceActionOutput) SetResourcePendingMaintenanceActio
 	return s
 }
 
-// The name of the Availability Zone for use during database migration.
+// The name of an Availability Zone for use during database migration. AvailabilityZone
+// is an optional parameter to the CreateReplicationInstance (https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationInstance.html)
+// operation, and it’s value relates to the Amazon Web Services Region of
+// an endpoint. For example, the availability zone of an endpoint in the us-east-1
+// region might be us-east-1a, us-east-1b, us-east-1c, or us-east-1d.
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -5228,12 +7379,20 @@ type AvailabilityZone struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AvailabilityZone) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AvailabilityZone) GoString() string {
 	return s.String()
 }
@@ -5241,6 +7400,83 @@ func (s AvailabilityZone) GoString() string {
 // SetName sets the Name field's value.
 func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 	s.Name = &v
+	return s
+}
+
+type CancelReplicationTaskAssessmentRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the premigration assessment run to be canceled.
+	//
+	// ReplicationTaskAssessmentRunArn is a required field
+	ReplicationTaskAssessmentRunArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelReplicationTaskAssessmentRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelReplicationTaskAssessmentRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelReplicationTaskAssessmentRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelReplicationTaskAssessmentRunInput"}
+	if s.ReplicationTaskAssessmentRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskAssessmentRunArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicationTaskAssessmentRunArn sets the ReplicationTaskAssessmentRunArn field's value.
+func (s *CancelReplicationTaskAssessmentRunInput) SetReplicationTaskAssessmentRunArn(v string) *CancelReplicationTaskAssessmentRunInput {
+	s.ReplicationTaskAssessmentRunArn = &v
+	return s
+}
+
+type CancelReplicationTaskAssessmentRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ReplicationTaskAssessmentRun object for the canceled assessment run.
+	ReplicationTaskAssessmentRun *ReplicationTaskAssessmentRun `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelReplicationTaskAssessmentRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelReplicationTaskAssessmentRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationTaskAssessmentRun sets the ReplicationTaskAssessmentRun field's value.
+func (s *CancelReplicationTaskAssessmentRunOutput) SetReplicationTaskAssessmentRun(v *ReplicationTaskAssessmentRun) *CancelReplicationTaskAssessmentRunOutput {
+	s.ReplicationTaskAssessmentRun = v
 	return s
 }
 
@@ -5266,8 +7502,8 @@ type Certificate struct {
 	// The contents of a .pem file, which contains an X.509 certificate.
 	CertificatePem *string `type:"string"`
 
-	// The location of an imported Oracle Wallet certificate for use with SSL.
-	//
+	// The location of an imported Oracle Wallet certificate for use with SSL. Example:
+	// filebase64("${path.root}/rds-ca-2019-root.sso")
 	// CertificateWallet is automatically base64 encoded/decoded by the SDK.
 	CertificateWallet []byte `type:"blob"`
 
@@ -5284,12 +7520,20 @@ type Certificate struct {
 	ValidToDate *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Certificate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Certificate) GoString() string {
 	return s.String()
 }
@@ -5354,6 +7598,316 @@ func (s *Certificate) SetValidToDate(v time.Time) *Certificate {
 	return s
 }
 
+// Describes the last Fleet Advisor collector health check.
+type CollectorHealthCheck struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the Fleet Advisor collector.
+	CollectorStatus *string `type:"string" enum:"CollectorStatus"`
+
+	// Whether the local collector can access its Amazon S3 bucket.
+	LocalCollectorS3Access *bool `type:"boolean"`
+
+	// Whether the role that you provided when creating the Fleet Advisor collector
+	// has sufficient permissions to access the Fleet Advisor web collector.
+	WebCollectorGrantedRoleBasedAccess *bool `type:"boolean"`
+
+	// Whether the web collector can access its Amazon S3 bucket.
+	WebCollectorS3Access *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorHealthCheck) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorHealthCheck) GoString() string {
+	return s.String()
+}
+
+// SetCollectorStatus sets the CollectorStatus field's value.
+func (s *CollectorHealthCheck) SetCollectorStatus(v string) *CollectorHealthCheck {
+	s.CollectorStatus = &v
+	return s
+}
+
+// SetLocalCollectorS3Access sets the LocalCollectorS3Access field's value.
+func (s *CollectorHealthCheck) SetLocalCollectorS3Access(v bool) *CollectorHealthCheck {
+	s.LocalCollectorS3Access = &v
+	return s
+}
+
+// SetWebCollectorGrantedRoleBasedAccess sets the WebCollectorGrantedRoleBasedAccess field's value.
+func (s *CollectorHealthCheck) SetWebCollectorGrantedRoleBasedAccess(v bool) *CollectorHealthCheck {
+	s.WebCollectorGrantedRoleBasedAccess = &v
+	return s
+}
+
+// SetWebCollectorS3Access sets the WebCollectorS3Access field's value.
+func (s *CollectorHealthCheck) SetWebCollectorS3Access(v bool) *CollectorHealthCheck {
+	s.WebCollectorS3Access = &v
+	return s
+}
+
+// The specified collector doesn't exist.
+type CollectorNotFoundFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorNotFoundFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorNotFoundFault) GoString() string {
+	return s.String()
+}
+
+func newErrorCollectorNotFoundFault(v protocol.ResponseMetadata) error {
+	return &CollectorNotFoundFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CollectorNotFoundFault) Code() string {
+	return "CollectorNotFoundFault"
+}
+
+// Message returns the exception's message.
+func (s *CollectorNotFoundFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CollectorNotFoundFault) OrigErr() error {
+	return nil
+}
+
+func (s *CollectorNotFoundFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CollectorNotFoundFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CollectorNotFoundFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Describes a Fleet Advisor collector.
+type CollectorResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the last Fleet Advisor collector health check.
+	CollectorHealthCheck *CollectorHealthCheck `type:"structure"`
+
+	// The name of the Fleet Advisor collector .
+	CollectorName *string `type:"string"`
+
+	// The reference ID of the Fleet Advisor collector.
+	CollectorReferencedId *string `type:"string"`
+
+	// The version of your Fleet Advisor collector, in semantic versioning format,
+	// for example 1.0.2
+	CollectorVersion *string `type:"string"`
+
+	// The timestamp when you created the collector, in the following format: 2022-01-24T19:04:02.596113Z
+	CreatedDate *string `type:"string"`
+
+	// A summary description of the Fleet Advisor collector.
+	Description *string `type:"string"`
+
+	// Describes a Fleet Advisor collector inventory.
+	InventoryData *InventoryData `type:"structure"`
+
+	// The timestamp of the last time the collector received data, in the following
+	// format: 2022-01-24T19:04:02.596113Z
+	LastDataReceived *string `type:"string"`
+
+	// The timestamp when DMS last modified the collector, in the following format:
+	// 2022-01-24T19:04:02.596113Z
+	ModifiedDate *string `type:"string"`
+
+	// The timestamp when DMS registered the collector, in the following format:
+	// 2022-01-24T19:04:02.596113Z
+	RegisteredDate *string `type:"string"`
+
+	// The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory
+	// metadata.
+	S3BucketName *string `type:"string"`
+
+	// The IAM role that grants permissions to access the specified Amazon S3 bucket.
+	ServiceAccessRoleArn *string `type:"string"`
+
+	// Whether the collector version is up to date.
+	VersionStatus *string `type:"string" enum:"VersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorResponse) GoString() string {
+	return s.String()
+}
+
+// SetCollectorHealthCheck sets the CollectorHealthCheck field's value.
+func (s *CollectorResponse) SetCollectorHealthCheck(v *CollectorHealthCheck) *CollectorResponse {
+	s.CollectorHealthCheck = v
+	return s
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CollectorResponse) SetCollectorName(v string) *CollectorResponse {
+	s.CollectorName = &v
+	return s
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *CollectorResponse) SetCollectorReferencedId(v string) *CollectorResponse {
+	s.CollectorReferencedId = &v
+	return s
+}
+
+// SetCollectorVersion sets the CollectorVersion field's value.
+func (s *CollectorResponse) SetCollectorVersion(v string) *CollectorResponse {
+	s.CollectorVersion = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *CollectorResponse) SetCreatedDate(v string) *CollectorResponse {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollectorResponse) SetDescription(v string) *CollectorResponse {
+	s.Description = &v
+	return s
+}
+
+// SetInventoryData sets the InventoryData field's value.
+func (s *CollectorResponse) SetInventoryData(v *InventoryData) *CollectorResponse {
+	s.InventoryData = v
+	return s
+}
+
+// SetLastDataReceived sets the LastDataReceived field's value.
+func (s *CollectorResponse) SetLastDataReceived(v string) *CollectorResponse {
+	s.LastDataReceived = &v
+	return s
+}
+
+// SetModifiedDate sets the ModifiedDate field's value.
+func (s *CollectorResponse) SetModifiedDate(v string) *CollectorResponse {
+	s.ModifiedDate = &v
+	return s
+}
+
+// SetRegisteredDate sets the RegisteredDate field's value.
+func (s *CollectorResponse) SetRegisteredDate(v string) *CollectorResponse {
+	s.RegisteredDate = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CollectorResponse) SetS3BucketName(v string) *CollectorResponse {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *CollectorResponse) SetServiceAccessRoleArn(v string) *CollectorResponse {
+	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+// SetVersionStatus sets the VersionStatus field's value.
+func (s *CollectorResponse) SetVersionStatus(v string) *CollectorResponse {
+	s.VersionStatus = &v
+	return s
+}
+
+// Briefly describes a Fleet Advisor collector.
+type CollectorShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Fleet Advisor collector.
+	CollectorName *string `type:"string"`
+
+	// The reference ID of the Fleet Advisor collector.
+	CollectorReferencedId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CollectorShortInfoResponse) SetCollectorName(v string) *CollectorShortInfoResponse {
+	s.CollectorName = &v
+	return s
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *CollectorShortInfoResponse) SetCollectorReferencedId(v string) *CollectorShortInfoResponse {
+	s.CollectorReferencedId = &v
+	return s
+}
+
 // Status of the connection between an endpoint and a replication instance,
 // including Amazon Resource Names (ARNs) and the last error message issued.
 type Connection struct {
@@ -5377,16 +7931,32 @@ type Connection struct {
 	// string.
 	ReplicationInstanceIdentifier *string `type:"string"`
 
-	// The connection status.
+	// The connection status. This parameter can return one of the following values:
+	//
+	//    * "successful"
+	//
+	//    * "testing"
+	//
+	//    * "failed"
+	//
+	//    * "deleting"
 	Status *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connection) GoString() string {
 	return s.String()
 }
@@ -5433,43 +8003,44 @@ type CreateEndpointInput struct {
 	// The Amazon Resource Name (ARN) for the certificate.
 	CertificateArn *string `type:"string"`
 
-	// The name of the endpoint database.
+	// The name of the endpoint database. For a MySQL source or target endpoint,
+	// do not specify DatabaseName. To migrate to a specific database, use this
+	// setting and targetDbType.
 	DatabaseName *string `type:"string"`
 
 	// The settings in JSON format for the DMS transfer type of source endpoint.
 	//
 	// Possible settings include the following:
 	//
-	//    * ServiceAccessRoleArn - The IAM role that has permission to access the
-	//    Amazon S3 bucket.
+	//    * ServiceAccessRoleArn - The Amazon Resource Name (ARN) used by the service
+	//    access IAM role. The role must allow the iam:PassRole action.
 	//
 	//    * BucketName - The name of the S3 bucket to use.
 	//
-	//    * CompressionType - An optional parameter to use GZIP to compress the
-	//    target files. To use GZIP, set this value to NONE (the default). To keep
-	//    the files uncompressed, don't use this value.
-	//
-	// Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string,CompressionType=string
+	// Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string
 	//
 	// JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string",
-	// "BucketName": "string", "CompressionType": "none"|"gzip" }
+	// "BucketName": "string", }
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
+
+	// Provides information that defines a DocumentDB endpoint.
+	DocDbSettings *DocDbSettings `type:"structure"`
 
 	// Settings in JSON format for the target Amazon DynamoDB endpoint. For information
 	// about other available settings, see Using Object Mapping to Migrate Data
-	// to DynamoDB (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html)
-	// in the AWS Database Migration Service User Guide.
+	// to DynamoDB (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html#CHAP_Target.DynamoDB.ObjectMapping)
+	// in the Database Migration Service User Guide.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
 
-	// Settings in JSON format for the target Elasticsearch endpoint. For more information
+	// Settings in JSON format for the target OpenSearch endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
-	// Elasticsearch as a Target for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
-	// in the AWS Database Migration User Guide.
+	// OpenSearch as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
+	// in the Database Migration Service User Guide.
 	ElasticsearchSettings *ElasticsearchSettings `type:"structure"`
 
 	// The database endpoint identifier. Identifiers must begin with a letter and
 	// must contain only ASCII letters, digits, and hyphens. They can't end with
-	// a hyphen or contain two consecutive hyphens.
+	// a hyphen, or contain two consecutive hyphens.
 	//
 	// EndpointIdentifier is a required field
 	EndpointIdentifier *string `type:"string" required:"true"`
@@ -5481,8 +8052,9 @@ type CreateEndpointInput struct {
 
 	// The type of engine for the endpoint. Valid values, depending on the EndpointType
 	// value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", and "sqlserver".
+	// "opensearch", "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb",
+	// "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", "neptune",
+	// and "babelfish".
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -5494,69 +8066,134 @@ type CreateEndpointInput struct {
 	// as a name-value pair associated by an equal sign (=). Multiple attributes
 	// are separated by a semicolon (;) with no additional white space. For information
 	// on the attributes available for connecting your source or target endpoint,
-	// see Working with AWS DMS Endpoints (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.html)
-	// in the AWS Database Migration Service User Guide.
+	// see Working with DMS Endpoints (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.html)
+	// in the Database Migration Service User Guide.
 	ExtraConnectionAttributes *string `type:"string"`
 
+	// Settings in JSON format for the source GCP MySQL endpoint.
+	GcpMySQLSettings *GcpMySQLSettings `type:"structure"`
+
+	// Settings in JSON format for the source IBM Db2 LUW endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// Db2 LUW as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.DB2.html#CHAP_Source.DB2.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	IBMDb2Settings *IBMDb2Settings `type:"structure"`
+
 	// Settings in JSON format for the target Apache Kafka endpoint. For more information
-	// about the available settings, see Using Apache Kafka as a Target for AWS
-	// Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html)
-	// in the AWS Database Migration User Guide.
+	// about the available settings, see Using object mapping to migrate data to
+	// a Kafka topic (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html#CHAP_Target.Kafka.ObjectMapping)
+	// in the Database Migration Service User Guide.
 	KafkaSettings *KafkaSettings `type:"structure"`
 
 	// Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams.
-	// For more information about the available settings, see Using Amazon Kinesis
-	// Data Streams as a Target for AWS Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html)
-	// in the AWS Database Migration User Guide.
+	// For more information about the available settings, see Using object mapping
+	// to migrate data to a Kinesis data stream (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html#CHAP_Target.Kinesis.ObjectMapping)
+	// in the Database Migration Service User Guide.
 	KinesisSettings *KinesisSettings `type:"structure"`
 
-	// An AWS KMS key identifier that is used to encrypt the connection parameters
-	// for the endpoint.
+	// An KMS key identifier that is used to encrypt the connection parameters for
+	// the endpoint.
 	//
-	// If you don't specify a value for the KmsKeyId parameter, then AWS DMS uses
-	// your default encryption key.
+	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
+	// default encryption key.
 	//
-	// AWS KMS creates the default encryption key for your AWS account. Your AWS
-	// account has a different default encryption key for each AWS Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
+	// Settings in JSON format for the source and target Microsoft SQL Server endpoint.
+	// For information about other available settings, see Extra connection attributes
+	// when using SQL Server as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html#CHAP_Source.SQLServer.ConnectionAttrib)
+	// and Extra connection attributes when using SQL Server as a target for DMS
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html#CHAP_Target.SQLServer.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	MicrosoftSQLServerSettings *MicrosoftSQLServerSettings `type:"structure"`
+
 	// Settings in JSON format for the source MongoDB endpoint. For more information
-	// about the available settings, see Using MongoDB as a Target for AWS Database
-	// Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MongoDB.html#CHAP_Source.MongoDB.Configuration)
-	// in the AWS Database Migration Service User Guide.
+	// about the available settings, see Endpoint configuration settings when using
+	// MongoDB as a source for Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MongoDB.html#CHAP_Source.MongoDB.Configuration)
+	// in the Database Migration Service User Guide.
 	MongoDbSettings *MongoDbSettings `type:"structure"`
 
+	// Settings in JSON format for the source and target MySQL endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// MySQL as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MySQL.html#CHAP_Source.MySQL.ConnectionAttrib)
+	// and Extra connection attributes when using a MySQL-compatible database as
+	// a target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.MySQL.html#CHAP_Target.MySQL.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	MySQLSettings *MySQLSettings `type:"structure"`
+
 	// Settings in JSON format for the target Amazon Neptune endpoint. For more
-	// information about the available settings, see https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.EndpointSettings
-	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.EndpointSettings)
-	// in the AWS Database Migration Service User Guide.
+	// information about the available settings, see Specifying graph-mapping rules
+	// using Gremlin and R2RML for Amazon Neptune as a target (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.EndpointSettings)
+	// in the Database Migration Service User Guide.
 	NeptuneSettings *NeptuneSettings `type:"structure"`
 
+	// Settings in JSON format for the source and target Oracle endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// Oracle as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.ConnectionAttrib)
+	// and Extra connection attributes when using Oracle as a target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Oracle.html#CHAP_Target.Oracle.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	OracleSettings *OracleSettings `type:"structure"`
+
 	// The password to be used to log in to the endpoint database.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateEndpointInput's
+	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
 	// The port used by the endpoint database.
 	Port *int64 `type:"integer"`
 
+	// Settings in JSON format for the source and target PostgreSQL endpoint. For
+	// information about other available settings, see Extra connection attributes
+	// when using PostgreSQL as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib)
+	// and Extra connection attributes when using PostgreSQL as a target for DMS
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.PostgreSQL.html#CHAP_Target.PostgreSQL.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	PostgreSQLSettings *PostgreSQLSettings `type:"structure"`
+
+	// Settings in JSON format for the target Redis endpoint.
+	RedisSettings *RedisSettings `type:"structure"`
+
 	// Provides information that defines an Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
 
+	// A friendly name for the resource identifier at the end of the EndpointArn
+	// response parameter that is returned in the created Endpoint object. The value
+	// for this parameter can have up to 31 characters. It can contain only ASCII
+	// letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain
+	// two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1.
+	// For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1.
+	// If you don't specify a ResourceIdentifier value, DMS generates a default
+	// identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
+
 	// Settings in JSON format for the target Amazon S3 endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
-	// Amazon S3 as a Target for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring)
-	// in the AWS Database Migration Service User Guide.
+	// Amazon S3 as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring)
+	// in the Database Migration Service User Guide.
 	S3Settings *S3Settings `type:"structure"`
 
 	// The name of the server where the endpoint database resides.
 	ServerName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) for the service access role that you want
-	// to use to create the endpoint.
+	// to use to create the endpoint. The role must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 
 	// The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default
 	// is none
 	SslMode *string `type:"string" enum:"DmsSslModeValue"`
+
+	// Settings in JSON format for the source and target SAP ASE endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// SAP ASE as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SAP.html#CHAP_Source.SAP.ConnectionAttrib)
+	// and Extra connection attributes when using SAP ASE as a target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SAP.html#CHAP_Target.SAP.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	SybaseSettings *SybaseSettings `type:"structure"`
 
 	// One or more tags to be assigned to the endpoint.
 	Tags []*Tag `type:"list"`
@@ -5565,12 +8202,20 @@ type CreateEndpointInput struct {
 	Username *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEndpointInput) GoString() string {
 	return s.String()
 }
@@ -5602,6 +8247,11 @@ func (s *CreateEndpointInput) Validate() error {
 			invalidParams.AddNested("NeptuneSettings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RedisSettings != nil {
+		if err := s.RedisSettings.Validate(); err != nil {
+			invalidParams.AddNested("RedisSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5624,6 +8274,12 @@ func (s *CreateEndpointInput) SetDatabaseName(v string) *CreateEndpointInput {
 // SetDmsTransferSettings sets the DmsTransferSettings field's value.
 func (s *CreateEndpointInput) SetDmsTransferSettings(v *DmsTransferSettings) *CreateEndpointInput {
 	s.DmsTransferSettings = v
+	return s
+}
+
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *CreateEndpointInput) SetDocDbSettings(v *DocDbSettings) *CreateEndpointInput {
+	s.DocDbSettings = v
 	return s
 }
 
@@ -5669,6 +8325,18 @@ func (s *CreateEndpointInput) SetExtraConnectionAttributes(v string) *CreateEndp
 	return s
 }
 
+// SetGcpMySQLSettings sets the GcpMySQLSettings field's value.
+func (s *CreateEndpointInput) SetGcpMySQLSettings(v *GcpMySQLSettings) *CreateEndpointInput {
+	s.GcpMySQLSettings = v
+	return s
+}
+
+// SetIBMDb2Settings sets the IBMDb2Settings field's value.
+func (s *CreateEndpointInput) SetIBMDb2Settings(v *IBMDb2Settings) *CreateEndpointInput {
+	s.IBMDb2Settings = v
+	return s
+}
+
 // SetKafkaSettings sets the KafkaSettings field's value.
 func (s *CreateEndpointInput) SetKafkaSettings(v *KafkaSettings) *CreateEndpointInput {
 	s.KafkaSettings = v
@@ -5687,15 +8355,33 @@ func (s *CreateEndpointInput) SetKmsKeyId(v string) *CreateEndpointInput {
 	return s
 }
 
+// SetMicrosoftSQLServerSettings sets the MicrosoftSQLServerSettings field's value.
+func (s *CreateEndpointInput) SetMicrosoftSQLServerSettings(v *MicrosoftSQLServerSettings) *CreateEndpointInput {
+	s.MicrosoftSQLServerSettings = v
+	return s
+}
+
 // SetMongoDbSettings sets the MongoDbSettings field's value.
 func (s *CreateEndpointInput) SetMongoDbSettings(v *MongoDbSettings) *CreateEndpointInput {
 	s.MongoDbSettings = v
 	return s
 }
 
+// SetMySQLSettings sets the MySQLSettings field's value.
+func (s *CreateEndpointInput) SetMySQLSettings(v *MySQLSettings) *CreateEndpointInput {
+	s.MySQLSettings = v
+	return s
+}
+
 // SetNeptuneSettings sets the NeptuneSettings field's value.
 func (s *CreateEndpointInput) SetNeptuneSettings(v *NeptuneSettings) *CreateEndpointInput {
 	s.NeptuneSettings = v
+	return s
+}
+
+// SetOracleSettings sets the OracleSettings field's value.
+func (s *CreateEndpointInput) SetOracleSettings(v *OracleSettings) *CreateEndpointInput {
+	s.OracleSettings = v
 	return s
 }
 
@@ -5711,9 +8397,27 @@ func (s *CreateEndpointInput) SetPort(v int64) *CreateEndpointInput {
 	return s
 }
 
+// SetPostgreSQLSettings sets the PostgreSQLSettings field's value.
+func (s *CreateEndpointInput) SetPostgreSQLSettings(v *PostgreSQLSettings) *CreateEndpointInput {
+	s.PostgreSQLSettings = v
+	return s
+}
+
+// SetRedisSettings sets the RedisSettings field's value.
+func (s *CreateEndpointInput) SetRedisSettings(v *RedisSettings) *CreateEndpointInput {
+	s.RedisSettings = v
+	return s
+}
+
 // SetRedshiftSettings sets the RedshiftSettings field's value.
 func (s *CreateEndpointInput) SetRedshiftSettings(v *RedshiftSettings) *CreateEndpointInput {
 	s.RedshiftSettings = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateEndpointInput) SetResourceIdentifier(v string) *CreateEndpointInput {
+	s.ResourceIdentifier = &v
 	return s
 }
 
@@ -5741,6 +8445,12 @@ func (s *CreateEndpointInput) SetSslMode(v string) *CreateEndpointInput {
 	return s
 }
 
+// SetSybaseSettings sets the SybaseSettings field's value.
+func (s *CreateEndpointInput) SetSybaseSettings(v *SybaseSettings) *CreateEndpointInput {
+	s.SybaseSettings = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateEndpointInput) SetTags(v []*Tag) *CreateEndpointInput {
 	s.Tags = v
@@ -5760,12 +8470,20 @@ type CreateEndpointOutput struct {
 	Endpoint *Endpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -5785,7 +8503,7 @@ type CreateEventSubscriptionInput struct {
 
 	// A list of event categories for a source type that you want to subscribe to.
 	// For more information, see Working with Events and Notifications (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html)
-	// in the AWS Database Migration Service User Guide.
+	// in the Database Migration Service User Guide.
 	EventCategories []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic created for event
@@ -5795,7 +8513,7 @@ type CreateEventSubscriptionInput struct {
 	// SnsTopicArn is a required field
 	SnsTopicArn *string `type:"string" required:"true"`
 
-	// A list of identifiers for which AWS DMS provides notification events.
+	// A list of identifiers for which DMS provides notification events.
 	//
 	// If you don't specify a value, notifications are provided for all sources.
 	//
@@ -5804,16 +8522,16 @@ type CreateEventSubscriptionInput struct {
 	// be database instance IDs.
 	SourceIds []*string `type:"list"`
 
-	// The type of AWS DMS resource that generates the events. For example, if you
-	// want to be notified of events generated by a replication instance, you set
-	// this parameter to replication-instance. If this value isn't specified, all
-	// events are returned.
+	// The type of DMS resource that generates the events. For example, if you want
+	// to be notified of events generated by a replication instance, you set this
+	// parameter to replication-instance. If this value isn't specified, all events
+	// are returned.
 	//
 	// Valid values: replication-instance | replication-task
 	SourceType *string `type:"string"`
 
-	// The name of the AWS DMS event notification subscription. This name must be
-	// less than 255 characters.
+	// The name of the DMS event notification subscription. This name must be less
+	// than 255 characters.
 	//
 	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
@@ -5822,12 +8540,20 @@ type CreateEventSubscriptionInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventSubscriptionInput) GoString() string {
 	return s.String()
 }
@@ -5897,12 +8623,20 @@ type CreateEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventSubscriptionOutput) GoString() string {
 	return s.String()
 }
@@ -5910,6 +8644,157 @@ func (s CreateEventSubscriptionOutput) GoString() string {
 // SetEventSubscription sets the EventSubscription field's value.
 func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *CreateEventSubscriptionOutput {
 	s.EventSubscription = v
+	return s
+}
+
+type CreateFleetAdvisorCollectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of your Fleet Advisor collector (for example, sample-collector).
+	//
+	// CollectorName is a required field
+	CollectorName *string `type:"string" required:"true"`
+
+	// A summary description of your Fleet Advisor collector.
+	Description *string `type:"string"`
+
+	// The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory
+	// metadata.
+	//
+	// S3BucketName is a required field
+	S3BucketName *string `type:"string" required:"true"`
+
+	// The IAM role that grants permissions to access the specified Amazon S3 bucket.
+	//
+	// ServiceAccessRoleArn is a required field
+	ServiceAccessRoleArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFleetAdvisorCollectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFleetAdvisorCollectorInput"}
+	if s.CollectorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectorName"))
+	}
+	if s.S3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketName"))
+	}
+	if s.ServiceAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccessRoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetCollectorName(v string) *CreateFleetAdvisorCollectorInput {
+	s.CollectorName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetDescription(v string) *CreateFleetAdvisorCollectorInput {
+	s.Description = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetS3BucketName(v string) *CreateFleetAdvisorCollectorInput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *CreateFleetAdvisorCollectorInput) SetServiceAccessRoleArn(v string) *CreateFleetAdvisorCollectorInput {
+	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+type CreateFleetAdvisorCollectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the new Fleet Advisor collector.
+	CollectorName *string `type:"string"`
+
+	// The unique ID of the new Fleet Advisor collector, for example: 22fda70c-40d5-4acf-b233-a495bd8eb7f5
+	CollectorReferencedId *string `type:"string"`
+
+	// A summary description of the Fleet Advisor collector.
+	Description *string `type:"string"`
+
+	// The Amazon S3 bucket that the collector uses to store inventory metadata.
+	S3BucketName *string `type:"string"`
+
+	// The IAM role that grants permissions to access the specified Amazon S3 bucket.
+	ServiceAccessRoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFleetAdvisorCollectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollectorName sets the CollectorName field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetCollectorName(v string) *CreateFleetAdvisorCollectorOutput {
+	s.CollectorName = &v
+	return s
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetCollectorReferencedId(v string) *CreateFleetAdvisorCollectorOutput {
+	s.CollectorReferencedId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetDescription(v string) *CreateFleetAdvisorCollectorOutput {
+	s.Description = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetS3BucketName(v string) *CreateFleetAdvisorCollectorOutput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *CreateFleetAdvisorCollectorOutput) SetServiceAccessRoleArn(v string) *CreateFleetAdvisorCollectorOutput {
+	s.ServiceAccessRoleArn = &v
 	return s
 }
 
@@ -5929,23 +8814,31 @@ type CreateReplicationInstanceInput struct {
 
 	// The Availability Zone where the replication instance will be created. The
 	// default value is a random, system-chosen Availability Zone in the endpoint's
-	// AWS Region, for example: us-east-1d
+	// Amazon Web Services Region, for example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
-	// A list of DNS name servers supported for the replication instance.
+	// A list of custom DNS name servers supported for the replication instance
+	// to access your on-premise source or target database. This list overrides
+	// the default name servers supported by the replication instance. You can specify
+	// a comma-separated list of internet addresses for up to four on-premise DNS
+	// name servers. For example: "1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4"
 	DnsNameServers *string `type:"string"`
 
 	// The engine version number of the replication instance.
+	//
+	// If an engine version number is not specified when a replication instance
+	// is created, the default is the latest engine version available.
 	EngineVersion *string `type:"string"`
 
-	// An AWS KMS key identifier that is used to encrypt the data on the replication
+	// An KMS key identifier that is used to encrypt the data on the replication
 	// instance.
 	//
-	// If you don't specify a value for the KmsKeyId parameter, then AWS DMS uses
-	// your default encryption key.
+	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
+	// default encryption key.
 	//
-	// AWS KMS creates the default encryption key for your AWS account. Your AWS
-	// account has a different default encryption key for each AWS Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether the replication instance is a Multi-AZ deployment. You
@@ -5953,13 +8846,18 @@ type CreateReplicationInstanceInput struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
 	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
-	// per AWS Region, occurring on a random day of the week.
+	// per Amazon Web Services Region, occurring on a random day of the week.
 	//
 	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	//
@@ -5971,11 +8869,13 @@ type CreateReplicationInstanceInput struct {
 	// represents an instance with a private IP address. The default value is true.
 	PubliclyAccessible *bool `type:"boolean"`
 
-	// The compute and memory capacity of the replication instance as specified
-	// by the replication instance class.
+	// The compute and memory capacity of the replication instance as defined for
+	// the specified replication instance class. For example to specify the instance
+	// class dms.c4.large, set this parameter to "dms.c4.large".
 	//
-	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
-	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
+	// For more information on the settings and capacities for the available replication
+	// instance classes, see Selecting the right DMS replication instance for your
+	// migration (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth).
 	//
 	// ReplicationInstanceClass is a required field
 	ReplicationInstanceClass *string `type:"string" required:"true"`
@@ -5985,7 +8885,7 @@ type CreateReplicationInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain 1-63 alphanumeric characters or hyphens.
 	//
 	//    * First character must be a letter.
 	//
@@ -5999,6 +8899,16 @@ type CreateReplicationInstanceInput struct {
 	// A subnet group to associate with the replication instance.
 	ReplicationSubnetGroupIdentifier *string `type:"string"`
 
+	// A friendly name for the resource identifier at the end of the EndpointArn
+	// response parameter that is returned in the created Endpoint object. The value
+	// for this parameter can have up to 31 characters. It can contain only ASCII
+	// letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain
+	// two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1.
+	// For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1.
+	// If you don't specify a ResourceIdentifier value, DMS generates a default
+	// identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
+
 	// One or more tags to be assigned to the replication instance.
 	Tags []*Tag `type:"list"`
 
@@ -6008,12 +8918,20 @@ type CreateReplicationInstanceInput struct {
 	VpcSecurityGroupIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationInstanceInput) GoString() string {
 	return s.String()
 }
@@ -6076,6 +8994,12 @@ func (s *CreateReplicationInstanceInput) SetMultiAZ(v bool) *CreateReplicationIn
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateReplicationInstanceInput) SetNetworkType(v string) *CreateReplicationInstanceInput {
+	s.NetworkType = &v
+	return s
+}
+
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *CreateReplicationInstanceInput) SetPreferredMaintenanceWindow(v string) *CreateReplicationInstanceInput {
 	s.PreferredMaintenanceWindow = &v
@@ -6106,6 +9030,12 @@ func (s *CreateReplicationInstanceInput) SetReplicationSubnetGroupIdentifier(v s
 	return s
 }
 
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateReplicationInstanceInput) SetResourceIdentifier(v string) *CreateReplicationInstanceInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateReplicationInstanceInput) SetTags(v []*Tag) *CreateReplicationInstanceInput {
 	s.Tags = v
@@ -6125,12 +9055,20 @@ type CreateReplicationInstanceOutput struct {
 	ReplicationInstance *ReplicationInstance `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -6169,12 +9107,20 @@ type CreateReplicationSubnetGroupInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSubnetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSubnetGroupInput) GoString() string {
 	return s.String()
 }
@@ -6229,12 +9175,20 @@ type CreateReplicationSubnetGroupOutput struct {
 	ReplicationSubnetGroup *ReplicationSubnetGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSubnetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationSubnetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -6264,7 +9218,7 @@ type CreateReplicationTaskInput struct {
 	// replication slot should already be created and associated with the source
 	// endpoint. You can verify this by setting the slotName extra connection attribute
 	// to the name of this logical replication slot. For more information, see Extra
-	// Connection Attributes When Using PostgreSQL as a Source for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib).
+	// Connection Attributes When Using PostgreSQL as a Source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib).
 	CdcStartPosition *string `type:"string"`
 
 	// Indicates the start time for a change data capture (CDC) operation. Use either
@@ -6277,9 +9231,9 @@ type CreateReplicationTaskInput struct {
 	// Indicates when you want a change data capture (CDC) operation to stop. The
 	// value can be either server time or commit time.
 	//
-	// Server time example: --cdc-stop-position “server_time:3018-02-09T12:12:12”
+	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 3018-02-09T12:12:12
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
 	// “
 	CdcStopPosition *string `type:"string"`
 
@@ -6297,7 +9251,7 @@ type CreateReplicationTaskInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    * Must contain 1-255 alphanumeric characters or hyphens.
 	//
 	//    * First character must be a letter.
 	//
@@ -6307,9 +9261,19 @@ type CreateReplicationTaskInput struct {
 	ReplicationTaskIdentifier *string `type:"string" required:"true"`
 
 	// Overall settings for the task, in JSON format. For more information, see
-	// Specifying Task Settings for AWS Database Migration Service Tasks (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html)
-	// in the AWS Database Migration User Guide.
+	// Specifying Task Settings for Database Migration Service Tasks (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html)
+	// in the Database Migration Service User Guide.
 	ReplicationTaskSettings *string `type:"string"`
+
+	// A friendly name for the resource identifier at the end of the EndpointArn
+	// response parameter that is returned in the created Endpoint object. The value
+	// for this parameter can have up to 31 characters. It can contain only ASCII
+	// letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain
+	// two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1.
+	// For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1.
+	// If you don't specify a ResourceIdentifier value, DMS generates a default
+	// identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies the source endpoint.
 	//
@@ -6318,7 +9282,7 @@ type CreateReplicationTaskInput struct {
 
 	// The table mappings for the task, in JSON format. For more information, see
 	// Using Table Mapping to Specify Task Settings (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html)
-	// in the AWS Database Migration User Guide.
+	// in the Database Migration Service User Guide.
 	//
 	// TableMappings is a required field
 	TableMappings *string `type:"string" required:"true"`
@@ -6334,16 +9298,24 @@ type CreateReplicationTaskInput struct {
 	// Supplemental information that the task requires to migrate the data for certain
 	// source and target endpoints. For more information, see Specifying Supplemental
 	// Data for Task Settings (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.TaskData.html)
-	// in the AWS Database Migration User Guide.
+	// in the Database Migration Service User Guide.
 	TaskData *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationTaskInput) GoString() string {
 	return s.String()
 }
@@ -6418,6 +9390,12 @@ func (s *CreateReplicationTaskInput) SetReplicationTaskSettings(v string) *Creat
 	return s
 }
 
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateReplicationTaskInput) SetResourceIdentifier(v string) *CreateReplicationTaskInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
 // SetSourceEndpointArn sets the SourceEndpointArn field's value.
 func (s *CreateReplicationTaskInput) SetSourceEndpointArn(v string) *CreateReplicationTaskInput {
 	s.SourceEndpointArn = &v
@@ -6455,12 +9433,20 @@ type CreateReplicationTaskOutput struct {
 	ReplicationTask *ReplicationTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReplicationTaskOutput) GoString() string {
 	return s.String()
 }
@@ -6471,21 +9457,266 @@ func (s *CreateReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Cr
 	return s
 }
 
+// Describes an inventory database instance for a Fleet Advisor collector.
+type DatabaseInstanceSoftwareDetailsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The database engine of a database in a Fleet Advisor collector inventory,
+	// for example Microsoft SQL Server.
+	Engine *string `type:"string"`
+
+	// The database engine edition of a database in a Fleet Advisor collector inventory,
+	// for example Express.
+	EngineEdition *string `type:"string"`
+
+	// The database engine version of a database in a Fleet Advisor collector inventory,
+	// for example 2019.
+	EngineVersion *string `type:"string"`
+
+	// The operating system architecture of the database.
+	OsArchitecture *int64 `type:"integer"`
+
+	// The service pack level of the database.
+	ServicePack *string `type:"string"`
+
+	// The support level of the database, for example Mainstream support.
+	SupportLevel *string `type:"string"`
+
+	// Information about the database engine software, for example Mainstream support
+	// ends on November 14th, 2024.
+	Tooltip *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseInstanceSoftwareDetailsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseInstanceSoftwareDetailsResponse) GoString() string {
+	return s.String()
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetEngine(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineEdition sets the EngineEdition field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetEngineEdition(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.EngineEdition = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetEngineVersion(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetOsArchitecture sets the OsArchitecture field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetOsArchitecture(v int64) *DatabaseInstanceSoftwareDetailsResponse {
+	s.OsArchitecture = &v
+	return s
+}
+
+// SetServicePack sets the ServicePack field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetServicePack(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.ServicePack = &v
+	return s
+}
+
+// SetSupportLevel sets the SupportLevel field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetSupportLevel(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.SupportLevel = &v
+	return s
+}
+
+// SetTooltip sets the Tooltip field's value.
+func (s *DatabaseInstanceSoftwareDetailsResponse) SetTooltip(v string) *DatabaseInstanceSoftwareDetailsResponse {
+	s.Tooltip = &v
+	return s
+}
+
+// Describes a database in a Fleet Advisor collector inventory.
+type DatabaseResponse struct {
+	_ struct{} `type:"structure"`
+
+	// A list of collectors associated with the database.
+	Collectors []*CollectorShortInfoResponse `type:"list"`
+
+	// The ID of a database in a Fleet Advisor collector inventory.
+	DatabaseId *string `type:"string"`
+
+	// The name of a database in a Fleet Advisor collector inventory.
+	DatabaseName *string `type:"string"`
+
+	// The IP address of a database in a Fleet Advisor collector inventory.
+	IpAddress *string `type:"string"`
+
+	// The number of schemas in a Fleet Advisor collector inventory database.
+	NumberOfSchemas *int64 `type:"long"`
+
+	// The server name of a database in a Fleet Advisor collector inventory.
+	Server *ServerShortInfoResponse `type:"structure"`
+
+	// The software details of a database in a Fleet Advisor collector inventory,
+	// such as database engine and version.
+	SoftwareDetails *DatabaseInstanceSoftwareDetailsResponse `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseResponse) GoString() string {
+	return s.String()
+}
+
+// SetCollectors sets the Collectors field's value.
+func (s *DatabaseResponse) SetCollectors(v []*CollectorShortInfoResponse) *DatabaseResponse {
+	s.Collectors = v
+	return s
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *DatabaseResponse) SetDatabaseId(v string) *DatabaseResponse {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DatabaseResponse) SetDatabaseName(v string) *DatabaseResponse {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *DatabaseResponse) SetIpAddress(v string) *DatabaseResponse {
+	s.IpAddress = &v
+	return s
+}
+
+// SetNumberOfSchemas sets the NumberOfSchemas field's value.
+func (s *DatabaseResponse) SetNumberOfSchemas(v int64) *DatabaseResponse {
+	s.NumberOfSchemas = &v
+	return s
+}
+
+// SetServer sets the Server field's value.
+func (s *DatabaseResponse) SetServer(v *ServerShortInfoResponse) *DatabaseResponse {
+	s.Server = v
+	return s
+}
+
+// SetSoftwareDetails sets the SoftwareDetails field's value.
+func (s *DatabaseResponse) SetSoftwareDetails(v *DatabaseInstanceSoftwareDetailsResponse) *DatabaseResponse {
+	s.SoftwareDetails = v
+	return s
+}
+
+// Describes a database in a Fleet Advisor collector inventory.
+type DatabaseShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The database engine of a database in a Fleet Advisor collector inventory,
+	// for example PostgreSQL.
+	DatabaseEngine *string `type:"string"`
+
+	// The ID of a database in a Fleet Advisor collector inventory.
+	DatabaseId *string `type:"string"`
+
+	// The IP address of a database in a Fleet Advisor collector inventory.
+	DatabaseIpAddress *string `type:"string"`
+
+	// The name of a database in a Fleet Advisor collector inventory.
+	DatabaseName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseEngine sets the DatabaseEngine field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseEngine(v string) *DatabaseShortInfoResponse {
+	s.DatabaseEngine = &v
+	return s
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseId(v string) *DatabaseShortInfoResponse {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDatabaseIpAddress sets the DatabaseIpAddress field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseIpAddress(v string) *DatabaseShortInfoResponse {
+	s.DatabaseIpAddress = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DatabaseShortInfoResponse) SetDatabaseName(v string) *DatabaseShortInfoResponse {
+	s.DatabaseName = &v
+	return s
+}
+
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the deleted certificate.
+	// The Amazon Resource Name (ARN) of the certificate.
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCertificateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCertificateInput) GoString() string {
 	return s.String()
 }
@@ -6516,12 +9747,20 @@ type DeleteCertificateOutput struct {
 	Certificate *Certificate `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCertificateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCertificateOutput) GoString() string {
 	return s.String()
 }
@@ -6546,12 +9785,20 @@ type DeleteConnectionInput struct {
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) GoString() string {
 	return s.String()
 }
@@ -6591,12 +9838,20 @@ type DeleteConnectionOutput struct {
 	Connection *Connection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -6616,12 +9871,20 @@ type DeleteEndpointInput struct {
 	EndpointArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEndpointInput) GoString() string {
 	return s.String()
 }
@@ -6652,12 +9915,20 @@ type DeleteEndpointOutput struct {
 	Endpoint *Endpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -6677,12 +9948,20 @@ type DeleteEventSubscriptionInput struct {
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventSubscriptionInput) GoString() string {
 	return s.String()
 }
@@ -6713,12 +9992,20 @@ type DeleteEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventSubscriptionOutput) GoString() string {
 	return s.String()
 }
@@ -6726,6 +10013,151 @@ func (s DeleteEventSubscriptionOutput) GoString() string {
 // SetEventSubscription sets the EventSubscription field's value.
 func (s *DeleteEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *DeleteEventSubscriptionOutput {
 	s.EventSubscription = v
+	return s
+}
+
+type DeleteFleetAdvisorCollectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The reference ID of the Fleet Advisor collector to delete.
+	//
+	// CollectorReferencedId is a required field
+	CollectorReferencedId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFleetAdvisorCollectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFleetAdvisorCollectorInput"}
+	if s.CollectorReferencedId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectorReferencedId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectorReferencedId sets the CollectorReferencedId field's value.
+func (s *DeleteFleetAdvisorCollectorInput) SetCollectorReferencedId(v string) *DeleteFleetAdvisorCollectorInput {
+	s.CollectorReferencedId = &v
+	return s
+}
+
+type DeleteFleetAdvisorCollectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorCollectorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteFleetAdvisorDatabasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the Fleet Advisor collector databases to delete.
+	//
+	// DatabaseIds is a required field
+	DatabaseIds []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFleetAdvisorDatabasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFleetAdvisorDatabasesInput"}
+	if s.DatabaseIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseIds sets the DatabaseIds field's value.
+func (s *DeleteFleetAdvisorDatabasesInput) SetDatabaseIds(v []*string) *DeleteFleetAdvisorDatabasesInput {
+	s.DatabaseIds = v
+	return s
+}
+
+type DeleteFleetAdvisorDatabasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the databases that the operation deleted.
+	DatabaseIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFleetAdvisorDatabasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseIds sets the DatabaseIds field's value.
+func (s *DeleteFleetAdvisorDatabasesOutput) SetDatabaseIds(v []*string) *DeleteFleetAdvisorDatabasesOutput {
+	s.DatabaseIds = v
 	return s
 }
 
@@ -6738,12 +10170,20 @@ type DeleteReplicationInstanceInput struct {
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationInstanceInput) GoString() string {
 	return s.String()
 }
@@ -6774,12 +10214,20 @@ type DeleteReplicationInstanceOutput struct {
 	ReplicationInstance *ReplicationInstance `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -6799,12 +10247,20 @@ type DeleteReplicationSubnetGroupInput struct {
 	ReplicationSubnetGroupIdentifier *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSubnetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSubnetGroupInput) GoString() string {
 	return s.String()
 }
@@ -6832,14 +10288,99 @@ type DeleteReplicationSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSubnetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteReplicationTaskAssessmentRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the premigration assessment run to be deleted.
+	//
+	// ReplicationTaskAssessmentRunArn is a required field
+	ReplicationTaskAssessmentRunArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationTaskAssessmentRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationTaskAssessmentRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationTaskAssessmentRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationTaskAssessmentRunInput"}
+	if s.ReplicationTaskAssessmentRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskAssessmentRunArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicationTaskAssessmentRunArn sets the ReplicationTaskAssessmentRunArn field's value.
+func (s *DeleteReplicationTaskAssessmentRunInput) SetReplicationTaskAssessmentRunArn(v string) *DeleteReplicationTaskAssessmentRunInput {
+	s.ReplicationTaskAssessmentRunArn = &v
+	return s
+}
+
+type DeleteReplicationTaskAssessmentRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ReplicationTaskAssessmentRun object for the deleted assessment run.
+	ReplicationTaskAssessmentRun *ReplicationTaskAssessmentRun `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationTaskAssessmentRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteReplicationTaskAssessmentRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationTaskAssessmentRun sets the ReplicationTaskAssessmentRun field's value.
+func (s *DeleteReplicationTaskAssessmentRunOutput) SetReplicationTaskAssessmentRun(v *ReplicationTaskAssessmentRun) *DeleteReplicationTaskAssessmentRunOutput {
+	s.ReplicationTaskAssessmentRun = v
+	return s
 }
 
 type DeleteReplicationTaskInput struct {
@@ -6851,12 +10392,20 @@ type DeleteReplicationTaskInput struct {
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationTaskInput) GoString() string {
 	return s.String()
 }
@@ -6887,12 +10436,20 @@ type DeleteReplicationTaskOutput struct {
 	ReplicationTask *ReplicationTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReplicationTaskOutput) GoString() string {
 	return s.String()
 }
@@ -6907,12 +10464,20 @@ type DescribeAccountAttributesInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesInput) GoString() string {
 	return s.String()
 }
@@ -6923,25 +10488,33 @@ type DescribeAccountAttributesOutput struct {
 	// Account quota information.
 	AccountQuotas []*AccountQuota `type:"list"`
 
-	// A unique AWS DMS identifier for an account in a particular AWS Region. The
-	// value of this identifier has the following format: c99999999999. DMS uses
-	// this identifier to name artifacts. For example, DMS uses this identifier
+	// A unique DMS identifier for an account in a particular Amazon Web Services
+	// Region. The value of this identifier has the following format: c99999999999.
+	// DMS uses this identifier to name artifacts. For example, DMS uses this identifier
 	// to name the default Amazon S3 bucket for storing task assessment reports
-	// in a given AWS Region. The format of this S3 bucket name is the following:
-	// dms-AccountNumber-UniqueAccountIdentifier. Here is an example name for this
-	// default S3 bucket: dms-111122223333-c44445555666.
+	// in a given Amazon Web Services Region. The format of this S3 bucket name
+	// is the following: dms-AccountNumber-UniqueAccountIdentifier. Here is an example
+	// name for this default S3 bucket: dms-111122223333-c44445555666.
 	//
-	// AWS DMS supports the UniqueAccountIdentifier parameter in versions 3.1.4
-	// and later.
+	// DMS supports the UniqueAccountIdentifier parameter in versions 3.1.4 and
+	// later.
 	UniqueAccountIdentifier *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -6958,10 +10531,153 @@ func (s *DescribeAccountAttributesOutput) SetUniqueAccountIdentifier(v string) *
 	return s
 }
 
+type DescribeApplicableIndividualAssessmentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// Maximum number of records to include in the response. If more records exist
+	// than the specified MaxRecords value, a pagination token called a marker is
+	// included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+
+	// Name of the migration type that each provided individual assessment must
+	// support.
+	MigrationType *string `type:"string" enum:"MigrationTypeValue"`
+
+	// ARN of a replication instance on which you want to base the default list
+	// of individual assessments.
+	ReplicationInstanceArn *string `type:"string"`
+
+	// Amazon Resource Name (ARN) of a migration task on which you want to base
+	// the default list of individual assessments.
+	ReplicationTaskArn *string `type:"string"`
+
+	// Name of a database engine that the specified replication instance supports
+	// as a source.
+	SourceEngineName *string `type:"string"`
+
+	// Name of a database engine that the specified replication instance supports
+	// as a target.
+	TargetEngineName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicableIndividualAssessmentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicableIndividualAssessmentsInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetMarker(v string) *DescribeApplicableIndividualAssessmentsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetMaxRecords(v int64) *DescribeApplicableIndividualAssessmentsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetMigrationType sets the MigrationType field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetMigrationType(v string) *DescribeApplicableIndividualAssessmentsInput {
+	s.MigrationType = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetReplicationInstanceArn(v string) *DescribeApplicableIndividualAssessmentsInput {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetReplicationTaskArn(v string) *DescribeApplicableIndividualAssessmentsInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetSourceEngineName sets the SourceEngineName field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetSourceEngineName(v string) *DescribeApplicableIndividualAssessmentsInput {
+	s.SourceEngineName = &v
+	return s
+}
+
+// SetTargetEngineName sets the TargetEngineName field's value.
+func (s *DescribeApplicableIndividualAssessmentsInput) SetTargetEngineName(v string) *DescribeApplicableIndividualAssessmentsInput {
+	s.TargetEngineName = &v
+	return s
+}
+
+type DescribeApplicableIndividualAssessmentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of names for the individual assessments supported by the premigration
+	// assessment run that you start based on the specified request parameters.
+	// For more information on the available individual assessments, including compatibility
+	// with different migration task configurations, see Working with premigration
+	// assessment runs (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html)
+	// in the Database Migration Service User Guide.
+	IndividualAssessmentNames []*string `type:"list"`
+
+	// Pagination token returned for you to pass to a subsequent request. If you
+	// pass this token as the Marker value in a subsequent request, the response
+	// includes only records beyond the marker, up to the value specified in the
+	// request by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicableIndividualAssessmentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicableIndividualAssessmentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIndividualAssessmentNames sets the IndividualAssessmentNames field's value.
+func (s *DescribeApplicableIndividualAssessmentsOutput) SetIndividualAssessmentNames(v []*string) *DescribeApplicableIndividualAssessmentsOutput {
+	s.IndividualAssessmentNames = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeApplicableIndividualAssessmentsOutput) SetMarker(v string) *DescribeApplicableIndividualAssessmentsOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the certificate described in the form of key-value pairs.
+	// Filters applied to the certificates described in the form of key-value pairs.
+	// Valid values are certificate-arn and certificate-id.
 	Filters []*Filter `type:"list"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -6977,12 +10693,20 @@ type DescribeCertificatesInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCertificatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCertificatesInput) GoString() string {
 	return s.String()
 }
@@ -7036,12 +10760,20 @@ type DescribeCertificatesOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCertificatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCertificatesOutput) GoString() string {
 	return s.String()
 }
@@ -7081,12 +10813,20 @@ type DescribeConnectionsInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsInput) GoString() string {
 	return s.String()
 }
@@ -7141,12 +10881,20 @@ type DescribeConnectionsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsOutput) GoString() string {
 	return s.String()
 }
@@ -7163,10 +10911,121 @@ func (s *DescribeConnectionsOutput) SetMarker(v string) *DescribeConnectionsOutp
 	return s
 }
 
+type DescribeEndpointSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The databse engine used for your source or target endpoint.
+	//
+	// EngineName is a required field
+	EngineName *string `type:"string" required:"true"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEndpointSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEndpointSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEndpointSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEndpointSettingsInput"}
+	if s.EngineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *DescribeEndpointSettingsInput) SetEngineName(v string) *DescribeEndpointSettingsInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointSettingsInput) SetMarker(v string) *DescribeEndpointSettingsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEndpointSettingsInput) SetMaxRecords(v int64) *DescribeEndpointSettingsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeEndpointSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Descriptions of the endpoint settings available for your source or target
+	// database engine.
+	EndpointSettings []*EndpointSetting `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEndpointSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEndpointSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointSettings sets the EndpointSettings field's value.
+func (s *DescribeEndpointSettingsOutput) SetEndpointSettings(v []*EndpointSetting) *DescribeEndpointSettingsOutput {
+	s.EndpointSettings = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointSettingsOutput) SetMarker(v string) *DescribeEndpointSettingsOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeEndpointTypesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the describe action.
+	// Filters applied to the endpoint types.
 	//
 	// Valid filter names: engine-name | endpoint-type
 	Filters []*Filter `type:"list"`
@@ -7186,12 +11045,20 @@ type DescribeEndpointTypesInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointTypesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointTypesInput) GoString() string {
 	return s.String()
 }
@@ -7246,12 +11113,20 @@ type DescribeEndpointTypesOutput struct {
 	SupportedEndpointTypes []*SupportedEndpointType `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointTypesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointTypesOutput) GoString() string {
 	return s.String()
 }
@@ -7271,7 +11146,7 @@ func (s *DescribeEndpointTypesOutput) SetSupportedEndpointTypes(v []*SupportedEn
 type DescribeEndpointsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the describe action.
+	// Filters applied to the endpoints.
 	//
 	// Valid filter names: endpoint-arn | endpoint-type | endpoint-id | engine-name
 	Filters []*Filter `type:"list"`
@@ -7291,12 +11166,20 @@ type DescribeEndpointsInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsInput) GoString() string {
 	return s.String()
 }
@@ -7351,12 +11234,20 @@ type DescribeEndpointsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEndpointsOutput) GoString() string {
 	return s.String()
 }
@@ -7376,21 +11267,29 @@ func (s *DescribeEndpointsOutput) SetMarker(v string) *DescribeEndpointsOutput {
 type DescribeEventCategoriesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the action.
+	// Filters applied to the event categories.
 	Filters []*Filter `type:"list"`
 
-	// The type of AWS DMS resource that generates events.
+	// The type of DMS resource that generates events.
 	//
 	// Valid values: replication-instance | replication-task
 	SourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventCategoriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventCategoriesInput) GoString() string {
 	return s.String()
 }
@@ -7434,12 +11333,20 @@ type DescribeEventCategoriesOutput struct {
 	EventCategoryGroupList []*EventCategoryGroup `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventCategoriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventCategoriesOutput) GoString() string {
 	return s.String()
 }
@@ -7453,7 +11360,9 @@ func (s *DescribeEventCategoriesOutput) SetEventCategoryGroupList(v []*EventCate
 type DescribeEventSubscriptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the action.
+	// Filters applied to event subscriptions.
+	//
+	// Valid filter names: event-subscription-arn | event-subscription-id
 	Filters []*Filter `type:"list"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -7470,16 +11379,24 @@ type DescribeEventSubscriptionsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// The name of the AWS DMS event subscription to be described.
+	// The name of the DMS event subscription to be described.
 	SubscriptionName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventSubscriptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventSubscriptionsInput) GoString() string {
 	return s.String()
 }
@@ -7540,12 +11457,20 @@ type DescribeEventSubscriptionsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventSubscriptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventSubscriptionsOutput) GoString() string {
 	return s.String()
 }
@@ -7574,7 +11499,7 @@ type DescribeEventsInput struct {
 	// A list of event categories for the source type that you've chosen.
 	EventCategories []*string `type:"list"`
 
-	// Filters applied to the action.
+	// Filters applied to events. The only valid filter is replication-instance-id.
 	Filters []*Filter `type:"list"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -7594,7 +11519,7 @@ type DescribeEventsInput struct {
 	// The identifier of an event source.
 	SourceIdentifier *string `type:"string"`
 
-	// The type of AWS DMS resource that generates events.
+	// The type of DMS resource that generates events.
 	//
 	// Valid values: replication-instance | replication-task
 	SourceType *string `type:"string" enum:"SourceType"`
@@ -7603,12 +11528,20 @@ type DescribeEventsInput struct {
 	StartTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsInput) GoString() string {
 	return s.String()
 }
@@ -7699,12 +11632,20 @@ type DescribeEventsOutput struct {
 	Marker *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsOutput) GoString() string {
 	return s.String()
 }
@@ -7718,6 +11659,603 @@ func (s *DescribeEventsOutput) SetEvents(v []*Event) *DescribeEventsOutput {
 // SetMarker sets the Marker field's value.
 func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
 	s.Marker = &v
+	return s
+}
+
+type DescribeFleetAdvisorCollectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those collectors that meet the filter criteria:
+	//
+	//    * collector-referenced-id – The ID of the collector agent, for example
+	//    d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.
+	//
+	//    * collector-name – The name of the collector agent.
+	//
+	// An example is: describe-fleet-advisor-collectors --filter Name="collector-referenced-id",Values="d4610ac5-e323-4ad9-bc50-eaf7249dfe9d"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorCollectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorCollectorsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorCollectorsInput) SetFilters(v []*Filter) *DescribeFleetAdvisorCollectorsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorCollectorsInput) SetMaxRecords(v int64) *DescribeFleetAdvisorCollectorsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorCollectorsInput) SetNextToken(v string) *DescribeFleetAdvisorCollectorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorCollectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides descriptions of the Fleet Advisor collectors, including the collectors'
+	// name and ID, and the latest inventory data.
+	Collectors []*CollectorResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorCollectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollectors sets the Collectors field's value.
+func (s *DescribeFleetAdvisorCollectorsOutput) SetCollectors(v []*CollectorResponse) *DescribeFleetAdvisorCollectorsOutput {
+	s.Collectors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorCollectorsOutput) SetNextToken(v string) *DescribeFleetAdvisorCollectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorDatabasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those databases that meet the filter criteria:
+	//
+	//    * database-id – The ID of the database.
+	//
+	//    * database-name – The name of the database.
+	//
+	//    * database-engine – The name of the database engine.
+	//
+	//    * server-ip-address – The IP address of the database server.
+	//
+	//    * database-ip-address – The IP address of the database.
+	//
+	//    * collector-name – The name of the associated Fleet Advisor collector.
+	//
+	// An example is: describe-fleet-advisor-databases --filter Name="database-id",Values="45"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorDatabasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorDatabasesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorDatabasesInput) SetFilters(v []*Filter) *DescribeFleetAdvisorDatabasesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorDatabasesInput) SetMaxRecords(v int64) *DescribeFleetAdvisorDatabasesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorDatabasesInput) SetNextToken(v string) *DescribeFleetAdvisorDatabasesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorDatabasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides descriptions of the Fleet Advisor collector databases, including
+	// the database's collector, ID, and name.
+	Databases []*DatabaseResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorDatabasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabases sets the Databases field's value.
+func (s *DescribeFleetAdvisorDatabasesOutput) SetDatabases(v []*DatabaseResponse) *DescribeFleetAdvisorDatabasesOutput {
+	s.Databases = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorDatabasesOutput) SetNextToken(v string) *DescribeFleetAdvisorDatabasesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorLsaAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisInput) SetMaxRecords(v int64) *DescribeFleetAdvisorLsaAnalysisInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisInput) SetNextToken(v string) *DescribeFleetAdvisorLsaAnalysisInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorLsaAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of FleetAdvisorLsaAnalysisResponse objects.
+	Analysis []*FleetAdvisorLsaAnalysisResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorLsaAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysis sets the Analysis field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisOutput) SetAnalysis(v []*FleetAdvisorLsaAnalysisResponse) *DescribeFleetAdvisorLsaAnalysisOutput {
+	s.Analysis = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorLsaAnalysisOutput) SetNextToken(v string) *DescribeFleetAdvisorLsaAnalysisOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemaObjectSummaryInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those schema objects that meet the filter criteria:
+	//
+	//    * schema-id – The ID of the schema, for example d4610ac5-e323-4ad9-bc50-eaf7249dfe9d.
+	//
+	// Example: describe-fleet-advisor-schema-object-summary --filter Name="schema-id",Values="50"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorSchemaObjectSummaryInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) SetFilters(v []*Filter) *DescribeFleetAdvisorSchemaObjectSummaryInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) SetMaxRecords(v int64) *DescribeFleetAdvisorSchemaObjectSummaryInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryInput) SetNextToken(v string) *DescribeFleetAdvisorSchemaObjectSummaryInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemaObjectSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of FleetAdvisorSchemaObjectResponse objects.
+	FleetAdvisorSchemaObjects []*FleetAdvisorSchemaObjectResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemaObjectSummaryOutput) GoString() string {
+	return s.String()
+}
+
+// SetFleetAdvisorSchemaObjects sets the FleetAdvisorSchemaObjects field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryOutput) SetFleetAdvisorSchemaObjects(v []*FleetAdvisorSchemaObjectResponse) *DescribeFleetAdvisorSchemaObjectSummaryOutput {
+	s.FleetAdvisorSchemaObjects = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemaObjectSummaryOutput) SetNextToken(v string) *DescribeFleetAdvisorSchemaObjectSummaryOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemasInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify any of the following filters, the output includes information
+	// for only those schemas that meet the filter criteria:
+	//
+	//    * complexity – The schema's complexity, for example Simple.
+	//
+	//    * database-id – The ID of the schema's database.
+	//
+	//    * database-ip-address – The IP address of the schema's database.
+	//
+	//    * database-name – The name of the schema's database.
+	//
+	//    * database-engine – The name of the schema database's engine.
+	//
+	//    * original-schema-name – The name of the schema's database's main schema.
+	//
+	//    * schema-id – The ID of the schema, for example 15.
+	//
+	//    * schema-name – The name of the schema.
+	//
+	//    * server-ip-address – The IP address of the schema database's server.
+	//
+	// An example is: describe-fleet-advisor-schemas --filter Name="schema-id",Values="50"
+	Filters []*Filter `type:"list"`
+
+	// Sets the maximum number of records returned in the response.
+	MaxRecords *int64 `type:"integer"`
+
+	// If NextToken is returned by a previous response, there are more results available.
+	// The value of NextToken is a unique pagination token for each page. Make the
+	// call again using the returned token to retrieve the next page. Keep all other
+	// arguments unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAdvisorSchemasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAdvisorSchemasInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeFleetAdvisorSchemasInput) SetFilters(v []*Filter) *DescribeFleetAdvisorSchemasInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeFleetAdvisorSchemasInput) SetMaxRecords(v int64) *DescribeFleetAdvisorSchemasInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemasInput) SetNextToken(v string) *DescribeFleetAdvisorSchemasInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeFleetAdvisorSchemasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of SchemaResponse objects.
+	FleetAdvisorSchemas []*SchemaResponse `type:"list"`
+
+	// If NextToken is returned, there are more results available. The value of
+	// NextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFleetAdvisorSchemasOutput) GoString() string {
+	return s.String()
+}
+
+// SetFleetAdvisorSchemas sets the FleetAdvisorSchemas field's value.
+func (s *DescribeFleetAdvisorSchemasOutput) SetFleetAdvisorSchemas(v []*SchemaResponse) *DescribeFleetAdvisorSchemasOutput {
+	s.FleetAdvisorSchemas = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAdvisorSchemasOutput) SetNextToken(v string) *DescribeFleetAdvisorSchemasOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -7739,12 +12277,20 @@ type DescribeOrderableReplicationInstancesInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrderableReplicationInstancesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrderableReplicationInstancesInput) GoString() string {
 	return s.String()
 }
@@ -7773,12 +12319,20 @@ type DescribeOrderableReplicationInstancesOutput struct {
 	OrderableReplicationInstances []*OrderableReplicationInstance `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrderableReplicationInstancesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrderableReplicationInstancesOutput) GoString() string {
 	return s.String()
 }
@@ -7818,12 +12372,20 @@ type DescribePendingMaintenanceActionsInput struct {
 	ReplicationInstanceArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingMaintenanceActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingMaintenanceActionsInput) GoString() string {
 	return s.String()
 }
@@ -7884,12 +12446,20 @@ type DescribePendingMaintenanceActionsOutput struct {
 	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingMaintenanceActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingMaintenanceActionsOutput) GoString() string {
 	return s.String()
 }
@@ -7915,12 +12485,20 @@ type DescribeRefreshSchemasStatusInput struct {
 	EndpointArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRefreshSchemasStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRefreshSchemasStatusInput) GoString() string {
 	return s.String()
 }
@@ -7951,12 +12529,20 @@ type DescribeRefreshSchemasStatusOutput struct {
 	RefreshSchemasStatus *RefreshSchemasStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRefreshSchemasStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRefreshSchemasStatusOutput) GoString() string {
 	return s.String()
 }
@@ -7990,12 +12576,20 @@ type DescribeReplicationInstanceTaskLogsInput struct {
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstanceTaskLogsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstanceTaskLogsInput) GoString() string {
 	return s.String()
 }
@@ -8047,12 +12641,20 @@ type DescribeReplicationInstanceTaskLogsOutput struct {
 	ReplicationInstanceTaskLogs []*ReplicationInstanceTaskLog `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstanceTaskLogsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstanceTaskLogsOutput) GoString() string {
 	return s.String()
 }
@@ -8078,7 +12680,7 @@ func (s *DescribeReplicationInstanceTaskLogsOutput) SetReplicationInstanceTaskLo
 type DescribeReplicationInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the describe action.
+	// Filters applied to replication instances.
 	//
 	// Valid filter names: replication-instance-arn | replication-instance-id |
 	// replication-instance-class | engine-version
@@ -8099,12 +12701,20 @@ type DescribeReplicationInstancesInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstancesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstancesInput) GoString() string {
 	return s.String()
 }
@@ -8159,12 +12769,20 @@ type DescribeReplicationInstancesOutput struct {
 	ReplicationInstances []*ReplicationInstance `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstancesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationInstancesOutput) GoString() string {
 	return s.String()
 }
@@ -8184,7 +12802,7 @@ func (s *DescribeReplicationInstancesOutput) SetReplicationInstances(v []*Replic
 type DescribeReplicationSubnetGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the describe action.
+	// Filters applied to replication subnet groups.
 	//
 	// Valid filter names: replication-subnet-group-id
 	Filters []*Filter `type:"list"`
@@ -8204,12 +12822,20 @@ type DescribeReplicationSubnetGroupsInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationSubnetGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationSubnetGroupsInput) GoString() string {
 	return s.String()
 }
@@ -8264,12 +12890,20 @@ type DescribeReplicationSubnetGroupsOutput struct {
 	ReplicationSubnetGroups []*ReplicationSubnetGroup `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationSubnetGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationSubnetGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -8309,12 +12943,20 @@ type DescribeReplicationTaskAssessmentResultsInput struct {
 	ReplicationTaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTaskAssessmentResultsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTaskAssessmentResultsInput) GoString() string {
 	return s.String()
 }
@@ -8352,12 +12994,20 @@ type DescribeReplicationTaskAssessmentResultsOutput struct {
 	ReplicationTaskAssessmentResults []*ReplicationTaskAssessmentResult `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTaskAssessmentResultsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTaskAssessmentResultsOutput) GoString() string {
 	return s.String()
 }
@@ -8380,10 +13030,250 @@ func (s *DescribeReplicationTaskAssessmentResultsOutput) SetReplicationTaskAsses
 	return s
 }
 
+type DescribeReplicationTaskAssessmentRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the premigration assessment runs described in the form
+	// of key-value pairs.
+	//
+	// Valid filter names: replication-task-assessment-run-arn, replication-task-arn,
+	// replication-instance-arn, status
+	Filters []*Filter `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskAssessmentRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskAssessmentRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationTaskAssessmentRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationTaskAssessmentRunsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationTaskAssessmentRunsInput) SetFilters(v []*Filter) *DescribeReplicationTaskAssessmentRunsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTaskAssessmentRunsInput) SetMarker(v string) *DescribeReplicationTaskAssessmentRunsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationTaskAssessmentRunsInput) SetMaxRecords(v int64) *DescribeReplicationTaskAssessmentRunsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeReplicationTaskAssessmentRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token returned for you to pass to a subsequent request. If you
+	// pass this token as the Marker value in a subsequent request, the response
+	// includes only records beyond the marker, up to the value specified in the
+	// request by MaxRecords.
+	Marker *string `type:"string"`
+
+	// One or more premigration assessment runs as specified by Filters.
+	ReplicationTaskAssessmentRuns []*ReplicationTaskAssessmentRun `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskAssessmentRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskAssessmentRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTaskAssessmentRunsOutput) SetMarker(v string) *DescribeReplicationTaskAssessmentRunsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationTaskAssessmentRuns sets the ReplicationTaskAssessmentRuns field's value.
+func (s *DescribeReplicationTaskAssessmentRunsOutput) SetReplicationTaskAssessmentRuns(v []*ReplicationTaskAssessmentRun) *DescribeReplicationTaskAssessmentRunsOutput {
+	s.ReplicationTaskAssessmentRuns = v
+	return s
+}
+
+type DescribeReplicationTaskIndividualAssessmentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied to the individual assessments described in the form of key-value
+	// pairs.
+	//
+	// Valid filter names: replication-task-assessment-run-arn, replication-task-arn,
+	// status
+	Filters []*Filter `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskIndividualAssessmentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskIndividualAssessmentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationTaskIndividualAssessmentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationTaskIndividualAssessmentsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationTaskIndividualAssessmentsInput) SetFilters(v []*Filter) *DescribeReplicationTaskIndividualAssessmentsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTaskIndividualAssessmentsInput) SetMarker(v string) *DescribeReplicationTaskIndividualAssessmentsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationTaskIndividualAssessmentsInput) SetMaxRecords(v int64) *DescribeReplicationTaskIndividualAssessmentsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeReplicationTaskIndividualAssessmentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token returned for you to pass to a subsequent request. If you
+	// pass this token as the Marker value in a subsequent request, the response
+	// includes only records beyond the marker, up to the value specified in the
+	// request by MaxRecords.
+	Marker *string `type:"string"`
+
+	// One or more individual assessments as specified by Filters.
+	ReplicationTaskIndividualAssessments []*ReplicationTaskIndividualAssessment `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskIndividualAssessmentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReplicationTaskIndividualAssessmentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTaskIndividualAssessmentsOutput) SetMarker(v string) *DescribeReplicationTaskIndividualAssessmentsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationTaskIndividualAssessments sets the ReplicationTaskIndividualAssessments field's value.
+func (s *DescribeReplicationTaskIndividualAssessmentsOutput) SetReplicationTaskIndividualAssessments(v []*ReplicationTaskIndividualAssessment) *DescribeReplicationTaskIndividualAssessmentsOutput {
+	s.ReplicationTaskIndividualAssessments = v
+	return s
+}
+
 type DescribeReplicationTasksInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the describe action.
+	// Filters applied to replication tasks.
 	//
 	// Valid filter names: replication-task-arn | replication-task-id | migration-type
 	// | endpoint-arn | replication-instance-arn
@@ -8409,12 +13299,20 @@ type DescribeReplicationTasksInput struct {
 	WithoutSettings *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTasksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTasksInput) GoString() string {
 	return s.String()
 }
@@ -8475,12 +13373,20 @@ type DescribeReplicationTasksOutput struct {
 	ReplicationTasks []*ReplicationTask `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTasksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReplicationTasksOutput) GoString() string {
 	return s.String()
 }
@@ -8520,12 +13426,20 @@ type DescribeSchemasInput struct {
 	MaxRecords *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemasInput) GoString() string {
 	return s.String()
 }
@@ -8573,12 +13487,20 @@ type DescribeSchemasOutput struct {
 	Schemas []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemasOutput) GoString() string {
 	return s.String()
 }
@@ -8598,7 +13520,7 @@ func (s *DescribeSchemasOutput) SetSchemas(v []*string) *DescribeSchemasOutput {
 type DescribeTableStatisticsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters applied to the describe table statistics action.
+	// Filters applied to table statistics.
 	//
 	// Valid filter names: schema-name | table-name | table-state
 	//
@@ -8626,12 +13548,20 @@ type DescribeTableStatisticsInput struct {
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableStatisticsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableStatisticsInput) GoString() string {
 	return s.String()
 }
@@ -8698,12 +13628,20 @@ type DescribeTableStatisticsOutput struct {
 	TableStatistics []*TableStatistics `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableStatisticsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTableStatisticsOutput) GoString() string {
 	return s.String()
 }
@@ -8733,16 +13671,25 @@ type DmsTransferSettings struct {
 	// The name of the S3 bucket to use.
 	BucketName *string `type:"string"`
 
-	// The IAM role that has permission to access the Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) used by the service access IAM role. The role
+	// must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DmsTransferSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DmsTransferSettings) GoString() string {
 	return s.String()
 }
@@ -8759,23 +13706,185 @@ func (s *DmsTransferSettings) SetServiceAccessRoleArn(v string) *DmsTransferSett
 	return s
 }
 
-// Provides the Amazon Resource Name (ARN) of the AWS Identity and Access Management
+// Provides information that defines a DocumentDB endpoint.
+type DocDbSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The database name on the DocumentDB source endpoint.
+	DatabaseName *string `type:"string"`
+
+	// Indicates the number of documents to preview to determine the document organization.
+	// Use this setting when NestingLevel is set to "one".
+	//
+	// Must be a positive value greater than 0. Default value is 1000.
+	DocsToInvestigate *int64 `type:"integer"`
+
+	// Specifies the document ID. Use this setting when NestingLevel is set to "none".
+	//
+	// Default value is "false".
+	ExtractDocId *bool `type:"boolean"`
+
+	// The KMS key identifier that is used to encrypt the content on the replication
+	// instance. If you don't specify a value for the KmsKeyId parameter, then DMS
+	// uses your default encryption key. KMS creates the default encryption key
+	// for your Amazon Web Services account. Your Amazon Web Services account has
+	// a different default encryption key for each Amazon Web Services Region.
+	KmsKeyId *string `type:"string"`
+
+	// Specifies either document or table mode.
+	//
+	// Default value is "none". Specify "none" to use document mode. Specify "one"
+	// to use table mode.
+	NestingLevel *string `type:"string" enum:"NestingLevelValue"`
+
+	// The password for the user account you use to access the DocumentDB source
+	// endpoint.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DocDbSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// The port value for the DocumentDB source endpoint.
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the DocumentDB endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the DocumentDB endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// The name of the server on the DocumentDB source endpoint.
+	ServerName *string `type:"string"`
+
+	// The user name you use to access the DocumentDB source endpoint.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocDbSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocDbSettings) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DocDbSettings) SetDatabaseName(v string) *DocDbSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDocsToInvestigate sets the DocsToInvestigate field's value.
+func (s *DocDbSettings) SetDocsToInvestigate(v int64) *DocDbSettings {
+	s.DocsToInvestigate = &v
+	return s
+}
+
+// SetExtractDocId sets the ExtractDocId field's value.
+func (s *DocDbSettings) SetExtractDocId(v bool) *DocDbSettings {
+	s.ExtractDocId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DocDbSettings) SetKmsKeyId(v string) *DocDbSettings {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetNestingLevel sets the NestingLevel field's value.
+func (s *DocDbSettings) SetNestingLevel(v string) *DocDbSettings {
+	s.NestingLevel = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *DocDbSettings) SetPassword(v string) *DocDbSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DocDbSettings) SetPort(v int64) *DocDbSettings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *DocDbSettings) SetSecretsManagerAccessRoleArn(v string) *DocDbSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *DocDbSettings) SetSecretsManagerSecretId(v string) *DocDbSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *DocDbSettings) SetServerName(v string) *DocDbSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *DocDbSettings) SetUsername(v string) *DocDbSettings {
+	s.Username = &v
+	return s
+}
+
+// Provides the Amazon Resource Name (ARN) of the Identity and Access Management
 // (IAM) role used to define an Amazon DynamoDB target endpoint.
 type DynamoDbSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) used by the service access IAM role.
+	// The Amazon Resource Name (ARN) used by the service to access the IAM role.
+	// The role must allow the iam:PassRole action.
 	//
 	// ServiceAccessRoleArn is a required field
 	ServiceAccessRoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DynamoDbSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DynamoDbSettings) GoString() string {
 	return s.String()
 }
@@ -8799,35 +13908,55 @@ func (s *DynamoDbSettings) SetServiceAccessRoleArn(v string) *DynamoDbSettings {
 	return s
 }
 
-// Provides information that defines an Elasticsearch endpoint.
+// Provides information that defines an OpenSearch endpoint.
 type ElasticsearchSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint for the Elasticsearch cluster.
+	// The endpoint for the OpenSearch cluster. DMS uses HTTPS if a transport protocol
+	// (http/https) is not specified.
 	//
 	// EndpointUri is a required field
 	EndpointUri *string `type:"string" required:"true"`
 
 	// The maximum number of seconds for which DMS retries failed API requests to
-	// the Elasticsearch cluster.
+	// the OpenSearch cluster.
 	ErrorRetryDuration *int64 `type:"integer"`
 
 	// The maximum percentage of records that can fail to be written before a full
 	// load operation stops.
+	//
+	// To avoid early failure, this counter is only effective after 1000 records
+	// are transferred. OpenSearch also has the concept of error monitoring during
+	// the last 10 minutes of an Observation Window. If transfer of all records
+	// fail in the last 10 minutes, the full load operation stops.
 	FullLoadErrorPercentage *int64 `type:"integer"`
 
-	// The Amazon Resource Name (ARN) used by service to access the IAM role.
+	// The Amazon Resource Name (ARN) used by the service to access the IAM role.
+	// The role must allow the iam:PassRole action.
 	//
 	// ServiceAccessRoleArn is a required field
 	ServiceAccessRoleArn *string `type:"string" required:"true"`
+
+	// Set this option to true for DMS to migrate documentation using the documentation
+	// type _doc. OpenSearch and an Elasticsearch cluster only support the _doc
+	// documentation type in versions 7. x and later. The default value is false.
+	UseNewMappingType *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchSettings) GoString() string {
 	return s.String()
 }
@@ -8872,16 +14001,20 @@ func (s *ElasticsearchSettings) SetServiceAccessRoleArn(v string) *Elasticsearch
 	return s
 }
 
+// SetUseNewMappingType sets the UseNewMappingType field's value.
+func (s *ElasticsearchSettings) SetUseNewMappingType(v bool) *ElasticsearchSettings {
+	s.UseNewMappingType = &v
+	return s
+}
+
 // Describes an endpoint of a database instance in response to operations such
 // as the following:
 //
-//    * CreateEndpoint
+//   - CreateEndpoint
 //
-//    * DescribeEndpoint
+//   - DescribeEndpoint
 //
-//    * DescribeEndpointTypes
-//
-//    * ModifyEndpoint
+//   - ModifyEndpoint
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -8891,31 +14024,19 @@ type Endpoint struct {
 	// The name of the database at the endpoint.
 	DatabaseName *string `type:"string"`
 
-	// The settings in JSON format for the DMS transfer type of source endpoint.
-	//
-	// Possible settings include the following:
-	//
-	//    * ServiceAccessRoleArn - The IAM role that has permission to access the
-	//    Amazon S3 bucket.
-	//
-	//    * BucketName - The name of the S3 bucket to use.
-	//
-	//    * CompressionType - An optional parameter to use GZIP to compress the
-	//    target files. To use GZIP, set this value to NONE (the default). To keep
-	//    the files uncompressed, don't use this value.
-	//
-	// Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string,CompressionType=string
-	//
-	// JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string",
-	// "BucketName": "string", "CompressionType": "none"|"gzip" }
+	// The settings for the DMS Transfer type source. For more information, see
+	// the DmsTransferSettings structure.
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
 
-	// The settings for the target DynamoDB database. For more information, see
+	// Provides information that defines a DocumentDB endpoint.
+	DocDbSettings *DocDbSettings `type:"structure"`
+
+	// The settings for the DynamoDB target endpoint. For more information, see
 	// the DynamoDBSettings structure.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
 
-	// The settings for the Elasticsearch source endpoint. For more information,
-	// see the ElasticsearchSettings structure.
+	// The settings for the OpenSearch source endpoint. For more information, see
+	// the ElasticsearchSettings structure.
 	ElasticsearchSettings *ElasticsearchSettings `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
@@ -8930,13 +14051,14 @@ type Endpoint struct {
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
 	// The expanded name for the engine name. For example, if the EngineName parameter
-	// is "aurora," this value would be "Amazon Aurora MySQL."
+	// is "aurora", this value would be "Amazon Aurora MySQL".
 	EngineDisplayName *string `type:"string"`
 
 	// The database engine name. Valid values, depending on the EndpointType, include
 	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", and "sqlserver".
+	// "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune",
+	// and "babelfish".
 	EngineName *string `type:"string"`
 
 	// Value returned by a call to CreateEndpoint that can be used for cross-account
@@ -8950,6 +14072,13 @@ type Endpoint struct {
 	// Additional connection attributes used to connect to the endpoint.
 	ExtraConnectionAttributes *string `type:"string"`
 
+	// Settings in JSON format for the source GCP MySQL endpoint.
+	GcpMySQLSettings *GcpMySQLSettings `type:"structure"`
+
+	// The settings for the IBM Db2 LUW source endpoint. For more information, see
+	// the IBMDb2Settings structure.
+	IBMDb2Settings *IBMDb2Settings `type:"structure"`
+
 	// The settings for the Apache Kafka target endpoint. For more information,
 	// see the KafkaSettings structure.
 	KafkaSettings *KafkaSettings `type:"structure"`
@@ -8958,26 +14087,47 @@ type Endpoint struct {
 	// see the KinesisSettings structure.
 	KinesisSettings *KinesisSettings `type:"structure"`
 
-	// An AWS KMS key identifier that is used to encrypt the connection parameters
-	// for the endpoint.
+	// An KMS key identifier that is used to encrypt the connection parameters for
+	// the endpoint.
 	//
-	// If you don't specify a value for the KmsKeyId parameter, then AWS DMS uses
-	// your default encryption key.
+	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
+	// default encryption key.
 	//
-	// AWS KMS creates the default encryption key for your AWS account. Your AWS
-	// account has a different default encryption key for each AWS Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
+
+	// The settings for the Microsoft SQL Server source and target endpoint. For
+	// more information, see the MicrosoftSQLServerSettings structure.
+	MicrosoftSQLServerSettings *MicrosoftSQLServerSettings `type:"structure"`
 
 	// The settings for the MongoDB source endpoint. For more information, see the
 	// MongoDbSettings structure.
 	MongoDbSettings *MongoDbSettings `type:"structure"`
 
-	// The settings for the MongoDB source endpoint. For more information, see the
-	// NeptuneSettings structure.
+	// The settings for the MySQL source and target endpoint. For more information,
+	// see the MySQLSettings structure.
+	MySQLSettings *MySQLSettings `type:"structure"`
+
+	// The settings for the Amazon Neptune target endpoint. For more information,
+	// see the NeptuneSettings structure.
 	NeptuneSettings *NeptuneSettings `type:"structure"`
+
+	// The settings for the Oracle source and target endpoint. For more information,
+	// see the OracleSettings structure.
+	OracleSettings *OracleSettings `type:"structure"`
 
 	// The port value used to access the endpoint.
 	Port *int64 `type:"integer"`
+
+	// The settings for the PostgreSQL source and target endpoint. For more information,
+	// see the PostgreSQLSettings structure.
+	PostgreSQLSettings *PostgreSQLSettings `type:"structure"`
+
+	// The settings for the Redis target endpoint. For more information, see the
+	// RedisSettings structure.
+	RedisSettings *RedisSettings `type:"structure"`
 
 	// Settings for the Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
@@ -8989,7 +14139,8 @@ type Endpoint struct {
 	// The name of the server at the endpoint.
 	ServerName *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) used by the service access IAM role.
+	// The Amazon Resource Name (ARN) used by the service to access the IAM role.
+	// The role must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 
 	// The SSL mode used to connect to the endpoint. The default value is none.
@@ -8998,16 +14149,28 @@ type Endpoint struct {
 	// The status of the endpoint.
 	Status *string `type:"string"`
 
+	// The settings for the SAP ASE source and target endpoint. For more information,
+	// see the SybaseSettings structure.
+	SybaseSettings *SybaseSettings `type:"structure"`
+
 	// The user name used to connect to the endpoint.
 	Username *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Endpoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Endpoint) GoString() string {
 	return s.String()
 }
@@ -9027,6 +14190,12 @@ func (s *Endpoint) SetDatabaseName(v string) *Endpoint {
 // SetDmsTransferSettings sets the DmsTransferSettings field's value.
 func (s *Endpoint) SetDmsTransferSettings(v *DmsTransferSettings) *Endpoint {
 	s.DmsTransferSettings = v
+	return s
+}
+
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *Endpoint) SetDocDbSettings(v *DocDbSettings) *Endpoint {
+	s.DocDbSettings = v
 	return s
 }
 
@@ -9090,6 +14259,18 @@ func (s *Endpoint) SetExtraConnectionAttributes(v string) *Endpoint {
 	return s
 }
 
+// SetGcpMySQLSettings sets the GcpMySQLSettings field's value.
+func (s *Endpoint) SetGcpMySQLSettings(v *GcpMySQLSettings) *Endpoint {
+	s.GcpMySQLSettings = v
+	return s
+}
+
+// SetIBMDb2Settings sets the IBMDb2Settings field's value.
+func (s *Endpoint) SetIBMDb2Settings(v *IBMDb2Settings) *Endpoint {
+	s.IBMDb2Settings = v
+	return s
+}
+
 // SetKafkaSettings sets the KafkaSettings field's value.
 func (s *Endpoint) SetKafkaSettings(v *KafkaSettings) *Endpoint {
 	s.KafkaSettings = v
@@ -9108,9 +14289,21 @@ func (s *Endpoint) SetKmsKeyId(v string) *Endpoint {
 	return s
 }
 
+// SetMicrosoftSQLServerSettings sets the MicrosoftSQLServerSettings field's value.
+func (s *Endpoint) SetMicrosoftSQLServerSettings(v *MicrosoftSQLServerSettings) *Endpoint {
+	s.MicrosoftSQLServerSettings = v
+	return s
+}
+
 // SetMongoDbSettings sets the MongoDbSettings field's value.
 func (s *Endpoint) SetMongoDbSettings(v *MongoDbSettings) *Endpoint {
 	s.MongoDbSettings = v
+	return s
+}
+
+// SetMySQLSettings sets the MySQLSettings field's value.
+func (s *Endpoint) SetMySQLSettings(v *MySQLSettings) *Endpoint {
+	s.MySQLSettings = v
 	return s
 }
 
@@ -9120,9 +14313,27 @@ func (s *Endpoint) SetNeptuneSettings(v *NeptuneSettings) *Endpoint {
 	return s
 }
 
+// SetOracleSettings sets the OracleSettings field's value.
+func (s *Endpoint) SetOracleSettings(v *OracleSettings) *Endpoint {
+	s.OracleSettings = v
+	return s
+}
+
 // SetPort sets the Port field's value.
 func (s *Endpoint) SetPort(v int64) *Endpoint {
 	s.Port = &v
+	return s
+}
+
+// SetPostgreSQLSettings sets the PostgreSQLSettings field's value.
+func (s *Endpoint) SetPostgreSQLSettings(v *PostgreSQLSettings) *Endpoint {
+	s.PostgreSQLSettings = v
+	return s
+}
+
+// SetRedisSettings sets the RedisSettings field's value.
+func (s *Endpoint) SetRedisSettings(v *RedisSettings) *Endpoint {
+	s.RedisSettings = v
 	return s
 }
 
@@ -9162,15 +14373,127 @@ func (s *Endpoint) SetStatus(v string) *Endpoint {
 	return s
 }
 
+// SetSybaseSettings sets the SybaseSettings field's value.
+func (s *Endpoint) SetSybaseSettings(v *SybaseSettings) *Endpoint {
+	s.SybaseSettings = v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *Endpoint) SetUsername(v string) *Endpoint {
 	s.Username = &v
 	return s
 }
 
+// Endpoint settings.
+type EndpointSetting struct {
+	_ struct{} `type:"structure"`
+
+	// The relevance or validity of an endpoint setting for an engine name and its
+	// endpoint type.
+	Applicability *string `type:"string"`
+
+	// The default value of the endpoint setting if no value is specified using
+	// CreateEndpoint or ModifyEndpoint.
+	DefaultValue *string `type:"string"`
+
+	// Enumerated values to use for this endpoint.
+	EnumValues []*string `type:"list"`
+
+	// The maximum value of an endpoint setting that is of type int.
+	IntValueMax *int64 `type:"integer"`
+
+	// The minimum value of an endpoint setting that is of type int.
+	IntValueMin *int64 `type:"integer"`
+
+	// The name that you want to give the endpoint settings.
+	Name *string `type:"string"`
+
+	// A value that marks this endpoint setting as sensitive.
+	Sensitive *bool `type:"boolean"`
+
+	// The type of endpoint. Valid values are source and target.
+	Type *string `type:"string" enum:"EndpointSettingTypeValue"`
+
+	// The unit of measure for this endpoint setting.
+	Units *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointSetting) GoString() string {
+	return s.String()
+}
+
+// SetApplicability sets the Applicability field's value.
+func (s *EndpointSetting) SetApplicability(v string) *EndpointSetting {
+	s.Applicability = &v
+	return s
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *EndpointSetting) SetDefaultValue(v string) *EndpointSetting {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetEnumValues sets the EnumValues field's value.
+func (s *EndpointSetting) SetEnumValues(v []*string) *EndpointSetting {
+	s.EnumValues = v
+	return s
+}
+
+// SetIntValueMax sets the IntValueMax field's value.
+func (s *EndpointSetting) SetIntValueMax(v int64) *EndpointSetting {
+	s.IntValueMax = &v
+	return s
+}
+
+// SetIntValueMin sets the IntValueMin field's value.
+func (s *EndpointSetting) SetIntValueMin(v int64) *EndpointSetting {
+	s.IntValueMin = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EndpointSetting) SetName(v string) *EndpointSetting {
+	s.Name = &v
+	return s
+}
+
+// SetSensitive sets the Sensitive field's value.
+func (s *EndpointSetting) SetSensitive(v bool) *EndpointSetting {
+	s.Sensitive = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EndpointSetting) SetType(v string) *EndpointSetting {
+	s.Type = &v
+	return s
+}
+
+// SetUnits sets the Units field's value.
+func (s *EndpointSetting) SetUnits(v string) *EndpointSetting {
+	s.Units = &v
+	return s
+}
+
 // Describes an identifiable significant activity that affects a replication
 // instance or task. This object can provide the message, the available event
-// categories, the date and source of the event, and the AWS DMS resource type.
+// categories, the date and source of the event, and the DMS resource type.
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -9186,18 +14509,26 @@ type Event struct {
 	// The identifier of an event source.
 	SourceIdentifier *string `type:"string"`
 
-	// The type of AWS DMS resource that generates events.
+	// The type of DMS resource that generates events.
 	//
 	// Valid values: replication-instance | endpoint | replication-task
 	SourceType *string `type:"string" enum:"SourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Event) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Event) GoString() string {
 	return s.String()
 }
@@ -9233,26 +14564,36 @@ func (s *Event) SetSourceType(v string) *Event {
 }
 
 // Lists categories of events subscribed to, and generated by, the applicable
-// AWS DMS resource type.
+// DMS resource type. This data type appears in response to the DescribeEventCategories
+// (https://docs.aws.amazon.com/dms/latest/APIReference/API_EventCategoryGroup.html)
+// action.
 type EventCategoryGroup struct {
 	_ struct{} `type:"structure"`
 
 	// A list of event categories from a source type that you've chosen.
 	EventCategories []*string `type:"list"`
 
-	// The type of AWS DMS resource that generates events.
+	// The type of DMS resource that generates events.
 	//
 	// Valid values: replication-instance | replication-server | security-group
 	// | replication-task
 	SourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventCategoryGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventCategoryGroup) GoString() string {
 	return s.String()
 }
@@ -9274,10 +14615,11 @@ func (s *EventCategoryGroup) SetSourceType(v string) *EventCategoryGroup {
 type EventSubscription struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS DMS event notification subscription Id.
+	// The DMS event notification subscription Id.
 	CustSubscriptionId *string `type:"string"`
 
-	// The AWS customer account associated with the AWS DMS event notification subscription.
+	// The Amazon Web Services customer account associated with the DMS event notification
+	// subscription.
 	CustomerAwsId *string `type:"string"`
 
 	// Boolean value that indicates if the event subscription is enabled.
@@ -9286,40 +14628,48 @@ type EventSubscription struct {
 	// A lists of event categories.
 	EventCategoriesList []*string `type:"list"`
 
-	// The topic ARN of the AWS DMS event notification subscription.
+	// The topic ARN of the DMS event notification subscription.
 	SnsTopicArn *string `type:"string"`
 
 	// A list of source Ids for the event subscription.
 	SourceIdsList []*string `type:"list"`
 
-	// The type of AWS DMS resource that generates events.
+	// The type of DMS resource that generates events.
 	//
 	// Valid values: replication-instance | replication-server | security-group
 	// | replication-task
 	SourceType *string `type:"string"`
 
-	// The status of the AWS DMS event notification subscription.
+	// The status of the DMS event notification subscription.
 	//
 	// Constraints:
 	//
 	// Can be one of the following: creating | modifying | deleting | active | no-permission
 	// | topic-not-exist
 	//
-	// The status "no-permission" indicates that AWS DMS no longer has permission
-	// to post to the SNS topic. The status "topic-not-exist" indicates that the
-	// topic was deleted after the subscription was created.
+	// The status "no-permission" indicates that DMS no longer has permission to
+	// post to the SNS topic. The status "topic-not-exist" indicates that the topic
+	// was deleted after the subscription was created.
 	Status *string `type:"string"`
 
-	// The time the RDS event notification subscription was created.
+	// The time the DMS event notification subscription was created.
 	SubscriptionCreationTime *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventSubscription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventSubscription) GoString() string {
 	return s.String()
 }
@@ -9378,28 +14728,39 @@ func (s *EventSubscription) SetSubscriptionCreationTime(v string) *EventSubscrip
 	return s
 }
 
-// Identifies the name and value of a source filter object used to limit the
-// number and type of records transferred from your source to your target.
+// Identifies the name and value of a filter object. This filter is used to
+// limit the number and type of DMS objects that are returned for a particular
+// Describe* call or similar operation. Filters are used as an optional parameter
+// for certain API operations.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the filter.
+	// The name of the filter as specified for a Describe* or similar operation.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The filter value.
+	// The filter value, which can specify one or more values used to narrow the
+	// returned results.
 	//
 	// Values is a required field
 	Values []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -9432,6 +14793,459 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
+// Describes a large-scale assessment (LSA) analysis run by a Fleet Advisor
+// collector.
+type FleetAdvisorLsaAnalysisResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of an LSA analysis run by a Fleet Advisor collector.
+	LsaAnalysisId *string `type:"string"`
+
+	// The status of an LSA analysis run by a Fleet Advisor collector.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorLsaAnalysisResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorLsaAnalysisResponse) GoString() string {
+	return s.String()
+}
+
+// SetLsaAnalysisId sets the LsaAnalysisId field's value.
+func (s *FleetAdvisorLsaAnalysisResponse) SetLsaAnalysisId(v string) *FleetAdvisorLsaAnalysisResponse {
+	s.LsaAnalysisId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FleetAdvisorLsaAnalysisResponse) SetStatus(v string) *FleetAdvisorLsaAnalysisResponse {
+	s.Status = &v
+	return s
+}
+
+// Describes a schema object in a Fleet Advisor collector inventory.
+type FleetAdvisorSchemaObjectResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The number of lines of code in a schema object in a Fleet Advisor collector
+	// inventory.
+	CodeLineCount *int64 `type:"long"`
+
+	// The size level of the code in a schema object in a Fleet Advisor collector
+	// inventory.
+	CodeSize *int64 `type:"long"`
+
+	// The number of objects in a schema object in a Fleet Advisor collector inventory.
+	NumberOfObjects *int64 `type:"long"`
+
+	// The type of the schema object, as reported by the database engine. Examples
+	// include the following:
+	//
+	//    * function
+	//
+	//    * trigger
+	//
+	//    * SYSTEM_TABLE
+	//
+	//    * QUEUE
+	ObjectType *string `type:"string"`
+
+	// The ID of a schema object in a Fleet Advisor collector inventory.
+	SchemaId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorSchemaObjectResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FleetAdvisorSchemaObjectResponse) GoString() string {
+	return s.String()
+}
+
+// SetCodeLineCount sets the CodeLineCount field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetCodeLineCount(v int64) *FleetAdvisorSchemaObjectResponse {
+	s.CodeLineCount = &v
+	return s
+}
+
+// SetCodeSize sets the CodeSize field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetCodeSize(v int64) *FleetAdvisorSchemaObjectResponse {
+	s.CodeSize = &v
+	return s
+}
+
+// SetNumberOfObjects sets the NumberOfObjects field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetNumberOfObjects(v int64) *FleetAdvisorSchemaObjectResponse {
+	s.NumberOfObjects = &v
+	return s
+}
+
+// SetObjectType sets the ObjectType field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetObjectType(v string) *FleetAdvisorSchemaObjectResponse {
+	s.ObjectType = &v
+	return s
+}
+
+// SetSchemaId sets the SchemaId field's value.
+func (s *FleetAdvisorSchemaObjectResponse) SetSchemaId(v string) *FleetAdvisorSchemaObjectResponse {
+	s.SchemaId = &v
+	return s
+}
+
+// Settings in JSON format for the source GCP MySQL endpoint.
+type GcpMySQLSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a script to run immediately after DMS connects to the endpoint.
+	// The migration task continues running regardless if the SQL statement succeeds
+	// or fails.
+	//
+	// For this parameter, provide the code of the script itself, not the name of
+	// a file containing the script.
+	AfterConnectScript *string `type:"string"`
+
+	// Adjusts the behavior of DMS when migrating from an SQL Server source database
+	// that is hosted as part of an Always On availability group cluster. If you
+	// need DMS to poll all the nodes in the Always On cluster for transaction backups,
+	// set this attribute to false.
+	CleanSourceMetadataOnMismatch *bool `type:"boolean"`
+
+	// Database name for the endpoint. For a MySQL source or target endpoint, don't
+	// explicitly specify the database using the DatabaseName request parameter
+	// on either the CreateEndpoint or ModifyEndpoint API call. Specifying DatabaseName
+	// when you create or modify a MySQL endpoint replicates all the task tables
+	// to this single database. For MySQL endpoints, you specify the database only
+	// when you specify the schema in the table-mapping rules of the DMS task.
+	DatabaseName *string `type:"string"`
+
+	// Specifies how often to check the binary log for new changes/events when the
+	// database is idle. The default is five seconds.
+	//
+	// Example: eventsPollInterval=5;
+	//
+	// In the example, DMS checks for changes in the binary logs every five seconds.
+	EventsPollInterval *int64 `type:"integer"`
+
+	// Specifies the maximum size (in KB) of any .csv file used to transfer data
+	// to a MySQL-compatible database.
+	//
+	// Example: maxFileSize=512
+	MaxFileSize *int64 `type:"integer"`
+
+	// Improves performance when loading data into the MySQL-compatible target database.
+	// Specifies how many threads to use to load the data into the MySQL-compatible
+	// target database. Setting a large number of threads can have an adverse effect
+	// on database performance, because a separate connection is required for each
+	// thread. The default is one.
+	//
+	// Example: parallelLoadThreads=1
+	ParallelLoadThreads *int64 `type:"integer"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GcpMySQLSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the MySQL endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the MySQL endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Endpoint TCP port.
+	ServerName *string `type:"string"`
+
+	// Specifies the time zone for the source MySQL database.
+	//
+	// Example: serverTimezone=US/Pacific;
+	//
+	// Note: Do not enclose time zones in single quotes.
+	ServerTimezone *string `type:"string"`
+
+	// Specifies where to migrate source tables on the target, either to a single
+	// database or multiple databases.
+	//
+	// Example: targetDbType=MULTIPLE_DATABASES
+	TargetDbType *string `type:"string" enum:"TargetDbType"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GcpMySQLSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GcpMySQLSettings) GoString() string {
+	return s.String()
+}
+
+// SetAfterConnectScript sets the AfterConnectScript field's value.
+func (s *GcpMySQLSettings) SetAfterConnectScript(v string) *GcpMySQLSettings {
+	s.AfterConnectScript = &v
+	return s
+}
+
+// SetCleanSourceMetadataOnMismatch sets the CleanSourceMetadataOnMismatch field's value.
+func (s *GcpMySQLSettings) SetCleanSourceMetadataOnMismatch(v bool) *GcpMySQLSettings {
+	s.CleanSourceMetadataOnMismatch = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GcpMySQLSettings) SetDatabaseName(v string) *GcpMySQLSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEventsPollInterval sets the EventsPollInterval field's value.
+func (s *GcpMySQLSettings) SetEventsPollInterval(v int64) *GcpMySQLSettings {
+	s.EventsPollInterval = &v
+	return s
+}
+
+// SetMaxFileSize sets the MaxFileSize field's value.
+func (s *GcpMySQLSettings) SetMaxFileSize(v int64) *GcpMySQLSettings {
+	s.MaxFileSize = &v
+	return s
+}
+
+// SetParallelLoadThreads sets the ParallelLoadThreads field's value.
+func (s *GcpMySQLSettings) SetParallelLoadThreads(v int64) *GcpMySQLSettings {
+	s.ParallelLoadThreads = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *GcpMySQLSettings) SetPassword(v string) *GcpMySQLSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *GcpMySQLSettings) SetPort(v int64) *GcpMySQLSettings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *GcpMySQLSettings) SetSecretsManagerAccessRoleArn(v string) *GcpMySQLSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *GcpMySQLSettings) SetSecretsManagerSecretId(v string) *GcpMySQLSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *GcpMySQLSettings) SetServerName(v string) *GcpMySQLSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetServerTimezone sets the ServerTimezone field's value.
+func (s *GcpMySQLSettings) SetServerTimezone(v string) *GcpMySQLSettings {
+	s.ServerTimezone = &v
+	return s
+}
+
+// SetTargetDbType sets the TargetDbType field's value.
+func (s *GcpMySQLSettings) SetTargetDbType(v string) *GcpMySQLSettings {
+	s.TargetDbType = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *GcpMySQLSettings) SetUsername(v string) *GcpMySQLSettings {
+	s.Username = &v
+	return s
+}
+
+// Provides information that defines an IBM Db2 LUW endpoint.
+type IBMDb2Settings struct {
+	_ struct{} `type:"structure"`
+
+	// For ongoing replication (CDC), use CurrentLSN to specify a log sequence number
+	// (LSN) where you want the replication to start.
+	CurrentLsn *string `type:"string"`
+
+	// Database name for the endpoint.
+	DatabaseName *string `type:"string"`
+
+	// Maximum number of bytes per read, as a NUMBER value. The default is 64 KB.
+	MaxKBytesPerRead *int64 `type:"integer"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by IBMDb2Settings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// Endpoint TCP port. The default value is 50000.
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the Db2 LUW endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the Db2 LUW endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Fully qualified domain name of the endpoint.
+	ServerName *string `type:"string"`
+
+	// Enables ongoing replication (CDC) as a BOOLEAN value. The default is true.
+	SetDataCaptureChanges *bool `type:"boolean"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IBMDb2Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IBMDb2Settings) GoString() string {
+	return s.String()
+}
+
+// SetCurrentLsn sets the CurrentLsn field's value.
+func (s *IBMDb2Settings) SetCurrentLsn(v string) *IBMDb2Settings {
+	s.CurrentLsn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *IBMDb2Settings) SetDatabaseName(v string) *IBMDb2Settings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetMaxKBytesPerRead sets the MaxKBytesPerRead field's value.
+func (s *IBMDb2Settings) SetMaxKBytesPerRead(v int64) *IBMDb2Settings {
+	s.MaxKBytesPerRead = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *IBMDb2Settings) SetPassword(v string) *IBMDb2Settings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *IBMDb2Settings) SetPort(v int64) *IBMDb2Settings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *IBMDb2Settings) SetSecretsManagerAccessRoleArn(v string) *IBMDb2Settings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *IBMDb2Settings) SetSecretsManagerSecretId(v string) *IBMDb2Settings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *IBMDb2Settings) SetServerName(v string) *IBMDb2Settings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSetDataCaptureChanges sets the SetDataCaptureChanges field's value.
+func (s *IBMDb2Settings) SetSetDataCaptureChanges(v bool) *IBMDb2Settings {
+	s.SetDataCaptureChanges = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *IBMDb2Settings) SetUsername(v string) *IBMDb2Settings {
+	s.Username = &v
+	return s
+}
+
 type ImportCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9443,10 +15257,17 @@ type ImportCertificateInput struct {
 	CertificateIdentifier *string `type:"string" required:"true"`
 
 	// The contents of a .pem file, which contains an X.509 certificate.
-	CertificatePem *string `type:"string"`
-
-	// The location of an imported Oracle Wallet certificate for use with SSL.
 	//
+	// CertificatePem is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportCertificateInput's
+	// String and GoString methods.
+	CertificatePem *string `type:"string" sensitive:"true"`
+
+	// The location of an imported Oracle Wallet certificate for use with SSL. Provide
+	// the name of a .sso file using the fileb:// prefix. You can't provide the
+	// certificate inline.
+	//
+	// Example: filebase64("${path.root}/rds-ca-2019-root.sso")
 	// CertificateWallet is automatically base64 encoded/decoded by the SDK.
 	CertificateWallet []byte `type:"blob"`
 
@@ -9454,12 +15275,20 @@ type ImportCertificateInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportCertificateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportCertificateInput) GoString() string {
 	return s.String()
 }
@@ -9508,12 +15337,20 @@ type ImportCertificateOutput struct {
 	Certificate *Certificate `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportCertificateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImportCertificateOutput) GoString() string {
 	return s.String()
 }
@@ -9532,12 +15369,20 @@ type InsufficientResourceCapacityFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientResourceCapacityFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientResourceCapacityFault) GoString() string {
 	return s.String()
 }
@@ -9588,12 +15433,20 @@ type InvalidCertificateFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCertificateFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidCertificateFault) GoString() string {
 	return s.String()
 }
@@ -9636,6 +15489,70 @@ func (s *InvalidCertificateFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The action or operation requested isn't valid.
+type InvalidOperationFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidOperationFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidOperationFault) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidOperationFault(v protocol.ResponseMetadata) error {
+	return &InvalidOperationFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidOperationFault) Code() string {
+	return "InvalidOperationFault"
+}
+
+// Message returns the exception's message.
+func (s *InvalidOperationFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidOperationFault) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidOperationFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidOperationFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidOperationFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The resource is in a state that prevents it from being used for database
 // migration.
 type InvalidResourceStateFault struct {
@@ -9645,12 +15562,20 @@ type InvalidResourceStateFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceStateFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceStateFault) GoString() string {
 	return s.String()
 }
@@ -9701,12 +15626,20 @@ type InvalidSubnet struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSubnet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSubnet) GoString() string {
 	return s.String()
 }
@@ -9749,6 +15682,47 @@ func (s *InvalidSubnet) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes a Fleet Advisor collector inventory.
+type InventoryData struct {
+	_ struct{} `type:"structure"`
+
+	// The number of databases in the Fleet Advisor collector inventory.
+	NumberOfDatabases *int64 `type:"integer"`
+
+	// The number of schemas in the Fleet Advisor collector inventory.
+	NumberOfSchemas *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InventoryData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InventoryData) GoString() string {
+	return s.String()
+}
+
+// SetNumberOfDatabases sets the NumberOfDatabases field's value.
+func (s *InventoryData) SetNumberOfDatabases(v int64) *InventoryData {
+	s.NumberOfDatabases = &v
+	return s
+}
+
+// SetNumberOfSchemas sets the NumberOfSchemas field's value.
+func (s *InventoryData) SetNumberOfSchemas(v int64) *InventoryData {
+	s.NumberOfSchemas = &v
+	return s
+}
+
 // The ciphertext references a key that doesn't exist or that the DMS account
 // doesn't have access to.
 type KMSAccessDeniedFault struct {
@@ -9758,12 +15732,20 @@ type KMSAccessDeniedFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSAccessDeniedFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSAccessDeniedFault) GoString() string {
 	return s.String()
 }
@@ -9806,7 +15788,7 @@ func (s *KMSAccessDeniedFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified master key (CMK) isn't enabled.
+// The specified KMS key isn't enabled.
 type KMSDisabledFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9814,12 +15796,20 @@ type KMSDisabledFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSDisabledFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSDisabledFault) GoString() string {
 	return s.String()
 }
@@ -9862,7 +15852,71 @@ func (s *KMSDisabledFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The state of the specified AWS KMS resource isn't valid for this request.
+// An Key Management Service (KMS) error is preventing access to KMS.
+type KMSFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KMSFault) GoString() string {
+	return s.String()
+}
+
+func newErrorKMSFault(v protocol.ResponseMetadata) error {
+	return &KMSFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KMSFault) Code() string {
+	return "KMSFault"
+}
+
+// Message returns the exception's message.
+func (s *KMSFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KMSFault) OrigErr() error {
+	return nil
+}
+
+func (s *KMSFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KMSFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KMSFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The state of the specified KMS resource isn't valid for this request.
 type KMSInvalidStateFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9870,12 +15924,20 @@ type KMSInvalidStateFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSInvalidStateFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSInvalidStateFault) GoString() string {
 	return s.String()
 }
@@ -9918,7 +15980,7 @@ func (s *KMSInvalidStateFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS DMS cannot access the AWS KMS key.
+// DMS cannot access the KMS key.
 type KMSKeyNotAccessibleFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9926,12 +15988,20 @@ type KMSKeyNotAccessibleFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSKeyNotAccessibleFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSKeyNotAccessibleFault) GoString() string {
 	return s.String()
 }
@@ -9974,7 +16044,7 @@ func (s *KMSKeyNotAccessibleFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified AWS KMS entity or resource can't be found.
+// The specified KMS entity or resource can't be found.
 type KMSNotFoundFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9982,12 +16052,20 @@ type KMSNotFoundFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSNotFoundFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSNotFoundFault) GoString() string {
 	return s.String()
 }
@@ -10030,7 +16108,7 @@ func (s *KMSNotFoundFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This request triggered AWS KMS request throttling.
+// This request triggered KMS request throttling.
 type KMSThrottlingFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10038,12 +16116,20 @@ type KMSThrottlingFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSThrottlingFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KMSThrottlingFault) GoString() string {
 	return s.String()
 }
@@ -10092,22 +16178,119 @@ func (s *KMSThrottlingFault) RequestID() string {
 type KafkaSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The broker location and port of the Kafka broker that hosts your Kafka instance.
-	// Specify the broker in the form broker-hostname-or-ip:port . For example,
-	// "ec2-12-345-678-901.compute-1.amazonaws.com:2345".
+	// A comma-separated list of one or more broker locations in your Kafka cluster
+	// that host your Kafka instance. Specify each broker location in the form broker-hostname-or-ip:port
+	// . For example, "ec2-12-345-678-901.compute-1.amazonaws.com:2345". For more
+	// information and examples of specifying a list of broker locations, see Using
+	// Apache Kafka as a target for Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html)
+	// in the Database Migration Service User Guide.
 	Broker *string `type:"string"`
 
-	// The topic to which you migrate the data. If you don't specify a topic, AWS
-	// DMS specifies "kafka-default-topic" as the migration topic.
+	// Shows detailed control information for table definition, column definition,
+	// and table and column changes in the Kafka message output. The default is
+	// false.
+	IncludeControlDetails *bool `type:"boolean"`
+
+	// Include NULL and empty columns for records migrated to the endpoint. The
+	// default is false.
+	IncludeNullAndEmpty *bool `type:"boolean"`
+
+	// Shows the partition value within the Kafka message output unless the partition
+	// type is schema-table-type. The default is false.
+	IncludePartitionValue *bool `type:"boolean"`
+
+	// Includes any data definition language (DDL) operations that change the table
+	// in the control data, such as rename-table, drop-table, add-column, drop-column,
+	// and rename-column. The default is false.
+	IncludeTableAlterOperations *bool `type:"boolean"`
+
+	// Provides detailed transaction information from the source database. This
+	// information includes a commit timestamp, a log position, and values for transaction_id,
+	// previous transaction_id, and transaction_record_id (the record offset within
+	// a transaction). The default is false.
+	IncludeTransactionDetails *bool `type:"boolean"`
+
+	// The output format for the records created on the endpoint. The message format
+	// is JSON (default) or JSON_UNFORMATTED (a single line with no tab).
+	MessageFormat *string `type:"string" enum:"MessageFormatValue"`
+
+	// The maximum size in bytes for records created on the endpoint The default
+	// is 1,000,000.
+	MessageMaxBytes *int64 `type:"integer"`
+
+	// Set this optional parameter to true to avoid adding a '0x' prefix to raw
+	// data in hexadecimal format. For example, by default, DMS adds a '0x' prefix
+	// to the LOB column type in hexadecimal format moving from an Oracle source
+	// to a Kafka target. Use the NoHexPrefix endpoint setting to enable migration
+	// of RAW data type columns without adding the '0x' prefix.
+	NoHexPrefix *bool `type:"boolean"`
+
+	// Prefixes schema and table names to partition values, when the partition type
+	// is primary-key-type. Doing this increases data distribution among Kafka partitions.
+	// For example, suppose that a SysBench schema has thousands of tables and each
+	// table has only limited range for a primary key. In this case, the same primary
+	// key is sent from thousands of tables to the same partition, which causes
+	// throttling. The default is false.
+	PartitionIncludeSchemaTable *bool `type:"boolean"`
+
+	// The secure password you created when you first set up your MSK cluster to
+	// validate a client identity and make an encrypted connection between server
+	// and client using SASL-SSL authentication.
+	//
+	// SaslPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KafkaSettings's
+	// String and GoString methods.
+	SaslPassword *string `type:"string" sensitive:"true"`
+
+	// The secure user name you created when you first set up your MSK cluster to
+	// validate a client identity and make an encrypted connection between server
+	// and client using SASL-SSL authentication.
+	SaslUsername *string `type:"string"`
+
+	// Set secure connection to a Kafka target endpoint using Transport Layer Security
+	// (TLS). Options include ssl-encryption, ssl-authentication, and sasl-ssl.
+	// sasl-ssl requires SaslUsername and SaslPassword.
+	SecurityProtocol *string `type:"string" enum:"KafkaSecurityProtocol"`
+
+	// The Amazon Resource Name (ARN) for the private certificate authority (CA)
+	// cert that DMS uses to securely connect to your Kafka target endpoint.
+	SslCaCertificateArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the client certificate used to securely
+	// connect to a Kafka target endpoint.
+	SslClientCertificateArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the client private key used to securely
+	// connect to a Kafka target endpoint.
+	SslClientKeyArn *string `type:"string"`
+
+	// The password for the client private key used to securely connect to a Kafka
+	// target endpoint.
+	//
+	// SslClientKeyPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KafkaSettings's
+	// String and GoString methods.
+	SslClientKeyPassword *string `type:"string" sensitive:"true"`
+
+	// The topic to which you migrate the data. If you don't specify a topic, DMS
+	// specifies "kafka-default-topic" as the migration topic.
 	Topic *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KafkaSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KafkaSettings) GoString() string {
 	return s.String()
 }
@@ -10115,6 +16298,102 @@ func (s KafkaSettings) GoString() string {
 // SetBroker sets the Broker field's value.
 func (s *KafkaSettings) SetBroker(v string) *KafkaSettings {
 	s.Broker = &v
+	return s
+}
+
+// SetIncludeControlDetails sets the IncludeControlDetails field's value.
+func (s *KafkaSettings) SetIncludeControlDetails(v bool) *KafkaSettings {
+	s.IncludeControlDetails = &v
+	return s
+}
+
+// SetIncludeNullAndEmpty sets the IncludeNullAndEmpty field's value.
+func (s *KafkaSettings) SetIncludeNullAndEmpty(v bool) *KafkaSettings {
+	s.IncludeNullAndEmpty = &v
+	return s
+}
+
+// SetIncludePartitionValue sets the IncludePartitionValue field's value.
+func (s *KafkaSettings) SetIncludePartitionValue(v bool) *KafkaSettings {
+	s.IncludePartitionValue = &v
+	return s
+}
+
+// SetIncludeTableAlterOperations sets the IncludeTableAlterOperations field's value.
+func (s *KafkaSettings) SetIncludeTableAlterOperations(v bool) *KafkaSettings {
+	s.IncludeTableAlterOperations = &v
+	return s
+}
+
+// SetIncludeTransactionDetails sets the IncludeTransactionDetails field's value.
+func (s *KafkaSettings) SetIncludeTransactionDetails(v bool) *KafkaSettings {
+	s.IncludeTransactionDetails = &v
+	return s
+}
+
+// SetMessageFormat sets the MessageFormat field's value.
+func (s *KafkaSettings) SetMessageFormat(v string) *KafkaSettings {
+	s.MessageFormat = &v
+	return s
+}
+
+// SetMessageMaxBytes sets the MessageMaxBytes field's value.
+func (s *KafkaSettings) SetMessageMaxBytes(v int64) *KafkaSettings {
+	s.MessageMaxBytes = &v
+	return s
+}
+
+// SetNoHexPrefix sets the NoHexPrefix field's value.
+func (s *KafkaSettings) SetNoHexPrefix(v bool) *KafkaSettings {
+	s.NoHexPrefix = &v
+	return s
+}
+
+// SetPartitionIncludeSchemaTable sets the PartitionIncludeSchemaTable field's value.
+func (s *KafkaSettings) SetPartitionIncludeSchemaTable(v bool) *KafkaSettings {
+	s.PartitionIncludeSchemaTable = &v
+	return s
+}
+
+// SetSaslPassword sets the SaslPassword field's value.
+func (s *KafkaSettings) SetSaslPassword(v string) *KafkaSettings {
+	s.SaslPassword = &v
+	return s
+}
+
+// SetSaslUsername sets the SaslUsername field's value.
+func (s *KafkaSettings) SetSaslUsername(v string) *KafkaSettings {
+	s.SaslUsername = &v
+	return s
+}
+
+// SetSecurityProtocol sets the SecurityProtocol field's value.
+func (s *KafkaSettings) SetSecurityProtocol(v string) *KafkaSettings {
+	s.SecurityProtocol = &v
+	return s
+}
+
+// SetSslCaCertificateArn sets the SslCaCertificateArn field's value.
+func (s *KafkaSettings) SetSslCaCertificateArn(v string) *KafkaSettings {
+	s.SslCaCertificateArn = &v
+	return s
+}
+
+// SetSslClientCertificateArn sets the SslClientCertificateArn field's value.
+func (s *KafkaSettings) SetSslClientCertificateArn(v string) *KafkaSettings {
+	s.SslClientCertificateArn = &v
+	return s
+}
+
+// SetSslClientKeyArn sets the SslClientKeyArn field's value.
+func (s *KafkaSettings) SetSslClientKeyArn(v string) *KafkaSettings {
+	s.SslClientKeyArn = &v
+	return s
+}
+
+// SetSslClientKeyPassword sets the SslClientKeyPassword field's value.
+func (s *KafkaSettings) SetSslClientKeyPassword(v string) *KafkaSettings {
+	s.SslClientKeyPassword = &v
 	return s
 }
 
@@ -10132,50 +16411,69 @@ type KinesisSettings struct {
 
 	// Shows detailed control information for table definition, column definition,
 	// and table and column changes in the Kinesis message output. The default is
-	// False.
+	// false.
 	IncludeControlDetails *bool `type:"boolean"`
 
+	// Include NULL and empty columns for records migrated to the endpoint. The
+	// default is false.
+	IncludeNullAndEmpty *bool `type:"boolean"`
+
 	// Shows the partition value within the Kinesis message output, unless the partition
-	// type is schema-table-type. The default is False.
+	// type is schema-table-type. The default is false.
 	IncludePartitionValue *bool `type:"boolean"`
 
 	// Includes any data definition language (DDL) operations that change the table
 	// in the control data, such as rename-table, drop-table, add-column, drop-column,
-	// and rename-column. The default is False.
+	// and rename-column. The default is false.
 	IncludeTableAlterOperations *bool `type:"boolean"`
 
 	// Provides detailed transaction information from the source database. This
 	// information includes a commit timestamp, a log position, and values for transaction_id,
 	// previous transaction_id, and transaction_record_id (the record offset within
-	// a transaction). The default is False.
+	// a transaction). The default is false.
 	IncludeTransactionDetails *bool `type:"boolean"`
 
 	// The output format for the records created on the endpoint. The message format
 	// is JSON (default) or JSON_UNFORMATTED (a single line with no tab).
 	MessageFormat *string `type:"string" enum:"MessageFormatValue"`
 
+	// Set this optional parameter to true to avoid adding a '0x' prefix to raw
+	// data in hexadecimal format. For example, by default, DMS adds a '0x' prefix
+	// to the LOB column type in hexadecimal format moving from an Oracle source
+	// to an Amazon Kinesis target. Use the NoHexPrefix endpoint setting to enable
+	// migration of RAW data type columns without adding the '0x' prefix.
+	NoHexPrefix *bool `type:"boolean"`
+
 	// Prefixes schema and table names to partition values, when the partition type
 	// is primary-key-type. Doing this increases data distribution among Kinesis
 	// shards. For example, suppose that a SysBench schema has thousands of tables
 	// and each table has only limited range for a primary key. In this case, the
 	// same primary key is sent from thousands of tables to the same shard, which
-	// causes throttling. The default is False.
+	// causes throttling. The default is false.
 	PartitionIncludeSchemaTable *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) for the AWS Identity and Access Management
-	// (IAM) role that AWS DMS uses to write to the Kinesis data stream.
+	// The Amazon Resource Name (ARN) for the IAM role that DMS uses to write to
+	// the Kinesis data stream. The role must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) for the Amazon Kinesis Data Streams endpoint.
 	StreamArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisSettings) GoString() string {
 	return s.String()
 }
@@ -10183,6 +16481,12 @@ func (s KinesisSettings) GoString() string {
 // SetIncludeControlDetails sets the IncludeControlDetails field's value.
 func (s *KinesisSettings) SetIncludeControlDetails(v bool) *KinesisSettings {
 	s.IncludeControlDetails = &v
+	return s
+}
+
+// SetIncludeNullAndEmpty sets the IncludeNullAndEmpty field's value.
+func (s *KinesisSettings) SetIncludeNullAndEmpty(v bool) *KinesisSettings {
+	s.IncludeNullAndEmpty = &v
 	return s
 }
 
@@ -10210,6 +16514,12 @@ func (s *KinesisSettings) SetMessageFormat(v string) *KinesisSettings {
 	return s
 }
 
+// SetNoHexPrefix sets the NoHexPrefix field's value.
+func (s *KinesisSettings) SetNoHexPrefix(v bool) *KinesisSettings {
+	s.NoHexPrefix = &v
+	return s
+}
+
 // SetPartitionIncludeSchemaTable sets the PartitionIncludeSchemaTable field's value.
 func (s *KinesisSettings) SetPartitionIncludeSchemaTable(v bool) *KinesisSettings {
 	s.PartitionIncludeSchemaTable = &v
@@ -10231,39 +16541,45 @@ func (s *KinesisSettings) SetStreamArn(v string) *KinesisSettings {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) string that uniquely identifies the AWS DMS
-	// resource.
-	//
-	// ResourceArn is a required field
-	ResourceArn *string `type:"string" required:"true"`
+	// The Amazon Resource Name (ARN) string that uniquely identifies the DMS resource
+	// to list tags for. This returns a list of keys (names of tags) created for
+	// the resource and their associated tag values.
+	ResourceArn *string `type:"string"`
+
+	// List of ARNs that identify multiple DMS resources that you want to list tags
+	// for. This returns a list of keys (tag names) and their associated tag values.
+	// It also returns each tag's associated ResourceArn value, which is the ARN
+	// of the resource for which each listed tag is created.
+	ResourceArnList []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ListTagsForResourceInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
-	if s.ResourceArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetResourceArn sets the ResourceArn field's value.
 func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceArnList sets the ResourceArnList field's value.
+func (s *ListTagsForResourceInput) SetResourceArnList(v []*string) *ListTagsForResourceInput {
+	s.ResourceArnList = v
 	return s
 }
 
@@ -10274,12 +16590,20 @@ type ListTagsForResourceOutput struct {
 	TagList []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10290,45 +16614,252 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 	return s
 }
 
+// Provides information that defines a Microsoft SQL Server endpoint.
+type MicrosoftSQLServerSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of the packets (in bytes) used to transfer data using BCP.
+	BcpPacketSize *int64 `type:"integer"`
+
+	// Specifies a file group for the DMS internal tables. When the replication
+	// task starts, all the internal DMS control tables (awsdms_ apply_exception,
+	// awsdms_apply, awsdms_changes) are created for the specified file group.
+	ControlTablesFileGroup *string `type:"string"`
+
+	// Database name for the endpoint.
+	DatabaseName *string `type:"string"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MicrosoftSQLServerSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// Endpoint TCP port.
+	Port *int64 `type:"integer"`
+
+	// Cleans and recreates table metadata information on the replication instance
+	// when a mismatch occurs. An example is a situation where running an alter
+	// DDL statement on a table might result in different information about the
+	// table cached in the replication instance.
+	QuerySingleAlwaysOnNode *bool `type:"boolean"`
+
+	// When this attribute is set to Y, DMS only reads changes from transaction
+	// log backups and doesn't read from the active transaction log file during
+	// ongoing replication. Setting this parameter to Y enables you to control active
+	// transaction log file growth during full load and ongoing replication tasks.
+	// However, it can add some source latency to ongoing replication.
+	ReadBackupOnly *bool `type:"boolean"`
+
+	// Use this attribute to minimize the need to access the backup log and enable
+	// DMS to prevent truncation using one of the following two methods.
+	//
+	// Start transactions in the database: This is the default method. When this
+	// method is used, DMS prevents TLOG truncation by mimicking a transaction in
+	// the database. As long as such a transaction is open, changes that appear
+	// after the transaction started aren't truncated. If you need Microsoft Replication
+	// to be enabled in your database, then you must choose this method.
+	//
+	// Exclusively use sp_repldone within a single task: When this method is used,
+	// DMS reads the changes and then uses sp_repldone to mark the TLOG transactions
+	// as ready for truncation. Although this method doesn't involve any transactional
+	// activities, it can only be used when Microsoft Replication isn't running.
+	// Also, when using this method, only one DMS task can access the database at
+	// any given time. Therefore, if you need to run parallel DMS tasks against
+	// the same database, use the default method.
+	SafeguardPolicy *string `type:"string" enum:"SafeguardPolicy"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the SQL Server endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the SQL Server endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Fully qualified domain name of the endpoint.
+	ServerName *string `type:"string"`
+
+	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
+	// NCHAR data types during migration. The default value is true.
+	TrimSpaceInChar *bool `type:"boolean"`
+
+	// Use this to attribute to transfer data for full-load operations using BCP.
+	// When the target table contains an identity column that does not exist in
+	// the source table, you must disable the use BCP for loading table option.
+	UseBcpFullLoad *bool `type:"boolean"`
+
+	// When this attribute is set to Y, DMS processes third-party transaction log
+	// backups if they are created in native format.
+	UseThirdPartyBackupDevice *bool `type:"boolean"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MicrosoftSQLServerSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MicrosoftSQLServerSettings) GoString() string {
+	return s.String()
+}
+
+// SetBcpPacketSize sets the BcpPacketSize field's value.
+func (s *MicrosoftSQLServerSettings) SetBcpPacketSize(v int64) *MicrosoftSQLServerSettings {
+	s.BcpPacketSize = &v
+	return s
+}
+
+// SetControlTablesFileGroup sets the ControlTablesFileGroup field's value.
+func (s *MicrosoftSQLServerSettings) SetControlTablesFileGroup(v string) *MicrosoftSQLServerSettings {
+	s.ControlTablesFileGroup = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *MicrosoftSQLServerSettings) SetDatabaseName(v string) *MicrosoftSQLServerSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *MicrosoftSQLServerSettings) SetPassword(v string) *MicrosoftSQLServerSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *MicrosoftSQLServerSettings) SetPort(v int64) *MicrosoftSQLServerSettings {
+	s.Port = &v
+	return s
+}
+
+// SetQuerySingleAlwaysOnNode sets the QuerySingleAlwaysOnNode field's value.
+func (s *MicrosoftSQLServerSettings) SetQuerySingleAlwaysOnNode(v bool) *MicrosoftSQLServerSettings {
+	s.QuerySingleAlwaysOnNode = &v
+	return s
+}
+
+// SetReadBackupOnly sets the ReadBackupOnly field's value.
+func (s *MicrosoftSQLServerSettings) SetReadBackupOnly(v bool) *MicrosoftSQLServerSettings {
+	s.ReadBackupOnly = &v
+	return s
+}
+
+// SetSafeguardPolicy sets the SafeguardPolicy field's value.
+func (s *MicrosoftSQLServerSettings) SetSafeguardPolicy(v string) *MicrosoftSQLServerSettings {
+	s.SafeguardPolicy = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *MicrosoftSQLServerSettings) SetSecretsManagerAccessRoleArn(v string) *MicrosoftSQLServerSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *MicrosoftSQLServerSettings) SetSecretsManagerSecretId(v string) *MicrosoftSQLServerSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *MicrosoftSQLServerSettings) SetServerName(v string) *MicrosoftSQLServerSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetTrimSpaceInChar sets the TrimSpaceInChar field's value.
+func (s *MicrosoftSQLServerSettings) SetTrimSpaceInChar(v bool) *MicrosoftSQLServerSettings {
+	s.TrimSpaceInChar = &v
+	return s
+}
+
+// SetUseBcpFullLoad sets the UseBcpFullLoad field's value.
+func (s *MicrosoftSQLServerSettings) SetUseBcpFullLoad(v bool) *MicrosoftSQLServerSettings {
+	s.UseBcpFullLoad = &v
+	return s
+}
+
+// SetUseThirdPartyBackupDevice sets the UseThirdPartyBackupDevice field's value.
+func (s *MicrosoftSQLServerSettings) SetUseThirdPartyBackupDevice(v bool) *MicrosoftSQLServerSettings {
+	s.UseThirdPartyBackupDevice = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *MicrosoftSQLServerSettings) SetUsername(v string) *MicrosoftSQLServerSettings {
+	s.Username = &v
+	return s
+}
+
 type ModifyEndpointInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the certificate used for SSL connection.
 	CertificateArn *string `type:"string"`
 
-	// The name of the endpoint database.
+	// The name of the endpoint database. For a MySQL source or target endpoint,
+	// do not specify DatabaseName.
 	DatabaseName *string `type:"string"`
 
 	// The settings in JSON format for the DMS transfer type of source endpoint.
 	//
 	// Attributes include the following:
 	//
-	//    * serviceAccessRoleArn - The AWS Identity and Access Management (IAM)
-	//    role that has permission to access the Amazon S3 bucket.
+	//    * serviceAccessRoleArn - The Amazon Resource Name (ARN) used by the service
+	//    access IAM role. The role must allow the iam:PassRole action.
 	//
 	//    * BucketName - The name of the S3 bucket to use.
 	//
-	//    * compressionType - An optional parameter to use GZIP to compress the
-	//    target files. Either set this parameter to NONE (the default) or don't
-	//    use it to leave the files uncompressed.
-	//
 	// Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string
-	// ,BucketName=string,CompressionType=string
+	// ,BucketName=string
 	//
 	// JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string",
-	// "BucketName": "string", "CompressionType": "none"|"gzip" }
+	// "BucketName": "string"}
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
+
+	// Settings in JSON format for the source DocumentDB endpoint. For more information
+	// about the available settings, see the configuration properties section in
+	// Using DocumentDB as a Target for Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.DocumentDB.html)
+	// in the Database Migration Service User Guide.
+	DocDbSettings *DocDbSettings `type:"structure"`
 
 	// Settings in JSON format for the target Amazon DynamoDB endpoint. For information
 	// about other available settings, see Using Object Mapping to Migrate Data
-	// to DynamoDB (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html)
-	// in the AWS Database Migration Service User Guide.
+	// to DynamoDB (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html#CHAP_Target.DynamoDB.ObjectMapping)
+	// in the Database Migration Service User Guide.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
 
-	// Settings in JSON format for the target Elasticsearch endpoint. For more information
+	// Settings in JSON format for the target OpenSearch endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
-	// Elasticsearch as a Target for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
-	// in the AWS Database Migration User Guide.
+	// OpenSearch as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
+	// in the Database Migration Service User Guide.
 	ElasticsearchSettings *ElasticsearchSettings `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
@@ -10344,11 +16875,33 @@ type ModifyEndpointInput struct {
 	// The type of endpoint. Valid values are source and target.
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
-	// The type of engine for the endpoint. Valid values, depending on the EndpointType,
-	// include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", and "sqlserver".
+	// The database engine name. Valid values, depending on the EndpointType, include
+	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
+	// "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune",
+	// and "babelfish".
 	EngineName *string `type:"string"`
+
+	// If this attribute is Y, the current call to ModifyEndpoint replaces all existing
+	// endpoint settings with the exact settings that you specify in this call.
+	// If this attribute is N, the current call to ModifyEndpoint does two things:
+	//
+	//    * It replaces any endpoint settings that already exist with new values,
+	//    for settings with the same names.
+	//
+	//    * It creates new endpoint settings that you specify in the call, for settings
+	//    with different names.
+	//
+	// For example, if you call create-endpoint ... --endpoint-settings '{"a":1}'
+	// ..., the endpoint has the following endpoint settings: '{"a":1}'. If you
+	// then call modify-endpoint ... --endpoint-settings '{"b":2}' ... for the same
+	// endpoint, the endpoint has the following settings: '{"a":1,"b":2}'.
+	//
+	// However, suppose that you follow this with a call to modify-endpoint ...
+	// --endpoint-settings '{"b":2}' --exact-settings ... for that same endpoint
+	// again. Then the endpoint has the following settings: '{"b":2}'. All existing
+	// settings are replaced with the exact settings that you specify.
+	ExactSettings *bool `type:"boolean"`
 
 	// The external table definition.
 	ExternalTableDefinition *string `type:"string"`
@@ -10357,65 +16910,128 @@ type ModifyEndpointInput struct {
 	// pass the empty string ("") as an argument.
 	ExtraConnectionAttributes *string `type:"string"`
 
+	// Settings in JSON format for the source GCP MySQL endpoint.
+	GcpMySQLSettings *GcpMySQLSettings `type:"structure"`
+
+	// Settings in JSON format for the source IBM Db2 LUW endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// Db2 LUW as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.DB2.html#CHAP_Source.DB2.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	IBMDb2Settings *IBMDb2Settings `type:"structure"`
+
 	// Settings in JSON format for the target Apache Kafka endpoint. For more information
-	// about the available settings, see Using Apache Kafka as a Target for AWS
-	// Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html)
-	// in the AWS Database Migration User Guide.
+	// about the available settings, see Using object mapping to migrate data to
+	// a Kafka topic (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html#CHAP_Target.Kafka.ObjectMapping)
+	// in the Database Migration Service User Guide.
 	KafkaSettings *KafkaSettings `type:"structure"`
 
 	// Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams.
-	// For more information about the available settings, see Using Amazon Kinesis
-	// Data Streams as a Target for AWS Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html)
-	// in the AWS Database Migration User Guide.
+	// For more information about the available settings, see Using object mapping
+	// to migrate data to a Kinesis data stream (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html#CHAP_Target.Kinesis.ObjectMapping)
+	// in the Database Migration Service User Guide.
 	KinesisSettings *KinesisSettings `type:"structure"`
+
+	// Settings in JSON format for the source and target Microsoft SQL Server endpoint.
+	// For information about other available settings, see Extra connection attributes
+	// when using SQL Server as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html#CHAP_Source.SQLServer.ConnectionAttrib)
+	// and Extra connection attributes when using SQL Server as a target for DMS
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html#CHAP_Target.SQLServer.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	MicrosoftSQLServerSettings *MicrosoftSQLServerSettings `type:"structure"`
 
 	// Settings in JSON format for the source MongoDB endpoint. For more information
 	// about the available settings, see the configuration properties section in
-	// Using MongoDB as a Target for AWS Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MongoDB.html)
-	// in the AWS Database Migration Service User Guide.
+	// Endpoint configuration settings when using MongoDB as a source for Database
+	// Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MongoDB.html#CHAP_Source.MongoDB.Configuration)
+	// in the Database Migration Service User Guide.
 	MongoDbSettings *MongoDbSettings `type:"structure"`
 
+	// Settings in JSON format for the source and target MySQL endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// MySQL as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MySQL.html#CHAP_Source.MySQL.ConnectionAttrib)
+	// and Extra connection attributes when using a MySQL-compatible database as
+	// a target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.MySQL.html#CHAP_Target.MySQL.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	MySQLSettings *MySQLSettings `type:"structure"`
+
 	// Settings in JSON format for the target Amazon Neptune endpoint. For more
-	// information about the available settings, see https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.EndpointSettings
-	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.EndpointSettings)
-	// in the AWS Database Migration Service User Guide.
+	// information about the available settings, see Specifying graph-mapping rules
+	// using Gremlin and R2RML for Amazon Neptune as a target (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.EndpointSettings)
+	// in the Database Migration Service User Guide.
 	NeptuneSettings *NeptuneSettings `type:"structure"`
 
+	// Settings in JSON format for the source and target Oracle endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// Oracle as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.ConnectionAttrib)
+	// and Extra connection attributes when using Oracle as a target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Oracle.html#CHAP_Target.Oracle.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	OracleSettings *OracleSettings `type:"structure"`
+
 	// The password to be used to login to the endpoint database.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ModifyEndpointInput's
+	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
 	// The port used by the endpoint database.
 	Port *int64 `type:"integer"`
+
+	// Settings in JSON format for the source and target PostgreSQL endpoint. For
+	// information about other available settings, see Extra connection attributes
+	// when using PostgreSQL as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib)
+	// and Extra connection attributes when using PostgreSQL as a target for DMS
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.PostgreSQL.html#CHAP_Target.PostgreSQL.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	PostgreSQLSettings *PostgreSQLSettings `type:"structure"`
+
+	// Settings in JSON format for the Redis target endpoint.
+	RedisSettings *RedisSettings `type:"structure"`
 
 	// Provides information that defines an Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
 
 	// Settings in JSON format for the target Amazon S3 endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
-	// Amazon S3 as a Target for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring)
-	// in the AWS Database Migration Service User Guide.
+	// Amazon S3 as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring)
+	// in the Database Migration Service User Guide.
 	S3Settings *S3Settings `type:"structure"`
 
 	// The name of the server where the endpoint database resides.
 	ServerName *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) for the service access role you want to use
-	// to modify the endpoint.
+	// The Amazon Resource Name (ARN) for the IAM role you want to use to modify
+	// the endpoint. The role must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 
 	// The SSL mode used to connect to the endpoint. The default value is none.
 	SslMode *string `type:"string" enum:"DmsSslModeValue"`
 
+	// Settings in JSON format for the source and target SAP ASE endpoint. For information
+	// about other available settings, see Extra connection attributes when using
+	// SAP ASE as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SAP.html#CHAP_Source.SAP.ConnectionAttrib)
+	// and Extra connection attributes when using SAP ASE as a target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SAP.html#CHAP_Target.SAP.ConnectionAttrib)
+	// in the Database Migration Service User Guide.
+	SybaseSettings *SybaseSettings `type:"structure"`
+
 	// The user name to be used to login to the endpoint database.
 	Username *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEndpointInput) GoString() string {
 	return s.String()
 }
@@ -10441,6 +17057,11 @@ func (s *ModifyEndpointInput) Validate() error {
 			invalidParams.AddNested("NeptuneSettings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RedisSettings != nil {
+		if err := s.RedisSettings.Validate(); err != nil {
+			invalidParams.AddNested("RedisSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10463,6 +17084,12 @@ func (s *ModifyEndpointInput) SetDatabaseName(v string) *ModifyEndpointInput {
 // SetDmsTransferSettings sets the DmsTransferSettings field's value.
 func (s *ModifyEndpointInput) SetDmsTransferSettings(v *DmsTransferSettings) *ModifyEndpointInput {
 	s.DmsTransferSettings = v
+	return s
+}
+
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *ModifyEndpointInput) SetDocDbSettings(v *DocDbSettings) *ModifyEndpointInput {
+	s.DocDbSettings = v
 	return s
 }
 
@@ -10502,6 +17129,12 @@ func (s *ModifyEndpointInput) SetEngineName(v string) *ModifyEndpointInput {
 	return s
 }
 
+// SetExactSettings sets the ExactSettings field's value.
+func (s *ModifyEndpointInput) SetExactSettings(v bool) *ModifyEndpointInput {
+	s.ExactSettings = &v
+	return s
+}
+
 // SetExternalTableDefinition sets the ExternalTableDefinition field's value.
 func (s *ModifyEndpointInput) SetExternalTableDefinition(v string) *ModifyEndpointInput {
 	s.ExternalTableDefinition = &v
@@ -10511,6 +17144,18 @@ func (s *ModifyEndpointInput) SetExternalTableDefinition(v string) *ModifyEndpoi
 // SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
 func (s *ModifyEndpointInput) SetExtraConnectionAttributes(v string) *ModifyEndpointInput {
 	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetGcpMySQLSettings sets the GcpMySQLSettings field's value.
+func (s *ModifyEndpointInput) SetGcpMySQLSettings(v *GcpMySQLSettings) *ModifyEndpointInput {
+	s.GcpMySQLSettings = v
+	return s
+}
+
+// SetIBMDb2Settings sets the IBMDb2Settings field's value.
+func (s *ModifyEndpointInput) SetIBMDb2Settings(v *IBMDb2Settings) *ModifyEndpointInput {
+	s.IBMDb2Settings = v
 	return s
 }
 
@@ -10526,15 +17171,33 @@ func (s *ModifyEndpointInput) SetKinesisSettings(v *KinesisSettings) *ModifyEndp
 	return s
 }
 
+// SetMicrosoftSQLServerSettings sets the MicrosoftSQLServerSettings field's value.
+func (s *ModifyEndpointInput) SetMicrosoftSQLServerSettings(v *MicrosoftSQLServerSettings) *ModifyEndpointInput {
+	s.MicrosoftSQLServerSettings = v
+	return s
+}
+
 // SetMongoDbSettings sets the MongoDbSettings field's value.
 func (s *ModifyEndpointInput) SetMongoDbSettings(v *MongoDbSettings) *ModifyEndpointInput {
 	s.MongoDbSettings = v
 	return s
 }
 
+// SetMySQLSettings sets the MySQLSettings field's value.
+func (s *ModifyEndpointInput) SetMySQLSettings(v *MySQLSettings) *ModifyEndpointInput {
+	s.MySQLSettings = v
+	return s
+}
+
 // SetNeptuneSettings sets the NeptuneSettings field's value.
 func (s *ModifyEndpointInput) SetNeptuneSettings(v *NeptuneSettings) *ModifyEndpointInput {
 	s.NeptuneSettings = v
+	return s
+}
+
+// SetOracleSettings sets the OracleSettings field's value.
+func (s *ModifyEndpointInput) SetOracleSettings(v *OracleSettings) *ModifyEndpointInput {
+	s.OracleSettings = v
 	return s
 }
 
@@ -10547,6 +17210,18 @@ func (s *ModifyEndpointInput) SetPassword(v string) *ModifyEndpointInput {
 // SetPort sets the Port field's value.
 func (s *ModifyEndpointInput) SetPort(v int64) *ModifyEndpointInput {
 	s.Port = &v
+	return s
+}
+
+// SetPostgreSQLSettings sets the PostgreSQLSettings field's value.
+func (s *ModifyEndpointInput) SetPostgreSQLSettings(v *PostgreSQLSettings) *ModifyEndpointInput {
+	s.PostgreSQLSettings = v
+	return s
+}
+
+// SetRedisSettings sets the RedisSettings field's value.
+func (s *ModifyEndpointInput) SetRedisSettings(v *RedisSettings) *ModifyEndpointInput {
+	s.RedisSettings = v
 	return s
 }
 
@@ -10580,6 +17255,12 @@ func (s *ModifyEndpointInput) SetSslMode(v string) *ModifyEndpointInput {
 	return s
 }
 
+// SetSybaseSettings sets the SybaseSettings field's value.
+func (s *ModifyEndpointInput) SetSybaseSettings(v *SybaseSettings) *ModifyEndpointInput {
+	s.SybaseSettings = v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *ModifyEndpointInput) SetUsername(v string) *ModifyEndpointInput {
 	s.Username = &v
@@ -10593,12 +17274,20 @@ type ModifyEndpointOutput struct {
 	Endpoint *Endpoint `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -10624,24 +17313,32 @@ type ModifyEventSubscriptionInput struct {
 	// subscribe to it.
 	SnsTopicArn *string `type:"string"`
 
-	// The type of AWS DMS resource that generates the events you want to subscribe
+	// The type of DMS resource that generates the events you want to subscribe
 	// to.
 	//
 	// Valid values: replication-instance | replication-task
 	SourceType *string `type:"string"`
 
-	// The name of the AWS DMS event notification subscription to be modified.
+	// The name of the DMS event notification subscription to be modified.
 	//
 	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEventSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEventSubscriptionInput) GoString() string {
 	return s.String()
 }
@@ -10696,12 +17393,20 @@ type ModifyEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEventSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyEventSubscriptionOutput) GoString() string {
 	return s.String()
 }
@@ -10734,7 +17439,7 @@ type ModifyReplicationInstanceInput struct {
 
 	// A value that indicates that minor version upgrades are applied automatically
 	// to the replication instance during the maintenance window. Changing this
-	// parameter doesn't result in an outage, except in the case dsecribed following.
+	// parameter doesn't result in an outage, except in the case described following.
 	// The change is asynchronously applied as soon as possible.
 	//
 	// An outage does result if these factors apply:
@@ -10743,16 +17448,24 @@ type ModifyReplicationInstanceInput struct {
 	//
 	//    * A newer minor version is available.
 	//
-	//    * AWS DMS has enabled automatic patching for the given engine version.
+	//    * DMS has enabled automatic patching for the given engine version.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The engine version number of the replication instance.
+	//
+	// When modifying a major engine version of an instance, also set AllowMajorVersionUpgrade
+	// to true.
 	EngineVersion *string `type:"string"`
 
 	// Specifies whether the replication instance is a Multi-AZ deployment. You
 	// can't set the AvailabilityZone parameter if the Multi-AZ parameter is set
 	// to true.
 	MultiAZ *bool `type:"boolean"`
+
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
 
 	// The weekly time range (in UTC) during which system maintenance can occur,
 	// which might result in an outage. Changing this parameter does not result
@@ -10775,10 +17488,13 @@ type ModifyReplicationInstanceInput struct {
 	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 
-	// The compute and memory capacity of the replication instance.
+	// The compute and memory capacity of the replication instance as defined for
+	// the specified replication instance class. For example to specify the instance
+	// class dms.c4.large, set this parameter to "dms.c4.large".
 	//
-	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
-	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
+	// For more information on the settings and capacities for the available replication
+	// instance classes, see Selecting the right DMS replication instance for your
+	// migration (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth).
 	ReplicationInstanceClass *string `type:"string"`
 
 	// The replication instance identifier. This parameter is stored as a lowercase
@@ -10791,12 +17507,20 @@ type ModifyReplicationInstanceInput struct {
 	VpcSecurityGroupIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationInstanceInput) GoString() string {
 	return s.String()
 }
@@ -10850,6 +17574,12 @@ func (s *ModifyReplicationInstanceInput) SetMultiAZ(v bool) *ModifyReplicationIn
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *ModifyReplicationInstanceInput) SetNetworkType(v string) *ModifyReplicationInstanceInput {
+	s.NetworkType = &v
+	return s
+}
+
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *ModifyReplicationInstanceInput) SetPreferredMaintenanceWindow(v string) *ModifyReplicationInstanceInput {
 	s.PreferredMaintenanceWindow = &v
@@ -10887,12 +17617,20 @@ type ModifyReplicationInstanceOutput struct {
 	ReplicationInstance *ReplicationInstance `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -10920,12 +17658,20 @@ type ModifyReplicationSubnetGroupInput struct {
 	SubnetIds []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationSubnetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationSubnetGroupInput) GoString() string {
 	return s.String()
 }
@@ -10971,12 +17717,20 @@ type ModifyReplicationSubnetGroupOutput struct {
 	ReplicationSubnetGroup *ReplicationSubnetGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationSubnetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationSubnetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -11006,7 +17760,7 @@ type ModifyReplicationTaskInput struct {
 	// replication slot should already be created and associated with the source
 	// endpoint. You can verify this by setting the slotName extra connection attribute
 	// to the name of this logical replication slot. For more information, see Extra
-	// Connection Attributes When Using PostgreSQL as a Source for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib).
+	// Connection Attributes When Using PostgreSQL as a Source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib).
 	CdcStartPosition *string `type:"string"`
 
 	// Indicates the start time for a change data capture (CDC) operation. Use either
@@ -11019,9 +17773,9 @@ type ModifyReplicationTaskInput struct {
 	// Indicates when you want a change data capture (CDC) operation to stop. The
 	// value can be either server time or commit time.
 	//
-	// Server time example: --cdc-stop-position “server_time:3018-02-09T12:12:12”
+	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 3018-02-09T12:12:12
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
 	// “
 	CdcStopPosition *string `type:"string"`
 
@@ -11037,7 +17791,7 @@ type ModifyReplicationTaskInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    * Must contain 1-255 alphanumeric characters or hyphens.
 	//
 	//    * First character must be a letter.
 	//
@@ -11047,25 +17801,33 @@ type ModifyReplicationTaskInput struct {
 	// JSON file that contains settings for the task, such as task metadata settings.
 	ReplicationTaskSettings *string `type:"string"`
 
-	// When using the AWS CLI or boto3, provide the path of the JSON file that contains
-	// the table mappings. Precede the path with file://. When working with the
-	// DMS API, provide the JSON as the parameter value, for example: --table-mappings
-	// file://mappingfile.json
+	// When using the CLI or boto3, provide the path of the JSON file that contains
+	// the table mappings. Precede the path with file://. For example, --table-mappings
+	// file://mappingfile.json. When working with the DMS API, provide the JSON
+	// as the parameter value.
 	TableMappings *string `type:"string"`
 
 	// Supplemental information that the task requires to migrate the data for certain
 	// source and target endpoints. For more information, see Specifying Supplemental
 	// Data for Task Settings (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.TaskData.html)
-	// in the AWS Database Migration User Guide.
+	// in the Database Migration Service User Guide.
 	TaskData *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationTaskInput) GoString() string {
 	return s.String()
 }
@@ -11144,12 +17906,20 @@ type ModifyReplicationTaskOutput struct {
 	ReplicationTask *ReplicationTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModifyReplicationTaskOutput) GoString() string {
 	return s.String()
 }
@@ -11166,59 +17936,79 @@ type MongoDbSettings struct {
 
 	// The authentication mechanism you use to access the MongoDB source endpoint.
 	//
-	// Valid values: DEFAULT, MONGODB_CR, SCRAM_SHA_1
-	//
-	// DEFAULT – For MongoDB version 2.x, use MONGODB_CR. For MongoDB version
-	// 3.x, use SCRAM_SHA_1. This setting isn't used when authType=No.
+	// For the default value, in MongoDB version 2.x, "default" is "mongodb_cr".
+	// For MongoDB version 3.x or later, "default" is "scram_sha_1". This setting
+	// isn't used when AuthType is set to "no".
 	AuthMechanism *string `type:"string" enum:"AuthMechanismValue"`
 
-	// The MongoDB database name. This setting isn't used when authType=NO.
+	// The MongoDB database name. This setting isn't used when AuthType is set to
+	// "no".
 	//
-	// The default is admin.
+	// The default is "admin".
 	AuthSource *string `type:"string"`
 
 	// The authentication type you use to access the MongoDB source endpoint.
 	//
-	// Valid values: NO, PASSWORD
-	//
-	// When NO is selected, user name and password parameters are not used and can
-	// be empty.
+	// When when set to "no", user name and password parameters are not used and
+	// can be empty.
 	AuthType *string `type:"string" enum:"AuthTypeValue"`
 
 	// The database name on the MongoDB source endpoint.
 	DatabaseName *string `type:"string"`
 
 	// Indicates the number of documents to preview to determine the document organization.
-	// Use this setting when NestingLevel is set to ONE.
+	// Use this setting when NestingLevel is set to "one".
 	//
 	// Must be a positive value greater than 0. Default value is 1000.
 	DocsToInvestigate *string `type:"string"`
 
-	// Specifies the document ID. Use this setting when NestingLevel is set to NONE.
+	// Specifies the document ID. Use this setting when NestingLevel is set to "none".
 	//
-	// Default value is false.
+	// Default value is "false".
 	ExtractDocId *string `type:"string"`
 
-	// The AWS KMS key identifier that is used to encrypt the content on the replication
-	// instance. If you don't specify a value for the KmsKeyId parameter, then AWS
-	// DMS uses your default encryption key. AWS KMS creates the default encryption
-	// key for your AWS account. Your AWS account has a different default encryption
-	// key for each AWS Region.
+	// The KMS key identifier that is used to encrypt the content on the replication
+	// instance. If you don't specify a value for the KmsKeyId parameter, then DMS
+	// uses your default encryption key. KMS creates the default encryption key
+	// for your Amazon Web Services account. Your Amazon Web Services account has
+	// a different default encryption key for each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies either document or table mode.
 	//
-	// Valid values: NONE, ONE
-	//
-	// Default value is NONE. Specify NONE to use document mode. Specify ONE to
-	// use table mode.
+	// Default value is "none". Specify "none" to use document mode. Specify "one"
+	// to use table mode.
 	NestingLevel *string `type:"string" enum:"NestingLevelValue"`
 
 	// The password for the user account you use to access the MongoDB source endpoint.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MongoDbSettings's
+	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
 	// The port value for the MongoDB source endpoint.
 	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the MongoDB endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the MongoDB endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
 
 	// The name of the server on the MongoDB source endpoint.
 	ServerName *string `type:"string"`
@@ -11227,12 +18017,20 @@ type MongoDbSettings struct {
 	Username *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MongoDbSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MongoDbSettings) GoString() string {
 	return s.String()
 }
@@ -11297,6 +18095,18 @@ func (s *MongoDbSettings) SetPort(v int64) *MongoDbSettings {
 	return s
 }
 
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *MongoDbSettings) SetSecretsManagerAccessRoleArn(v string) *MongoDbSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *MongoDbSettings) SetSecretsManagerSecretId(v string) *MongoDbSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
 // SetServerName sets the ServerName field's value.
 func (s *MongoDbSettings) SetServerName(v string) *MongoDbSettings {
 	s.ServerName = &v
@@ -11309,57 +18119,360 @@ func (s *MongoDbSettings) SetUsername(v string) *MongoDbSettings {
 	return s
 }
 
+type MoveReplicationTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the task that you want to move.
+	//
+	// ReplicationTaskArn is a required field
+	ReplicationTaskArn *string `type:"string" required:"true"`
+
+	// The ARN of the replication instance where you want to move the task to.
+	//
+	// TargetReplicationInstanceArn is a required field
+	TargetReplicationInstanceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MoveReplicationTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MoveReplicationTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MoveReplicationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MoveReplicationTaskInput"}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+	if s.TargetReplicationInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetReplicationInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *MoveReplicationTaskInput) SetReplicationTaskArn(v string) *MoveReplicationTaskInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetTargetReplicationInstanceArn sets the TargetReplicationInstanceArn field's value.
+func (s *MoveReplicationTaskInput) SetTargetReplicationInstanceArn(v string) *MoveReplicationTaskInput {
+	s.TargetReplicationInstanceArn = &v
+	return s
+}
+
+type MoveReplicationTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The replication task that was moved.
+	ReplicationTask *ReplicationTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MoveReplicationTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MoveReplicationTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationTask sets the ReplicationTask field's value.
+func (s *MoveReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *MoveReplicationTaskOutput {
+	s.ReplicationTask = v
+	return s
+}
+
+// Provides information that defines a MySQL endpoint.
+type MySQLSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a script to run immediately after DMS connects to the endpoint.
+	// The migration task continues running regardless if the SQL statement succeeds
+	// or fails.
+	//
+	// For this parameter, provide the code of the script itself, not the name of
+	// a file containing the script.
+	AfterConnectScript *string `type:"string"`
+
+	// Adjusts the behavior of DMS when migrating from an SQL Server source database
+	// that is hosted as part of an Always On availability group cluster. If you
+	// need DMS to poll all the nodes in the Always On cluster for transaction backups,
+	// set this attribute to false.
+	CleanSourceMetadataOnMismatch *bool `type:"boolean"`
+
+	// Database name for the endpoint. For a MySQL source or target endpoint, don't
+	// explicitly specify the database using the DatabaseName request parameter
+	// on either the CreateEndpoint or ModifyEndpoint API call. Specifying DatabaseName
+	// when you create or modify a MySQL endpoint replicates all the task tables
+	// to this single database. For MySQL endpoints, you specify the database only
+	// when you specify the schema in the table-mapping rules of the DMS task.
+	DatabaseName *string `type:"string"`
+
+	// Specifies how often to check the binary log for new changes/events when the
+	// database is idle. The default is five seconds.
+	//
+	// Example: eventsPollInterval=5;
+	//
+	// In the example, DMS checks for changes in the binary logs every five seconds.
+	EventsPollInterval *int64 `type:"integer"`
+
+	// Specifies the maximum size (in KB) of any .csv file used to transfer data
+	// to a MySQL-compatible database.
+	//
+	// Example: maxFileSize=512
+	MaxFileSize *int64 `type:"integer"`
+
+	// Improves performance when loading data into the MySQL-compatible target database.
+	// Specifies how many threads to use to load the data into the MySQL-compatible
+	// target database. Setting a large number of threads can have an adverse effect
+	// on database performance, because a separate connection is required for each
+	// thread. The default is one.
+	//
+	// Example: parallelLoadThreads=1
+	ParallelLoadThreads *int64 `type:"integer"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MySQLSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// Endpoint TCP port.
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the MySQL endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the MySQL endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Fully qualified domain name of the endpoint.
+	ServerName *string `type:"string"`
+
+	// Specifies the time zone for the source MySQL database.
+	//
+	// Example: serverTimezone=US/Pacific;
+	//
+	// Note: Do not enclose time zones in single quotes.
+	ServerTimezone *string `type:"string"`
+
+	// Specifies where to migrate source tables on the target, either to a single
+	// database or multiple databases. If you specify SPECIFIC_DATABASE, specify
+	// the database name using the DatabaseName parameter of the Endpoint object.
+	//
+	// Example: targetDbType=MULTIPLE_DATABASES
+	TargetDbType *string `type:"string" enum:"TargetDbType"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MySQLSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MySQLSettings) GoString() string {
+	return s.String()
+}
+
+// SetAfterConnectScript sets the AfterConnectScript field's value.
+func (s *MySQLSettings) SetAfterConnectScript(v string) *MySQLSettings {
+	s.AfterConnectScript = &v
+	return s
+}
+
+// SetCleanSourceMetadataOnMismatch sets the CleanSourceMetadataOnMismatch field's value.
+func (s *MySQLSettings) SetCleanSourceMetadataOnMismatch(v bool) *MySQLSettings {
+	s.CleanSourceMetadataOnMismatch = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *MySQLSettings) SetDatabaseName(v string) *MySQLSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEventsPollInterval sets the EventsPollInterval field's value.
+func (s *MySQLSettings) SetEventsPollInterval(v int64) *MySQLSettings {
+	s.EventsPollInterval = &v
+	return s
+}
+
+// SetMaxFileSize sets the MaxFileSize field's value.
+func (s *MySQLSettings) SetMaxFileSize(v int64) *MySQLSettings {
+	s.MaxFileSize = &v
+	return s
+}
+
+// SetParallelLoadThreads sets the ParallelLoadThreads field's value.
+func (s *MySQLSettings) SetParallelLoadThreads(v int64) *MySQLSettings {
+	s.ParallelLoadThreads = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *MySQLSettings) SetPassword(v string) *MySQLSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *MySQLSettings) SetPort(v int64) *MySQLSettings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *MySQLSettings) SetSecretsManagerAccessRoleArn(v string) *MySQLSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *MySQLSettings) SetSecretsManagerSecretId(v string) *MySQLSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *MySQLSettings) SetServerName(v string) *MySQLSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetServerTimezone sets the ServerTimezone field's value.
+func (s *MySQLSettings) SetServerTimezone(v string) *MySQLSettings {
+	s.ServerTimezone = &v
+	return s
+}
+
+// SetTargetDbType sets the TargetDbType field's value.
+func (s *MySQLSettings) SetTargetDbType(v string) *MySQLSettings {
+	s.TargetDbType = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *MySQLSettings) SetUsername(v string) *MySQLSettings {
+	s.Username = &v
+	return s
+}
+
 // Provides information that defines an Amazon Neptune endpoint.
 type NeptuneSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The number of milliseconds for AWS DMS to wait to retry a bulk-load of migrated
+	// The number of milliseconds for DMS to wait to retry a bulk-load of migrated
 	// graph data to the Neptune target database before raising an error. The default
 	// is 250.
 	ErrorRetryDuration *int64 `type:"integer"`
 
-	// If you want IAM authorization enabled for this endpoint, set this parameter
-	// to true and attach the appropriate role policy document to your service role
-	// specified by ServiceAccessRoleArn. The default is false.
+	// If you want Identity and Access Management (IAM) authorization enabled for
+	// this endpoint, set this parameter to true. Then attach the appropriate IAM
+	// policy document to your service role specified by ServiceAccessRoleArn. The
+	// default is false.
 	IamAuthEnabled *bool `type:"boolean"`
 
-	// The maximum size in KB of migrated graph data stored in a CSV file before
-	// AWS DMS bulk-loads the data to the Neptune target database. The default is
-	// 1048576 KB. If successful, AWS DMS clears the bucket, ready to store the
-	// next batch of migrated graph data.
+	// The maximum size in kilobytes of migrated graph data stored in a .csv file
+	// before DMS bulk-loads the data to the Neptune target database. The default
+	// is 1,048,576 KB. If the bulk load is successful, DMS clears the bucket, ready
+	// to store the next batch of migrated graph data.
 	MaxFileSize *int64 `type:"integer"`
 
-	// The number of times for AWS DMS to retry a bulk-load of migrated graph data
-	// to the Neptune target database before raising an error. The default is 5.
+	// The number of times for DMS to retry a bulk load of migrated graph data to
+	// the Neptune target database before raising an error. The default is 5.
 	MaxRetryCount *int64 `type:"integer"`
 
-	// A folder path where you where you want AWS DMS to store migrated graph data
-	// in the S3 bucket specified by S3BucketName
+	// A folder path where you want DMS to store migrated graph data in the S3 bucket
+	// specified by S3BucketName
 	//
 	// S3BucketFolder is a required field
 	S3BucketFolder *string `type:"string" required:"true"`
 
-	// The name of the S3 bucket for AWS DMS to temporarily store migrated graph
-	// data in CSV files before bulk-loading it to the Neptune target database.
-	// AWS DMS maps the SQL source data to graph data before storing it in these
-	// CSV files.
+	// The name of the Amazon S3 bucket where DMS can temporarily store migrated
+	// graph data in .csv files before bulk-loading it to the Neptune target database.
+	// DMS maps the SQL source data to graph data before storing it in these .csv
+	// files.
 	//
 	// S3BucketName is a required field
 	S3BucketName *string `type:"string" required:"true"`
 
-	// The ARN of the service role you have created for the Neptune target endpoint.
-	// For more information, see https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.ServiceRole
-	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.ServiceRole)
-	// in the AWS Database Migration Service User Guide.
+	// The Amazon Resource Name (ARN) of the service role that you created for the
+	// Neptune target endpoint. The role must allow the iam:PassRole action. For
+	// more information, see Creating an IAM Service Role for Accessing Amazon Neptune
+	// as a Target (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Neptune.html#CHAP_Target.Neptune.ServiceRole)
+	// in the Database Migration Service User Guide.
 	ServiceAccessRoleArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NeptuneSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NeptuneSettings) GoString() string {
 	return s.String()
 }
@@ -11422,6 +18535,568 @@ func (s *NeptuneSettings) SetServiceAccessRoleArn(v string) *NeptuneSettings {
 	return s
 }
 
+// Provides information that defines an Oracle endpoint.
+type OracleSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Set this attribute to false in order to use the Binary Reader to capture
+	// change data for an Amazon RDS for Oracle as the source. This tells the DMS
+	// instance to not access redo logs through any specified path prefix replacement
+	// using direct file access.
+	AccessAlternateDirectly *bool `type:"boolean"`
+
+	// Set this attribute to set up table-level supplemental logging for the Oracle
+	// database. This attribute enables PRIMARY KEY supplemental logging on all
+	// tables selected for a migration task.
+	//
+	// If you use this option, you still need to enable database-level supplemental
+	// logging.
+	AddSupplementalLogging *bool `type:"boolean"`
+
+	// Set this attribute with ArchivedLogDestId in a primary/ standby setup. This
+	// attribute is useful in the case of a switchover. In this case, DMS needs
+	// to know which destination to get archive redo logs from to read changes.
+	// This need arises because the previous primary instance is now a standby instance
+	// after switchover.
+	//
+	// Although DMS supports the use of the Oracle RESETLOGS option to open the
+	// database, never use RESETLOGS unless necessary. For additional information
+	// about RESETLOGS, see RMAN Data Repair Concepts (https://docs.oracle.com/en/database/oracle/oracle-database/19/bradv/rman-data-repair-concepts.html#GUID-1805CCF7-4AF2-482D-B65A-998192F89C2B)
+	// in the Oracle Database Backup and Recovery User's Guide.
+	AdditionalArchivedLogDestId *int64 `type:"integer"`
+
+	// Set this attribute to true to enable replication of Oracle tables containing
+	// columns that are nested tables or defined types.
+	AllowSelectNestedTables *bool `type:"boolean"`
+
+	// Specifies the ID of the destination for the archived redo logs. This value
+	// should be the same as a number in the dest_id column of the v$archived_log
+	// view. If you work with an additional redo log destination, use the AdditionalArchivedLogDestId
+	// option to specify the additional destination ID. Doing this improves performance
+	// by ensuring that the correct logs are accessed from the outset.
+	ArchivedLogDestId *int64 `type:"integer"`
+
+	// When this field is set to Y, DMS only accesses the archived redo logs. If
+	// the archived redo logs are stored on Automatic Storage Management (ASM) only,
+	// the DMS user account needs to be granted ASM privileges.
+	ArchivedLogsOnly *bool `type:"boolean"`
+
+	// For an Oracle source endpoint, your Oracle Automatic Storage Management (ASM)
+	// password. You can set this value from the asm_user_password value. You set
+	// this value as part of the comma-separated value that you set to the Password
+	// request parameter when you create the endpoint to access transaction logs
+	// using Binary Reader. For more information, see Configuration for change data
+	// capture (CDC) on an Oracle source database (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.CDC.Configuration).
+	//
+	// AsmPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OracleSettings's
+	// String and GoString methods.
+	AsmPassword *string `type:"string" sensitive:"true"`
+
+	// For an Oracle source endpoint, your ASM server address. You can set this
+	// value from the asm_server value. You set asm_server as part of the extra
+	// connection attribute string to access an Oracle server with Binary Reader
+	// that uses ASM. For more information, see Configuration for change data capture
+	// (CDC) on an Oracle source database (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.CDC.Configuration).
+	AsmServer *string `type:"string"`
+
+	// For an Oracle source endpoint, your ASM user name. You can set this value
+	// from the asm_user value. You set asm_user as part of the extra connection
+	// attribute string to access an Oracle server with Binary Reader that uses
+	// ASM. For more information, see Configuration for change data capture (CDC)
+	// on an Oracle source database (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.CDC.Configuration).
+	AsmUser *string `type:"string"`
+
+	// Specifies whether the length of a character column is in bytes or in characters.
+	// To indicate that the character column length is in characters, set this attribute
+	// to CHAR. Otherwise, the character column length is in bytes.
+	//
+	// Example: charLengthSemantics=CHAR;
+	CharLengthSemantics *string `type:"string" enum:"CharLengthSemantics"`
+
+	// Database name for the endpoint.
+	DatabaseName *string `type:"string"`
+
+	// When set to true, this attribute helps to increase the commit rate on the
+	// Oracle target database by writing directly to tables and not writing a trail
+	// to database logs.
+	DirectPathNoLog *bool `type:"boolean"`
+
+	// When set to true, this attribute specifies a parallel load when useDirectPathFullLoad
+	// is set to Y. This attribute also only applies when you use the DMS parallel
+	// load feature. Note that the target table cannot have any constraints or indexes.
+	DirectPathParallelLoad *bool `type:"boolean"`
+
+	// Set this attribute to enable homogenous tablespace replication and create
+	// existing tables or indexes under the same tablespace on the target.
+	EnableHomogenousTablespace *bool `type:"boolean"`
+
+	// Specifies the IDs of one more destinations for one or more archived redo
+	// logs. These IDs are the values of the dest_id column in the v$archived_log
+	// view. Use this setting with the archivedLogDestId extra connection attribute
+	// in a primary-to-single setup or a primary-to-multiple-standby setup.
+	//
+	// This setting is useful in a switchover when you use an Oracle Data Guard
+	// database as a source. In this case, DMS needs information about what destination
+	// to get archive redo logs from to read changes. DMS needs this because after
+	// the switchover the previous primary is a standby instance. For example, in
+	// a primary-to-single standby setup you might apply the following settings.
+	//
+	// archivedLogDestId=1; ExtraArchivedLogDestIds=[2]
+	//
+	// In a primary-to-multiple-standby setup, you might apply the following settings.
+	//
+	// archivedLogDestId=1; ExtraArchivedLogDestIds=[2,3,4]
+	//
+	// Although DMS supports the use of the Oracle RESETLOGS option to open the
+	// database, never use RESETLOGS unless it's necessary. For more information
+	// about RESETLOGS, see RMAN Data Repair Concepts (https://docs.oracle.com/en/database/oracle/oracle-database/19/bradv/rman-data-repair-concepts.html#GUID-1805CCF7-4AF2-482D-B65A-998192F89C2B)
+	// in the Oracle Database Backup and Recovery User's Guide.
+	ExtraArchivedLogDestIds []*int64 `type:"list"`
+
+	// When set to true, this attribute causes a task to fail if the actual size
+	// of an LOB column is greater than the specified LobMaxSize.
+	//
+	// If a task is set to limited LOB mode and this option is set to true, the
+	// task fails instead of truncating the LOB data.
+	FailTasksOnLobTruncation *bool `type:"boolean"`
+
+	// Specifies the number scale. You can select a scale up to 38, or you can select
+	// FLOAT. By default, the NUMBER data type is converted to precision 38, scale
+	// 10.
+	//
+	// Example: numberDataTypeScale=12
+	NumberDatatypeScale *int64 `type:"integer"`
+
+	// Set this string attribute to the required value in order to use the Binary
+	// Reader to capture change data for an Amazon RDS for Oracle as the source.
+	// This value specifies the default Oracle root used to access the redo logs.
+	OraclePathPrefix *string `type:"string"`
+
+	// Set this attribute to change the number of threads that DMS configures to
+	// perform a change data capture (CDC) load using Oracle Automatic Storage Management
+	// (ASM). You can specify an integer value between 2 (the default) and 8 (the
+	// maximum). Use this attribute together with the readAheadBlocks attribute.
+	ParallelAsmReadThreads *int64 `type:"integer"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OracleSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// Endpoint TCP port.
+	Port *int64 `type:"integer"`
+
+	// Set this attribute to change the number of read-ahead blocks that DMS configures
+	// to perform a change data capture (CDC) load using Oracle Automatic Storage
+	// Management (ASM). You can specify an integer value between 1000 (the default)
+	// and 200,000 (the maximum).
+	ReadAheadBlocks *int64 `type:"integer"`
+
+	// When set to true, this attribute supports tablespace replication.
+	ReadTableSpaceName *bool `type:"boolean"`
+
+	// Set this attribute to true in order to use the Binary Reader to capture change
+	// data for an Amazon RDS for Oracle as the source. This setting tells DMS instance
+	// to replace the default Oracle root with the specified usePathPrefix setting
+	// to access the redo logs.
+	ReplacePathPrefix *bool `type:"boolean"`
+
+	// Specifies the number of seconds that the system waits before resending a
+	// query.
+	//
+	// Example: retryInterval=6;
+	RetryInterval *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the Oracle endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// Required only if your Oracle endpoint uses Automatic Storage Management (ASM).
+	// The full ARN of the IAM role that specifies DMS as the trusted entity and
+	// grants the required permissions to access the SecretsManagerOracleAsmSecret.
+	// This SecretsManagerOracleAsmSecret has the secret value that allows access
+	// to the Oracle ASM of the endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerOracleAsmSecretId.
+	// Or you can specify clear-text values for AsmUserName, AsmPassword, and AsmServerName.
+	// You can't specify both. For more information on creating this SecretsManagerOracleAsmSecret
+	// and the SecretsManagerOracleAsmAccessRoleArn and SecretsManagerOracleAsmSecretId
+	// required to access it, see Using secrets to access Database Migration Service
+	// resources (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerOracleAsmAccessRoleArn *string `type:"string"`
+
+	// Required only if your Oracle endpoint uses Automatic Storage Management (ASM).
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerOracleAsmSecret
+	// that contains the Oracle ASM connection details for the Oracle endpoint.
+	SecretsManagerOracleAsmSecretId *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the Oracle endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// For an Oracle source endpoint, the transparent data encryption (TDE) password
+	// required by AWM DMS to access Oracle redo logs encrypted by TDE using Binary
+	// Reader. It is also the TDE_Password part of the comma-separated value you
+	// set to the Password request parameter when you create the endpoint. The SecurityDbEncryptian
+	// setting is related to this SecurityDbEncryptionName setting. For more information,
+	// see Supported encryption methods for using Oracle as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.Encryption)
+	// in the Database Migration Service User Guide.
+	//
+	// SecurityDbEncryption is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OracleSettings's
+	// String and GoString methods.
+	SecurityDbEncryption *string `type:"string" sensitive:"true"`
+
+	// For an Oracle source endpoint, the name of a key used for the transparent
+	// data encryption (TDE) of the columns and tablespaces in an Oracle source
+	// database that is encrypted using TDE. The key value is the value of the SecurityDbEncryption
+	// setting. For more information on setting the key name value of SecurityDbEncryptionName,
+	// see the information and example for setting the securityDbEncryptionName
+	// extra connection attribute in Supported encryption methods for using Oracle
+	// as a source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.Encryption)
+	// in the Database Migration Service User Guide.
+	SecurityDbEncryptionName *string `type:"string"`
+
+	// Fully qualified domain name of the endpoint.
+	ServerName *string `type:"string"`
+
+	// Use this attribute to convert SDO_GEOMETRY to GEOJSON format. By default,
+	// DMS calls the SDO2GEOJSON custom function if present and accessible. Or you
+	// can create your own custom function that mimics the operation of SDOGEOJSON
+	// and set SpatialDataOptionToGeoJsonFunctionName to call it instead.
+	SpatialDataOptionToGeoJsonFunctionName *string `type:"string"`
+
+	// Use this attribute to specify a time in minutes for the delay in standby
+	// sync. If the source is an Oracle Active Data Guard standby database, use
+	// this attribute to specify the time lag between primary and standby databases.
+	//
+	// In DMS, you can create an Oracle CDC task that uses an Active Data Guard
+	// standby instance as a source for replicating ongoing changes. Doing this
+	// eliminates the need to connect to an active database that might be in production.
+	StandbyDelayTime *int64 `type:"integer"`
+
+	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
+	// NCHAR data types during migration. The default value is true.
+	TrimSpaceInChar *bool `type:"boolean"`
+
+	// Set this attribute to true in order to use the Binary Reader to capture change
+	// data for an Amazon RDS for Oracle as the source. This tells the DMS instance
+	// to use any specified prefix replacement to access all online redo logs.
+	UseAlternateFolderForOnline *bool `type:"boolean"`
+
+	// Set this attribute to Y to capture change data using the Binary Reader utility.
+	// Set UseLogminerReader to N to set this attribute to Y. To use Binary Reader
+	// with Amazon RDS for Oracle as the source, you set additional attributes.
+	// For more information about using this setting with Oracle Automatic Storage
+	// Management (ASM), see Using Oracle LogMiner or DMS Binary Reader for CDC
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.CDC).
+	UseBFile *bool `type:"boolean"`
+
+	// Set this attribute to Y to have DMS use a direct path full load. Specify
+	// this value to use the direct path protocol in the Oracle Call Interface (OCI).
+	// By using this OCI protocol, you can bulk-load Oracle target tables during
+	// a full load.
+	UseDirectPathFullLoad *bool `type:"boolean"`
+
+	// Set this attribute to Y to capture change data using the Oracle LogMiner
+	// utility (the default). Set this attribute to N if you want to access the
+	// redo logs as a binary file. When you set UseLogminerReader to N, also set
+	// UseBfile to Y. For more information on this setting and using Oracle ASM,
+	// see Using Oracle LogMiner or DMS Binary Reader for CDC (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.CDC)
+	// in the DMS User Guide.
+	UseLogminerReader *bool `type:"boolean"`
+
+	// Set this string attribute to the required value in order to use the Binary
+	// Reader to capture change data for an Amazon RDS for Oracle as the source.
+	// This value specifies the path prefix used to replace the default Oracle root
+	// to access the redo logs.
+	UsePathPrefix *string `type:"string"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OracleSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OracleSettings) GoString() string {
+	return s.String()
+}
+
+// SetAccessAlternateDirectly sets the AccessAlternateDirectly field's value.
+func (s *OracleSettings) SetAccessAlternateDirectly(v bool) *OracleSettings {
+	s.AccessAlternateDirectly = &v
+	return s
+}
+
+// SetAddSupplementalLogging sets the AddSupplementalLogging field's value.
+func (s *OracleSettings) SetAddSupplementalLogging(v bool) *OracleSettings {
+	s.AddSupplementalLogging = &v
+	return s
+}
+
+// SetAdditionalArchivedLogDestId sets the AdditionalArchivedLogDestId field's value.
+func (s *OracleSettings) SetAdditionalArchivedLogDestId(v int64) *OracleSettings {
+	s.AdditionalArchivedLogDestId = &v
+	return s
+}
+
+// SetAllowSelectNestedTables sets the AllowSelectNestedTables field's value.
+func (s *OracleSettings) SetAllowSelectNestedTables(v bool) *OracleSettings {
+	s.AllowSelectNestedTables = &v
+	return s
+}
+
+// SetArchivedLogDestId sets the ArchivedLogDestId field's value.
+func (s *OracleSettings) SetArchivedLogDestId(v int64) *OracleSettings {
+	s.ArchivedLogDestId = &v
+	return s
+}
+
+// SetArchivedLogsOnly sets the ArchivedLogsOnly field's value.
+func (s *OracleSettings) SetArchivedLogsOnly(v bool) *OracleSettings {
+	s.ArchivedLogsOnly = &v
+	return s
+}
+
+// SetAsmPassword sets the AsmPassword field's value.
+func (s *OracleSettings) SetAsmPassword(v string) *OracleSettings {
+	s.AsmPassword = &v
+	return s
+}
+
+// SetAsmServer sets the AsmServer field's value.
+func (s *OracleSettings) SetAsmServer(v string) *OracleSettings {
+	s.AsmServer = &v
+	return s
+}
+
+// SetAsmUser sets the AsmUser field's value.
+func (s *OracleSettings) SetAsmUser(v string) *OracleSettings {
+	s.AsmUser = &v
+	return s
+}
+
+// SetCharLengthSemantics sets the CharLengthSemantics field's value.
+func (s *OracleSettings) SetCharLengthSemantics(v string) *OracleSettings {
+	s.CharLengthSemantics = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *OracleSettings) SetDatabaseName(v string) *OracleSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDirectPathNoLog sets the DirectPathNoLog field's value.
+func (s *OracleSettings) SetDirectPathNoLog(v bool) *OracleSettings {
+	s.DirectPathNoLog = &v
+	return s
+}
+
+// SetDirectPathParallelLoad sets the DirectPathParallelLoad field's value.
+func (s *OracleSettings) SetDirectPathParallelLoad(v bool) *OracleSettings {
+	s.DirectPathParallelLoad = &v
+	return s
+}
+
+// SetEnableHomogenousTablespace sets the EnableHomogenousTablespace field's value.
+func (s *OracleSettings) SetEnableHomogenousTablespace(v bool) *OracleSettings {
+	s.EnableHomogenousTablespace = &v
+	return s
+}
+
+// SetExtraArchivedLogDestIds sets the ExtraArchivedLogDestIds field's value.
+func (s *OracleSettings) SetExtraArchivedLogDestIds(v []*int64) *OracleSettings {
+	s.ExtraArchivedLogDestIds = v
+	return s
+}
+
+// SetFailTasksOnLobTruncation sets the FailTasksOnLobTruncation field's value.
+func (s *OracleSettings) SetFailTasksOnLobTruncation(v bool) *OracleSettings {
+	s.FailTasksOnLobTruncation = &v
+	return s
+}
+
+// SetNumberDatatypeScale sets the NumberDatatypeScale field's value.
+func (s *OracleSettings) SetNumberDatatypeScale(v int64) *OracleSettings {
+	s.NumberDatatypeScale = &v
+	return s
+}
+
+// SetOraclePathPrefix sets the OraclePathPrefix field's value.
+func (s *OracleSettings) SetOraclePathPrefix(v string) *OracleSettings {
+	s.OraclePathPrefix = &v
+	return s
+}
+
+// SetParallelAsmReadThreads sets the ParallelAsmReadThreads field's value.
+func (s *OracleSettings) SetParallelAsmReadThreads(v int64) *OracleSettings {
+	s.ParallelAsmReadThreads = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *OracleSettings) SetPassword(v string) *OracleSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *OracleSettings) SetPort(v int64) *OracleSettings {
+	s.Port = &v
+	return s
+}
+
+// SetReadAheadBlocks sets the ReadAheadBlocks field's value.
+func (s *OracleSettings) SetReadAheadBlocks(v int64) *OracleSettings {
+	s.ReadAheadBlocks = &v
+	return s
+}
+
+// SetReadTableSpaceName sets the ReadTableSpaceName field's value.
+func (s *OracleSettings) SetReadTableSpaceName(v bool) *OracleSettings {
+	s.ReadTableSpaceName = &v
+	return s
+}
+
+// SetReplacePathPrefix sets the ReplacePathPrefix field's value.
+func (s *OracleSettings) SetReplacePathPrefix(v bool) *OracleSettings {
+	s.ReplacePathPrefix = &v
+	return s
+}
+
+// SetRetryInterval sets the RetryInterval field's value.
+func (s *OracleSettings) SetRetryInterval(v int64) *OracleSettings {
+	s.RetryInterval = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *OracleSettings) SetSecretsManagerAccessRoleArn(v string) *OracleSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerOracleAsmAccessRoleArn sets the SecretsManagerOracleAsmAccessRoleArn field's value.
+func (s *OracleSettings) SetSecretsManagerOracleAsmAccessRoleArn(v string) *OracleSettings {
+	s.SecretsManagerOracleAsmAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerOracleAsmSecretId sets the SecretsManagerOracleAsmSecretId field's value.
+func (s *OracleSettings) SetSecretsManagerOracleAsmSecretId(v string) *OracleSettings {
+	s.SecretsManagerOracleAsmSecretId = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *OracleSettings) SetSecretsManagerSecretId(v string) *OracleSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetSecurityDbEncryption sets the SecurityDbEncryption field's value.
+func (s *OracleSettings) SetSecurityDbEncryption(v string) *OracleSettings {
+	s.SecurityDbEncryption = &v
+	return s
+}
+
+// SetSecurityDbEncryptionName sets the SecurityDbEncryptionName field's value.
+func (s *OracleSettings) SetSecurityDbEncryptionName(v string) *OracleSettings {
+	s.SecurityDbEncryptionName = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *OracleSettings) SetServerName(v string) *OracleSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSpatialDataOptionToGeoJsonFunctionName sets the SpatialDataOptionToGeoJsonFunctionName field's value.
+func (s *OracleSettings) SetSpatialDataOptionToGeoJsonFunctionName(v string) *OracleSettings {
+	s.SpatialDataOptionToGeoJsonFunctionName = &v
+	return s
+}
+
+// SetStandbyDelayTime sets the StandbyDelayTime field's value.
+func (s *OracleSettings) SetStandbyDelayTime(v int64) *OracleSettings {
+	s.StandbyDelayTime = &v
+	return s
+}
+
+// SetTrimSpaceInChar sets the TrimSpaceInChar field's value.
+func (s *OracleSettings) SetTrimSpaceInChar(v bool) *OracleSettings {
+	s.TrimSpaceInChar = &v
+	return s
+}
+
+// SetUseAlternateFolderForOnline sets the UseAlternateFolderForOnline field's value.
+func (s *OracleSettings) SetUseAlternateFolderForOnline(v bool) *OracleSettings {
+	s.UseAlternateFolderForOnline = &v
+	return s
+}
+
+// SetUseBFile sets the UseBFile field's value.
+func (s *OracleSettings) SetUseBFile(v bool) *OracleSettings {
+	s.UseBFile = &v
+	return s
+}
+
+// SetUseDirectPathFullLoad sets the UseDirectPathFullLoad field's value.
+func (s *OracleSettings) SetUseDirectPathFullLoad(v bool) *OracleSettings {
+	s.UseDirectPathFullLoad = &v
+	return s
+}
+
+// SetUseLogminerReader sets the UseLogminerReader field's value.
+func (s *OracleSettings) SetUseLogminerReader(v bool) *OracleSettings {
+	s.UseLogminerReader = &v
+	return s
+}
+
+// SetUsePathPrefix sets the UsePathPrefix field's value.
+func (s *OracleSettings) SetUsePathPrefix(v string) *OracleSettings {
+	s.UsePathPrefix = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *OracleSettings) SetUsername(v string) *OracleSettings {
+	s.Username = &v
+	return s
+}
+
 // In response to the DescribeOrderableReplicationInstances operation, this
 // object describes an available replication instance. This description includes
 // the replication instance's type, engine version, and allocated storage.
@@ -11453,25 +19128,36 @@ type OrderableReplicationInstance struct {
 	// The value returned when the specified EngineVersion of the replication instance
 	// is in Beta or test mode. This indicates some features might not work as expected.
 	//
-	// AWS DMS supports the ReleaseStatus parameter in versions 3.1.4 and later.
+	// DMS supports the ReleaseStatus parameter in versions 3.1.4 and later.
 	ReleaseStatus *string `type:"string" enum:"ReleaseStatusValues"`
 
-	// The compute and memory capacity of the replication instance.
+	// The compute and memory capacity of the replication instance as defined for
+	// the specified replication instance class. For example to specify the instance
+	// class dms.c4.large, set this parameter to "dms.c4.large".
 	//
-	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
-	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
+	// For more information on the settings and capacities for the available replication
+	// instance classes, see Selecting the right DMS replication instance for your
+	// migration (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth).
 	ReplicationInstanceClass *string `type:"string"`
 
 	// The type of storage used by the replication instance.
 	StorageType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrderableReplicationInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrderableReplicationInstance) GoString() string {
 	return s.String()
 }
@@ -11530,9 +19216,9 @@ func (s *OrderableReplicationInstance) SetStorageType(v string) *OrderableReplic
 	return s
 }
 
-// Describes a maintenance action pending for an AWS DMS resource, including
-// when and how it will be applied. This data type is a response element to
-// the DescribePendingMaintenanceActions operation.
+// Describes a maintenance action pending for an DMS resource, including when
+// and how it will be applied. This data type is a response element to the DescribePendingMaintenanceActions
+// operation.
 type PendingMaintenanceAction struct {
 	_ struct{} `type:"structure"`
 
@@ -11566,12 +19252,20 @@ type PendingMaintenanceAction struct {
 	OptInStatus *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PendingMaintenanceAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PendingMaintenanceAction) GoString() string {
 	return s.String()
 }
@@ -11612,12 +19306,270 @@ func (s *PendingMaintenanceAction) SetOptInStatus(v string) *PendingMaintenanceA
 	return s
 }
 
+// Provides information that defines a PostgreSQL endpoint.
+type PostgreSQLSettings struct {
+	_ struct{} `type:"structure"`
+
+	// For use with change data capture (CDC) only, this attribute has DMS bypass
+	// foreign keys and user triggers to reduce the time it takes to bulk load data.
+	//
+	// Example: afterConnectScript=SET session_replication_role='replica'
+	AfterConnectScript *string `type:"string"`
+
+	// To capture DDL events, DMS creates various artifacts in the PostgreSQL database
+	// when the task starts. You can later remove these artifacts.
+	//
+	// If this value is set to N, you don't have to create tables or triggers on
+	// the source database.
+	CaptureDdls *bool `type:"boolean"`
+
+	// Database name for the endpoint.
+	DatabaseName *string `type:"string"`
+
+	// The schema in which the operational DDL database artifacts are created.
+	//
+	// Example: ddlArtifactsSchema=xyzddlschema;
+	DdlArtifactsSchema *string `type:"string"`
+
+	// Sets the client statement timeout for the PostgreSQL instance, in seconds.
+	// The default value is 60 seconds.
+	//
+	// Example: executeTimeout=100;
+	ExecuteTimeout *int64 `type:"integer"`
+
+	// When set to true, this value causes a task to fail if the actual size of
+	// a LOB column is greater than the specified LobMaxSize.
+	//
+	// If task is set to Limited LOB mode and this option is set to true, the task
+	// fails instead of truncating the LOB data.
+	FailTasksOnLobTruncation *bool `type:"boolean"`
+
+	// The write-ahead log (WAL) heartbeat feature mimics a dummy transaction. By
+	// doing this, it prevents idle logical replication slots from holding onto
+	// old WAL logs, which can result in storage full situations on the source.
+	// This heartbeat keeps restart_lsn moving and prevents storage full scenarios.
+	HeartbeatEnable *bool `type:"boolean"`
+
+	// Sets the WAL heartbeat frequency (in minutes).
+	HeartbeatFrequency *int64 `type:"integer"`
+
+	// Sets the schema in which the heartbeat artifacts are created.
+	HeartbeatSchema *string `type:"string"`
+
+	// Specifies the maximum size (in KB) of any .csv file used to transfer data
+	// to PostgreSQL.
+	//
+	// Example: maxFileSize=512
+	MaxFileSize *int64 `type:"integer"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PostgreSQLSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// Specifies the plugin to use to create a replication slot.
+	PluginName *string `type:"string" enum:"PluginNameValue"`
+
+	// Endpoint TCP port. The default is 5432.
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the PostgreSQL endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the PostgreSQL endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Fully qualified domain name of the endpoint.
+	ServerName *string `type:"string"`
+
+	// Sets the name of a previously created logical replication slot for a change
+	// data capture (CDC) load of the PostgreSQL source instance.
+	//
+	// When used with the CdcStartPosition request parameter for the DMS API , this
+	// attribute also makes it possible to use native CDC start points. DMS verifies
+	// that the specified logical replication slot exists before starting the CDC
+	// load task. It also verifies that the task was created with a valid setting
+	// of CdcStartPosition. If the specified slot doesn't exist or the task doesn't
+	// have a valid CdcStartPosition setting, DMS raises an error.
+	//
+	// For more information about setting the CdcStartPosition request parameter,
+	// see Determining a CDC native start point (dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC.StartPoint.Native)
+	// in the Database Migration Service User Guide. For more information about
+	// using CdcStartPosition, see CreateReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html),
+	// StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html),
+	// and ModifyReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_ModifyReplicationTask.html).
+	SlotName *string `type:"string"`
+
+	// Use the TrimSpaceInChar source endpoint setting to trim data on CHAR and
+	// NCHAR data types during migration. The default value is true.
+	TrimSpaceInChar *bool `type:"boolean"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostgreSQLSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostgreSQLSettings) GoString() string {
+	return s.String()
+}
+
+// SetAfterConnectScript sets the AfterConnectScript field's value.
+func (s *PostgreSQLSettings) SetAfterConnectScript(v string) *PostgreSQLSettings {
+	s.AfterConnectScript = &v
+	return s
+}
+
+// SetCaptureDdls sets the CaptureDdls field's value.
+func (s *PostgreSQLSettings) SetCaptureDdls(v bool) *PostgreSQLSettings {
+	s.CaptureDdls = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *PostgreSQLSettings) SetDatabaseName(v string) *PostgreSQLSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDdlArtifactsSchema sets the DdlArtifactsSchema field's value.
+func (s *PostgreSQLSettings) SetDdlArtifactsSchema(v string) *PostgreSQLSettings {
+	s.DdlArtifactsSchema = &v
+	return s
+}
+
+// SetExecuteTimeout sets the ExecuteTimeout field's value.
+func (s *PostgreSQLSettings) SetExecuteTimeout(v int64) *PostgreSQLSettings {
+	s.ExecuteTimeout = &v
+	return s
+}
+
+// SetFailTasksOnLobTruncation sets the FailTasksOnLobTruncation field's value.
+func (s *PostgreSQLSettings) SetFailTasksOnLobTruncation(v bool) *PostgreSQLSettings {
+	s.FailTasksOnLobTruncation = &v
+	return s
+}
+
+// SetHeartbeatEnable sets the HeartbeatEnable field's value.
+func (s *PostgreSQLSettings) SetHeartbeatEnable(v bool) *PostgreSQLSettings {
+	s.HeartbeatEnable = &v
+	return s
+}
+
+// SetHeartbeatFrequency sets the HeartbeatFrequency field's value.
+func (s *PostgreSQLSettings) SetHeartbeatFrequency(v int64) *PostgreSQLSettings {
+	s.HeartbeatFrequency = &v
+	return s
+}
+
+// SetHeartbeatSchema sets the HeartbeatSchema field's value.
+func (s *PostgreSQLSettings) SetHeartbeatSchema(v string) *PostgreSQLSettings {
+	s.HeartbeatSchema = &v
+	return s
+}
+
+// SetMaxFileSize sets the MaxFileSize field's value.
+func (s *PostgreSQLSettings) SetMaxFileSize(v int64) *PostgreSQLSettings {
+	s.MaxFileSize = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *PostgreSQLSettings) SetPassword(v string) *PostgreSQLSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPluginName sets the PluginName field's value.
+func (s *PostgreSQLSettings) SetPluginName(v string) *PostgreSQLSettings {
+	s.PluginName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *PostgreSQLSettings) SetPort(v int64) *PostgreSQLSettings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *PostgreSQLSettings) SetSecretsManagerAccessRoleArn(v string) *PostgreSQLSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *PostgreSQLSettings) SetSecretsManagerSecretId(v string) *PostgreSQLSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *PostgreSQLSettings) SetServerName(v string) *PostgreSQLSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSlotName sets the SlotName field's value.
+func (s *PostgreSQLSettings) SetSlotName(v string) *PostgreSQLSettings {
+	s.SlotName = &v
+	return s
+}
+
+// SetTrimSpaceInChar sets the TrimSpaceInChar field's value.
+func (s *PostgreSQLSettings) SetTrimSpaceInChar(v bool) *PostgreSQLSettings {
+	s.TrimSpaceInChar = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *PostgreSQLSettings) SetUsername(v string) *PostgreSQLSettings {
+	s.Username = &v
+	return s
+}
+
 type RebootReplicationInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// If this parameter is true, the reboot is conducted through a Multi-AZ failover.
-	// (If the instance isn't configured for Multi-AZ, then you can't specify true.)
+	// If the instance isn't configured for Multi-AZ, then you can't specify true.
+	// ( --force-planned-failover and --force-failover can't both be set to true.)
 	ForceFailover *bool `type:"boolean"`
+
+	// If this parameter is true, the reboot is conducted through a planned Multi-AZ
+	// failover where resources are released and cleaned up prior to conducting
+	// the failover. If the instance isn''t configured for Multi-AZ, then you can't
+	// specify true. ( --force-planned-failover and --force-failover can't both
+	// be set to true.)
+	ForcePlannedFailover *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the replication instance.
 	//
@@ -11625,12 +19577,20 @@ type RebootReplicationInstanceInput struct {
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootReplicationInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootReplicationInstanceInput) GoString() string {
 	return s.String()
 }
@@ -11654,6 +19614,12 @@ func (s *RebootReplicationInstanceInput) SetForceFailover(v bool) *RebootReplica
 	return s
 }
 
+// SetForcePlannedFailover sets the ForcePlannedFailover field's value.
+func (s *RebootReplicationInstanceInput) SetForcePlannedFailover(v bool) *RebootReplicationInstanceInput {
+	s.ForcePlannedFailover = &v
+	return s
+}
+
 // SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
 func (s *RebootReplicationInstanceInput) SetReplicationInstanceArn(v string) *RebootReplicationInstanceInput {
 	s.ReplicationInstanceArn = &v
@@ -11667,12 +19633,20 @@ type RebootReplicationInstanceOutput struct {
 	ReplicationInstance *ReplicationInstance `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootReplicationInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebootReplicationInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -11680,6 +19654,130 @@ func (s RebootReplicationInstanceOutput) GoString() string {
 // SetReplicationInstance sets the ReplicationInstance field's value.
 func (s *RebootReplicationInstanceOutput) SetReplicationInstance(v *ReplicationInstance) *RebootReplicationInstanceOutput {
 	s.ReplicationInstance = v
+	return s
+}
+
+// Provides information that defines a Redis target endpoint.
+type RedisSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The password provided with the auth-role and auth-token options of the AuthType
+	// setting for a Redis target endpoint.
+	//
+	// AuthPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RedisSettings's
+	// String and GoString methods.
+	AuthPassword *string `type:"string" sensitive:"true"`
+
+	// The type of authentication to perform when connecting to a Redis target.
+	// Options include none, auth-token, and auth-role. The auth-token option requires
+	// an AuthPassword value to be provided. The auth-role option requires AuthUserName
+	// and AuthPassword values to be provided.
+	AuthType *string `type:"string" enum:"RedisAuthTypeValue"`
+
+	// The user name provided with the auth-role option of the AuthType setting
+	// for a Redis target endpoint.
+	AuthUserName *string `type:"string"`
+
+	// Transmission Control Protocol (TCP) port for the endpoint.
+	//
+	// Port is a required field
+	Port *int64 `type:"integer" required:"true"`
+
+	// Fully qualified domain name of the endpoint.
+	//
+	// ServerName is a required field
+	ServerName *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the certificate authority (CA) that DMS
+	// uses to connect to your Redis target endpoint.
+	SslCaCertificateArn *string `type:"string"`
+
+	// The connection to a Redis target endpoint using Transport Layer Security
+	// (TLS). Valid values include plaintext and ssl-encryption. The default is
+	// ssl-encryption. The ssl-encryption option makes an encrypted connection.
+	// Optionally, you can identify an Amazon Resource Name (ARN) for an SSL certificate
+	// authority (CA) using the SslCaCertificateArn setting. If an ARN isn't given
+	// for a CA, DMS uses the Amazon root CA.
+	//
+	// The plaintext option doesn't provide Transport Layer Security (TLS) encryption
+	// for traffic between endpoint and database.
+	SslSecurityProtocol *string `type:"string" enum:"SslSecurityProtocolValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedisSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedisSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedisSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedisSettings"}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.ServerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthPassword sets the AuthPassword field's value.
+func (s *RedisSettings) SetAuthPassword(v string) *RedisSettings {
+	s.AuthPassword = &v
+	return s
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *RedisSettings) SetAuthType(v string) *RedisSettings {
+	s.AuthType = &v
+	return s
+}
+
+// SetAuthUserName sets the AuthUserName field's value.
+func (s *RedisSettings) SetAuthUserName(v string) *RedisSettings {
+	s.AuthUserName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RedisSettings) SetPort(v int64) *RedisSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *RedisSettings) SetServerName(v string) *RedisSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslCaCertificateArn sets the SslCaCertificateArn field's value.
+func (s *RedisSettings) SetSslCaCertificateArn(v string) *RedisSettings {
+	s.SslCaCertificateArn = &v
+	return s
+}
+
+// SetSslSecurityProtocol sets the SslSecurityProtocol field's value.
+func (s *RedisSettings) SetSslSecurityProtocol(v string) *RedisSettings {
+	s.SslSecurityProtocol = &v
 	return s
 }
 
@@ -11701,12 +19799,33 @@ type RedshiftSettings struct {
 	// not the name of a file containing the code.
 	AfterConnectScript *string `type:"string"`
 
-	// The location where the comma-separated value (.csv) files are stored before
-	// being uploaded to the S3 bucket.
+	// An S3 folder where the comma-separated-value (.csv) files are stored before
+	// being uploaded to the target Redshift cluster.
+	//
+	// For full load mode, DMS converts source records into .csv files and loads
+	// them to the BucketFolder/TableID path. DMS uses the Redshift COPY command
+	// to upload the .csv files to the target table. The files are deleted once
+	// the COPY operation has finished. For more information, see COPY (https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html)
+	// in the Amazon Redshift Database Developer Guide.
+	//
+	// For change-data-capture (CDC) mode, DMS creates a NetChanges table, and loads
+	// the .csv files to this BucketFolder/NetChangesTableID path.
 	BucketFolder *string `type:"string"`
 
-	// The name of the S3 bucket you want to use
+	// The name of the intermediate S3 bucket used to store .csv files before uploading
+	// data to Redshift.
 	BucketName *string `type:"string"`
+
+	// If Amazon Redshift is configured to support case sensitive schema names,
+	// set CaseSensitiveNames to true. The default is false.
+	CaseSensitiveNames *bool `type:"boolean"`
+
+	// If you set CompUpdate to true Amazon Redshift applies automatic compression
+	// if the table is empty. This applies even if the table columns already have
+	// encodings other than RAW. If you set CompUpdate to false, automatic compression
+	// is disabled and existing column encodings aren't changed. The default is
+	// true.
+	CompUpdate *bool `type:"boolean"`
 
 	// A value that sets the amount of time to wait (in milliseconds) before timing
 	// out, beginning from when you initially establish a connection.
@@ -11726,7 +19845,7 @@ type RedshiftSettings struct {
 	// to auto.
 	DateFormat *string `type:"string"`
 
-	// A value that specifies whether AWS DMS should migrate empty CHAR and VARCHAR
+	// A value that specifies whether DMS should migrate empty CHAR and VARCHAR
 	// fields as NULL. A value of true sets empty CHAR and VARCHAR fields to null.
 	// The default is false.
 	EmptyAsNull *bool `type:"boolean"`
@@ -11734,25 +19853,47 @@ type RedshiftSettings struct {
 	// The type of server-side encryption that you want to use for your data. This
 	// encryption type is part of the endpoint settings or the extra connections
 	// attributes for Amazon S3. You can choose either SSE_S3 (the default) or SSE_KMS.
-	// To use SSE_S3, create an AWS Identity and Access Management (IAM) role with
-	// a policy that allows "arn:aws:s3:::*" to use the following actions: "s3:PutObject",
+	//
+	// For the ModifyEndpoint operation, you can change the existing value of the
+	// EncryptionMode parameter from SSE_KMS to SSE_S3. But you can’t change the
+	// existing value from SSE_S3 to SSE_KMS.
+	//
+	// To use SSE_S3, create an Identity and Access Management (IAM) role with a
+	// policy that allows "arn:aws:s3:::*" to use the following actions: "s3:PutObject",
 	// "s3:ListBucket"
 	EncryptionMode *string `type:"string" enum:"EncryptionModeValue"`
 
+	// This setting is only valid for a full-load migration task. Set ExplicitIds
+	// to true to have tables with IDENTITY columns override their auto-generated
+	// values with explicit values loaded from the source data files used to populate
+	// the tables. The default is false.
+	ExplicitIds *bool `type:"boolean"`
+
 	// The number of threads used to upload a single file. This parameter accepts
 	// a value from 1 through 64. It defaults to 10.
+	//
+	// The number of parallel streams used to upload a single .csv file to an S3
+	// bucket using S3 Multipart Upload. For more information, see Multipart upload
+	// overview (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html).
+	//
+	// FileTransferUploadStreams accepts a value from 1 through 64. It defaults
+	// to 10.
 	FileTransferUploadStreams *int64 `type:"integer"`
 
-	// The amount of time to wait (in milliseconds) before timing out, beginning
-	// from when you begin loading.
+	// The amount of time to wait (in milliseconds) before timing out of operations
+	// performed by DMS on a Redshift cluster, such as Redshift COPY, INSERT, DELETE,
+	// and UPDATE.
 	LoadTimeout *int64 `type:"integer"`
 
-	// The maximum size (in KB) of any .csv file used to transfer data to Amazon
-	// Redshift. This accepts a value from 1 through 1,048,576. It defaults to 32,768
-	// KB (32 MB).
+	// The maximum size (in KB) of any .csv file used to load data on an S3 bucket
+	// and transfer data to Amazon Redshift. It defaults to 1048576KB (1 GB).
 	MaxFileSize *int64 `type:"integer"`
 
 	// The password for the user named in the username property.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RedshiftSettings's
+	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
 	// The port number for Amazon Redshift. The default value is 5439.
@@ -11771,16 +19912,36 @@ type RedshiftSettings struct {
 	// A list of characters that you want to replace. Use with ReplaceChars.
 	ReplaceInvalidChars *string `type:"string"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the Amazon Redshift endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the Amazon Redshift endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// The name of the Amazon Redshift cluster you are using.
 	ServerName *string `type:"string"`
 
-	// The AWS KMS key ID. If you are using SSE_KMS for the EncryptionMode, provide
+	// The KMS key ID. If you are using SSE_KMS for the EncryptionMode, provide
 	// this key ID. The key that you use needs an attached policy that enables IAM
 	// user permissions and allows use of the key.
 	ServerSideEncryptionKmsKeyId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that has access to the Amazon
-	// Redshift service.
+	// Redshift service. The role must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 
 	// The time format that you want to use. Valid values are auto (case-sensitive),
@@ -11806,17 +19967,26 @@ type RedshiftSettings struct {
 	// An Amazon Redshift user name for a registered user.
 	Username *string `type:"string"`
 
-	// The size of the write buffer to use in rows. Valid values range from 1 through
-	// 2,048. The default is 1,024. Use this setting to tune performance.
+	// The size (in KB) of the in-memory file write buffer used when generating
+	// .csv files on the local disk at the DMS replication instance. The default
+	// value is 1000 (buffer size is 1000KB).
 	WriteBufferSize *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RedshiftSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RedshiftSettings) GoString() string {
 	return s.String()
 }
@@ -11842,6 +20012,18 @@ func (s *RedshiftSettings) SetBucketFolder(v string) *RedshiftSettings {
 // SetBucketName sets the BucketName field's value.
 func (s *RedshiftSettings) SetBucketName(v string) *RedshiftSettings {
 	s.BucketName = &v
+	return s
+}
+
+// SetCaseSensitiveNames sets the CaseSensitiveNames field's value.
+func (s *RedshiftSettings) SetCaseSensitiveNames(v bool) *RedshiftSettings {
+	s.CaseSensitiveNames = &v
+	return s
+}
+
+// SetCompUpdate sets the CompUpdate field's value.
+func (s *RedshiftSettings) SetCompUpdate(v bool) *RedshiftSettings {
+	s.CompUpdate = &v
 	return s
 }
 
@@ -11872,6 +20054,12 @@ func (s *RedshiftSettings) SetEmptyAsNull(v bool) *RedshiftSettings {
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *RedshiftSettings) SetEncryptionMode(v string) *RedshiftSettings {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetExplicitIds sets the ExplicitIds field's value.
+func (s *RedshiftSettings) SetExplicitIds(v bool) *RedshiftSettings {
+	s.ExplicitIds = &v
 	return s
 }
 
@@ -11920,6 +20108,18 @@ func (s *RedshiftSettings) SetReplaceChars(v string) *RedshiftSettings {
 // SetReplaceInvalidChars sets the ReplaceInvalidChars field's value.
 func (s *RedshiftSettings) SetReplaceInvalidChars(v string) *RedshiftSettings {
 	s.ReplaceInvalidChars = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *RedshiftSettings) SetSecretsManagerAccessRoleArn(v string) *RedshiftSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *RedshiftSettings) SetSecretsManagerSecretId(v string) *RedshiftSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -11985,12 +20185,20 @@ type RefreshSchemasInput struct {
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RefreshSchemasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RefreshSchemasInput) GoString() string {
 	return s.String()
 }
@@ -12030,12 +20238,20 @@ type RefreshSchemasOutput struct {
 	RefreshSchemasStatus *RefreshSchemasStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RefreshSchemasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RefreshSchemasOutput) GoString() string {
 	return s.String()
 }
@@ -12067,12 +20283,20 @@ type RefreshSchemasStatus struct {
 	Status *string `type:"string" enum:"RefreshSchemasStatusTypeValue"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RefreshSchemasStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RefreshSchemasStatus) GoString() string {
 	return s.String()
 }
@@ -12130,12 +20354,20 @@ type ReloadTablesInput struct {
 	TablesToReload []*TableToReload `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReloadTablesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReloadTablesInput) GoString() string {
 	return s.String()
 }
@@ -12148,6 +20380,16 @@ func (s *ReloadTablesInput) Validate() error {
 	}
 	if s.TablesToReload == nil {
 		invalidParams.Add(request.NewErrParamRequired("TablesToReload"))
+	}
+	if s.TablesToReload != nil {
+		for i, v := range s.TablesToReload {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TablesToReload", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12181,12 +20423,20 @@ type ReloadTablesOutput struct {
 	ReplicationTaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReloadTablesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReloadTablesOutput) GoString() string {
 	return s.String()
 }
@@ -12197,11 +20447,11 @@ func (s *ReloadTablesOutput) SetReplicationTaskArn(v string) *ReloadTablesOutput
 	return s
 }
 
-// Removes one or more tags from an AWS DMS resource.
+// Removes one or more tags from an DMS resource.
 type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS DMS resource from which you want to remove tag(s). The value for this
+	// An DMS resource from which you want to remove tag(s). The value for this
 	// parameter is an Amazon Resource Name (ARN).
 	//
 	// ResourceArn is a required field
@@ -12213,12 +20463,20 @@ type RemoveTagsFromResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsFromResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsFromResourceInput) GoString() string {
 	return s.String()
 }
@@ -12255,12 +20513,20 @@ type RemoveTagsFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsFromResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsFromResourceOutput) GoString() string {
 	return s.String()
 }
@@ -12280,10 +20546,17 @@ type ReplicationInstance struct {
 	// The Availability Zone for the instance.
 	AvailabilityZone *string `type:"string"`
 
-	// The DNS name servers for the replication instance.
+	// The DNS name servers supported for the replication instance to access your
+	// on-premise source or target database.
 	DnsNameServers *string `type:"string"`
 
 	// The engine version number of the replication instance.
+	//
+	// If an engine version number is not specified when a replication instance
+	// is created, the default is the latest engine version available.
+	//
+	// When modifying a major engine version of an instance, also set AllowMajorVersionUpgrade
+	// to true.
 	EngineVersion *string `type:"string"`
 
 	// The expiration date of the free replication instance that is part of the
@@ -12293,14 +20566,15 @@ type ReplicationInstance struct {
 	// The time the replication instance was created.
 	InstanceCreateTime *time.Time `type:"timestamp"`
 
-	// An AWS KMS key identifier that is used to encrypt the data on the replication
+	// An KMS key identifier that is used to encrypt the data on the replication
 	// instance.
 	//
-	// If you don't specify a value for the KmsKeyId parameter, then AWS DMS uses
-	// your default encryption key.
+	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
+	// default encryption key.
 	//
-	// AWS KMS creates the default encryption key for your AWS account. Your AWS
-	// account has a different default encryption key for each AWS Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether the replication instance is a Multi-AZ deployment. You
@@ -12308,10 +20582,16 @@ type ReplicationInstance struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
 	// The pending modification values.
 	PendingModifiedValues *ReplicationPendingModifiedValues `type:"structure"`
 
-	// The maintenance window times for the replication instance.
+	// The maintenance window times for the replication instance. Any pending upgrades
+	// to the replication instance are performed during this time.
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// Specifies the accessibility options for the replication instance. A value
@@ -12322,18 +20602,21 @@ type ReplicationInstance struct {
 	// The Amazon Resource Name (ARN) of the replication instance.
 	ReplicationInstanceArn *string `type:"string"`
 
-	// The compute and memory capacity of the replication instance.
+	// The compute and memory capacity of the replication instance as defined for
+	// the specified replication instance class. It is a required parameter, although
+	// a default value is pre-selected in the DMS console.
 	//
-	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
-	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
+	// For more information on the settings and capacities for the available replication
+	// instance classes, see Selecting the right DMS replication instance for your
+	// migration (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth).
 	ReplicationInstanceClass *string `type:"string"`
 
-	// The replication instance identifier. This parameter is stored as a lowercase
-	// string.
+	// The replication instance identifier is a required parameter. This parameter
+	// is stored as a lowercase string.
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain 1-63 alphanumeric characters or hyphens.
 	//
 	//    * First character must be a letter.
 	//
@@ -12341,6 +20624,9 @@ type ReplicationInstance struct {
 	//
 	// Example: myrepinstance
 	ReplicationInstanceIdentifier *string `type:"string"`
+
+	// One or more IPv6 addresses for the replication instance.
+	ReplicationInstanceIpv6Addresses []*string `type:"list"`
 
 	// The private IP address of the replication instance.
 	//
@@ -12358,7 +20644,33 @@ type ReplicationInstance struct {
 	// One or more public IP addresses for the replication instance.
 	ReplicationInstancePublicIpAddresses []*string `type:"list"`
 
-	// The status of the replication instance.
+	// The status of the replication instance. The possible return values include:
+	//
+	//    * "available"
+	//
+	//    * "creating"
+	//
+	//    * "deleted"
+	//
+	//    * "deleting"
+	//
+	//    * "failed"
+	//
+	//    * "modifying"
+	//
+	//    * "upgrading"
+	//
+	//    * "rebooting"
+	//
+	//    * "resetting-master-credentials"
+	//
+	//    * "storage-full"
+	//
+	//    * "incompatible-credentials"
+	//
+	//    * "incompatible-network"
+	//
+	//    * "maintenance"
 	ReplicationInstanceStatus *string `type:"string"`
 
 	// The subnet group for the replication instance.
@@ -12371,12 +20683,20 @@ type ReplicationInstance struct {
 	VpcSecurityGroups []*VpcSecurityGroupMembership `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationInstance) GoString() string {
 	return s.String()
 }
@@ -12435,6 +20755,12 @@ func (s *ReplicationInstance) SetMultiAZ(v bool) *ReplicationInstance {
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *ReplicationInstance) SetNetworkType(v string) *ReplicationInstance {
+	s.NetworkType = &v
+	return s
+}
+
 // SetPendingModifiedValues sets the PendingModifiedValues field's value.
 func (s *ReplicationInstance) SetPendingModifiedValues(v *ReplicationPendingModifiedValues) *ReplicationInstance {
 	s.PendingModifiedValues = v
@@ -12468,6 +20794,12 @@ func (s *ReplicationInstance) SetReplicationInstanceClass(v string) *Replication
 // SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
 func (s *ReplicationInstance) SetReplicationInstanceIdentifier(v string) *ReplicationInstance {
 	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetReplicationInstanceIpv6Addresses sets the ReplicationInstanceIpv6Addresses field's value.
+func (s *ReplicationInstance) SetReplicationInstanceIpv6Addresses(v []*string) *ReplicationInstance {
+	s.ReplicationInstanceIpv6Addresses = v
 	return s
 }
 
@@ -12533,12 +20865,20 @@ type ReplicationInstanceTaskLog struct {
 	ReplicationTaskName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationInstanceTaskLog) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationInstanceTaskLog) GoString() string {
 	return s.String()
 }
@@ -12562,8 +20902,8 @@ func (s *ReplicationInstanceTaskLog) SetReplicationTaskName(v string) *Replicati
 }
 
 // Provides information about the values of pending modifications to a replication
-// instance. This data type is an object of the ReplicationInstance user-defined
-// data type.
+// instance. This data type is an object of the ReplicationInstance (https://docs.aws.amazon.com/dms/latest/APIReference/API_ReplicationInstance.html)
+// user-defined data type.
 type ReplicationPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -12579,19 +20919,34 @@ type ReplicationPendingModifiedValues struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
-	// The compute and memory capacity of the replication instance.
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
+	// The compute and memory capacity of the replication instance as defined for
+	// the specified replication instance class.
 	//
-	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
-	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
+	// For more information on the settings and capacities for the available replication
+	// instance classes, see Selecting the right DMS replication instance for your
+	// migration (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_ReplicationInstance.html#CHAP_ReplicationInstance.InDepth).
 	ReplicationInstanceClass *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationPendingModifiedValues) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationPendingModifiedValues) GoString() string {
 	return s.String()
 }
@@ -12614,13 +20969,19 @@ func (s *ReplicationPendingModifiedValues) SetMultiAZ(v bool) *ReplicationPendin
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *ReplicationPendingModifiedValues) SetNetworkType(v string) *ReplicationPendingModifiedValues {
+	s.NetworkType = &v
+	return s
+}
+
 // SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
 func (s *ReplicationPendingModifiedValues) SetReplicationInstanceClass(v string) *ReplicationPendingModifiedValues {
 	s.ReplicationInstanceClass = &v
 	return s
 }
 
-// Describes a subnet group in response to a request by the DescribeReplicationSubnetGroup
+// Describes a subnet group in response to a request by the DescribeReplicationSubnetGroups
 // operation.
 type ReplicationSubnetGroup struct {
 	_ struct{} `type:"structure"`
@@ -12637,16 +20998,29 @@ type ReplicationSubnetGroup struct {
 	// The subnets that are in the subnet group.
 	Subnets []*Subnet `type:"list"`
 
+	// The IP addressing protocol supported by the subnet group. This is used by
+	// a replication instance with values such as IPv4 only or Dual-stack that supports
+	// both IPv4 and IPv6 addressing. IPv6 only is not yet supported.
+	SupportedNetworkTypes []*string `type:"list"`
+
 	// The ID of the VPC.
 	VpcId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationSubnetGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationSubnetGroup) GoString() string {
 	return s.String()
 }
@@ -12675,6 +21049,12 @@ func (s *ReplicationSubnetGroup) SetSubnets(v []*Subnet) *ReplicationSubnetGroup
 	return s
 }
 
+// SetSupportedNetworkTypes sets the SupportedNetworkTypes field's value.
+func (s *ReplicationSubnetGroup) SetSupportedNetworkTypes(v []*string) *ReplicationSubnetGroup {
+	s.SupportedNetworkTypes = v
+	return s
+}
+
 // SetVpcId sets the VpcId field's value.
 func (s *ReplicationSubnetGroup) SetVpcId(v string) *ReplicationSubnetGroup {
 	s.VpcId = &v
@@ -12690,12 +21070,20 @@ type ReplicationSubnetGroupDoesNotCoverEnoughAZs struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationSubnetGroupDoesNotCoverEnoughAZs) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationSubnetGroupDoesNotCoverEnoughAZs) GoString() string {
 	return s.String()
 }
@@ -12759,13 +21147,13 @@ type ReplicationTask struct {
 	// Indicates when you want a change data capture (CDC) operation to stop. The
 	// value can be either server time or commit time.
 	//
-	// Server time example: --cdc-stop-position “server_time:3018-02-09T12:12:12”
+	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 3018-02-09T12:12:12
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
 	// “
 	CdcStopPosition *string `type:"string"`
 
-	// The last error (failure) message generated for the replication instance.
+	// The last error (failure) message generated for the replication task.
 	LastFailureMessage *string `type:"string"`
 
 	// The type of migration.
@@ -12776,7 +21164,7 @@ type ReplicationTask struct {
 	// to start a CDC operation that begins at that checkpoint.
 	RecoveryCheckpoint *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the replication instance.
+	// The ARN of the replication instance.
 	ReplicationInstanceArn *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the replication task.
@@ -12789,7 +21177,7 @@ type ReplicationTask struct {
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    * Must contain 1-255 alphanumeric characters or hyphens.
 	//
 	//    * First character must be a letter.
 	//
@@ -12806,34 +21194,142 @@ type ReplicationTask struct {
 	// errors.
 	ReplicationTaskStats *ReplicationTaskStats `type:"structure"`
 
-	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	// The Amazon Resource Name (ARN) that uniquely identifies the endpoint.
 	SourceEndpointArn *string `type:"string"`
 
-	// The status of the replication task.
+	// The status of the replication task. This response parameter can return one
+	// of the following values:
+	//
+	//    * "moving" – The task is being moved in response to running the MoveReplicationTask
+	//    (https://docs.aws.amazon.com/dms/latest/APIReference/API_MoveReplicationTask.html)
+	//    operation.
+	//
+	//    * "creating" – The task is being created in response to running the
+	//    CreateReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html)
+	//    operation.
+	//
+	//    * "deleting" – The task is being deleted in response to running the
+	//    DeleteReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_DeleteReplicationTask.html)
+	//    operation.
+	//
+	//    * "failed" – The task failed to successfully complete the database migration
+	//    in response to running the StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html)
+	//    operation.
+	//
+	//    * "failed-move" – The task failed to move in response to running the
+	//    MoveReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_MoveReplicationTask.html)
+	//    operation.
+	//
+	//    * "modifying" – The task definition is being modified in response to
+	//    running the ModifyReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_ModifyReplicationTask.html)
+	//    operation.
+	//
+	//    * "ready" – The task is in a ready state where it can respond to other
+	//    task operations, such as StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html)
+	//    or DeleteReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_DeleteReplicationTask.html).
+	//
+	//    * "running" – The task is performing a database migration in response
+	//    to running the StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html)
+	//    operation.
+	//
+	//    * "starting" – The task is preparing to perform a database migration
+	//    in response to running the StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html)
+	//    operation.
+	//
+	//    * "stopped" – The task has stopped in response to running the StopReplicationTask
+	//    (https://docs.aws.amazon.com/dms/latest/APIReference/API_StopReplicationTask.html)
+	//    operation.
+	//
+	//    * "stopping" – The task is preparing to stop in response to running
+	//    the StopReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StopReplicationTask.html)
+	//    operation.
+	//
+	//    * "testing" – The database migration specified for this task is being
+	//    tested in response to running either the StartReplicationTaskAssessmentRun
+	//    (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTaskAssessmentRun.html)
+	//    or the StartReplicationTaskAssessment (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTaskAssessment.html)
+	//    operation. StartReplicationTaskAssessmentRun (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTaskAssessmentRun.html)
+	//    is an improved premigration task assessment operation. The StartReplicationTaskAssessment
+	//    (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTaskAssessment.html)
+	//    operation assesses data type compatibility only between the source and
+	//    target database of a given migration task. In contrast, StartReplicationTaskAssessmentRun
+	//    (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTaskAssessmentRun.html)
+	//    enables you to specify a variety of premigration task assessments in addition
+	//    to data type compatibility. These assessments include ones for the validity
+	//    of primary key definitions and likely issues with database migration performance,
+	//    among others.
 	Status *string `type:"string"`
 
-	// The reason the replication task was stopped.
+	// The reason the replication task was stopped. This response parameter can
+	// return one of the following values:
+	//
+	//    * "Stop Reason NORMAL"
+	//
+	//    * "Stop Reason RECOVERABLE_ERROR"
+	//
+	//    * "Stop Reason FATAL_ERROR"
+	//
+	//    * "Stop Reason FULL_LOAD_ONLY_FINISHED"
+	//
+	//    * "Stop Reason STOPPED_AFTER_FULL_LOAD" – Full load completed, with
+	//    cached changes not applied
+	//
+	//    * "Stop Reason STOPPED_AFTER_CACHED_EVENTS" – Full load completed, with
+	//    cached changes applied
+	//
+	//    * "Stop Reason EXPRESS_LICENSE_LIMITS_REACHED"
+	//
+	//    * "Stop Reason STOPPED_AFTER_DDL_APPLY" – User-defined stop task after
+	//    DDL applied
+	//
+	//    * "Stop Reason STOPPED_DUE_TO_LOW_MEMORY"
+	//
+	//    * "Stop Reason STOPPED_DUE_TO_LOW_DISK"
+	//
+	//    * "Stop Reason STOPPED_AT_SERVER_TIME" – User-defined server time for
+	//    stopping task
+	//
+	//    * "Stop Reason STOPPED_AT_COMMIT_TIME" – User-defined commit time for
+	//    stopping task
+	//
+	//    * "Stop Reason RECONFIGURATION_RESTART"
+	//
+	//    * "Stop Reason RECYCLE_TASK"
 	StopReason *string `type:"string"`
 
 	// Table mappings specified in the task.
 	TableMappings *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	// The ARN that uniquely identifies the endpoint.
 	TargetEndpointArn *string `type:"string"`
+
+	// The ARN of the replication instance to which this task is moved in response
+	// to running the MoveReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_MoveReplicationTask.html)
+	// operation. Otherwise, this response parameter isn't a member of the ReplicationTask
+	// object.
+	TargetReplicationInstanceArn *string `type:"string"`
 
 	// Supplemental information that the task requires to migrate the data for certain
 	// source and target endpoints. For more information, see Specifying Supplemental
 	// Data for Task Settings (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.TaskData.html)
-	// in the AWS Database Migration User Guide.
+	// in the Database Migration Service User Guide.
 	TaskData *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationTask) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationTask) GoString() string {
 	return s.String()
 }
@@ -12940,6 +21436,12 @@ func (s *ReplicationTask) SetTargetEndpointArn(v string) *ReplicationTask {
 	return s
 }
 
+// SetTargetReplicationInstanceArn sets the TargetReplicationInstanceArn field's value.
+func (s *ReplicationTask) SetTargetReplicationInstanceArn(v string) *ReplicationTask {
+	s.TargetReplicationInstanceArn = &v
+	return s
+}
+
 // SetTaskData sets the TaskData field's value.
 func (s *ReplicationTask) SetTaskData(v string) *ReplicationTask {
 	s.TaskData = &v
@@ -12951,6 +21453,9 @@ type ReplicationTaskAssessmentResult struct {
 	_ struct{} `type:"structure"`
 
 	// The task assessment results in JSON format.
+	//
+	// The response object only contains this field if you provide DescribeReplicationTaskAssessmentResultsMessage$ReplicationTaskArn
+	// in the request.
 	AssessmentResults *string `type:"string"`
 
 	// The file containing the results of the task assessment.
@@ -12970,15 +21475,26 @@ type ReplicationTaskAssessmentResult struct {
 	ReplicationTaskLastAssessmentDate *time.Time `type:"timestamp"`
 
 	// The URL of the S3 object containing the task assessment results.
+	//
+	// The response object only contains this field if you provide DescribeReplicationTaskAssessmentResultsMessage$ReplicationTaskArn
+	// in the request.
 	S3ObjectUrl *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationTaskAssessmentResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationTaskAssessmentResult) GoString() string {
 	return s.String()
 }
@@ -13025,6 +21541,302 @@ func (s *ReplicationTaskAssessmentResult) SetS3ObjectUrl(v string) *ReplicationT
 	return s
 }
 
+// Provides information that describes a premigration assessment run that you
+// have started using the StartReplicationTaskAssessmentRun operation.
+//
+// Some of the information appears based on other operations that can return
+// the ReplicationTaskAssessmentRun object.
+type ReplicationTaskAssessmentRun struct {
+	_ struct{} `type:"structure"`
+
+	// Indication of the completion progress for the individual assessments specified
+	// to run.
+	AssessmentProgress *ReplicationTaskAssessmentRunProgress `type:"structure"`
+
+	// Unique name of the assessment run.
+	AssessmentRunName *string `type:"string"`
+
+	// Last message generated by an individual assessment failure.
+	LastFailureMessage *string `type:"string"`
+
+	// ARN of the migration task associated with this premigration assessment run.
+	ReplicationTaskArn *string `type:"string"`
+
+	// Amazon Resource Name (ARN) of this assessment run.
+	ReplicationTaskAssessmentRunArn *string `type:"string"`
+
+	// Date on which the assessment run was created using the StartReplicationTaskAssessmentRun
+	// operation.
+	ReplicationTaskAssessmentRunCreationDate *time.Time `type:"timestamp"`
+
+	// Encryption mode used to encrypt the assessment run results.
+	ResultEncryptionMode *string `type:"string"`
+
+	// ARN of the KMS encryption key used to encrypt the assessment run results.
+	ResultKmsKeyArn *string `type:"string"`
+
+	// Amazon S3 bucket where DMS stores the results of this assessment run.
+	ResultLocationBucket *string `type:"string"`
+
+	// Folder in an Amazon S3 bucket where DMS stores the results of this assessment
+	// run.
+	ResultLocationFolder *string `type:"string"`
+
+	// ARN of the service role used to start the assessment run using the StartReplicationTaskAssessmentRun
+	// operation. The role must allow the iam:PassRole action.
+	ServiceAccessRoleArn *string `type:"string"`
+
+	// Assessment run status.
+	//
+	// This status can have one of the following values:
+	//
+	//    * "cancelling" – The assessment run was canceled by the CancelReplicationTaskAssessmentRun
+	//    operation.
+	//
+	//    * "deleting" – The assessment run was deleted by the DeleteReplicationTaskAssessmentRun
+	//    operation.
+	//
+	//    * "failed" – At least one individual assessment completed with a failed
+	//    status.
+	//
+	//    * "error-provisioning" – An internal error occurred while resources
+	//    were provisioned (during provisioning status).
+	//
+	//    * "error-executing" – An internal error occurred while individual assessments
+	//    ran (during running status).
+	//
+	//    * "invalid state" – The assessment run is in an unknown state.
+	//
+	//    * "passed" – All individual assessments have completed, and none has
+	//    a failed status.
+	//
+	//    * "provisioning" – Resources required to run individual assessments
+	//    are being provisioned.
+	//
+	//    * "running" – Individual assessments are being run.
+	//
+	//    * "starting" – The assessment run is starting, but resources are not
+	//    yet being provisioned for individual assessments.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTaskAssessmentRun) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTaskAssessmentRun) GoString() string {
+	return s.String()
+}
+
+// SetAssessmentProgress sets the AssessmentProgress field's value.
+func (s *ReplicationTaskAssessmentRun) SetAssessmentProgress(v *ReplicationTaskAssessmentRunProgress) *ReplicationTaskAssessmentRun {
+	s.AssessmentProgress = v
+	return s
+}
+
+// SetAssessmentRunName sets the AssessmentRunName field's value.
+func (s *ReplicationTaskAssessmentRun) SetAssessmentRunName(v string) *ReplicationTaskAssessmentRun {
+	s.AssessmentRunName = &v
+	return s
+}
+
+// SetLastFailureMessage sets the LastFailureMessage field's value.
+func (s *ReplicationTaskAssessmentRun) SetLastFailureMessage(v string) *ReplicationTaskAssessmentRun {
+	s.LastFailureMessage = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *ReplicationTaskAssessmentRun) SetReplicationTaskArn(v string) *ReplicationTaskAssessmentRun {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetReplicationTaskAssessmentRunArn sets the ReplicationTaskAssessmentRunArn field's value.
+func (s *ReplicationTaskAssessmentRun) SetReplicationTaskAssessmentRunArn(v string) *ReplicationTaskAssessmentRun {
+	s.ReplicationTaskAssessmentRunArn = &v
+	return s
+}
+
+// SetReplicationTaskAssessmentRunCreationDate sets the ReplicationTaskAssessmentRunCreationDate field's value.
+func (s *ReplicationTaskAssessmentRun) SetReplicationTaskAssessmentRunCreationDate(v time.Time) *ReplicationTaskAssessmentRun {
+	s.ReplicationTaskAssessmentRunCreationDate = &v
+	return s
+}
+
+// SetResultEncryptionMode sets the ResultEncryptionMode field's value.
+func (s *ReplicationTaskAssessmentRun) SetResultEncryptionMode(v string) *ReplicationTaskAssessmentRun {
+	s.ResultEncryptionMode = &v
+	return s
+}
+
+// SetResultKmsKeyArn sets the ResultKmsKeyArn field's value.
+func (s *ReplicationTaskAssessmentRun) SetResultKmsKeyArn(v string) *ReplicationTaskAssessmentRun {
+	s.ResultKmsKeyArn = &v
+	return s
+}
+
+// SetResultLocationBucket sets the ResultLocationBucket field's value.
+func (s *ReplicationTaskAssessmentRun) SetResultLocationBucket(v string) *ReplicationTaskAssessmentRun {
+	s.ResultLocationBucket = &v
+	return s
+}
+
+// SetResultLocationFolder sets the ResultLocationFolder field's value.
+func (s *ReplicationTaskAssessmentRun) SetResultLocationFolder(v string) *ReplicationTaskAssessmentRun {
+	s.ResultLocationFolder = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *ReplicationTaskAssessmentRun) SetServiceAccessRoleArn(v string) *ReplicationTaskAssessmentRun {
+	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicationTaskAssessmentRun) SetStatus(v string) *ReplicationTaskAssessmentRun {
+	s.Status = &v
+	return s
+}
+
+// The progress values reported by the AssessmentProgress response element.
+type ReplicationTaskAssessmentRunProgress struct {
+	_ struct{} `type:"structure"`
+
+	// The number of individual assessments that have completed, successfully or
+	// not.
+	IndividualAssessmentCompletedCount *int64 `type:"integer"`
+
+	// The number of individual assessments that are specified to run.
+	IndividualAssessmentCount *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTaskAssessmentRunProgress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTaskAssessmentRunProgress) GoString() string {
+	return s.String()
+}
+
+// SetIndividualAssessmentCompletedCount sets the IndividualAssessmentCompletedCount field's value.
+func (s *ReplicationTaskAssessmentRunProgress) SetIndividualAssessmentCompletedCount(v int64) *ReplicationTaskAssessmentRunProgress {
+	s.IndividualAssessmentCompletedCount = &v
+	return s
+}
+
+// SetIndividualAssessmentCount sets the IndividualAssessmentCount field's value.
+func (s *ReplicationTaskAssessmentRunProgress) SetIndividualAssessmentCount(v int64) *ReplicationTaskAssessmentRunProgress {
+	s.IndividualAssessmentCount = &v
+	return s
+}
+
+// Provides information that describes an individual assessment from a premigration
+// assessment run.
+type ReplicationTaskIndividualAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// Name of this individual assessment.
+	IndividualAssessmentName *string `type:"string"`
+
+	// ARN of the premigration assessment run that is created to run this individual
+	// assessment.
+	ReplicationTaskAssessmentRunArn *string `type:"string"`
+
+	// Amazon Resource Name (ARN) of this individual assessment.
+	ReplicationTaskIndividualAssessmentArn *string `type:"string"`
+
+	// Date when this individual assessment was started as part of running the StartReplicationTaskAssessmentRun
+	// operation.
+	ReplicationTaskIndividualAssessmentStartDate *time.Time `type:"timestamp"`
+
+	// Individual assessment status.
+	//
+	// This status can have one of the following values:
+	//
+	//    * "cancelled"
+	//
+	//    * "error"
+	//
+	//    * "failed"
+	//
+	//    * "passed"
+	//
+	//    * "pending"
+	//
+	//    * "running"
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTaskIndividualAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationTaskIndividualAssessment) GoString() string {
+	return s.String()
+}
+
+// SetIndividualAssessmentName sets the IndividualAssessmentName field's value.
+func (s *ReplicationTaskIndividualAssessment) SetIndividualAssessmentName(v string) *ReplicationTaskIndividualAssessment {
+	s.IndividualAssessmentName = &v
+	return s
+}
+
+// SetReplicationTaskAssessmentRunArn sets the ReplicationTaskAssessmentRunArn field's value.
+func (s *ReplicationTaskIndividualAssessment) SetReplicationTaskAssessmentRunArn(v string) *ReplicationTaskIndividualAssessment {
+	s.ReplicationTaskAssessmentRunArn = &v
+	return s
+}
+
+// SetReplicationTaskIndividualAssessmentArn sets the ReplicationTaskIndividualAssessmentArn field's value.
+func (s *ReplicationTaskIndividualAssessment) SetReplicationTaskIndividualAssessmentArn(v string) *ReplicationTaskIndividualAssessment {
+	s.ReplicationTaskIndividualAssessmentArn = &v
+	return s
+}
+
+// SetReplicationTaskIndividualAssessmentStartDate sets the ReplicationTaskIndividualAssessmentStartDate field's value.
+func (s *ReplicationTaskIndividualAssessment) SetReplicationTaskIndividualAssessmentStartDate(v time.Time) *ReplicationTaskIndividualAssessment {
+	s.ReplicationTaskIndividualAssessmentStartDate = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicationTaskIndividualAssessment) SetStatus(v string) *ReplicationTaskIndividualAssessment {
+	s.Status = &v
+	return s
+}
+
 // In response to a request by the DescribeReplicationTasks operation, this
 // object provides a collection of statistics about a replication task.
 type ReplicationTaskStats struct {
@@ -13066,12 +21878,20 @@ type ReplicationTaskStats struct {
 	TablesQueued *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationTaskStats) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReplicationTaskStats) GoString() string {
 	return s.String()
 }
@@ -13152,12 +21972,20 @@ type ResourceAlreadyExistsFault struct {
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsFault) GoString() string {
 	return s.String()
 }
@@ -13208,12 +22036,20 @@ type ResourceNotFoundFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundFault) GoString() string {
 	return s.String()
 }
@@ -13256,7 +22092,7 @@ func (s *ResourceNotFoundFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Identifies an AWS DMS resource and any pending actions for it.
+// Identifies an DMS resource and any pending actions for it.
 type ResourcePendingMaintenanceActions struct {
 	_ struct{} `type:"structure"`
 
@@ -13265,17 +22101,25 @@ type ResourcePendingMaintenanceActions struct {
 
 	// The Amazon Resource Name (ARN) of the DMS resource that the pending maintenance
 	// action applies to. For information about creating an ARN, see Constructing
-	// an Amazon Resource Name (ARN) for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.AWS.ARN.html)
+	// an Amazon Resource Name (ARN) for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.AWS.ARN.html)
 	// in the DMS documentation.
 	ResourceIdentifier *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourcePendingMaintenanceActions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourcePendingMaintenanceActions) GoString() string {
 	return s.String()
 }
@@ -13300,12 +22144,20 @@ type ResourceQuotaExceededFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuotaExceededFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuotaExceededFault) GoString() string {
 	return s.String()
 }
@@ -13348,9 +22200,209 @@ func (s *ResourceQuotaExceededFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type RunFleetAdvisorLsaAnalysisInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisInput) GoString() string {
+	return s.String()
+}
+
+type RunFleetAdvisorLsaAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the LSA analysis run.
+	LsaAnalysisId *string `type:"string"`
+
+	// The status of the LSA analysis, for example COMPLETED.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RunFleetAdvisorLsaAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetLsaAnalysisId sets the LsaAnalysisId field's value.
+func (s *RunFleetAdvisorLsaAnalysisOutput) SetLsaAnalysisId(v string) *RunFleetAdvisorLsaAnalysisOutput {
+	s.LsaAnalysisId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RunFleetAdvisorLsaAnalysisOutput) SetStatus(v string) *RunFleetAdvisorLsaAnalysisOutput {
+	s.Status = &v
+	return s
+}
+
+// Insufficient privileges are preventing access to an Amazon S3 object.
+type S3AccessDeniedFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3AccessDeniedFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3AccessDeniedFault) GoString() string {
+	return s.String()
+}
+
+func newErrorS3AccessDeniedFault(v protocol.ResponseMetadata) error {
+	return &S3AccessDeniedFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *S3AccessDeniedFault) Code() string {
+	return "S3AccessDeniedFault"
+}
+
+// Message returns the exception's message.
+func (s *S3AccessDeniedFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *S3AccessDeniedFault) OrigErr() error {
+	return nil
+}
+
+func (s *S3AccessDeniedFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *S3AccessDeniedFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *S3AccessDeniedFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A specified Amazon S3 bucket, bucket folder, or other object can't be found.
+type S3ResourceNotFoundFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ResourceNotFoundFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ResourceNotFoundFault) GoString() string {
+	return s.String()
+}
+
+func newErrorS3ResourceNotFoundFault(v protocol.ResponseMetadata) error {
+	return &S3ResourceNotFoundFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *S3ResourceNotFoundFault) Code() string {
+	return "S3ResourceNotFoundFault"
+}
+
+// Message returns the exception's message.
+func (s *S3ResourceNotFoundFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *S3ResourceNotFoundFault) OrigErr() error {
+	return nil
+}
+
+func (s *S3ResourceNotFoundFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *S3ResourceNotFoundFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *S3ResourceNotFoundFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Settings for exporting data to Amazon S3.
 type S3Settings struct {
 	_ struct{} `type:"structure"`
+
+	// An optional parameter that, when set to true or y, you can use to add column
+	// name information to the .csv output file.
+	//
+	// The default value is false. Valid values are true, false, y, and n.
+	AddColumnName *bool `type:"boolean"`
+
+	// Use the S3 target endpoint setting AddTrailingPaddingCharacter to add padding
+	// on string data. The default value is false.
+	AddTrailingPaddingCharacter *bool `type:"boolean"`
 
 	// An optional parameter to set a folder name in the S3 bucket. If provided,
 	// tables are created in the path bucketFolder/schema_name/table_name/. If this
@@ -13360,11 +22412,21 @@ type S3Settings struct {
 	// The name of the S3 bucket.
 	BucketName *string `type:"string"`
 
+	// A value that enables DMS to specify a predefined (canned) access control
+	// list for objects created in an Amazon S3 bucket as .csv or .parquet files.
+	// For more information about Amazon S3 canned ACLs, see Canned ACL (http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl)
+	// in the Amazon S3 Developer Guide.
+	//
+	// The default value is NONE. Valid values include NONE, PRIVATE, PUBLIC_READ,
+	// PUBLIC_READ_WRITE, AUTHENTICATED_READ, AWS_EXEC_READ, BUCKET_OWNER_READ,
+	// and BUCKET_OWNER_FULL_CONTROL.
+	CannedAclForObjects *string `type:"string" enum:"CannedAclForObjectsValue"`
+
 	// A value that enables a change data capture (CDC) load to write INSERT and
 	// UPDATE operations to .csv or .parquet (columnar storage) output files. The
-	// default setting is false, but when CdcInsertsAndUpdates is set to trueor
-	// y, INSERTs and UPDATEs from the source database are migrated to the .csv
-	// or .parquet file.
+	// default setting is false, but when CdcInsertsAndUpdates is set to true or
+	// y, only INSERTs and UPDATEs from the source database are migrated to the
+	// .csv or .parquet file.
 	//
 	// For .csv file format only, how these INSERTs and UPDATEs are recorded depends
 	// on the value of the IncludeOpForFullLoad parameter. If IncludeOpForFullLoad
@@ -13374,10 +22436,10 @@ type S3Settings struct {
 	// or UPDATE operations at the source. For more information about how these
 	// settings work together, see Indicating Source DB Operations in Migrated S3
 	// Data (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps)
-	// in the AWS Database Migration Service User Guide..
+	// in the Database Migration Service User Guide..
 	//
-	// AWS DMS supports the use of the CdcInsertsAndUpdates parameter in versions
-	// 3.3.1 and later.
+	// DMS supports the use of the CdcInsertsAndUpdates parameter in versions 3.3.1
+	// and later.
 	//
 	// CdcInsertsOnly and CdcInsertsAndUpdates can't both be set to true for the
 	// same endpoint. Set either CdcInsertsOnly or CdcInsertsAndUpdates to true
@@ -13399,9 +22461,9 @@ type S3Settings struct {
 	// every CDC record is written without a first field to indicate the INSERT
 	// operation at the source. For more information about how these settings work
 	// together, see Indicating Source DB Operations in Migrated S3 Data (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps)
-	// in the AWS Database Migration Service User Guide..
+	// in the Database Migration Service User Guide..
 	//
-	// AWS DMS supports the interaction described preceding between the CdcInsertsOnly
+	// DMS supports the interaction described preceding between the CdcInsertsOnly
 	// and IncludeOpForFullLoad parameters in versions 3.1.4 and later.
 	//
 	// CdcInsertsOnly and CdcInsertsAndUpdates can't both be set to true for the
@@ -13409,18 +22471,85 @@ type S3Settings struct {
 	// for the same endpoint, but not both.
 	CdcInsertsOnly *bool `type:"boolean"`
 
+	// Maximum length of the interval, defined in seconds, after which to output
+	// a file to Amazon S3.
+	//
+	// When CdcMaxBatchInterval and CdcMinFileSize are both specified, the file
+	// write is triggered by whichever parameter condition is met first within an
+	// DMS CloudFormation template.
+	//
+	// The default value is 60 seconds.
+	CdcMaxBatchInterval *int64 `type:"integer"`
+
+	// Minimum file size, defined in kilobytes, to reach for a file output to Amazon
+	// S3.
+	//
+	// When CdcMinFileSize and CdcMaxBatchInterval are both specified, the file
+	// write is triggered by whichever parameter condition is met first within an
+	// DMS CloudFormation template.
+	//
+	// The default value is 32 MB.
+	CdcMinFileSize *int64 `type:"integer"`
+
+	// Specifies the folder path of CDC files. For an S3 source, this setting is
+	// required if a task captures change data; otherwise, it's optional. If CdcPath
+	// is set, DMS reads CDC files from this path and replicates the data changes
+	// to the target endpoint. For an S3 target if you set PreserveTransactions
+	// (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-PreserveTransactions)
+	// to true, DMS verifies that you have set this parameter to a folder path on
+	// your S3 target where DMS can save the transaction order for the CDC load.
+	// DMS creates this CDC folder path in either your S3 target working directory
+	// or the S3 target location specified by BucketFolder (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketFolder)
+	// and BucketName (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketName).
+	//
+	// For example, if you specify CdcPath as MyChangedData, and you specify BucketName
+	// as MyTargetBucket but do not specify BucketFolder, DMS creates the CDC folder
+	// path following: MyTargetBucket/MyChangedData.
+	//
+	// If you specify the same CdcPath, and you specify BucketName as MyTargetBucket
+	// and BucketFolder as MyTargetData, DMS creates the CDC folder path following:
+	// MyTargetBucket/MyTargetData/MyChangedData.
+	//
+	// For more information on CDC including transaction order on an S3 target,
+	// see Capturing data changes (CDC) including transaction order on the S3 target
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.EndpointSettings.CdcPath).
+	//
+	// This setting is supported in DMS versions 3.4.2 and later.
+	CdcPath *string `type:"string"`
+
 	// An optional parameter to use GZIP to compress the target files. Set to GZIP
 	// to compress the target files. Either set this parameter to NONE (the default)
 	// or don't use it to leave the files uncompressed. This parameter applies to
 	// both .csv and .parquet file formats.
 	CompressionType *string `type:"string" enum:"CompressionTypeValue"`
 
-	// The delimiter used to separate columns in the source files. The default is
-	// a comma.
+	// The delimiter used to separate columns in the .csv file for both source and
+	// target. The default is a comma.
 	CsvDelimiter *string `type:"string"`
 
-	// The delimiter used to separate rows in the source files. The default is a
-	// carriage return (\n).
+	// This setting only applies if your Amazon S3 output files during a change
+	// data capture (CDC) load are written in .csv format. If UseCsvNoSupValue (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-UseCsvNoSupValue)
+	// is set to true, specify a string value that you want DMS to use for all columns
+	// not included in the supplemental log. If you do not specify a string value,
+	// DMS uses the null value for these columns regardless of the UseCsvNoSupValue
+	// setting.
+	//
+	// This setting is supported in DMS versions 3.4.1 and later.
+	CsvNoSupValue *string `type:"string"`
+
+	// An optional parameter that specifies how DMS treats null values. While handling
+	// the null value, you can use this parameter to pass a user-defined string
+	// as null when writing to the target. For example, when target columns are
+	// not nullable, you can use this option to differentiate between the empty
+	// string value and the null value. So, if you set this parameter value to the
+	// empty string ("" or ''), DMS treats the empty string as the null value instead
+	// of NULL.
+	//
+	// The default value is NULL. Valid values include any valid string.
+	CsvNullValue *string `type:"string"`
+
+	// The delimiter used to separate rows in the .csv file for both source and
+	// target. The default is a carriage return (\n).
 	CsvRowDelimiter *string `type:"string"`
 
 	// The format of the data that you want to use for output. You can choose one
@@ -13435,6 +22564,32 @@ type S3Settings struct {
 	// The size of one data page in bytes. This parameter defaults to 1024 * 1024
 	// bytes (1 MiB). This number is used for .parquet file format only.
 	DataPageSize *int64 `type:"integer"`
+
+	// Specifies a date separating delimiter to use during folder partitioning.
+	// The default value is SLASH. Use this parameter when DatePartitionedEnabled
+	// is set to true.
+	DatePartitionDelimiter *string `type:"string" enum:"DatePartitionDelimiterValue"`
+
+	// When set to true, this parameter partitions S3 bucket folders based on transaction
+	// commit dates. The default value is false. For more information about date-based
+	// folder partitioning, see Using date-based folder partitioning (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.DatePartitioning).
+	DatePartitionEnabled *bool `type:"boolean"`
+
+	// Identifies the sequence of the date format to use during folder partitioning.
+	// The default value is YYYYMMDD. Use this parameter when DatePartitionedEnabled
+	// is set to true.
+	DatePartitionSequence *string `type:"string" enum:"DatePartitionSequenceValue"`
+
+	// When creating an S3 target endpoint, set DatePartitionTimezone to convert
+	// the current UTC time into a specified time zone. The conversion occurs when
+	// a date partition folder is created and a CDC filename is generated. The time
+	// zone format is Area/Location. Use this parameter when DatePartitionedEnabled
+	// is set to true, as shown in the following example.
+	//
+	// s3-settings='{"DatePartitionEnabled": true, "DatePartitionSequence": "YYYYMMDDHH",
+	// "DatePartitionDelimiter": "SLASH", "DatePartitionTimezone":"Asia/Seoul",
+	// "BucketName": "dms-nattarat-test"}'
+	DatePartitionTimezone *string `type:"string"`
 
 	// The maximum size of an encoded dictionary page of a column. If the dictionary
 	// page exceeds this, this column is stored using an encoding type of PLAIN.
@@ -13464,8 +22619,13 @@ type S3Settings struct {
 	// The type of server-side encryption that you want to use for your data. This
 	// encryption type is part of the endpoint settings or the extra connections
 	// attributes for Amazon S3. You can choose either SSE_S3 (the default) or SSE_KMS.
-	// To use SSE_S3, you need an AWS Identity and Access Management (IAM) role
-	// with permission to allow "arn:aws:s3:::dms-*" to use the following actions:
+	//
+	// For the ModifyEndpoint operation, you can change the existing value of the
+	// EncryptionMode parameter from SSE_KMS to SSE_S3. But you can’t change the
+	// existing value from SSE_S3 to SSE_KMS.
+	//
+	// To use SSE_S3, you need an Identity and Access Management (IAM) role with
+	// permission to allow "arn:aws:s3:::dms-*" to use the following actions:
 	//
 	//    * s3:CreateBucket
 	//
@@ -13490,15 +22650,29 @@ type S3Settings struct {
 	//    * s3:DeleteBucketPolicy
 	EncryptionMode *string `type:"string" enum:"EncryptionModeValue"`
 
-	// The external table definition.
+	// To specify a bucket owner and prevent sniping, you can use the ExpectedBucketOwner
+	// endpoint setting.
+	//
+	// Example: --s3-settings='{"ExpectedBucketOwner": "AWS_Account_ID"}'
+	//
+	// When you make a request to test a connection or perform a migration, S3 checks
+	// the account ID of the bucket owner against the specified parameter.
+	ExpectedBucketOwner *string `type:"string"`
+
+	// Specifies how tables are defined in the S3 source files only.
 	ExternalTableDefinition *string `type:"string"`
+
+	// When this value is set to 1, DMS ignores the first row header in a .csv file.
+	// A value of 1 turns on the feature; a value of 0 turns off the feature.
+	//
+	// The default is 0.
+	IgnoreHeaderRows *int64 `type:"integer"`
 
 	// A value that enables a full load to write INSERT operations to the comma-separated
 	// value (.csv) output files only to indicate how the rows were added to the
 	// source database.
 	//
-	// AWS DMS supports the IncludeOpForFullLoad parameter in versions 3.1.4 and
-	// later.
+	// DMS supports the IncludeOpForFullLoad parameter in versions 3.1.4 and later.
 	//
 	// For full load, records can only be inserted. By default (the false setting),
 	// no information is recorded in these output files for a full load to indicate
@@ -13511,26 +22685,32 @@ type S3Settings struct {
 	// parameters for output to .csv files only. For more information about how
 	// these settings work together, see Indicating Source DB Operations in Migrated
 	// S3 Data (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps)
-	// in the AWS Database Migration Service User Guide..
+	// in the Database Migration Service User Guide..
 	IncludeOpForFullLoad *bool `type:"boolean"`
+
+	// A value that specifies the maximum size (in KB) of any .csv file to be created
+	// while migrating to an S3 target during full load.
+	//
+	// The default value is 1,048,576 KB (1 GB). Valid values include 1 to 1,048,576.
+	MaxFileSize *int64 `type:"integer"`
 
 	// A value that specifies the precision of any TIMESTAMP column values that
 	// are written to an Amazon S3 object file in .parquet format.
 	//
-	// AWS DMS supports the ParquetTimestampInMillisecond parameter in versions
-	// 3.1.4 and later.
+	// DMS supports the ParquetTimestampInMillisecond parameter in versions 3.1.4
+	// and later.
 	//
-	// When ParquetTimestampInMillisecond is set to true or y, AWS DMS writes all
-	// TIMESTAMP columns in a .parquet formatted file with millisecond precision.
-	// Otherwise, DMS writes them with microsecond precision.
+	// When ParquetTimestampInMillisecond is set to true or y, DMS writes all TIMESTAMP
+	// columns in a .parquet formatted file with millisecond precision. Otherwise,
+	// DMS writes them with microsecond precision.
 	//
-	// Currently, Amazon Athena and AWS Glue can handle only millisecond precision
-	// for TIMESTAMP values. Set this parameter to true for S3 endpoint object files
+	// Currently, Amazon Athena and Glue can handle only millisecond precision for
+	// TIMESTAMP values. Set this parameter to true for S3 endpoint object files
 	// that are .parquet formatted only if you plan to query or process the data
-	// with Athena or AWS Glue.
+	// with Athena or Glue.
 	//
-	// AWS DMS writes any TIMESTAMP column values written to an S3 file in .csv
-	// format with microsecond precision.
+	// DMS writes any TIMESTAMP column values written to an S3 file in .csv format
+	// with microsecond precision.
 	//
 	// Setting ParquetTimestampInMillisecond has no effect on the string format
 	// of the timestamp column value that is inserted by setting the TimestampColumnName
@@ -13541,6 +22721,31 @@ type S3Settings struct {
 	// (the default) or parquet_2_0.
 	ParquetVersion *string `type:"string" enum:"ParquetVersionValue"`
 
+	// If set to true, DMS saves the transaction order for a change data capture
+	// (CDC) load on the Amazon S3 target specified by CdcPath (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CdcPath).
+	// For more information, see Capturing data changes (CDC) including transaction
+	// order on the S3 target (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.EndpointSettings.CdcPath).
+	//
+	// This setting is supported in DMS versions 3.4.2 and later.
+	PreserveTransactions *bool `type:"boolean"`
+
+	// For an S3 source, when this value is set to true or y, each leading double
+	// quotation mark has to be followed by an ending double quotation mark. This
+	// formatting complies with RFC 4180. When this value is set to false or n,
+	// string literals are copied to the target as is. In this case, a delimiter
+	// (row or column) signals the end of the field. Thus, you can't use a delimiter
+	// as part of the string, because it signals the end of the value.
+	//
+	// For an S3 target, an optional parameter used to set behavior to comply with
+	// RFC 4180 for data migrated to Amazon S3 using .csv file format only. When
+	// this value is set to true or y using Amazon S3 as a target, if the data has
+	// quotation marks or newline characters in it, DMS encloses the entire column
+	// with an additional pair of double quotation marks ("). Every quotation mark
+	// within the data is repeated twice.
+	//
+	// The default value is true. Valid values include true, false, y, and n.
+	Rfc4180 *bool `type:"boolean"`
+
 	// The number of rows in a row group. A smaller row group size provides faster
 	// reads. But as the number of row groups grows, the slower writes become. This
 	// parameter defaults to 10,000 rows. This number is used for .parquet file
@@ -13550,22 +22755,23 @@ type S3Settings struct {
 	// max row group length in bytes (64 * 1024 * 1024).
 	RowGroupLength *int64 `type:"integer"`
 
-	// If you are using SSE_KMS for the EncryptionMode, provide the AWS KMS key
-	// ID. The key that you use needs an attached policy that enables AWS Identity
-	// and Access Management (IAM) user permissions and allows use of the key.
+	// If you are using SSE_KMS for the EncryptionMode, provide the KMS key ID.
+	// The key that you use needs an attached policy that enables Identity and Access
+	// Management (IAM) user permissions and allows use of the key.
 	//
 	// Here is a CLI example: aws dms create-endpoint --endpoint-identifier value
 	// --endpoint-type target --engine-name s3 --s3-settings ServiceAccessRoleArn=value,BucketFolder=value,BucketName=value,EncryptionMode=SSE_KMS,ServerSideEncryptionKmsKeyId=value
 	ServerSideEncryptionKmsKeyId *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) used by the service access IAM role.
+	// The Amazon Resource Name (ARN) used by the service to access the IAM role.
+	// The role must allow the iam:PassRole action. It is a required parameter that
+	// enables DMS to write and read objects from an S3 bucket.
 	ServiceAccessRoleArn *string `type:"string"`
 
-	// A value that when nonblank causes AWS DMS to add a column with timestamp
-	// information to the endpoint data for an Amazon S3 target.
+	// A value that when nonblank causes DMS to add a column with timestamp information
+	// to the endpoint data for an Amazon S3 target.
 	//
-	// AWS DMS supports the TimestampColumnName parameter in versions 3.1.4 and
-	// later.
+	// DMS supports the TimestampColumnName parameter in versions 3.1.4 and later.
 	//
 	// DMS includes an additional STRING column in the .csv or .parquet object files
 	// of your migrated data when you set TimestampColumnName to a nonblank value.
@@ -13584,16 +22790,55 @@ type S3Settings struct {
 	// When the AddColumnName parameter is set to true, DMS also includes a name
 	// for the timestamp column that you set with TimestampColumnName.
 	TimestampColumnName *string `type:"string"`
+
+	// This setting applies if the S3 output files during a change data capture
+	// (CDC) load are written in .csv format. If set to true for columns not included
+	// in the supplemental log, DMS uses the value specified by CsvNoSupValue (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CsvNoSupValue).
+	// If not set or set to false, DMS uses the null value for these columns.
+	//
+	// This setting is supported in DMS versions 3.4.1 and later.
+	UseCsvNoSupValue *bool `type:"boolean"`
+
+	// When set to true, this parameter uses the task start time as the timestamp
+	// column value instead of the time data is written to target. For full load,
+	// when useTaskStartTimeForFullLoadTimestamp is set to true, each row of the
+	// timestamp column contains the task start time. For CDC loads, each row of
+	// the timestamp column contains the transaction commit time.
+	//
+	// When useTaskStartTimeForFullLoadTimestamp is set to false, the full load
+	// timestamp in the timestamp column increments with the time data arrives at
+	// the target.
+	UseTaskStartTimeForFullLoadTimestamp *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Settings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Settings) GoString() string {
 	return s.String()
+}
+
+// SetAddColumnName sets the AddColumnName field's value.
+func (s *S3Settings) SetAddColumnName(v bool) *S3Settings {
+	s.AddColumnName = &v
+	return s
+}
+
+// SetAddTrailingPaddingCharacter sets the AddTrailingPaddingCharacter field's value.
+func (s *S3Settings) SetAddTrailingPaddingCharacter(v bool) *S3Settings {
+	s.AddTrailingPaddingCharacter = &v
+	return s
 }
 
 // SetBucketFolder sets the BucketFolder field's value.
@@ -13605,6 +22850,12 @@ func (s *S3Settings) SetBucketFolder(v string) *S3Settings {
 // SetBucketName sets the BucketName field's value.
 func (s *S3Settings) SetBucketName(v string) *S3Settings {
 	s.BucketName = &v
+	return s
+}
+
+// SetCannedAclForObjects sets the CannedAclForObjects field's value.
+func (s *S3Settings) SetCannedAclForObjects(v string) *S3Settings {
+	s.CannedAclForObjects = &v
 	return s
 }
 
@@ -13620,6 +22871,24 @@ func (s *S3Settings) SetCdcInsertsOnly(v bool) *S3Settings {
 	return s
 }
 
+// SetCdcMaxBatchInterval sets the CdcMaxBatchInterval field's value.
+func (s *S3Settings) SetCdcMaxBatchInterval(v int64) *S3Settings {
+	s.CdcMaxBatchInterval = &v
+	return s
+}
+
+// SetCdcMinFileSize sets the CdcMinFileSize field's value.
+func (s *S3Settings) SetCdcMinFileSize(v int64) *S3Settings {
+	s.CdcMinFileSize = &v
+	return s
+}
+
+// SetCdcPath sets the CdcPath field's value.
+func (s *S3Settings) SetCdcPath(v string) *S3Settings {
+	s.CdcPath = &v
+	return s
+}
+
 // SetCompressionType sets the CompressionType field's value.
 func (s *S3Settings) SetCompressionType(v string) *S3Settings {
 	s.CompressionType = &v
@@ -13629,6 +22898,18 @@ func (s *S3Settings) SetCompressionType(v string) *S3Settings {
 // SetCsvDelimiter sets the CsvDelimiter field's value.
 func (s *S3Settings) SetCsvDelimiter(v string) *S3Settings {
 	s.CsvDelimiter = &v
+	return s
+}
+
+// SetCsvNoSupValue sets the CsvNoSupValue field's value.
+func (s *S3Settings) SetCsvNoSupValue(v string) *S3Settings {
+	s.CsvNoSupValue = &v
+	return s
+}
+
+// SetCsvNullValue sets the CsvNullValue field's value.
+func (s *S3Settings) SetCsvNullValue(v string) *S3Settings {
+	s.CsvNullValue = &v
 	return s
 }
 
@@ -13647,6 +22928,30 @@ func (s *S3Settings) SetDataFormat(v string) *S3Settings {
 // SetDataPageSize sets the DataPageSize field's value.
 func (s *S3Settings) SetDataPageSize(v int64) *S3Settings {
 	s.DataPageSize = &v
+	return s
+}
+
+// SetDatePartitionDelimiter sets the DatePartitionDelimiter field's value.
+func (s *S3Settings) SetDatePartitionDelimiter(v string) *S3Settings {
+	s.DatePartitionDelimiter = &v
+	return s
+}
+
+// SetDatePartitionEnabled sets the DatePartitionEnabled field's value.
+func (s *S3Settings) SetDatePartitionEnabled(v bool) *S3Settings {
+	s.DatePartitionEnabled = &v
+	return s
+}
+
+// SetDatePartitionSequence sets the DatePartitionSequence field's value.
+func (s *S3Settings) SetDatePartitionSequence(v string) *S3Settings {
+	s.DatePartitionSequence = &v
+	return s
+}
+
+// SetDatePartitionTimezone sets the DatePartitionTimezone field's value.
+func (s *S3Settings) SetDatePartitionTimezone(v string) *S3Settings {
+	s.DatePartitionTimezone = &v
 	return s
 }
 
@@ -13674,15 +22979,33 @@ func (s *S3Settings) SetEncryptionMode(v string) *S3Settings {
 	return s
 }
 
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *S3Settings) SetExpectedBucketOwner(v string) *S3Settings {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
 // SetExternalTableDefinition sets the ExternalTableDefinition field's value.
 func (s *S3Settings) SetExternalTableDefinition(v string) *S3Settings {
 	s.ExternalTableDefinition = &v
 	return s
 }
 
+// SetIgnoreHeaderRows sets the IgnoreHeaderRows field's value.
+func (s *S3Settings) SetIgnoreHeaderRows(v int64) *S3Settings {
+	s.IgnoreHeaderRows = &v
+	return s
+}
+
 // SetIncludeOpForFullLoad sets the IncludeOpForFullLoad field's value.
 func (s *S3Settings) SetIncludeOpForFullLoad(v bool) *S3Settings {
 	s.IncludeOpForFullLoad = &v
+	return s
+}
+
+// SetMaxFileSize sets the MaxFileSize field's value.
+func (s *S3Settings) SetMaxFileSize(v int64) *S3Settings {
+	s.MaxFileSize = &v
 	return s
 }
 
@@ -13695,6 +23018,18 @@ func (s *S3Settings) SetParquetTimestampInMillisecond(v bool) *S3Settings {
 // SetParquetVersion sets the ParquetVersion field's value.
 func (s *S3Settings) SetParquetVersion(v string) *S3Settings {
 	s.ParquetVersion = &v
+	return s
+}
+
+// SetPreserveTransactions sets the PreserveTransactions field's value.
+func (s *S3Settings) SetPreserveTransactions(v bool) *S3Settings {
+	s.PreserveTransactions = &v
+	return s
+}
+
+// SetRfc4180 sets the Rfc4180 field's value.
+func (s *S3Settings) SetRfc4180(v bool) *S3Settings {
+	s.Rfc4180 = &v
 	return s
 }
 
@@ -13722,6 +23057,18 @@ func (s *S3Settings) SetTimestampColumnName(v string) *S3Settings {
 	return s
 }
 
+// SetUseCsvNoSupValue sets the UseCsvNoSupValue field's value.
+func (s *S3Settings) SetUseCsvNoSupValue(v bool) *S3Settings {
+	s.UseCsvNoSupValue = &v
+	return s
+}
+
+// SetUseTaskStartTimeForFullLoadTimestamp sets the UseTaskStartTimeForFullLoadTimestamp field's value.
+func (s *S3Settings) SetUseTaskStartTimeForFullLoadTimestamp(v bool) *S3Settings {
+	s.UseTaskStartTimeForFullLoadTimestamp = &v
+	return s
+}
+
 // The SNS topic is invalid.
 type SNSInvalidTopicFault struct {
 	_            struct{}                  `type:"structure"`
@@ -13730,12 +23077,20 @@ type SNSInvalidTopicFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSInvalidTopicFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSInvalidTopicFault) GoString() string {
 	return s.String()
 }
@@ -13786,12 +23141,20 @@ type SNSNoAuthorizationFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSNoAuthorizationFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSNoAuthorizationFault) GoString() string {
 	return s.String()
 }
@@ -13834,6 +23197,230 @@ func (s *SNSNoAuthorizationFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes a schema in a Fleet Advisor collector inventory.
+type SchemaResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The number of lines of code in a schema in a Fleet Advisor collector inventory.
+	CodeLineCount *int64 `type:"long"`
+
+	// The size level of the code in a schema in a Fleet Advisor collector inventory.
+	CodeSize *int64 `type:"long"`
+
+	// The complexity level of the code in a schema in a Fleet Advisor collector
+	// inventory.
+	Complexity *string `type:"string"`
+
+	// The database for a schema in a Fleet Advisor collector inventory.
+	DatabaseInstance *DatabaseShortInfoResponse `type:"structure"`
+
+	// Describes a schema in a Fleet Advisor collector inventory.
+	OriginalSchema *SchemaShortInfoResponse `type:"structure"`
+
+	// The ID of a schema in a Fleet Advisor collector inventory.
+	SchemaId *string `type:"string"`
+
+	// The name of a schema in a Fleet Advisor collector inventory.
+	SchemaName *string `type:"string"`
+
+	// The database server for a schema in a Fleet Advisor collector inventory.
+	Server *ServerShortInfoResponse `type:"structure"`
+
+	// The similarity value for a schema in a Fleet Advisor collector inventory.
+	// A higher similarity value indicates that a schema is likely to be a duplicate.
+	Similarity *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaResponse) GoString() string {
+	return s.String()
+}
+
+// SetCodeLineCount sets the CodeLineCount field's value.
+func (s *SchemaResponse) SetCodeLineCount(v int64) *SchemaResponse {
+	s.CodeLineCount = &v
+	return s
+}
+
+// SetCodeSize sets the CodeSize field's value.
+func (s *SchemaResponse) SetCodeSize(v int64) *SchemaResponse {
+	s.CodeSize = &v
+	return s
+}
+
+// SetComplexity sets the Complexity field's value.
+func (s *SchemaResponse) SetComplexity(v string) *SchemaResponse {
+	s.Complexity = &v
+	return s
+}
+
+// SetDatabaseInstance sets the DatabaseInstance field's value.
+func (s *SchemaResponse) SetDatabaseInstance(v *DatabaseShortInfoResponse) *SchemaResponse {
+	s.DatabaseInstance = v
+	return s
+}
+
+// SetOriginalSchema sets the OriginalSchema field's value.
+func (s *SchemaResponse) SetOriginalSchema(v *SchemaShortInfoResponse) *SchemaResponse {
+	s.OriginalSchema = v
+	return s
+}
+
+// SetSchemaId sets the SchemaId field's value.
+func (s *SchemaResponse) SetSchemaId(v string) *SchemaResponse {
+	s.SchemaId = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *SchemaResponse) SetSchemaName(v string) *SchemaResponse {
+	s.SchemaName = &v
+	return s
+}
+
+// SetServer sets the Server field's value.
+func (s *SchemaResponse) SetServer(v *ServerShortInfoResponse) *SchemaResponse {
+	s.Server = v
+	return s
+}
+
+// SetSimilarity sets the Similarity field's value.
+func (s *SchemaResponse) SetSimilarity(v float64) *SchemaResponse {
+	s.Similarity = &v
+	return s
+}
+
+// Describes a schema in a Fleet Advisor collector inventory.
+type SchemaShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a database in a Fleet Advisor collector inventory.
+	DatabaseId *string `type:"string"`
+
+	// The IP address of a database in a Fleet Advisor collector inventory.
+	DatabaseIpAddress *string `type:"string"`
+
+	// The name of a database in a Fleet Advisor collector inventory.
+	DatabaseName *string `type:"string"`
+
+	// The ID of a schema in a Fleet Advisor collector inventory.
+	SchemaId *string `type:"string"`
+
+	// The name of a schema in a Fleet Advisor collector inventory.
+	SchemaName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseId sets the DatabaseId field's value.
+func (s *SchemaShortInfoResponse) SetDatabaseId(v string) *SchemaShortInfoResponse {
+	s.DatabaseId = &v
+	return s
+}
+
+// SetDatabaseIpAddress sets the DatabaseIpAddress field's value.
+func (s *SchemaShortInfoResponse) SetDatabaseIpAddress(v string) *SchemaShortInfoResponse {
+	s.DatabaseIpAddress = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *SchemaShortInfoResponse) SetDatabaseName(v string) *SchemaShortInfoResponse {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetSchemaId sets the SchemaId field's value.
+func (s *SchemaShortInfoResponse) SetSchemaId(v string) *SchemaShortInfoResponse {
+	s.SchemaId = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *SchemaShortInfoResponse) SetSchemaName(v string) *SchemaShortInfoResponse {
+	s.SchemaName = &v
+	return s
+}
+
+// Describes a server in a Fleet Advisor collector inventory.
+type ServerShortInfoResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address of a server in a Fleet Advisor collector inventory.
+	IpAddress *string `type:"string"`
+
+	// The ID of a server in a Fleet Advisor collector inventory.
+	ServerId *string `type:"string"`
+
+	// The name address of a server in a Fleet Advisor collector inventory.
+	ServerName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerShortInfoResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerShortInfoResponse) GoString() string {
+	return s.String()
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *ServerShortInfoResponse) SetIpAddress(v string) *ServerShortInfoResponse {
+	s.IpAddress = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ServerShortInfoResponse) SetServerId(v string) *ServerShortInfoResponse {
+	s.ServerId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *ServerShortInfoResponse) SetServerName(v string) *ServerShortInfoResponse {
+	s.ServerName = &v
+	return s
+}
+
 type StartReplicationTaskAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13843,12 +23430,20 @@ type StartReplicationTaskAssessmentInput struct {
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskAssessmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskAssessmentInput) GoString() string {
 	return s.String()
 }
@@ -13879,12 +23474,20 @@ type StartReplicationTaskAssessmentOutput struct {
 	ReplicationTask *ReplicationTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskAssessmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskAssessmentOutput) GoString() string {
 	return s.String()
 }
@@ -13892,6 +23495,204 @@ func (s StartReplicationTaskAssessmentOutput) GoString() string {
 // SetReplicationTask sets the ReplicationTask field's value.
 func (s *StartReplicationTaskAssessmentOutput) SetReplicationTask(v *ReplicationTask) *StartReplicationTaskAssessmentOutput {
 	s.ReplicationTask = v
+	return s
+}
+
+type StartReplicationTaskAssessmentRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique name to identify the assessment run.
+	//
+	// AssessmentRunName is a required field
+	AssessmentRunName *string `type:"string" required:"true"`
+
+	// Space-separated list of names for specific individual assessments that you
+	// want to exclude. These names come from the default list of individual assessments
+	// that DMS supports for the associated migration task. This task is specified
+	// by ReplicationTaskArn.
+	//
+	// You can't set a value for Exclude if you also set a value for IncludeOnly
+	// in the API operation.
+	//
+	// To identify the names of the default individual assessments that DMS supports
+	// for the associated migration task, run the DescribeApplicableIndividualAssessments
+	// operation using its own ReplicationTaskArn request parameter.
+	Exclude []*string `type:"list"`
+
+	// Space-separated list of names for specific individual assessments that you
+	// want to include. These names come from the default list of individual assessments
+	// that DMS supports for the associated migration task. This task is specified
+	// by ReplicationTaskArn.
+	//
+	// You can't set a value for IncludeOnly if you also set a value for Exclude
+	// in the API operation.
+	//
+	// To identify the names of the default individual assessments that DMS supports
+	// for the associated migration task, run the DescribeApplicableIndividualAssessments
+	// operation using its own ReplicationTaskArn request parameter.
+	IncludeOnly []*string `type:"list"`
+
+	// Amazon Resource Name (ARN) of the migration task associated with the premigration
+	// assessment run that you want to start.
+	//
+	// ReplicationTaskArn is a required field
+	ReplicationTaskArn *string `type:"string" required:"true"`
+
+	// Encryption mode that you can specify to encrypt the results of this assessment
+	// run. If you don't specify this request parameter, DMS stores the assessment
+	// run results without encryption. You can specify one of the options following:
+	//
+	//    * "SSE_S3" – The server-side encryption provided as a default by Amazon
+	//    S3.
+	//
+	//    * "SSE_KMS" – Key Management Service (KMS) encryption. This encryption
+	//    can use either a custom KMS encryption key that you specify or the default
+	//    KMS encryption key that DMS provides.
+	ResultEncryptionMode *string `type:"string"`
+
+	// ARN of a custom KMS encryption key that you specify when you set ResultEncryptionMode
+	// to "SSE_KMS".
+	ResultKmsKeyArn *string `type:"string"`
+
+	// Amazon S3 bucket where you want DMS to store the results of this assessment
+	// run.
+	//
+	// ResultLocationBucket is a required field
+	ResultLocationBucket *string `type:"string" required:"true"`
+
+	// Folder within an Amazon S3 bucket where you want DMS to store the results
+	// of this assessment run.
+	ResultLocationFolder *string `type:"string"`
+
+	// ARN of the service role needed to start the assessment run. The role must
+	// allow the iam:PassRole action.
+	//
+	// ServiceAccessRoleArn is a required field
+	ServiceAccessRoleArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationTaskAssessmentRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationTaskAssessmentRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReplicationTaskAssessmentRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReplicationTaskAssessmentRunInput"}
+	if s.AssessmentRunName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentRunName"))
+	}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+	if s.ResultLocationBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResultLocationBucket"))
+	}
+	if s.ServiceAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccessRoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentRunName sets the AssessmentRunName field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetAssessmentRunName(v string) *StartReplicationTaskAssessmentRunInput {
+	s.AssessmentRunName = &v
+	return s
+}
+
+// SetExclude sets the Exclude field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetExclude(v []*string) *StartReplicationTaskAssessmentRunInput {
+	s.Exclude = v
+	return s
+}
+
+// SetIncludeOnly sets the IncludeOnly field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetIncludeOnly(v []*string) *StartReplicationTaskAssessmentRunInput {
+	s.IncludeOnly = v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetReplicationTaskArn(v string) *StartReplicationTaskAssessmentRunInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetResultEncryptionMode sets the ResultEncryptionMode field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetResultEncryptionMode(v string) *StartReplicationTaskAssessmentRunInput {
+	s.ResultEncryptionMode = &v
+	return s
+}
+
+// SetResultKmsKeyArn sets the ResultKmsKeyArn field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetResultKmsKeyArn(v string) *StartReplicationTaskAssessmentRunInput {
+	s.ResultKmsKeyArn = &v
+	return s
+}
+
+// SetResultLocationBucket sets the ResultLocationBucket field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetResultLocationBucket(v string) *StartReplicationTaskAssessmentRunInput {
+	s.ResultLocationBucket = &v
+	return s
+}
+
+// SetResultLocationFolder sets the ResultLocationFolder field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetResultLocationFolder(v string) *StartReplicationTaskAssessmentRunInput {
+	s.ResultLocationFolder = &v
+	return s
+}
+
+// SetServiceAccessRoleArn sets the ServiceAccessRoleArn field's value.
+func (s *StartReplicationTaskAssessmentRunInput) SetServiceAccessRoleArn(v string) *StartReplicationTaskAssessmentRunInput {
+	s.ServiceAccessRoleArn = &v
+	return s
+}
+
+type StartReplicationTaskAssessmentRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The premigration assessment run that was started.
+	ReplicationTaskAssessmentRun *ReplicationTaskAssessmentRun `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationTaskAssessmentRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationTaskAssessmentRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationTaskAssessmentRun sets the ReplicationTaskAssessmentRun field's value.
+func (s *StartReplicationTaskAssessmentRunOutput) SetReplicationTaskAssessmentRun(v *ReplicationTaskAssessmentRun) *StartReplicationTaskAssessmentRunOutput {
+	s.ReplicationTaskAssessmentRun = v
 	return s
 }
 
@@ -13914,7 +23715,7 @@ type StartReplicationTaskInput struct {
 	// replication slot should already be created and associated with the source
 	// endpoint. You can verify this by setting the slotName extra connection attribute
 	// to the name of this logical replication slot. For more information, see Extra
-	// Connection Attributes When Using PostgreSQL as a Source for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib).
+	// Connection Attributes When Using PostgreSQL as a Source for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib).
 	CdcStartPosition *string `type:"string"`
 
 	// Indicates the start time for a change data capture (CDC) operation. Use either
@@ -13927,9 +23728,9 @@ type StartReplicationTaskInput struct {
 	// Indicates when you want a change data capture (CDC) operation to stop. The
 	// value can be either server time or commit time.
 	//
-	// Server time example: --cdc-stop-position “server_time:3018-02-09T12:12:12”
+	// Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”
 	//
-	// Commit time example: --cdc-stop-position “commit_time: 3018-02-09T12:12:12
+	// Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12
 	// “
 	CdcStopPosition *string `type:"string"`
 
@@ -13938,18 +23739,34 @@ type StartReplicationTaskInput struct {
 	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 
-	// The type of replication task.
+	// The type of replication task to start.
+	//
+	// When the migration type is full-load or full-load-and-cdc, the only valid
+	// value for the first run of the task is start-replication. You use reload-target
+	// to restart the task and resume-processing to resume the task.
+	//
+	// When the migration type is cdc, you use start-replication to start or restart
+	// the task, and resume-processing to resume the task. reload-target is not
+	// a valid value for a task with migration type of cdc.
 	//
 	// StartReplicationTaskType is a required field
 	StartReplicationTaskType *string `type:"string" required:"true" enum:"StartReplicationTaskTypeValue"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskInput) GoString() string {
 	return s.String()
 }
@@ -14007,12 +23824,20 @@ type StartReplicationTaskOutput struct {
 	ReplicationTask *ReplicationTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartReplicationTaskOutput) GoString() string {
 	return s.String()
 }
@@ -14032,12 +23857,20 @@ type StopReplicationTaskInput struct {
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopReplicationTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopReplicationTaskInput) GoString() string {
 	return s.String()
 }
@@ -14068,12 +23901,20 @@ type StopReplicationTaskOutput struct {
 	ReplicationTask *ReplicationTask `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopReplicationTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopReplicationTaskOutput) GoString() string {
 	return s.String()
 }
@@ -14092,12 +23933,20 @@ type StorageQuotaExceededFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageQuotaExceededFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageQuotaExceededFault) GoString() string {
 	return s.String()
 }
@@ -14140,7 +23989,7 @@ func (s *StorageQuotaExceededFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// In response to a request by the DescribeReplicationSubnetGroup operation,
+// In response to a request by the DescribeReplicationSubnetGroups operation,
 // this object identifies a subnet by its given Availability Zone, subnet identifier,
 // and status.
 type Subnet struct {
@@ -14156,12 +24005,20 @@ type Subnet struct {
 	SubnetStatus *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Subnet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Subnet) GoString() string {
 	return s.String()
 }
@@ -14192,12 +24049,20 @@ type SubnetAlreadyInUse struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubnetAlreadyInUse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubnetAlreadyInUse) GoString() string {
 	return s.String()
 }
@@ -14251,30 +24116,39 @@ type SupportedEndpointType struct {
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
 	// The expanded name for the engine name. For example, if the EngineName parameter
-	// is "aurora," this value would be "Amazon Aurora MySQL."
+	// is "aurora", this value would be "Amazon Aurora MySQL".
 	EngineDisplayName *string `type:"string"`
 
 	// The database engine name. Valid values, depending on the EndpointType, include
 	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", and "sqlserver".
+	// "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune",
+	// and "babelfish".
 	EngineName *string `type:"string"`
 
-	// The earliest AWS DMS engine version that supports this endpoint engine. Note
-	// that endpoint engines released with AWS DMS versions earlier than 3.1.1 do
-	// not return a value for this parameter.
+	// The earliest DMS engine version that supports this endpoint engine. Note
+	// that endpoint engines released with DMS versions earlier than 3.1.1 do not
+	// return a value for this parameter.
 	ReplicationInstanceEngineMinimumVersion *string `type:"string"`
 
-	// Indicates if Change Data Capture (CDC) is supported.
+	// Indicates if change data capture (CDC) is supported.
 	SupportsCDC *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SupportedEndpointType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SupportedEndpointType) GoString() string {
 	return s.String()
 }
@@ -14309,10 +24183,127 @@ func (s *SupportedEndpointType) SetSupportsCDC(v bool) *SupportedEndpointType {
 	return s
 }
 
+// Provides information that defines a SAP ASE endpoint.
+type SybaseSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Database name for the endpoint.
+	DatabaseName *string `type:"string"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SybaseSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	// Endpoint TCP port. The default is 5000.
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the SAP ASE endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the SAP SAE endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Fully qualified domain name of the endpoint.
+	ServerName *string `type:"string"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SybaseSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SybaseSettings) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *SybaseSettings) SetDatabaseName(v string) *SybaseSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *SybaseSettings) SetPassword(v string) *SybaseSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *SybaseSettings) SetPort(v int64) *SybaseSettings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *SybaseSettings) SetSecretsManagerAccessRoleArn(v string) *SybaseSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *SybaseSettings) SetSecretsManagerSecretId(v string) *SybaseSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *SybaseSettings) SetServerName(v string) *SybaseSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *SybaseSettings) SetUsername(v string) *SybaseSettings {
+	s.Username = &v
+	return s
+}
+
 // Provides a collection of table statistics in response to a request by the
 // DescribeTableStatistics operation.
 type TableStatistics struct {
 	_ struct{} `type:"structure"`
+
+	// The number of data definition language (DDL) statements used to build and
+	// modify the structure of your tables applied on the target.
+	AppliedDdls *int64 `type:"long"`
+
+	// The number of delete actions applied on a target table.
+	AppliedDeletes *int64 `type:"long"`
+
+	// The number of insert actions applied on a target table.
+	AppliedInserts *int64 `type:"long"`
+
+	// The number of update actions applied on a target table.
+	AppliedUpdates *int64 `type:"long"`
 
 	// The data definition language (DDL) used to build and modify the structure
 	// of your tables.
@@ -14357,8 +24348,7 @@ type TableStatistics struct {
 	// The state of the tables described.
 	//
 	// Valid states: Table does not exist | Before load | Full load | Table completed
-	// | Table cancelled | Table error | Table all | Table updates | Table is being
-	// reloaded
+	// | Table cancelled | Table error | Table is being reloaded
 	TableState *string `type:"string"`
 
 	// The number of update actions performed on a table.
@@ -14374,26 +24364,34 @@ type TableStatistics struct {
 	//
 	// This parameter can have the following values:
 	//
-	//    * Not enabled - Validation isn't enabled for the table in the migration
+	//    * Not enabled – Validation isn't enabled for the table in the migration
 	//    task.
 	//
-	//    * Pending records - Some records in the table are waiting for validation.
+	//    * Pending records – Some records in the table are waiting for validation.
 	//
-	//    * Mismatched records - Some records in the table don't match between the
-	//    source and target.
+	//    * Mismatched records – Some records in the table don't match between
+	//    the source and target.
 	//
-	//    * Suspended records - Some records in the table couldn't be validated.
+	//    * Suspended records – Some records in the table couldn't be validated.
 	//
-	//    * No primary key - The table couldn't be validated because it has no primary
-	//    key.
+	//    * No primary key –The table couldn't be validated because it has no
+	//    primary key.
 	//
-	//    * Table error - The table wasn't validated because it's in an error state
-	//    and some data wasn't migrated.
+	//    * Table error – The table wasn't validated because it's in an error
+	//    state and some data wasn't migrated.
 	//
-	//    * Validated - All rows in the table are validated. If the table is updated,
+	//    * Validated – All rows in the table are validated. If the table is updated,
 	//    the status can change from Validated.
 	//
-	//    * Error - The table couldn't be validated because of an unexpected error.
+	//    * Error – The table couldn't be validated because of an unexpected error.
+	//
+	//    * Pending validation – The table is waiting validation.
+	//
+	//    * Preparing table – Preparing the table enabled in the migration task
+	//    for validation.
+	//
+	//    * Pending revalidation – All rows in the table are pending validation
+	//    after the table was updated.
 	ValidationState *string `type:"string"`
 
 	// Additional details about the state of validation.
@@ -14403,14 +24401,46 @@ type TableStatistics struct {
 	ValidationSuspendedRecords *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableStatistics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableStatistics) GoString() string {
 	return s.String()
+}
+
+// SetAppliedDdls sets the AppliedDdls field's value.
+func (s *TableStatistics) SetAppliedDdls(v int64) *TableStatistics {
+	s.AppliedDdls = &v
+	return s
+}
+
+// SetAppliedDeletes sets the AppliedDeletes field's value.
+func (s *TableStatistics) SetAppliedDeletes(v int64) *TableStatistics {
+	s.AppliedDeletes = &v
+	return s
+}
+
+// SetAppliedInserts sets the AppliedInserts field's value.
+func (s *TableStatistics) SetAppliedInserts(v int64) *TableStatistics {
+	s.AppliedInserts = &v
+	return s
+}
+
+// SetAppliedUpdates sets the AppliedUpdates field's value.
+func (s *TableStatistics) SetAppliedUpdates(v int64) *TableStatistics {
+	s.AppliedUpdates = &v
+	return s
 }
 
 // SetDdls sets the Ddls field's value.
@@ -14532,20 +24562,48 @@ type TableToReload struct {
 	_ struct{} `type:"structure"`
 
 	// The schema name of the table to be reloaded.
-	SchemaName *string `type:"string"`
+	//
+	// SchemaName is a required field
+	SchemaName *string `type:"string" required:"true"`
 
 	// The table name of the table to be reloaded.
-	TableName *string `type:"string"`
+	//
+	// TableName is a required field
+	TableName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableToReload) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TableToReload) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableToReload) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableToReload"}
+	if s.SchemaName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetSchemaName sets the SchemaName field's value.
@@ -14560,36 +24618,48 @@ func (s *TableToReload) SetTableName(v string) *TableToReload {
 	return s
 }
 
-// A user-defined key-value pair that describes metadata added to an AWS DMS
-// resource and that is used by operations such as the following:
+// A user-defined key-value pair that describes metadata added to an DMS resource
+// and that is used by operations such as the following:
 //
-//    * AddTagsToResource
+//   - AddTagsToResource
 //
-//    * ListTagsForResource
+//   - ListTagsForResource
 //
-//    * RemoveTagsFromResource
+//   - RemoveTagsFromResource
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// A key is the required name of the tag. The string value can be from 1 to
-	// 128 Unicode characters in length and can't be prefixed with "aws:" or "dms:".
-	// The string can only contain only the set of Unicode letters, digits, white-space,
-	// '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+	// A key is the required name of the tag. The string value can be 1-128 Unicode
+	// characters in length and can't be prefixed with "aws:" or "dms:". The string
+	// can only contain only the set of Unicode letters, digits, white-space, '_',
+	// '.', '/', '=', '+', '-' (Java regular expressions: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Key *string `type:"string"`
 
-	// A value is the optional value of the tag. The string value can be from 1
-	// to 256 Unicode characters in length and can't be prefixed with "aws:" or
-	// "dms:". The string can only contain only the set of Unicode letters, digits,
-	// white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+	// The Amazon Resource Name (ARN) string that uniquely identifies the resource
+	// for which the tag is created.
+	ResourceArn *string `type:"string"`
+
+	// A value is the optional value of the tag. The string value can be 1-256 Unicode
+	// characters in length and can't be prefixed with "aws:" or "dms:". The string
+	// can only contain only the set of Unicode letters, digits, white-space, '_',
+	// '.', '/', '=', '+', '-' (Java regular expressions: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -14597,6 +24667,12 @@ func (s Tag) GoString() string {
 // SetKey sets the Key field's value.
 func (s *Tag) SetKey(v string) *Tag {
 	s.Key = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *Tag) SetResourceArn(v string) *Tag {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -14620,12 +24696,20 @@ type TestConnectionInput struct {
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestConnectionInput) GoString() string {
 	return s.String()
 }
@@ -14665,12 +24749,20 @@ type TestConnectionOutput struct {
 	Connection *Connection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -14678,6 +24770,72 @@ func (s TestConnectionOutput) GoString() string {
 // SetConnection sets the Connection field's value.
 func (s *TestConnectionOutput) SetConnection(v *Connection) *TestConnectionOutput {
 	s.Connection = v
+	return s
+}
+
+type UpdateSubscriptionsToEventBridgeInput struct {
+	_ struct{} `type:"structure"`
+
+	// When set to true, this operation migrates DMS subscriptions for Amazon SNS
+	// notifications no matter what your replication instance version is. If not
+	// set or set to false, this operation runs only when all your replication instances
+	// are from DMS version 3.4.6 or higher.
+	ForceMove *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeInput) GoString() string {
+	return s.String()
+}
+
+// SetForceMove sets the ForceMove field's value.
+func (s *UpdateSubscriptionsToEventBridgeInput) SetForceMove(v bool) *UpdateSubscriptionsToEventBridgeInput {
+	s.ForceMove = &v
+	return s
+}
+
+type UpdateSubscriptionsToEventBridgeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A string that indicates how many event subscriptions were migrated and how
+	// many remain to be migrated.
+	Result *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSubscriptionsToEventBridgeOutput) GoString() string {
+	return s.String()
+}
+
+// SetResult sets the Result field's value.
+func (s *UpdateSubscriptionsToEventBridgeOutput) SetResult(v string) *UpdateSubscriptionsToEventBridgeOutput {
+	s.Result = &v
 	return s
 }
 
@@ -14689,12 +24847,20 @@ type UpgradeDependencyFailureFault struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeDependencyFailureFault) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeDependencyFailureFault) GoString() string {
 	return s.String()
 }
@@ -14737,24 +24903,32 @@ func (s *UpgradeDependencyFailureFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes status of a security group associated with the virtual private
-// cloud hosting your replication and DB instances.
+// Describes the status of a security group associated with the virtual private
+// cloud (VPC) hosting your replication and DB instances.
 type VpcSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the VPC security group.
 	Status *string `type:"string"`
 
-	// The VPC security group Id.
+	// The VPC security group ID.
 	VpcSecurityGroupId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcSecurityGroupMembership) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcSecurityGroupMembership) GoString() string {
 	return s.String()
 }
@@ -14782,6 +24956,15 @@ const (
 	AuthMechanismValueScramSha1 = "scram_sha_1"
 )
 
+// AuthMechanismValue_Values returns all elements of the AuthMechanismValue enum
+func AuthMechanismValue_Values() []string {
+	return []string{
+		AuthMechanismValueDefault,
+		AuthMechanismValueMongodbCr,
+		AuthMechanismValueScramSha1,
+	}
+}
+
 const (
 	// AuthTypeValueNo is a AuthTypeValue enum value
 	AuthTypeValueNo = "no"
@@ -14789,6 +24972,90 @@ const (
 	// AuthTypeValuePassword is a AuthTypeValue enum value
 	AuthTypeValuePassword = "password"
 )
+
+// AuthTypeValue_Values returns all elements of the AuthTypeValue enum
+func AuthTypeValue_Values() []string {
+	return []string{
+		AuthTypeValueNo,
+		AuthTypeValuePassword,
+	}
+}
+
+const (
+	// CannedAclForObjectsValueNone is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueNone = "none"
+
+	// CannedAclForObjectsValuePrivate is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValuePrivate = "private"
+
+	// CannedAclForObjectsValuePublicRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValuePublicRead = "public-read"
+
+	// CannedAclForObjectsValuePublicReadWrite is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValuePublicReadWrite = "public-read-write"
+
+	// CannedAclForObjectsValueAuthenticatedRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueAuthenticatedRead = "authenticated-read"
+
+	// CannedAclForObjectsValueAwsExecRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueAwsExecRead = "aws-exec-read"
+
+	// CannedAclForObjectsValueBucketOwnerRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueBucketOwnerRead = "bucket-owner-read"
+
+	// CannedAclForObjectsValueBucketOwnerFullControl is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueBucketOwnerFullControl = "bucket-owner-full-control"
+)
+
+// CannedAclForObjectsValue_Values returns all elements of the CannedAclForObjectsValue enum
+func CannedAclForObjectsValue_Values() []string {
+	return []string{
+		CannedAclForObjectsValueNone,
+		CannedAclForObjectsValuePrivate,
+		CannedAclForObjectsValuePublicRead,
+		CannedAclForObjectsValuePublicReadWrite,
+		CannedAclForObjectsValueAuthenticatedRead,
+		CannedAclForObjectsValueAwsExecRead,
+		CannedAclForObjectsValueBucketOwnerRead,
+		CannedAclForObjectsValueBucketOwnerFullControl,
+	}
+}
+
+const (
+	// CharLengthSemanticsDefault is a CharLengthSemantics enum value
+	CharLengthSemanticsDefault = "default"
+
+	// CharLengthSemanticsChar is a CharLengthSemantics enum value
+	CharLengthSemanticsChar = "char"
+
+	// CharLengthSemanticsByte is a CharLengthSemantics enum value
+	CharLengthSemanticsByte = "byte"
+)
+
+// CharLengthSemantics_Values returns all elements of the CharLengthSemantics enum
+func CharLengthSemantics_Values() []string {
+	return []string{
+		CharLengthSemanticsDefault,
+		CharLengthSemanticsChar,
+		CharLengthSemanticsByte,
+	}
+}
+
+const (
+	// CollectorStatusUnregistered is a CollectorStatus enum value
+	CollectorStatusUnregistered = "UNREGISTERED"
+
+	// CollectorStatusActive is a CollectorStatus enum value
+	CollectorStatusActive = "ACTIVE"
+)
+
+// CollectorStatus_Values returns all elements of the CollectorStatus enum
+func CollectorStatus_Values() []string {
+	return []string{
+		CollectorStatusUnregistered,
+		CollectorStatusActive,
+	}
+}
 
 const (
 	// CompressionTypeValueNone is a CompressionTypeValue enum value
@@ -14798,6 +25065,14 @@ const (
 	CompressionTypeValueGzip = "gzip"
 )
 
+// CompressionTypeValue_Values returns all elements of the CompressionTypeValue enum
+func CompressionTypeValue_Values() []string {
+	return []string{
+		CompressionTypeValueNone,
+		CompressionTypeValueGzip,
+	}
+}
+
 const (
 	// DataFormatValueCsv is a DataFormatValue enum value
 	DataFormatValueCsv = "csv"
@@ -14805,6 +25080,66 @@ const (
 	// DataFormatValueParquet is a DataFormatValue enum value
 	DataFormatValueParquet = "parquet"
 )
+
+// DataFormatValue_Values returns all elements of the DataFormatValue enum
+func DataFormatValue_Values() []string {
+	return []string{
+		DataFormatValueCsv,
+		DataFormatValueParquet,
+	}
+}
+
+const (
+	// DatePartitionDelimiterValueSlash is a DatePartitionDelimiterValue enum value
+	DatePartitionDelimiterValueSlash = "SLASH"
+
+	// DatePartitionDelimiterValueUnderscore is a DatePartitionDelimiterValue enum value
+	DatePartitionDelimiterValueUnderscore = "UNDERSCORE"
+
+	// DatePartitionDelimiterValueDash is a DatePartitionDelimiterValue enum value
+	DatePartitionDelimiterValueDash = "DASH"
+
+	// DatePartitionDelimiterValueNone is a DatePartitionDelimiterValue enum value
+	DatePartitionDelimiterValueNone = "NONE"
+)
+
+// DatePartitionDelimiterValue_Values returns all elements of the DatePartitionDelimiterValue enum
+func DatePartitionDelimiterValue_Values() []string {
+	return []string{
+		DatePartitionDelimiterValueSlash,
+		DatePartitionDelimiterValueUnderscore,
+		DatePartitionDelimiterValueDash,
+		DatePartitionDelimiterValueNone,
+	}
+}
+
+const (
+	// DatePartitionSequenceValueYyyymmdd is a DatePartitionSequenceValue enum value
+	DatePartitionSequenceValueYyyymmdd = "YYYYMMDD"
+
+	// DatePartitionSequenceValueYyyymmddhh is a DatePartitionSequenceValue enum value
+	DatePartitionSequenceValueYyyymmddhh = "YYYYMMDDHH"
+
+	// DatePartitionSequenceValueYyyymm is a DatePartitionSequenceValue enum value
+	DatePartitionSequenceValueYyyymm = "YYYYMM"
+
+	// DatePartitionSequenceValueMmyyyydd is a DatePartitionSequenceValue enum value
+	DatePartitionSequenceValueMmyyyydd = "MMYYYYDD"
+
+	// DatePartitionSequenceValueDdmmyyyy is a DatePartitionSequenceValue enum value
+	DatePartitionSequenceValueDdmmyyyy = "DDMMYYYY"
+)
+
+// DatePartitionSequenceValue_Values returns all elements of the DatePartitionSequenceValue enum
+func DatePartitionSequenceValue_Values() []string {
+	return []string{
+		DatePartitionSequenceValueYyyymmdd,
+		DatePartitionSequenceValueYyyymmddhh,
+		DatePartitionSequenceValueYyyymm,
+		DatePartitionSequenceValueMmyyyydd,
+		DatePartitionSequenceValueDdmmyyyy,
+	}
+}
 
 const (
 	// DmsSslModeValueNone is a DmsSslModeValue enum value
@@ -14820,6 +25155,16 @@ const (
 	DmsSslModeValueVerifyFull = "verify-full"
 )
 
+// DmsSslModeValue_Values returns all elements of the DmsSslModeValue enum
+func DmsSslModeValue_Values() []string {
+	return []string{
+		DmsSslModeValueNone,
+		DmsSslModeValueRequire,
+		DmsSslModeValueVerifyCa,
+		DmsSslModeValueVerifyFull,
+	}
+}
+
 const (
 	// EncodingTypeValuePlain is a EncodingTypeValue enum value
 	EncodingTypeValuePlain = "plain"
@@ -14831,6 +25176,15 @@ const (
 	EncodingTypeValueRleDictionary = "rle-dictionary"
 )
 
+// EncodingTypeValue_Values returns all elements of the EncodingTypeValue enum
+func EncodingTypeValue_Values() []string {
+	return []string{
+		EncodingTypeValuePlain,
+		EncodingTypeValuePlainDictionary,
+		EncodingTypeValueRleDictionary,
+	}
+}
+
 const (
 	// EncryptionModeValueSseS3 is a EncryptionModeValue enum value
 	EncryptionModeValueSseS3 = "sse-s3"
@@ -14839,6 +25193,62 @@ const (
 	EncryptionModeValueSseKms = "sse-kms"
 )
 
+// EncryptionModeValue_Values returns all elements of the EncryptionModeValue enum
+func EncryptionModeValue_Values() []string {
+	return []string{
+		EncryptionModeValueSseS3,
+		EncryptionModeValueSseKms,
+	}
+}
+
+const (
+	// EndpointSettingTypeValueString is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueString = "string"
+
+	// EndpointSettingTypeValueBoolean is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueBoolean = "boolean"
+
+	// EndpointSettingTypeValueInteger is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueInteger = "integer"
+
+	// EndpointSettingTypeValueEnum is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueEnum = "enum"
+)
+
+// EndpointSettingTypeValue_Values returns all elements of the EndpointSettingTypeValue enum
+func EndpointSettingTypeValue_Values() []string {
+	return []string{
+		EndpointSettingTypeValueString,
+		EndpointSettingTypeValueBoolean,
+		EndpointSettingTypeValueInteger,
+		EndpointSettingTypeValueEnum,
+	}
+}
+
+const (
+	// KafkaSecurityProtocolPlaintext is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolPlaintext = "plaintext"
+
+	// KafkaSecurityProtocolSslAuthentication is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolSslAuthentication = "ssl-authentication"
+
+	// KafkaSecurityProtocolSslEncryption is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolSslEncryption = "ssl-encryption"
+
+	// KafkaSecurityProtocolSaslSsl is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolSaslSsl = "sasl-ssl"
+)
+
+// KafkaSecurityProtocol_Values returns all elements of the KafkaSecurityProtocol enum
+func KafkaSecurityProtocol_Values() []string {
+	return []string{
+		KafkaSecurityProtocolPlaintext,
+		KafkaSecurityProtocolSslAuthentication,
+		KafkaSecurityProtocolSslEncryption,
+		KafkaSecurityProtocolSaslSsl,
+	}
+}
+
 const (
 	// MessageFormatValueJson is a MessageFormatValue enum value
 	MessageFormatValueJson = "json"
@@ -14846,6 +25256,14 @@ const (
 	// MessageFormatValueJsonUnformatted is a MessageFormatValue enum value
 	MessageFormatValueJsonUnformatted = "json-unformatted"
 )
+
+// MessageFormatValue_Values returns all elements of the MessageFormatValue enum
+func MessageFormatValue_Values() []string {
+	return []string{
+		MessageFormatValueJson,
+		MessageFormatValueJsonUnformatted,
+	}
+}
 
 const (
 	// MigrationTypeValueFullLoad is a MigrationTypeValue enum value
@@ -14858,6 +25276,15 @@ const (
 	MigrationTypeValueFullLoadAndCdc = "full-load-and-cdc"
 )
 
+// MigrationTypeValue_Values returns all elements of the MigrationTypeValue enum
+func MigrationTypeValue_Values() []string {
+	return []string{
+		MigrationTypeValueFullLoad,
+		MigrationTypeValueCdc,
+		MigrationTypeValueFullLoadAndCdc,
+	}
+}
+
 const (
 	// NestingLevelValueNone is a NestingLevelValue enum value
 	NestingLevelValueNone = "none"
@@ -14866,6 +25293,14 @@ const (
 	NestingLevelValueOne = "one"
 )
 
+// NestingLevelValue_Values returns all elements of the NestingLevelValue enum
+func NestingLevelValue_Values() []string {
+	return []string{
+		NestingLevelValueNone,
+		NestingLevelValueOne,
+	}
+}
+
 const (
 	// ParquetVersionValueParquet10 is a ParquetVersionValue enum value
 	ParquetVersionValueParquet10 = "parquet-1-0"
@@ -14873,6 +25308,54 @@ const (
 	// ParquetVersionValueParquet20 is a ParquetVersionValue enum value
 	ParquetVersionValueParquet20 = "parquet-2-0"
 )
+
+// ParquetVersionValue_Values returns all elements of the ParquetVersionValue enum
+func ParquetVersionValue_Values() []string {
+	return []string{
+		ParquetVersionValueParquet10,
+		ParquetVersionValueParquet20,
+	}
+}
+
+const (
+	// PluginNameValueNoPreference is a PluginNameValue enum value
+	PluginNameValueNoPreference = "no-preference"
+
+	// PluginNameValueTestDecoding is a PluginNameValue enum value
+	PluginNameValueTestDecoding = "test-decoding"
+
+	// PluginNameValuePglogical is a PluginNameValue enum value
+	PluginNameValuePglogical = "pglogical"
+)
+
+// PluginNameValue_Values returns all elements of the PluginNameValue enum
+func PluginNameValue_Values() []string {
+	return []string{
+		PluginNameValueNoPreference,
+		PluginNameValueTestDecoding,
+		PluginNameValuePglogical,
+	}
+}
+
+const (
+	// RedisAuthTypeValueNone is a RedisAuthTypeValue enum value
+	RedisAuthTypeValueNone = "none"
+
+	// RedisAuthTypeValueAuthRole is a RedisAuthTypeValue enum value
+	RedisAuthTypeValueAuthRole = "auth-role"
+
+	// RedisAuthTypeValueAuthToken is a RedisAuthTypeValue enum value
+	RedisAuthTypeValueAuthToken = "auth-token"
+)
+
+// RedisAuthTypeValue_Values returns all elements of the RedisAuthTypeValue enum
+func RedisAuthTypeValue_Values() []string {
+	return []string{
+		RedisAuthTypeValueNone,
+		RedisAuthTypeValueAuthRole,
+		RedisAuthTypeValueAuthToken,
+	}
+}
 
 const (
 	// RefreshSchemasStatusTypeValueSuccessful is a RefreshSchemasStatusTypeValue enum value
@@ -14885,10 +25368,26 @@ const (
 	RefreshSchemasStatusTypeValueRefreshing = "refreshing"
 )
 
+// RefreshSchemasStatusTypeValue_Values returns all elements of the RefreshSchemasStatusTypeValue enum
+func RefreshSchemasStatusTypeValue_Values() []string {
+	return []string{
+		RefreshSchemasStatusTypeValueSuccessful,
+		RefreshSchemasStatusTypeValueFailed,
+		RefreshSchemasStatusTypeValueRefreshing,
+	}
+}
+
 const (
 	// ReleaseStatusValuesBeta is a ReleaseStatusValues enum value
 	ReleaseStatusValuesBeta = "beta"
 )
+
+// ReleaseStatusValues_Values returns all elements of the ReleaseStatusValues enum
+func ReleaseStatusValues_Values() []string {
+	return []string{
+		ReleaseStatusValuesBeta,
+	}
+}
 
 const (
 	// ReloadOptionValueDataReload is a ReloadOptionValue enum value
@@ -14898,6 +25397,14 @@ const (
 	ReloadOptionValueValidateOnly = "validate-only"
 )
 
+// ReloadOptionValue_Values returns all elements of the ReloadOptionValue enum
+func ReloadOptionValue_Values() []string {
+	return []string{
+		ReloadOptionValueDataReload,
+		ReloadOptionValueValidateOnly,
+	}
+}
+
 const (
 	// ReplicationEndpointTypeValueSource is a ReplicationEndpointTypeValue enum value
 	ReplicationEndpointTypeValueSource = "source"
@@ -14906,10 +25413,61 @@ const (
 	ReplicationEndpointTypeValueTarget = "target"
 )
 
+// ReplicationEndpointTypeValue_Values returns all elements of the ReplicationEndpointTypeValue enum
+func ReplicationEndpointTypeValue_Values() []string {
+	return []string{
+		ReplicationEndpointTypeValueSource,
+		ReplicationEndpointTypeValueTarget,
+	}
+}
+
+const (
+	// SafeguardPolicyRelyOnSqlServerReplicationAgent is a SafeguardPolicy enum value
+	SafeguardPolicyRelyOnSqlServerReplicationAgent = "rely-on-sql-server-replication-agent"
+
+	// SafeguardPolicyExclusiveAutomaticTruncation is a SafeguardPolicy enum value
+	SafeguardPolicyExclusiveAutomaticTruncation = "exclusive-automatic-truncation"
+
+	// SafeguardPolicySharedAutomaticTruncation is a SafeguardPolicy enum value
+	SafeguardPolicySharedAutomaticTruncation = "shared-automatic-truncation"
+)
+
+// SafeguardPolicy_Values returns all elements of the SafeguardPolicy enum
+func SafeguardPolicy_Values() []string {
+	return []string{
+		SafeguardPolicyRelyOnSqlServerReplicationAgent,
+		SafeguardPolicyExclusiveAutomaticTruncation,
+		SafeguardPolicySharedAutomaticTruncation,
+	}
+}
+
 const (
 	// SourceTypeReplicationInstance is a SourceType enum value
 	SourceTypeReplicationInstance = "replication-instance"
 )
+
+// SourceType_Values returns all elements of the SourceType enum
+func SourceType_Values() []string {
+	return []string{
+		SourceTypeReplicationInstance,
+	}
+}
+
+const (
+	// SslSecurityProtocolValuePlaintext is a SslSecurityProtocolValue enum value
+	SslSecurityProtocolValuePlaintext = "plaintext"
+
+	// SslSecurityProtocolValueSslEncryption is a SslSecurityProtocolValue enum value
+	SslSecurityProtocolValueSslEncryption = "ssl-encryption"
+)
+
+// SslSecurityProtocolValue_Values returns all elements of the SslSecurityProtocolValue enum
+func SslSecurityProtocolValue_Values() []string {
+	return []string{
+		SslSecurityProtocolValuePlaintext,
+		SslSecurityProtocolValueSslEncryption,
+	}
+}
 
 const (
 	// StartReplicationTaskTypeValueStartReplication is a StartReplicationTaskTypeValue enum value
@@ -14921,3 +25479,48 @@ const (
 	// StartReplicationTaskTypeValueReloadTarget is a StartReplicationTaskTypeValue enum value
 	StartReplicationTaskTypeValueReloadTarget = "reload-target"
 )
+
+// StartReplicationTaskTypeValue_Values returns all elements of the StartReplicationTaskTypeValue enum
+func StartReplicationTaskTypeValue_Values() []string {
+	return []string{
+		StartReplicationTaskTypeValueStartReplication,
+		StartReplicationTaskTypeValueResumeProcessing,
+		StartReplicationTaskTypeValueReloadTarget,
+	}
+}
+
+const (
+	// TargetDbTypeSpecificDatabase is a TargetDbType enum value
+	TargetDbTypeSpecificDatabase = "specific-database"
+
+	// TargetDbTypeMultipleDatabases is a TargetDbType enum value
+	TargetDbTypeMultipleDatabases = "multiple-databases"
+)
+
+// TargetDbType_Values returns all elements of the TargetDbType enum
+func TargetDbType_Values() []string {
+	return []string{
+		TargetDbTypeSpecificDatabase,
+		TargetDbTypeMultipleDatabases,
+	}
+}
+
+const (
+	// VersionStatusUpToDate is a VersionStatus enum value
+	VersionStatusUpToDate = "UP_TO_DATE"
+
+	// VersionStatusOutdated is a VersionStatus enum value
+	VersionStatusOutdated = "OUTDATED"
+
+	// VersionStatusUnsupported is a VersionStatus enum value
+	VersionStatusUnsupported = "UNSUPPORTED"
+)
+
+// VersionStatus_Values returns all elements of the VersionStatus enum
+func VersionStatus_Values() []string {
+	return []string{
+		VersionStatusUpToDate,
+		VersionStatusOutdated,
+		VersionStatusUnsupported,
+	}
+}

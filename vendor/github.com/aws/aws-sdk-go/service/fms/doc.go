@@ -3,17 +3,21 @@
 // Package fms provides the client and types for making API
 // requests to Firewall Management Service.
 //
-// This is the AWS Firewall Manager API Reference. This guide is for developers
-// who need detailed information about the AWS Firewall Manager API actions,
-// data types, and errors. For detailed information about AWS Firewall Manager
-// features, see the AWS Firewall Manager Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html).
+// This is the Firewall Manager API Reference. This guide is for developers
+// who need detailed information about the Firewall Manager API actions, data
+// types, and errors. For detailed information about Firewall Manager features,
+// see the Firewall Manager Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html).
+//
+// Some API actions require explicit resource permissions. For information,
+// see the developer guide topic Firewall Manager required permissions for API
+// actions (https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01 for more information on this service.
 //
 // See fms package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/fms/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact Firewall Management Service with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

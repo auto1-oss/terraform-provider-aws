@@ -29,14 +29,13 @@ const opAbortEnvironmentUpdate = "AbortEnvironmentUpdate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AbortEnvironmentUpdateRequest method.
+//	req, resp := client.AbortEnvironmentUpdateRequest(params)
 //
-//    // Example sending a request using the AbortEnvironmentUpdateRequest method.
-//    req, resp := client.AbortEnvironmentUpdateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AbortEnvironmentUpdate
 func (c *ElasticBeanstalk) AbortEnvironmentUpdateRequest(input *AbortEnvironmentUpdateInput) (req *request.Request, output *AbortEnvironmentUpdateOutput) {
@@ -69,9 +68,9 @@ func (c *ElasticBeanstalk) AbortEnvironmentUpdateRequest(input *AbortEnvironment
 // API operation AbortEnvironmentUpdate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AbortEnvironmentUpdate
 func (c *ElasticBeanstalk) AbortEnvironmentUpdate(input *AbortEnvironmentUpdateInput) (*AbortEnvironmentUpdateOutput, error) {
@@ -111,14 +110,13 @@ const opApplyEnvironmentManagedAction = "ApplyEnvironmentManagedAction"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ApplyEnvironmentManagedActionRequest method.
+//	req, resp := client.ApplyEnvironmentManagedActionRequest(params)
 //
-//    // Example sending a request using the ApplyEnvironmentManagedActionRequest method.
-//    req, resp := client.ApplyEnvironmentManagedActionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplyEnvironmentManagedAction
 func (c *ElasticBeanstalk) ApplyEnvironmentManagedActionRequest(input *ApplyEnvironmentManagedActionInput) (req *request.Request, output *ApplyEnvironmentManagedActionOutput) {
@@ -151,11 +149,12 @@ func (c *ElasticBeanstalk) ApplyEnvironmentManagedActionRequest(input *ApplyEnvi
 // API operation ApplyEnvironmentManagedAction for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
 //
-//   * ErrCodeManagedActionInvalidStateException "ManagedActionInvalidStateException"
-//   Cannot modify the managed action in its current state.
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
+//
+//   - ErrCodeManagedActionInvalidStateException "ManagedActionInvalidStateException"
+//     Cannot modify the managed action in its current state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplyEnvironmentManagedAction
 func (c *ElasticBeanstalk) ApplyEnvironmentManagedAction(input *ApplyEnvironmentManagedActionInput) (*ApplyEnvironmentManagedActionOutput, error) {
@@ -179,6 +178,90 @@ func (c *ElasticBeanstalk) ApplyEnvironmentManagedActionWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opAssociateEnvironmentOperationsRole = "AssociateEnvironmentOperationsRole"
+
+// AssociateEnvironmentOperationsRoleRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateEnvironmentOperationsRole operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateEnvironmentOperationsRole for more information on using the AssociateEnvironmentOperationsRole
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateEnvironmentOperationsRoleRequest method.
+//	req, resp := client.AssociateEnvironmentOperationsRoleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AssociateEnvironmentOperationsRole
+func (c *ElasticBeanstalk) AssociateEnvironmentOperationsRoleRequest(input *AssociateEnvironmentOperationsRoleInput) (req *request.Request, output *AssociateEnvironmentOperationsRoleOutput) {
+	op := &request.Operation{
+		Name:       opAssociateEnvironmentOperationsRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateEnvironmentOperationsRoleInput{}
+	}
+
+	output = &AssociateEnvironmentOperationsRoleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateEnvironmentOperationsRole API operation for AWS Elastic Beanstalk.
+//
+// Add or change the operations role used by an environment. After this call
+// is made, Elastic Beanstalk uses the associated operations role for permissions
+// to downstream services during subsequent calls acting on this environment.
+// For more information, see Operations roles (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html)
+// in the AWS Elastic Beanstalk Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation AssociateEnvironmentOperationsRole for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AssociateEnvironmentOperationsRole
+func (c *ElasticBeanstalk) AssociateEnvironmentOperationsRole(input *AssociateEnvironmentOperationsRoleInput) (*AssociateEnvironmentOperationsRoleOutput, error) {
+	req, out := c.AssociateEnvironmentOperationsRoleRequest(input)
+	return out, req.Send()
+}
+
+// AssociateEnvironmentOperationsRoleWithContext is the same as AssociateEnvironmentOperationsRole with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateEnvironmentOperationsRole for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticBeanstalk) AssociateEnvironmentOperationsRoleWithContext(ctx aws.Context, input *AssociateEnvironmentOperationsRoleInput, opts ...request.Option) (*AssociateEnvironmentOperationsRoleOutput, error) {
+	req, out := c.AssociateEnvironmentOperationsRoleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCheckDNSAvailability = "CheckDNSAvailability"
 
 // CheckDNSAvailabilityRequest generates a "aws/request.Request" representing the
@@ -195,14 +278,13 @@ const opCheckDNSAvailability = "CheckDNSAvailability"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CheckDNSAvailabilityRequest method.
+//	req, resp := client.CheckDNSAvailabilityRequest(params)
 //
-//    // Example sending a request using the CheckDNSAvailabilityRequest method.
-//    req, resp := client.CheckDNSAvailabilityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CheckDNSAvailability
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *request.Request, output *CheckDNSAvailabilityOutput) {
@@ -269,14 +351,13 @@ const opComposeEnvironments = "ComposeEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ComposeEnvironmentsRequest method.
+//	req, resp := client.ComposeEnvironmentsRequest(params)
 //
-//    // Example sending a request using the ComposeEnvironmentsRequest method.
-//    req, resp := client.ComposeEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ComposeEnvironments
 func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironmentsInput) (req *request.Request, output *EnvironmentDescriptionsMessage) {
@@ -313,12 +394,13 @@ func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironments
 // API operation ComposeEnvironments for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyEnvironmentsException "TooManyEnvironmentsException"
-//   The specified account has reached its limit of environments.
 //
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeTooManyEnvironmentsException "TooManyEnvironmentsException"
+//     The specified account has reached its limit of environments.
+//
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ComposeEnvironments
 func (c *ElasticBeanstalk) ComposeEnvironments(input *ComposeEnvironmentsInput) (*EnvironmentDescriptionsMessage, error) {
@@ -358,14 +440,13 @@ const opCreateApplication = "CreateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationRequest method.
+//	req, resp := client.CreateApplicationRequest(params)
 //
-//    // Example sending a request using the CreateApplicationRequest method.
-//    req, resp := client.CreateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplication
 func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *ApplicationDescriptionMessage) {
@@ -397,8 +478,8 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 // API operation CreateApplication for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyApplicationsException "TooManyApplicationsException"
-//   The specified account has reached its limit of applications.
+//   - ErrCodeTooManyApplicationsException "TooManyApplicationsException"
+//     The specified account has reached its limit of applications.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplication
 func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (*ApplicationDescriptionMessage, error) {
@@ -438,14 +519,13 @@ const opCreateApplicationVersion = "CreateApplicationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateApplicationVersionRequest method.
+//	req, resp := client.CreateApplicationVersionRequest(params)
 //
-//    // Example sending a request using the CreateApplicationVersionRequest method.
-//    req, resp := client.CreateApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplicationVersion
 func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicationVersionInput) (req *request.Request, output *ApplicationVersionDescriptionMessage) {
@@ -474,7 +554,7 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 //
 // Specify a build in an AWS CodeBuild with SourceBuildInformation and BuildConfiguration.
 //
-// Specify a source bundle in S3 with SourceBundle
+// # Specify a source bundle in S3 with SourceBundle
 //
 // Omit both SourceBuildInformation and SourceBundle to use the default sample
 // application.
@@ -492,28 +572,29 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 // API operation CreateApplicationVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyApplicationsException "TooManyApplicationsException"
-//   The specified account has reached its limit of applications.
 //
-//   * ErrCodeTooManyApplicationVersionsException "TooManyApplicationVersionsException"
-//   The specified account has reached its limit of application versions.
+//   - ErrCodeTooManyApplicationsException "TooManyApplicationsException"
+//     The specified account has reached its limit of applications.
 //
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeTooManyApplicationVersionsException "TooManyApplicationVersionsException"
+//     The specified account has reached its limit of application versions.
 //
-//   * ErrCodeS3LocationNotInServiceRegionException "S3LocationNotInServiceRegionException"
-//   The specified S3 bucket does not belong to the S3 region in which the service
-//   is running. The following regions are supported:
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//      * IAD/us-east-1
+//   - ErrCodeS3LocationNotInServiceRegionException "S3LocationNotInServiceRegionException"
+//     The specified S3 bucket does not belong to the S3 region in which the service
+//     is running. The following regions are supported:
 //
-//      * PDX/us-west-2
+//   - IAD/us-east-1
 //
-//      * DUB/eu-west-1
+//   - PDX/us-west-2
 //
-//   * ErrCodeCodeBuildNotInServiceRegionException "CodeBuildNotInServiceRegionException"
-//   AWS CodeBuild is not available in the specified region.
+//   - DUB/eu-west-1
+//
+//   - ErrCodeCodeBuildNotInServiceRegionException "CodeBuildNotInServiceRegionException"
+//     AWS CodeBuild is not available in the specified region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplicationVersion
 func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
@@ -553,14 +634,13 @@ const opCreateConfigurationTemplate = "CreateConfigurationTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationTemplateRequest method.
+//	req, resp := client.CreateConfigurationTemplateRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationTemplateRequest method.
-//    req, resp := client.CreateConfigurationTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateConfigurationTemplate
 func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfigurationTemplateInput) (req *request.Request, output *ConfigurationSettingsDescription) {
@@ -592,11 +672,11 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 //
 // Related Topics
 //
-//    * DescribeConfigurationOptions
+//   - DescribeConfigurationOptions
 //
-//    * DescribeConfigurationSettings
+//   - DescribeConfigurationSettings
 //
-//    * ListAvailableSolutionStacks
+//   - ListAvailableSolutionStacks
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -606,15 +686,16 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 // API operation CreateConfigurationTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//   * ErrCodeTooManyConfigurationTemplatesException "TooManyConfigurationTemplatesException"
-//   The specified account has reached its limit of configuration templates.
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
+//
+//   - ErrCodeTooManyConfigurationTemplatesException "TooManyConfigurationTemplatesException"
+//     The specified account has reached its limit of configuration templates.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateConfigurationTemplate
 func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
@@ -654,14 +735,13 @@ const opCreateEnvironment = "CreateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEnvironmentRequest method.
+//	req, resp := client.CreateEnvironmentRequest(params)
 //
-//    // Example sending a request using the CreateEnvironmentRequest method.
-//    req, resp := client.CreateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateEnvironment
 func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *request.Request, output *EnvironmentDescription) {
@@ -693,12 +773,13 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 // API operation CreateEnvironment for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyEnvironmentsException "TooManyEnvironmentsException"
-//   The specified account has reached its limit of environments.
 //
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeTooManyEnvironmentsException "TooManyEnvironmentsException"
+//     The specified account has reached its limit of environments.
+//
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateEnvironment
 func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (*EnvironmentDescription, error) {
@@ -738,14 +819,13 @@ const opCreatePlatformVersion = "CreatePlatformVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreatePlatformVersionRequest method.
+//	req, resp := client.CreatePlatformVersionRequest(params)
 //
-//    // Example sending a request using the CreatePlatformVersionRequest method.
-//    req, resp := client.CreatePlatformVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreatePlatformVersion
 func (c *ElasticBeanstalk) CreatePlatformVersionRequest(input *CreatePlatformVersionInput) (req *request.Request, output *CreatePlatformVersionOutput) {
@@ -776,16 +856,17 @@ func (c *ElasticBeanstalk) CreatePlatformVersionRequest(input *CreatePlatformVer
 // API operation CreatePlatformVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//   * ErrCodeTooManyPlatformsException "TooManyPlatformsException"
-//   You have exceeded the maximum number of allowed platforms associated with
-//   the account.
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
+//
+//   - ErrCodeTooManyPlatformsException "TooManyPlatformsException"
+//     You have exceeded the maximum number of allowed platforms associated with
+//     the account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreatePlatformVersion
 func (c *ElasticBeanstalk) CreatePlatformVersion(input *CreatePlatformVersionInput) (*CreatePlatformVersionOutput, error) {
@@ -825,14 +906,13 @@ const opCreateStorageLocation = "CreateStorageLocation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateStorageLocationRequest method.
+//	req, resp := client.CreateStorageLocationRequest(params)
 //
-//    // Example sending a request using the CreateStorageLocationRequest method.
-//    req, resp := client.CreateStorageLocationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateStorageLocation
 func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *request.Request, output *CreateStorageLocationOutput) {
@@ -867,15 +947,16 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 // API operation CreateStorageLocation for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
 //
-//   * ErrCodeS3SubscriptionRequiredException "S3SubscriptionRequiredException"
-//   The specified account does not have a subscription to Amazon S3.
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
 //
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeS3SubscriptionRequiredException "S3SubscriptionRequiredException"
+//     The specified account does not have a subscription to Amazon S3.
+//
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateStorageLocation
 func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (*CreateStorageLocationOutput, error) {
@@ -915,14 +996,13 @@ const opDeleteApplication = "DeleteApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationRequest method.
-//    req, resp := client.DeleteApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplication
 func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
@@ -958,9 +1038,9 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 // API operation DeleteApplication for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeOperationInProgressException "OperationInProgressFailure"
-//   Unable to perform the specified operation because another operation that
-//   effects an element in this activity is already in progress.
+//   - ErrCodeOperationInProgressException "OperationInProgressFailure"
+//     Unable to perform the specified operation because another operation that
+//     effects an element in this activity is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplication
 func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -1000,14 +1080,13 @@ const opDeleteApplicationVersion = "DeleteApplicationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteApplicationVersionRequest method.
+//	req, resp := client.DeleteApplicationVersionRequest(params)
 //
-//    // Example sending a request using the DeleteApplicationVersionRequest method.
-//    req, resp := client.DeleteApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplicationVersion
 func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicationVersionInput) (req *request.Request, output *DeleteApplicationVersionOutput) {
@@ -1042,27 +1121,28 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 // API operation DeleteApplicationVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeSourceBundleDeletionException "SourceBundleDeletionFailure"
-//   Unable to delete the Amazon S3 source bundle associated with the application
-//   version. The application version was deleted successfully.
 //
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeSourceBundleDeletionException "SourceBundleDeletionFailure"
+//     Unable to delete the Amazon S3 source bundle associated with the application
+//     version. The application version was deleted successfully.
 //
-//   * ErrCodeOperationInProgressException "OperationInProgressFailure"
-//   Unable to perform the specified operation because another operation that
-//   effects an element in this activity is already in progress.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//   * ErrCodeS3LocationNotInServiceRegionException "S3LocationNotInServiceRegionException"
-//   The specified S3 bucket does not belong to the S3 region in which the service
-//   is running. The following regions are supported:
+//   - ErrCodeOperationInProgressException "OperationInProgressFailure"
+//     Unable to perform the specified operation because another operation that
+//     effects an element in this activity is already in progress.
 //
-//      * IAD/us-east-1
+//   - ErrCodeS3LocationNotInServiceRegionException "S3LocationNotInServiceRegionException"
+//     The specified S3 bucket does not belong to the S3 region in which the service
+//     is running. The following regions are supported:
 //
-//      * PDX/us-west-2
+//   - IAD/us-east-1
 //
-//      * DUB/eu-west-1
+//   - PDX/us-west-2
+//
+//   - DUB/eu-west-1
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplicationVersion
 func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (*DeleteApplicationVersionOutput, error) {
@@ -1102,14 +1182,13 @@ const opDeleteConfigurationTemplate = "DeleteConfigurationTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationTemplateRequest method.
+//	req, resp := client.DeleteConfigurationTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationTemplateRequest method.
-//    req, resp := client.DeleteConfigurationTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteConfigurationTemplate
 func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfigurationTemplateInput) (req *request.Request, output *DeleteConfigurationTemplateOutput) {
@@ -1145,9 +1224,9 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 // API operation DeleteConfigurationTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeOperationInProgressException "OperationInProgressFailure"
-//   Unable to perform the specified operation because another operation that
-//   effects an element in this activity is already in progress.
+//   - ErrCodeOperationInProgressException "OperationInProgressFailure"
+//     Unable to perform the specified operation because another operation that
+//     effects an element in this activity is already in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteConfigurationTemplate
 func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (*DeleteConfigurationTemplateOutput, error) {
@@ -1187,14 +1266,13 @@ const opDeleteEnvironmentConfiguration = "DeleteEnvironmentConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEnvironmentConfigurationRequest method.
+//	req, resp := client.DeleteEnvironmentConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteEnvironmentConfigurationRequest method.
-//    req, resp := client.DeleteEnvironmentConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteEnvironmentConfiguration
 func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEnvironmentConfigurationInput) (req *request.Request, output *DeleteEnvironmentConfigurationOutput) {
@@ -1269,14 +1347,13 @@ const opDeletePlatformVersion = "DeletePlatformVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePlatformVersionRequest method.
+//	req, resp := client.DeletePlatformVersionRequest(params)
 //
-//    // Example sending a request using the DeletePlatformVersionRequest method.
-//    req, resp := client.DeletePlatformVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeletePlatformVersion
 func (c *ElasticBeanstalk) DeletePlatformVersionRequest(input *DeletePlatformVersionInput) (req *request.Request, output *DeletePlatformVersionOutput) {
@@ -1307,20 +1384,21 @@ func (c *ElasticBeanstalk) DeletePlatformVersionRequest(input *DeletePlatformVer
 // API operation DeletePlatformVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeOperationInProgressException "OperationInProgressFailure"
-//   Unable to perform the specified operation because another operation that
-//   effects an element in this activity is already in progress.
 //
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeOperationInProgressException "OperationInProgressFailure"
+//     Unable to perform the specified operation because another operation that
+//     effects an element in this activity is already in progress.
 //
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//   * ErrCodePlatformVersionStillReferencedException "PlatformVersionStillReferencedException"
-//   You cannot delete the platform version because there are still environments
-//   running on it.
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
+//
+//   - ErrCodePlatformVersionStillReferencedException "PlatformVersionStillReferencedException"
+//     You cannot delete the platform version because there are still environments
+//     running on it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeletePlatformVersion
 func (c *ElasticBeanstalk) DeletePlatformVersion(input *DeletePlatformVersionInput) (*DeletePlatformVersionOutput, error) {
@@ -1360,14 +1438,13 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAccountAttributesRequest method.
+//	req, resp := client.DescribeAccountAttributesRequest(params)
 //
-//    // Example sending a request using the DescribeAccountAttributesRequest method.
-//    req, resp := client.DescribeAccountAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeAccountAttributes
 func (c *ElasticBeanstalk) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
@@ -1401,9 +1478,9 @@ func (c *ElasticBeanstalk) DescribeAccountAttributesRequest(input *DescribeAccou
 // API operation DescribeAccountAttributes for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeAccountAttributes
 func (c *ElasticBeanstalk) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
@@ -1443,14 +1520,13 @@ const opDescribeApplicationVersions = "DescribeApplicationVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeApplicationVersionsRequest method.
+//	req, resp := client.DescribeApplicationVersionsRequest(params)
 //
-//    // Example sending a request using the DescribeApplicationVersionsRequest method.
-//    req, resp := client.DescribeApplicationVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeApplicationVersions
 func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApplicationVersionsInput) (req *request.Request, output *DescribeApplicationVersionsOutput) {
@@ -1517,14 +1593,13 @@ const opDescribeApplications = "DescribeApplications"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeApplicationsRequest method.
+//	req, resp := client.DescribeApplicationsRequest(params)
 //
-//    // Example sending a request using the DescribeApplicationsRequest method.
-//    req, resp := client.DescribeApplicationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeApplications
 func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *request.Request, output *DescribeApplicationsOutput) {
@@ -1591,14 +1666,13 @@ const opDescribeConfigurationOptions = "DescribeConfigurationOptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConfigurationOptionsRequest method.
+//	req, resp := client.DescribeConfigurationOptionsRequest(params)
 //
-//    // Example sending a request using the DescribeConfigurationOptionsRequest method.
-//    req, resp := client.DescribeConfigurationOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationOptions
 func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeConfigurationOptionsInput) (req *request.Request, output *DescribeConfigurationOptionsOutput) {
@@ -1633,8 +1707,8 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 // API operation DescribeConfigurationOptions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationOptions
 func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (*DescribeConfigurationOptionsOutput, error) {
@@ -1674,14 +1748,13 @@ const opDescribeConfigurationSettings = "DescribeConfigurationSettings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConfigurationSettingsRequest method.
+//	req, resp := client.DescribeConfigurationSettingsRequest(params)
 //
-//    // Example sending a request using the DescribeConfigurationSettingsRequest method.
-//    req, resp := client.DescribeConfigurationSettingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationSettings
 func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeConfigurationSettingsInput) (req *request.Request, output *DescribeConfigurationSettingsOutput) {
@@ -1714,7 +1787,7 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 //
 // Related Topics
 //
-//    * DeleteEnvironmentConfiguration
+//   - DeleteEnvironmentConfiguration
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1724,8 +1797,8 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 // API operation DescribeConfigurationSettings for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationSettings
 func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (*DescribeConfigurationSettingsOutput, error) {
@@ -1765,14 +1838,13 @@ const opDescribeEnvironmentHealth = "DescribeEnvironmentHealth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentHealthRequest method.
+//	req, resp := client.DescribeEnvironmentHealthRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentHealthRequest method.
-//    req, resp := client.DescribeEnvironmentHealthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentHealth
 func (c *ElasticBeanstalk) DescribeEnvironmentHealthRequest(input *DescribeEnvironmentHealthInput) (req *request.Request, output *DescribeEnvironmentHealthOutput) {
@@ -1805,12 +1877,13 @@ func (c *ElasticBeanstalk) DescribeEnvironmentHealthRequest(input *DescribeEnvir
 // API operation DescribeEnvironmentHealth for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
-//   One or more input parameters is not valid. Please correct the input parameters
-//   and try the operation again.
 //
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeInvalidRequestException "InvalidRequestException"
+//     One or more input parameters is not valid. Please correct the input parameters
+//     and try the operation again.
+//
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentHealth
 func (c *ElasticBeanstalk) DescribeEnvironmentHealth(input *DescribeEnvironmentHealthInput) (*DescribeEnvironmentHealthOutput, error) {
@@ -1850,14 +1923,13 @@ const opDescribeEnvironmentManagedActionHistory = "DescribeEnvironmentManagedAct
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentManagedActionHistoryRequest method.
+//	req, resp := client.DescribeEnvironmentManagedActionHistoryRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentManagedActionHistoryRequest method.
-//    req, resp := client.DescribeEnvironmentManagedActionHistoryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionHistory
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryRequest(input *DescribeEnvironmentManagedActionHistoryInput) (req *request.Request, output *DescribeEnvironmentManagedActionHistoryOutput) {
@@ -1865,6 +1937,12 @@ func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryRequest(input 
 		Name:       opDescribeEnvironmentManagedActionHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1888,8 +1966,8 @@ func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryRequest(input 
 // API operation DescribeEnvironmentManagedActionHistory for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionHistory
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistory(input *DescribeEnvironmentManagedActionHistoryInput) (*DescribeEnvironmentManagedActionHistoryOutput, error) {
@@ -1913,6 +1991,57 @@ func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryWithContext(ct
 	return out, req.Send()
 }
 
+// DescribeEnvironmentManagedActionHistoryPages iterates over the pages of a DescribeEnvironmentManagedActionHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEnvironmentManagedActionHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeEnvironmentManagedActionHistory operation.
+//	pageNum := 0
+//	err := client.DescribeEnvironmentManagedActionHistoryPages(params,
+//	    func(page *elasticbeanstalk.DescribeEnvironmentManagedActionHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryPages(input *DescribeEnvironmentManagedActionHistoryInput, fn func(*DescribeEnvironmentManagedActionHistoryOutput, bool) bool) error {
+	return c.DescribeEnvironmentManagedActionHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEnvironmentManagedActionHistoryPagesWithContext same as DescribeEnvironmentManagedActionHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryPagesWithContext(ctx aws.Context, input *DescribeEnvironmentManagedActionHistoryInput, fn func(*DescribeEnvironmentManagedActionHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEnvironmentManagedActionHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEnvironmentManagedActionHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEnvironmentManagedActionHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEnvironmentManagedActions = "DescribeEnvironmentManagedActions"
 
 // DescribeEnvironmentManagedActionsRequest generates a "aws/request.Request" representing the
@@ -1929,14 +2058,13 @@ const opDescribeEnvironmentManagedActions = "DescribeEnvironmentManagedActions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentManagedActionsRequest method.
+//	req, resp := client.DescribeEnvironmentManagedActionsRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentManagedActionsRequest method.
-//    req, resp := client.DescribeEnvironmentManagedActionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActions
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionsRequest(input *DescribeEnvironmentManagedActionsInput) (req *request.Request, output *DescribeEnvironmentManagedActionsOutput) {
@@ -1967,8 +2095,8 @@ func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionsRequest(input *Descr
 // API operation DescribeEnvironmentManagedActions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActions
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActions(input *DescribeEnvironmentManagedActionsInput) (*DescribeEnvironmentManagedActionsOutput, error) {
@@ -2008,14 +2136,13 @@ const opDescribeEnvironmentResources = "DescribeEnvironmentResources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentResourcesRequest method.
+//	req, resp := client.DescribeEnvironmentResourcesRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentResourcesRequest method.
-//    req, resp := client.DescribeEnvironmentResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentResources
 func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEnvironmentResourcesInput) (req *request.Request, output *DescribeEnvironmentResourcesOutput) {
@@ -2046,9 +2173,9 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 // API operation DescribeEnvironmentResources for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentResources
 func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (*DescribeEnvironmentResourcesOutput, error) {
@@ -2088,14 +2215,13 @@ const opDescribeEnvironments = "DescribeEnvironments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEnvironmentsRequest method.
+//	req, resp := client.DescribeEnvironmentsRequest(params)
 //
-//    // Example sending a request using the DescribeEnvironmentsRequest method.
-//    req, resp := client.DescribeEnvironmentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironments
 func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *request.Request, output *EnvironmentDescriptionsMessage) {
@@ -2162,14 +2288,13 @@ const opDescribeEvents = "DescribeEvents"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventsRequest method.
+//	req, resp := client.DescribeEventsRequest(params)
 //
-//    // Example sending a request using the DescribeEventsRequest method.
-//    req, resp := client.DescribeEventsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEvents
 func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
@@ -2236,15 +2361,14 @@ func (c *ElasticBeanstalk) DescribeEventsWithContext(ctx aws.Context, input *Des
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeEvents operation.
-//    pageNum := 0
-//    err := client.DescribeEventsPages(params,
-//        func(page *elasticbeanstalk.DescribeEventsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeEvents operation.
+//	pageNum := 0
+//	err := client.DescribeEventsPages(params,
+//	    func(page *elasticbeanstalk.DescribeEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
 	return c.DescribeEventsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2296,14 +2420,13 @@ const opDescribeInstancesHealth = "DescribeInstancesHealth"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeInstancesHealthRequest method.
+//	req, resp := client.DescribeInstancesHealthRequest(params)
 //
-//    // Example sending a request using the DescribeInstancesHealthRequest method.
-//    req, resp := client.DescribeInstancesHealthRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeInstancesHealth
 func (c *ElasticBeanstalk) DescribeInstancesHealthRequest(input *DescribeInstancesHealthInput) (req *request.Request, output *DescribeInstancesHealthOutput) {
@@ -2335,12 +2458,13 @@ func (c *ElasticBeanstalk) DescribeInstancesHealthRequest(input *DescribeInstanc
 // API operation DescribeInstancesHealth for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
-//   One or more input parameters is not valid. Please correct the input parameters
-//   and try the operation again.
 //
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeInvalidRequestException "InvalidRequestException"
+//     One or more input parameters is not valid. Please correct the input parameters
+//     and try the operation again.
+//
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeInstancesHealth
 func (c *ElasticBeanstalk) DescribeInstancesHealth(input *DescribeInstancesHealthInput) (*DescribeInstancesHealthOutput, error) {
@@ -2380,14 +2504,13 @@ const opDescribePlatformVersion = "DescribePlatformVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribePlatformVersionRequest method.
+//	req, resp := client.DescribePlatformVersionRequest(params)
 //
-//    // Example sending a request using the DescribePlatformVersionRequest method.
-//    req, resp := client.DescribePlatformVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribePlatformVersion
 func (c *ElasticBeanstalk) DescribePlatformVersionRequest(input *DescribePlatformVersionInput) (req *request.Request, output *DescribePlatformVersionOutput) {
@@ -2422,12 +2545,13 @@ func (c *ElasticBeanstalk) DescribePlatformVersionRequest(input *DescribePlatfor
 // API operation DescribePlatformVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribePlatformVersion
 func (c *ElasticBeanstalk) DescribePlatformVersion(input *DescribePlatformVersionInput) (*DescribePlatformVersionOutput, error) {
@@ -2451,6 +2575,90 @@ func (c *ElasticBeanstalk) DescribePlatformVersionWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opDisassociateEnvironmentOperationsRole = "DisassociateEnvironmentOperationsRole"
+
+// DisassociateEnvironmentOperationsRoleRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateEnvironmentOperationsRole operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateEnvironmentOperationsRole for more information on using the DisassociateEnvironmentOperationsRole
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateEnvironmentOperationsRoleRequest method.
+//	req, resp := client.DisassociateEnvironmentOperationsRoleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DisassociateEnvironmentOperationsRole
+func (c *ElasticBeanstalk) DisassociateEnvironmentOperationsRoleRequest(input *DisassociateEnvironmentOperationsRoleInput) (req *request.Request, output *DisassociateEnvironmentOperationsRoleOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateEnvironmentOperationsRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateEnvironmentOperationsRoleInput{}
+	}
+
+	output = &DisassociateEnvironmentOperationsRoleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateEnvironmentOperationsRole API operation for AWS Elastic Beanstalk.
+//
+// Disassociate the operations role from an environment. After this call is
+// made, Elastic Beanstalk uses the caller's permissions for permissions to
+// downstream services during subsequent calls acting on this environment. For
+// more information, see Operations roles (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html)
+// in the AWS Elastic Beanstalk Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DisassociateEnvironmentOperationsRole for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DisassociateEnvironmentOperationsRole
+func (c *ElasticBeanstalk) DisassociateEnvironmentOperationsRole(input *DisassociateEnvironmentOperationsRoleInput) (*DisassociateEnvironmentOperationsRoleOutput, error) {
+	req, out := c.DisassociateEnvironmentOperationsRoleRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateEnvironmentOperationsRoleWithContext is the same as DisassociateEnvironmentOperationsRole with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateEnvironmentOperationsRole for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticBeanstalk) DisassociateEnvironmentOperationsRoleWithContext(ctx aws.Context, input *DisassociateEnvironmentOperationsRoleInput, opts ...request.Option) (*DisassociateEnvironmentOperationsRoleOutput, error) {
+	req, out := c.DisassociateEnvironmentOperationsRoleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAvailableSolutionStacks = "ListAvailableSolutionStacks"
 
 // ListAvailableSolutionStacksRequest generates a "aws/request.Request" representing the
@@ -2467,14 +2675,13 @@ const opListAvailableSolutionStacks = "ListAvailableSolutionStacks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAvailableSolutionStacksRequest method.
+//	req, resp := client.ListAvailableSolutionStacksRequest(params)
 //
-//    // Example sending a request using the ListAvailableSolutionStacksRequest method.
-//    req, resp := client.ListAvailableSolutionStacksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListAvailableSolutionStacks
 func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *request.Request, output *ListAvailableSolutionStacksOutput) {
@@ -2542,14 +2749,13 @@ const opListPlatformBranches = "ListPlatformBranches"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPlatformBranchesRequest method.
+//	req, resp := client.ListPlatformBranchesRequest(params)
 //
-//    // Example sending a request using the ListPlatformBranchesRequest method.
-//    req, resp := client.ListPlatformBranchesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListPlatformBranches
 func (c *ElasticBeanstalk) ListPlatformBranchesRequest(input *ListPlatformBranchesInput) (req *request.Request, output *ListPlatformBranchesOutput) {
@@ -2618,15 +2824,14 @@ func (c *ElasticBeanstalk) ListPlatformBranchesWithContext(ctx aws.Context, inpu
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListPlatformBranches operation.
-//    pageNum := 0
-//    err := client.ListPlatformBranchesPages(params,
-//        func(page *elasticbeanstalk.ListPlatformBranchesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListPlatformBranches operation.
+//	pageNum := 0
+//	err := client.ListPlatformBranchesPages(params,
+//	    func(page *elasticbeanstalk.ListPlatformBranchesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ElasticBeanstalk) ListPlatformBranchesPages(input *ListPlatformBranchesInput, fn func(*ListPlatformBranchesOutput, bool) bool) error {
 	return c.ListPlatformBranchesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2678,14 +2883,13 @@ const opListPlatformVersions = "ListPlatformVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListPlatformVersionsRequest method.
+//	req, resp := client.ListPlatformVersionsRequest(params)
 //
-//    // Example sending a request using the ListPlatformVersionsRequest method.
-//    req, resp := client.ListPlatformVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListPlatformVersions
 func (c *ElasticBeanstalk) ListPlatformVersionsRequest(input *ListPlatformVersionsInput) (req *request.Request, output *ListPlatformVersionsOutput) {
@@ -2693,6 +2897,12 @@ func (c *ElasticBeanstalk) ListPlatformVersionsRequest(input *ListPlatformVersio
 		Name:       opListPlatformVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2721,12 +2931,13 @@ func (c *ElasticBeanstalk) ListPlatformVersionsRequest(input *ListPlatformVersio
 // API operation ListPlatformVersions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeServiceException "ElasticBeanstalkServiceException"
-//   A generic service exception has occurred.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+//   - ErrCodeServiceException "ElasticBeanstalkServiceException"
+//     A generic service exception has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListPlatformVersions
 func (c *ElasticBeanstalk) ListPlatformVersions(input *ListPlatformVersionsInput) (*ListPlatformVersionsOutput, error) {
@@ -2750,6 +2961,57 @@ func (c *ElasticBeanstalk) ListPlatformVersionsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// ListPlatformVersionsPages iterates over the pages of a ListPlatformVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPlatformVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPlatformVersions operation.
+//	pageNum := 0
+//	err := client.ListPlatformVersionsPages(params,
+//	    func(page *elasticbeanstalk.ListPlatformVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ElasticBeanstalk) ListPlatformVersionsPages(input *ListPlatformVersionsInput, fn func(*ListPlatformVersionsOutput, bool) bool) error {
+	return c.ListPlatformVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPlatformVersionsPagesWithContext same as ListPlatformVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticBeanstalk) ListPlatformVersionsPagesWithContext(ctx aws.Context, input *ListPlatformVersionsInput, fn func(*ListPlatformVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPlatformVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPlatformVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPlatformVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2766,14 +3028,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListTagsForResource
 func (c *ElasticBeanstalk) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -2808,16 +3069,17 @@ func (c *ElasticBeanstalk) ListTagsForResourceRequest(input *ListTagsForResource
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   A resource doesn't exist for the specified Amazon Resource Name (ARN).
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//   * ErrCodeResourceTypeNotSupportedException "ResourceTypeNotSupportedException"
-//   The type of the specified Amazon Resource Name (ARN) isn't supported for
-//   this operation.
+//   - ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN).
+//
+//   - ErrCodeResourceTypeNotSupportedException "ResourceTypeNotSupportedException"
+//     The type of the specified Amazon Resource Name (ARN) isn't supported for
+//     this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListTagsForResource
 func (c *ElasticBeanstalk) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2857,14 +3119,13 @@ const opRebuildEnvironment = "RebuildEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RebuildEnvironmentRequest method.
+//	req, resp := client.RebuildEnvironmentRequest(params)
 //
-//    // Example sending a request using the RebuildEnvironmentRequest method.
-//    req, resp := client.RebuildEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RebuildEnvironment
 func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentInput) (req *request.Request, output *RebuildEnvironmentOutput) {
@@ -2897,9 +3158,9 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 // API operation RebuildEnvironment for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RebuildEnvironment
 func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (*RebuildEnvironmentOutput, error) {
@@ -2939,14 +3200,13 @@ const opRequestEnvironmentInfo = "RequestEnvironmentInfo"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RequestEnvironmentInfoRequest method.
+//	req, resp := client.RequestEnvironmentInfoRequest(params)
 //
-//    // Example sending a request using the RequestEnvironmentInfoRequest method.
-//    req, resp := client.RequestEnvironmentInfoRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RequestEnvironmentInfo
 func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironmentInfoInput) (req *request.Request, output *RequestEnvironmentInfoOutput) {
@@ -2982,7 +3242,7 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 //
 // Related Topics
 //
-//    * RetrieveEnvironmentInfo
+//   - RetrieveEnvironmentInfo
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3028,14 +3288,13 @@ const opRestartAppServer = "RestartAppServer"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RestartAppServerRequest method.
+//	req, resp := client.RestartAppServerRequest(params)
 //
-//    // Example sending a request using the RestartAppServerRequest method.
-//    req, resp := client.RestartAppServerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RestartAppServer
 func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput) (req *request.Request, output *RestartAppServerOutput) {
@@ -3104,14 +3363,13 @@ const opRetrieveEnvironmentInfo = "RetrieveEnvironmentInfo"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the RetrieveEnvironmentInfoRequest method.
+//	req, resp := client.RetrieveEnvironmentInfoRequest(params)
 //
-//    // Example sending a request using the RetrieveEnvironmentInfoRequest method.
-//    req, resp := client.RetrieveEnvironmentInfoRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RetrieveEnvironmentInfo
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnvironmentInfoInput) (req *request.Request, output *RetrieveEnvironmentInfoOutput) {
@@ -3136,7 +3394,7 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 //
 // Related Topics
 //
-//    * RequestEnvironmentInfo
+//   - RequestEnvironmentInfo
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3182,14 +3440,13 @@ const opSwapEnvironmentCNAMEs = "SwapEnvironmentCNAMEs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SwapEnvironmentCNAMEsRequest method.
+//	req, resp := client.SwapEnvironmentCNAMEsRequest(params)
 //
-//    // Example sending a request using the SwapEnvironmentCNAMEsRequest method.
-//    req, resp := client.SwapEnvironmentCNAMEsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/SwapEnvironmentCNAMEs
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCNAMEsInput) (req *request.Request, output *SwapEnvironmentCNAMEsOutput) {
@@ -3257,14 +3514,13 @@ const opTerminateEnvironment = "TerminateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TerminateEnvironmentRequest method.
+//	req, resp := client.TerminateEnvironmentRequest(params)
 //
-//    // Example sending a request using the TerminateEnvironmentRequest method.
-//    req, resp := client.TerminateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/TerminateEnvironment
 func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironmentInput) (req *request.Request, output *EnvironmentDescription) {
@@ -3295,9 +3551,9 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 // API operation TerminateEnvironment for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/TerminateEnvironment
 func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (*EnvironmentDescription, error) {
@@ -3337,14 +3593,13 @@ const opUpdateApplication = "UpdateApplication"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationRequest method.
+//	req, resp := client.UpdateApplicationRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationRequest method.
-//    req, resp := client.UpdateApplicationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplication
 func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *ApplicationDescriptionMessage) {
@@ -3414,14 +3669,13 @@ const opUpdateApplicationResourceLifecycle = "UpdateApplicationResourceLifecycle
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationResourceLifecycleRequest method.
+//	req, resp := client.UpdateApplicationResourceLifecycleRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationResourceLifecycleRequest method.
-//    req, resp := client.UpdateApplicationResourceLifecycleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationResourceLifecycle
 func (c *ElasticBeanstalk) UpdateApplicationResourceLifecycleRequest(input *UpdateApplicationResourceLifecycleInput) (req *request.Request, output *UpdateApplicationResourceLifecycleOutput) {
@@ -3452,9 +3706,9 @@ func (c *ElasticBeanstalk) UpdateApplicationResourceLifecycleRequest(input *Upda
 // API operation UpdateApplicationResourceLifecycle for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationResourceLifecycle
 func (c *ElasticBeanstalk) UpdateApplicationResourceLifecycle(input *UpdateApplicationResourceLifecycleInput) (*UpdateApplicationResourceLifecycleOutput, error) {
@@ -3494,14 +3748,13 @@ const opUpdateApplicationVersion = "UpdateApplicationVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateApplicationVersionRequest method.
+//	req, resp := client.UpdateApplicationVersionRequest(params)
 //
-//    // Example sending a request using the UpdateApplicationVersionRequest method.
-//    req, resp := client.UpdateApplicationVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationVersion
 func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicationVersionInput) (req *request.Request, output *ApplicationVersionDescriptionMessage) {
@@ -3571,14 +3824,13 @@ const opUpdateConfigurationTemplate = "UpdateConfigurationTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationTemplateRequest method.
+//	req, resp := client.UpdateConfigurationTemplateRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationTemplateRequest method.
-//    req, resp := client.UpdateConfigurationTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateConfigurationTemplate
 func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfigurationTemplateInput) (req *request.Request, output *ConfigurationSettingsDescription) {
@@ -3607,7 +3859,7 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 //
 // Related Topics
 //
-//    * DescribeConfigurationOptions
+//   - DescribeConfigurationOptions
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3617,12 +3869,13 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // API operation UpdateConfigurationTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateConfigurationTemplate
 func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
@@ -3662,14 +3915,13 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateEnvironmentRequest method.
+//	req, resp := client.UpdateEnvironmentRequest(params)
 //
-//    // Example sending a request using the UpdateEnvironmentRequest method.
-//    req, resp := client.UpdateEnvironmentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateEnvironment
 func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *request.Request, output *EnvironmentDescription) {
@@ -3710,12 +3962,13 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 // API operation UpdateEnvironment for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateEnvironment
 func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (*EnvironmentDescription, error) {
@@ -3755,14 +4008,13 @@ const opUpdateTagsForResource = "UpdateTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTagsForResourceRequest method.
+//	req, resp := client.UpdateTagsForResourceRequest(params)
 //
-//    // Example sending a request using the UpdateTagsForResourceRequest method.
-//    req, resp := client.UpdateTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateTagsForResource
 func (c *ElasticBeanstalk) UpdateTagsForResourceRequest(input *UpdateTagsForResourceInput) (req *request.Request, output *UpdateTagsForResourceOutput) {
@@ -3815,27 +4067,28 @@ func (c *ElasticBeanstalk) UpdateTagsForResourceRequest(input *UpdateTagsForReso
 // API operation UpdateTagsForResource for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeOperationInProgressException "OperationInProgressFailure"
-//   Unable to perform the specified operation because another operation that
-//   effects an element in this activity is already in progress.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
 //
-//   * ErrCodeTooManyTagsException "TooManyTagsException"
-//   The number of tags in the resource would exceed the number of tags that each
-//   resource can have.
+//   - ErrCodeOperationInProgressException "OperationInProgressFailure"
+//     Unable to perform the specified operation because another operation that
+//     effects an element in this activity is already in progress.
 //
-//   To calculate this, the operation considers both the number of tags the resource
-//   already has and the tags this operation would add if it succeeded.
+//   - ErrCodeTooManyTagsException "TooManyTagsException"
+//     The number of tags in the resource would exceed the number of tags that each
+//     resource can have.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   A resource doesn't exist for the specified Amazon Resource Name (ARN).
+//     To calculate this, the operation considers both the number of tags the resource
+//     already has and the tags this operation would add if it succeeded.
 //
-//   * ErrCodeResourceTypeNotSupportedException "ResourceTypeNotSupportedException"
-//   The type of the specified Amazon Resource Name (ARN) isn't supported for
-//   this operation.
+//   - ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN).
+//
+//   - ErrCodeResourceTypeNotSupportedException "ResourceTypeNotSupportedException"
+//     The type of the specified Amazon Resource Name (ARN) isn't supported for
+//     this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateTagsForResource
 func (c *ElasticBeanstalk) UpdateTagsForResource(input *UpdateTagsForResourceInput) (*UpdateTagsForResourceOutput, error) {
@@ -3875,14 +4128,13 @@ const opValidateConfigurationSettings = "ValidateConfigurationSettings"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ValidateConfigurationSettingsRequest method.
+//	req, resp := client.ValidateConfigurationSettingsRequest(params)
 //
-//    // Example sending a request using the ValidateConfigurationSettingsRequest method.
-//    req, resp := client.ValidateConfigurationSettingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ValidateConfigurationSettings
 func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateConfigurationSettingsInput) (req *request.Request, output *ValidateConfigurationSettingsOutput) {
@@ -3917,12 +4169,13 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 // API operation ValidateConfigurationSettings for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
-//   The specified account does not have sufficient privileges for one or more
-//   AWS services.
 //
-//   * ErrCodeTooManyBucketsException "TooManyBucketsException"
-//   The specified account has reached its limit of Amazon S3 buckets.
+//   - ErrCodeInsufficientPrivilegesException "InsufficientPrivilegesException"
+//     The specified account does not have sufficient privileges for one or more
+//     AWS services.
+//
+//   - ErrCodeTooManyBucketsException "TooManyBucketsException"
+//     The specified account has reached its limit of Amazon S3 buckets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ValidateConfigurationSettings
 func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (*ValidateConfigurationSettingsOutput, error) {
@@ -3958,12 +4211,20 @@ type AbortEnvironmentUpdateInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AbortEnvironmentUpdateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AbortEnvironmentUpdateInput) GoString() string {
 	return s.String()
 }
@@ -3997,12 +4258,20 @@ type AbortEnvironmentUpdateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AbortEnvironmentUpdateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AbortEnvironmentUpdateOutput) GoString() string {
 	return s.String()
 }
@@ -4036,12 +4305,20 @@ type ApplicationDescription struct {
 	Versions []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationDescription) GoString() string {
 	return s.String()
 }
@@ -4102,12 +4379,20 @@ type ApplicationDescriptionMessage struct {
 	Application *ApplicationDescription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationDescriptionMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationDescriptionMessage) GoString() string {
 	return s.String()
 }
@@ -4140,12 +4425,20 @@ type ApplicationMetrics struct {
 	StatusCodes *StatusCodes `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationMetrics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationMetrics) GoString() string {
 	return s.String()
 }
@@ -4197,12 +4490,20 @@ type ApplicationResourceLifecycleConfig struct {
 	VersionLifecycleConfig *ApplicationVersionLifecycleConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationResourceLifecycleConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationResourceLifecycleConfig) GoString() string {
 	return s.String()
 }
@@ -4289,12 +4590,20 @@ type ApplicationVersionDescription struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationVersionDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationVersionDescription) GoString() string {
 	return s.String()
 }
@@ -4367,12 +4676,20 @@ type ApplicationVersionDescriptionMessage struct {
 	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationVersionDescriptionMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationVersionDescriptionMessage) GoString() string {
 	return s.String()
 }
@@ -4402,12 +4719,20 @@ type ApplicationVersionLifecycleConfig struct {
 	MaxCountRule *MaxCountRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationVersionLifecycleConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationVersionLifecycleConfig) GoString() string {
 	return s.String()
 }
@@ -4460,12 +4785,20 @@ type ApplyEnvironmentManagedActionInput struct {
 	EnvironmentName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyEnvironmentManagedActionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyEnvironmentManagedActionInput) GoString() string {
 	return s.String()
 }
@@ -4518,12 +4851,20 @@ type ApplyEnvironmentManagedActionOutput struct {
 	Status *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyEnvironmentManagedActionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplyEnvironmentManagedActionOutput) GoString() string {
 	return s.String()
 }
@@ -4552,6 +4893,96 @@ func (s *ApplyEnvironmentManagedActionOutput) SetStatus(v string) *ApplyEnvironm
 	return s
 }
 
+// Request to add or change the operations role used by an environment.
+type AssociateEnvironmentOperationsRoleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the environment to which to set the operations role.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `min:"4" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an existing IAM role to be used as the
+	// environment's operations role.
+	//
+	// OperationsRole is a required field
+	OperationsRole *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEnvironmentOperationsRoleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEnvironmentOperationsRoleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateEnvironmentOperationsRoleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateEnvironmentOperationsRoleInput"}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 4))
+	}
+	if s.OperationsRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationsRole"))
+	}
+	if s.OperationsRole != nil && len(*s.OperationsRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OperationsRole", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *AssociateEnvironmentOperationsRoleInput) SetEnvironmentName(v string) *AssociateEnvironmentOperationsRoleInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetOperationsRole sets the OperationsRole field's value.
+func (s *AssociateEnvironmentOperationsRoleInput) SetOperationsRole(v string) *AssociateEnvironmentOperationsRoleInput {
+	s.OperationsRole = &v
+	return s
+}
+
+type AssociateEnvironmentOperationsRoleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEnvironmentOperationsRoleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEnvironmentOperationsRoleOutput) GoString() string {
+	return s.String()
+}
+
 // Describes an Auto Scaling launch configuration.
 type AutoScalingGroup struct {
 	_ struct{} `type:"structure"`
@@ -4560,12 +4991,20 @@ type AutoScalingGroup struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingGroup) GoString() string {
 	return s.String()
 }
@@ -4613,12 +5052,20 @@ type BuildConfiguration struct {
 	TimeoutInMinutes *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BuildConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BuildConfiguration) GoString() string {
 	return s.String()
 }
@@ -4677,12 +5124,20 @@ type Builder struct {
 	ARN *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Builder) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Builder) GoString() string {
 	return s.String()
 }
@@ -4742,12 +5197,20 @@ type CPUUtilization struct {
 	User *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CPUUtilization) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CPUUtilization) GoString() string {
 	return s.String()
 }
@@ -4810,12 +5273,20 @@ type CheckDNSAvailabilityInput struct {
 	CNAMEPrefix *string `min:"4" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckDNSAvailabilityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckDNSAvailabilityInput) GoString() string {
 	return s.String()
 }
@@ -4858,12 +5329,20 @@ type CheckDNSAvailabilityOutput struct {
 	FullyQualifiedCNAME *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckDNSAvailabilityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckDNSAvailabilityOutput) GoString() string {
 	return s.String()
 }
@@ -4902,12 +5381,20 @@ type ComposeEnvironmentsInput struct {
 	VersionLabels []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComposeEnvironmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComposeEnvironmentsInput) GoString() string {
 	return s.String()
 }
@@ -5023,12 +5510,20 @@ type ConfigurationOptionDescription struct {
 	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationOptionDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationOptionDescription) GoString() string {
 	return s.String()
 }
@@ -5120,12 +5615,20 @@ type ConfigurationOptionSetting struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationOptionSetting) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationOptionSetting) GoString() string {
 	return s.String()
 }
@@ -5215,12 +5718,20 @@ type ConfigurationSettingsDescription struct {
 	TemplateName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationSettingsDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationSettingsDescription) GoString() string {
 	return s.String()
 }
@@ -5308,12 +5819,20 @@ type CreateApplicationInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationInput) GoString() string {
 	return s.String()
 }
@@ -5436,12 +5955,20 @@ type CreateApplicationVersionInput struct {
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateApplicationVersionInput) GoString() string {
 	return s.String()
 }
@@ -5615,12 +6142,20 @@ type CreateConfigurationTemplateInput struct {
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationTemplateInput) GoString() string {
 	return s.String()
 }
@@ -5762,6 +6297,15 @@ type CreateEnvironmentInput struct {
 	// for details.
 	GroupName *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of an existing IAM role to be used as the
+	// environment's operations role. If specified, Elastic Beanstalk uses the operations
+	// role for permissions to downstream services during this call and during subsequent
+	// calls acting on this environment. To specify an operations role, you must
+	// have the iam:PassRole permission for the role. For more information, see
+	// Operations roles (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html)
+	// in the AWS Elastic Beanstalk Developer Guide.
+	OperationsRole *string `min:"1" type:"string"`
+
 	// If specified, AWS Elastic Beanstalk sets the specified configuration options
 	// to the requested value in the configuration set for the new environment.
 	// These override the values obtained from the solution stack or the configuration
@@ -5811,12 +6355,20 @@ type CreateEnvironmentInput struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -5838,6 +6390,9 @@ func (s *CreateEnvironmentInput) Validate() error {
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.OperationsRole != nil && len(*s.OperationsRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OperationsRole", 1))
 	}
 	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
@@ -5909,6 +6464,12 @@ func (s *CreateEnvironmentInput) SetEnvironmentName(v string) *CreateEnvironment
 // SetGroupName sets the GroupName field's value.
 func (s *CreateEnvironmentInput) SetGroupName(v string) *CreateEnvironmentInput {
 	s.GroupName = &v
+	return s
+}
+
+// SetOperationsRole sets the OperationsRole field's value.
+func (s *CreateEnvironmentInput) SetOperationsRole(v string) *CreateEnvironmentInput {
+	s.OperationsRole = &v
 	return s
 }
 
@@ -5992,12 +6553,20 @@ type CreatePlatformVersionInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePlatformVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePlatformVersionInput) GoString() string {
 	return s.String()
 }
@@ -6090,12 +6659,20 @@ type CreatePlatformVersionOutput struct {
 	PlatformSummary *PlatformSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePlatformVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePlatformVersionOutput) GoString() string {
 	return s.String()
 }
@@ -6116,12 +6693,20 @@ type CreateStorageLocationInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStorageLocationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStorageLocationInput) GoString() string {
 	return s.String()
 }
@@ -6134,12 +6719,20 @@ type CreateStorageLocationOutput struct {
 	S3Bucket *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStorageLocationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStorageLocationOutput) GoString() string {
 	return s.String()
 }
@@ -6161,12 +6754,20 @@ type CustomAmi struct {
 	VirtualizationType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomAmi) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomAmi) GoString() string {
 	return s.String()
 }
@@ -6197,12 +6798,20 @@ type DeleteApplicationInput struct {
 	TerminateEnvByForce *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationInput) GoString() string {
 	return s.String()
 }
@@ -6239,12 +6848,20 @@ type DeleteApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationOutput) GoString() string {
 	return s.String()
 }
@@ -6269,12 +6886,20 @@ type DeleteApplicationVersionInput struct {
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationVersionInput) GoString() string {
 	return s.String()
 }
@@ -6323,12 +6948,20 @@ type DeleteApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteApplicationVersionOutput) GoString() string {
 	return s.String()
 }
@@ -6348,12 +6981,20 @@ type DeleteConfigurationTemplateInput struct {
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationTemplateInput) GoString() string {
 	return s.String()
 }
@@ -6396,12 +7037,20 @@ type DeleteConfigurationTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -6421,12 +7070,20 @@ type DeleteEnvironmentConfigurationInput struct {
 	EnvironmentName *string `min:"4" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6469,12 +7126,20 @@ type DeleteEnvironmentConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEnvironmentConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6486,12 +7151,20 @@ type DeletePlatformVersionInput struct {
 	PlatformArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePlatformVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePlatformVersionInput) GoString() string {
 	return s.String()
 }
@@ -6509,12 +7182,20 @@ type DeletePlatformVersionOutput struct {
 	PlatformSummary *PlatformSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePlatformVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePlatformVersionOutput) GoString() string {
 	return s.String()
 }
@@ -6551,12 +7232,20 @@ type Deployment struct {
 	VersionLabel *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Deployment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Deployment) GoString() string {
 	return s.String()
 }
@@ -6589,12 +7278,20 @@ type DescribeAccountAttributesInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesInput) GoString() string {
 	return s.String()
 }
@@ -6606,12 +7303,20 @@ type DescribeAccountAttributesOutput struct {
 	ResourceQuotas *ResourceQuotas `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -6647,12 +7352,20 @@ type DescribeApplicationVersionsInput struct {
 	VersionLabels []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationVersionsInput) GoString() string {
 	return s.String()
 }
@@ -6709,12 +7422,20 @@ type DescribeApplicationVersionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -6740,12 +7461,20 @@ type DescribeApplicationsInput struct {
 	ApplicationNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationsInput) GoString() string {
 	return s.String()
 }
@@ -6764,12 +7493,20 @@ type DescribeApplicationsOutput struct {
 	Applications []*ApplicationDescription `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeApplicationsOutput) GoString() string {
 	return s.String()
 }
@@ -6806,12 +7543,20 @@ type DescribeConfigurationOptionsInput struct {
 	TemplateName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationOptionsInput) GoString() string {
 	return s.String()
 }
@@ -6895,12 +7640,20 @@ type DescribeConfigurationOptionsOutput struct {
 	SolutionStackName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -6950,12 +7703,20 @@ type DescribeConfigurationSettingsInput struct {
 	TemplateName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSettingsInput) GoString() string {
 	return s.String()
 }
@@ -7008,12 +7769,20 @@ type DescribeConfigurationSettingsOutput struct {
 	ConfigurationSettings []*ConfigurationSettingsDescription `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -7030,7 +7799,7 @@ type DescribeEnvironmentHealthInput struct {
 
 	// Specify the response elements to return. To retrieve all attributes, set
 	// to All. If no attribute names are specified, returns the name of the environment.
-	AttributeNames []*string `type:"list"`
+	AttributeNames []*string `type:"list" enum:"EnvironmentHealthAttribute"`
 
 	// Specify the environment by ID.
 	//
@@ -7043,12 +7812,20 @@ type DescribeEnvironmentHealthInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentHealthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentHealthInput) GoString() string {
 	return s.String()
 }
@@ -7117,12 +7894,20 @@ type DescribeEnvironmentHealthOutput struct {
 	Status *string `type:"string" enum:"EnvironmentHealth"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentHealthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentHealthOutput) GoString() string {
 	return s.String()
 }
@@ -7186,18 +7971,26 @@ type DescribeEnvironmentManagedActionHistoryInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// The maximum number of items to return for a single request.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The pagination token returned by a previous request.
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionHistoryInput) GoString() string {
 	return s.String()
 }
@@ -7207,6 +8000,9 @@ func (s *DescribeEnvironmentManagedActionHistoryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeEnvironmentManagedActionHistoryInput"}
 	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 4))
+	}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7251,12 +8047,20 @@ type DescribeEnvironmentManagedActionHistoryOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -7287,12 +8091,20 @@ type DescribeEnvironmentManagedActionsInput struct {
 	Status *string `type:"string" enum:"ActionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionsInput) GoString() string {
 	return s.String()
 }
@@ -7323,12 +8135,20 @@ type DescribeEnvironmentManagedActionsOutput struct {
 	ManagedActions []*ManagedAction `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentManagedActionsOutput) GoString() string {
 	return s.String()
 }
@@ -7358,12 +8178,20 @@ type DescribeEnvironmentResourcesInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentResourcesInput) GoString() string {
 	return s.String()
 }
@@ -7401,12 +8229,20 @@ type DescribeEnvironmentResourcesOutput struct {
 	EnvironmentResources *EnvironmentResourceDescription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -7464,12 +8300,20 @@ type DescribeEnvironmentsInput struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEnvironmentsInput) GoString() string {
 	return s.String()
 }
@@ -7594,12 +8438,20 @@ type DescribeEventsInput struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsInput) GoString() string {
 	return s.String()
 }
@@ -7713,12 +8565,20 @@ type DescribeEventsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventsOutput) GoString() string {
 	return s.String()
 }
@@ -7741,7 +8601,7 @@ type DescribeInstancesHealthInput struct {
 
 	// Specifies the response elements you wish to receive. To retrieve all attributes,
 	// set to All. If no attribute names are specified, returns a list of instances.
-	AttributeNames []*string `type:"list"`
+	AttributeNames []*string `type:"list" enum:"InstancesHealthAttribute"`
 
 	// Specify the AWS Elastic Beanstalk environment by ID.
 	EnvironmentId *string `type:"string"`
@@ -7753,12 +8613,20 @@ type DescribeInstancesHealthInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstancesHealthInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstancesHealthInput) GoString() string {
 	return s.String()
 }
@@ -7822,12 +8690,20 @@ type DescribeInstancesHealthOutput struct {
 	RefreshedAt *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstancesHealthOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstancesHealthOutput) GoString() string {
 	return s.String()
 }
@@ -7857,12 +8733,20 @@ type DescribePlatformVersionInput struct {
 	PlatformArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePlatformVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePlatformVersionInput) GoString() string {
 	return s.String()
 }
@@ -7880,12 +8764,20 @@ type DescribePlatformVersionOutput struct {
 	PlatformDescription *PlatformDescription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePlatformVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePlatformVersionOutput) GoString() string {
 	return s.String()
 }
@@ -7894,6 +8786,78 @@ func (s DescribePlatformVersionOutput) GoString() string {
 func (s *DescribePlatformVersionOutput) SetPlatformDescription(v *PlatformDescription) *DescribePlatformVersionOutput {
 	s.PlatformDescription = v
 	return s
+}
+
+// Request to disassociate the operations role from an environment.
+type DisassociateEnvironmentOperationsRoleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the environment from which to disassociate the operations role.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `min:"4" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEnvironmentOperationsRoleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEnvironmentOperationsRoleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateEnvironmentOperationsRoleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateEnvironmentOperationsRoleInput"}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DisassociateEnvironmentOperationsRoleInput) SetEnvironmentName(v string) *DisassociateEnvironmentOperationsRoleInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+type DisassociateEnvironmentOperationsRoleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEnvironmentOperationsRoleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEnvironmentOperationsRoleOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the properties of an environment.
@@ -7962,6 +8926,11 @@ type EnvironmentDescription struct {
 	// For more information, see Health Colors and Statuses (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	HealthStatus *string `type:"string" enum:"EnvironmentHealthStatus"`
 
+	// The Amazon Resource Name (ARN) of the environment's operations role. For
+	// more information, see Operations roles (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html)
+	// in the AWS Elastic Beanstalk Developer Guide.
+	OperationsRole *string `min:"1" type:"string"`
+
 	// The ARN of the platform version.
 	PlatformArn *string `type:"string"`
 
@@ -7996,12 +8965,20 @@ type EnvironmentDescription struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentDescription) GoString() string {
 	return s.String()
 }
@@ -8084,6 +9061,12 @@ func (s *EnvironmentDescription) SetHealthStatus(v string) *EnvironmentDescripti
 	return s
 }
 
+// SetOperationsRole sets the OperationsRole field's value.
+func (s *EnvironmentDescription) SetOperationsRole(v string) *EnvironmentDescription {
+	s.OperationsRole = &v
+	return s
+}
+
 // SetPlatformArn sets the PlatformArn field's value.
 func (s *EnvironmentDescription) SetPlatformArn(v string) *EnvironmentDescription {
 	s.PlatformArn = &v
@@ -8138,12 +9121,20 @@ type EnvironmentDescriptionsMessage struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentDescriptionsMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentDescriptionsMessage) GoString() string {
 	return s.String()
 }
@@ -8181,12 +9172,20 @@ type EnvironmentInfoDescription struct {
 	SampleTimestamp *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentInfoDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentInfoDescription) GoString() string {
 	return s.String()
 }
@@ -8230,12 +9229,20 @@ type EnvironmentLink struct {
 	LinkName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentLink) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentLink) GoString() string {
 	return s.String()
 }
@@ -8281,12 +9288,20 @@ type EnvironmentResourceDescription struct {
 	Triggers []*Trigger `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentResourceDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentResourceDescription) GoString() string {
 	return s.String()
 }
@@ -8348,12 +9363,20 @@ type EnvironmentResourcesDescription struct {
 	LoadBalancer *LoadBalancerDescription `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentResourcesDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentResourcesDescription) GoString() string {
 	return s.String()
 }
@@ -8394,12 +9417,20 @@ type EnvironmentTier struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentTier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnvironmentTier) GoString() string {
 	return s.String()
 }
@@ -8454,12 +9485,20 @@ type EventDescription struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDescription) GoString() string {
 	return s.String()
 }
@@ -8526,12 +9565,20 @@ type Instance struct {
 	Id *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Instance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Instance) GoString() string {
 	return s.String()
 }
@@ -8578,12 +9625,20 @@ type InstanceHealthSummary struct {
 	Warning *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceHealthSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceHealthSummary) GoString() string {
 	return s.String()
 }
@@ -8674,12 +9729,20 @@ type Latency struct {
 	P999 *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Latency) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Latency) GoString() string {
 	return s.String()
 }
@@ -8740,12 +9803,20 @@ type LaunchConfiguration struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchConfiguration) GoString() string {
 	return s.String()
 }
@@ -8764,12 +9835,20 @@ type LaunchTemplate struct {
 	Id *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LaunchTemplate) GoString() string {
 	return s.String()
 }
@@ -8784,12 +9863,20 @@ type ListAvailableSolutionStacksInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableSolutionStacksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableSolutionStacksInput) GoString() string {
 	return s.String()
 }
@@ -8805,12 +9892,20 @@ type ListAvailableSolutionStacksOutput struct {
 	SolutionStacks []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableSolutionStacksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableSolutionStacksOutput) GoString() string {
 	return s.String()
 }
@@ -8866,12 +9961,20 @@ type ListPlatformBranchesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformBranchesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformBranchesInput) GoString() string {
 	return s.String()
 }
@@ -8918,12 +10021,20 @@ type ListPlatformBranchesOutput struct {
 	PlatformBranchSummaryList []*PlatformBranchSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformBranchesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformBranchesOutput) GoString() string {
 	return s.String()
 }
@@ -8959,12 +10070,20 @@ type ListPlatformVersionsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformVersionsInput) GoString() string {
 	return s.String()
 }
@@ -9011,12 +10130,20 @@ type ListPlatformVersionsOutput struct {
 	PlatformSummaryList []*PlatformSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPlatformVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -9044,12 +10171,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -9083,12 +10218,20 @@ type ListTagsForResourceOutput struct {
 	ResourceTags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9116,12 +10259,20 @@ type Listener struct {
 	Protocol *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Listener) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Listener) GoString() string {
 	return s.String()
 }
@@ -9146,12 +10297,20 @@ type LoadBalancer struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoadBalancer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoadBalancer) GoString() string {
 	return s.String()
 }
@@ -9176,12 +10335,20 @@ type LoadBalancerDescription struct {
 	LoadBalancerName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoadBalancerDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoadBalancerDescription) GoString() string {
 	return s.String()
 }
@@ -9226,12 +10393,20 @@ type ManagedAction struct {
 	WindowStartTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedAction) GoString() string {
 	return s.String()
 }
@@ -9295,12 +10470,20 @@ type ManagedActionHistoryItem struct {
 	Status *string `type:"string" enum:"ActionHistoryStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedActionHistoryItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedActionHistoryItem) GoString() string {
 	return s.String()
 }
@@ -9371,12 +10554,20 @@ type MaxAgeRule struct {
 	MaxAgeInDays *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxAgeRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxAgeRule) GoString() string {
 	return s.String()
 }
@@ -9430,12 +10621,20 @@ type MaxCountRule struct {
 	MaxCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxCountRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxCountRule) GoString() string {
 	return s.String()
 }
@@ -9484,12 +10683,20 @@ type OptionRestrictionRegex struct {
 	Pattern *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OptionRestrictionRegex) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OptionRestrictionRegex) GoString() string {
 	return s.String()
 }
@@ -9520,12 +10727,20 @@ type OptionSpecification struct {
 	ResourceName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OptionSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OptionSpecification) GoString() string {
 	return s.String()
 }
@@ -9591,12 +10806,20 @@ type PlatformBranchSummary struct {
 	SupportedTierList []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformBranchSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformBranchSummary) GoString() string {
 	return s.String()
 }
@@ -9707,12 +10930,20 @@ type PlatformDescription struct {
 	SupportedTierList []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformDescription) GoString() string {
 	return s.String()
 }
@@ -9876,12 +11107,20 @@ type PlatformFilter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformFilter) GoString() string {
 	return s.String()
 }
@@ -9915,12 +11154,20 @@ type PlatformFramework struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformFramework) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformFramework) GoString() string {
 	return s.String()
 }
@@ -9948,12 +11195,20 @@ type PlatformProgrammingLanguage struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformProgrammingLanguage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformProgrammingLanguage) GoString() string {
 	return s.String()
 }
@@ -10019,12 +11274,20 @@ type PlatformSummary struct {
 	SupportedTierList []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PlatformSummary) GoString() string {
 	return s.String()
 }
@@ -10112,12 +11375,20 @@ type Queue struct {
 	URL *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Queue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Queue) GoString() string {
 	return s.String()
 }
@@ -10152,12 +11423,20 @@ type RebuildEnvironmentInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebuildEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebuildEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -10191,12 +11470,20 @@ type RebuildEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebuildEnvironmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RebuildEnvironmentOutput) GoString() string {
 	return s.String()
 }
@@ -10232,12 +11519,20 @@ type RequestEnvironmentInfoInput struct {
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestEnvironmentInfoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestEnvironmentInfoInput) GoString() string {
 	return s.String()
 }
@@ -10280,12 +11575,20 @@ type RequestEnvironmentInfoOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestEnvironmentInfoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RequestEnvironmentInfoOutput) GoString() string {
 	return s.String()
 }
@@ -10300,12 +11603,20 @@ type ResourceQuota struct {
 	Maximum *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuota) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuota) GoString() string {
 	return s.String()
 }
@@ -10337,12 +11648,20 @@ type ResourceQuotas struct {
 	EnvironmentQuota *ResourceQuota `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuotas) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuotas) GoString() string {
 	return s.String()
 }
@@ -10395,12 +11714,20 @@ type RestartAppServerInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartAppServerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartAppServerInput) GoString() string {
 	return s.String()
 }
@@ -10434,12 +11761,20 @@ type RestartAppServerOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartAppServerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestartAppServerOutput) GoString() string {
 	return s.String()
 }
@@ -10472,12 +11807,20 @@ type RetrieveEnvironmentInfoInput struct {
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetrieveEnvironmentInfoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetrieveEnvironmentInfoInput) GoString() string {
 	return s.String()
 }
@@ -10524,12 +11867,20 @@ type RetrieveEnvironmentInfoOutput struct {
 	EnvironmentInfo []*EnvironmentInfoDescription `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetrieveEnvironmentInfoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetrieveEnvironmentInfoOutput) GoString() string {
 	return s.String()
 }
@@ -10551,12 +11902,20 @@ type S3Location struct {
 	S3Key *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) GoString() string {
 	return s.String()
 }
@@ -10602,12 +11961,20 @@ type SearchFilter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchFilter) GoString() string {
 	return s.String()
 }
@@ -10670,12 +12037,20 @@ type SingleInstanceHealth struct {
 	System *SystemStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleInstanceHealth) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleInstanceHealth) GoString() string {
 	return s.String()
 }
@@ -10751,12 +12126,20 @@ type SolutionStackDescription struct {
 	SolutionStackName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionStackDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionStackDescription) GoString() string {
 	return s.String()
 }
@@ -10808,12 +12191,20 @@ type SourceBuildInformation struct {
 	SourceType *string `type:"string" required:"true" enum:"SourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceBuildInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceBuildInformation) GoString() string {
 	return s.String()
 }
@@ -10869,12 +12260,20 @@ type SourceConfiguration struct {
 	TemplateName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceConfiguration) GoString() string {
 	return s.String()
 }
@@ -10930,12 +12329,20 @@ type StatusCodes struct {
 	Status5xx *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StatusCodes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StatusCodes) GoString() string {
 	return s.String()
 }
@@ -10997,12 +12404,20 @@ type SwapEnvironmentCNAMEsInput struct {
 	SourceEnvironmentName *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SwapEnvironmentCNAMEsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SwapEnvironmentCNAMEsInput) GoString() string {
 	return s.String()
 }
@@ -11051,12 +12466,20 @@ type SwapEnvironmentCNAMEsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SwapEnvironmentCNAMEsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SwapEnvironmentCNAMEsOutput) GoString() string {
 	return s.String()
 }
@@ -11073,12 +12496,20 @@ type SystemStatus struct {
 	LoadAverage []*float64 `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SystemStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SystemStatus) GoString() string {
 	return s.String()
 }
@@ -11106,12 +12537,20 @@ type Tag struct {
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -11183,12 +12622,20 @@ type TerminateEnvironmentInput struct {
 	TerminateResources *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TerminateEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -11238,12 +12685,20 @@ type Trigger struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Trigger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Trigger) GoString() string {
 	return s.String()
 }
@@ -11270,12 +12725,20 @@ type UpdateApplicationInput struct {
 	Description *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationInput) GoString() string {
 	return s.String()
 }
@@ -11322,12 +12785,20 @@ type UpdateApplicationResourceLifecycleInput struct {
 	ResourceLifecycleConfig *ApplicationResourceLifecycleConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationResourceLifecycleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationResourceLifecycleInput) GoString() string {
 	return s.String()
 }
@@ -11378,12 +12849,20 @@ type UpdateApplicationResourceLifecycleOutput struct {
 	ResourceLifecycleConfig *ApplicationResourceLifecycleConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationResourceLifecycleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationResourceLifecycleOutput) GoString() string {
 	return s.String()
 }
@@ -11423,12 +12902,20 @@ type UpdateApplicationVersionInput struct {
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateApplicationVersionInput) GoString() string {
 	return s.String()
 }
@@ -11507,12 +12994,20 @@ type UpdateConfigurationTemplateInput struct {
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationTemplateInput) GoString() string {
 	return s.String()
 }
@@ -11658,12 +13153,20 @@ type UpdateEnvironmentInput struct {
 	VersionLabel *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateEnvironmentInput) GoString() string {
 	return s.String()
 }
@@ -11795,23 +13298,33 @@ type UpdateTagsForResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
-	// A list of tags to add or update.
+	// A list of tags to add or update. If a key of an existing tag is added, the
+	// tag's value is updated.
 	//
-	// If a key of an existing tag is added, the tag's value is updated.
+	// Specify at least one of these parameters: TagsToAdd, TagsToRemove.
 	TagsToAdd []*Tag `type:"list"`
 
-	// A list of tag keys to remove.
+	// A list of tag keys to remove. If a tag key doesn't exist, it is silently
+	// ignored.
 	//
-	// If a tag key doesn't exist, it is silently ignored.
+	// Specify at least one of these parameters: TagsToAdd, TagsToRemove.
 	TagsToRemove []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -11861,12 +13374,20 @@ type UpdateTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -11897,12 +13418,20 @@ type ValidateConfigurationSettingsInput struct {
 	TemplateName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationSettingsInput) GoString() string {
 	return s.String()
 }
@@ -11974,12 +13503,20 @@ type ValidateConfigurationSettingsOutput struct {
 	Messages []*ValidationMessage `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidateConfigurationSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -12013,12 +13550,20 @@ type ValidationMessage struct {
 	Severity *string `type:"string" enum:"ValidationSeverity"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationMessage) GoString() string {
 	return s.String()
 }
@@ -12058,6 +13603,15 @@ const (
 	ActionHistoryStatusUnknown = "Unknown"
 )
 
+// ActionHistoryStatus_Values returns all elements of the ActionHistoryStatus enum
+func ActionHistoryStatus_Values() []string {
+	return []string{
+		ActionHistoryStatusCompleted,
+		ActionHistoryStatusFailed,
+		ActionHistoryStatusUnknown,
+	}
+}
+
 const (
 	// ActionStatusScheduled is a ActionStatus enum value
 	ActionStatusScheduled = "Scheduled"
@@ -12072,6 +13626,16 @@ const (
 	ActionStatusUnknown = "Unknown"
 )
 
+// ActionStatus_Values returns all elements of the ActionStatus enum
+func ActionStatus_Values() []string {
+	return []string{
+		ActionStatusScheduled,
+		ActionStatusPending,
+		ActionStatusRunning,
+		ActionStatusUnknown,
+	}
+}
+
 const (
 	// ActionTypeInstanceRefresh is a ActionType enum value
 	ActionTypeInstanceRefresh = "InstanceRefresh"
@@ -12082,6 +13646,15 @@ const (
 	// ActionTypeUnknown is a ActionType enum value
 	ActionTypeUnknown = "Unknown"
 )
+
+// ActionType_Values returns all elements of the ActionType enum
+func ActionType_Values() []string {
+	return []string{
+		ActionTypeInstanceRefresh,
+		ActionTypePlatformUpdate,
+		ActionTypeUnknown,
+	}
+}
 
 const (
 	// ApplicationVersionStatusProcessed is a ApplicationVersionStatus enum value
@@ -12100,6 +13673,17 @@ const (
 	ApplicationVersionStatusBuilding = "Building"
 )
 
+// ApplicationVersionStatus_Values returns all elements of the ApplicationVersionStatus enum
+func ApplicationVersionStatus_Values() []string {
+	return []string{
+		ApplicationVersionStatusProcessed,
+		ApplicationVersionStatusUnprocessed,
+		ApplicationVersionStatusFailed,
+		ApplicationVersionStatusProcessing,
+		ApplicationVersionStatusBuilding,
+	}
+}
+
 const (
 	// ComputeTypeBuildGeneral1Small is a ComputeType enum value
 	ComputeTypeBuildGeneral1Small = "BUILD_GENERAL1_SMALL"
@@ -12110,6 +13694,15 @@ const (
 	// ComputeTypeBuildGeneral1Large is a ComputeType enum value
 	ComputeTypeBuildGeneral1Large = "BUILD_GENERAL1_LARGE"
 )
+
+// ComputeType_Values returns all elements of the ComputeType enum
+func ComputeType_Values() []string {
+	return []string{
+		ComputeTypeBuildGeneral1Small,
+		ComputeTypeBuildGeneral1Medium,
+		ComputeTypeBuildGeneral1Large,
+	}
+}
 
 const (
 	// ConfigurationDeploymentStatusDeployed is a ConfigurationDeploymentStatus enum value
@@ -12122,6 +13715,15 @@ const (
 	ConfigurationDeploymentStatusFailed = "failed"
 )
 
+// ConfigurationDeploymentStatus_Values returns all elements of the ConfigurationDeploymentStatus enum
+func ConfigurationDeploymentStatus_Values() []string {
+	return []string{
+		ConfigurationDeploymentStatusDeployed,
+		ConfigurationDeploymentStatusPending,
+		ConfigurationDeploymentStatusFailed,
+	}
+}
+
 const (
 	// ConfigurationOptionValueTypeScalar is a ConfigurationOptionValueType enum value
 	ConfigurationOptionValueTypeScalar = "Scalar"
@@ -12129,6 +13731,14 @@ const (
 	// ConfigurationOptionValueTypeList is a ConfigurationOptionValueType enum value
 	ConfigurationOptionValueTypeList = "List"
 )
+
+// ConfigurationOptionValueType_Values returns all elements of the ConfigurationOptionValueType enum
+func ConfigurationOptionValueType_Values() []string {
+	return []string{
+		ConfigurationOptionValueTypeScalar,
+		ConfigurationOptionValueTypeList,
+	}
+}
 
 const (
 	// EnvironmentHealthGreen is a EnvironmentHealth enum value
@@ -12143,6 +13753,16 @@ const (
 	// EnvironmentHealthGrey is a EnvironmentHealth enum value
 	EnvironmentHealthGrey = "Grey"
 )
+
+// EnvironmentHealth_Values returns all elements of the EnvironmentHealth enum
+func EnvironmentHealth_Values() []string {
+	return []string{
+		EnvironmentHealthGreen,
+		EnvironmentHealthYellow,
+		EnvironmentHealthRed,
+		EnvironmentHealthGrey,
+	}
+}
 
 const (
 	// EnvironmentHealthAttributeStatus is a EnvironmentHealthAttribute enum value
@@ -12169,6 +13789,20 @@ const (
 	// EnvironmentHealthAttributeRefreshedAt is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeRefreshedAt = "RefreshedAt"
 )
+
+// EnvironmentHealthAttribute_Values returns all elements of the EnvironmentHealthAttribute enum
+func EnvironmentHealthAttribute_Values() []string {
+	return []string{
+		EnvironmentHealthAttributeStatus,
+		EnvironmentHealthAttributeColor,
+		EnvironmentHealthAttributeCauses,
+		EnvironmentHealthAttributeApplicationMetrics,
+		EnvironmentHealthAttributeInstancesHealth,
+		EnvironmentHealthAttributeAll,
+		EnvironmentHealthAttributeHealthStatus,
+		EnvironmentHealthAttributeRefreshedAt,
+	}
+}
 
 const (
 	// EnvironmentHealthStatusNoData is a EnvironmentHealthStatus enum value
@@ -12199,6 +13833,21 @@ const (
 	EnvironmentHealthStatusSuspended = "Suspended"
 )
 
+// EnvironmentHealthStatus_Values returns all elements of the EnvironmentHealthStatus enum
+func EnvironmentHealthStatus_Values() []string {
+	return []string{
+		EnvironmentHealthStatusNoData,
+		EnvironmentHealthStatusUnknown,
+		EnvironmentHealthStatusPending,
+		EnvironmentHealthStatusOk,
+		EnvironmentHealthStatusInfo,
+		EnvironmentHealthStatusWarning,
+		EnvironmentHealthStatusDegraded,
+		EnvironmentHealthStatusSevere,
+		EnvironmentHealthStatusSuspended,
+	}
+}
+
 const (
 	// EnvironmentInfoTypeTail is a EnvironmentInfoType enum value
 	EnvironmentInfoTypeTail = "tail"
@@ -12207,12 +13856,29 @@ const (
 	EnvironmentInfoTypeBundle = "bundle"
 )
 
+// EnvironmentInfoType_Values returns all elements of the EnvironmentInfoType enum
+func EnvironmentInfoType_Values() []string {
+	return []string{
+		EnvironmentInfoTypeTail,
+		EnvironmentInfoTypeBundle,
+	}
+}
+
 const (
+	// EnvironmentStatusAborting is a EnvironmentStatus enum value
+	EnvironmentStatusAborting = "Aborting"
+
 	// EnvironmentStatusLaunching is a EnvironmentStatus enum value
 	EnvironmentStatusLaunching = "Launching"
 
 	// EnvironmentStatusUpdating is a EnvironmentStatus enum value
 	EnvironmentStatusUpdating = "Updating"
+
+	// EnvironmentStatusLinkingFrom is a EnvironmentStatus enum value
+	EnvironmentStatusLinkingFrom = "LinkingFrom"
+
+	// EnvironmentStatusLinkingTo is a EnvironmentStatus enum value
+	EnvironmentStatusLinkingTo = "LinkingTo"
 
 	// EnvironmentStatusReady is a EnvironmentStatus enum value
 	EnvironmentStatusReady = "Ready"
@@ -12223,6 +13889,20 @@ const (
 	// EnvironmentStatusTerminated is a EnvironmentStatus enum value
 	EnvironmentStatusTerminated = "Terminated"
 )
+
+// EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
+func EnvironmentStatus_Values() []string {
+	return []string{
+		EnvironmentStatusAborting,
+		EnvironmentStatusLaunching,
+		EnvironmentStatusUpdating,
+		EnvironmentStatusLinkingFrom,
+		EnvironmentStatusLinkingTo,
+		EnvironmentStatusReady,
+		EnvironmentStatusTerminating,
+		EnvironmentStatusTerminated,
+	}
+}
 
 const (
 	// EventSeverityTrace is a EventSeverity enum value
@@ -12243,6 +13923,18 @@ const (
 	// EventSeverityFatal is a EventSeverity enum value
 	EventSeverityFatal = "FATAL"
 )
+
+// EventSeverity_Values returns all elements of the EventSeverity enum
+func EventSeverity_Values() []string {
+	return []string{
+		EventSeverityTrace,
+		EventSeverityDebug,
+		EventSeverityInfo,
+		EventSeverityWarn,
+		EventSeverityError,
+		EventSeverityFatal,
+	}
+}
 
 const (
 	// FailureTypeUpdateCancelled is a FailureType enum value
@@ -12266,6 +13958,19 @@ const (
 	// FailureTypePermissionsError is a FailureType enum value
 	FailureTypePermissionsError = "PermissionsError"
 )
+
+// FailureType_Values returns all elements of the FailureType enum
+func FailureType_Values() []string {
+	return []string{
+		FailureTypeUpdateCancelled,
+		FailureTypeCancellationFailed,
+		FailureTypeRollbackFailed,
+		FailureTypeRollbackSuccessful,
+		FailureTypeInternalFailure,
+		FailureTypeInvalidEnvironmentState,
+		FailureTypePermissionsError,
+	}
+}
 
 const (
 	// InstancesHealthAttributeHealthStatus is a InstancesHealthAttribute enum value
@@ -12302,6 +14007,23 @@ const (
 	InstancesHealthAttributeAll = "All"
 )
 
+// InstancesHealthAttribute_Values returns all elements of the InstancesHealthAttribute enum
+func InstancesHealthAttribute_Values() []string {
+	return []string{
+		InstancesHealthAttributeHealthStatus,
+		InstancesHealthAttributeColor,
+		InstancesHealthAttributeCauses,
+		InstancesHealthAttributeApplicationMetrics,
+		InstancesHealthAttributeRefreshedAt,
+		InstancesHealthAttributeLaunchedAt,
+		InstancesHealthAttributeSystem,
+		InstancesHealthAttributeDeployment,
+		InstancesHealthAttributeAvailabilityZone,
+		InstancesHealthAttributeInstanceType,
+		InstancesHealthAttributeAll,
+	}
+}
+
 const (
 	// PlatformStatusCreating is a PlatformStatus enum value
 	PlatformStatusCreating = "Creating"
@@ -12319,6 +14041,17 @@ const (
 	PlatformStatusDeleted = "Deleted"
 )
 
+// PlatformStatus_Values returns all elements of the PlatformStatus enum
+func PlatformStatus_Values() []string {
+	return []string{
+		PlatformStatusCreating,
+		PlatformStatusFailed,
+		PlatformStatusReady,
+		PlatformStatusDeleting,
+		PlatformStatusDeleted,
+	}
+}
+
 const (
 	// SourceRepositoryCodeCommit is a SourceRepository enum value
 	SourceRepositoryCodeCommit = "CodeCommit"
@@ -12326,6 +14059,14 @@ const (
 	// SourceRepositoryS3 is a SourceRepository enum value
 	SourceRepositoryS3 = "S3"
 )
+
+// SourceRepository_Values returns all elements of the SourceRepository enum
+func SourceRepository_Values() []string {
+	return []string{
+		SourceRepositoryCodeCommit,
+		SourceRepositoryS3,
+	}
+}
 
 const (
 	// SourceTypeGit is a SourceType enum value
@@ -12335,6 +14076,14 @@ const (
 	SourceTypeZip = "Zip"
 )
 
+// SourceType_Values returns all elements of the SourceType enum
+func SourceType_Values() []string {
+	return []string{
+		SourceTypeGit,
+		SourceTypeZip,
+	}
+}
+
 const (
 	// ValidationSeverityError is a ValidationSeverity enum value
 	ValidationSeverityError = "error"
@@ -12342,3 +14091,11 @@ const (
 	// ValidationSeverityWarning is a ValidationSeverity enum value
 	ValidationSeverityWarning = "warning"
 )
+
+// ValidationSeverity_Values returns all elements of the ValidationSeverity enum
+func ValidationSeverity_Values() []string {
+	return []string{
+		ValidationSeverityError,
+		ValidationSeverityWarning,
+	}
+}

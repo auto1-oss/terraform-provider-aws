@@ -29,14 +29,13 @@ const opCreateBatchInferenceJob = "CreateBatchInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateBatchInferenceJobRequest method.
+//	req, resp := client.CreateBatchInferenceJobRequest(params)
 //
-//    // Example sending a request using the CreateBatchInferenceJobRequest method.
-//    req, resp := client.CreateBatchInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchInferenceJob
 func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInferenceJobInput) (req *request.Request, output *CreateBatchInferenceJobOutput) {
@@ -59,7 +58,7 @@ func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInference
 //
 // Creates a batch inference job. The operation can handle up to 50 million
 // records and the input file must be in JSON format. For more information,
-// see recommendations-batch.
+// see Creating a batch inference job (https://docs.aws.amazon.com/personalize/latest/dg/creating-batch-inference-job.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -69,20 +68,24 @@ func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInference
 // API operation CreateBatchInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchInferenceJob
 func (c *Personalize) CreateBatchInferenceJob(input *CreateBatchInferenceJobInput) (*CreateBatchInferenceJobOutput, error) {
@@ -106,6 +109,102 @@ func (c *Personalize) CreateBatchInferenceJobWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opCreateBatchSegmentJob = "CreateBatchSegmentJob"
+
+// CreateBatchSegmentJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBatchSegmentJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBatchSegmentJob for more information on using the CreateBatchSegmentJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateBatchSegmentJobRequest method.
+//	req, resp := client.CreateBatchSegmentJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
+func (c *Personalize) CreateBatchSegmentJobRequest(input *CreateBatchSegmentJobInput) (req *request.Request, output *CreateBatchSegmentJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateBatchSegmentJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBatchSegmentJobInput{}
+	}
+
+	output = &CreateBatchSegmentJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateBatchSegmentJob API operation for Amazon Personalize.
+//
+// Creates a batch segment job. The operation can handle up to 50 million records
+// and the input file must be in JSON format. For more information, see Getting
+// batch recommendations and user segments (https://docs.aws.amazon.com/personalize/latest/dg/recommendations-batch.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateBatchSegmentJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
+func (c *Personalize) CreateBatchSegmentJob(input *CreateBatchSegmentJobInput) (*CreateBatchSegmentJobOutput, error) {
+	req, out := c.CreateBatchSegmentJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateBatchSegmentJobWithContext is the same as CreateBatchSegmentJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBatchSegmentJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateBatchSegmentJobWithContext(ctx aws.Context, input *CreateBatchSegmentJobInput, opts ...request.Option) (*CreateBatchSegmentJobOutput, error) {
+	req, out := c.CreateBatchSegmentJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCampaign = "CreateCampaign"
 
 // CreateCampaignRequest generates a "aws/request.Request" representing the
@@ -122,14 +221,13 @@ const opCreateCampaign = "CreateCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCampaignRequest method.
+//	req, resp := client.CreateCampaignRequest(params)
 //
-//    // Example sending a request using the CreateCampaignRequest method.
-//    req, resp := client.CreateCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateCampaign
 func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *request.Request, output *CreateCampaignOutput) {
@@ -150,46 +248,52 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 
 // CreateCampaign API operation for Amazon Personalize.
 //
-// Creates a campaign by deploying a solution version. When a client calls the
+// Creates a campaign that deploys a solution version. When a client calls the
 // GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // and GetPersonalizedRanking (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html)
 // APIs, a campaign is specified in the request.
 //
-// Minimum Provisioned TPS and Auto-Scaling
+// # Minimum Provisioned TPS and Auto-Scaling
 //
 // A transaction is a single GetRecommendations or GetPersonalizedRanking call.
 // Transactions per second (TPS) is the throughput and unit of billing for Amazon
 // Personalize. The minimum provisioned TPS (minProvisionedTPS) specifies the
 // baseline throughput provisioned by Amazon Personalize, and thus, the minimum
-// billing charge. If your TPS increases beyond minProvisionedTPS, Amazon Personalize
-// auto-scales the provisioned capacity up and down, but never below minProvisionedTPS,
-// to maintain a 70% utilization. There's a short time delay while the capacity
-// is increased that might cause loss of transactions. It's recommended to start
-// with a low minProvisionedTPS, track your usage using Amazon CloudWatch metrics,
-// and then increase the minProvisionedTPS as necessary.
+// billing charge.
 //
-// Status
+// If your TPS increases beyond minProvisionedTPS, Amazon Personalize auto-scales
+// the provisioned capacity up and down, but never below minProvisionedTPS.
+// There's a short time delay while the capacity is increased that might cause
+// loss of transactions.
+//
+// The actual TPS used is calculated as the average requests/second within a
+// 5-minute window. You pay for maximum of either the minimum provisioned TPS
+// or the actual TPS. We recommend starting with a low minProvisionedTPS, track
+// your usage using Amazon CloudWatch metrics, and then increase the minProvisionedTPS
+// as necessary.
+//
+// # Status
 //
 // A campaign can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the campaign status, call DescribeCampaign.
+// To get the campaign status, call DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html).
 //
 // Wait until the status of the campaign is ACTIVE before asking the campaign
 // for recommendations.
 //
 // Related APIs
 //
-//    * ListCampaigns
+//   - ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
 //
-//    * DescribeCampaign
+//   - DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
 //
-//    * UpdateCampaign
+//   - UpdateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateCampaign.html)
 //
-//    * DeleteCampaign
+//   - DeleteCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteCampaign.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -199,20 +303,24 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 // API operation CreateCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateCampaign
 func (c *Personalize) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
@@ -252,14 +360,13 @@ const opCreateDataset = "CreateDataset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetRequest method.
+//	req, resp := client.CreateDatasetRequest(params)
 //
-//    // Example sending a request using the CreateDatasetRequest method.
-//    req, resp := client.CreateDatasetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataset
 func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *request.Request, output *CreateDatasetOutput) {
@@ -281,15 +388,16 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 // CreateDataset API operation for Amazon Personalize.
 //
 // Creates an empty dataset and adds it to the specified dataset group. Use
-// CreateDatasetImportJob to import your training data to a dataset.
+// CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html)
+// to import your training data to a dataset.
 //
 // There are three types of datasets:
 //
-//    * Interactions
+//   - Interactions
 //
-//    * Items
+//   - Items
 //
-//    * Users
+//   - Users
 //
 // Each dataset type has an associated schema with required field types. Only
 // the Interactions dataset is required in order to train a model (also referred
@@ -297,21 +405,21 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 //
 // A dataset can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the status of the dataset, call DescribeDataset.
+// To get the status of the dataset, call DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html).
 //
 // Related APIs
 //
-//    * CreateDatasetGroup
+//   - CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html)
 //
-//    * ListDatasets
+//   - ListDatasets (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasets.html)
 //
-//    * DescribeDataset
+//   - DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html)
 //
-//    * DeleteDataset
+//   - DeleteDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDataset.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -321,20 +429,24 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 // API operation CreateDataset for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataset
 func (c *Personalize) CreateDataset(input *CreateDatasetInput) (*CreateDatasetOutput, error) {
@@ -358,6 +470,116 @@ func (c *Personalize) CreateDatasetWithContext(ctx aws.Context, input *CreateDat
 	return out, req.Send()
 }
 
+const opCreateDatasetExportJob = "CreateDatasetExportJob"
+
+// CreateDatasetExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDatasetExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDatasetExportJob for more information on using the CreateDatasetExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateDatasetExportJobRequest method.
+//	req, resp := client.CreateDatasetExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
+func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJobInput) (req *request.Request, output *CreateDatasetExportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateDatasetExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDatasetExportJobInput{}
+	}
+
+	output = &CreateDatasetExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDatasetExportJob API operation for Amazon Personalize.
+//
+// Creates a job that exports data from your dataset to an Amazon S3 bucket.
+// To allow Amazon Personalize to export the training data, you must specify
+// an service-linked IAM role that gives Amazon Personalize PutObject permissions
+// for your Amazon S3 bucket. For information, see Exporting a dataset (https://docs.aws.amazon.com/personalize/latest/dg/export-data.html)
+// in the Amazon Personalize developer guide.
+//
+// # Status
+//
+// A dataset export job can be in one of the following states:
+//
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//
+// To get the status of the export job, call DescribeDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html),
+// and specify the Amazon Resource Name (ARN) of the dataset export job. The
+// dataset export is complete when the status shows as ACTIVE. If the status
+// shows as CREATE FAILED, the response includes a failureReason key, which
+// describes why the job failed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateDatasetExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
+func (c *Personalize) CreateDatasetExportJob(input *CreateDatasetExportJobInput) (*CreateDatasetExportJobOutput, error) {
+	req, out := c.CreateDatasetExportJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateDatasetExportJobWithContext is the same as CreateDatasetExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDatasetExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateDatasetExportJobWithContext(ctx aws.Context, input *CreateDatasetExportJobInput, opts ...request.Option) (*CreateDatasetExportJobOutput, error) {
+	req, out := c.CreateDatasetExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDatasetGroup = "CreateDatasetGroup"
 
 // CreateDatasetGroupRequest generates a "aws/request.Request" representing the
@@ -374,14 +596,13 @@ const opCreateDatasetGroup = "CreateDatasetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetGroupRequest method.
+//	req, resp := client.CreateDatasetGroupRequest(params)
 //
-//    // Example sending a request using the CreateDatasetGroupRequest method.
-//    req, resp := client.CreateDatasetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetGroup
 func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) (req *request.Request, output *CreateDatasetGroupOutput) {
@@ -402,51 +623,55 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 
 // CreateDatasetGroup API operation for Amazon Personalize.
 //
-// Creates an empty dataset group. A dataset group contains related datasets
-// that supply data for training a model. A dataset group can contain at most
-// three datasets, one for each type of dataset:
+// Creates an empty dataset group. A dataset group is a container for Amazon
+// Personalize resources. A dataset group can contain at most three datasets,
+// one for each type of dataset:
 //
-//    * Interactions
+//   - Interactions
 //
-//    * Items
+//   - Items
 //
-//    * Users
+//   - Users
 //
-// To train a model (create a solution), a dataset group that contains an Interactions
-// dataset is required. Call CreateDataset to add a dataset to the group.
+// A dataset group can be a Domain dataset group, where you specify a domain
+// and use pre-configured resources like recommenders, or a Custom dataset group,
+// where you use custom resources, such as a solution with a solution version,
+// that you deploy with a campaign. If you start with a Domain dataset group,
+// you can still add custom resources such as solutions and solution versions
+// trained with recipes for custom use cases and deployed with campaigns.
 //
 // A dataset group can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING
+//   - DELETE PENDING
 //
-// To get the status of the dataset group, call DescribeDatasetGroup. If the
-// status shows as CREATE FAILED, the response includes a failureReason key,
-// which describes why the creation failed.
+// To get the status of the dataset group, call DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html).
+// If the status shows as CREATE FAILED, the response includes a failureReason
+// key, which describes why the creation failed.
 //
 // You must wait until the status of the dataset group is ACTIVE before adding
 // a dataset to the group.
 //
-// You can specify an AWS Key Management Service (KMS) key to encrypt the datasets
-// in the group. If you specify a KMS key, you must also include an AWS Identity
+// You can specify an Key Management Service (KMS) key to encrypt the datasets
+// in the group. If you specify a KMS key, you must also include an Identity
 // and Access Management (IAM) role that has permission to access the key.
 //
 // APIs that require a dataset group ARN in the request
 //
-//    * CreateDataset
+//   - CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html)
 //
-//    * CreateEventTracker
+//   - CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html)
 //
-//    * CreateSolution
+//   - CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
 // Related APIs
 //
-//    * ListDatasetGroups
+//   - ListDatasetGroups (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetGroups.html)
 //
-//    * DescribeDatasetGroup
+//   - DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html)
 //
-//    * DeleteDatasetGroup
+//   - DeleteDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDatasetGroup.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -456,14 +681,18 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 // API operation CreateDatasetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetGroup
 func (c *Personalize) CreateDatasetGroup(input *CreateDatasetGroupInput) (*CreateDatasetGroupOutput, error) {
@@ -503,14 +732,13 @@ const opCreateDatasetImportJob = "CreateDatasetImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDatasetImportJobRequest method.
+//	req, resp := client.CreateDatasetImportJobRequest(params)
 //
-//    // Example sending a request using the CreateDatasetImportJobRequest method.
-//    req, resp := client.CreateDatasetImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetImportJob
 func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJobInput) (req *request.Request, output *CreateDatasetImportJobOutput) {
@@ -533,31 +761,37 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 //
 // Creates a job that imports training data from your data source (an Amazon
 // S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize
-// to import the training data, you must specify an AWS Identity and Access
-// Management (IAM) role that has permission to read from the data source.
+// to import the training data, you must specify an IAM service role that has
+// permission to read from the data source, as Amazon Personalize makes a copy
+// of your data and processes it internally. For information on granting access
+// to your Amazon S3 bucket, see Giving Amazon Personalize Access to Amazon
+// S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
 //
-// The dataset import job replaces any previous data in the dataset.
+// By default, a dataset import job replaces any existing data in the dataset
+// that you imported in bulk. To add new records without replacing existing
+// data, specify INCREMENTAL for the import mode in the CreateDatasetImportJob
+// operation.
 //
-// Status
+// # Status
 //
 // A dataset import job can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-// To get the status of the import job, call DescribeDatasetImportJob, providing
-// the Amazon Resource Name (ARN) of the dataset import job. The dataset import
-// is complete when the status shows as ACTIVE. If the status shows as CREATE
-// FAILED, the response includes a failureReason key, which describes why the
-// job failed.
+// To get the status of the import job, call DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html),
+// providing the Amazon Resource Name (ARN) of the dataset import job. The dataset
+// import is complete when the status shows as ACTIVE. If the status shows as
+// CREATE FAILED, the response includes a failureReason key, which describes
+// why the job failed.
 //
 // Importing takes time. You must wait until the status shows as ACTIVE before
 // training a model using the dataset.
 //
 // Related APIs
 //
-//    * ListDatasetImportJobs
+//   - ListDatasetImportJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetImportJobs.html)
 //
-//    * DescribeDatasetImportJob
+//   - DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -567,20 +801,24 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // API operation CreateDatasetImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetImportJob
 func (c *Personalize) CreateDatasetImportJob(input *CreateDatasetImportJobInput) (*CreateDatasetImportJobOutput, error) {
@@ -620,14 +858,13 @@ const opCreateEventTracker = "CreateEventTracker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateEventTrackerRequest method.
+//	req, resp := client.CreateEventTrackerRequest(params)
 //
-//    // Example sending a request using the CreateEventTrackerRequest method.
-//    req, resp := client.CreateEventTrackerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateEventTracker
 func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) (req *request.Request, output *CreateEventTrackerOutput) {
@@ -648,39 +885,36 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 
 // CreateEventTracker API operation for Amazon Personalize.
 //
-// Creates an event tracker that you use when sending event data to the specified
+// Creates an event tracker that you use when adding event data to a specified
 // dataset group using the PutEvents (https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)
 // API.
-//
-// When Amazon Personalize creates an event tracker, it also creates an event-interactions
-// dataset in the dataset group associated with the event tracker. The event-interactions
-// dataset stores the event data from the PutEvents call. The contents of this
-// dataset are not available to the user.
 //
 // Only one event tracker can be associated with a dataset group. You will get
 // an error if you call CreateEventTracker using the same dataset group as an
 // existing event tracker.
 //
-// When you send event data you include your tracking ID. The tracking ID identifies
-// the customer and authorizes the customer to send the data.
+// When you create an event tracker, the response includes a tracking ID, which
+// you pass as a parameter when you use the PutEvents (https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)
+// operation. Amazon Personalize then appends the event data to the Interactions
+// dataset of the dataset group you specify in your event tracker.
 //
 // The event tracker can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the status of the event tracker, call DescribeEventTracker.
+// To get the status of the event tracker, call DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html).
 //
 // The event tracker must be in the ACTIVE state before using the tracking ID.
 //
 // Related APIs
 //
-//    * ListEventTrackers
+//   - ListEventTrackers (https://docs.aws.amazon.com/personalize/latest/dg/API_ListEventTrackers.html)
 //
-//    * DescribeEventTracker
+//   - DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html)
 //
-//    * DeleteEventTracker
+//   - DeleteEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteEventTracker.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -690,20 +924,24 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 // API operation CreateEventTracker for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateEventTracker
 func (c *Personalize) CreateEventTracker(input *CreateEventTrackerInput) (*CreateEventTrackerOutput, error) {
@@ -727,6 +965,339 @@ func (c *Personalize) CreateEventTrackerWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateFilter = "CreateFilter"
+
+// CreateFilterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFilter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFilter for more information on using the CreateFilter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFilterRequest method.
+//	req, resp := client.CreateFilterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateFilter
+func (c *Personalize) CreateFilterRequest(input *CreateFilterInput) (req *request.Request, output *CreateFilterOutput) {
+	op := &request.Operation{
+		Name:       opCreateFilter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFilterInput{}
+	}
+
+	output = &CreateFilterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFilter API operation for Amazon Personalize.
+//
+// Creates a recommendation filter. For more information, see Filtering recommendations
+// and user segments (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateFilter for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateFilter
+func (c *Personalize) CreateFilter(input *CreateFilterInput) (*CreateFilterOutput, error) {
+	req, out := c.CreateFilterRequest(input)
+	return out, req.Send()
+}
+
+// CreateFilterWithContext is the same as CreateFilter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFilter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateFilterWithContext(ctx aws.Context, input *CreateFilterInput, opts ...request.Option) (*CreateFilterOutput, error) {
+	req, out := c.CreateFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMetricAttribution = "CreateMetricAttribution"
+
+// CreateMetricAttributionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMetricAttribution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMetricAttribution for more information on using the CreateMetricAttribution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateMetricAttributionRequest method.
+//	req, resp := client.CreateMetricAttributionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateMetricAttribution
+func (c *Personalize) CreateMetricAttributionRequest(input *CreateMetricAttributionInput) (req *request.Request, output *CreateMetricAttributionOutput) {
+	op := &request.Operation{
+		Name:       opCreateMetricAttribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateMetricAttributionInput{}
+	}
+
+	output = &CreateMetricAttributionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMetricAttribution API operation for Amazon Personalize.
+//
+// Creates a metric attribution. A metric attribution creates reports on the
+// data that you import into Amazon Personalize. Depending on how you imported
+// the data, you can view reports in Amazon CloudWatch or Amazon S3. For more
+// information, see Measuring impact of recommendations (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateMetricAttribution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateMetricAttribution
+func (c *Personalize) CreateMetricAttribution(input *CreateMetricAttributionInput) (*CreateMetricAttributionOutput, error) {
+	req, out := c.CreateMetricAttributionRequest(input)
+	return out, req.Send()
+}
+
+// CreateMetricAttributionWithContext is the same as CreateMetricAttribution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMetricAttribution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateMetricAttributionWithContext(ctx aws.Context, input *CreateMetricAttributionInput, opts ...request.Option) (*CreateMetricAttributionOutput, error) {
+	req, out := c.CreateMetricAttributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRecommender = "CreateRecommender"
+
+// CreateRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRecommender for more information on using the CreateRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateRecommenderRequest method.
+//	req, resp := client.CreateRecommenderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
+func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (req *request.Request, output *CreateRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opCreateRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateRecommenderInput{}
+	}
+
+	output = &CreateRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRecommender API operation for Amazon Personalize.
+//
+// Creates a recommender with the recipe (a Domain dataset group use case) you
+// specify. You create recommenders for a Domain dataset group and specify the
+// recommender's Amazon Resource Name (ARN) when you make a GetRecommendations
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// request.
+//
+// # Minimum recommendation requests per second
+//
+// When you create a recommender, you can configure the recommender's minimum
+// recommendation requests per second. The minimum recommendation requests per
+// second (minRecommendationRequestsPerSecond) specifies the baseline recommendation
+// request throughput provisioned by Amazon Personalize. The default minRecommendationRequestsPerSecond
+// is 1. A recommendation request is a single GetRecommendations operation.
+// Request throughput is measured in requests per second and Amazon Personalize
+// uses your requests per second to derive your requests per hour and the price
+// of your recommender usage.
+//
+// If your requests per second increases beyond minRecommendationRequestsPerSecond,
+// Amazon Personalize auto-scales the provisioned capacity up and down, but
+// never below minRecommendationRequestsPerSecond. There's a short time delay
+// while the capacity is increased that might cause loss of requests.
+//
+// Your bill is the greater of either the minimum requests per hour (based on
+// minRecommendationRequestsPerSecond) or the actual number of requests. The
+// actual request throughput used is calculated as the average requests/second
+// within a one-hour window. We recommend starting with the default minRecommendationRequestsPerSecond,
+// track your usage using Amazon CloudWatch metrics, and then increase the minRecommendationRequestsPerSecond
+// as necessary.
+//
+// # Status
+//
+// A recommender can be in one of the following states:
+//
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//
+//   - STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+//     > ACTIVE
+//
+//   - DELETE PENDING > DELETE IN_PROGRESS
+//
+// To get the recommender status, call DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html).
+//
+// Wait until the status of the recommender is ACTIVE before asking the recommender
+// for recommendations.
+//
+// Related APIs
+//
+//   - ListRecommenders (https://docs.aws.amazon.com/personalize/latest/dg/API_ListRecommenders.html)
+//
+//   - DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html)
+//
+//   - UpdateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateRecommender.html)
+//
+//   - DeleteRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteRecommender.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateRecommender for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
+func (c *Personalize) CreateRecommender(input *CreateRecommenderInput) (*CreateRecommenderOutput, error) {
+	req, out := c.CreateRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// CreateRecommenderWithContext is the same as CreateRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateRecommenderWithContext(ctx aws.Context, input *CreateRecommenderInput, opts ...request.Option) (*CreateRecommenderOutput, error) {
+	req, out := c.CreateRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateSchema = "CreateSchema"
 
 // CreateSchemaRequest generates a "aws/request.Request" representing the
@@ -743,14 +1314,13 @@ const opCreateSchema = "CreateSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSchemaRequest method.
+//	req, resp := client.CreateSchemaRequest(params)
 //
-//    // Example sending a request using the CreateSchemaRequest method.
-//    req, resp := client.CreateSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSchema
 func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *request.Request, output *CreateSchemaOutput) {
@@ -775,16 +1345,18 @@ func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *reques
 // schema you create must be in Avro JSON format.
 //
 // Amazon Personalize recognizes three schema variants. Each schema is associated
-// with a dataset type and has a set of required field and keywords. You specify
-// a schema when you call CreateDataset.
+// with a dataset type and has a set of required field and keywords. If you
+// are creating a schema for a dataset in a Domain dataset group, you provide
+// the domain of the Domain dataset group. You specify a schema when you call
+// CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Related APIs
 //
-//    * ListSchemas
+//   - ListSchemas (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSchemas.html)
 //
-//    * DescribeSchema
+//   - DescribeSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html)
 //
-//    * DeleteSchema
+//   - DeleteSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSchema.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -794,14 +1366,15 @@ func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *reques
 // API operation CreateSchema for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSchema
 func (c *Personalize) CreateSchema(input *CreateSchemaInput) (*CreateSchemaOutput, error) {
@@ -841,14 +1414,13 @@ const opCreateSolution = "CreateSolution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSolutionRequest method.
+//	req, resp := client.CreateSolutionRequest(params)
 //
-//    // Example sending a request using the CreateSolutionRequest method.
-//    req, resp := client.CreateSolutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolution
 func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *request.Request, output *CreateSolutionOutput) {
@@ -871,11 +1443,14 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 //
 // Creates the configuration for training a model. A trained model is known
 // as a solution. After the configuration is created, you train the model (create
-// a solution) by calling the CreateSolutionVersion operation. Every time you
-// call CreateSolutionVersion, a new version of the solution is created.
+// a solution) by calling the CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
+// operation. Every time you call CreateSolutionVersion, a new version of the
+// solution is created.
 //
-// After creating a solution version, you check its accuracy by calling GetSolutionMetrics.
-// When you are satisfied with the version, you deploy it using CreateCampaign.
+// After creating a solution version, you check its accuracy by calling GetSolutionMetrics
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html).
+// When you are satisfied with the version, you deploy it using CreateCampaign
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 // The campaign provides recommendations to a client through the GetRecommendations
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // API.
@@ -888,30 +1463,33 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 // analyze your data and select the optimum USER_PERSONALIZATION recipe for
 // you.
 //
-// Status
+// Amazon Personalize doesn't support configuring the hpoObjective for solution
+// hyperparameter optimization at this time.
+//
+// # Status
 //
 // A solution can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
-// To get the status of the solution, call DescribeSolution. Wait until the
-// status shows as ACTIVE before calling CreateSolutionVersion.
+// To get the status of the solution, call DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html).
+// Wait until the status shows as ACTIVE before calling CreateSolutionVersion.
 //
 // Related APIs
 //
-//    * ListSolutions
+//   - ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
 //
-//    * CreateSolutionVersion
+//   - CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
 //
-//    * DescribeSolution
+//   - DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
 //
-//    * DeleteSolution
+//   - DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
 //
-//    * ListSolutionVersions
+//   - ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
 //
-//    * DescribeSolutionVersion
+//   - DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -921,20 +1499,24 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 // API operation CreateSolution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * LimitExceededException
-//   The limit on the number of requests per second has been exceeded.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolution
 func (c *Personalize) CreateSolution(input *CreateSolutionInput) (*CreateSolutionOutput, error) {
@@ -974,14 +1556,13 @@ const opCreateSolutionVersion = "CreateSolutionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSolutionVersionRequest method.
+//	req, resp := client.CreateSolutionVersionRequest(params)
 //
-//    // Example sending a request using the CreateSolutionVersionRequest method.
-//    req, resp := client.CreateSolutionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolutionVersion
 func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionInput) (req *request.Request, output *CreateSolutionVersionOutput) {
@@ -1002,35 +1583,46 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 
 // CreateSolutionVersion API operation for Amazon Personalize.
 //
-// Trains or retrains an active solution. A solution is created using the CreateSolution
+// Trains or retrains an active solution in a Custom dataset group. A solution
+// is created using the CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 // operation and must be in the ACTIVE state before calling CreateSolutionVersion.
 // A new version of the solution is created every time you call this operation.
 //
-// Status
+// # Status
 //
 // A solution version can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING
 //
-// To get the status of the version, call DescribeSolutionVersion. Wait until
-// the status shows as ACTIVE before calling CreateCampaign.
+//   - CREATE IN_PROGRESS
+//
+//   - ACTIVE
+//
+//   - CREATE FAILED
+//
+//   - CREATE STOPPING
+//
+//   - CREATE STOPPED
+//
+// To get the status of the version, call DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html).
+// Wait until the status shows as ACTIVE before calling CreateCampaign.
 //
 // If the status shows as CREATE FAILED, the response includes a failureReason
 // key, which describes why the job failed.
 //
 // Related APIs
 //
-//    * ListSolutionVersions
+//   - ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
 //
-//    * DescribeSolutionVersion
+//   - DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
 //
-//    * ListSolutions
+//   - ListSolutions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html)
 //
-//    * CreateSolution
+//   - CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
-//    * DescribeSolution
+//   - DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
 //
-//    * DeleteSolution
+//   - DeleteSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1040,14 +1632,24 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 // API operation CreateSolutionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateSolutionVersion
 func (c *Personalize) CreateSolutionVersion(input *CreateSolutionVersionInput) (*CreateSolutionVersionOutput, error) {
@@ -1087,14 +1689,13 @@ const opDeleteCampaign = "DeleteCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCampaignRequest method.
+//	req, resp := client.DeleteCampaignRequest(params)
 //
-//    // Example sending a request using the DeleteCampaignRequest method.
-//    req, resp := client.DeleteCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteCampaign
 func (c *Personalize) DeleteCampaignRequest(input *DeleteCampaignInput) (req *request.Request, output *DeleteCampaignOutput) {
@@ -1119,7 +1720,7 @@ func (c *Personalize) DeleteCampaignRequest(input *DeleteCampaignInput) (req *re
 // Removes a campaign by deleting the solution deployment. The solution that
 // the campaign is based on is not deleted and can be redeployed when needed.
 // A deleted campaign can no longer be specified in a GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
-// request. For more information on campaigns, see CreateCampaign.
+// request. For information on creating campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1129,14 +1730,15 @@ func (c *Personalize) DeleteCampaignRequest(input *DeleteCampaignInput) (req *re
 // API operation DeleteCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteCampaign
 func (c *Personalize) DeleteCampaign(input *DeleteCampaignInput) (*DeleteCampaignOutput, error) {
@@ -1176,14 +1778,13 @@ const opDeleteDataset = "DeleteDataset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDatasetRequest method.
+//	req, resp := client.DeleteDatasetRequest(params)
 //
-//    // Example sending a request using the DeleteDatasetRequest method.
-//    req, resp := client.DeleteDatasetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDataset
 func (c *Personalize) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
@@ -1207,7 +1808,7 @@ func (c *Personalize) DeleteDatasetRequest(input *DeleteDatasetInput) (req *requ
 //
 // Deletes a dataset. You can't delete a dataset if an associated DatasetImportJob
 // or SolutionVersion is in the CREATE PENDING or IN PROGRESS state. For more
-// information on datasets, see CreateDataset.
+// information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1217,14 +1818,15 @@ func (c *Personalize) DeleteDatasetRequest(input *DeleteDatasetInput) (req *requ
 // API operation DeleteDataset for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDataset
 func (c *Personalize) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
@@ -1264,14 +1866,13 @@ const opDeleteDatasetGroup = "DeleteDatasetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDatasetGroupRequest method.
+//	req, resp := client.DeleteDatasetGroupRequest(params)
 //
-//    // Example sending a request using the DeleteDatasetGroupRequest method.
-//    req, resp := client.DeleteDatasetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDatasetGroup
 func (c *Personalize) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInput) (req *request.Request, output *DeleteDatasetGroupOutput) {
@@ -1296,11 +1897,11 @@ func (c *Personalize) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInput) 
 // Deletes a dataset group. Before you delete a dataset group, you must delete
 // the following:
 //
-//    * All associated event trackers.
+//   - All associated event trackers.
 //
-//    * All associated solutions.
+//   - All associated solutions.
 //
-//    * All datasets in the dataset group.
+//   - All datasets in the dataset group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1310,14 +1911,15 @@ func (c *Personalize) DeleteDatasetGroupRequest(input *DeleteDatasetGroupInput) 
 // API operation DeleteDatasetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteDatasetGroup
 func (c *Personalize) DeleteDatasetGroup(input *DeleteDatasetGroupInput) (*DeleteDatasetGroupOutput, error) {
@@ -1357,14 +1959,13 @@ const opDeleteEventTracker = "DeleteEventTracker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteEventTrackerRequest method.
+//	req, resp := client.DeleteEventTrackerRequest(params)
 //
-//    // Example sending a request using the DeleteEventTrackerRequest method.
-//    req, resp := client.DeleteEventTrackerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteEventTracker
 func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) (req *request.Request, output *DeleteEventTrackerOutput) {
@@ -1388,7 +1989,7 @@ func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) 
 //
 // Deletes the event tracker. Does not delete the event-interactions dataset
 // from the associated dataset group. For more information on event trackers,
-// see CreateEventTracker.
+// see CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1398,14 +1999,15 @@ func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) 
 // API operation DeleteEventTracker for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteEventTracker
 func (c *Personalize) DeleteEventTracker(input *DeleteEventTrackerInput) (*DeleteEventTrackerOutput, error) {
@@ -1429,6 +2031,266 @@ func (c *Personalize) DeleteEventTrackerWithContext(ctx aws.Context, input *Dele
 	return out, req.Send()
 }
 
+const opDeleteFilter = "DeleteFilter"
+
+// DeleteFilterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFilter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFilter for more information on using the DeleteFilter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFilterRequest method.
+//	req, resp := client.DeleteFilterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteFilter
+func (c *Personalize) DeleteFilterRequest(input *DeleteFilterInput) (req *request.Request, output *DeleteFilterOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFilter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFilterInput{}
+	}
+
+	output = &DeleteFilterOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFilter API operation for Amazon Personalize.
+//
+// Deletes a filter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DeleteFilter for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteFilter
+func (c *Personalize) DeleteFilter(input *DeleteFilterInput) (*DeleteFilterOutput, error) {
+	req, out := c.DeleteFilterRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFilterWithContext is the same as DeleteFilter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFilter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DeleteFilterWithContext(ctx aws.Context, input *DeleteFilterInput, opts ...request.Option) (*DeleteFilterOutput, error) {
+	req, out := c.DeleteFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMetricAttribution = "DeleteMetricAttribution"
+
+// DeleteMetricAttributionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMetricAttribution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMetricAttribution for more information on using the DeleteMetricAttribution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteMetricAttributionRequest method.
+//	req, resp := client.DeleteMetricAttributionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteMetricAttribution
+func (c *Personalize) DeleteMetricAttributionRequest(input *DeleteMetricAttributionInput) (req *request.Request, output *DeleteMetricAttributionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMetricAttribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMetricAttributionInput{}
+	}
+
+	output = &DeleteMetricAttributionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMetricAttribution API operation for Amazon Personalize.
+//
+// Deletes a metric attribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DeleteMetricAttribution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteMetricAttribution
+func (c *Personalize) DeleteMetricAttribution(input *DeleteMetricAttributionInput) (*DeleteMetricAttributionOutput, error) {
+	req, out := c.DeleteMetricAttributionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMetricAttributionWithContext is the same as DeleteMetricAttribution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMetricAttribution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DeleteMetricAttributionWithContext(ctx aws.Context, input *DeleteMetricAttributionInput, opts ...request.Option) (*DeleteMetricAttributionOutput, error) {
+	req, out := c.DeleteMetricAttributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRecommender = "DeleteRecommender"
+
+// DeleteRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRecommender for more information on using the DeleteRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteRecommenderRequest method.
+//	req, resp := client.DeleteRecommenderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteRecommender
+func (c *Personalize) DeleteRecommenderRequest(input *DeleteRecommenderInput) (req *request.Request, output *DeleteRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRecommenderInput{}
+	}
+
+	output = &DeleteRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRecommender API operation for Amazon Personalize.
+//
+// Deactivates and removes a recommender. A deleted recommender can no longer
+// be specified in a GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DeleteRecommender for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteRecommender
+func (c *Personalize) DeleteRecommender(input *DeleteRecommenderInput) (*DeleteRecommenderOutput, error) {
+	req, out := c.DeleteRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRecommenderWithContext is the same as DeleteRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DeleteRecommenderWithContext(ctx aws.Context, input *DeleteRecommenderInput, opts ...request.Option) (*DeleteRecommenderOutput, error) {
+	req, out := c.DeleteRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSchema = "DeleteSchema"
 
 // DeleteSchemaRequest generates a "aws/request.Request" representing the
@@ -1445,14 +2307,13 @@ const opDeleteSchema = "DeleteSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSchemaRequest method.
+//	req, resp := client.DeleteSchemaRequest(params)
 //
-//    // Example sending a request using the DeleteSchemaRequest method.
-//    req, resp := client.DeleteSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSchema
 func (c *Personalize) DeleteSchemaRequest(input *DeleteSchemaInput) (req *request.Request, output *DeleteSchemaOutput) {
@@ -1475,7 +2336,8 @@ func (c *Personalize) DeleteSchemaRequest(input *DeleteSchemaInput) (req *reques
 // DeleteSchema API operation for Amazon Personalize.
 //
 // Deletes a schema. Before deleting a schema, you must delete all datasets
-// referencing the schema. For more information on schemas, see CreateSchema.
+// referencing the schema. For more information on schemas, see CreateSchema
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1485,14 +2347,15 @@ func (c *Personalize) DeleteSchemaRequest(input *DeleteSchemaInput) (req *reques
 // API operation DeleteSchema for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSchema
 func (c *Personalize) DeleteSchema(input *DeleteSchemaInput) (*DeleteSchemaOutput, error) {
@@ -1532,14 +2395,13 @@ const opDeleteSolution = "DeleteSolution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSolutionRequest method.
+//	req, resp := client.DeleteSolutionRequest(params)
 //
-//    // Example sending a request using the DeleteSolutionRequest method.
-//    req, resp := client.DeleteSolutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSolution
 func (c *Personalize) DeleteSolutionRequest(input *DeleteSolutionInput) (req *request.Request, output *DeleteSolutionOutput) {
@@ -1563,10 +2425,10 @@ func (c *Personalize) DeleteSolutionRequest(input *DeleteSolutionInput) (req *re
 //
 // Deletes all versions of a solution and the Solution object itself. Before
 // deleting a solution, you must delete all campaigns based on the solution.
-// To determine what campaigns are using the solution, call ListCampaigns and
-// supply the Amazon Resource Name (ARN) of the solution. You can't delete a
-// solution if an associated SolutionVersion is in the CREATE PENDING or IN
-// PROGRESS state. For more information on solutions, see CreateSolution.
+// To determine what campaigns are using the solution, call ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
+// and supply the Amazon Resource Name (ARN) of the solution. You can't delete
+// a solution if an associated SolutionVersion is in the CREATE PENDING or IN
+// PROGRESS state. For more information on solutions, see CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1576,14 +2438,15 @@ func (c *Personalize) DeleteSolutionRequest(input *DeleteSolutionInput) (req *re
 // API operation DeleteSolution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteSolution
 func (c *Personalize) DeleteSolution(input *DeleteSolutionInput) (*DeleteSolutionOutput, error) {
@@ -1623,14 +2486,13 @@ const opDescribeAlgorithm = "DescribeAlgorithm"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeAlgorithmRequest method.
+//	req, resp := client.DescribeAlgorithmRequest(params)
 //
-//    // Example sending a request using the DescribeAlgorithmRequest method.
-//    req, resp := client.DescribeAlgorithmRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeAlgorithm
 func (c *Personalize) DescribeAlgorithmRequest(input *DescribeAlgorithmInput) (req *request.Request, output *DescribeAlgorithmOutput) {
@@ -1661,11 +2523,12 @@ func (c *Personalize) DescribeAlgorithmRequest(input *DescribeAlgorithmInput) (r
 // API operation DescribeAlgorithm for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeAlgorithm
 func (c *Personalize) DescribeAlgorithm(input *DescribeAlgorithmInput) (*DescribeAlgorithmOutput, error) {
@@ -1705,14 +2568,13 @@ const opDescribeBatchInferenceJob = "DescribeBatchInferenceJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeBatchInferenceJobRequest method.
+//	req, resp := client.DescribeBatchInferenceJobRequest(params)
 //
-//    // Example sending a request using the DescribeBatchInferenceJobRequest method.
-//    req, resp := client.DescribeBatchInferenceJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchInferenceJob
 func (c *Personalize) DescribeBatchInferenceJobRequest(input *DescribeBatchInferenceJobInput) (req *request.Request, output *DescribeBatchInferenceJobOutput) {
@@ -1745,11 +2607,12 @@ func (c *Personalize) DescribeBatchInferenceJobRequest(input *DescribeBatchInfer
 // API operation DescribeBatchInferenceJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchInferenceJob
 func (c *Personalize) DescribeBatchInferenceJob(input *DescribeBatchInferenceJobInput) (*DescribeBatchInferenceJobOutput, error) {
@@ -1773,6 +2636,90 @@ func (c *Personalize) DescribeBatchInferenceJobWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDescribeBatchSegmentJob = "DescribeBatchSegmentJob"
+
+// DescribeBatchSegmentJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBatchSegmentJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBatchSegmentJob for more information on using the DescribeBatchSegmentJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeBatchSegmentJobRequest method.
+//	req, resp := client.DescribeBatchSegmentJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchSegmentJob
+func (c *Personalize) DescribeBatchSegmentJobRequest(input *DescribeBatchSegmentJobInput) (req *request.Request, output *DescribeBatchSegmentJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBatchSegmentJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeBatchSegmentJobInput{}
+	}
+
+	output = &DescribeBatchSegmentJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeBatchSegmentJob API operation for Amazon Personalize.
+//
+// Gets the properties of a batch segment job including name, Amazon Resource
+// Name (ARN), status, input and output configurations, and the ARN of the solution
+// version used to generate segments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeBatchSegmentJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchSegmentJob
+func (c *Personalize) DescribeBatchSegmentJob(input *DescribeBatchSegmentJobInput) (*DescribeBatchSegmentJobOutput, error) {
+	req, out := c.DescribeBatchSegmentJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBatchSegmentJobWithContext is the same as DescribeBatchSegmentJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBatchSegmentJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeBatchSegmentJobWithContext(ctx aws.Context, input *DescribeBatchSegmentJobInput, opts ...request.Option) (*DescribeBatchSegmentJobOutput, error) {
+	req, out := c.DescribeBatchSegmentJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeCampaign = "DescribeCampaign"
 
 // DescribeCampaignRequest generates a "aws/request.Request" representing the
@@ -1789,14 +2736,13 @@ const opDescribeCampaign = "DescribeCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeCampaignRequest method.
+//	req, resp := client.DescribeCampaignRequest(params)
 //
-//    // Example sending a request using the DescribeCampaignRequest method.
-//    req, resp := client.DescribeCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeCampaign
 func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req *request.Request, output *DescribeCampaignOutput) {
@@ -1821,14 +2767,14 @@ func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req
 //
 // A campaign can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 //
-//    * DELETE PENDING > DELETE IN_PROGRESS
+//   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // When the status is CREATE FAILED, the response includes the failureReason
 // key, which describes why.
 //
-// For more information on campaigns, see CreateCampaign.
+// For more information on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1838,11 +2784,12 @@ func (c *Personalize) DescribeCampaignRequest(input *DescribeCampaignInput) (req
 // API operation DescribeCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeCampaign
 func (c *Personalize) DescribeCampaign(input *DescribeCampaignInput) (*DescribeCampaignOutput, error) {
@@ -1882,14 +2829,13 @@ const opDescribeDataset = "DescribeDataset"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetRequest method.
+//	req, resp := client.DescribeDatasetRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetRequest method.
-//    req, resp := client.DescribeDatasetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataset
 func (c *Personalize) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
@@ -1910,7 +2856,8 @@ func (c *Personalize) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 
 // DescribeDataset API operation for Amazon Personalize.
 //
-// Describes the given dataset. For more information on datasets, see CreateDataset.
+// Describes the given dataset. For more information on datasets, see CreateDataset
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1920,11 +2867,12 @@ func (c *Personalize) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 // API operation DescribeDataset for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataset
 func (c *Personalize) DescribeDataset(input *DescribeDatasetInput) (*DescribeDatasetOutput, error) {
@@ -1948,6 +2896,89 @@ func (c *Personalize) DescribeDatasetWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+const opDescribeDatasetExportJob = "DescribeDatasetExportJob"
+
+// DescribeDatasetExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDatasetExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDatasetExportJob for more information on using the DescribeDatasetExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDatasetExportJobRequest method.
+//	req, resp := client.DescribeDatasetExportJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetExportJob
+func (c *Personalize) DescribeDatasetExportJobRequest(input *DescribeDatasetExportJobInput) (req *request.Request, output *DescribeDatasetExportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDatasetExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDatasetExportJobInput{}
+	}
+
+	output = &DescribeDatasetExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDatasetExportJob API operation for Amazon Personalize.
+//
+// Describes the dataset export job created by CreateDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html),
+// including the export job status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeDatasetExportJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetExportJob
+func (c *Personalize) DescribeDatasetExportJob(input *DescribeDatasetExportJobInput) (*DescribeDatasetExportJobOutput, error) {
+	req, out := c.DescribeDatasetExportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDatasetExportJobWithContext is the same as DescribeDatasetExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDatasetExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeDatasetExportJobWithContext(ctx aws.Context, input *DescribeDatasetExportJobInput, opts ...request.Option) (*DescribeDatasetExportJobOutput, error) {
+	req, out := c.DescribeDatasetExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDatasetGroup = "DescribeDatasetGroup"
 
 // DescribeDatasetGroupRequest generates a "aws/request.Request" representing the
@@ -1964,14 +2995,13 @@ const opDescribeDatasetGroup = "DescribeDatasetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetGroupRequest method.
+//	req, resp := client.DescribeDatasetGroupRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetGroupRequest method.
-//    req, resp := client.DescribeDatasetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetGroup
 func (c *Personalize) DescribeDatasetGroupRequest(input *DescribeDatasetGroupInput) (req *request.Request, output *DescribeDatasetGroupOutput) {
@@ -1993,7 +3023,7 @@ func (c *Personalize) DescribeDatasetGroupRequest(input *DescribeDatasetGroupInp
 // DescribeDatasetGroup API operation for Amazon Personalize.
 //
 // Describes the given dataset group. For more information on dataset groups,
-// see CreateDatasetGroup.
+// see CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2003,11 +3033,12 @@ func (c *Personalize) DescribeDatasetGroupRequest(input *DescribeDatasetGroupInp
 // API operation DescribeDatasetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetGroup
 func (c *Personalize) DescribeDatasetGroup(input *DescribeDatasetGroupInput) (*DescribeDatasetGroupOutput, error) {
@@ -2047,14 +3078,13 @@ const opDescribeDatasetImportJob = "DescribeDatasetImportJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDatasetImportJobRequest method.
+//	req, resp := client.DescribeDatasetImportJobRequest(params)
 //
-//    // Example sending a request using the DescribeDatasetImportJobRequest method.
-//    req, resp := client.DescribeDatasetImportJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetImportJob
 func (c *Personalize) DescribeDatasetImportJobRequest(input *DescribeDatasetImportJobInput) (req *request.Request, output *DescribeDatasetImportJobOutput) {
@@ -2075,8 +3105,8 @@ func (c *Personalize) DescribeDatasetImportJobRequest(input *DescribeDatasetImpo
 
 // DescribeDatasetImportJob API operation for Amazon Personalize.
 //
-// Describes the dataset import job created by CreateDatasetImportJob, including
-// the import job status.
+// Describes the dataset import job created by CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html),
+// including the import job status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2086,11 +3116,12 @@ func (c *Personalize) DescribeDatasetImportJobRequest(input *DescribeDatasetImpo
 // API operation DescribeDatasetImportJob for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetImportJob
 func (c *Personalize) DescribeDatasetImportJob(input *DescribeDatasetImportJobInput) (*DescribeDatasetImportJobOutput, error) {
@@ -2130,14 +3161,13 @@ const opDescribeEventTracker = "DescribeEventTracker"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeEventTrackerRequest method.
+//	req, resp := client.DescribeEventTrackerRequest(params)
 //
-//    // Example sending a request using the DescribeEventTrackerRequest method.
-//    req, resp := client.DescribeEventTrackerRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeEventTracker
 func (c *Personalize) DescribeEventTrackerRequest(input *DescribeEventTrackerInput) (req *request.Request, output *DescribeEventTrackerOutput) {
@@ -2159,7 +3189,8 @@ func (c *Personalize) DescribeEventTrackerRequest(input *DescribeEventTrackerInp
 // DescribeEventTracker API operation for Amazon Personalize.
 //
 // Describes an event tracker. The response includes the trackingId and status
-// of the event tracker. For more information on event trackers, see CreateEventTracker.
+// of the event tracker. For more information on event trackers, see CreateEventTracker
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2169,11 +3200,12 @@ func (c *Personalize) DescribeEventTrackerRequest(input *DescribeEventTrackerInp
 // API operation DescribeEventTracker for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeEventTracker
 func (c *Personalize) DescribeEventTracker(input *DescribeEventTrackerInput) (*DescribeEventTrackerOutput, error) {
@@ -2213,14 +3245,13 @@ const opDescribeFeatureTransformation = "DescribeFeatureTransformation"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFeatureTransformationRequest method.
+//	req, resp := client.DescribeFeatureTransformationRequest(params)
 //
-//    // Example sending a request using the DescribeFeatureTransformationRequest method.
-//    req, resp := client.DescribeFeatureTransformationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFeatureTransformation
 func (c *Personalize) DescribeFeatureTransformationRequest(input *DescribeFeatureTransformationInput) (req *request.Request, output *DescribeFeatureTransformationOutput) {
@@ -2251,11 +3282,12 @@ func (c *Personalize) DescribeFeatureTransformationRequest(input *DescribeFeatur
 // API operation DescribeFeatureTransformation for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFeatureTransformation
 func (c *Personalize) DescribeFeatureTransformation(input *DescribeFeatureTransformationInput) (*DescribeFeatureTransformationOutput, error) {
@@ -2279,6 +3311,170 @@ func (c *Personalize) DescribeFeatureTransformationWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opDescribeFilter = "DescribeFilter"
+
+// DescribeFilterRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFilter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFilter for more information on using the DescribeFilter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFilterRequest method.
+//	req, resp := client.DescribeFilterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFilter
+func (c *Personalize) DescribeFilterRequest(input *DescribeFilterInput) (req *request.Request, output *DescribeFilterOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFilter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeFilterInput{}
+	}
+
+	output = &DescribeFilterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFilter API operation for Amazon Personalize.
+//
+// Describes a filter's properties.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeFilter for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeFilter
+func (c *Personalize) DescribeFilter(input *DescribeFilterInput) (*DescribeFilterOutput, error) {
+	req, out := c.DescribeFilterRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFilterWithContext is the same as DescribeFilter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFilter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeFilterWithContext(ctx aws.Context, input *DescribeFilterInput, opts ...request.Option) (*DescribeFilterOutput, error) {
+	req, out := c.DescribeFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMetricAttribution = "DescribeMetricAttribution"
+
+// DescribeMetricAttributionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMetricAttribution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMetricAttribution for more information on using the DescribeMetricAttribution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeMetricAttributionRequest method.
+//	req, resp := client.DescribeMetricAttributionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeMetricAttribution
+func (c *Personalize) DescribeMetricAttributionRequest(input *DescribeMetricAttributionInput) (req *request.Request, output *DescribeMetricAttributionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMetricAttribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeMetricAttributionInput{}
+	}
+
+	output = &DescribeMetricAttributionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMetricAttribution API operation for Amazon Personalize.
+//
+// Describes a metric attribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeMetricAttribution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeMetricAttribution
+func (c *Personalize) DescribeMetricAttribution(input *DescribeMetricAttributionInput) (*DescribeMetricAttributionOutput, error) {
+	req, out := c.DescribeMetricAttributionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMetricAttributionWithContext is the same as DescribeMetricAttribution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMetricAttribution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeMetricAttributionWithContext(ctx aws.Context, input *DescribeMetricAttributionInput, opts ...request.Option) (*DescribeMetricAttributionOutput, error) {
+	req, out := c.DescribeMetricAttributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeRecipe = "DescribeRecipe"
 
 // DescribeRecipeRequest generates a "aws/request.Request" representing the
@@ -2295,14 +3491,13 @@ const opDescribeRecipe = "DescribeRecipe"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeRecipeRequest method.
+//	req, resp := client.DescribeRecipeRequest(params)
 //
-//    // Example sending a request using the DescribeRecipeRequest method.
-//    req, resp := client.DescribeRecipeRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecipe
 func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *request.Request, output *DescribeRecipeOutput) {
@@ -2327,18 +3522,18 @@ func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *re
 //
 // A recipe contains three items:
 //
-//    * An algorithm that trains a model.
+//   - An algorithm that trains a model.
 //
-//    * Hyperparameters that govern the training.
+//   - Hyperparameters that govern the training.
 //
-//    * Feature transformation information for modifying the input data before
-//    training.
+//   - Feature transformation information for modifying the input data before
+//     training.
 //
 // Amazon Personalize provides a set of predefined recipes. You specify a recipe
-// when you create a solution with the CreateSolution API. CreateSolution trains
-// a model by using the algorithm in the specified recipe and a training dataset.
-// The solution, when deployed as a campaign, can provide recommendations using
-// the GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// when you create a solution with the CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
+// API. CreateSolution trains a model by using the algorithm in the specified
+// recipe and a training dataset. The solution, when deployed as a campaign,
+// can provide recommendations using the GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2349,11 +3544,12 @@ func (c *Personalize) DescribeRecipeRequest(input *DescribeRecipeInput) (req *re
 // API operation DescribeRecipe for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecipe
 func (c *Personalize) DescribeRecipe(input *DescribeRecipeInput) (*DescribeRecipeOutput, error) {
@@ -2377,6 +3573,104 @@ func (c *Personalize) DescribeRecipeWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeRecommender = "DescribeRecommender"
+
+// DescribeRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRecommender for more information on using the DescribeRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeRecommenderRequest method.
+//	req, resp := client.DescribeRecommenderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecommender
+func (c *Personalize) DescribeRecommenderRequest(input *DescribeRecommenderInput) (req *request.Request, output *DescribeRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRecommenderInput{}
+	}
+
+	output = &DescribeRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRecommender API operation for Amazon Personalize.
+//
+// Describes the given recommender, including its status.
+//
+// A recommender can be in one of the following states:
+//
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//
+//   - STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+//     > ACTIVE
+//
+//   - DELETE PENDING > DELETE IN_PROGRESS
+//
+// When the status is CREATE FAILED, the response includes the failureReason
+// key, which describes why.
+//
+// The modelMetrics key is null when the recommender is being created or deleted.
+//
+// For more information on recommenders, see CreateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeRecommender for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecommender
+func (c *Personalize) DescribeRecommender(input *DescribeRecommenderInput) (*DescribeRecommenderOutput, error) {
+	req, out := c.DescribeRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRecommenderWithContext is the same as DescribeRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeRecommenderWithContext(ctx aws.Context, input *DescribeRecommenderInput, opts ...request.Option) (*DescribeRecommenderOutput, error) {
+	req, out := c.DescribeRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSchema = "DescribeSchema"
 
 // DescribeSchemaRequest generates a "aws/request.Request" representing the
@@ -2393,14 +3687,13 @@ const opDescribeSchema = "DescribeSchema"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSchemaRequest method.
+//	req, resp := client.DescribeSchemaRequest(params)
 //
-//    // Example sending a request using the DescribeSchemaRequest method.
-//    req, resp := client.DescribeSchemaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSchema
 func (c *Personalize) DescribeSchemaRequest(input *DescribeSchemaInput) (req *request.Request, output *DescribeSchemaOutput) {
@@ -2421,7 +3714,7 @@ func (c *Personalize) DescribeSchemaRequest(input *DescribeSchemaInput) (req *re
 
 // DescribeSchema API operation for Amazon Personalize.
 //
-// Describes a schema. For more information on schemas, see CreateSchema.
+// Describes a schema. For more information on schemas, see CreateSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2431,11 +3724,12 @@ func (c *Personalize) DescribeSchemaRequest(input *DescribeSchemaInput) (req *re
 // API operation DescribeSchema for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSchema
 func (c *Personalize) DescribeSchema(input *DescribeSchemaInput) (*DescribeSchemaOutput, error) {
@@ -2475,14 +3769,13 @@ const opDescribeSolution = "DescribeSolution"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSolutionRequest method.
+//	req, resp := client.DescribeSolutionRequest(params)
 //
-//    // Example sending a request using the DescribeSolutionRequest method.
-//    req, resp := client.DescribeSolutionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolution
 func (c *Personalize) DescribeSolutionRequest(input *DescribeSolutionInput) (req *request.Request, output *DescribeSolutionOutput) {
@@ -2503,7 +3796,8 @@ func (c *Personalize) DescribeSolutionRequest(input *DescribeSolutionInput) (req
 
 // DescribeSolution API operation for Amazon Personalize.
 //
-// Describes a solution. For more information on solutions, see CreateSolution.
+// Describes a solution. For more information on solutions, see CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2513,11 +3807,12 @@ func (c *Personalize) DescribeSolutionRequest(input *DescribeSolutionInput) (req
 // API operation DescribeSolution for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolution
 func (c *Personalize) DescribeSolution(input *DescribeSolutionInput) (*DescribeSolutionOutput, error) {
@@ -2557,14 +3852,13 @@ const opDescribeSolutionVersion = "DescribeSolutionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSolutionVersionRequest method.
+//	req, resp := client.DescribeSolutionVersionRequest(params)
 //
-//    // Example sending a request using the DescribeSolutionVersionRequest method.
-//    req, resp := client.DescribeSolutionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolutionVersion
 func (c *Personalize) DescribeSolutionVersionRequest(input *DescribeSolutionVersionInput) (req *request.Request, output *DescribeSolutionVersionOutput) {
@@ -2586,7 +3880,7 @@ func (c *Personalize) DescribeSolutionVersionRequest(input *DescribeSolutionVers
 // DescribeSolutionVersion API operation for Amazon Personalize.
 //
 // Describes a specific version of a solution. For more information on solutions,
-// see CreateSolution.
+// see CreateSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2596,11 +3890,12 @@ func (c *Personalize) DescribeSolutionVersionRequest(input *DescribeSolutionVers
 // API operation DescribeSolutionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeSolutionVersion
 func (c *Personalize) DescribeSolutionVersion(input *DescribeSolutionVersionInput) (*DescribeSolutionVersionOutput, error) {
@@ -2640,14 +3935,13 @@ const opGetSolutionMetrics = "GetSolutionMetrics"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSolutionMetricsRequest method.
+//	req, resp := client.GetSolutionMetricsRequest(params)
 //
-//    // Example sending a request using the GetSolutionMetricsRequest method.
-//    req, resp := client.GetSolutionMetricsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/GetSolutionMetrics
 func (c *Personalize) GetSolutionMetricsRequest(input *GetSolutionMetricsInput) (req *request.Request, output *GetSolutionMetricsOutput) {
@@ -2678,14 +3972,15 @@ func (c *Personalize) GetSolutionMetricsRequest(input *GetSolutionMetricsInput) 
 // API operation GetSolutionMetrics for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/GetSolutionMetrics
 func (c *Personalize) GetSolutionMetrics(input *GetSolutionMetricsInput) (*GetSolutionMetricsOutput, error) {
@@ -2725,14 +4020,13 @@ const opListBatchInferenceJobs = "ListBatchInferenceJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBatchInferenceJobsRequest method.
+//	req, resp := client.ListBatchInferenceJobsRequest(params)
 //
-//    // Example sending a request using the ListBatchInferenceJobsRequest method.
-//    req, resp := client.ListBatchInferenceJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchInferenceJobs
 func (c *Personalize) ListBatchInferenceJobsRequest(input *ListBatchInferenceJobsInput) (req *request.Request, output *ListBatchInferenceJobsOutput) {
@@ -2770,11 +4064,12 @@ func (c *Personalize) ListBatchInferenceJobsRequest(input *ListBatchInferenceJob
 // API operation ListBatchInferenceJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchInferenceJobs
 func (c *Personalize) ListBatchInferenceJobs(input *ListBatchInferenceJobsInput) (*ListBatchInferenceJobsOutput, error) {
@@ -2806,15 +4101,14 @@ func (c *Personalize) ListBatchInferenceJobsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListBatchInferenceJobs operation.
-//    pageNum := 0
-//    err := client.ListBatchInferenceJobsPages(params,
-//        func(page *personalize.ListBatchInferenceJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListBatchInferenceJobs operation.
+//	pageNum := 0
+//	err := client.ListBatchInferenceJobsPages(params,
+//	    func(page *personalize.ListBatchInferenceJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListBatchInferenceJobsPages(input *ListBatchInferenceJobsInput, fn func(*ListBatchInferenceJobsOutput, bool) bool) error {
 	return c.ListBatchInferenceJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2850,6 +4144,146 @@ func (c *Personalize) ListBatchInferenceJobsPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListBatchSegmentJobs = "ListBatchSegmentJobs"
+
+// ListBatchSegmentJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBatchSegmentJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBatchSegmentJobs for more information on using the ListBatchSegmentJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListBatchSegmentJobsRequest method.
+//	req, resp := client.ListBatchSegmentJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchSegmentJobs
+func (c *Personalize) ListBatchSegmentJobsRequest(input *ListBatchSegmentJobsInput) (req *request.Request, output *ListBatchSegmentJobsOutput) {
+	op := &request.Operation{
+		Name:       opListBatchSegmentJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBatchSegmentJobsInput{}
+	}
+
+	output = &ListBatchSegmentJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBatchSegmentJobs API operation for Amazon Personalize.
+//
+// Gets a list of the batch segment jobs that have been performed off of a solution
+// version that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListBatchSegmentJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchSegmentJobs
+func (c *Personalize) ListBatchSegmentJobs(input *ListBatchSegmentJobsInput) (*ListBatchSegmentJobsOutput, error) {
+	req, out := c.ListBatchSegmentJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListBatchSegmentJobsWithContext is the same as ListBatchSegmentJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBatchSegmentJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListBatchSegmentJobsWithContext(ctx aws.Context, input *ListBatchSegmentJobsInput, opts ...request.Option) (*ListBatchSegmentJobsOutput, error) {
+	req, out := c.ListBatchSegmentJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBatchSegmentJobsPages iterates over the pages of a ListBatchSegmentJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBatchSegmentJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListBatchSegmentJobs operation.
+//	pageNum := 0
+//	err := client.ListBatchSegmentJobsPages(params,
+//	    func(page *personalize.ListBatchSegmentJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Personalize) ListBatchSegmentJobsPages(input *ListBatchSegmentJobsInput, fn func(*ListBatchSegmentJobsOutput, bool) bool) error {
+	return c.ListBatchSegmentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBatchSegmentJobsPagesWithContext same as ListBatchSegmentJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListBatchSegmentJobsPagesWithContext(ctx aws.Context, input *ListBatchSegmentJobsInput, fn func(*ListBatchSegmentJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBatchSegmentJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBatchSegmentJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBatchSegmentJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCampaigns = "ListCampaigns"
 
 // ListCampaignsRequest generates a "aws/request.Request" representing the
@@ -2866,14 +4300,13 @@ const opListCampaigns = "ListCampaigns"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCampaignsRequest method.
+//	req, resp := client.ListCampaignsRequest(params)
 //
-//    // Example sending a request using the ListCampaignsRequest method.
-//    req, resp := client.ListCampaignsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListCampaigns
 func (c *Personalize) ListCampaignsRequest(input *ListCampaignsInput) (req *request.Request, output *ListCampaignsOutput) {
@@ -2903,7 +4336,8 @@ func (c *Personalize) ListCampaignsRequest(input *ListCampaignsInput) (req *requ
 // Returns a list of campaigns that use the given solution. When a solution
 // is not specified, all the campaigns associated with the account are listed.
 // The response provides the properties for each campaign, including the Amazon
-// Resource Name (ARN). For more information on campaigns, see CreateCampaign.
+// Resource Name (ARN). For more information on campaigns, see CreateCampaign
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2913,11 +4347,12 @@ func (c *Personalize) ListCampaignsRequest(input *ListCampaignsInput) (req *requ
 // API operation ListCampaigns for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListCampaigns
 func (c *Personalize) ListCampaigns(input *ListCampaignsInput) (*ListCampaignsOutput, error) {
@@ -2949,15 +4384,14 @@ func (c *Personalize) ListCampaignsWithContext(ctx aws.Context, input *ListCampa
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCampaigns operation.
-//    pageNum := 0
-//    err := client.ListCampaignsPages(params,
-//        func(page *personalize.ListCampaignsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCampaigns operation.
+//	pageNum := 0
+//	err := client.ListCampaignsPages(params,
+//	    func(page *personalize.ListCampaignsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListCampaignsPages(input *ListCampaignsInput, fn func(*ListCampaignsOutput, bool) bool) error {
 	return c.ListCampaignsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2993,6 +4427,150 @@ func (c *Personalize) ListCampaignsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListDatasetExportJobs = "ListDatasetExportJobs"
+
+// ListDatasetExportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasetExportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasetExportJobs for more information on using the ListDatasetExportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDatasetExportJobsRequest method.
+//	req, resp := client.ListDatasetExportJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetExportJobs
+func (c *Personalize) ListDatasetExportJobsRequest(input *ListDatasetExportJobsInput) (req *request.Request, output *ListDatasetExportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListDatasetExportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetExportJobsInput{}
+	}
+
+	output = &ListDatasetExportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasetExportJobs API operation for Amazon Personalize.
+//
+// Returns a list of dataset export jobs that use the given dataset. When a
+// dataset is not specified, all the dataset export jobs associated with the
+// account are listed. The response provides the properties for each dataset
+// export job, including the Amazon Resource Name (ARN). For more information
+// on dataset export jobs, see CreateDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html).
+// For more information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListDatasetExportJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetExportJobs
+func (c *Personalize) ListDatasetExportJobs(input *ListDatasetExportJobsInput) (*ListDatasetExportJobsOutput, error) {
+	req, out := c.ListDatasetExportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetExportJobsWithContext is the same as ListDatasetExportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasetExportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListDatasetExportJobsWithContext(ctx aws.Context, input *ListDatasetExportJobsInput, opts ...request.Option) (*ListDatasetExportJobsOutput, error) {
+	req, out := c.ListDatasetExportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetExportJobsPages iterates over the pages of a ListDatasetExportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasetExportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDatasetExportJobs operation.
+//	pageNum := 0
+//	err := client.ListDatasetExportJobsPages(params,
+//	    func(page *personalize.ListDatasetExportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Personalize) ListDatasetExportJobsPages(input *ListDatasetExportJobsInput, fn func(*ListDatasetExportJobsOutput, bool) bool) error {
+	return c.ListDatasetExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetExportJobsPagesWithContext same as ListDatasetExportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListDatasetExportJobsPagesWithContext(ctx aws.Context, input *ListDatasetExportJobsInput, fn func(*ListDatasetExportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetExportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetExportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetExportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDatasetGroups = "ListDatasetGroups"
 
 // ListDatasetGroupsRequest generates a "aws/request.Request" representing the
@@ -3009,14 +4587,13 @@ const opListDatasetGroups = "ListDatasetGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetGroupsRequest method.
+//	req, resp := client.ListDatasetGroupsRequest(params)
 //
-//    // Example sending a request using the ListDatasetGroupsRequest method.
-//    req, resp := client.ListDatasetGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetGroups
 func (c *Personalize) ListDatasetGroupsRequest(input *ListDatasetGroupsInput) (req *request.Request, output *ListDatasetGroupsOutput) {
@@ -3045,7 +4622,7 @@ func (c *Personalize) ListDatasetGroupsRequest(input *ListDatasetGroupsInput) (r
 //
 // Returns a list of dataset groups. The response provides the properties for
 // each dataset group, including the Amazon Resource Name (ARN). For more information
-// on dataset groups, see CreateDatasetGroup.
+// on dataset groups, see CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3055,8 +4632,8 @@ func (c *Personalize) ListDatasetGroupsRequest(input *ListDatasetGroupsInput) (r
 // API operation ListDatasetGroups for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetGroups
 func (c *Personalize) ListDatasetGroups(input *ListDatasetGroupsInput) (*ListDatasetGroupsOutput, error) {
@@ -3088,15 +4665,14 @@ func (c *Personalize) ListDatasetGroupsWithContext(ctx aws.Context, input *ListD
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasetGroups operation.
-//    pageNum := 0
-//    err := client.ListDatasetGroupsPages(params,
-//        func(page *personalize.ListDatasetGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasetGroups operation.
+//	pageNum := 0
+//	err := client.ListDatasetGroupsPages(params,
+//	    func(page *personalize.ListDatasetGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetGroupsPages(input *ListDatasetGroupsInput, fn func(*ListDatasetGroupsOutput, bool) bool) error {
 	return c.ListDatasetGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3148,14 +4724,13 @@ const opListDatasetImportJobs = "ListDatasetImportJobs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetImportJobsRequest method.
+//	req, resp := client.ListDatasetImportJobsRequest(params)
 //
-//    // Example sending a request using the ListDatasetImportJobsRequest method.
-//    req, resp := client.ListDatasetImportJobsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetImportJobs
 func (c *Personalize) ListDatasetImportJobsRequest(input *ListDatasetImportJobsInput) (req *request.Request, output *ListDatasetImportJobsOutput) {
@@ -3186,8 +4761,8 @@ func (c *Personalize) ListDatasetImportJobsRequest(input *ListDatasetImportJobsI
 // dataset is not specified, all the dataset import jobs associated with the
 // account are listed. The response provides the properties for each dataset
 // import job, including the Amazon Resource Name (ARN). For more information
-// on dataset import jobs, see CreateDatasetImportJob. For more information
-// on datasets, see CreateDataset.
+// on dataset import jobs, see CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html).
+// For more information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3197,11 +4772,12 @@ func (c *Personalize) ListDatasetImportJobsRequest(input *ListDatasetImportJobsI
 // API operation ListDatasetImportJobs for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetImportJobs
 func (c *Personalize) ListDatasetImportJobs(input *ListDatasetImportJobsInput) (*ListDatasetImportJobsOutput, error) {
@@ -3233,15 +4809,14 @@ func (c *Personalize) ListDatasetImportJobsWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasetImportJobs operation.
-//    pageNum := 0
-//    err := client.ListDatasetImportJobsPages(params,
-//        func(page *personalize.ListDatasetImportJobsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasetImportJobs operation.
+//	pageNum := 0
+//	err := client.ListDatasetImportJobsPages(params,
+//	    func(page *personalize.ListDatasetImportJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetImportJobsPages(input *ListDatasetImportJobsInput, fn func(*ListDatasetImportJobsOutput, bool) bool) error {
 	return c.ListDatasetImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3293,14 +4868,13 @@ const opListDatasets = "ListDatasets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDatasetsRequest method.
+//	req, resp := client.ListDatasetsRequest(params)
 //
-//    // Example sending a request using the ListDatasetsRequest method.
-//    req, resp := client.ListDatasetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasets
 func (c *Personalize) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
@@ -3329,7 +4903,7 @@ func (c *Personalize) ListDatasetsRequest(input *ListDatasetsInput) (req *reques
 //
 // Returns the list of datasets contained in the given dataset group. The response
 // provides the properties for each dataset, including the Amazon Resource Name
-// (ARN). For more information on datasets, see CreateDataset.
+// (ARN). For more information on datasets, see CreateDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3339,11 +4913,12 @@ func (c *Personalize) ListDatasetsRequest(input *ListDatasetsInput) (req *reques
 // API operation ListDatasets for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasets
 func (c *Personalize) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutput, error) {
@@ -3375,15 +4950,14 @@ func (c *Personalize) ListDatasetsWithContext(ctx aws.Context, input *ListDatase
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListDatasets operation.
-//    pageNum := 0
-//    err := client.ListDatasetsPages(params,
-//        func(page *personalize.ListDatasetsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListDatasets operation.
+//	pageNum := 0
+//	err := client.ListDatasetsPages(params,
+//	    func(page *personalize.ListDatasetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListDatasetsPages(input *ListDatasetsInput, fn func(*ListDatasetsOutput, bool) bool) error {
 	return c.ListDatasetsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3435,14 +5009,13 @@ const opListEventTrackers = "ListEventTrackers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListEventTrackersRequest method.
+//	req, resp := client.ListEventTrackersRequest(params)
 //
-//    // Example sending a request using the ListEventTrackersRequest method.
-//    req, resp := client.ListEventTrackersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListEventTrackers
 func (c *Personalize) ListEventTrackersRequest(input *ListEventTrackersInput) (req *request.Request, output *ListEventTrackersOutput) {
@@ -3471,7 +5044,8 @@ func (c *Personalize) ListEventTrackersRequest(input *ListEventTrackersInput) (r
 //
 // Returns the list of event trackers associated with the account. The response
 // provides the properties for each event tracker, including the Amazon Resource
-// Name (ARN) and tracking ID. For more information on event trackers, see CreateEventTracker.
+// Name (ARN) and tracking ID. For more information on event trackers, see CreateEventTracker
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3481,11 +5055,12 @@ func (c *Personalize) ListEventTrackersRequest(input *ListEventTrackersInput) (r
 // API operation ListEventTrackers for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListEventTrackers
 func (c *Personalize) ListEventTrackers(input *ListEventTrackersInput) (*ListEventTrackersOutput, error) {
@@ -3517,15 +5092,14 @@ func (c *Personalize) ListEventTrackersWithContext(ctx aws.Context, input *ListE
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListEventTrackers operation.
-//    pageNum := 0
-//    err := client.ListEventTrackersPages(params,
-//        func(page *personalize.ListEventTrackersOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListEventTrackers operation.
+//	pageNum := 0
+//	err := client.ListEventTrackersPages(params,
+//	    func(page *personalize.ListEventTrackersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListEventTrackersPages(input *ListEventTrackersInput, fn func(*ListEventTrackersOutput, bool) bool) error {
 	return c.ListEventTrackersPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3561,6 +5135,423 @@ func (c *Personalize) ListEventTrackersPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListFilters = "ListFilters"
+
+// ListFiltersRequest generates a "aws/request.Request" representing the
+// client's request for the ListFilters operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFilters for more information on using the ListFilters
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFiltersRequest method.
+//	req, resp := client.ListFiltersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListFilters
+func (c *Personalize) ListFiltersRequest(input *ListFiltersInput) (req *request.Request, output *ListFiltersOutput) {
+	op := &request.Operation{
+		Name:       opListFilters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFiltersInput{}
+	}
+
+	output = &ListFiltersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFilters API operation for Amazon Personalize.
+//
+// Lists all filters that belong to a given dataset group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListFilters for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListFilters
+func (c *Personalize) ListFilters(input *ListFiltersInput) (*ListFiltersOutput, error) {
+	req, out := c.ListFiltersRequest(input)
+	return out, req.Send()
+}
+
+// ListFiltersWithContext is the same as ListFilters with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFilters for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListFiltersWithContext(ctx aws.Context, input *ListFiltersInput, opts ...request.Option) (*ListFiltersOutput, error) {
+	req, out := c.ListFiltersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFiltersPages iterates over the pages of a ListFilters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFilters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFilters operation.
+//	pageNum := 0
+//	err := client.ListFiltersPages(params,
+//	    func(page *personalize.ListFiltersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Personalize) ListFiltersPages(input *ListFiltersInput, fn func(*ListFiltersOutput, bool) bool) error {
+	return c.ListFiltersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFiltersPagesWithContext same as ListFiltersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListFiltersPagesWithContext(ctx aws.Context, input *ListFiltersInput, fn func(*ListFiltersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFiltersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFiltersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFiltersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMetricAttributionMetrics = "ListMetricAttributionMetrics"
+
+// ListMetricAttributionMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMetricAttributionMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMetricAttributionMetrics for more information on using the ListMetricAttributionMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMetricAttributionMetricsRequest method.
+//	req, resp := client.ListMetricAttributionMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListMetricAttributionMetrics
+func (c *Personalize) ListMetricAttributionMetricsRequest(input *ListMetricAttributionMetricsInput) (req *request.Request, output *ListMetricAttributionMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListMetricAttributionMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMetricAttributionMetricsInput{}
+	}
+
+	output = &ListMetricAttributionMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMetricAttributionMetrics API operation for Amazon Personalize.
+//
+// Lists the metrics for the metric attribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListMetricAttributionMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListMetricAttributionMetrics
+func (c *Personalize) ListMetricAttributionMetrics(input *ListMetricAttributionMetricsInput) (*ListMetricAttributionMetricsOutput, error) {
+	req, out := c.ListMetricAttributionMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListMetricAttributionMetricsWithContext is the same as ListMetricAttributionMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMetricAttributionMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListMetricAttributionMetricsWithContext(ctx aws.Context, input *ListMetricAttributionMetricsInput, opts ...request.Option) (*ListMetricAttributionMetricsOutput, error) {
+	req, out := c.ListMetricAttributionMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMetricAttributionMetricsPages iterates over the pages of a ListMetricAttributionMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMetricAttributionMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMetricAttributionMetrics operation.
+//	pageNum := 0
+//	err := client.ListMetricAttributionMetricsPages(params,
+//	    func(page *personalize.ListMetricAttributionMetricsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Personalize) ListMetricAttributionMetricsPages(input *ListMetricAttributionMetricsInput, fn func(*ListMetricAttributionMetricsOutput, bool) bool) error {
+	return c.ListMetricAttributionMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMetricAttributionMetricsPagesWithContext same as ListMetricAttributionMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListMetricAttributionMetricsPagesWithContext(ctx aws.Context, input *ListMetricAttributionMetricsInput, fn func(*ListMetricAttributionMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMetricAttributionMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMetricAttributionMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMetricAttributionMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMetricAttributions = "ListMetricAttributions"
+
+// ListMetricAttributionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMetricAttributions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMetricAttributions for more information on using the ListMetricAttributions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMetricAttributionsRequest method.
+//	req, resp := client.ListMetricAttributionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListMetricAttributions
+func (c *Personalize) ListMetricAttributionsRequest(input *ListMetricAttributionsInput) (req *request.Request, output *ListMetricAttributionsOutput) {
+	op := &request.Operation{
+		Name:       opListMetricAttributions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMetricAttributionsInput{}
+	}
+
+	output = &ListMetricAttributionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMetricAttributions API operation for Amazon Personalize.
+//
+// Lists metric attributions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListMetricAttributions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListMetricAttributions
+func (c *Personalize) ListMetricAttributions(input *ListMetricAttributionsInput) (*ListMetricAttributionsOutput, error) {
+	req, out := c.ListMetricAttributionsRequest(input)
+	return out, req.Send()
+}
+
+// ListMetricAttributionsWithContext is the same as ListMetricAttributions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMetricAttributions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListMetricAttributionsWithContext(ctx aws.Context, input *ListMetricAttributionsInput, opts ...request.Option) (*ListMetricAttributionsOutput, error) {
+	req, out := c.ListMetricAttributionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMetricAttributionsPages iterates over the pages of a ListMetricAttributions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMetricAttributions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMetricAttributions operation.
+//	pageNum := 0
+//	err := client.ListMetricAttributionsPages(params,
+//	    func(page *personalize.ListMetricAttributionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Personalize) ListMetricAttributionsPages(input *ListMetricAttributionsInput, fn func(*ListMetricAttributionsOutput, bool) bool) error {
+	return c.ListMetricAttributionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMetricAttributionsPagesWithContext same as ListMetricAttributionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListMetricAttributionsPagesWithContext(ctx aws.Context, input *ListMetricAttributionsInput, fn func(*ListMetricAttributionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMetricAttributionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMetricAttributionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMetricAttributionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRecipes = "ListRecipes"
 
 // ListRecipesRequest generates a "aws/request.Request" representing the
@@ -3577,14 +5568,13 @@ const opListRecipes = "ListRecipes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRecipesRequest method.
+//	req, resp := client.ListRecipesRequest(params)
 //
-//    // Example sending a request using the ListRecipesRequest method.
-//    req, resp := client.ListRecipesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecipes
 func (c *Personalize) ListRecipesRequest(input *ListRecipesInput) (req *request.Request, output *ListRecipesOutput) {
@@ -3622,8 +5612,12 @@ func (c *Personalize) ListRecipesRequest(input *ListRecipesInput) (req *request.
 // API operation ListRecipes for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The token is not valid.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecipes
 func (c *Personalize) ListRecipes(input *ListRecipesInput) (*ListRecipesOutput, error) {
@@ -3655,15 +5649,14 @@ func (c *Personalize) ListRecipesWithContext(ctx aws.Context, input *ListRecipes
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListRecipes operation.
-//    pageNum := 0
-//    err := client.ListRecipesPages(params,
-//        func(page *personalize.ListRecipesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListRecipes operation.
+//	pageNum := 0
+//	err := client.ListRecipesPages(params,
+//	    func(page *personalize.ListRecipesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListRecipesPages(input *ListRecipesInput, fn func(*ListRecipesOutput, bool) bool) error {
 	return c.ListRecipesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3699,6 +5692,149 @@ func (c *Personalize) ListRecipesPagesWithContext(ctx aws.Context, input *ListRe
 	return p.Err()
 }
 
+const opListRecommenders = "ListRecommenders"
+
+// ListRecommendersRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecommenders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecommenders for more information on using the ListRecommenders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRecommendersRequest method.
+//	req, resp := client.ListRecommendersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecommenders
+func (c *Personalize) ListRecommendersRequest(input *ListRecommendersInput) (req *request.Request, output *ListRecommendersOutput) {
+	op := &request.Operation{
+		Name:       opListRecommenders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecommendersInput{}
+	}
+
+	output = &ListRecommendersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecommenders API operation for Amazon Personalize.
+//
+// Returns a list of recommenders in a given Domain dataset group. When a Domain
+// dataset group is not specified, all the recommenders associated with the
+// account are listed. The response provides the properties for each recommender,
+// including the Amazon Resource Name (ARN). For more information on recommenders,
+// see CreateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListRecommenders for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecommenders
+func (c *Personalize) ListRecommenders(input *ListRecommendersInput) (*ListRecommendersOutput, error) {
+	req, out := c.ListRecommendersRequest(input)
+	return out, req.Send()
+}
+
+// ListRecommendersWithContext is the same as ListRecommenders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecommenders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListRecommendersWithContext(ctx aws.Context, input *ListRecommendersInput, opts ...request.Option) (*ListRecommendersOutput, error) {
+	req, out := c.ListRecommendersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecommendersPages iterates over the pages of a ListRecommenders operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecommenders method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRecommenders operation.
+//	pageNum := 0
+//	err := client.ListRecommendersPages(params,
+//	    func(page *personalize.ListRecommendersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Personalize) ListRecommendersPages(input *ListRecommendersInput, fn func(*ListRecommendersOutput, bool) bool) error {
+	return c.ListRecommendersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecommendersPagesWithContext same as ListRecommendersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListRecommendersPagesWithContext(ctx aws.Context, input *ListRecommendersInput, fn func(*ListRecommendersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecommendersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecommendersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecommendersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSchemas = "ListSchemas"
 
 // ListSchemasRequest generates a "aws/request.Request" representing the
@@ -3715,14 +5851,13 @@ const opListSchemas = "ListSchemas"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSchemasRequest method.
+//	req, resp := client.ListSchemasRequest(params)
 //
-//    // Example sending a request using the ListSchemasRequest method.
-//    req, resp := client.ListSchemasRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSchemas
 func (c *Personalize) ListSchemasRequest(input *ListSchemasInput) (req *request.Request, output *ListSchemasOutput) {
@@ -3751,7 +5886,7 @@ func (c *Personalize) ListSchemasRequest(input *ListSchemasInput) (req *request.
 //
 // Returns the list of schemas associated with the account. The response provides
 // the properties for each schema, including the Amazon Resource Name (ARN).
-// For more information on schemas, see CreateSchema.
+// For more information on schemas, see CreateSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3761,8 +5896,8 @@ func (c *Personalize) ListSchemasRequest(input *ListSchemasInput) (req *request.
 // API operation ListSchemas for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSchemas
 func (c *Personalize) ListSchemas(input *ListSchemasInput) (*ListSchemasOutput, error) {
@@ -3794,15 +5929,14 @@ func (c *Personalize) ListSchemasWithContext(ctx aws.Context, input *ListSchemas
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSchemas operation.
-//    pageNum := 0
-//    err := client.ListSchemasPages(params,
-//        func(page *personalize.ListSchemasOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSchemas operation.
+//	pageNum := 0
+//	err := client.ListSchemasPages(params,
+//	    func(page *personalize.ListSchemasOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListSchemasPages(input *ListSchemasInput, fn func(*ListSchemasOutput, bool) bool) error {
 	return c.ListSchemasPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3854,14 +5988,13 @@ const opListSolutionVersions = "ListSolutionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSolutionVersionsRequest method.
+//	req, resp := client.ListSolutionVersionsRequest(params)
 //
-//    // Example sending a request using the ListSolutionVersionsRequest method.
-//    req, resp := client.ListSolutionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutionVersions
 func (c *Personalize) ListSolutionVersionsRequest(input *ListSolutionVersionsInput) (req *request.Request, output *ListSolutionVersionsOutput) {
@@ -3891,7 +6024,7 @@ func (c *Personalize) ListSolutionVersionsRequest(input *ListSolutionVersionsInp
 // Returns a list of solution versions for the given solution. When a solution
 // is not specified, all the solution versions associated with the account are
 // listed. The response provides the properties for each solution version, including
-// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution.
+// the Amazon Resource Name (ARN).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3901,14 +6034,15 @@ func (c *Personalize) ListSolutionVersionsRequest(input *ListSolutionVersionsInp
 // API operation ListSolutionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutionVersions
 func (c *Personalize) ListSolutionVersions(input *ListSolutionVersionsInput) (*ListSolutionVersionsOutput, error) {
@@ -3940,15 +6074,14 @@ func (c *Personalize) ListSolutionVersionsWithContext(ctx aws.Context, input *Li
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSolutionVersions operation.
-//    pageNum := 0
-//    err := client.ListSolutionVersionsPages(params,
-//        func(page *personalize.ListSolutionVersionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSolutionVersions operation.
+//	pageNum := 0
+//	err := client.ListSolutionVersionsPages(params,
+//	    func(page *personalize.ListSolutionVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListSolutionVersionsPages(input *ListSolutionVersionsInput, fn func(*ListSolutionVersionsOutput, bool) bool) error {
 	return c.ListSolutionVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4000,14 +6133,13 @@ const opListSolutions = "ListSolutions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSolutionsRequest method.
+//	req, resp := client.ListSolutionsRequest(params)
 //
-//    // Example sending a request using the ListSolutionsRequest method.
-//    req, resp := client.ListSolutionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutions
 func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *request.Request, output *ListSolutionsOutput) {
@@ -4037,7 +6169,8 @@ func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *requ
 // Returns a list of solutions that use the given dataset group. When a dataset
 // group is not specified, all the solutions associated with the account are
 // listed. The response provides the properties for each solution, including
-// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution.
+// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4047,11 +6180,12 @@ func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *requ
 // API operation ListSolutions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * InvalidNextTokenException
-//   The token is not valid.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListSolutions
 func (c *Personalize) ListSolutions(input *ListSolutionsInput) (*ListSolutionsOutput, error) {
@@ -4083,15 +6217,14 @@ func (c *Personalize) ListSolutionsWithContext(ctx aws.Context, input *ListSolut
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListSolutions operation.
-//    pageNum := 0
-//    err := client.ListSolutionsPages(params,
-//        func(page *personalize.ListSolutionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListSolutions operation.
+//	pageNum := 0
+//	err := client.ListSolutionsPages(params,
+//	    func(page *personalize.ListSolutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Personalize) ListSolutionsPages(input *ListSolutionsInput, fn func(*ListSolutionsOutput, bool) bool) error {
 	return c.ListSolutionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -4127,6 +6260,545 @@ func (c *Personalize) ListSolutionsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListTagsForResource
+func (c *Personalize) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Personalize.
+//
+// Get a list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+// attached to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListTagsForResource
+func (c *Personalize) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartRecommender = "StartRecommender"
+
+// StartRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the StartRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartRecommender for more information on using the StartRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartRecommenderRequest method.
+//	req, resp := client.StartRecommenderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StartRecommender
+func (c *Personalize) StartRecommenderRequest(input *StartRecommenderInput) (req *request.Request, output *StartRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opStartRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartRecommenderInput{}
+	}
+
+	output = &StartRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartRecommender API operation for Amazon Personalize.
+//
+// Starts a recommender that is INACTIVE. Starting a recommender does not create
+// any new models, but resumes billing and automatic retraining for the recommender.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation StartRecommender for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StartRecommender
+func (c *Personalize) StartRecommender(input *StartRecommenderInput) (*StartRecommenderOutput, error) {
+	req, out := c.StartRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// StartRecommenderWithContext is the same as StartRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) StartRecommenderWithContext(ctx aws.Context, input *StartRecommenderInput, opts ...request.Option) (*StartRecommenderOutput, error) {
+	req, out := c.StartRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopRecommender = "StopRecommender"
+
+// StopRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the StopRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopRecommender for more information on using the StopRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopRecommenderRequest method.
+//	req, resp := client.StopRecommenderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopRecommender
+func (c *Personalize) StopRecommenderRequest(input *StopRecommenderInput) (req *request.Request, output *StopRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opStopRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopRecommenderInput{}
+	}
+
+	output = &StopRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopRecommender API operation for Amazon Personalize.
+//
+// Stops a recommender that is ACTIVE. Stopping a recommender halts billing
+// and automatic retraining for the recommender.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation StopRecommender for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopRecommender
+func (c *Personalize) StopRecommender(input *StopRecommenderInput) (*StopRecommenderOutput, error) {
+	req, out := c.StopRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// StopRecommenderWithContext is the same as StopRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) StopRecommenderWithContext(ctx aws.Context, input *StopRecommenderInput, opts ...request.Option) (*StopRecommenderOutput, error) {
+	req, out := c.StopRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopSolutionVersionCreation = "StopSolutionVersionCreation"
+
+// StopSolutionVersionCreationRequest generates a "aws/request.Request" representing the
+// client's request for the StopSolutionVersionCreation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSolutionVersionCreation for more information on using the StopSolutionVersionCreation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopSolutionVersionCreationRequest method.
+//	req, resp := client.StopSolutionVersionCreationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopSolutionVersionCreation
+func (c *Personalize) StopSolutionVersionCreationRequest(input *StopSolutionVersionCreationInput) (req *request.Request, output *StopSolutionVersionCreationOutput) {
+	op := &request.Operation{
+		Name:       opStopSolutionVersionCreation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopSolutionVersionCreationInput{}
+	}
+
+	output = &StopSolutionVersionCreationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopSolutionVersionCreation API operation for Amazon Personalize.
+//
+// Stops creating a solution version that is in a state of CREATE_PENDING or
+// CREATE IN_PROGRESS.
+//
+// Depending on the current state of the solution version, the solution version
+// state changes as follows:
+//
+//   - CREATE_PENDING > CREATE_STOPPED or
+//
+//   - CREATE_IN_PROGRESS > CREATE_STOPPING > CREATE_STOPPED
+//
+// You are billed for all of the training completed up until you stop the solution
+// version creation. You cannot resume creating a solution version once it has
+// been stopped.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation StopSolutionVersionCreation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopSolutionVersionCreation
+func (c *Personalize) StopSolutionVersionCreation(input *StopSolutionVersionCreationInput) (*StopSolutionVersionCreationOutput, error) {
+	req, out := c.StopSolutionVersionCreationRequest(input)
+	return out, req.Send()
+}
+
+// StopSolutionVersionCreationWithContext is the same as StopSolutionVersionCreation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSolutionVersionCreation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) StopSolutionVersionCreationWithContext(ctx aws.Context, input *StopSolutionVersionCreationInput, opts ...request.Option) (*StopSolutionVersionCreationOutput, error) {
+	req, out := c.StopSolutionVersionCreationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/TagResource
+func (c *Personalize) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Personalize.
+//
+// Add a list of tags to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/TagResource
+func (c *Personalize) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UntagResource
+func (c *Personalize) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Personalize.
+//
+// Remove tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+// that are attached to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - TooManyTagKeysException
+//     The request contains more tag keys than can be associated with a resource
+//     (50 tag keys per resource).
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UntagResource
+func (c *Personalize) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCampaign = "UpdateCampaign"
 
 // UpdateCampaignRequest generates a "aws/request.Request" representing the
@@ -4143,14 +6815,13 @@ const opUpdateCampaign = "UpdateCampaign"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCampaignRequest method.
+//	req, resp := client.UpdateCampaignRequest(params)
 //
-//    // Example sending a request using the UpdateCampaignRequest method.
-//    req, resp := client.UpdateCampaignRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateCampaign
 func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *request.Request, output *UpdateCampaignOutput) {
@@ -4175,12 +6846,14 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 // of the campaign's minProvisionedTPS parameter.
 //
 // To update a campaign, the campaign status must be ACTIVE or CREATE FAILED.
-// Check the campaign status using the DescribeCampaign API.
+// Check the campaign status using the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+// operation.
 //
-// You must wait until the status of the updated campaign is ACTIVE before asking
-// the campaign for recommendations.
+// You can still get recommendations from a campaign while an update is in progress.
+// The campaign will use the previous solution version and campaign configuration
+// to generate recommendations until the latest campaign update status is Active.
 //
-// For more information on campaigns, see CreateCampaign.
+// For more information on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4190,14 +6863,15 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 // API operation UpdateCampaign for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   Provide a valid value for the field or parameter.
 //
-//   * ResourceNotFoundException
-//   Could not find the specified resource.
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateCampaign
 func (c *Personalize) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaignOutput, error) {
@@ -4216,6 +6890,179 @@ func (c *Personalize) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaig
 // for more information on using Contexts.
 func (c *Personalize) UpdateCampaignWithContext(ctx aws.Context, input *UpdateCampaignInput, opts ...request.Option) (*UpdateCampaignOutput, error) {
 	req, out := c.UpdateCampaignRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMetricAttribution = "UpdateMetricAttribution"
+
+// UpdateMetricAttributionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMetricAttribution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMetricAttribution for more information on using the UpdateMetricAttribution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateMetricAttributionRequest method.
+//	req, resp := client.UpdateMetricAttributionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateMetricAttribution
+func (c *Personalize) UpdateMetricAttributionRequest(input *UpdateMetricAttributionInput) (req *request.Request, output *UpdateMetricAttributionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMetricAttribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateMetricAttributionInput{}
+	}
+
+	output = &UpdateMetricAttributionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateMetricAttribution API operation for Amazon Personalize.
+//
+// Updates a metric attribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation UpdateMetricAttribution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateMetricAttribution
+func (c *Personalize) UpdateMetricAttribution(input *UpdateMetricAttributionInput) (*UpdateMetricAttributionOutput, error) {
+	req, out := c.UpdateMetricAttributionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMetricAttributionWithContext is the same as UpdateMetricAttribution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMetricAttribution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) UpdateMetricAttributionWithContext(ctx aws.Context, input *UpdateMetricAttributionInput, opts ...request.Option) (*UpdateMetricAttributionOutput, error) {
+	req, out := c.UpdateMetricAttributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRecommender = "UpdateRecommender"
+
+// UpdateRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRecommender for more information on using the UpdateRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateRecommenderRequest method.
+//	req, resp := client.UpdateRecommenderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateRecommender
+func (c *Personalize) UpdateRecommenderRequest(input *UpdateRecommenderInput) (req *request.Request, output *UpdateRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateRecommenderInput{}
+	}
+
+	output = &UpdateRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRecommender API operation for Amazon Personalize.
+//
+// Updates the recommender to modify the recommender configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation UpdateRecommender for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateRecommender
+func (c *Personalize) UpdateRecommender(input *UpdateRecommenderInput) (*UpdateRecommenderOutput, error) {
+	req, out := c.UpdateRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRecommenderWithContext is the same as UpdateRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) UpdateRecommenderWithContext(ctx aws.Context, input *UpdateRecommenderInput, opts ...request.Option) (*UpdateRecommenderOutput, error) {
+	req, out := c.UpdateRecommenderRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4259,12 +7106,20 @@ type Algorithm struct {
 	TrainingInputMode *string `locationName:"trainingInputMode" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Algorithm) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Algorithm) GoString() string {
 	return s.String()
 }
@@ -4342,12 +7197,20 @@ type AlgorithmImage struct {
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlgorithmImage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AlgorithmImage) GoString() string {
 	return s.String()
 }
@@ -4364,7 +7227,8 @@ func (s *AlgorithmImage) SetName(v string) *AlgorithmImage {
 	return s
 }
 
-// When the solution performs AutoML (performAutoML is true in CreateSolution),
+// When the solution performs AutoML (performAutoML is true in CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)),
 // Amazon Personalize determines which recipe, from the specified list, optimizes
 // the given metric. Amazon Personalize then uses that recipe for the solution.
 type AutoMLConfig struct {
@@ -4377,12 +7241,20 @@ type AutoMLConfig struct {
 	RecipeList []*string `locationName:"recipeList" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoMLConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoMLConfig) GoString() string {
 	return s.String()
 }
@@ -4399,7 +7271,8 @@ func (s *AutoMLConfig) SetRecipeList(v []*string) *AutoMLConfig {
 	return s
 }
 
-// When the solution performs AutoML (performAutoML is true in CreateSolution),
+// When the solution performs AutoML (performAutoML is true in CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)),
 // specifies the recipe that best optimized the specified metric.
 type AutoMLResult struct {
 	_ struct{} `type:"structure"`
@@ -4408,12 +7281,20 @@ type AutoMLResult struct {
 	BestRecipeArn *string `locationName:"bestRecipeArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoMLResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoMLResult) GoString() string {
 	return s.String()
 }
@@ -4431,11 +7312,18 @@ type BatchInferenceJob struct {
 	// The Amazon Resource Name (ARN) of the batch inference job.
 	BatchInferenceJobArn *string `locationName:"batchInferenceJobArn" type:"string"`
 
+	// A string to string map of the configuration details of a batch inference
+	// job.
+	BatchInferenceJobConfig *BatchInferenceJobConfig `locationName:"batchInferenceJobConfig" type:"structure"`
+
 	// The time at which the batch inference job was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
 	// If the batch inference job failed, the reason for the failure.
 	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the filter used on the batch inference job.
+	FilterArn *string `locationName:"filterArn" type:"string"`
 
 	// The Amazon S3 path that leads to the input data used to generate the batch
 	// inference job.
@@ -4476,12 +7364,20 @@ type BatchInferenceJob struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJob) GoString() string {
 	return s.String()
 }
@@ -4489,6 +7385,12 @@ func (s BatchInferenceJob) GoString() string {
 // SetBatchInferenceJobArn sets the BatchInferenceJobArn field's value.
 func (s *BatchInferenceJob) SetBatchInferenceJobArn(v string) *BatchInferenceJob {
 	s.BatchInferenceJobArn = &v
+	return s
+}
+
+// SetBatchInferenceJobConfig sets the BatchInferenceJobConfig field's value.
+func (s *BatchInferenceJob) SetBatchInferenceJobConfig(v *BatchInferenceJobConfig) *BatchInferenceJob {
+	s.BatchInferenceJobConfig = v
 	return s
 }
 
@@ -4501,6 +7403,12 @@ func (s *BatchInferenceJob) SetCreationDateTime(v time.Time) *BatchInferenceJob 
 // SetFailureReason sets the FailureReason field's value.
 func (s *BatchInferenceJob) SetFailureReason(v string) *BatchInferenceJob {
 	s.FailureReason = &v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *BatchInferenceJob) SetFilterArn(v string) *BatchInferenceJob {
+	s.FilterArn = &v
 	return s
 }
 
@@ -4552,6 +7460,41 @@ func (s *BatchInferenceJob) SetStatus(v string) *BatchInferenceJob {
 	return s
 }
 
+// The configuration details of a batch inference job.
+type BatchInferenceJobConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A string to string map specifying the exploration configuration hyperparameters,
+	// including explorationWeight and explorationItemAgeCutOff, you want to use
+	// to configure the amount of item exploration Amazon Personalize uses when
+	// recommending items. See User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html).
+	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchInferenceJobConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchInferenceJobConfig) GoString() string {
+	return s.String()
+}
+
+// SetItemExplorationConfig sets the ItemExplorationConfig field's value.
+func (s *BatchInferenceJobConfig) SetItemExplorationConfig(v map[string]*string) *BatchInferenceJobConfig {
+	s.ItemExplorationConfig = v
+	return s
+}
+
 // The input configuration of a batch inference job.
 type BatchInferenceJobInput struct {
 	_ struct{} `type:"structure"`
@@ -4563,12 +7506,20 @@ type BatchInferenceJobInput struct {
 	S3DataSource *S3DataConfig `locationName:"s3DataSource" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -4608,12 +7559,20 @@ type BatchInferenceJobOutput struct {
 	S3DataDestination *S3DataConfig `locationName:"s3DataDestination" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -4642,7 +7601,8 @@ func (s *BatchInferenceJobOutput) SetS3DataDestination(v *S3DataConfig) *BatchIn
 	return s
 }
 
-// A truncated version of the BatchInferenceJob datatype. The ListBatchInferenceJobs
+// A truncated version of the BatchInferenceJob (https://docs.aws.amazon.com/personalize/latest/dg/API_BatchInferenceJob.html).
+// The ListBatchInferenceJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListBatchInferenceJobs.html)
 // operation returns a list of batch inference job summaries.
 type BatchInferenceJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -4678,12 +7638,20 @@ type BatchInferenceJobSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJobSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchInferenceJobSummary) GoString() string {
 	return s.String()
 }
@@ -4730,13 +7698,361 @@ func (s *BatchInferenceJobSummary) SetStatus(v string) *BatchInferenceJobSummary
 	return s
 }
 
-// Describes a deployed solution version, otherwise known as a campaign. For
-// more information on campaigns, see CreateCampaign.
+// Contains information on a batch segment job.
+type BatchSegmentJob struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the batch segment job.
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string"`
+
+	// The time at which the batch segment job was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If the batch segment job failed, the reason for the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the filter used on the batch segment job.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// The Amazon S3 path that leads to the input data used to generate the batch
+	// segment job.
+	JobInput *BatchSegmentJobInput_ `locationName:"jobInput" type:"structure"`
+
+	// The name of the batch segment job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The Amazon S3 bucket that contains the output data generated by the batch
+	// segment job.
+	JobOutput *BatchSegmentJobOutput_ `locationName:"jobOutput" type:"structure"`
+
+	// The time at which the batch segment job last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The number of predicted users generated by the batch segment job for each
+	// line of input data.
+	NumResults *int64 `locationName:"numResults" type:"integer"`
+
+	// The ARN of the Amazon Identity and Access Management (IAM) role that requested
+	// the batch segment job.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the solution version used by the batch
+	// segment job to generate batch segments.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+
+	// The status of the batch segment job. The status is one of the following values:
+	//
+	//    * PENDING
+	//
+	//    * IN PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJob) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *BatchSegmentJob) SetBatchSegmentJobArn(v string) *BatchSegmentJob {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *BatchSegmentJob) SetCreationDateTime(v time.Time) *BatchSegmentJob {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *BatchSegmentJob) SetFailureReason(v string) *BatchSegmentJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *BatchSegmentJob) SetFilterArn(v string) *BatchSegmentJob {
+	s.FilterArn = &v
+	return s
+}
+
+// SetJobInput sets the JobInput field's value.
+func (s *BatchSegmentJob) SetJobInput(v *BatchSegmentJobInput_) *BatchSegmentJob {
+	s.JobInput = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *BatchSegmentJob) SetJobName(v string) *BatchSegmentJob {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *BatchSegmentJob) SetJobOutput(v *BatchSegmentJobOutput_) *BatchSegmentJob {
+	s.JobOutput = v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *BatchSegmentJob) SetLastUpdatedDateTime(v time.Time) *BatchSegmentJob {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetNumResults sets the NumResults field's value.
+func (s *BatchSegmentJob) SetNumResults(v int64) *BatchSegmentJob {
+	s.NumResults = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *BatchSegmentJob) SetRoleArn(v string) *BatchSegmentJob {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *BatchSegmentJob) SetSolutionVersionArn(v string) *BatchSegmentJob {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchSegmentJob) SetStatus(v string) *BatchSegmentJob {
+	s.Status = &v
+	return s
+}
+
+// The input configuration of a batch segment job.
+type BatchSegmentJobInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	//
+	// S3DataSource is a required field
+	S3DataSource *S3DataConfig `locationName:"s3DataSource" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchSegmentJobInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchSegmentJobInput_"}
+	if s.S3DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataSource"))
+	}
+	if s.S3DataSource != nil {
+		if err := s.S3DataSource.Validate(); err != nil {
+			invalidParams.AddNested("S3DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataSource sets the S3DataSource field's value.
+func (s *BatchSegmentJobInput_) SetS3DataSource(v *S3DataConfig) *BatchSegmentJobInput_ {
+	s.S3DataSource = v
+	return s
+}
+
+// The output configuration parameters of a batch segment job.
+type BatchSegmentJobOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	//
+	// S3DataDestination is a required field
+	S3DataDestination *S3DataConfig `locationName:"s3DataDestination" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobOutput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchSegmentJobOutput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchSegmentJobOutput_"}
+	if s.S3DataDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataDestination"))
+	}
+	if s.S3DataDestination != nil {
+		if err := s.S3DataDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3DataDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataDestination sets the S3DataDestination field's value.
+func (s *BatchSegmentJobOutput_) SetS3DataDestination(v *S3DataConfig) *BatchSegmentJobOutput_ {
+	s.S3DataDestination = v
+	return s
+}
+
+// A truncated version of the BatchSegmentJob (https://docs.aws.amazon.com/personalize/latest/dg/API_BatchSegmentJob.html)
+// datatype. ListBatchSegmentJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListBatchSegmentJobs.html)
+// operation returns a list of batch segment job summaries.
+type BatchSegmentJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the batch segment job.
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string"`
+
+	// The time at which the batch segment job was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If the batch segment job failed, the reason for the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the batch segment job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The time at which the batch segment job was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the solution version used by the batch
+	// segment job to generate batch segments.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+
+	// The status of the batch segment job. The status is one of the following values:
+	//
+	//    * PENDING
+	//
+	//    * IN PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *BatchSegmentJobSummary) SetBatchSegmentJobArn(v string) *BatchSegmentJobSummary {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *BatchSegmentJobSummary) SetCreationDateTime(v time.Time) *BatchSegmentJobSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *BatchSegmentJobSummary) SetFailureReason(v string) *BatchSegmentJobSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *BatchSegmentJobSummary) SetJobName(v string) *BatchSegmentJobSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *BatchSegmentJobSummary) SetLastUpdatedDateTime(v time.Time) *BatchSegmentJobSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *BatchSegmentJobSummary) SetSolutionVersionArn(v string) *BatchSegmentJobSummary {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchSegmentJobSummary) SetStatus(v string) *BatchSegmentJobSummary {
+	s.Status = &v
+	return s
+}
+
+// An object that describes the deployment of a solution version. For more information
+// on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 type Campaign struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the campaign.
 	CampaignArn *string `locationName:"campaignArn" type:"string"`
+
+	// The configuration details of a campaign.
+	CampaignConfig *CampaignConfig `locationName:"campaignConfig" type:"structure"`
 
 	// The date and time (in Unix format) that the campaign was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -4748,7 +8064,8 @@ type Campaign struct {
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
 	// Provides a summary of the properties of a campaign update. For a complete
-	// listing, call the DescribeCampaign API.
+	// listing, call the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+	// API.
 	LatestCampaignUpdate *CampaignUpdateSummary `locationName:"latestCampaignUpdate" type:"structure"`
 
 	// Specifies the requested minimum provisioned transactions (recommendations)
@@ -4771,12 +8088,20 @@ type Campaign struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Campaign) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Campaign) GoString() string {
 	return s.String()
 }
@@ -4784,6 +8109,12 @@ func (s Campaign) GoString() string {
 // SetCampaignArn sets the CampaignArn field's value.
 func (s *Campaign) SetCampaignArn(v string) *Campaign {
 	s.CampaignArn = &v
+	return s
+}
+
+// SetCampaignConfig sets the CampaignConfig field's value.
+func (s *Campaign) SetCampaignConfig(v *CampaignConfig) *Campaign {
+	s.CampaignConfig = v
 	return s
 }
 
@@ -4835,8 +8166,46 @@ func (s *Campaign) SetStatus(v string) *Campaign {
 	return s
 }
 
+// The configuration details of a campaign.
+type CampaignConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the exploration configuration hyperparameters, including explorationWeight
+	// and explorationItemAgeCutOff, you want to use to configure the amount of
+	// item exploration Amazon Personalize uses when recommending items. Provide
+	// itemExplorationConfig data only if your solution uses the User-Personalization
+	// (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// recipe.
+	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CampaignConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CampaignConfig) GoString() string {
+	return s.String()
+}
+
+// SetItemExplorationConfig sets the ItemExplorationConfig field's value.
+func (s *CampaignConfig) SetItemExplorationConfig(v map[string]*string) *CampaignConfig {
+	s.ItemExplorationConfig = v
+	return s
+}
+
 // Provides a summary of the properties of a campaign. For a complete listing,
-// call the DescribeCampaign API.
+// call the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+// API.
 type CampaignSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -4865,12 +8234,20 @@ type CampaignSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CampaignSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CampaignSummary) GoString() string {
 	return s.String()
 }
@@ -4912,9 +8289,13 @@ func (s *CampaignSummary) SetStatus(v string) *CampaignSummary {
 }
 
 // Provides a summary of the properties of a campaign update. For a complete
-// listing, call the DescribeCampaign API.
+// listing, call the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
+// API.
 type CampaignUpdateSummary struct {
 	_ struct{} `type:"structure"`
+
+	// The configuration details of a campaign.
+	CampaignConfig *CampaignConfig `locationName:"campaignConfig" type:"structure"`
 
 	// The date and time (in Unix time) that the campaign update was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
@@ -4942,14 +8323,28 @@ type CampaignUpdateSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CampaignUpdateSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CampaignUpdateSummary) GoString() string {
 	return s.String()
+}
+
+// SetCampaignConfig sets the CampaignConfig field's value.
+func (s *CampaignUpdateSummary) SetCampaignConfig(v *CampaignConfig) *CampaignUpdateSummary {
+	s.CampaignConfig = v
+	return s
 }
 
 // SetCreationDateTime sets the CreationDateTime field's value.
@@ -4999,12 +8394,20 @@ type CategoricalHyperParameterRange struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CategoricalHyperParameterRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CategoricalHyperParameterRange) GoString() string {
 	return s.String()
 }
@@ -5035,12 +8438,20 @@ type ContinuousHyperParameterRange struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContinuousHyperParameterRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContinuousHyperParameterRange) GoString() string {
 	return s.String()
 }
@@ -5082,6 +8493,13 @@ func (s *ContinuousHyperParameterRange) SetName(v string) *ContinuousHyperParame
 type CreateBatchInferenceJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration details of a batch inference job.
+	BatchInferenceJobConfig *BatchInferenceJobConfig `locationName:"batchInferenceJobConfig" type:"structure"`
+
+	// The ARN of the filter to apply to the batch inference job. For more information
+	// on using filters, see Filtering batch recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html).
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
 	// The Amazon S3 path that leads to the input file to base your recommendations
 	// on. The input material must be in JSON format.
 	//
@@ -5098,11 +8516,11 @@ type CreateBatchInferenceJobInput struct {
 	// JobOutput is a required field
 	JobOutput *BatchInferenceJobOutput `locationName:"jobOutput" type:"structure" required:"true"`
 
-	// The number of recommendations to retreive.
+	// The number of recommendations to retrieve.
 	NumResults *int64 `locationName:"numResults" type:"integer"`
 
 	// The ARN of the Amazon Identity and Access Management role that has permissions
-	// to read and write to your input and out Amazon S3 buckets respectively.
+	// to read and write to your input and output Amazon S3 buckets respectively.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -5112,14 +8530,26 @@ type CreateBatchInferenceJobInput struct {
 	//
 	// SolutionVersionArn is a required field
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the batch inference job.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBatchInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBatchInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -5155,11 +8585,33 @@ func (s *CreateBatchInferenceJobInput) Validate() error {
 			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchInferenceJobConfig sets the BatchInferenceJobConfig field's value.
+func (s *CreateBatchInferenceJobInput) SetBatchInferenceJobConfig(v *BatchInferenceJobConfig) *CreateBatchInferenceJobInput {
+	s.BatchInferenceJobConfig = v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *CreateBatchInferenceJobInput) SetFilterArn(v string) *CreateBatchInferenceJobInput {
+	s.FilterArn = &v
+	return s
 }
 
 // SetJobInput sets the JobInput field's value.
@@ -5198,6 +8650,12 @@ func (s *CreateBatchInferenceJobInput) SetSolutionVersionArn(v string) *CreateBa
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateBatchInferenceJobInput) SetTags(v []*Tag) *CreateBatchInferenceJobInput {
+	s.Tags = v
+	return s
+}
+
 type CreateBatchInferenceJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5205,12 +8663,20 @@ type CreateBatchInferenceJobOutput struct {
 	BatchInferenceJobArn *string `locationName:"batchInferenceJobArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBatchInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBatchInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -5221,14 +8687,204 @@ func (s *CreateBatchInferenceJobOutput) SetBatchInferenceJobArn(v string) *Creat
 	return s
 }
 
+type CreateBatchSegmentJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the filter to apply to the batch segment job. For more information
+	// on using filters, see Filtering batch recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html).
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// The Amazon S3 path for the input data used to generate the batch segment
+	// job.
+	//
+	// JobInput is a required field
+	JobInput *BatchSegmentJobInput_ `locationName:"jobInput" type:"structure" required:"true"`
+
+	// The name of the batch segment job to create.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 path for the bucket where the job's output will be stored.
+	//
+	// JobOutput is a required field
+	JobOutput *BatchSegmentJobOutput_ `locationName:"jobOutput" type:"structure" required:"true"`
+
+	// The number of predicted users generated by the batch segment job for each
+	// line of input data.
+	NumResults *int64 `locationName:"numResults" type:"integer"`
+
+	// The ARN of the Amazon Identity and Access Management role that has permissions
+	// to read and write to your input and output Amazon S3 buckets respectively.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the solution version you want the batch
+	// segment job to use to generate batch segments.
+	//
+	// SolutionVersionArn is a required field
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the batch segment job.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBatchSegmentJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBatchSegmentJobInput"}
+	if s.JobInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobInput"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobOutput"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.SolutionVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SolutionVersionArn"))
+	}
+	if s.JobInput != nil {
+		if err := s.JobInput.Validate(); err != nil {
+			invalidParams.AddNested("JobInput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JobOutput != nil {
+		if err := s.JobOutput.Validate(); err != nil {
+			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *CreateBatchSegmentJobInput) SetFilterArn(v string) *CreateBatchSegmentJobInput {
+	s.FilterArn = &v
+	return s
+}
+
+// SetJobInput sets the JobInput field's value.
+func (s *CreateBatchSegmentJobInput) SetJobInput(v *BatchSegmentJobInput_) *CreateBatchSegmentJobInput {
+	s.JobInput = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateBatchSegmentJobInput) SetJobName(v string) *CreateBatchSegmentJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *CreateBatchSegmentJobInput) SetJobOutput(v *BatchSegmentJobOutput_) *CreateBatchSegmentJobInput {
+	s.JobOutput = v
+	return s
+}
+
+// SetNumResults sets the NumResults field's value.
+func (s *CreateBatchSegmentJobInput) SetNumResults(v int64) *CreateBatchSegmentJobInput {
+	s.NumResults = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateBatchSegmentJobInput) SetRoleArn(v string) *CreateBatchSegmentJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *CreateBatchSegmentJobInput) SetSolutionVersionArn(v string) *CreateBatchSegmentJobInput {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBatchSegmentJobInput) SetTags(v []*Tag) *CreateBatchSegmentJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateBatchSegmentJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the batch segment job.
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *CreateBatchSegmentJobOutput) SetBatchSegmentJobArn(v string) *CreateBatchSegmentJobOutput {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
 type CreateCampaignInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration details of a campaign.
+	CampaignConfig *CampaignConfig `locationName:"campaignConfig" type:"structure"`
+
 	// Specifies the requested minimum provisioned transactions (recommendations)
 	// per second that Amazon Personalize will support.
-	//
-	// MinProvisionedTPS is a required field
-	MinProvisionedTPS *int64 `locationName:"minProvisionedTPS" min:"1" type:"integer" required:"true"`
+	MinProvisionedTPS *int64 `locationName:"minProvisionedTPS" min:"1" type:"integer"`
 
 	// A name for the new campaign. The campaign name must be unique within your
 	// account.
@@ -5240,14 +8896,26 @@ type CreateCampaignInput struct {
 	//
 	// SolutionVersionArn is a required field
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the campaign.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCampaignInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCampaignInput) GoString() string {
 	return s.String()
 }
@@ -5255,9 +8923,6 @@ func (s CreateCampaignInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCampaignInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCampaignInput"}
-	if s.MinProvisionedTPS == nil {
-		invalidParams.Add(request.NewErrParamRequired("MinProvisionedTPS"))
-	}
 	if s.MinProvisionedTPS != nil && *s.MinProvisionedTPS < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MinProvisionedTPS", 1))
 	}
@@ -5270,11 +8935,27 @@ func (s *CreateCampaignInput) Validate() error {
 	if s.SolutionVersionArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SolutionVersionArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCampaignConfig sets the CampaignConfig field's value.
+func (s *CreateCampaignInput) SetCampaignConfig(v *CampaignConfig) *CreateCampaignInput {
+	s.CampaignConfig = v
+	return s
 }
 
 // SetMinProvisionedTPS sets the MinProvisionedTPS field's value.
@@ -5295,6 +8976,12 @@ func (s *CreateCampaignInput) SetSolutionVersionArn(v string) *CreateCampaignInp
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateCampaignInput) SetTags(v []*Tag) *CreateCampaignInput {
+	s.Tags = v
+	return s
+}
+
 type CreateCampaignOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5302,12 +8989,20 @@ type CreateCampaignOutput struct {
 	CampaignArn *string `locationName:"campaignArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCampaignOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCampaignOutput) GoString() string {
 	return s.String()
 }
@@ -5318,10 +9013,178 @@ func (s *CreateCampaignOutput) SetCampaignArn(v string) *CreateCampaignOutput {
 	return s
 }
 
+type CreateDatasetExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that contains the data to export.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
+
+	// The data to export, based on how you imported the data. You can choose to
+	// export only BULK data that you imported using a dataset import job, only
+	// PUT data that you imported incrementally (using the console, PutEvents, PutUsers
+	// and PutItems operations), or ALL for both types. The default value is PUT.
+	IngestionMode *string `locationName:"ingestionMode" type:"string" enum:"IngestionMode"`
+
+	// The name for the dataset export job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The path to the Amazon S3 bucket where the job's output is stored.
+	//
+	// JobOutput is a required field
+	JobOutput *DatasetExportJobOutput `locationName:"jobOutput" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM service role that has permissions
+	// to add data to your output Amazon S3 bucket.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset export job.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDatasetExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDatasetExportJobInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobOutput"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.JobOutput != nil {
+		if err := s.JobOutput.Validate(); err != nil {
+			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateDatasetExportJobInput) SetDatasetArn(v string) *CreateDatasetExportJobInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetIngestionMode sets the IngestionMode field's value.
+func (s *CreateDatasetExportJobInput) SetIngestionMode(v string) *CreateDatasetExportJobInput {
+	s.IngestionMode = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateDatasetExportJobInput) SetJobName(v string) *CreateDatasetExportJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *CreateDatasetExportJobInput) SetJobOutput(v *DatasetExportJobOutput) *CreateDatasetExportJobInput {
+	s.JobOutput = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateDatasetExportJobInput) SetRoleArn(v string) *CreateDatasetExportJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetExportJobInput) SetTags(v []*Tag) *CreateDatasetExportJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDatasetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job.
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *CreateDatasetExportJobOutput) SetDatasetExportJobArn(v string) *CreateDatasetExportJobOutput {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
 type CreateDatasetGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of a KMS key used to encrypt the datasets.
+	// The domain of the dataset group. Specify a domain to create a Domain dataset
+	// group. The domain you specify determines the default schemas for datasets
+	// and the use cases available for recommenders. If you don't specify a domain,
+	// you create a Custom dataset group with solution versions that you deploy
+	// with a campaign.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
+	// The Amazon Resource Name (ARN) of a Key Management Service (KMS) key used
+	// to encrypt the datasets.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The name for the new dataset group.
@@ -5329,17 +9192,30 @@ type CreateDatasetGroupInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The ARN of the IAM role that has permissions to access the KMS key. Supplying
-	// an IAM role is only valid when also specifying a KMS key.
+	// The ARN of the Identity and Access Management (IAM) role that has permissions
+	// to access the Key Management Service (KMS) key. Supplying an IAM role is
+	// only valid when also specifying a KMS key.
 	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset group.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetGroupInput) GoString() string {
 	return s.String()
 }
@@ -5353,11 +9229,27 @@ func (s *CreateDatasetGroupInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateDatasetGroupInput) SetDomain(v string) *CreateDatasetGroupInput {
+	s.Domain = &v
+	return s
 }
 
 // SetKmsKeyArn sets the KmsKeyArn field's value.
@@ -5378,19 +9270,36 @@ func (s *CreateDatasetGroupInput) SetRoleArn(v string) *CreateDatasetGroupInput 
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetGroupInput) SetTags(v []*Tag) *CreateDatasetGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDatasetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the new dataset group.
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The domain for the new Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -5398,6 +9307,12 @@ func (s CreateDatasetGroupOutput) GoString() string {
 // SetDatasetGroupArn sets the DatasetGroupArn field's value.
 func (s *CreateDatasetGroupOutput) SetDatasetGroupArn(v string) *CreateDatasetGroupOutput {
 	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateDatasetGroupOutput) SetDomain(v string) *CreateDatasetGroupOutput {
+	s.Domain = &v
 	return s
 }
 
@@ -5414,24 +9329,52 @@ type CreateDatasetImportJobInput struct {
 	// DatasetArn is a required field
 	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
 
+	// Specify how to add the new records to an existing dataset. The default import
+	// mode is FULL. If you haven't imported bulk records into the dataset previously,
+	// you can only specify FULL.
+	//
+	//    * Specify FULL to overwrite all existing bulk data in your dataset. Data
+	//    you imported individually is not replaced.
+	//
+	//    * Specify INCREMENTAL to append the new records to the existing data in
+	//    your dataset. Amazon Personalize replaces any record with the same ID
+	//    with the new one.
+	ImportMode *string `locationName:"importMode" type:"string" enum:"ImportMode"`
+
 	// The name for the dataset import job.
 	//
 	// JobName is a required field
 	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// If you created a metric attribution, specify whether to publish metrics for
+	// this import job to Amazon S3
+	PublishAttributionMetricsToS3 *bool `locationName:"publishAttributionMetricsToS3" type:"boolean"`
 
 	// The ARN of the IAM role that has permissions to read from the Amazon S3 data
 	// source.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset import job.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetImportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetImportJobInput) GoString() string {
 	return s.String()
 }
@@ -5454,6 +9397,16 @@ func (s *CreateDatasetImportJobInput) Validate() error {
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5473,15 +9426,33 @@ func (s *CreateDatasetImportJobInput) SetDatasetArn(v string) *CreateDatasetImpo
 	return s
 }
 
+// SetImportMode sets the ImportMode field's value.
+func (s *CreateDatasetImportJobInput) SetImportMode(v string) *CreateDatasetImportJobInput {
+	s.ImportMode = &v
+	return s
+}
+
 // SetJobName sets the JobName field's value.
 func (s *CreateDatasetImportJobInput) SetJobName(v string) *CreateDatasetImportJobInput {
 	s.JobName = &v
 	return s
 }
 
+// SetPublishAttributionMetricsToS3 sets the PublishAttributionMetricsToS3 field's value.
+func (s *CreateDatasetImportJobInput) SetPublishAttributionMetricsToS3(v bool) *CreateDatasetImportJobInput {
+	s.PublishAttributionMetricsToS3 = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *CreateDatasetImportJobInput) SetRoleArn(v string) *CreateDatasetImportJobInput {
 	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetImportJobInput) SetTags(v []*Tag) *CreateDatasetImportJobInput {
+	s.Tags = v
 	return s
 }
 
@@ -5492,12 +9463,20 @@ type CreateDatasetImportJobOutput struct {
 	DatasetImportJobArn *string `locationName:"datasetImportJobArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetImportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetImportJobOutput) GoString() string {
 	return s.String()
 }
@@ -5539,14 +9518,26 @@ type CreateDatasetInput struct {
 	//
 	// SchemaArn is a required field
 	SchemaArn *string `locationName:"schemaArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the dataset.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetInput) GoString() string {
 	return s.String()
 }
@@ -5568,6 +9559,16 @@ func (s *CreateDatasetInput) Validate() error {
 	}
 	if s.SchemaArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5600,6 +9601,12 @@ func (s *CreateDatasetInput) SetSchemaArn(v string) *CreateDatasetInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetInput) SetTags(v []*Tag) *CreateDatasetInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDatasetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5607,12 +9614,20 @@ type CreateDatasetOutput struct {
 	DatasetArn *string `locationName:"datasetArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDatasetOutput) GoString() string {
 	return s.String()
 }
@@ -5636,14 +9651,26 @@ type CreateEventTrackerInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the event tracker.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventTrackerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventTrackerInput) GoString() string {
 	return s.String()
 }
@@ -5659,6 +9686,16 @@ func (s *CreateEventTrackerInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5679,6 +9716,12 @@ func (s *CreateEventTrackerInput) SetName(v string) *CreateEventTrackerInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateEventTrackerInput) SetTags(v []*Tag) *CreateEventTrackerInput {
+	s.Tags = v
+	return s
+}
+
 type CreateEventTrackerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5691,12 +9734,20 @@ type CreateEventTrackerOutput struct {
 	TrackingId *string `locationName:"trackingId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventTrackerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateEventTrackerOutput) GoString() string {
 	return s.String()
 }
@@ -5713,8 +9764,437 @@ func (s *CreateEventTrackerOutput) SetTrackingId(v string) *CreateEventTrackerOu
 	return s
 }
 
+type CreateFilterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the dataset group that the filter will belong to.
+	//
+	// DatasetGroupArn is a required field
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
+
+	// The filter expression defines which items are included or excluded from recommendations.
+	// Filter expression must follow specific format rules. For information about
+	// filter expression structure and syntax, see Filter expressions (https://docs.aws.amazon.com/personalize/latest/dg/filter-expressions.html).
+	//
+	// FilterExpression is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateFilterInput's
+	// String and GoString methods.
+	//
+	// FilterExpression is a required field
+	FilterExpression *string `locationName:"filterExpression" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The name of the filter to create.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the filter.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFilterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFilterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFilterInput"}
+	if s.DatasetGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetGroupArn"))
+	}
+	if s.FilterExpression == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterExpression"))
+	}
+	if s.FilterExpression != nil && len(*s.FilterExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterExpression", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *CreateFilterInput) SetDatasetGroupArn(v string) *CreateFilterInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *CreateFilterInput) SetFilterExpression(v string) *CreateFilterInput {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFilterInput) SetName(v string) *CreateFilterInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFilterInput) SetTags(v []*Tag) *CreateFilterInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFilterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the new filter.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFilterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFilterOutput) GoString() string {
+	return s.String()
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *CreateFilterOutput) SetFilterArn(v string) *CreateFilterOutput {
+	s.FilterArn = &v
+	return s
+}
+
+type CreateMetricAttributionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the destination dataset group for the metric
+	// attribution.
+	//
+	// DatasetGroupArn is a required field
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
+
+	// A list of metric attributes for the metric attribution. Each metric attribute
+	// specifies an event type to track and a function. Available functions are
+	// SUM() or SAMPLECOUNT(). For SUM() functions, provide the dataset type (either
+	// Interactions or Items) and column to sum as a parameter. For example SUM(Items.PRICE).
+	//
+	// Metrics is a required field
+	Metrics []*MetricAttribute `locationName:"metrics" type:"list" required:"true"`
+
+	// The output configuration details for the metric attribution.
+	//
+	// MetricsOutputConfig is a required field
+	MetricsOutputConfig *MetricAttributionOutput_ `locationName:"metricsOutputConfig" type:"structure" required:"true"`
+
+	// A name for the metric attribution.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMetricAttributionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMetricAttributionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMetricAttributionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMetricAttributionInput"}
+	if s.DatasetGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetGroupArn"))
+	}
+	if s.Metrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metrics"))
+	}
+	if s.MetricsOutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricsOutputConfig"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MetricsOutputConfig != nil {
+		if err := s.MetricsOutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("MetricsOutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *CreateMetricAttributionInput) SetDatasetGroupArn(v string) *CreateMetricAttributionInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *CreateMetricAttributionInput) SetMetrics(v []*MetricAttribute) *CreateMetricAttributionInput {
+	s.Metrics = v
+	return s
+}
+
+// SetMetricsOutputConfig sets the MetricsOutputConfig field's value.
+func (s *CreateMetricAttributionInput) SetMetricsOutputConfig(v *MetricAttributionOutput_) *CreateMetricAttributionInput {
+	s.MetricsOutputConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMetricAttributionInput) SetName(v string) *CreateMetricAttributionInput {
+	s.Name = &v
+	return s
+}
+
+type CreateMetricAttributionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the new metric attribution.
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMetricAttributionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMetricAttributionOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *CreateMetricAttributionOutput) SetMetricAttributionArn(v string) *CreateMetricAttributionOutput {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+type CreateRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the destination domain dataset group for
+	// the recommender.
+	//
+	// DatasetGroupArn is a required field
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
+
+	// The name of the recommender.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the recipe that the recommender will use.
+	// For a recommender, a recipe is a Domain dataset group use case. Only Domain
+	// dataset group use cases can be used to create a recommender. For information
+	// about use cases see Choosing recommender use cases (https://docs.aws.amazon.com/personalize/latest/dg/domain-use-cases.html).
+	//
+	// RecipeArn is a required field
+	RecipeArn *string `locationName:"recipeArn" type:"string" required:"true"`
+
+	// The configuration details of the recommender.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the recommender.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRecommenderInput"}
+	if s.DatasetGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetGroupArn"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecipeArn"))
+	}
+	if s.RecommenderConfig != nil {
+		if err := s.RecommenderConfig.Validate(); err != nil {
+			invalidParams.AddNested("RecommenderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *CreateRecommenderInput) SetDatasetGroupArn(v string) *CreateRecommenderInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRecommenderInput) SetName(v string) *CreateRecommenderInput {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *CreateRecommenderInput) SetRecipeArn(v string) *CreateRecommenderInput {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *CreateRecommenderInput) SetRecommenderConfig(v *RecommenderConfig) *CreateRecommenderInput {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRecommenderInput) SetTags(v []*Tag) *CreateRecommenderInput {
+	s.Tags = v
+	return s
+}
+
+type CreateRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *CreateRecommenderOutput) SetRecommenderArn(v string) *CreateRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
 type CreateSchemaInput struct {
 	_ struct{} `type:"structure"`
+
+	// The domain for the schema. If you are creating a schema for a dataset in
+	// a Domain dataset group, specify the domain you chose when you created the
+	// Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The name for the schema.
 	//
@@ -5727,12 +10207,20 @@ type CreateSchemaInput struct {
 	Schema *string `locationName:"schema" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaInput) GoString() string {
 	return s.String()
 }
@@ -5756,6 +10244,12 @@ func (s *CreateSchemaInput) Validate() error {
 	return nil
 }
 
+// SetDomain sets the Domain field's value.
+func (s *CreateSchemaInput) SetDomain(v string) *CreateSchemaInput {
+	s.Domain = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateSchemaInput) SetName(v string) *CreateSchemaInput {
 	s.Name = &v
@@ -5775,12 +10269,20 @@ type CreateSchemaOutput struct {
 	SchemaArn *string `locationName:"schemaArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -5803,6 +10305,9 @@ type CreateSolutionInput struct {
 	// When your have multiple event types (using an EVENT_TYPE schema field), this
 	// parameter specifies which event type (for example, 'click' or 'like') is
 	// used for training the model.
+	//
+	// If you do not provide an eventType, Amazon Personalize will use all interactions
+	// for training with equal weight regardless of type.
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The name for the solution.
@@ -5834,15 +10339,29 @@ type CreateSolutionInput struct {
 	// The configuration to use with the solution. When performAutoML is set to
 	// true, Amazon Personalize only evaluates the autoMLConfig section of the solution
 	// configuration.
+	//
+	// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 	SolutionConfig *SolutionConfig `locationName:"solutionConfig" type:"structure"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the solution.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionInput) GoString() string {
 	return s.String()
 }
@@ -5862,6 +10381,16 @@ func (s *CreateSolutionInput) Validate() error {
 	if s.SolutionConfig != nil {
 		if err := s.SolutionConfig.Validate(); err != nil {
 			invalidParams.AddNested("SolutionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -5913,6 +10442,12 @@ func (s *CreateSolutionInput) SetSolutionConfig(v *SolutionConfig) *CreateSoluti
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateSolutionInput) SetTags(v []*Tag) *CreateSolutionInput {
+	s.Tags = v
+	return s
+}
+
 type CreateSolutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5920,12 +10455,20 @@ type CreateSolutionOutput struct {
 	SolutionArn *string `locationName:"solutionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionOutput) GoString() string {
 	return s.String()
 }
@@ -5939,11 +10482,18 @@ func (s *CreateSolutionOutput) SetSolutionArn(v string) *CreateSolutionOutput {
 type CreateSolutionVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the solution version.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the solution containing the training configuration
 	// information.
 	//
 	// SolutionArn is a required field
 	SolutionArn *string `locationName:"solutionArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html)
+	// to apply to the solution version.
+	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The scope of training to be performed when creating the solution version.
 	// The FULL option trains the solution version based on the entirety of the
@@ -5954,16 +10504,26 @@ type CreateSolutionVersionInput struct {
 	//
 	// The UPDATE option can only be used when you already have an active solution
 	// version created from the input solution using the FULL option and the input
-	// solution was trained with the native-recipe-hrnn-coldstart recipe.
+	// solution was trained with the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// recipe or the HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
+	// recipe.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionVersionInput) GoString() string {
 	return s.String()
 }
@@ -5971,8 +10531,21 @@ func (s CreateSolutionVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSolutionVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSolutionVersionInput"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
 	if s.SolutionArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SolutionArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5981,9 +10554,21 @@ func (s *CreateSolutionVersionInput) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *CreateSolutionVersionInput) SetName(v string) *CreateSolutionVersionInput {
+	s.Name = &v
+	return s
+}
+
 // SetSolutionArn sets the SolutionArn field's value.
 func (s *CreateSolutionVersionInput) SetSolutionArn(v string) *CreateSolutionVersionInput {
 	s.SolutionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSolutionVersionInput) SetTags(v []*Tag) *CreateSolutionVersionInput {
+	s.Tags = v
 	return s
 }
 
@@ -6000,12 +10585,20 @@ type CreateSolutionVersionOutput struct {
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSolutionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -6023,16 +10616,24 @@ type DataSource struct {
 	// The path to the Amazon S3 bucket where the data that you want to upload to
 	// your dataset is stored. For example:
 	//
-	// s3://bucket-name/training-data.csv
+	// s3://bucket-name/folder-name/
 	DataLocation *string `locationName:"dataLocation" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSource) GoString() string {
 	return s.String()
 }
@@ -6084,12 +10685,20 @@ type Dataset struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dataset) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dataset) GoString() string {
 	return s.String()
 }
@@ -6142,13 +10751,280 @@ func (s *Dataset) SetStatus(v string) *Dataset {
 	return s
 }
 
+// Describes a job that exports a dataset to an Amazon S3 bucket. For more information,
+// see CreateDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html).
+//
+// A dataset export job can be in one of the following states:
+//
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+type DatasetExportJob struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time (in Unix time) of the dataset export job.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the dataset to export.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job.
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string"`
+
+	// If a dataset export job fails, provides the reason why.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The data to export, based on how you imported the data. You can choose to
+	// export BULK data that you imported using a dataset import job, PUT data that
+	// you imported incrementally (using the console, PutEvents, PutUsers and PutItems
+	// operations), or ALL for both types. The default value is PUT.
+	IngestionMode *string `locationName:"ingestionMode" type:"string" enum:"IngestionMode"`
+
+	// The name of the export job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The path to the Amazon S3 bucket where the job's output is stored. For example:
+	//
+	// s3://bucket-name/folder-name/
+	JobOutput *DatasetExportJobOutput `locationName:"jobOutput" type:"structure"`
+
+	// The date and time (in Unix time) the status of the dataset export job was
+	// last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM service role that has permissions
+	// to add data to your output Amazon S3 bucket.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The status of the dataset export job.
+	//
+	// A dataset export job can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetExportJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetExportJob) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DatasetExportJob) SetCreationDateTime(v time.Time) *DatasetExportJob {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DatasetExportJob) SetDatasetArn(v string) *DatasetExportJob {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *DatasetExportJob) SetDatasetExportJobArn(v string) *DatasetExportJob {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DatasetExportJob) SetFailureReason(v string) *DatasetExportJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIngestionMode sets the IngestionMode field's value.
+func (s *DatasetExportJob) SetIngestionMode(v string) *DatasetExportJob {
+	s.IngestionMode = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DatasetExportJob) SetJobName(v string) *DatasetExportJob {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *DatasetExportJob) SetJobOutput(v *DatasetExportJobOutput) *DatasetExportJob {
+	s.JobOutput = v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DatasetExportJob) SetLastUpdatedDateTime(v time.Time) *DatasetExportJob {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DatasetExportJob) SetRoleArn(v string) *DatasetExportJob {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetExportJob) SetStatus(v string) *DatasetExportJob {
+	s.Status = &v
+	return s
+}
+
+// The output configuration parameters of a dataset export job.
+type DatasetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	//
+	// S3DataDestination is a required field
+	S3DataDestination *S3DataConfig `locationName:"s3DataDestination" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetExportJobOutput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetExportJobOutput"}
+	if s.S3DataDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataDestination"))
+	}
+	if s.S3DataDestination != nil {
+		if err := s.S3DataDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3DataDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataDestination sets the S3DataDestination field's value.
+func (s *DatasetExportJobOutput) SetS3DataDestination(v *S3DataConfig) *DatasetExportJobOutput {
+	s.S3DataDestination = v
+	return s
+}
+
+// Provides a summary of the properties of a dataset export job. For a complete
+// listing, call the DescribeDatasetExportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html)
+// API.
+type DatasetExportJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix time) that the dataset export job was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job.
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string"`
+
+	// If a dataset export job fails, the reason behind the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the dataset export job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The date and time (in Unix time) that the dataset export job status was last
+	// updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The status of the dataset export job.
+	//
+	// A dataset export job can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetExportJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetExportJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DatasetExportJobSummary) SetCreationDateTime(v time.Time) *DatasetExportJobSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *DatasetExportJobSummary) SetDatasetExportJobArn(v string) *DatasetExportJobSummary {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DatasetExportJobSummary) SetFailureReason(v string) *DatasetExportJobSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DatasetExportJobSummary) SetJobName(v string) *DatasetExportJobSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DatasetExportJobSummary) SetLastUpdatedDateTime(v time.Time) *DatasetExportJobSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetExportJobSummary) SetStatus(v string) *DatasetExportJobSummary {
+	s.Status = &v
+	return s
+}
+
 // A dataset group is a collection of related datasets (Interactions, User,
-// and Item). You create a dataset group by calling CreateDatasetGroup. You
-// then create a dataset and add it to a dataset group by calling CreateDataset.
-// The dataset group is used to create and train a solution by calling CreateSolution.
+// and Item). You create a dataset group by calling CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
+// You then create a dataset and add it to a dataset group by calling CreateDataset
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
+// The dataset group is used to create and train a solution by calling CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 // A dataset group can contain only one of each type of dataset.
 //
-// You can specify an AWS Key Management Service (KMS) key to encrypt the datasets
+// You can specify an Key Management Service (KMS) key to encrypt the datasets
 // in the group.
 type DatasetGroup struct {
 	_ struct{} `type:"structure"`
@@ -6159,10 +11035,14 @@ type DatasetGroup struct {
 	// The Amazon Resource Name (ARN) of the dataset group.
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
 
+	// The domain of a Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// If creating a dataset group fails, provides the reason why.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the KMS key used to encrypt the datasets.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key used
+	// to encrypt the datasets.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The last update date and time (in Unix time) of the dataset group.
@@ -6184,12 +11064,20 @@ type DatasetGroup struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetGroup) GoString() string {
 	return s.String()
 }
@@ -6203,6 +11091,12 @@ func (s *DatasetGroup) SetCreationDateTime(v time.Time) *DatasetGroup {
 // SetDatasetGroupArn sets the DatasetGroupArn field's value.
 func (s *DatasetGroup) SetDatasetGroupArn(v string) *DatasetGroup {
 	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DatasetGroup) SetDomain(v string) *DatasetGroup {
+	s.Domain = &v
 	return s
 }
 
@@ -6243,7 +11137,8 @@ func (s *DatasetGroup) SetStatus(v string) *DatasetGroup {
 }
 
 // Provides a summary of the properties of a dataset group. For a complete listing,
-// call the DescribeDatasetGroup API.
+// call the DescribeDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html)
+// API.
 type DatasetGroupSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6252,6 +11147,9 @@ type DatasetGroupSummary struct {
 
 	// The Amazon Resource Name (ARN) of the dataset group.
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The domain of a Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// If creating a dataset group fails, the reason behind the failure.
 	FailureReason *string `locationName:"failureReason" type:"string"`
@@ -6272,12 +11170,20 @@ type DatasetGroupSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetGroupSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetGroupSummary) GoString() string {
 	return s.String()
 }
@@ -6291,6 +11197,12 @@ func (s *DatasetGroupSummary) SetCreationDateTime(v time.Time) *DatasetGroupSumm
 // SetDatasetGroupArn sets the DatasetGroupArn field's value.
 func (s *DatasetGroupSummary) SetDatasetGroupArn(v string) *DatasetGroupSummary {
 	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DatasetGroupSummary) SetDomain(v string) *DatasetGroupSummary {
+	s.Domain = &v
 	return s
 }
 
@@ -6319,11 +11231,12 @@ func (s *DatasetGroupSummary) SetStatus(v string) *DatasetGroupSummary {
 }
 
 // Describes a job that imports training data from a data source (Amazon S3
-// bucket) to an Amazon Personalize dataset. For more information, see CreateDatasetImportJob.
+// bucket) to an Amazon Personalize dataset. For more information, see CreateDatasetImportJob
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html).
 //
 // A dataset import job can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//   - CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 type DatasetImportJob struct {
 	_ struct{} `type:"structure"`
 
@@ -6343,14 +11256,20 @@ type DatasetImportJob struct {
 	// If a dataset import job fails, provides the reason why.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
+	// The import mode used by the dataset import job to import new records.
+	ImportMode *string `locationName:"importMode" type:"string" enum:"ImportMode"`
+
 	// The name of the import job.
 	JobName *string `locationName:"jobName" min:"1" type:"string"`
 
 	// The date and time (in Unix time) the dataset was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role that has permissions
-	// to read from the Amazon S3 data source.
+	// Whether the job publishes metrics to Amazon S3 for a metric attribution.
+	PublishAttributionMetricsToS3 *bool `locationName:"publishAttributionMetricsToS3" type:"boolean"`
+
+	// The ARN of the IAM role that has permissions to read from the Amazon S3 data
+	// source.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The status of the dataset import job.
@@ -6361,12 +11280,20 @@ type DatasetImportJob struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetImportJob) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetImportJob) GoString() string {
 	return s.String()
 }
@@ -6401,6 +11328,12 @@ func (s *DatasetImportJob) SetFailureReason(v string) *DatasetImportJob {
 	return s
 }
 
+// SetImportMode sets the ImportMode field's value.
+func (s *DatasetImportJob) SetImportMode(v string) *DatasetImportJob {
+	s.ImportMode = &v
+	return s
+}
+
 // SetJobName sets the JobName field's value.
 func (s *DatasetImportJob) SetJobName(v string) *DatasetImportJob {
 	s.JobName = &v
@@ -6410,6 +11343,12 @@ func (s *DatasetImportJob) SetJobName(v string) *DatasetImportJob {
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *DatasetImportJob) SetLastUpdatedDateTime(v time.Time) *DatasetImportJob {
 	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetPublishAttributionMetricsToS3 sets the PublishAttributionMetricsToS3 field's value.
+func (s *DatasetImportJob) SetPublishAttributionMetricsToS3(v bool) *DatasetImportJob {
+	s.PublishAttributionMetricsToS3 = &v
 	return s
 }
 
@@ -6426,7 +11365,8 @@ func (s *DatasetImportJob) SetStatus(v string) *DatasetImportJob {
 }
 
 // Provides a summary of the properties of a dataset import job. For a complete
-// listing, call the DescribeDatasetImportJob API.
+// listing, call the DescribeDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html)
+// API.
 type DatasetImportJobSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6439,10 +11379,15 @@ type DatasetImportJobSummary struct {
 	// If a dataset import job fails, the reason behind the failure.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
+	// The import mode the dataset import job used to update the data in the dataset.
+	// For more information see Updating existing bulk data (https://docs.aws.amazon.com/personalize/latest/dg/updating-existing-bulk-data.html).
+	ImportMode *string `locationName:"importMode" type:"string" enum:"ImportMode"`
+
 	// The name of the dataset import job.
 	JobName *string `locationName:"jobName" min:"1" type:"string"`
 
-	// The date and time (in Unix time) that the dataset was last updated.
+	// The date and time (in Unix time) that the dataset import job status was last
+	// updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
 	// The status of the dataset import job.
@@ -6453,12 +11398,20 @@ type DatasetImportJobSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetImportJobSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetImportJobSummary) GoString() string {
 	return s.String()
 }
@@ -6481,6 +11434,12 @@ func (s *DatasetImportJobSummary) SetFailureReason(v string) *DatasetImportJobSu
 	return s
 }
 
+// SetImportMode sets the ImportMode field's value.
+func (s *DatasetImportJobSummary) SetImportMode(v string) *DatasetImportJobSummary {
+	s.ImportMode = &v
+	return s
+}
+
 // SetJobName sets the JobName field's value.
 func (s *DatasetImportJobSummary) SetJobName(v string) *DatasetImportJobSummary {
 	s.JobName = &v
@@ -6500,12 +11459,16 @@ func (s *DatasetImportJobSummary) SetStatus(v string) *DatasetImportJobSummary {
 }
 
 // Describes the schema for a dataset. For more information on schemas, see
-// CreateSchema.
+// CreateSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html).
 type DatasetSchema struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time (in Unix time) that the schema was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The domain of a schema that you created for a dataset in a Domain dataset
+	// group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The date and time (in Unix time) that the schema was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
@@ -6520,12 +11483,20 @@ type DatasetSchema struct {
 	SchemaArn *string `locationName:"schemaArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetSchema) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetSchema) GoString() string {
 	return s.String()
 }
@@ -6533,6 +11504,12 @@ func (s DatasetSchema) GoString() string {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *DatasetSchema) SetCreationDateTime(v time.Time) *DatasetSchema {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DatasetSchema) SetDomain(v string) *DatasetSchema {
+	s.Domain = &v
 	return s
 }
 
@@ -6561,12 +11538,17 @@ func (s *DatasetSchema) SetSchemaArn(v string) *DatasetSchema {
 }
 
 // Provides a summary of the properties of a dataset schema. For a complete
-// listing, call the DescribeSchema API.
+// listing, call the DescribeSchema (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html)
+// API.
 type DatasetSchemaSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time (in Unix time) that the schema was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The domain of a schema that you created for a dataset in a Domain dataset
+	// group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The date and time (in Unix time) that the schema was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
@@ -6578,12 +11560,20 @@ type DatasetSchemaSummary struct {
 	SchemaArn *string `locationName:"schemaArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetSchemaSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetSchemaSummary) GoString() string {
 	return s.String()
 }
@@ -6591,6 +11581,12 @@ func (s DatasetSchemaSummary) GoString() string {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *DatasetSchemaSummary) SetCreationDateTime(v time.Time) *DatasetSchemaSummary {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DatasetSchemaSummary) SetDomain(v string) *DatasetSchemaSummary {
+	s.Domain = &v
 	return s
 }
 
@@ -6613,7 +11609,8 @@ func (s *DatasetSchemaSummary) SetSchemaArn(v string) *DatasetSchemaSummary {
 }
 
 // Provides a summary of the properties of a dataset. For a complete listing,
-// call the DescribeDataset API.
+// call the DescribeDataset (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html)
+// API.
 type DatasetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6650,12 +11647,20 @@ type DatasetSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatasetSummary) GoString() string {
 	return s.String()
 }
@@ -6712,12 +11717,20 @@ type DefaultCategoricalHyperParameterRange struct {
 	Values []*string `locationName:"values" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultCategoricalHyperParameterRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultCategoricalHyperParameterRange) GoString() string {
 	return s.String()
 }
@@ -6759,12 +11772,20 @@ type DefaultContinuousHyperParameterRange struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultContinuousHyperParameterRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultContinuousHyperParameterRange) GoString() string {
 	return s.String()
 }
@@ -6808,12 +11829,20 @@ type DefaultHyperParameterRanges struct {
 	IntegerHyperParameterRanges []*DefaultIntegerHyperParameterRange `locationName:"integerHyperParameterRanges" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultHyperParameterRanges) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultHyperParameterRanges) GoString() string {
 	return s.String()
 }
@@ -6855,12 +11884,20 @@ type DefaultIntegerHyperParameterRange struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultIntegerHyperParameterRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultIntegerHyperParameterRange) GoString() string {
 	return s.String()
 }
@@ -6898,12 +11935,20 @@ type DeleteCampaignInput struct {
 	CampaignArn *string `locationName:"campaignArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCampaignInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCampaignInput) GoString() string {
 	return s.String()
 }
@@ -6931,12 +11976,20 @@ type DeleteCampaignOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCampaignOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCampaignOutput) GoString() string {
 	return s.String()
 }
@@ -6950,12 +12003,20 @@ type DeleteDatasetGroupInput struct {
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetGroupInput) GoString() string {
 	return s.String()
 }
@@ -6983,12 +12044,20 @@ type DeleteDatasetGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7002,12 +12071,20 @@ type DeleteDatasetInput struct {
 	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetInput) GoString() string {
 	return s.String()
 }
@@ -7035,12 +12112,20 @@ type DeleteDatasetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDatasetOutput) GoString() string {
 	return s.String()
 }
@@ -7054,12 +12139,20 @@ type DeleteEventTrackerInput struct {
 	EventTrackerArn *string `locationName:"eventTrackerArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventTrackerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventTrackerInput) GoString() string {
 	return s.String()
 }
@@ -7087,13 +12180,225 @@ type DeleteEventTrackerOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventTrackerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEventTrackerOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteFilterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the filter to delete.
+	//
+	// FilterArn is a required field
+	FilterArn *string `locationName:"filterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFilterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFilterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFilterInput"}
+	if s.FilterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *DeleteFilterInput) SetFilterArn(v string) *DeleteFilterInput {
+	s.FilterArn = &v
+	return s
+}
+
+type DeleteFilterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFilterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFilterOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMetricAttributionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The metric attribution's Amazon Resource Name (ARN).
+	//
+	// MetricAttributionArn is a required field
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMetricAttributionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMetricAttributionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMetricAttributionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMetricAttributionInput"}
+	if s.MetricAttributionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricAttributionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *DeleteMetricAttributionInput) SetMetricAttributionArn(v string) *DeleteMetricAttributionInput {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+type DeleteMetricAttributionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMetricAttributionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMetricAttributionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to delete.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *DeleteRecommenderInput) SetRecommenderArn(v string) *DeleteRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type DeleteRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderOutput) GoString() string {
 	return s.String()
 }
 
@@ -7106,12 +12411,20 @@ type DeleteSchemaInput struct {
 	SchemaArn *string `locationName:"schemaArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaInput) GoString() string {
 	return s.String()
 }
@@ -7139,12 +12452,20 @@ type DeleteSchemaOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -7158,12 +12479,20 @@ type DeleteSolutionInput struct {
 	SolutionArn *string `locationName:"solutionArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSolutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSolutionInput) GoString() string {
 	return s.String()
 }
@@ -7191,12 +12520,20 @@ type DeleteSolutionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSolutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSolutionOutput) GoString() string {
 	return s.String()
 }
@@ -7210,12 +12547,20 @@ type DescribeAlgorithmInput struct {
 	AlgorithmArn *string `locationName:"algorithmArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlgorithmInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlgorithmInput) GoString() string {
 	return s.String()
 }
@@ -7246,12 +12591,20 @@ type DescribeAlgorithmOutput struct {
 	Algorithm *Algorithm `locationName:"algorithm" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlgorithmOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAlgorithmOutput) GoString() string {
 	return s.String()
 }
@@ -7271,12 +12624,20 @@ type DescribeBatchInferenceJobInput struct {
 	BatchInferenceJobArn *string `locationName:"batchInferenceJobArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBatchInferenceJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBatchInferenceJobInput) GoString() string {
 	return s.String()
 }
@@ -7307,12 +12668,20 @@ type DescribeBatchInferenceJobOutput struct {
 	BatchInferenceJob *BatchInferenceJob `locationName:"batchInferenceJob" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBatchInferenceJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeBatchInferenceJobOutput) GoString() string {
 	return s.String()
 }
@@ -7320,6 +12689,83 @@ func (s DescribeBatchInferenceJobOutput) GoString() string {
 // SetBatchInferenceJob sets the BatchInferenceJob field's value.
 func (s *DescribeBatchInferenceJobOutput) SetBatchInferenceJob(v *BatchInferenceJob) *DescribeBatchInferenceJobOutput {
 	s.BatchInferenceJob = v
+	return s
+}
+
+type DescribeBatchSegmentJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the batch segment job to describe.
+	//
+	// BatchSegmentJobArn is a required field
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBatchSegmentJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBatchSegmentJobInput"}
+	if s.BatchSegmentJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchSegmentJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *DescribeBatchSegmentJobInput) SetBatchSegmentJobArn(v string) *DescribeBatchSegmentJobInput {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
+type DescribeBatchSegmentJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information on the specified batch segment job.
+	BatchSegmentJob *BatchSegmentJob `locationName:"batchSegmentJob" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJob sets the BatchSegmentJob field's value.
+func (s *DescribeBatchSegmentJobOutput) SetBatchSegmentJob(v *BatchSegmentJob) *DescribeBatchSegmentJobOutput {
+	s.BatchSegmentJob = v
 	return s
 }
 
@@ -7332,12 +12778,20 @@ type DescribeCampaignInput struct {
 	CampaignArn *string `locationName:"campaignArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCampaignInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCampaignInput) GoString() string {
 	return s.String()
 }
@@ -7368,12 +12822,20 @@ type DescribeCampaignOutput struct {
 	Campaign *Campaign `locationName:"campaign" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCampaignOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCampaignOutput) GoString() string {
 	return s.String()
 }
@@ -7381,6 +12843,93 @@ func (s DescribeCampaignOutput) GoString() string {
 // SetCampaign sets the Campaign field's value.
 func (s *DescribeCampaignOutput) SetCampaign(v *Campaign) *DescribeCampaignOutput {
 	s.Campaign = v
+	return s
+}
+
+type DescribeDatasetExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job to describe.
+	//
+	// DatasetExportJobArn is a required field
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDatasetExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDatasetExportJobInput"}
+	if s.DatasetExportJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetExportJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *DescribeDatasetExportJobInput) SetDatasetExportJobArn(v string) *DescribeDatasetExportJobInput {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
+type DescribeDatasetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the dataset export job, including the status.
+	//
+	// The status is one of the following values:
+	//
+	//    * CREATE PENDING
+	//
+	//    * CREATE IN_PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * CREATE FAILED
+	DatasetExportJob *DatasetExportJob `locationName:"datasetExportJob" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetExportJob sets the DatasetExportJob field's value.
+func (s *DescribeDatasetExportJobOutput) SetDatasetExportJob(v *DatasetExportJob) *DescribeDatasetExportJobOutput {
+	s.DatasetExportJob = v
 	return s
 }
 
@@ -7393,12 +12942,20 @@ type DescribeDatasetGroupInput struct {
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetGroupInput) GoString() string {
 	return s.String()
 }
@@ -7429,12 +12986,20 @@ type DescribeDatasetGroupOutput struct {
 	DatasetGroup *DatasetGroup `locationName:"datasetGroup" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7454,12 +13019,20 @@ type DescribeDatasetImportJobInput struct {
 	DatasetImportJobArn *string `locationName:"datasetImportJobArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetImportJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetImportJobInput) GoString() string {
 	return s.String()
 }
@@ -7500,12 +13073,20 @@ type DescribeDatasetImportJobOutput struct {
 	DatasetImportJob *DatasetImportJob `locationName:"datasetImportJob" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetImportJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetImportJobOutput) GoString() string {
 	return s.String()
 }
@@ -7525,12 +13106,20 @@ type DescribeDatasetInput struct {
 	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetInput) GoString() string {
 	return s.String()
 }
@@ -7561,12 +13150,20 @@ type DescribeDatasetOutput struct {
 	Dataset *Dataset `locationName:"dataset" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDatasetOutput) GoString() string {
 	return s.String()
 }
@@ -7586,12 +13183,20 @@ type DescribeEventTrackerInput struct {
 	EventTrackerArn *string `locationName:"eventTrackerArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventTrackerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventTrackerInput) GoString() string {
 	return s.String()
 }
@@ -7622,12 +13227,20 @@ type DescribeEventTrackerOutput struct {
 	EventTracker *EventTracker `locationName:"eventTracker" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventTrackerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeEventTrackerOutput) GoString() string {
 	return s.String()
 }
@@ -7647,12 +13260,20 @@ type DescribeFeatureTransformationInput struct {
 	FeatureTransformationArn *string `locationName:"featureTransformationArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeatureTransformationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeatureTransformationInput) GoString() string {
 	return s.String()
 }
@@ -7683,12 +13304,20 @@ type DescribeFeatureTransformationOutput struct {
 	FeatureTransformation *FeatureTransformation `locationName:"featureTransformation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeatureTransformationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFeatureTransformationOutput) GoString() string {
 	return s.String()
 }
@@ -7696,6 +13325,160 @@ func (s DescribeFeatureTransformationOutput) GoString() string {
 // SetFeatureTransformation sets the FeatureTransformation field's value.
 func (s *DescribeFeatureTransformationOutput) SetFeatureTransformation(v *FeatureTransformation) *DescribeFeatureTransformationOutput {
 	s.FeatureTransformation = v
+	return s
+}
+
+type DescribeFilterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the filter to describe.
+	//
+	// FilterArn is a required field
+	FilterArn *string `locationName:"filterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFilterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFilterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFilterInput"}
+	if s.FilterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *DescribeFilterInput) SetFilterArn(v string) *DescribeFilterInput {
+	s.FilterArn = &v
+	return s
+}
+
+type DescribeFilterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter's details.
+	Filter *Filter `locationName:"filter" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFilterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFilterOutput) GoString() string {
+	return s.String()
+}
+
+// SetFilter sets the Filter field's value.
+func (s *DescribeFilterOutput) SetFilter(v *Filter) *DescribeFilterOutput {
+	s.Filter = v
+	return s
+}
+
+type DescribeMetricAttributionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The metric attribution's Amazon Resource Name (ARN).
+	//
+	// MetricAttributionArn is a required field
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMetricAttributionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMetricAttributionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMetricAttributionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMetricAttributionInput"}
+	if s.MetricAttributionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricAttributionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *DescribeMetricAttributionInput) SetMetricAttributionArn(v string) *DescribeMetricAttributionInput {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+type DescribeMetricAttributionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the metric attribution.
+	MetricAttribution *MetricAttribution `locationName:"metricAttribution" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMetricAttributionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMetricAttributionOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricAttribution sets the MetricAttribution field's value.
+func (s *DescribeMetricAttributionOutput) SetMetricAttribution(v *MetricAttribution) *DescribeMetricAttributionOutput {
+	s.MetricAttribution = v
 	return s
 }
 
@@ -7708,12 +13491,20 @@ type DescribeRecipeInput struct {
 	RecipeArn *string `locationName:"recipeArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecipeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecipeInput) GoString() string {
 	return s.String()
 }
@@ -7744,12 +13535,20 @@ type DescribeRecipeOutput struct {
 	Recipe *Recipe `locationName:"recipe" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecipeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRecipeOutput) GoString() string {
 	return s.String()
 }
@@ -7757,6 +13556,83 @@ func (s DescribeRecipeOutput) GoString() string {
 // SetRecipe sets the Recipe field's value.
 func (s *DescribeRecipeOutput) SetRecipe(v *Recipe) *DescribeRecipeOutput {
 	s.Recipe = v
+	return s
+}
+
+type DescribeRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to describe.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *DescribeRecommenderInput) SetRecommenderArn(v string) *DescribeRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type DescribeRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the recommender.
+	Recommender *Recommender `locationName:"recommender" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommender sets the Recommender field's value.
+func (s *DescribeRecommenderOutput) SetRecommender(v *Recommender) *DescribeRecommenderOutput {
+	s.Recommender = v
 	return s
 }
 
@@ -7769,12 +13645,20 @@ type DescribeSchemaInput struct {
 	SchemaArn *string `locationName:"schemaArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaInput) GoString() string {
 	return s.String()
 }
@@ -7805,12 +13689,20 @@ type DescribeSchemaOutput struct {
 	Schema *DatasetSchema `locationName:"schema" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSchemaOutput) GoString() string {
 	return s.String()
 }
@@ -7830,12 +13722,20 @@ type DescribeSolutionInput struct {
 	SolutionArn *string `locationName:"solutionArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionInput) GoString() string {
 	return s.String()
 }
@@ -7866,12 +13766,20 @@ type DescribeSolutionOutput struct {
 	Solution *Solution `locationName:"solution" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionOutput) GoString() string {
 	return s.String()
 }
@@ -7891,12 +13799,20 @@ type DescribeSolutionVersionInput struct {
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionVersionInput) GoString() string {
 	return s.String()
 }
@@ -7927,12 +13843,20 @@ type DescribeSolutionVersionOutput struct {
 	SolutionVersion *SolutionVersion `locationName:"solutionVersion" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSolutionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -7947,7 +13871,7 @@ func (s *DescribeSolutionVersionOutput) SetSolutionVersion(v *SolutionVersion) *
 type EventTracker struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon AWS account that owns the event tracker.
+	// The Amazon Web Services account that owns the event tracker.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The date and time (in Unix format) that the event tracker was created.
@@ -7981,12 +13905,20 @@ type EventTracker struct {
 	TrackingId *string `locationName:"trackingId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventTracker) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventTracker) GoString() string {
 	return s.String()
 }
@@ -8040,7 +13972,8 @@ func (s *EventTracker) SetTrackingId(v string) *EventTracker {
 }
 
 // Provides a summary of the properties of an event tracker. For a complete
-// listing, call the DescribeEventTracker API.
+// listing, call the DescribeEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html)
+// API.
 type EventTrackerSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -8066,12 +13999,20 @@ type EventTrackerSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventTrackerSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventTrackerSummary) GoString() string {
 	return s.String()
 }
@@ -8134,12 +14075,20 @@ type FeatureTransformation struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FeatureTransformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FeatureTransformation) GoString() string {
 	return s.String()
 }
@@ -8180,6 +14129,194 @@ func (s *FeatureTransformation) SetStatus(v string) *FeatureTransformation {
 	return s
 }
 
+// Contains information on a recommendation filter, including its ARN, status,
+// and filter expression.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the filter was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The ARN of the dataset group to which the filter belongs.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// If the filter failed, the reason for its failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the filter.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// Specifies the type of item interactions to filter out of recommendation results.
+	// The filter expression must follow specific format rules. For information
+	// about filter expression structure and syntax, see Filter expressions (https://docs.aws.amazon.com/personalize/latest/dg/filter-expressions.html).
+	//
+	// FilterExpression is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Filter's
+	// String and GoString methods.
+	FilterExpression *string `locationName:"filterExpression" min:"1" type:"string" sensitive:"true"`
+
+	// The time at which the filter was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The name of the filter.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The status of the filter.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *Filter) SetCreationDateTime(v time.Time) *Filter {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *Filter) SetDatasetGroupArn(v string) *Filter {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Filter) SetFailureReason(v string) *Filter {
+	s.FailureReason = &v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *Filter) SetFilterArn(v string) *Filter {
+	s.FilterArn = &v
+	return s
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *Filter) SetFilterExpression(v string) *Filter {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *Filter) SetLastUpdatedDateTime(v time.Time) *Filter {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Filter) SetStatus(v string) *Filter {
+	s.Status = &v
+	return s
+}
+
+// A short summary of a filter's attributes.
+type FilterSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the filter was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The ARN of the dataset group to which the filter belongs.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// If the filter failed, the reason for the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the filter.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// The time at which the filter was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The name of the filter.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The status of the filter.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *FilterSummary) SetCreationDateTime(v time.Time) *FilterSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *FilterSummary) SetDatasetGroupArn(v string) *FilterSummary {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *FilterSummary) SetFailureReason(v string) *FilterSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *FilterSummary) SetFilterArn(v string) *FilterSummary {
+	s.FilterArn = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *FilterSummary) SetLastUpdatedDateTime(v time.Time) *FilterSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FilterSummary) SetName(v string) *FilterSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FilterSummary) SetStatus(v string) *FilterSummary {
+	s.Status = &v
+	return s
+}
+
 type GetSolutionMetricsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8189,12 +14326,20 @@ type GetSolutionMetricsInput struct {
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSolutionMetricsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSolutionMetricsInput) GoString() string {
 	return s.String()
 }
@@ -8221,19 +14366,28 @@ func (s *GetSolutionMetricsInput) SetSolutionVersionArn(v string) *GetSolutionMe
 type GetSolutionMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The metrics for the solution version.
+	// The metrics for the solution version. For more information, see Evaluating
+	// a solution version with metrics (https://docs.aws.amazon.com/personalize/latest/dg/working-with-training-metrics.html).
 	Metrics map[string]*float64 `locationName:"metrics" type:"map"`
 
 	// The same solution version ARN as specified in the request.
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSolutionMetricsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSolutionMetricsOutput) GoString() string {
 	return s.String()
 }
@@ -8250,9 +14404,7 @@ func (s *GetSolutionMetricsOutput) SetSolutionVersionArn(v string) *GetSolutionM
 	return s
 }
 
-// Describes the properties for hyperparameter optimization (HPO). For use with
-// the bring-your-own-recipe feature. Do not use for Amazon Personalize native
-// recipes.
+// Describes the properties for hyperparameter optimization (HPO).
 type HPOConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8260,18 +14412,28 @@ type HPOConfig struct {
 	AlgorithmHyperParameterRanges *HyperParameterRanges `locationName:"algorithmHyperParameterRanges" type:"structure"`
 
 	// The metric to optimize during HPO.
+	//
+	// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 	HpoObjective *HPOObjective `locationName:"hpoObjective" type:"structure"`
 
 	// Describes the resource configuration for HPO.
 	HpoResourceConfig *HPOResourceConfig `locationName:"hpoResourceConfig" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HPOConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HPOConfig) GoString() string {
 	return s.String()
 }
@@ -8310,6 +14472,8 @@ func (s *HPOConfig) SetHpoResourceConfig(v *HPOResourceConfig) *HPOConfig {
 }
 
 // The metric to optimize during hyperparameter optimization (HPO).
+//
+// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 type HPOObjective struct {
 	_ struct{} `type:"structure"`
 
@@ -8323,12 +14487,20 @@ type HPOObjective struct {
 	Type *string `locationName:"type" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HPOObjective) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HPOObjective) GoString() string {
 	return s.String()
 }
@@ -8364,12 +14536,20 @@ type HPOResourceConfig struct {
 	MaxParallelTrainingJobs *string `locationName:"maxParallelTrainingJobs" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HPOResourceConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HPOResourceConfig) GoString() string {
 	return s.String()
 }
@@ -8401,12 +14581,20 @@ type HyperParameterRanges struct {
 	IntegerHyperParameterRanges []*IntegerHyperParameterRange `locationName:"integerHyperParameterRanges" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HyperParameterRanges) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HyperParameterRanges) GoString() string {
 	return s.String()
 }
@@ -8473,12 +14661,20 @@ type IntegerHyperParameterRange struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntegerHyperParameterRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntegerHyperParameterRange) GoString() string {
 	return s.String()
 }
@@ -8522,12 +14718,20 @@ type InvalidInputException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidInputException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidInputException) GoString() string {
 	return s.String()
 }
@@ -8578,12 +14782,20 @@ type InvalidNextTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -8634,12 +14846,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -8697,12 +14917,20 @@ type ListBatchInferenceJobsInput struct {
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBatchInferenceJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBatchInferenceJobsInput) GoString() string {
 	return s.String()
 }
@@ -8744,17 +14972,25 @@ type ListBatchInferenceJobsOutput struct {
 	// A list containing information on each job that is returned.
 	BatchInferenceJobs []*BatchInferenceJobSummary `locationName:"batchInferenceJobs" type:"list"`
 
-	// The token to use to retreive the next page of results. The value is null
+	// The token to use to retrieve the next page of results. The value is null
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBatchInferenceJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBatchInferenceJobsOutput) GoString() string {
 	return s.String()
 }
@@ -8771,14 +15007,119 @@ func (s *ListBatchInferenceJobsOutput) SetNextToken(v string) *ListBatchInferenc
 	return s
 }
 
+type ListBatchSegmentJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of batch segment job results to return in each page. The
+	// default value is 100.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to request the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the solution version that the batch segment
+	// jobs used to generate batch segments.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBatchSegmentJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBatchSegmentJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBatchSegmentJobsInput) SetMaxResults(v int64) *ListBatchSegmentJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBatchSegmentJobsInput) SetNextToken(v string) *ListBatchSegmentJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *ListBatchSegmentJobsInput) SetSolutionVersionArn(v string) *ListBatchSegmentJobsInput {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+type ListBatchSegmentJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing information on each job that is returned.
+	BatchSegmentJobs []*BatchSegmentJobSummary `locationName:"batchSegmentJobs" type:"list"`
+
+	// The token to use to retrieve the next page of results. The value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobs sets the BatchSegmentJobs field's value.
+func (s *ListBatchSegmentJobsOutput) SetBatchSegmentJobs(v []*BatchSegmentJobSummary) *ListBatchSegmentJobsOutput {
+	s.BatchSegmentJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBatchSegmentJobsOutput) SetNextToken(v string) *ListBatchSegmentJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCampaignsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of campaigns to return.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token returned from the previous call to ListCampaigns for getting the
-	// next set of campaigns (if they exist).
+	// A token returned from the previous call to ListCampaigns (https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html)
+	// for getting the next set of campaigns (if they exist).
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the solution to list the campaigns for.
@@ -8787,12 +15128,20 @@ type ListCampaignsInput struct {
 	SolutionArn *string `locationName:"solutionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCampaignsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCampaignsInput) GoString() string {
 	return s.String()
 }
@@ -8838,12 +15187,20 @@ type ListCampaignsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCampaignsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCampaignsOutput) GoString() string {
 	return s.String()
 }
@@ -8860,6 +15217,110 @@ func (s *ListCampaignsOutput) SetNextToken(v string) *ListCampaignsOutput {
 	return s
 }
 
+type ListDatasetExportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset to list the dataset export
+	// jobs for.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+
+	// The maximum number of dataset export jobs to return.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token returned from the previous call to ListDatasetExportJobs for getting
+	// the next set of dataset export jobs (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetExportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetExportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetExportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetExportJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *ListDatasetExportJobsInput) SetDatasetArn(v string) *ListDatasetExportJobsInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetExportJobsInput) SetMaxResults(v int64) *ListDatasetExportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetExportJobsInput) SetNextToken(v string) *ListDatasetExportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetExportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of dataset export jobs.
+	DatasetExportJobs []*DatasetExportJobSummary `locationName:"datasetExportJobs" type:"list"`
+
+	// A token for getting the next set of dataset export jobs (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetExportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetExportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetExportJobs sets the DatasetExportJobs field's value.
+func (s *ListDatasetExportJobsOutput) SetDatasetExportJobs(v []*DatasetExportJobSummary) *ListDatasetExportJobsOutput {
+	s.DatasetExportJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetExportJobsOutput) SetNextToken(v string) *ListDatasetExportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListDatasetGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8871,12 +15332,20 @@ type ListDatasetGroupsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetGroupsInput) GoString() string {
 	return s.String()
 }
@@ -8916,12 +15385,20 @@ type ListDatasetGroupsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -8953,12 +15430,20 @@ type ListDatasetImportJobsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetImportJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetImportJobsInput) GoString() string {
 	return s.String()
 }
@@ -9004,12 +15489,20 @@ type ListDatasetImportJobsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetImportJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetImportJobsOutput) GoString() string {
 	return s.String()
 }
@@ -9041,12 +15534,20 @@ type ListDatasetsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetsInput) GoString() string {
 	return s.String()
 }
@@ -9092,12 +15593,20 @@ type ListDatasetsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDatasetsOutput) GoString() string {
 	return s.String()
 }
@@ -9128,12 +15637,20 @@ type ListEventTrackersInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventTrackersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventTrackersInput) GoString() string {
 	return s.String()
 }
@@ -9179,12 +15696,20 @@ type ListEventTrackersOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventTrackersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListEventTrackersOutput) GoString() string {
 	return s.String()
 }
@@ -9201,8 +15726,325 @@ func (s *ListEventTrackersOutput) SetNextToken(v string) *ListEventTrackersOutpu
 	return s
 }
 
+type ListFiltersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the dataset group that contains the filters.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The maximum number of filters to return.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token returned from the previous call to ListFilters for getting the next
+	// set of filters (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFiltersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFiltersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFiltersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFiltersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *ListFiltersInput) SetDatasetGroupArn(v string) *ListFiltersInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFiltersInput) SetMaxResults(v int64) *ListFiltersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFiltersInput) SetNextToken(v string) *ListFiltersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFiltersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of returned filters.
+	Filters []*FilterSummary `type:"list"`
+
+	// A token for getting the next set of filters (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFiltersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFiltersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListFiltersOutput) SetFilters(v []*FilterSummary) *ListFiltersOutput {
+	s.Filters = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFiltersOutput) SetNextToken(v string) *ListFiltersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetricAttributionMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of metrics to return in one page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the metric attribution to retrieve attributes
+	// for.
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string"`
+
+	// Specify the pagination token from a previous request to retrieve the next
+	// page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMetricAttributionMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMetricAttributionMetricsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMetricAttributionMetricsInput) SetMaxResults(v int64) *ListMetricAttributionMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *ListMetricAttributionMetricsInput) SetMetricAttributionArn(v string) *ListMetricAttributionMetricsInput {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricAttributionMetricsInput) SetNextToken(v string) *ListMetricAttributionMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetricAttributionMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metrics for the specified metric attribution.
+	Metrics []*MetricAttribute `locationName:"metrics" type:"list"`
+
+	// Specify the pagination token from a previous ListMetricAttributionMetricsResponse
+	// request to retrieve the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListMetricAttributionMetricsOutput) SetMetrics(v []*MetricAttribute) *ListMetricAttributionMetricsOutput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricAttributionMetricsOutput) SetNextToken(v string) *ListMetricAttributionMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetricAttributionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The metric attributions' dataset group Amazon Resource Name (ARN).
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The maximum number of metric attributions to return in one page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Specify the pagination token from a previous request to retrieve the next
+	// page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMetricAttributionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMetricAttributionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *ListMetricAttributionsInput) SetDatasetGroupArn(v string) *ListMetricAttributionsInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMetricAttributionsInput) SetMaxResults(v int64) *ListMetricAttributionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricAttributionsInput) SetNextToken(v string) *ListMetricAttributionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetricAttributionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of metric attributions.
+	MetricAttributions []*MetricAttributionSummary `locationName:"metricAttributions" type:"list"`
+
+	// Specify the pagination token from a previous request to retrieve the next
+	// page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetricAttributionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricAttributions sets the MetricAttributions field's value.
+func (s *ListMetricAttributionsOutput) SetMetricAttributions(v []*MetricAttributionSummary) *ListMetricAttributionsOutput {
+	s.MetricAttributions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricAttributionsOutput) SetNextToken(v string) *ListMetricAttributionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListRecipesInput struct {
 	_ struct{} `type:"structure"`
+
+	// Filters returned recipes by domain for a Domain dataset group. Only recipes
+	// (Domain dataset group use cases) for this domain are included in the response.
+	// If you don't specify a domain, all recipes are returned.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The maximum number of recipes to return.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -9215,12 +16057,20 @@ type ListRecipesInput struct {
 	RecipeProvider *string `locationName:"recipeProvider" type:"string" enum:"RecipeProvider"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecipesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecipesInput) GoString() string {
 	return s.String()
 }
@@ -9236,6 +16086,12 @@ func (s *ListRecipesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ListRecipesInput) SetDomain(v string) *ListRecipesInput {
+	s.Domain = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -9266,12 +16122,20 @@ type ListRecipesOutput struct {
 	Recipes []*RecipeSummary `locationName:"recipes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecipesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRecipesOutput) GoString() string {
 	return s.String()
 }
@@ -9288,6 +16152,111 @@ func (s *ListRecipesOutput) SetRecipes(v []*RecipeSummary) *ListRecipesOutput {
 	return s
 }
 
+type ListRecommendersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Domain dataset group to list the recommenders
+	// for. When a Domain dataset group is not specified, all the recommenders associated
+	// with the account are listed.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The maximum number of recommenders to return.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token returned from the previous call to ListRecommenders for getting the
+	// next set of recommenders (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecommendersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecommendersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *ListRecommendersInput) SetDatasetGroupArn(v string) *ListRecommendersInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRecommendersInput) SetMaxResults(v int64) *ListRecommendersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendersInput) SetNextToken(v string) *ListRecommendersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRecommendersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token for getting the next set of recommenders (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of the recommenders.
+	Recommenders []*RecommenderSummary `locationName:"recommenders" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendersOutput) SetNextToken(v string) *ListRecommendersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommenders sets the Recommenders field's value.
+func (s *ListRecommendersOutput) SetRecommenders(v []*RecommenderSummary) *ListRecommendersOutput {
+	s.Recommenders = v
+	return s
+}
+
 type ListSchemasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9299,12 +16268,20 @@ type ListSchemasInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasInput) GoString() string {
 	return s.String()
 }
@@ -9344,12 +16321,20 @@ type ListSchemasOutput struct {
 	Schemas []*DatasetSchemaSummary `locationName:"schemas" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSchemasOutput) GoString() string {
 	return s.String()
 }
@@ -9380,12 +16365,20 @@ type ListSolutionVersionsInput struct {
 	SolutionArn *string `locationName:"solutionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -9431,12 +16424,20 @@ type ListSolutionVersionsOutput struct {
 	SolutionVersions []*SolutionVersionSummary `locationName:"solutionVersions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -9467,12 +16468,20 @@ type ListSolutionsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionsInput) GoString() string {
 	return s.String()
 }
@@ -9518,12 +16527,20 @@ type ListSolutionsOutput struct {
 	Solutions []*SolutionSummary `locationName:"solutions" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSolutionsOutput) GoString() string {
 	return s.String()
 }
@@ -9540,8 +16557,463 @@ func (s *ListSolutionsOutput) SetSolutions(v []*SolutionSummary) *ListSolutionsO
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's tags.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
+// Contains information on a metric that a metric attribution reports on. For
+// more information, see Measuring impact of recommendations (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
+type MetricAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The metric's event type.
+	//
+	// EventType is a required field
+	EventType *string `locationName:"eventType" type:"string" required:"true"`
+
+	// The attribute's expression. Available functions are SUM() or SAMPLECOUNT().
+	// For SUM() functions, provide the dataset type (either Interactions or Items)
+	// and column to sum as a parameter. For example SUM(Items.PRICE).
+	//
+	// Expression is a required field
+	Expression *string `locationName:"expression" type:"string" required:"true"`
+
+	// The metric's name. The name helps you identify the metric in Amazon CloudWatch
+	// or Amazon S3.
+	//
+	// MetricName is a required field
+	MetricName *string `locationName:"metricName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttribute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricAttribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricAttribute"}
+	if s.EventType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventType"))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventType sets the EventType field's value.
+func (s *MetricAttribute) SetEventType(v string) *MetricAttribute {
+	s.EventType = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *MetricAttribute) SetExpression(v string) *MetricAttribute {
+	s.Expression = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricAttribute) SetMetricName(v string) *MetricAttribute {
+	s.MetricName = &v
+	return s
+}
+
+// Contains information on a metric attribution. A metric attribution creates
+// reports on the data that you import into Amazon Personalize. Depending on
+// how you import the data, you can view reports in Amazon CloudWatch or Amazon
+// S3. For more information, see Measuring impact of recommendations (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
+type MetricAttribution struct {
+	_ struct{} `type:"structure"`
+
+	// The metric attribution's creation date time.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The metric attribution's dataset group Amazon Resource Name (ARN).
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The metric attribution's failure reason.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The metric attribution's last updated date time.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The metric attribution's Amazon Resource Name (ARN).
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string"`
+
+	// The metric attribution's output configuration.
+	MetricsOutputConfig *MetricAttributionOutput_ `locationName:"metricsOutputConfig" type:"structure"`
+
+	// The metric attribution's name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The metric attribution's status.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttribution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttribution) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *MetricAttribution) SetCreationDateTime(v time.Time) *MetricAttribution {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *MetricAttribution) SetDatasetGroupArn(v string) *MetricAttribution {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *MetricAttribution) SetFailureReason(v string) *MetricAttribution {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *MetricAttribution) SetLastUpdatedDateTime(v time.Time) *MetricAttribution {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *MetricAttribution) SetMetricAttributionArn(v string) *MetricAttribution {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+// SetMetricsOutputConfig sets the MetricsOutputConfig field's value.
+func (s *MetricAttribution) SetMetricsOutputConfig(v *MetricAttributionOutput_) *MetricAttribution {
+	s.MetricsOutputConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MetricAttribution) SetName(v string) *MetricAttribution {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MetricAttribution) SetStatus(v string) *MetricAttribution {
+	s.Status = &v
+	return s
+}
+
+// The output configuration details for a metric attribution.
+type MetricAttributionOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the IAM service role that has permissions
+	// to add data to your output Amazon S3 bucket and add metrics to Amazon CloudWatch.
+	// For more information, see Measuring impact of recommendations (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	S3DataDestination *S3DataConfig `locationName:"s3DataDestination" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttributionOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttributionOutput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricAttributionOutput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricAttributionOutput_"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.S3DataDestination != nil {
+		if err := s.S3DataDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3DataDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *MetricAttributionOutput_) SetRoleArn(v string) *MetricAttributionOutput_ {
+	s.RoleArn = &v
+	return s
+}
+
+// SetS3DataDestination sets the S3DataDestination field's value.
+func (s *MetricAttributionOutput_) SetS3DataDestination(v *S3DataConfig) *MetricAttributionOutput_ {
+	s.S3DataDestination = v
+	return s
+}
+
+// Provides a summary of the properties of a metric attribution. For a complete
+// listing, call the DescribeMetricAttribution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeMetricAttribution.html).
+type MetricAttributionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The metric attribution's creation date time.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The metric attribution's failure reason.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The metric attribution's last updated date time.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The metric attribution's Amazon Resource Name (ARN).
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string"`
+
+	// The name of the metric attribution.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The metric attribution's status.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttributionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttributionSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *MetricAttributionSummary) SetCreationDateTime(v time.Time) *MetricAttributionSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *MetricAttributionSummary) SetFailureReason(v string) *MetricAttributionSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *MetricAttributionSummary) SetLastUpdatedDateTime(v time.Time) *MetricAttributionSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *MetricAttributionSummary) SetMetricAttributionArn(v string) *MetricAttributionSummary {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MetricAttributionSummary) SetName(v string) *MetricAttributionSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MetricAttributionSummary) SetStatus(v string) *MetricAttributionSummary {
+	s.Status = &v
+	return s
+}
+
+// Describes the additional objective for the solution, such as maximizing streaming
+// minutes or increasing revenue. For more information see Optimizing a solution
+// (https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html).
+type OptimizationObjective struct {
+	_ struct{} `type:"structure"`
+
+	// The numerical metadata column in an Items dataset related to the optimization
+	// objective. For example, VIDEO_LENGTH (to maximize streaming minutes), or
+	// PRICE (to maximize revenue).
+	ItemAttribute *string `locationName:"itemAttribute" min:"1" type:"string"`
+
+	// Specifies how Amazon Personalize balances the importance of your optimization
+	// objective versus relevance.
+	ObjectiveSensitivity *string `locationName:"objectiveSensitivity" type:"string" enum:"ObjectiveSensitivity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OptimizationObjective) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OptimizationObjective) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OptimizationObjective) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OptimizationObjective"}
+	if s.ItemAttribute != nil && len(*s.ItemAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ItemAttribute", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItemAttribute sets the ItemAttribute field's value.
+func (s *OptimizationObjective) SetItemAttribute(v string) *OptimizationObjective {
+	s.ItemAttribute = &v
+	return s
+}
+
+// SetObjectiveSensitivity sets the ObjectiveSensitivity field's value.
+func (s *OptimizationObjective) SetObjectiveSensitivity(v string) *OptimizationObjective {
+	s.ObjectiveSensitivity = &v
+	return s
+}
+
 // Provides information about a recipe. Each recipe provides an algorithm that
 // Amazon Personalize uses in model training when you use the CreateSolution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html)
 // operation.
 type Recipe struct {
 	_ struct{} `type:"structure"`
@@ -9581,12 +17053,20 @@ type Recipe struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Recipe) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Recipe) GoString() string {
 	return s.String()
 }
@@ -9646,12 +17126,16 @@ func (s *Recipe) SetStatus(v string) *Recipe {
 }
 
 // Provides a summary of the properties of a recipe. For a complete listing,
-// call the DescribeRecipe API.
+// call the DescribeRecipe (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecipe.html)
+// API.
 type RecipeSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time (in Unix time) that the recipe was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The domain of the recipe (if the recipe is a Domain dataset group use case).
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The date and time (in Unix time) that the recipe was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
@@ -9666,12 +17150,20 @@ type RecipeSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecipeSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecipeSummary) GoString() string {
 	return s.String()
 }
@@ -9679,6 +17171,12 @@ func (s RecipeSummary) GoString() string {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *RecipeSummary) SetCreationDateTime(v time.Time) *RecipeSummary {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *RecipeSummary) SetDomain(v string) *RecipeSummary {
+	s.Domain = &v
 	return s
 }
 
@@ -9706,6 +17204,386 @@ func (s *RecipeSummary) SetStatus(v string) *RecipeSummary {
 	return s
 }
 
+// Describes a recommendation generator for a Domain dataset group. You create
+// a recommender in a Domain dataset group for a specific domain use case (domain
+// recipe), and specify the recommender in a GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// request.
+type Recommender struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix format) that the recommender was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the Domain dataset group that contains
+	// the recommender.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// If a recommender fails, the reason behind the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The date and time (in Unix format) that the recommender was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Provides a summary of the latest updates to the recommender.
+	LatestRecommenderUpdate *RecommenderUpdateSummary `locationName:"latestRecommenderUpdate" type:"structure"`
+
+	// Provides evaluation metrics that help you determine the performance of a
+	// recommender. For more information, see Evaluating a recommender (https://docs.aws.amazon.com/personalize/latest/dg/evaluating-recommenders.html).
+	ModelMetrics map[string]*float64 `locationName:"modelMetrics" type:"map"`
+
+	// The name of the recommender.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recipe (Domain dataset group use case)
+	// that the recommender was created for.
+	RecipeArn *string `locationName:"recipeArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recommender.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+
+	// The configuration details of the recommender.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// The status of the recommender.
+	//
+	// A recommender can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+	//    > ACTIVE
+	//
+	//    * DELETE PENDING > DELETE IN_PROGRESS
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommender) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommender) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *Recommender) SetCreationDateTime(v time.Time) *Recommender {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *Recommender) SetDatasetGroupArn(v string) *Recommender {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Recommender) SetFailureReason(v string) *Recommender {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *Recommender) SetLastUpdatedDateTime(v time.Time) *Recommender {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetLatestRecommenderUpdate sets the LatestRecommenderUpdate field's value.
+func (s *Recommender) SetLatestRecommenderUpdate(v *RecommenderUpdateSummary) *Recommender {
+	s.LatestRecommenderUpdate = v
+	return s
+}
+
+// SetModelMetrics sets the ModelMetrics field's value.
+func (s *Recommender) SetModelMetrics(v map[string]*float64) *Recommender {
+	s.ModelMetrics = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Recommender) SetName(v string) *Recommender {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *Recommender) SetRecipeArn(v string) *Recommender {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *Recommender) SetRecommenderArn(v string) *Recommender {
+	s.RecommenderArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *Recommender) SetRecommenderConfig(v *RecommenderConfig) *Recommender {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Recommender) SetStatus(v string) *Recommender {
+	s.Status = &v
+	return s
+}
+
+// The configuration details of the recommender.
+type RecommenderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the exploration configuration hyperparameters, including explorationWeight
+	// and explorationItemAgeCutOff, you want to use to configure the amount of
+	// item exploration Amazon Personalize uses when recommending items. Provide
+	// itemExplorationConfig data only if your recommenders generate personalized
+	// recommendations for a user (not popular items or similar items).
+	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
+
+	// Specifies the requested minimum provisioned recommendation requests per second
+	// that Amazon Personalize will support.
+	MinRecommendationRequestsPerSecond *int64 `locationName:"minRecommendationRequestsPerSecond" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommenderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommenderConfig"}
+	if s.MinRecommendationRequestsPerSecond != nil && *s.MinRecommendationRequestsPerSecond < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinRecommendationRequestsPerSecond", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItemExplorationConfig sets the ItemExplorationConfig field's value.
+func (s *RecommenderConfig) SetItemExplorationConfig(v map[string]*string) *RecommenderConfig {
+	s.ItemExplorationConfig = v
+	return s
+}
+
+// SetMinRecommendationRequestsPerSecond sets the MinRecommendationRequestsPerSecond field's value.
+func (s *RecommenderConfig) SetMinRecommendationRequestsPerSecond(v int64) *RecommenderConfig {
+	s.MinRecommendationRequestsPerSecond = &v
+	return s
+}
+
+// Provides a summary of the properties of the recommender.
+type RecommenderSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix format) that the recommender was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the Domain dataset group that contains
+	// the recommender.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The date and time (in Unix format) that the recommender was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The name of the recommender.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recipe (Domain dataset group use case)
+	// that the recommender was created for.
+	RecipeArn *string `locationName:"recipeArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recommender.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+
+	// The configuration details of the recommender.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// The status of the recommender. A recommender can be in one of the following
+	// states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+	//    > ACTIVE
+	//
+	//    * DELETE PENDING > DELETE IN_PROGRESS
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *RecommenderSummary) SetCreationDateTime(v time.Time) *RecommenderSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *RecommenderSummary) SetDatasetGroupArn(v string) *RecommenderSummary {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *RecommenderSummary) SetLastUpdatedDateTime(v time.Time) *RecommenderSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RecommenderSummary) SetName(v string) *RecommenderSummary {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *RecommenderSummary) SetRecipeArn(v string) *RecommenderSummary {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *RecommenderSummary) SetRecommenderArn(v string) *RecommenderSummary {
+	s.RecommenderArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *RecommenderSummary) SetRecommenderConfig(v *RecommenderConfig) *RecommenderSummary {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommenderSummary) SetStatus(v string) *RecommenderSummary {
+	s.Status = &v
+	return s
+}
+
+// Provides a summary of the properties of a recommender update. For a complete
+// listing, call the DescribeRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html)
+// API.
+type RecommenderUpdateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix format) that the recommender update was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If a recommender update fails, the reason behind the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The date and time (in Unix time) that the recommender update was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The configuration details of the recommender update.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// The status of the recommender update.
+	//
+	// A recommender can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * STOP PENDING > STOP IN_PROGRESS > INACTIVE > START PENDING > START IN_PROGRESS
+	//    > ACTIVE
+	//
+	//    * DELETE PENDING > DELETE IN_PROGRESS
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderUpdateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderUpdateSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *RecommenderUpdateSummary) SetCreationDateTime(v time.Time) *RecommenderUpdateSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *RecommenderUpdateSummary) SetFailureReason(v string) *RecommenderUpdateSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *RecommenderUpdateSummary) SetLastUpdatedDateTime(v time.Time) *RecommenderUpdateSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *RecommenderUpdateSummary) SetRecommenderConfig(v *RecommenderConfig) *RecommenderUpdateSummary {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommenderUpdateSummary) SetStatus(v string) *RecommenderUpdateSummary {
+	s.Status = &v
+	return s
+}
+
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -9714,12 +17592,20 @@ type ResourceAlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -9770,12 +17656,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -9826,12 +17720,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -9878,9 +17780,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 type S3DataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Key Management Service (KMS)
-	// key that Amazon Personalize uses to encrypt or decrypt the input and output
-	// files of a batch inference job.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key that
+	// Amazon Personalize uses to encrypt or decrypt the input and output files.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The file path of the Amazon S3 bucket.
@@ -9889,12 +17790,20 @@ type S3DataConfig struct {
 	Path *string `locationName:"path" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3DataConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3DataConfig) GoString() string {
 	return s.String()
 }
@@ -9940,7 +17849,8 @@ type Solution struct {
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
 
 	// The event type (for example, 'click' or 'like') that is used for training
-	// the model.
+	// the model. If no eventType is provided, Amazon Personalize uses all interactions
+	// for training with equal weight regardless of type.
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The date and time (in Unix time) that the solution was last updated.
@@ -9982,12 +17892,20 @@ type Solution struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Solution) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Solution) GoString() string {
 	return s.String()
 }
@@ -10077,8 +17995,8 @@ type SolutionConfig struct {
 	// Lists the hyperparameter names and ranges.
 	AlgorithmHyperParameters map[string]*string `locationName:"algorithmHyperParameters" type:"map"`
 
-	// The AutoMLConfig object containing a list of recipes to search when AutoML
-	// is performed.
+	// The AutoMLConfig (https://docs.aws.amazon.com/personalize/latest/dg/API_AutoMLConfig.html)
+	// object containing a list of recipes to search when AutoML is performed.
 	AutoMLConfig *AutoMLConfig `locationName:"autoMLConfig" type:"structure"`
 
 	// Only events with a value greater than or equal to this threshold are used
@@ -10090,14 +18008,27 @@ type SolutionConfig struct {
 
 	// Describes the properties for hyperparameter optimization (HPO).
 	HpoConfig *HPOConfig `locationName:"hpoConfig" type:"structure"`
+
+	// Describes the additional objective for the solution, such as maximizing streaming
+	// minutes or increasing revenue. For more information see Optimizing a solution
+	// (https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html).
+	OptimizationObjective *OptimizationObjective `locationName:"optimizationObjective" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionConfig) GoString() string {
 	return s.String()
 }
@@ -10108,6 +18039,11 @@ func (s *SolutionConfig) Validate() error {
 	if s.HpoConfig != nil {
 		if err := s.HpoConfig.Validate(); err != nil {
 			invalidParams.AddNested("HpoConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OptimizationObjective != nil {
+		if err := s.OptimizationObjective.Validate(); err != nil {
+			invalidParams.AddNested("OptimizationObjective", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -10147,8 +18083,15 @@ func (s *SolutionConfig) SetHpoConfig(v *HPOConfig) *SolutionConfig {
 	return s
 }
 
+// SetOptimizationObjective sets the OptimizationObjective field's value.
+func (s *SolutionConfig) SetOptimizationObjective(v *OptimizationObjective) *SolutionConfig {
+	s.OptimizationObjective = v
+	return s
+}
+
 // Provides a summary of the properties of a solution. For a complete listing,
-// call the DescribeSolution API.
+// call the DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html)
+// API.
 type SolutionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -10160,6 +18103,9 @@ type SolutionSummary struct {
 
 	// The name of the solution.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recipe used by the solution.
+	RecipeArn *string `locationName:"recipeArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the solution.
 	SolutionArn *string `locationName:"solutionArn" type:"string"`
@@ -10174,12 +18120,20 @@ type SolutionSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionSummary) GoString() string {
 	return s.String()
 }
@@ -10202,6 +18156,12 @@ func (s *SolutionSummary) SetName(v string) *SolutionSummary {
 	return s
 }
 
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *SolutionSummary) SetRecipeArn(v string) *SolutionSummary {
+	s.RecipeArn = &v
+	return s
+}
+
 // SetSolutionArn sets the SolutionArn field's value.
 func (s *SolutionSummary) SetSolutionArn(v string) *SolutionSummary {
 	s.SolutionArn = &v
@@ -10214,7 +18174,9 @@ func (s *SolutionSummary) SetStatus(v string) *SolutionSummary {
 	return s
 }
 
-// An object that provides information about a specific version of a Solution.
+// An object that provides information about a specific version of a Solution
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_Solution.html) in
+// a Custom dataset group.
 type SolutionVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -10234,6 +18196,9 @@ type SolutionVersion struct {
 
 	// The date and time (in Unix time) that the solution was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The name of the solution version.
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// When true, Amazon Personalize searches for the most optimal recipe according
 	// to the solution configuration. When false (the default), Amazon Personalize
@@ -10267,6 +18232,10 @@ type SolutionVersion struct {
 	//    * ACTIVE
 	//
 	//    * CREATE FAILED
+	//
+	//    * CREATE STOPPING
+	//
+	//    * CREATE STOPPED
 	Status *string `locationName:"status" type:"string"`
 
 	// The time used to train the model. You are billed for the time it takes to
@@ -10274,15 +18243,18 @@ type SolutionVersion struct {
 	// trains a model.
 	TrainingHours *float64 `locationName:"trainingHours" type:"double"`
 
-	// The scope of training used to create the solution version. The FULL option
-	// trains the solution version based on the entirety of the input solution's
-	// training data, while the UPDATE option processes only the training data that
-	// has changed since the creation of the last solution version. Choose UPDATE
-	// when you want to start recommending items added to the dataset without retraining
-	// the model.
+	// The scope of training to be performed when creating the solution version.
+	// The FULL option trains the solution version based on the entirety of the
+	// input solution's training data, while the UPDATE option processes only the
+	// data that has changed in comparison to the input solution. Choose UPDATE
+	// when you want to incrementally update your solution version instead of creating
+	// an entirely new one.
 	//
-	// The UPDATE option can only be used after you've created a solution version
-	// with the FULL option and the training solution uses the native-recipe-hrnn-coldstart.
+	// The UPDATE option can only be used when you already have an active solution
+	// version created from the input solution using the FULL option and the input
+	// solution was trained with the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// recipe or the HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
+	// recipe.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
 
 	// If hyperparameter optimization was performed, contains the hyperparameter
@@ -10290,12 +18262,20 @@ type SolutionVersion struct {
 	TunedHPOParams *TunedHPOParams `locationName:"tunedHPOParams" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionVersion) GoString() string {
 	return s.String()
 }
@@ -10327,6 +18307,12 @@ func (s *SolutionVersion) SetFailureReason(v string) *SolutionVersion {
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *SolutionVersion) SetLastUpdatedDateTime(v time.Time) *SolutionVersion {
 	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SolutionVersion) SetName(v string) *SolutionVersion {
+	s.Name = &v
 	return s
 }
 
@@ -10391,7 +18377,8 @@ func (s *SolutionVersion) SetTunedHPOParams(v *TunedHPOParams) *SolutionVersion 
 }
 
 // Provides a summary of the properties of a solution version. For a complete
-// listing, call the DescribeSolutionVersion API.
+// listing, call the DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html)
+// API.
 type SolutionVersionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -10415,12 +18402,20 @@ type SolutionVersionSummary struct {
 	Status *string `locationName:"status" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SolutionVersionSummary) GoString() string {
 	return s.String()
 }
@@ -10455,6 +18450,519 @@ func (s *SolutionVersionSummary) SetStatus(v string) *SolutionVersionSummary {
 	return s
 }
 
+type StartRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to start.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StartRecommenderInput) SetRecommenderArn(v string) *StartRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StartRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender you started.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StartRecommenderOutput) SetRecommenderArn(v string) *StartRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StopRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to stop.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StopRecommenderInput) SetRecommenderArn(v string) *StopRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StopRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender you stopped.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *StopRecommenderOutput) SetRecommenderArn(v string) *StopRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type StopSolutionVersionCreationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the solution version you want to stop creating.
+	//
+	// SolutionVersionArn is a required field
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSolutionVersionCreationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSolutionVersionCreationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSolutionVersionCreationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSolutionVersionCreationInput"}
+	if s.SolutionVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SolutionVersionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *StopSolutionVersionCreationInput) SetSolutionVersionArn(v string) *StopSolutionVersionCreationInput {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+type StopSolutionVersionCreationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSolutionVersionCreationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopSolutionVersionCreationOutput) GoString() string {
+	return s.String()
+}
+
+// The optional metadata that you apply to resources to help you categorize
+// and organize them. Each tag consists of a key and an optional value, both
+// of which you define. For more information see Tagging Personalize resources
+// (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html).
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// One part of a key-value pair that makes up a tag. A key is a general label
+	// that acts like a category for more specific tag values.
+	//
+	// TagKey is a required field
+	TagKey *string `locationName:"tagKey" min:"1" type:"string" required:"true"`
+
+	// The optional part of a key-value pair that makes up a tag. A value acts as
+	// a descriptor within a tag category (key).
+	//
+	// TagValue is a required field
+	TagValue *string `locationName:"tagValue" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *Tag) SetTagKey(v string) *Tag {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *Tag) SetTagValue(v string) *Tag {
+	s.TagValue = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// Tags to apply to the resource. For more information see Tagging Personalize
+	// resources (https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html).
+	//
+	// Tags is a required field
+	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
+// The request contains more tag keys than can be associated with a resource
+// (50 tag keys per resource).
+type TooManyTagKeysException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagKeysException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagKeysException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagKeysException(v protocol.ResponseMetadata) error {
+	return &TooManyTagKeysException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagKeysException) Code() string {
+	return "TooManyTagKeysException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagKeysException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagKeysException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagKeysException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagKeysException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagKeysException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You have exceeded the maximum number of tags you can apply to this resource.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // If hyperparameter optimization (HPO) was performed, contains the hyperparameter
 // values of the best performing model.
 type TunedHPOParams struct {
@@ -10464,12 +18972,20 @@ type TunedHPOParams struct {
 	AlgorithmHyperParameters map[string]*string `locationName:"algorithmHyperParameters" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TunedHPOParams) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TunedHPOParams) GoString() string {
 	return s.String()
 }
@@ -10480,6 +18996,88 @@ func (s *TunedHPOParams) SetAlgorithmHyperParameters(v map[string]*string) *Tune
 	return s
 }
 
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource's Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// Keys to remove from the resource's tags.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateCampaignInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10487,6 +19085,9 @@ type UpdateCampaignInput struct {
 	//
 	// CampaignArn is a required field
 	CampaignArn *string `locationName:"campaignArn" type:"string" required:"true"`
+
+	// The configuration details of a campaign.
+	CampaignConfig *CampaignConfig `locationName:"campaignConfig" type:"structure"`
 
 	// Specifies the requested minimum provisioned transactions (recommendations)
 	// per second that Amazon Personalize will support.
@@ -10496,12 +19097,20 @@ type UpdateCampaignInput struct {
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCampaignInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCampaignInput) GoString() string {
 	return s.String()
 }
@@ -10528,6 +19137,12 @@ func (s *UpdateCampaignInput) SetCampaignArn(v string) *UpdateCampaignInput {
 	return s
 }
 
+// SetCampaignConfig sets the CampaignConfig field's value.
+func (s *UpdateCampaignInput) SetCampaignConfig(v *CampaignConfig) *UpdateCampaignInput {
+	s.CampaignConfig = v
+	return s
+}
+
 // SetMinProvisionedTPS sets the MinProvisionedTPS field's value.
 func (s *UpdateCampaignInput) SetMinProvisionedTPS(v int64) *UpdateCampaignInput {
 	s.MinProvisionedTPS = &v
@@ -10547,12 +19162,20 @@ type UpdateCampaignOutput struct {
 	CampaignArn *string `locationName:"campaignArn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCampaignOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCampaignOutput) GoString() string {
 	return s.String()
 }
@@ -10563,10 +19186,303 @@ func (s *UpdateCampaignOutput) SetCampaignArn(v string) *UpdateCampaignOutput {
 	return s
 }
 
+type UpdateMetricAttributionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Add new metric attributes to the metric attribution.
+	AddMetrics []*MetricAttribute `locationName:"addMetrics" type:"list"`
+
+	// The Amazon Resource Name (ARN) for the metric attribution to update.
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string"`
+
+	// An output config for the metric attribution.
+	MetricsOutputConfig *MetricAttributionOutput_ `locationName:"metricsOutputConfig" type:"structure"`
+
+	// Remove metric attributes from the metric attribution.
+	RemoveMetrics []*string `locationName:"removeMetrics" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricAttributionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricAttributionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMetricAttributionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMetricAttributionInput"}
+	if s.AddMetrics != nil {
+		for i, v := range s.AddMetrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddMetrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MetricsOutputConfig != nil {
+		if err := s.MetricsOutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("MetricsOutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddMetrics sets the AddMetrics field's value.
+func (s *UpdateMetricAttributionInput) SetAddMetrics(v []*MetricAttribute) *UpdateMetricAttributionInput {
+	s.AddMetrics = v
+	return s
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *UpdateMetricAttributionInput) SetMetricAttributionArn(v string) *UpdateMetricAttributionInput {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+// SetMetricsOutputConfig sets the MetricsOutputConfig field's value.
+func (s *UpdateMetricAttributionInput) SetMetricsOutputConfig(v *MetricAttributionOutput_) *UpdateMetricAttributionInput {
+	s.MetricsOutputConfig = v
+	return s
+}
+
+// SetRemoveMetrics sets the RemoveMetrics field's value.
+func (s *UpdateMetricAttributionInput) SetRemoveMetrics(v []*string) *UpdateMetricAttributionInput {
+	s.RemoveMetrics = v
+	return s
+}
+
+type UpdateMetricAttributionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the metric attribution that you updated.
+	MetricAttributionArn *string `locationName:"metricAttributionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricAttributionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricAttributionOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricAttributionArn sets the MetricAttributionArn field's value.
+func (s *UpdateMetricAttributionOutput) SetMetricAttributionArn(v string) *UpdateMetricAttributionOutput {
+	s.MetricAttributionArn = &v
+	return s
+}
+
+type UpdateRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to modify.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+
+	// The configuration details of the recommender.
+	//
+	// RecommenderConfig is a required field
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+	if s.RecommenderConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderConfig"))
+	}
+	if s.RecommenderConfig != nil {
+		if err := s.RecommenderConfig.Validate(); err != nil {
+			invalidParams.AddNested("RecommenderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *UpdateRecommenderInput) SetRecommenderArn(v string) *UpdateRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *UpdateRecommenderInput) SetRecommenderConfig(v *RecommenderConfig) *UpdateRecommenderInput {
+	s.RecommenderConfig = v
+	return s
+}
+
+type UpdateRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The same recommender Amazon Resource Name (ARN) as given in the request.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *UpdateRecommenderOutput) SetRecommenderArn(v string) *UpdateRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
+const (
+	// DomainEcommerce is a Domain enum value
+	DomainEcommerce = "ECOMMERCE"
+
+	// DomainVideoOnDemand is a Domain enum value
+	DomainVideoOnDemand = "VIDEO_ON_DEMAND"
+)
+
+// Domain_Values returns all elements of the Domain enum
+func Domain_Values() []string {
+	return []string{
+		DomainEcommerce,
+		DomainVideoOnDemand,
+	}
+}
+
+const (
+	// ImportModeFull is a ImportMode enum value
+	ImportModeFull = "FULL"
+
+	// ImportModeIncremental is a ImportMode enum value
+	ImportModeIncremental = "INCREMENTAL"
+)
+
+// ImportMode_Values returns all elements of the ImportMode enum
+func ImportMode_Values() []string {
+	return []string{
+		ImportModeFull,
+		ImportModeIncremental,
+	}
+}
+
+const (
+	// IngestionModeBulk is a IngestionMode enum value
+	IngestionModeBulk = "BULK"
+
+	// IngestionModePut is a IngestionMode enum value
+	IngestionModePut = "PUT"
+
+	// IngestionModeAll is a IngestionMode enum value
+	IngestionModeAll = "ALL"
+)
+
+// IngestionMode_Values returns all elements of the IngestionMode enum
+func IngestionMode_Values() []string {
+	return []string{
+		IngestionModeBulk,
+		IngestionModePut,
+		IngestionModeAll,
+	}
+}
+
+const (
+	// ObjectiveSensitivityLow is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityLow = "LOW"
+
+	// ObjectiveSensitivityMedium is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityMedium = "MEDIUM"
+
+	// ObjectiveSensitivityHigh is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityHigh = "HIGH"
+
+	// ObjectiveSensitivityOff is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityOff = "OFF"
+)
+
+// ObjectiveSensitivity_Values returns all elements of the ObjectiveSensitivity enum
+func ObjectiveSensitivity_Values() []string {
+	return []string{
+		ObjectiveSensitivityLow,
+		ObjectiveSensitivityMedium,
+		ObjectiveSensitivityHigh,
+		ObjectiveSensitivityOff,
+	}
+}
+
 const (
 	// RecipeProviderService is a RecipeProvider enum value
 	RecipeProviderService = "SERVICE"
 )
+
+// RecipeProvider_Values returns all elements of the RecipeProvider enum
+func RecipeProvider_Values() []string {
+	return []string{
+		RecipeProviderService,
+	}
+}
 
 const (
 	// TrainingModeFull is a TrainingMode enum value
@@ -10575,3 +19491,11 @@ const (
 	// TrainingModeUpdate is a TrainingMode enum value
 	TrainingModeUpdate = "UPDATE"
 )
+
+// TrainingMode_Values returns all elements of the TrainingMode enum
+func TrainingMode_Values() []string {
+	return []string{
+		TrainingModeFull,
+		TrainingModeUpdate,
+	}
+}

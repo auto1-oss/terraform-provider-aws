@@ -28,14 +28,13 @@ const opAssociateMemberAccount = "AssociateMemberAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateMemberAccountRequest method.
+//	req, resp := client.AssociateMemberAccountRequest(params)
 //
-//    // Example sending a request using the AssociateMemberAccountRequest method.
-//    req, resp := client.AssociateMemberAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/AssociateMemberAccount
 func (c *Macie) AssociateMemberAccountRequest(input *AssociateMemberAccountInput) (req *request.Request, output *AssociateMemberAccountOutput) {
@@ -57,7 +56,8 @@ func (c *Macie) AssociateMemberAccountRequest(input *AssociateMemberAccountInput
 
 // AssociateMemberAccount API operation for Amazon Macie.
 //
-// Associates a specified AWS account with Amazon Macie as a member account.
+// (Discontinued) Associates a specified Amazon Web Services account with Amazon
+// Macie Classic as a member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -67,16 +67,18 @@ func (c *Macie) AssociateMemberAccountRequest(input *AssociateMemberAccountInput
 // API operation AssociateMemberAccount for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
 //
-//   * LimitExceededException
-//   The request was rejected because it attempted to create resources beyond
-//   the current AWS account limits. The error code describes the limit exceeded.
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
 //
-//   * InternalException
-//   Internal server error.
+//   - LimitExceededException
+//     (Discontinued) The request was rejected because it attempted to create resources
+//     beyond the current Amazon Web Services account quotas. The error code describes
+//     the quota exceeded.
+//
+//   - InternalException
+//     (Discontinued) Internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/AssociateMemberAccount
 func (c *Macie) AssociateMemberAccount(input *AssociateMemberAccountInput) (*AssociateMemberAccountOutput, error) {
@@ -116,14 +118,13 @@ const opAssociateS3Resources = "AssociateS3Resources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateS3ResourcesRequest method.
+//	req, resp := client.AssociateS3ResourcesRequest(params)
 //
-//    // Example sending a request using the AssociateS3ResourcesRequest method.
-//    req, resp := client.AssociateS3ResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/AssociateS3Resources
 func (c *Macie) AssociateS3ResourcesRequest(input *AssociateS3ResourcesInput) (req *request.Request, output *AssociateS3ResourcesOutput) {
@@ -144,11 +145,12 @@ func (c *Macie) AssociateS3ResourcesRequest(input *AssociateS3ResourcesInput) (r
 
 // AssociateS3Resources API operation for Amazon Macie.
 //
-// Associates specified S3 resources with Amazon Macie for monitoring and data
-// classification. If memberAccountId isn't specified, the action associates
-// specified S3 resources with Macie for the current master account. If memberAccountId
-// is specified, the action associates specified S3 resources with Macie for
-// the specified member account.
+// (Discontinued) Associates specified S3 resources with Amazon Macie Classic
+// for monitoring and data classification. If memberAccountId isn't specified,
+// the action associates specified S3 resources with Macie Classic for the current
+// Macie Classic administrator account. If memberAccountId is specified, the
+// action associates specified S3 resources with Macie Classic for the specified
+// member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -158,19 +160,22 @@ func (c *Macie) AssociateS3ResourcesRequest(input *AssociateS3ResourcesInput) (r
 // API operation AssociateS3Resources for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to access the requested resource.
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
 //
-//   * LimitExceededException
-//   The request was rejected because it attempted to create resources beyond
-//   the current AWS account limits. The error code describes the limit exceeded.
+//   - AccessDeniedException
+//     (Discontinued) You do not have required permissions to access the requested
+//     resource.
 //
-//   * InternalException
-//   Internal server error.
+//   - LimitExceededException
+//     (Discontinued) The request was rejected because it attempted to create resources
+//     beyond the current Amazon Web Services account quotas. The error code describes
+//     the quota exceeded.
+//
+//   - InternalException
+//     (Discontinued) Internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/AssociateS3Resources
 func (c *Macie) AssociateS3Resources(input *AssociateS3ResourcesInput) (*AssociateS3ResourcesOutput, error) {
@@ -210,14 +215,13 @@ const opDisassociateMemberAccount = "DisassociateMemberAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateMemberAccountRequest method.
+//	req, resp := client.DisassociateMemberAccountRequest(params)
 //
-//    // Example sending a request using the DisassociateMemberAccountRequest method.
-//    req, resp := client.DisassociateMemberAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/DisassociateMemberAccount
 func (c *Macie) DisassociateMemberAccountRequest(input *DisassociateMemberAccountInput) (req *request.Request, output *DisassociateMemberAccountOutput) {
@@ -239,7 +243,7 @@ func (c *Macie) DisassociateMemberAccountRequest(input *DisassociateMemberAccoun
 
 // DisassociateMemberAccount API operation for Amazon Macie.
 //
-// Removes the specified member account from Amazon Macie.
+// (Discontinued) Removes the specified member account from Amazon Macie Classic.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -249,12 +253,13 @@ func (c *Macie) DisassociateMemberAccountRequest(input *DisassociateMemberAccoun
 // API operation DisassociateMemberAccount for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
 //
-//   * InternalException
-//   Internal server error.
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
+//
+//   - InternalException
+//     (Discontinued) Internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/DisassociateMemberAccount
 func (c *Macie) DisassociateMemberAccount(input *DisassociateMemberAccountInput) (*DisassociateMemberAccountOutput, error) {
@@ -294,14 +299,13 @@ const opDisassociateS3Resources = "DisassociateS3Resources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateS3ResourcesRequest method.
+//	req, resp := client.DisassociateS3ResourcesRequest(params)
 //
-//    // Example sending a request using the DisassociateS3ResourcesRequest method.
-//    req, resp := client.DisassociateS3ResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/DisassociateS3Resources
 func (c *Macie) DisassociateS3ResourcesRequest(input *DisassociateS3ResourcesInput) (req *request.Request, output *DisassociateS3ResourcesOutput) {
@@ -322,10 +326,11 @@ func (c *Macie) DisassociateS3ResourcesRequest(input *DisassociateS3ResourcesInp
 
 // DisassociateS3Resources API operation for Amazon Macie.
 //
-// Removes specified S3 resources from being monitored by Amazon Macie. If memberAccountId
-// isn't specified, the action removes specified S3 resources from Macie for
-// the current master account. If memberAccountId is specified, the action removes
-// specified S3 resources from Macie for the specified member account.
+// (Discontinued) Removes specified S3 resources from being monitored by Amazon
+// Macie Classic. If memberAccountId isn't specified, the action removes specified
+// S3 resources from Macie Classic for the current Macie Classic administrator
+// account. If memberAccountId is specified, the action removes specified S3
+// resources from Macie Classic for the specified member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -335,15 +340,17 @@ func (c *Macie) DisassociateS3ResourcesRequest(input *DisassociateS3ResourcesInp
 // API operation DisassociateS3Resources for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to access the requested resource.
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
 //
-//   * InternalException
-//   Internal server error.
+//   - AccessDeniedException
+//     (Discontinued) You do not have required permissions to access the requested
+//     resource.
+//
+//   - InternalException
+//     (Discontinued) Internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/DisassociateS3Resources
 func (c *Macie) DisassociateS3Resources(input *DisassociateS3ResourcesInput) (*DisassociateS3ResourcesOutput, error) {
@@ -383,14 +390,13 @@ const opListMemberAccounts = "ListMemberAccounts"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListMemberAccountsRequest method.
+//	req, resp := client.ListMemberAccountsRequest(params)
 //
-//    // Example sending a request using the ListMemberAccountsRequest method.
-//    req, resp := client.ListMemberAccountsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/ListMemberAccounts
 func (c *Macie) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *request.Request, output *ListMemberAccountsOutput) {
@@ -417,8 +423,8 @@ func (c *Macie) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *
 
 // ListMemberAccounts API operation for Amazon Macie.
 //
-// Lists all Amazon Macie member accounts for the current Amazon Macie master
-// account.
+// (Discontinued) Lists all Amazon Macie Classic member accounts for the current
+// Macie Classic administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -428,12 +434,13 @@ func (c *Macie) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *
 // API operation ListMemberAccounts for usage and error information.
 //
 // Returned Error Types:
-//   * InternalException
-//   Internal server error.
 //
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
+//   - InternalException
+//     (Discontinued) Internal server error.
+//
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/ListMemberAccounts
 func (c *Macie) ListMemberAccounts(input *ListMemberAccountsInput) (*ListMemberAccountsOutput, error) {
@@ -465,15 +472,14 @@ func (c *Macie) ListMemberAccountsWithContext(ctx aws.Context, input *ListMember
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListMemberAccounts operation.
-//    pageNum := 0
-//    err := client.ListMemberAccountsPages(params,
-//        func(page *macie.ListMemberAccountsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListMemberAccounts operation.
+//	pageNum := 0
+//	err := client.ListMemberAccountsPages(params,
+//	    func(page *macie.ListMemberAccountsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Macie) ListMemberAccountsPages(input *ListMemberAccountsInput, fn func(*ListMemberAccountsOutput, bool) bool) error {
 	return c.ListMemberAccountsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -525,14 +531,13 @@ const opListS3Resources = "ListS3Resources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListS3ResourcesRequest method.
+//	req, resp := client.ListS3ResourcesRequest(params)
 //
-//    // Example sending a request using the ListS3ResourcesRequest method.
-//    req, resp := client.ListS3ResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/ListS3Resources
 func (c *Macie) ListS3ResourcesRequest(input *ListS3ResourcesInput) (req *request.Request, output *ListS3ResourcesOutput) {
@@ -559,11 +564,11 @@ func (c *Macie) ListS3ResourcesRequest(input *ListS3ResourcesInput) (req *reques
 
 // ListS3Resources API operation for Amazon Macie.
 //
-// Lists all the S3 resources associated with Amazon Macie. If memberAccountId
-// isn't specified, the action lists the S3 resources associated with Amazon
-// Macie for the current master account. If memberAccountId is specified, the
-// action lists the S3 resources associated with Amazon Macie for the specified
-// member account.
+// (Discontinued) Lists all the S3 resources associated with Amazon Macie Classic.
+// If memberAccountId isn't specified, the action lists the S3 resources associated
+// with Macie Classic for the current Macie Classic administrator account. If
+// memberAccountId is specified, the action lists the S3 resources associated
+// with Macie Classic for the specified member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -573,15 +578,17 @@ func (c *Macie) ListS3ResourcesRequest(input *ListS3ResourcesInput) (req *reques
 // API operation ListS3Resources for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to access the requested resource.
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
 //
-//   * InternalException
-//   Internal server error.
+//   - AccessDeniedException
+//     (Discontinued) You do not have required permissions to access the requested
+//     resource.
+//
+//   - InternalException
+//     (Discontinued) Internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/ListS3Resources
 func (c *Macie) ListS3Resources(input *ListS3ResourcesInput) (*ListS3ResourcesOutput, error) {
@@ -613,15 +620,14 @@ func (c *Macie) ListS3ResourcesWithContext(ctx aws.Context, input *ListS3Resourc
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListS3Resources operation.
-//    pageNum := 0
-//    err := client.ListS3ResourcesPages(params,
-//        func(page *macie.ListS3ResourcesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListS3Resources operation.
+//	pageNum := 0
+//	err := client.ListS3ResourcesPages(params,
+//	    func(page *macie.ListS3ResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *Macie) ListS3ResourcesPages(input *ListS3ResourcesInput, fn func(*ListS3ResourcesOutput, bool) bool) error {
 	return c.ListS3ResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -673,14 +679,13 @@ const opUpdateS3Resources = "UpdateS3Resources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateS3ResourcesRequest method.
+//	req, resp := client.UpdateS3ResourcesRequest(params)
 //
-//    // Example sending a request using the UpdateS3ResourcesRequest method.
-//    req, resp := client.UpdateS3ResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/UpdateS3Resources
 func (c *Macie) UpdateS3ResourcesRequest(input *UpdateS3ResourcesInput) (req *request.Request, output *UpdateS3ResourcesOutput) {
@@ -701,11 +706,12 @@ func (c *Macie) UpdateS3ResourcesRequest(input *UpdateS3ResourcesInput) (req *re
 
 // UpdateS3Resources API operation for Amazon Macie.
 //
-// Updates the classification types for the specified S3 resources. If memberAccountId
-// isn't specified, the action updates the classification types of the S3 resources
-// associated with Amazon Macie for the current master account. If memberAccountId
-// is specified, the action updates the classification types of the S3 resources
-// associated with Amazon Macie for the specified member account.
+// (Discontinued) Updates the classification types for the specified S3 resources.
+// If memberAccountId isn't specified, the action updates the classification
+// types of the S3 resources associated with Amazon Macie Classic for the current
+// Macie Classic administrator account. If memberAccountId is specified, the
+// action updates the classification types of the S3 resources associated with
+// Macie Classic for the specified member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -715,15 +721,17 @@ func (c *Macie) UpdateS3ResourcesRequest(input *UpdateS3ResourcesInput) (req *re
 // API operation UpdateS3Resources for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidInputException
-//   The request was rejected because an invalid or out-of-range value was supplied
-//   for an input parameter.
 //
-//   * AccessDeniedException
-//   You do not have required permissions to access the requested resource.
+//   - InvalidInputException
+//     (Discontinued) The request was rejected because an invalid or out-of-range
+//     value was supplied for an input parameter.
 //
-//   * InternalException
-//   Internal server error.
+//   - AccessDeniedException
+//     (Discontinued) You do not have required permissions to access the requested
+//     resource.
+//
+//   - InternalException
+//     (Discontinued) Internal server error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/macie-2017-12-19/UpdateS3Resources
 func (c *Macie) UpdateS3Resources(input *UpdateS3ResourcesInput) (*UpdateS3ResourcesOutput, error) {
@@ -747,7 +755,8 @@ func (c *Macie) UpdateS3ResourcesWithContext(ctx aws.Context, input *UpdateS3Res
 	return out, req.Send()
 }
 
-// You do not have required permissions to access the requested resource.
+// (Discontinued) You do not have required permissions to access the requested
+// resource.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -758,12 +767,20 @@ type AccessDeniedException struct {
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -809,19 +826,27 @@ func (s *AccessDeniedException) RequestID() string {
 type AssociateMemberAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that you want to associate with Amazon Macie as
-	// a member account.
+	// (Discontinued) The ID of the Amazon Web Services account that you want to
+	// associate with Amazon Macie Classic as a member account.
 	//
 	// MemberAccountId is a required field
 	MemberAccountId *string `locationName:"memberAccountId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMemberAccountInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMemberAccountInput) GoString() string {
 	return s.String()
 }
@@ -849,12 +874,20 @@ type AssociateMemberAccountOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMemberAccountOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMemberAccountOutput) GoString() string {
 	return s.String()
 }
@@ -862,23 +895,31 @@ func (s AssociateMemberAccountOutput) GoString() string {
 type AssociateS3ResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Macie member account whose resources you want to associate
-	// with Macie.
+	// (Discontinued) The ID of the Amazon Macie Classic member account whose resources
+	// you want to associate with Macie Classic.
 	MemberAccountId *string `locationName:"memberAccountId" type:"string"`
 
-	// The S3 resources that you want to associate with Amazon Macie for monitoring
-	// and data classification.
+	// (Discontinued) The S3 resources that you want to associate with Amazon Macie
+	// Classic for monitoring and data classification.
 	//
 	// S3Resources is a required field
 	S3Resources []*S3ResourceClassification `locationName:"s3Resources" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateS3ResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateS3ResourcesInput) GoString() string {
 	return s.String()
 }
@@ -921,17 +962,26 @@ func (s *AssociateS3ResourcesInput) SetS3Resources(v []*S3ResourceClassification
 type AssociateS3ResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// S3 resources that couldn't be associated with Amazon Macie. An error code
-	// and an error message are provided for each failed item.
+	// (Discontinued) S3 resources that couldn't be associated with Amazon Macie
+	// Classic. An error code and an error message are provided for each failed
+	// item.
 	FailedS3Resources []*FailedS3Resource `locationName:"failedS3Resources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateS3ResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateS3ResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -942,30 +992,39 @@ func (s *AssociateS3ResourcesOutput) SetFailedS3Resources(v []*FailedS3Resource)
 	return s
 }
 
-// The classification type that Amazon Macie applies to the associated S3 resources.
+// (Discontinued) The classification type that Amazon Macie Classic applies
+// to the associated S3 resources.
 type ClassificationType struct {
 	_ struct{} `type:"structure"`
 
-	// A continuous classification of the objects that are added to a specified
-	// S3 bucket. Amazon Macie begins performing continuous classification after
-	// a bucket is successfully associated with Amazon Macie.
+	// (Discontinued) A continuous classification of the objects that are added
+	// to a specified S3 bucket. Amazon Macie Classic begins performing continuous
+	// classification after a bucket is successfully associated with Macie Classic.
 	//
 	// Continuous is a required field
 	Continuous *string `locationName:"continuous" type:"string" required:"true" enum:"S3ContinuousClassificationType"`
 
-	// A one-time classification of all of the existing objects in a specified S3
-	// bucket.
+	// (Discontinued) A one-time classification of all of the existing objects in
+	// a specified S3 bucket.
 	//
 	// OneTime is a required field
 	OneTime *string `locationName:"oneTime" type:"string" required:"true" enum:"S3OneTimeClassificationType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClassificationType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClassificationType) GoString() string {
 	return s.String()
 }
@@ -998,28 +1057,36 @@ func (s *ClassificationType) SetOneTime(v string) *ClassificationType {
 	return s
 }
 
-// The classification type that Amazon Macie applies to the associated S3 resources.
-// At least one of the classification types (oneTime or continuous) must be
-// specified.
+// (Discontinued) The classification type that Amazon Macie Classic applies
+// to the associated S3 resources. At least one of the classification types
+// (oneTime or continuous) must be specified.
 type ClassificationTypeUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// A continuous classification of the objects that are added to a specified
-	// S3 bucket. Amazon Macie begins performing continuous classification after
-	// a bucket is successfully associated with Amazon Macie.
+	// (Discontinued) A continuous classification of the objects that are added
+	// to a specified S3 bucket. Amazon Macie Classic begins performing continuous
+	// classification after a bucket is successfully associated with Macie Classic.
 	Continuous *string `locationName:"continuous" type:"string" enum:"S3ContinuousClassificationType"`
 
-	// A one-time classification of all of the existing objects in a specified S3
-	// bucket.
+	// (Discontinued) A one-time classification of all of the existing objects in
+	// a specified S3 bucket.
 	OneTime *string `locationName:"oneTime" type:"string" enum:"S3OneTimeClassificationType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClassificationTypeUpdate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClassificationTypeUpdate) GoString() string {
 	return s.String()
 }
@@ -1039,18 +1106,27 @@ func (s *ClassificationTypeUpdate) SetOneTime(v string) *ClassificationTypeUpdat
 type DisassociateMemberAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the member account that you want to remove from Amazon Macie.
+	// (Discontinued) The ID of the member account that you want to remove from
+	// Amazon Macie Classic.
 	//
 	// MemberAccountId is a required field
 	MemberAccountId *string `locationName:"memberAccountId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMemberAccountInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMemberAccountInput) GoString() string {
 	return s.String()
 }
@@ -1078,12 +1154,20 @@ type DisassociateMemberAccountOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMemberAccountOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMemberAccountOutput) GoString() string {
 	return s.String()
 }
@@ -1091,23 +1175,31 @@ func (s DisassociateMemberAccountOutput) GoString() string {
 type DisassociateS3ResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 resources (buckets or prefixes) that you want to remove from being
-	// monitored and classified by Amazon Macie.
+	// (Discontinued) The S3 resources (buckets or prefixes) that you want to remove
+	// from being monitored and classified by Amazon Macie Classic.
 	//
 	// AssociatedS3Resources is a required field
 	AssociatedS3Resources []*S3Resource `locationName:"associatedS3Resources" type:"list" required:"true"`
 
-	// The ID of the Amazon Macie member account whose resources you want to remove
-	// from being monitored by Amazon Macie.
+	// (Discontinued) The ID of the Amazon Macie Classic member account whose resources
+	// you want to remove from being monitored by Macie Classic.
 	MemberAccountId *string `locationName:"memberAccountId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateS3ResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateS3ResourcesInput) GoString() string {
 	return s.String()
 }
@@ -1150,18 +1242,26 @@ func (s *DisassociateS3ResourcesInput) SetMemberAccountId(v string) *Disassociat
 type DisassociateS3ResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// S3 resources that couldn't be removed from being monitored and classified
-	// by Amazon Macie. An error code and an error message are provided for each
-	// failed item.
+	// (Discontinued) S3 resources that couldn't be removed from being monitored
+	// and classified by Amazon Macie Classic. An error code and an error message
+	// are provided for each failed item.
 	FailedS3Resources []*FailedS3Resource `locationName:"failedS3Resources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateS3ResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateS3ResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -1172,26 +1272,34 @@ func (s *DisassociateS3ResourcesOutput) SetFailedS3Resources(v []*FailedS3Resour
 	return s
 }
 
-// Includes details about the failed S3 resources.
+// (Discontinued) Includes details about the failed S3 resources.
 type FailedS3Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The status code of a failed item.
+	// (Discontinued) The status code of a failed item.
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
-	// The error message of a failed item.
+	// (Discontinued) The error message of a failed item.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
-	// The failed S3 resources.
+	// (Discontinued) The failed S3 resources.
 	FailedItem *S3Resource `locationName:"failedItem" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedS3Resource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedS3Resource) GoString() string {
 	return s.String()
 }
@@ -1214,7 +1322,7 @@ func (s *FailedS3Resource) SetFailedItem(v *S3Resource) *FailedS3Resource {
 	return s
 }
 
-// Internal server error.
+// (Discontinued) Internal server error.
 type InternalException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1225,12 +1333,20 @@ type InternalException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) GoString() string {
 	return s.String()
 }
@@ -1273,8 +1389,8 @@ func (s *InternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request was rejected because an invalid or out-of-range value was supplied
-// for an input parameter.
+// (Discontinued) The request was rejected because an invalid or out-of-range
+// value was supplied for an input parameter.
 type InvalidInputException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1288,12 +1404,20 @@ type InvalidInputException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidInputException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidInputException) GoString() string {
 	return s.String()
 }
@@ -1336,8 +1460,9 @@ func (s *InvalidInputException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request was rejected because it attempted to create resources beyond
-// the current AWS account limits. The error code describes the limit exceeded.
+// (Discontinued) The request was rejected because it attempted to create resources
+// beyond the current Amazon Web Services account quotas. The error code describes
+// the quota exceeded.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1351,12 +1476,20 @@ type LimitExceededException struct {
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -1402,23 +1535,31 @@ func (s *LimitExceededException) RequestID() string {
 type ListMemberAccountsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Use this parameter to indicate the maximum number of items that you want
-	// in the response. The default value is 250.
+	// (Discontinued) Use this parameter to indicate the maximum number of items
+	// that you want in the response. The default value is 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// Use this parameter when paginating results. Set the value of this parameter
-	// to null on your first call to the ListMemberAccounts action. Subsequent calls
-	// to the action fill nextToken in the request with the value of nextToken from
-	// the previous response to continue listing data.
+	// (Discontinued) Use this parameter when paginating results. Set the value
+	// of this parameter to null on your first call to the ListMemberAccounts action.
+	// Subsequent calls to the action fill nextToken in the request with the value
+	// of nextToken from the previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMemberAccountsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMemberAccountsInput) GoString() string {
 	return s.String()
 }
@@ -1438,23 +1579,32 @@ func (s *ListMemberAccountsInput) SetNextToken(v string) *ListMemberAccountsInpu
 type ListMemberAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of the Amazon Macie member accounts returned by the action. The current
-	// master account is also included in this list.
+	// (Discontinued) A list of the Amazon Macie Classic member accounts returned
+	// by the action. The current Macie Classic administrator account is also included
+	// in this list.
 	MemberAccounts []*MemberAccount `locationName:"memberAccounts" type:"list"`
 
-	// When a response is generated, if there is more data to be listed, this parameter
-	// is present in the response and contains the value to use for the nextToken
-	// parameter in a subsequent pagination request. If there is no more data to
-	// be listed, this parameter is set to null.
+	// (Discontinued) When a response is generated, if there is more data to be
+	// listed, this parameter is present in the response and contains the value
+	// to use for the nextToken parameter in a subsequent pagination request. If
+	// there is no more data to be listed, this parameter is set to null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMemberAccountsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListMemberAccountsOutput) GoString() string {
 	return s.String()
 }
@@ -1474,27 +1624,35 @@ func (s *ListMemberAccountsOutput) SetNextToken(v string) *ListMemberAccountsOut
 type ListS3ResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Use this parameter to indicate the maximum number of items that you want
-	// in the response. The default value is 250.
+	// (Discontinued) Use this parameter to indicate the maximum number of items
+	// that you want in the response. The default value is 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The Amazon Macie member account ID whose associated S3 resources you want
-	// to list.
+	// (Discontinued) The Amazon Macie Classic member account ID whose associated
+	// S3 resources you want to list.
 	MemberAccountId *string `locationName:"memberAccountId" type:"string"`
 
-	// Use this parameter when paginating results. Set its value to null on your
-	// first call to the ListS3Resources action. Subsequent calls to the action
-	// fill nextToken in the request with the value of nextToken from the previous
-	// response to continue listing data.
+	// (Discontinued) Use this parameter when paginating results. Set its value
+	// to null on your first call to the ListS3Resources action. Subsequent calls
+	// to the action fill nextToken in the request with the value of nextToken from
+	// the previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListS3ResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListS3ResourcesInput) GoString() string {
 	return s.String()
 }
@@ -1520,22 +1678,30 @@ func (s *ListS3ResourcesInput) SetNextToken(v string) *ListS3ResourcesInput {
 type ListS3ResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// When a response is generated, if there is more data to be listed, this parameter
-	// is present in the response and contains the value to use for the nextToken
-	// parameter in a subsequent pagination request. If there is no more data to
-	// be listed, this parameter is set to null.
+	// (Discontinued) When a response is generated, if there is more data to be
+	// listed, this parameter is present in the response and contains the value
+	// to use for the nextToken parameter in a subsequent pagination request. If
+	// there is no more data to be listed, this parameter is set to null.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A list of the associated S3 resources returned by the action.
+	// (Discontinued) A list of the associated S3 resources returned by the action.
 	S3Resources []*S3ResourceClassification `locationName:"s3Resources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListS3ResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListS3ResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -1552,20 +1718,30 @@ func (s *ListS3ResourcesOutput) SetS3Resources(v []*S3ResourceClassification) *L
 	return s
 }
 
-// Contains information about the Amazon Macie member account.
+// (Discontinued) Contains information about the Amazon Macie Classic member
+// account.
 type MemberAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the Amazon Macie member account.
+	// (Discontinued) The Amazon Web Services account ID of the Amazon Macie Classic
+	// member account.
 	AccountId *string `locationName:"accountId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MemberAccount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MemberAccount) GoString() string {
 	return s.String()
 }
@@ -1576,27 +1752,36 @@ func (s *MemberAccount) SetAccountId(v string) *MemberAccount {
 	return s
 }
 
-// Contains information about the S3 resource. This data type is used as a request
-// parameter in the DisassociateS3Resources action and can be used as a response
-// parameter in the AssociateS3Resources and UpdateS3Resources actions.
+// (Discontinued) Contains information about the S3 resource. This data type
+// is used as a request parameter in the DisassociateS3Resources action and
+// can be used as a response parameter in the AssociateS3Resources and UpdateS3Resources
+// actions.
 type S3Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the S3 bucket.
+	// (Discontinued) The name of the S3 bucket.
 	//
 	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
-	// The prefix of the S3 bucket.
+	// (Discontinued) The prefix of the S3 bucket.
 	Prefix *string `locationName:"prefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Resource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Resource) GoString() string {
 	return s.String()
 }
@@ -1626,34 +1811,44 @@ func (s *S3Resource) SetPrefix(v string) *S3Resource {
 	return s
 }
 
-// The S3 resources that you want to associate with Amazon Macie for monitoring
-// and data classification. This data type is used as a request parameter in
-// the AssociateS3Resources action and a response parameter in the ListS3Resources
-// action.
+// (Discontinued) The S3 resources that you want to associate with Amazon Macie
+// Classic for monitoring and data classification. This data type is used as
+// a request parameter in the AssociateS3Resources action and a response parameter
+// in the ListS3Resources action.
 type S3ResourceClassification struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the S3 bucket that you want to associate with Amazon Macie.
+	// (Discontinued) The name of the S3 bucket that you want to associate with
+	// Amazon Macie Classic.
 	//
 	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
-	// The classification type that you want to specify for the resource associated
-	// with Amazon Macie.
+	// (Discontinued) The classification type that you want to specify for the resource
+	// associated with Amazon Macie Classic.
 	//
 	// ClassificationType is a required field
 	ClassificationType *ClassificationType `locationName:"classificationType" type:"structure" required:"true"`
 
-	// The prefix of the S3 bucket that you want to associate with Amazon Macie.
+	// (Discontinued) The prefix of the S3 bucket that you want to associate with
+	// Amazon Macie Classic.
 	Prefix *string `locationName:"prefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ResourceClassification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ResourceClassification) GoString() string {
 	return s.String()
 }
@@ -1697,32 +1892,42 @@ func (s *S3ResourceClassification) SetPrefix(v string) *S3ResourceClassification
 	return s
 }
 
-// The S3 resources whose classification types you want to update. This data
-// type is used as a request parameter in the UpdateS3Resources action.
+// (Discontinued) The S3 resources whose classification types you want to update.
+// This data type is used as a request parameter in the UpdateS3Resources action.
 type S3ResourceClassificationUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the S3 bucket whose classification types you want to update.
+	// (Discontinued) The name of the S3 bucket whose classification types you want
+	// to update.
 	//
 	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
-	// The classification type that you want to update for the resource associated
-	// with Amazon Macie.
+	// (Discontinued) The classification type that you want to update for the resource
+	// associated with Amazon Macie Classic.
 	//
 	// ClassificationTypeUpdate is a required field
 	ClassificationTypeUpdate *ClassificationTypeUpdate `locationName:"classificationTypeUpdate" type:"structure" required:"true"`
 
-	// The prefix of the S3 bucket whose classification types you want to update.
+	// (Discontinued) The prefix of the S3 bucket whose classification types you
+	// want to update.
 	Prefix *string `locationName:"prefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ResourceClassificationUpdate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ResourceClassificationUpdate) GoString() string {
 	return s.String()
 }
@@ -1764,22 +1969,30 @@ func (s *S3ResourceClassificationUpdate) SetPrefix(v string) *S3ResourceClassifi
 type UpdateS3ResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS ID of the Amazon Macie member account whose S3 resources' classification
-	// types you want to update.
+	// (Discontinued) The Amazon Web Services account ID of the Amazon Macie Classic
+	// member account whose S3 resources' classification types you want to update.
 	MemberAccountId *string `locationName:"memberAccountId" type:"string"`
 
-	// The S3 resources whose classification types you want to update.
+	// (Discontinued) The S3 resources whose classification types you want to update.
 	//
 	// S3ResourcesUpdate is a required field
 	S3ResourcesUpdate []*S3ResourceClassificationUpdate `locationName:"s3ResourcesUpdate" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateS3ResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateS3ResourcesInput) GoString() string {
 	return s.String()
 }
@@ -1822,17 +2035,25 @@ func (s *UpdateS3ResourcesInput) SetS3ResourcesUpdate(v []*S3ResourceClassificat
 type UpdateS3ResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 resources whose classification types can't be updated. An error code
-	// and an error message are provided for each failed item.
+	// (Discontinued) The S3 resources whose classification types can't be updated.
+	// An error code and an error message are provided for each failed item.
 	FailedS3Resources []*FailedS3Resource `locationName:"failedS3Resources" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateS3ResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateS3ResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -1848,6 +2069,13 @@ const (
 	S3ContinuousClassificationTypeFull = "FULL"
 )
 
+// S3ContinuousClassificationType_Values returns all elements of the S3ContinuousClassificationType enum
+func S3ContinuousClassificationType_Values() []string {
+	return []string{
+		S3ContinuousClassificationTypeFull,
+	}
+}
+
 const (
 	// S3OneTimeClassificationTypeFull is a S3OneTimeClassificationType enum value
 	S3OneTimeClassificationTypeFull = "FULL"
@@ -1855,3 +2083,11 @@ const (
 	// S3OneTimeClassificationTypeNone is a S3OneTimeClassificationType enum value
 	S3OneTimeClassificationTypeNone = "NONE"
 )
+
+// S3OneTimeClassificationType_Values returns all elements of the S3OneTimeClassificationType enum
+func S3OneTimeClassificationType_Values() []string {
+	return []string{
+		S3OneTimeClassificationTypeFull,
+		S3OneTimeClassificationTypeNone,
+	}
+}

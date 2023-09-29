@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateGroup = "CreateGroup"
@@ -27,14 +28,13 @@ const opCreateGroup = "CreateGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGroupRequest method.
+//	req, resp := client.CreateGroupRequest(params)
 //
-//    // Example sending a request using the CreateGroupRequest method.
-//    req, resp := client.CreateGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
 func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
@@ -55,7 +55,19 @@ func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *reque
 
 // CreateGroup API operation for AWS Resource Groups.
 //
-// Creates a group with a specified name, description, and resource query.
+// Creates a resource group with the specified name and description. You can
+// optionally include either a resource query or a service configuration. For
+// more information about constructing a resource query, see Build queries and
+// groups in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/getting_started-query.html)
+// in the Resource Groups User Guide. For more information about service-linked
+// groups and service configurations, see Service configurations for Resource
+// Groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:CreateGroup
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -65,21 +77,22 @@ func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *reque
 // API operation CreateGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
 func (c *ResourceGroups) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
@@ -119,21 +132,20 @@ const opDeleteGroup = "DeleteGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteGroupRequest method.
+//	req, resp := client.DeleteGroupRequest(params)
 //
-//    // Example sending a request using the DeleteGroupRequest method.
-//    req, resp := client.DeleteGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
 func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteGroup,
-		HTTPMethod: "DELETE",
-		HTTPPath:   "/groups/{GroupName}",
+		HTTPMethod: "POST",
+		HTTPPath:   "/delete-group",
 	}
 
 	if input == nil {
@@ -147,8 +159,15 @@ func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *reque
 
 // DeleteGroup API operation for AWS Resource Groups.
 //
-// Deletes a specified resource group. Deleting a resource group does not delete
-// resources that are members of the group; it only deletes the group structure.
+// Deletes the specified resource group. Deleting a resource group does not
+// delete any resources that are members of the group; it only deletes the group
+// structure.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:DeleteGroup
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -158,24 +177,25 @@ func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *reque
 // API operation DeleteGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
 func (c *ResourceGroups) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
@@ -199,6 +219,98 @@ func (c *ResourceGroups) DeleteGroupWithContext(ctx aws.Context, input *DeleteGr
 	return out, req.Send()
 }
 
+const opGetAccountSettings = "GetAccountSettings"
+
+// GetAccountSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccountSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccountSettings for more information on using the GetAccountSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccountSettingsRequest method.
+//	req, resp := client.GetAccountSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetAccountSettings
+func (c *ResourceGroups) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *request.Request, output *GetAccountSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetAccountSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-account-settings",
+	}
+
+	if input == nil {
+		input = &GetAccountSettingsInput{}
+	}
+
+	output = &GetAccountSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccountSettings API operation for AWS Resource Groups.
+//
+// Retrieves the current status of optional features in Resource Groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation GetAccountSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
+//
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
+//
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetAccountSettings
+func (c *ResourceGroups) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountSettingsOutput, error) {
+	req, out := c.GetAccountSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetAccountSettingsWithContext is the same as GetAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) GetAccountSettingsWithContext(ctx aws.Context, input *GetAccountSettingsInput, opts ...request.Option) (*GetAccountSettingsOutput, error) {
+	req, out := c.GetAccountSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetGroup = "GetGroup"
 
 // GetGroupRequest generates a "aws/request.Request" representing the
@@ -215,21 +327,20 @@ const opGetGroup = "GetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupRequest method.
+//	req, resp := client.GetGroupRequest(params)
 //
-//    // Example sending a request using the GetGroupRequest method.
-//    req, resp := client.GetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
 func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
 	op := &request.Operation{
 		Name:       opGetGroup,
-		HTTPMethod: "GET",
-		HTTPPath:   "/groups/{GroupName}",
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-group",
 	}
 
 	if input == nil {
@@ -245,6 +356,12 @@ func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Req
 //
 // Returns information about a specified resource group.
 //
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:GetGroup
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -253,24 +370,25 @@ func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Req
 // API operation GetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
 func (c *ResourceGroups) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
@@ -294,6 +412,109 @@ func (c *ResourceGroups) GetGroupWithContext(ctx aws.Context, input *GetGroupInp
 	return out, req.Send()
 }
 
+const opGetGroupConfiguration = "GetGroupConfiguration"
+
+// GetGroupConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetGroupConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGroupConfiguration for more information on using the GetGroupConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetGroupConfigurationRequest method.
+//	req, resp := client.GetGroupConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupConfiguration
+func (c *ResourceGroups) GetGroupConfigurationRequest(input *GetGroupConfigurationInput) (req *request.Request, output *GetGroupConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetGroupConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-group-configuration",
+	}
+
+	if input == nil {
+		input = &GetGroupConfigurationInput{}
+	}
+
+	output = &GetGroupConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGroupConfiguration API operation for AWS Resource Groups.
+//
+// Retrieves the service configuration associated with the specified resource
+// group. For details about the service configuration syntax, see Service configurations
+// for Resource Groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:GetGroupConfiguration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation GetGroupConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
+//
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
+//
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
+//
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupConfiguration
+func (c *ResourceGroups) GetGroupConfiguration(input *GetGroupConfigurationInput) (*GetGroupConfigurationOutput, error) {
+	req, out := c.GetGroupConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetGroupConfigurationWithContext is the same as GetGroupConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGroupConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) GetGroupConfigurationWithContext(ctx aws.Context, input *GetGroupConfigurationInput, opts ...request.Option) (*GetGroupConfigurationOutput, error) {
+	req, out := c.GetGroupConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetGroupQuery = "GetGroupQuery"
 
 // GetGroupQueryRequest generates a "aws/request.Request" representing the
@@ -310,21 +531,20 @@ const opGetGroupQuery = "GetGroupQuery"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupQueryRequest method.
+//	req, resp := client.GetGroupQueryRequest(params)
 //
-//    // Example sending a request using the GetGroupQueryRequest method.
-//    req, resp := client.GetGroupQueryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
 func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *request.Request, output *GetGroupQueryOutput) {
 	op := &request.Operation{
 		Name:       opGetGroupQuery,
-		HTTPMethod: "GET",
-		HTTPPath:   "/groups/{GroupName}/query",
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-group-query",
 	}
 
 	if input == nil {
@@ -338,7 +558,15 @@ func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *r
 
 // GetGroupQuery API operation for AWS Resource Groups.
 //
-// Returns the resource query associated with the specified resource group.
+// Retrieves the resource query associated with the specified resource group.
+// For more information about resource queries, see Create a tag-based group
+// in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:GetGroupQuery
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -348,24 +576,25 @@ func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *r
 // API operation GetGroupQuery for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
 func (c *ResourceGroups) GetGroupQuery(input *GetGroupQueryInput) (*GetGroupQueryOutput, error) {
@@ -405,14 +634,13 @@ const opGetTags = "GetTags"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTagsRequest method.
+//	req, resp := client.GetTagsRequest(params)
 //
-//    // Example sending a request using the GetTagsRequest method.
-//    req, resp := client.GetTagsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
 func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Request, output *GetTagsOutput) {
@@ -436,6 +664,12 @@ func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Reque
 // Returns a list of tags that are associated with a resource group, specified
 // by an ARN.
 //
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:GetTags
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -444,24 +678,25 @@ func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Reque
 // API operation GetTags for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
 func (c *ResourceGroups) GetTags(input *GetTagsInput) (*GetTagsOutput, error) {
@@ -485,6 +720,117 @@ func (c *ResourceGroups) GetTagsWithContext(ctx aws.Context, input *GetTagsInput
 	return out, req.Send()
 }
 
+const opGroupResources = "GroupResources"
+
+// GroupResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the GroupResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GroupResources for more information on using the GroupResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GroupResourcesRequest method.
+//	req, resp := client.GroupResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GroupResources
+func (c *ResourceGroups) GroupResourcesRequest(input *GroupResourcesInput) (req *request.Request, output *GroupResourcesOutput) {
+	op := &request.Operation{
+		Name:       opGroupResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/group-resources",
+	}
+
+	if input == nil {
+		input = &GroupResourcesInput{}
+	}
+
+	output = &GroupResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GroupResources API operation for AWS Resource Groups.
+//
+// Adds the specified resources to the specified group.
+//
+// You can use this operation with only resource groups that are configured
+// with the following types:
+//
+//   - AWS::EC2::HostManagement
+//
+//   - AWS::EC2::CapacityReservationPool
+//
+// Other resource group type and resource types aren't currently supported by
+// this operation.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:GroupResources
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation GroupResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
+//
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
+//
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
+//
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GroupResources
+func (c *ResourceGroups) GroupResources(input *GroupResourcesInput) (*GroupResourcesOutput, error) {
+	req, out := c.GroupResourcesRequest(input)
+	return out, req.Send()
+}
+
+// GroupResourcesWithContext is the same as GroupResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GroupResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) GroupResourcesWithContext(ctx aws.Context, input *GroupResourcesInput, opts ...request.Option) (*GroupResourcesOutput, error) {
+	req, out := c.GroupResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListGroupResources = "ListGroupResources"
 
 // ListGroupResourcesRequest generates a "aws/request.Request" representing the
@@ -501,21 +847,20 @@ const opListGroupResources = "ListGroupResources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupResourcesRequest method.
+//	req, resp := client.ListGroupResourcesRequest(params)
 //
-//    // Example sending a request using the ListGroupResourcesRequest method.
-//    req, resp := client.ListGroupResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
 func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInput) (req *request.Request, output *ListGroupResourcesOutput) {
 	op := &request.Operation{
 		Name:       opListGroupResources,
 		HTTPMethod: "POST",
-		HTTPPath:   "/groups/{GroupName}/resource-identifiers-list",
+		HTTPPath:   "/list-group-resources",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -535,8 +880,20 @@ func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInpu
 
 // ListGroupResources API operation for AWS Resource Groups.
 //
-// Returns a list of ARNs of resources that are members of a specified resource
+// Returns a list of ARNs of the resources that are members of a specified resource
 // group.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:ListGroupResources
+//
+//   - cloudformation:DescribeStacks
+//
+//   - cloudformation:ListStackResources
+//
+//   - tag:GetResources
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -546,28 +903,29 @@ func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInpu
 // API operation ListGroupResources for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request has not been applied because it lacks valid authentication credentials
-//   for the target resource.
 //
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
+//   - UnauthorizedException
+//     The request was rejected because it doesn't have valid credentials for the
+//     target resource.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
 func (c *ResourceGroups) ListGroupResources(input *ListGroupResourcesInput) (*ListGroupResourcesOutput, error) {
@@ -599,15 +957,14 @@ func (c *ResourceGroups) ListGroupResourcesWithContext(ctx aws.Context, input *L
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGroupResources operation.
-//    pageNum := 0
-//    err := client.ListGroupResourcesPages(params,
-//        func(page *resourcegroups.ListGroupResourcesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGroupResources operation.
+//	pageNum := 0
+//	err := client.ListGroupResourcesPages(params,
+//	    func(page *resourcegroups.ListGroupResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ResourceGroups) ListGroupResourcesPages(input *ListGroupResourcesInput, fn func(*ListGroupResourcesOutput, bool) bool) error {
 	return c.ListGroupResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -659,14 +1016,13 @@ const opListGroups = "ListGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupsRequest method.
+//	req, resp := client.ListGroupsRequest(params)
 //
-//    // Example sending a request using the ListGroupsRequest method.
-//    req, resp := client.ListGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
 func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
@@ -693,7 +1049,13 @@ func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request
 
 // ListGroups API operation for AWS Resource Groups.
 //
-// Returns a list of existing resource groups in your account.
+// Returns a list of existing Resource Groups in your account.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:ListGroups
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -703,21 +1065,22 @@ func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request
 // API operation ListGroups for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
 func (c *ResourceGroups) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
@@ -749,15 +1112,14 @@ func (c *ResourceGroups) ListGroupsWithContext(ctx aws.Context, input *ListGroup
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListGroups operation.
-//    pageNum := 0
-//    err := client.ListGroupsPages(params,
-//        func(page *resourcegroups.ListGroupsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListGroups operation.
+//	pageNum := 0
+//	err := client.ListGroupsPages(params,
+//	    func(page *resourcegroups.ListGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ResourceGroups) ListGroupsPages(input *ListGroupsInput, fn func(*ListGroupsOutput, bool) bool) error {
 	return c.ListGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -793,6 +1155,110 @@ func (c *ResourceGroups) ListGroupsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opPutGroupConfiguration = "PutGroupConfiguration"
+
+// PutGroupConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutGroupConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutGroupConfiguration for more information on using the PutGroupConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutGroupConfigurationRequest method.
+//	req, resp := client.PutGroupConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/PutGroupConfiguration
+func (c *ResourceGroups) PutGroupConfigurationRequest(input *PutGroupConfigurationInput) (req *request.Request, output *PutGroupConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutGroupConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/put-group-configuration",
+	}
+
+	if input == nil {
+		input = &PutGroupConfigurationInput{}
+	}
+
+	output = &PutGroupConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutGroupConfiguration API operation for AWS Resource Groups.
+//
+// Attaches a service configuration to the specified group. This occurs asynchronously,
+// and can take time to complete. You can use GetGroupConfiguration to check
+// the status of the update.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:PutGroupConfiguration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation PutGroupConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
+//
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
+//
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
+//
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/PutGroupConfiguration
+func (c *ResourceGroups) PutGroupConfiguration(input *PutGroupConfigurationInput) (*PutGroupConfigurationOutput, error) {
+	req, out := c.PutGroupConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutGroupConfigurationWithContext is the same as PutGroupConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutGroupConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) PutGroupConfigurationWithContext(ctx aws.Context, input *PutGroupConfigurationInput, opts ...request.Option) (*PutGroupConfigurationOutput, error) {
+	req, out := c.PutGroupConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSearchResources = "SearchResources"
 
 // SearchResourcesRequest generates a "aws/request.Request" representing the
@@ -809,14 +1275,13 @@ const opSearchResources = "SearchResources"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SearchResourcesRequest method.
+//	req, resp := client.SearchResourcesRequest(params)
 //
-//    // Example sending a request using the SearchResourcesRequest method.
-//    req, resp := client.SearchResourcesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
 func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (req *request.Request, output *SearchResourcesOutput) {
@@ -843,9 +1308,21 @@ func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (re
 
 // SearchResources API operation for AWS Resource Groups.
 //
-// Returns a list of AWS resource identifiers that matches a specified query.
-// The query uses the same format as a resource query in a CreateGroup or UpdateGroupQuery
-// operation.
+// Returns a list of Amazon Web Services resource identifiers that matches the
+// specified query. The query uses the same format as a resource query in a
+// CreateGroup or UpdateGroupQuery operation.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:SearchResources
+//
+//   - cloudformation:DescribeStacks
+//
+//   - cloudformation:ListStackResources
+//
+//   - tag:GetResources
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -855,25 +1332,26 @@ func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (re
 // API operation SearchResources for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request has not been applied because it lacks valid authentication credentials
-//   for the target resource.
 //
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
+//   - UnauthorizedException
+//     The request was rejected because it doesn't have valid credentials for the
+//     target resource.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
 func (c *ResourceGroups) SearchResources(input *SearchResourcesInput) (*SearchResourcesOutput, error) {
@@ -905,15 +1383,14 @@ func (c *ResourceGroups) SearchResourcesWithContext(ctx aws.Context, input *Sear
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a SearchResources operation.
-//    pageNum := 0
-//    err := client.SearchResourcesPages(params,
-//        func(page *resourcegroups.SearchResourcesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a SearchResources operation.
+//	pageNum := 0
+//	err := client.SearchResourcesPages(params,
+//	    func(page *resourcegroups.SearchResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *ResourceGroups) SearchResourcesPages(input *SearchResourcesInput, fn func(*SearchResourcesOutput, bool) bool) error {
 	return c.SearchResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -965,14 +1442,13 @@ const opTag = "Tag"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagRequest method.
+//	req, resp := client.TagRequest(params)
 //
-//    // Example sending a request using the TagRequest method.
-//    req, resp := client.TagRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
 func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, output *TagOutput) {
@@ -996,6 +1472,17 @@ func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, outp
 // Adds tags to a resource group with the specified ARN. Existing tags on a
 // resource group are not changed if they are not specified in the request parameters.
 //
+// Do not store personally identifiable information (PII) or other confidential
+// or sensitive information in tags. We use tags to provide you with billing
+// and administration services. Tags are not intended to be used for private
+// or sensitive data.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:Tag
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1004,24 +1491,25 @@ func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, outp
 // API operation Tag for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
 func (c *ResourceGroups) Tag(input *TagInput) (*TagOutput, error) {
@@ -1045,6 +1533,110 @@ func (c *ResourceGroups) TagWithContext(ctx aws.Context, input *TagInput, opts .
 	return out, req.Send()
 }
 
+const opUngroupResources = "UngroupResources"
+
+// UngroupResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the UngroupResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UngroupResources for more information on using the UngroupResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UngroupResourcesRequest method.
+//	req, resp := client.UngroupResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UngroupResources
+func (c *ResourceGroups) UngroupResourcesRequest(input *UngroupResourcesInput) (req *request.Request, output *UngroupResourcesOutput) {
+	op := &request.Operation{
+		Name:       opUngroupResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ungroup-resources",
+	}
+
+	if input == nil {
+		input = &UngroupResourcesInput{}
+	}
+
+	output = &UngroupResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UngroupResources API operation for AWS Resource Groups.
+//
+// Removes the specified resources from the specified group. This operation
+// works only with static groups that you populated using the GroupResources
+// operation. It doesn't work with any resource groups that are automatically
+// populated by tag-based or CloudFormation stack-based queries.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:UngroupResources
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation UngroupResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
+//
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
+//
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
+//
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UngroupResources
+func (c *ResourceGroups) UngroupResources(input *UngroupResourcesInput) (*UngroupResourcesOutput, error) {
+	req, out := c.UngroupResourcesRequest(input)
+	return out, req.Send()
+}
+
+// UngroupResourcesWithContext is the same as UngroupResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UngroupResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) UngroupResourcesWithContext(ctx aws.Context, input *UngroupResourcesInput, opts ...request.Option) (*UngroupResourcesOutput, error) {
+	req, out := c.UngroupResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUntag = "Untag"
 
 // UntagRequest generates a "aws/request.Request" representing the
@@ -1061,14 +1653,13 @@ const opUntag = "Untag"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagRequest method.
+//	req, resp := client.UntagRequest(params)
 //
-//    // Example sending a request using the UntagRequest method.
-//    req, resp := client.UntagRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
 func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, output *UntagOutput) {
@@ -1089,7 +1680,13 @@ func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, 
 
 // Untag API operation for AWS Resource Groups.
 //
-// Deletes specified tags from a specified resource.
+// Deletes tags from a specified resource group.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:Untag
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1099,24 +1696,25 @@ func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, 
 // API operation Untag for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
 func (c *ResourceGroups) Untag(input *UntagInput) (*UntagOutput, error) {
@@ -1140,6 +1738,102 @@ func (c *ResourceGroups) UntagWithContext(ctx aws.Context, input *UntagInput, op
 	return out, req.Send()
 }
 
+const opUpdateAccountSettings = "UpdateAccountSettings"
+
+// UpdateAccountSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccountSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccountSettings for more information on using the UpdateAccountSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAccountSettingsRequest method.
+//	req, resp := client.UpdateAccountSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateAccountSettings
+func (c *ResourceGroups) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) (req *request.Request, output *UpdateAccountSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccountSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/update-account-settings",
+	}
+
+	if input == nil {
+		input = &UpdateAccountSettingsInput{}
+	}
+
+	output = &UpdateAccountSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAccountSettings API operation for AWS Resource Groups.
+//
+// Turns on or turns off optional features in Resource Groups.
+//
+// The preceding example shows that the request to turn on group lifecycle events
+// is IN_PROGRESS. You can call the GetAccountSettings operation to check for
+// completion by looking for GroupLifecycleEventsStatus to change to ACTIVE.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation UpdateAccountSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
+//
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
+//
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateAccountSettings
+func (c *ResourceGroups) UpdateAccountSettings(input *UpdateAccountSettingsInput) (*UpdateAccountSettingsOutput, error) {
+	req, out := c.UpdateAccountSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccountSettingsWithContext is the same as UpdateAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) UpdateAccountSettingsWithContext(ctx aws.Context, input *UpdateAccountSettingsInput, opts ...request.Option) (*UpdateAccountSettingsOutput, error) {
+	req, out := c.UpdateAccountSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateGroup = "UpdateGroup"
 
 // UpdateGroupRequest generates a "aws/request.Request" representing the
@@ -1156,21 +1850,20 @@ const opUpdateGroup = "UpdateGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateGroupRequest method.
+//	req, resp := client.UpdateGroupRequest(params)
 //
-//    // Example sending a request using the UpdateGroupRequest method.
-//    req, resp := client.UpdateGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
 func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGroup,
-		HTTPMethod: "PUT",
-		HTTPPath:   "/groups/{GroupName}",
+		HTTPMethod: "POST",
+		HTTPPath:   "/update-group",
 	}
 
 	if input == nil {
@@ -1184,8 +1877,14 @@ func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *reque
 
 // UpdateGroup API operation for AWS Resource Groups.
 //
-// Updates an existing group with a new or changed description. You cannot update
-// the name of a resource group.
+// Updates the description for an existing group. You cannot update the name
+// of a resource group.
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:UpdateGroup
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1195,24 +1894,25 @@ func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *reque
 // API operation UpdateGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
 func (c *ResourceGroups) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
@@ -1252,21 +1952,20 @@ const opUpdateGroupQuery = "UpdateGroupQuery"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateGroupQueryRequest method.
+//	req, resp := client.UpdateGroupQueryRequest(params)
 //
-//    // Example sending a request using the UpdateGroupQueryRequest method.
-//    req, resp := client.UpdateGroupQueryRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
 func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (req *request.Request, output *UpdateGroupQueryOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGroupQuery,
-		HTTPMethod: "PUT",
-		HTTPPath:   "/groups/{GroupName}/query",
+		HTTPMethod: "POST",
+		HTTPPath:   "/update-group-query",
 	}
 
 	if input == nil {
@@ -1280,7 +1979,14 @@ func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (
 
 // UpdateGroupQuery API operation for AWS Resource Groups.
 //
-// Updates the resource query of a group.
+// Updates the resource query of a group. For more information about resource
+// queries, see Create a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
+//
+// # Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//   - resource-groups:UpdateGroupQuery
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1290,24 +1996,25 @@ func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (
 // API operation UpdateGroupQuery for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   The request does not comply with validation rules that are defined for the
-//   request parameters.
 //
-//   * ForbiddenException
-//   The caller is not authorized to make the request.
+//   - BadRequestException
+//     The request includes one or more parameters that violate validation rules.
 //
-//   * NotFoundException
-//   One or more resources specified in the request do not exist.
+//   - ForbiddenException
+//     The caller isn't authorized to make the request. Check permissions.
 //
-//   * MethodNotAllowedException
-//   The request uses an HTTP method which is not allowed for the specified resource.
+//   - NotFoundException
+//     One or more of the specified resources don't exist.
 //
-//   * TooManyRequestsException
-//   The caller has exceeded throttling limits.
+//   - MethodNotAllowedException
+//     The request uses an HTTP method that isn't allowed for the specified resource.
 //
-//   * InternalServerErrorException
-//   An internal error occurred while processing the request.
+//   - TooManyRequestsException
+//     You've exceeded throttling limits by making too many requests in a period
+//     of time.
+//
+//   - InternalServerErrorException
+//     An internal error occurred while processing the request. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
 func (c *ResourceGroups) UpdateGroupQuery(input *UpdateGroupQueryInput) (*UpdateGroupQueryOutput, error) {
@@ -1331,8 +2038,58 @@ func (c *ResourceGroups) UpdateGroupQueryWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// The request does not comply with validation rules that are defined for the
-// request parameters.
+// The Resource Groups settings for this Amazon Web Services account.
+type AccountSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The desired target status of the group lifecycle events feature. If
+	GroupLifecycleEventsDesiredStatus *string `type:"string" enum:"GroupLifecycleEventsDesiredStatus"`
+
+	// The current status of the group lifecycle events feature.
+	GroupLifecycleEventsStatus *string `type:"string" enum:"GroupLifecycleEventsStatus"`
+
+	// The text of any error message occurs during an attempt to turn group lifecycle
+	// events on or off.
+	GroupLifecycleEventsStatusMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountSettings) GoString() string {
+	return s.String()
+}
+
+// SetGroupLifecycleEventsDesiredStatus sets the GroupLifecycleEventsDesiredStatus field's value.
+func (s *AccountSettings) SetGroupLifecycleEventsDesiredStatus(v string) *AccountSettings {
+	s.GroupLifecycleEventsDesiredStatus = &v
+	return s
+}
+
+// SetGroupLifecycleEventsStatus sets the GroupLifecycleEventsStatus field's value.
+func (s *AccountSettings) SetGroupLifecycleEventsStatus(v string) *AccountSettings {
+	s.GroupLifecycleEventsStatus = &v
+	return s
+}
+
+// SetGroupLifecycleEventsStatusMessage sets the GroupLifecycleEventsStatusMessage field's value.
+func (s *AccountSettings) SetGroupLifecycleEventsStatusMessage(v string) *AccountSettings {
+	s.GroupLifecycleEventsStatusMessage = &v
+	return s
+}
+
+// The request includes one or more parameters that violate validation rules.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1340,12 +2097,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -1391,38 +2156,56 @@ func (s *BadRequestException) RequestID() string {
 type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the resource group. Descriptions can have a maximum of
-	// 511 characters, including letters, numbers, hyphens, underscores, punctuation,
-	// and spaces.
+	// A configuration associates the resource group with an Amazon Web Services
+	// service and specifies how the service can interact with the resources in
+	// the group. A configuration is an array of GroupConfigurationItem elements.
+	// For details about the syntax of service configurations, see Service configurations
+	// for Resource Groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+	//
+	// A resource group can contain either a Configuration or a ResourceQuery, but
+	// not both.
+	Configuration []*GroupConfigurationItem `type:"list"`
+
+	// The description of the resource group. Descriptions can consist of letters,
+	// numbers, hyphens, underscores, periods, and spaces.
 	Description *string `type:"string"`
 
 	// The name of the group, which is the identifier of the group in other operations.
-	// A resource group name cannot be updated after it is created. A resource group
-	// name can have a maximum of 128 characters, including letters, numbers, hyphens,
-	// dots, and underscores. The name cannot start with AWS or aws; these are reserved.
-	// A resource group name must be unique within your account.
+	// You can't change the name of a resource group after you create it. A resource
+	// group name can consist of letters, numbers, hyphens, periods, and underscores.
+	// The name cannot start with AWS or aws; these are reserved. A resource group
+	// name must be unique within each Amazon Web Services Region in your Amazon
+	// Web Services account.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The resource query that determines which AWS resources are members of this
-	// group.
+	// The resource query that determines which Amazon Web Services resources are
+	// members of this group. For more information about resource queries, see Create
+	// a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
 	//
-	// ResourceQuery is a required field
-	ResourceQuery *ResourceQuery `type:"structure" required:"true"`
+	// A resource group can contain either a ResourceQuery or a Configuration, but
+	// not both.
+	ResourceQuery *ResourceQuery `type:"structure"`
 
-	// The tags to add to the group. A tag is a string-to-string map of key-value
-	// pairs. Tag keys can have a maximum character length of 128 characters, and
-	// tag values can have a maximum length of 256 characters.
+	// The tags to add to the group. A tag is key-value pair string.
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupInput) GoString() string {
 	return s.String()
 }
@@ -1436,8 +2219,15 @@ func (s *CreateGroupInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.ResourceQuery == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceQuery"))
+	if s.Configuration != nil {
+		for i, v := range s.Configuration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Configuration", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.ResourceQuery != nil {
 		if err := s.ResourceQuery.Validate(); err != nil {
@@ -1449,6 +2239,12 @@ func (s *CreateGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateGroupInput) SetConfiguration(v []*GroupConfigurationItem) *CreateGroupInput {
+	s.Configuration = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -1478,22 +2274,36 @@ func (s *CreateGroupInput) SetTags(v map[string]*string) *CreateGroupInput {
 type CreateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A full description of the resource group after it is created.
+	// The description of the resource group.
 	Group *Group `type:"structure"`
 
-	// The resource query associated with the group.
+	// The service configuration associated with the resource group. For details
+	// about the syntax of a service configuration, see Service configurations for
+	// Resource Groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+	GroupConfiguration *GroupConfiguration `type:"structure"`
+
+	// The resource query associated with the group. For more information about
+	// resource queries, see Create a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
 	ResourceQuery *ResourceQuery `type:"structure"`
 
 	// The tags associated with the group.
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupOutput) GoString() string {
 	return s.String()
 }
@@ -1501,6 +2311,12 @@ func (s CreateGroupOutput) GoString() string {
 // SetGroup sets the Group field's value.
 func (s *CreateGroupOutput) SetGroup(v *Group) *CreateGroupOutput {
 	s.Group = v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *CreateGroupOutput) SetGroupConfiguration(v *GroupConfiguration) *CreateGroupOutput {
+	s.GroupConfiguration = v
 	return s
 }
 
@@ -1519,18 +2335,29 @@ func (s *CreateGroupOutput) SetTags(v map[string]*string) *CreateGroupOutput {
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the resource group to delete.
+	// The name or the ARN of the resource group to delete.
+	Group *string `min:"1" type:"string"`
+
+	// Deprecated - don't use this parameter. Use Group instead.
 	//
-	// GroupName is a required field
-	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+	// Deprecated: This field is deprecated, use Group instead.
+	GroupName *string `min:"1" deprecated:"true" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupInput) GoString() string {
 	return s.String()
 }
@@ -1538,8 +2365,8 @@ func (s DeleteGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteGroupInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -1549,6 +2376,12 @@ func (s *DeleteGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGroup sets the Group field's value.
+func (s *DeleteGroupInput) SetGroup(v string) *DeleteGroupInput {
+	s.Group = &v
+	return s
 }
 
 // SetGroupName sets the GroupName field's value.
@@ -1564,12 +2397,20 @@ type DeleteGroupOutput struct {
 	Group *Group `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupOutput) GoString() string {
 	return s.String()
 }
@@ -1580,7 +2421,57 @@ func (s *DeleteGroupOutput) SetGroup(v *Group) *DeleteGroupOutput {
 	return s
 }
 
-// The caller is not authorized to make the request.
+// A resource that failed to be added to or removed from a group.
+type FailedResource struct {
+	_ struct{} `type:"structure"`
+
+	// The error code associated with the failure.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message text associated with the failure.
+	ErrorMessage *string `min:"1" type:"string"`
+
+	// The ARN of the resource that failed to be added or removed.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedResource) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FailedResource) SetErrorCode(v string) *FailedResource {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedResource) SetErrorMessage(v string) *FailedResource {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *FailedResource) SetResourceArn(v string) *FailedResource {
+	s.ResourceArn = &v
+	return s
+}
+
+// The caller isn't authorized to make the request. Check permissions.
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1588,12 +2479,20 @@ type ForbiddenException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForbiddenException) GoString() string {
 	return s.String()
 }
@@ -1636,21 +2535,163 @@ func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type GetAccountSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountSettingsInput) GoString() string {
+	return s.String()
+}
+
+type GetAccountSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current settings for the optional features in Resource Groups.
+	AccountSettings *AccountSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountSettings sets the AccountSettings field's value.
+func (s *GetAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *GetAccountSettingsOutput {
+	s.AccountSettings = v
+	return s
+}
+
+type GetGroupConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or the ARN of the resource group for which you want to retrive the
+	// service configuration.
+	Group *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGroupConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGroupConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGroupConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGroupConfigurationInput"}
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroup sets the Group field's value.
+func (s *GetGroupConfigurationInput) SetGroup(v string) *GetGroupConfigurationInput {
+	s.Group = &v
+	return s
+}
+
+type GetGroupConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that describes the service configuration attached with the specified
+	// group. For details about the service configuration syntax, see Service configurations
+	// for Resource Groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+	GroupConfiguration *GroupConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGroupConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGroupConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *GetGroupConfigurationOutput) SetGroupConfiguration(v *GroupConfiguration) *GetGroupConfigurationOutput {
+	s.GroupConfiguration = v
+	return s
+}
+
 type GetGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the resource group.
+	// The name or the ARN of the resource group to retrieve.
+	Group *string `min:"1" type:"string"`
+
+	// Deprecated - don't use this parameter. Use Group instead.
 	//
-	// GroupName is a required field
-	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+	// Deprecated: This field is deprecated, use Group instead.
+	GroupName *string `min:"1" deprecated:"true" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupInput) GoString() string {
 	return s.String()
 }
@@ -1658,8 +2699,8 @@ func (s GetGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetGroupInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -1671,6 +2712,12 @@ func (s *GetGroupInput) Validate() error {
 	return nil
 }
 
+// SetGroup sets the Group field's value.
+func (s *GetGroupInput) SetGroup(v string) *GetGroupInput {
+	s.Group = &v
+	return s
+}
+
 // SetGroupName sets the GroupName field's value.
 func (s *GetGroupInput) SetGroupName(v string) *GetGroupInput {
 	s.GroupName = &v
@@ -1680,16 +2727,26 @@ func (s *GetGroupInput) SetGroupName(v string) *GetGroupInput {
 type GetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A full description of the resource group.
+	// A structure that contains the metadata details for the specified resource
+	// group. Use GetGroupQuery and GetGroupConfiguration to get those additional
+	// details of the resource group.
 	Group *Group `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -1703,18 +2760,29 @@ func (s *GetGroupOutput) SetGroup(v *Group) *GetGroupOutput {
 type GetGroupQueryInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the resource group.
+	// The name or the ARN of the resource group to query.
+	Group *string `min:"1" type:"string"`
+
+	// Don't use this parameter. Use Group instead.
 	//
-	// GroupName is a required field
-	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+	// Deprecated: This field is deprecated, use Group instead.
+	GroupName *string `min:"1" deprecated:"true" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupQueryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupQueryInput) GoString() string {
 	return s.String()
 }
@@ -1722,8 +2790,8 @@ func (s GetGroupQueryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetGroupQueryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetGroupQueryInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -1735,6 +2803,12 @@ func (s *GetGroupQueryInput) Validate() error {
 	return nil
 }
 
+// SetGroup sets the Group field's value.
+func (s *GetGroupQueryInput) SetGroup(v string) *GetGroupQueryInput {
+	s.Group = &v
+	return s
+}
+
 // SetGroupName sets the GroupName field's value.
 func (s *GetGroupQueryInput) SetGroupName(v string) *GetGroupQueryInput {
 	s.GroupName = &v
@@ -1744,16 +2818,25 @@ func (s *GetGroupQueryInput) SetGroupName(v string) *GetGroupQueryInput {
 type GetGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource query associated with the specified group.
+	// The resource query associated with the specified group. For more information
+	// about resource queries, see Create a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
 	GroupQuery *GroupQuery `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupQueryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupQueryOutput) GoString() string {
 	return s.String()
 }
@@ -1765,21 +2848,28 @@ func (s *GetGroupQueryOutput) SetGroupQuery(v *GroupQuery) *GetGroupQueryOutput 
 }
 
 type GetTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the resource group for which you want a list of tags. The resource
-	// must exist within the account you are using.
+	// The ARN of the resource group whose tags you want to retrieve.
 	//
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"Arn" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTagsInput) GoString() string {
 	return s.String()
 }
@@ -1816,12 +2906,20 @@ type GetTagsOutput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTagsOutput) GoString() string {
 	return s.String()
 }
@@ -1838,30 +2936,50 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 	return s
 }
 
-// A resource group.
+// A resource group that contains Amazon Web Services resources. You can assign
+// resources to the group by associating either of the following elements with
+// the group:
+//
+//   - ResourceQuery - Use a resource query to specify a set of tag keys and
+//     values. All resources in the same Amazon Web Services Region and Amazon
+//     Web Services account that have those keys with the same values are included
+//     in the group. You can add a resource query when you create the group,
+//     or later by using the PutGroupConfiguration operation.
+//
+//   - GroupConfiguration - Use a service configuration to associate the group
+//     with an Amazon Web Services service. The configuration specifies which
+//     resource types can be included in the group.
 type Group struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the resource group.
 	Description *string `type:"string"`
 
-	// The ARN of a resource group.
+	// The ARN of the resource group.
 	//
 	// GroupArn is a required field
 	GroupArn *string `min:"12" type:"string" required:"true"`
 
-	// The name of a resource group.
+	// The name of the resource group.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Group) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Group) GoString() string {
 	return s.String()
 }
@@ -1884,8 +3002,210 @@ func (s *Group) SetName(v string) *Group {
 	return s
 }
 
-// A filter name and value pair that is used to obtain more specific results
-// from a list of groups.
+// A service configuration associated with a resource group. The configuration
+// options are determined by the Amazon Web Services service that defines the
+// Type, and specifies which resources can be included in the group. You can
+// add a service configuration when you create the group by using CreateGroup,
+// or later by using the PutGroupConfiguration operation. For details about
+// group service configuration syntax, see Service configurations for resource
+// groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+type GroupConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration currently associated with the group and in effect.
+	Configuration []*GroupConfigurationItem `type:"list"`
+
+	// If present, the reason why a request to update the group configuration failed.
+	FailureReason *string `type:"string"`
+
+	// If present, the new configuration that is in the process of being applied
+	// to the group.
+	ProposedConfiguration []*GroupConfigurationItem `type:"list"`
+
+	// The current status of an attempt to update the group configuration.
+	Status *string `type:"string" enum:"GroupConfigurationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *GroupConfiguration) SetConfiguration(v []*GroupConfigurationItem) *GroupConfiguration {
+	s.Configuration = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *GroupConfiguration) SetFailureReason(v string) *GroupConfiguration {
+	s.FailureReason = &v
+	return s
+}
+
+// SetProposedConfiguration sets the ProposedConfiguration field's value.
+func (s *GroupConfiguration) SetProposedConfiguration(v []*GroupConfigurationItem) *GroupConfiguration {
+	s.ProposedConfiguration = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GroupConfiguration) SetStatus(v string) *GroupConfiguration {
+	s.Status = &v
+	return s
+}
+
+// An item in a group configuration. A group service configuration can have
+// one or more items. For details about group service configuration syntax,
+// see Service configurations for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+type GroupConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of parameters for this group configuration item. For the list
+	// of parameters that you can use with each configuration item type, see Supported
+	// resource types and parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
+	Parameters []*GroupConfigurationParameter `type:"list"`
+
+	// Specifies the type of group configuration item. Each item must have a unique
+	// value for type. For the list of types that you can specify for a configuration
+	// item, see Supported resource types and parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GroupConfigurationItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GroupConfigurationItem"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *GroupConfigurationItem) SetParameters(v []*GroupConfigurationParameter) *GroupConfigurationItem {
+	s.Parameters = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GroupConfigurationItem) SetType(v string) *GroupConfigurationItem {
+	s.Type = &v
+	return s
+}
+
+// A parameter for a group configuration item. For details about group service
+// configuration syntax, see Service configurations for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+type GroupConfigurationParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the group configuration parameter. For the list of parameters
+	// that you can use with each configuration item type, see Supported resource
+	// types and parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value or values to be used for the specified parameter. For the list
+	// of values you can use with each parameter, see Supported resource types and
+	// parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupConfigurationParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupConfigurationParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GroupConfigurationParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GroupConfigurationParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GroupConfigurationParameter) SetName(v string) *GroupConfigurationParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *GroupConfigurationParameter) SetValues(v []*string) *GroupConfigurationParameter {
+	s.Values = v
+	return s
+}
+
+// A filter collection that you can use to restrict the results from a List
+// operation to only those you want to include.
 type GroupFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -1901,12 +3221,20 @@ type GroupFilter struct {
 	Values []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupFilter) GoString() string {
 	return s.String()
 }
@@ -1942,23 +3270,31 @@ func (s *GroupFilter) SetValues(v []*string) *GroupFilter {
 	return s
 }
 
-// The ARN and group name of a group.
+// The unique identifiers for a resource group.
 type GroupIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of a resource group.
+	// The ARN of the resource group.
 	GroupArn *string `min:"12" type:"string"`
 
-	// The name of a resource group.
+	// The name of the resource group.
 	GroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupIdentifier) GoString() string {
 	return s.String()
 }
@@ -1975,30 +3311,38 @@ func (s *GroupIdentifier) SetGroupName(v string) *GroupIdentifier {
 	return s
 }
 
-// The underlying resource query of a resource group. Resources that match query
-// results are part of the group.
+// A mapping of a query attached to a resource group that determines the Amazon
+// Web Services resources that are members of the group.
 type GroupQuery struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a resource group that is associated with a specific resource
+	// The name of the resource group that is associated with the specified resource
 	// query.
 	//
 	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
-	// The resource query which determines which AWS resources are members of the
-	// associated resource group.
+	// The resource query that determines which Amazon Web Services resources are
+	// members of the associated resource group.
 	//
 	// ResourceQuery is a required field
 	ResourceQuery *ResourceQuery `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupQuery) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupQuery) GoString() string {
 	return s.String()
 }
@@ -2015,7 +3359,128 @@ func (s *GroupQuery) SetResourceQuery(v *ResourceQuery) *GroupQuery {
 	return s
 }
 
-// An internal error occurred while processing the request.
+type GroupResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or the ARN of the resource group to add resources to.
+	//
+	// Group is a required field
+	Group *string `min:"1" type:"string" required:"true"`
+
+	// The list of ARNs of the resources to be added to the group.
+	//
+	// ResourceArns is a required field
+	ResourceArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GroupResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GroupResourcesInput"}
+	if s.Group == nil {
+		invalidParams.Add(request.NewErrParamRequired("Group"))
+	}
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
+	}
+	if s.ResourceArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArns"))
+	}
+	if s.ResourceArns != nil && len(s.ResourceArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroup sets the Group field's value.
+func (s *GroupResourcesInput) SetGroup(v string) *GroupResourcesInput {
+	s.Group = &v
+	return s
+}
+
+// SetResourceArns sets the ResourceArns field's value.
+func (s *GroupResourcesInput) SetResourceArns(v []*string) *GroupResourcesInput {
+	s.ResourceArns = v
+	return s
+}
+
+type GroupResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ARNs of any resources that this operation failed to add to the
+	// group.
+	Failed []*FailedResource `type:"list"`
+
+	// A list of ARNs of any resources that this operation is still in the process
+	// adding to the group. These pending additions continue asynchronously. You
+	// can check the status of pending additions by using the ListGroupResources
+	// operation, and checking the Resources array in the response and the Status
+	// field of each object in that array.
+	Pending []*PendingResource `type:"list"`
+
+	// A list of ARNs of the resources that this operation successfully added to
+	// the group.
+	Succeeded []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GroupResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailed sets the Failed field's value.
+func (s *GroupResourcesOutput) SetFailed(v []*FailedResource) *GroupResourcesOutput {
+	s.Failed = v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *GroupResourcesOutput) SetPending(v []*PendingResource) *GroupResourcesOutput {
+	s.Pending = v
+	return s
+}
+
+// SetSucceeded sets the Succeeded field's value.
+func (s *GroupResourcesOutput) SetSucceeded(v []*string) *GroupResourcesOutput {
+	s.Succeeded = v
+	return s
+}
+
+// An internal error occurred while processing the request. Try again later.
 type InternalServerErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2023,12 +3488,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -2075,34 +3548,71 @@ type ListGroupResourcesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters, formatted as ResourceFilter objects, that you want to apply to a
-	// ListGroupResources operation.
+	// ListGroupResources operation. Filters the results to include only those of
+	// the specified resource types.
 	//
 	//    * resource-type - Filter resources by their type. Specify up to five resource
 	//    types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance,
 	//    or AWS::S3::Bucket.
+	//
+	// When you specify a resource-type filter for ListGroupResources, Resource
+	// Groups validates your filter resource types against the types that are defined
+	// in the query associated with the group. For example, if a group contains
+	// only S3 buckets because its query specifies only that resource type, but
+	// your resource-type filter includes EC2 instances, AWS Resource Groups does
+	// not filter for EC2 instances. In this case, a ListGroupResources request
+	// returns a BadRequestException error with a message similar to the following:
+	//
+	// The resource types specified as filters in the request are not valid.
+	//
+	// The error includes a list of resource types that failed the validation because
+	// they are not part of the query associated with the group. This validation
+	// doesn't occur when the group query specifies AWS::AllSupported, because a
+	// group based on such a query can contain any of the allowed resource types
+	// for the query type (tag-based or Amazon CloudFront stack-based queries).
 	Filters []*ResourceFilter `type:"list"`
 
-	// The name of the resource group.
+	// The name or the ARN of the resource group
+	Group *string `min:"1" type:"string"`
+
 	//
-	// GroupName is a required field
-	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+	//  Deprecated - don't use this parameter. Use the Group request field instead.
+	//
+	// Deprecated: This field is deprecated, use Group instead.
+	GroupName *string `min:"1" deprecated:"true" type:"string"`
 
-	// The maximum number of group member ARNs that are returned in a single call
-	// by ListGroupResources, in paginated output. By default, this number is 50.
-	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+	// The total number of results that you want included on each page of the response.
+	// If you do not include this parameter, it defaults to a value that is specific
+	// to the operation. If additional items exist beyond the maximum you specify,
+	// the NextToken response element is present and has a value (is not null).
+	// Include that value as the NextToken request parameter in the next call to
+	// the operation to get the next part of the results. Note that the service
+	// might return fewer results than the maximum even when there are more results
+	// available. You should check NextToken after every operation to ensure that
+	// you receive all of the results.
+	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The NextToken value that is returned in a paginated ListGroupResources request.
-	// To get the next page of results, run the call again, add the NextToken parameter,
-	// and specify the NextToken value.
-	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+	// The parameter for receiving additional results if you receive a NextToken
+	// response in a previous request. A NextToken response indicates that more
+	// output is available. Set this parameter to the value provided by a previous
+	// call's NextToken response to indicate where the output should continue from.
+	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupResourcesInput) GoString() string {
 	return s.String()
 }
@@ -2110,8 +3620,8 @@ func (s ListGroupResourcesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListGroupResourcesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListGroupResourcesInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -2142,6 +3652,12 @@ func (s *ListGroupResourcesInput) SetFilters(v []*ResourceFilter) *ListGroupReso
 	return s
 }
 
+// SetGroup sets the Group field's value.
+func (s *ListGroupResourcesInput) SetGroup(v string) *ListGroupResourcesInput {
+	s.Group = &v
+	return s
+}
+
 // SetGroupName sets the GroupName field's value.
 func (s *ListGroupResourcesInput) SetGroupName(v string) *ListGroupResourcesInput {
 	s.GroupName = &v
@@ -2160,11 +3676,58 @@ func (s *ListGroupResourcesInput) SetNextToken(v string) *ListGroupResourcesInpu
 	return s
 }
 
+// A structure returned by the ListGroupResources operation that contains identity
+// and group membership status information for one of the resources in the group.
+type ListGroupResourcesItem struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the ARN of a resource and its resource type.
+	Identifier *ResourceIdentifier `type:"structure"`
+
+	// A structure that contains the status of this resource's membership in the
+	// group.
+	//
+	// This field is present in the response only if the group is of type AWS::EC2::HostManagement.
+	Status *ResourceStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupResourcesItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGroupResourcesItem) GoString() string {
+	return s.String()
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ListGroupResourcesItem) SetIdentifier(v *ResourceIdentifier) *ListGroupResourcesItem {
+	s.Identifier = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListGroupResourcesItem) SetStatus(v *ResourceStatus) *ListGroupResourcesItem {
+	s.Status = v
+	return s
+}
+
 type ListGroupResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The NextToken value to include in a subsequent ListGroupResources request,
-	// to get more results.
+	// If present, indicates that more output is available than is included in the
+	// current response. Use this value in the NextToken request parameter in a
+	// subsequent call to the operation to get the next part of the output. You
+	// should repeat this until the NextToken response element comes back as null.
 	NextToken *string `type:"string"`
 
 	// A list of QueryError objects. Each error is an object that contains ErrorCode
@@ -2172,17 +3735,32 @@ type ListGroupResourcesOutput struct {
 	// and CLOUDFORMATION_STACK_NOT_EXISTING.
 	QueryErrors []*QueryError `type:"list"`
 
-	// The ARNs and resource types of resources that are members of the group that
-	// you specified.
-	ResourceIdentifiers []*ResourceIdentifier `type:"list"`
+	//
+	//  Deprecated - don't use this parameter. Use the Resources response field
+	//  instead.
+	//
+	// Deprecated: This field is deprecated, use Resources instead.
+	ResourceIdentifiers []*ResourceIdentifier `deprecated:"true" type:"list"`
+
+	// An array of resources from which you can determine each resource's identity,
+	// type, and group membership status.
+	Resources []*ListGroupResourcesItem `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -2205,33 +3783,59 @@ func (s *ListGroupResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifie
 	return s
 }
 
+// SetResources sets the Resources field's value.
+func (s *ListGroupResourcesOutput) SetResources(v []*ListGroupResourcesItem) *ListGroupResourcesOutput {
+	s.Resources = v
+	return s
+}
+
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters, formatted as GroupFilter objects, that you want to apply to a ListGroups
 	// operation.
 	//
-	//    * resource-type - Filter groups by resource type. Specify up to five resource
-	//    types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance,
-	//    or AWS::S3::Bucket.
+	//    * resource-type - Filter the results to include only those of the specified
+	//    resource types. Specify up to five resource types in the format AWS::ServiceCode::ResourceType
+	//    . For example, AWS::EC2::Instance, or AWS::S3::Bucket.
+	//
+	//    * configuration-type - Filter the results to include only those groups
+	//    that have the specified configuration types attached. The current supported
+	//    values are: AWS::EC2::CapacityReservationPool AWS::EC2::HostManagement
 	Filters []*GroupFilter `type:"list"`
 
-	// The maximum number of resource group results that are returned by ListGroups
-	// in paginated output. By default, this number is 50.
+	// The total number of results that you want included on each page of the response.
+	// If you do not include this parameter, it defaults to a value that is specific
+	// to the operation. If additional items exist beyond the maximum you specify,
+	// the NextToken response element is present and has a value (is not null).
+	// Include that value as the NextToken request parameter in the next call to
+	// the operation to get the next part of the results. Note that the service
+	// might return fewer results than the maximum even when there are more results
+	// available. You should check NextToken after every operation to ensure that
+	// you receive all of the results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The NextToken value that is returned in a paginated ListGroups request. To
-	// get the next page of results, run the call again, add the NextToken parameter,
-	// and specify the NextToken value.
+	// The parameter for receiving additional results if you receive a NextToken
+	// response in a previous request. A NextToken response indicates that more
+	// output is available. Set this parameter to the value provided by a previous
+	// call's NextToken response to indicate where the output should continue from.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsInput) GoString() string {
 	return s.String()
 }
@@ -2281,25 +3885,37 @@ type ListGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of GroupIdentifier objects. Each identifier is an object that contains
-	// both the GroupName and the GroupArn.
+	// both the Name and the GroupArn.
 	GroupIdentifiers []*GroupIdentifier `type:"list"`
 
-	// A list of resource groups.
+	//
+	//  Deprecated - don't use this field. Use the GroupIdentifiers response field
+	//  instead.
 	//
 	// Deprecated: This field is deprecated, use GroupIdentifiers instead.
 	Groups []*Group `deprecated:"true" type:"list"`
 
-	// The NextToken value to include in a subsequent ListGroups request, to get
-	// more results.
+	// If present, indicates that more output is available than is included in the
+	// current response. Use this value in the NextToken request parameter in a
+	// subsequent call to the operation to get the next part of the output. You
+	// should repeat this until the NextToken response element comes back as null.
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -2322,7 +3938,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 	return s
 }
 
-// The request uses an HTTP method which is not allowed for the specified resource.
+// The request uses an HTTP method that isn't allowed for the specified resource.
 type MethodNotAllowedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2330,12 +3946,20 @@ type MethodNotAllowedException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MethodNotAllowedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MethodNotAllowedException) GoString() string {
 	return s.String()
 }
@@ -2378,7 +4002,7 @@ func (s *MethodNotAllowedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// One or more resources specified in the request do not exist.
+// One or more of the specified resources don't exist.
 type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2386,12 +4010,20 @@ type NotFoundException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotFoundException) GoString() string {
 	return s.String()
 }
@@ -2434,31 +4066,168 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A structure that identifies a resource that is currently pending addition
+// to the group as a member. Adding a resource to a resource group happens asynchronously
+// as a background task and this one isn't completed yet.
+type PendingResource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) of the resource that's in a pending state.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingResource) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PendingResource) SetResourceArn(v string) *PendingResource {
+	s.ResourceArn = &v
+	return s
+}
+
+type PutGroupConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new configuration to associate with the specified group. A configuration
+	// associates the resource group with an Amazon Web Services service and specifies
+	// how the service can interact with the resources in the group. A configuration
+	// is an array of GroupConfigurationItem elements.
+	//
+	// For information about the syntax of a service configuration, see Service
+	// configurations for Resource Groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+	//
+	// A resource group can contain either a Configuration or a ResourceQuery, but
+	// not both.
+	Configuration []*GroupConfigurationItem `type:"list"`
+
+	// The name or ARN of the resource group with the configuration that you want
+	// to update.
+	Group *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGroupConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGroupConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutGroupConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutGroupConfigurationInput"}
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
+	}
+	if s.Configuration != nil {
+		for i, v := range s.Configuration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Configuration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *PutGroupConfigurationInput) SetConfiguration(v []*GroupConfigurationItem) *PutGroupConfigurationInput {
+	s.Configuration = v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *PutGroupConfigurationInput) SetGroup(v string) *PutGroupConfigurationInput {
+	s.Group = &v
+	return s
+}
+
+type PutGroupConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGroupConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGroupConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 // A two-part error structure that can occur in ListGroupResources or SearchResources
-// operations on CloudFormation stack-based queries. The error occurs if the
-// CloudFormation stack on which the query is based either does not exist, or
-// has a status that renders the stack inactive. A QueryError occurrence does
-// not necessarily mean that AWS Resource Groups could not complete the operation,
-// but the resulting group might have no member resources.
+// operations on CloudFront stack-based queries. The error occurs if the CloudFront
+// stack on which the query is based either does not exist, or has a status
+// that renders the stack inactive. A QueryError occurrence does not necessarily
+// mean that Resource Groups could not complete the operation, but the resulting
+// group might have no member resources.
 type QueryError struct {
 	_ struct{} `type:"structure"`
 
-	// Possible values are CLOUDFORMATION_STACK_INACTIVE and CLOUDFORMATION_STACK_NOT_EXISTING.
+	// Specifies the error code that was raised.
 	ErrorCode *string `type:"string" enum:"QueryErrorCode"`
 
 	// A message that explains the ErrorCode value. Messages might state that the
-	// specified CloudFormation stack does not exist (or no longer exists). For
-	// CLOUDFORMATION_STACK_INACTIVE, the message typically states that the CloudFormation
-	// stack has a status that is not (or no longer) active, such as CREATE_FAILED.
+	// specified CloudFront stack does not exist (or no longer exists). For CLOUDFORMATION_STACK_INACTIVE,
+	// the message typically states that the CloudFront stack has a status that
+	// is not (or no longer) active, such as CREATE_FAILED.
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryError) GoString() string {
 	return s.String()
 }
@@ -2492,12 +4261,20 @@ type ResourceFilter struct {
 	Values []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceFilter) GoString() string {
 	return s.String()
 }
@@ -2533,7 +4310,7 @@ func (s *ResourceFilter) SetValues(v []*string) *ResourceFilter {
 	return s
 }
 
-// The ARN of a resource, and its resource type.
+// A structure that contains the ARN of a resource and its resource type.
 type ResourceIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -2544,12 +4321,20 @@ type ResourceIdentifier struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceIdentifier) GoString() string {
 	return s.String()
 }
@@ -2566,60 +4351,107 @@ func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
 	return s
 }
 
-// The query that is used to define a resource group or a search for resources.
+// The query you can use to define a resource group or a search for resources.
+// A ResourceQuery specifies both a query Type and a Query string as JSON string
+// objects. See the examples section for example JSON strings. For more information
+// about creating a resource group with a resource query, see Build queries
+// and groups in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html)
+// in the Resource Groups User Guide
+//
+// When you combine all of the elements together into a single string, any double
+// quotes that are embedded inside another double quote pair must be escaped
+// by preceding the embedded double quote with a backslash character (\). For
+// example, a complete ResourceQuery parameter must be formatted like the following
+// CLI parameter example:
+//
+// --resource-query '{"Type":"TAG_FILTERS_1_0","Query":"{\"ResourceTypeFilters\":[\"AWS::AllSupported\"],\"TagFilters\":[{\"Key\":\"Stage\",\"Values\":[\"Test\"]}]}"}'
+//
+// In the preceding example, all of the double quote characters in the value
+// part of the Query element must be escaped because the value itself is surrounded
+// by double quotes. For more information, see Quoting strings (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-quoting-strings.html)
+// in the Command Line Interface User Guide.
+//
+// For the complete list of resource types that you can use in the array value
+// for ResourceTypeFilters, see Resources you can use with Resource Groups and
+// Tag Editor (https://docs.aws.amazon.com/ARG/latest/userguide/supported-resources.html)
+// in the Resource Groups User Guide. For example:
+//
+// "ResourceTypeFilters":["AWS::S3::Bucket", "AWS::EC2::Instance"]
 type ResourceQuery struct {
 	_ struct{} `type:"structure"`
 
-	// The query that defines a group or a search.
+	// The query that defines a group or a search. The contents depends on the value
+	// of the Type element.
+	//
+	//    * ResourceTypeFilters – Applies to all ResourceQuery objects of either
+	//    Type. This element contains one of the following two items: The value
+	//    AWS::AllSupported. This causes the ResourceQuery to match resources of
+	//    any resource type that also match the query. A list (a JSON array) of
+	//    resource type identifiers that limit the query to only resources of the
+	//    specified types. For the complete list of resource types that you can
+	//    use in the array value for ResourceTypeFilters, see Resources you can
+	//    use with Resource Groups and Tag Editor (https://docs.aws.amazon.com/ARG/latest/userguide/supported-resources.html)
+	//    in the Resource Groups User Guide. Example: "ResourceTypeFilters": ["AWS::AllSupported"]
+	//    or "ResourceTypeFilters": ["AWS::EC2::Instance", "AWS::S3::Bucket"]
+	//
+	//    * TagFilters – applicable only if Type = TAG_FILTERS_1_0. The Query
+	//    contains a JSON string that represents a collection of simple tag filters.
+	//    The JSON string uses a syntax similar to the GetResources (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html)
+	//    operation, but uses only the ResourceTypeFilters (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html#resourcegrouptagging-GetResources-request-ResourceTypeFilters)
+	//    and TagFilters (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html#resourcegrouptagging-GetResources-request-TagFiltersTagFilters)
+	//    fields. If you specify more than one tag key, only resources that match
+	//    all tag keys, and at least one value of each specified tag key, are returned
+	//    in your query. If you specify more than one value for a tag key, a resource
+	//    matches the filter if it has a tag key value that matches any of the specified
+	//    values. For example, consider the following sample query for resources
+	//    that have two tags, Stage and Version, with two values each: [{"Stage":["Test","Deploy"]},{"Version":["1","2"]}]
+	//    The results of this resource query could include the following. An Amazon
+	//    EC2 instance that has the following two tags: {"Stage":"Deploy"}, and
+	//    {"Version":"2"} An S3 bucket that has the following two tags: {"Stage":"Test"},
+	//    and {"Version":"1"} The resource query results would not include the following
+	//    items in the results, however. An Amazon EC2 instance that has only the
+	//    following tag: {"Stage":"Deploy"}. The instance does not have all of the
+	//    tag keys specified in the filter, so it is excluded from the results.
+	//    An RDS database that has the following two tags: {"Stage":"Archived"}
+	//    and {"Version":"4"} The database has all of the tag keys, but none of
+	//    those keys has an associated value that matches at least one of the specified
+	//    values in the filter. Example: "TagFilters": [ { "Key": "Stage", "Values":
+	//    [ "Gamma", "Beta" ] }
+	//
+	//    * StackIdentifier – applicable only if Type = CLOUDFORMATION_STACK_1_0.
+	//    The value of this parameter is the Amazon Resource Name (ARN) of the CloudFormation
+	//    stack whose resources you want included in the group.
 	//
 	// Query is a required field
 	Query *string `type:"string" required:"true"`
 
-	// The type of the query. The valid values in this release are TAG_FILTERS_1_0
-	// and CLOUDFORMATION_STACK_1_0.
+	// The type of the query to perform. This can have one of two values:
 	//
-	//  TAG_FILTERS_1_0: A JSON syntax that lets you specify a collection of simple
-	//  tag filters for resource types and tags, as supported by the AWS Tagging
-	//  API GetResources (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html)
-	//  operation. If you specify more than one tag key, only resources that match
-	//  all tag keys, and at least one value of each specified tag key, are returned
-	//  in your query. If you specify more than one value for a tag key, a resource
-	//  matches the filter if it has a tag key value that matches any of the specified
-	//  values.
+	//    * CLOUDFORMATION_STACK_1_0: Specifies that you want the group to contain
+	//    the members of an CloudFormation stack. The Query contains a StackIdentifier
+	//    element with an ARN for a CloudFormation stack.
 	//
-	// For example, consider the following sample query for resources that have
-	// two tags, Stage and Version, with two values each. ([{"Key":"Stage","Values":["Test","Deploy"]},{"Key":"Version","Values":["1","2"]}])
-	// The results of this query might include the following.
-	//
-	//    * An EC2 instance that has the following two tags: {"Key":"Stage","Value":"Deploy"},
-	//    and {"Key":"Version","Value":"2"}
-	//
-	//    * An S3 bucket that has the following two tags: {"Key":"Stage","Value":"Test"},
-	//    and {"Key":"Version","Value":"1"}
-	//
-	// The query would not return the following results, however. The following
-	// EC2 instance does not have all tag keys specified in the filter, so it is
-	// rejected. The RDS database has all of the tag keys, but no values that match
-	// at least one of the specified tag key values in the filter.
-	//
-	//    * An EC2 instance that has only the following tag: {"Key":"Stage","Value":"Deploy"}.
-	//
-	//    * An RDS database that has the following two tags: {"Key":"Stage","Value":"Archived"},
-	//    and {"Key":"Version","Value":"4"}
-	//
-	//  CLOUDFORMATION_STACK_1_0: A JSON syntax that lets you specify a CloudFormation
-	//  stack ARN.
+	//    * TAG_FILTERS_1_0: Specifies that you want the group to include resource
+	//    that have tags that match the query.
 	//
 	// Type is a required field
 	Type *string `min:"1" type:"string" required:"true" enum:"QueryType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuery) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceQuery) GoString() string {
 	return s.String()
 }
@@ -2655,31 +4487,82 @@ func (s *ResourceQuery) SetType(v string) *ResourceQuery {
 	return s
 }
 
+// A structure that identifies the current group membership status for a resource.
+// Adding a resource to a resource group is performed asynchronously as a background
+// task. A PENDING status indicates, for this resource, that the process isn't
+// completed yet.
+type ResourceStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The current status.
+	Name *string `type:"string" enum:"ResourceStatusValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceStatus) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceStatus) SetName(v string) *ResourceStatus {
+	s.Name = &v
+	return s
+}
+
 type SearchResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of group member ARNs returned by SearchResources in paginated
-	// output. By default, this number is 50.
+	// The total number of results that you want included on each page of the response.
+	// If you do not include this parameter, it defaults to a value that is specific
+	// to the operation. If additional items exist beyond the maximum you specify,
+	// the NextToken response element is present and has a value (is not null).
+	// Include that value as the NextToken request parameter in the next call to
+	// the operation to get the next part of the results. Note that the service
+	// might return fewer results than the maximum even when there are more results
+	// available. You should check NextToken after every operation to ensure that
+	// you receive all of the results.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The NextToken value that is returned in a paginated SearchResources request.
-	// To get the next page of results, run the call again, add the NextToken parameter,
-	// and specify the NextToken value.
+	// The parameter for receiving additional results if you receive a NextToken
+	// response in a previous request. A NextToken response indicates that more
+	// output is available. Set this parameter to the value provided by a previous
+	// call's NextToken response to indicate where the output should continue from.
 	NextToken *string `type:"string"`
 
 	// The search query, using the same formats that are supported for resource
-	// group definition.
+	// group definition. For more information, see CreateGroup.
 	//
 	// ResourceQuery is a required field
 	ResourceQuery *ResourceQuery `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchResourcesInput) GoString() string {
 	return s.String()
 }
@@ -2726,13 +4609,20 @@ func (s *SearchResourcesInput) SetResourceQuery(v *ResourceQuery) *SearchResourc
 type SearchResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The NextToken value to include in a subsequent SearchResources request, to
-	// get more results.
+	// If present, indicates that more output is available than is included in the
+	// current response. Use this value in the NextToken request parameter in a
+	// subsequent call to the operation to get the next part of the output. You
+	// should repeat this until the NextToken response element comes back as null.
 	NextToken *string `type:"string"`
 
 	// A list of QueryError objects. Each error is an object that contains ErrorCode
-	// and Message structures. Possible values for ErrorCode are CLOUDFORMATION_STACK_INACTIVE
-	// and CLOUDFORMATION_STACK_NOT_EXISTING.
+	// and Message structures.
+	//
+	// Possible values for ErrorCode:
+	//
+	//    * CLOUDFORMATION_STACK_INACTIVE
+	//
+	//    * CLOUDFORMATION_STACK_NOT_EXISTING
 	QueryErrors []*QueryError `type:"list"`
 
 	// The ARNs and resource types of resources that are members of the group that
@@ -2740,12 +4630,20 @@ type SearchResourcesOutput struct {
 	ResourceIdentifiers []*ResourceIdentifier `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -2771,25 +4669,32 @@ func (s *SearchResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifier) 
 type TagInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource to which to add tags.
+	// The ARN of the resource group to which to add tags.
 	//
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"Arn" min:"12" type:"string" required:"true"`
 
-	// The tags to add to the specified resource. A tag is a string-to-string map
-	// of key-value pairs. Tag keys can have a maximum character length of 128 characters,
-	// and tag values can have a maximum length of 256 characters.
+	// The tags to add to the specified resource group. A tag is a string-to-string
+	// map of key-value pairs.
 	//
 	// Tags is a required field
 	Tags map[string]*string `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagInput) GoString() string {
 	return s.String()
 }
@@ -2831,16 +4736,24 @@ type TagOutput struct {
 	// The ARN of the tagged resource.
 	Arn *string `min:"12" type:"string"`
 
-	// The tags that have been added to the specified resource.
+	// The tags that have been added to the specified resource group.
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagOutput) GoString() string {
 	return s.String()
 }
@@ -2857,7 +4770,8 @@ func (s *TagOutput) SetTags(v map[string]*string) *TagOutput {
 	return s
 }
 
-// The caller has exceeded throttling limits.
+// You've exceeded throttling limits by making too many requests in a period
+// of time.
 type TooManyRequestsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2865,12 +4779,20 @@ type TooManyRequestsException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyRequestsException) GoString() string {
 	return s.String()
 }
@@ -2913,8 +4835,8 @@ func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request has not been applied because it lacks valid authentication credentials
-// for the target resource.
+// The request was rejected because it doesn't have valid credentials for the
+// target resource.
 type UnauthorizedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2922,12 +4844,20 @@ type UnauthorizedException struct {
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnauthorizedException) GoString() string {
 	return s.String()
 }
@@ -2970,10 +4900,132 @@ func (s *UnauthorizedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type UngroupResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or the ARN of the resource group from which to remove the resources.
+	//
+	// Group is a required field
+	Group *string `min:"1" type:"string" required:"true"`
+
+	// The ARNs of the resources to be removed from the group.
+	//
+	// ResourceArns is a required field
+	ResourceArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UngroupResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UngroupResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UngroupResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UngroupResourcesInput"}
+	if s.Group == nil {
+		invalidParams.Add(request.NewErrParamRequired("Group"))
+	}
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
+	}
+	if s.ResourceArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArns"))
+	}
+	if s.ResourceArns != nil && len(s.ResourceArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroup sets the Group field's value.
+func (s *UngroupResourcesInput) SetGroup(v string) *UngroupResourcesInput {
+	s.Group = &v
+	return s
+}
+
+// SetResourceArns sets the ResourceArns field's value.
+func (s *UngroupResourcesInput) SetResourceArns(v []*string) *UngroupResourcesInput {
+	s.ResourceArns = v
+	return s
+}
+
+type UngroupResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of any resources that failed to be removed from the group by this
+	// operation.
+	Failed []*FailedResource `type:"list"`
+
+	// A list of any resources that are still in the process of being removed from
+	// the group by this operation. These pending removals continue asynchronously.
+	// You can check the status of pending removals by using the ListGroupResources
+	// operation. After the resource is successfully removed, it no longer appears
+	// in the response.
+	Pending []*PendingResource `type:"list"`
+
+	// A list of resources that were successfully removed from the group by this
+	// operation.
+	Succeeded []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UngroupResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UngroupResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailed sets the Failed field's value.
+func (s *UngroupResourcesOutput) SetFailed(v []*FailedResource) *UngroupResourcesOutput {
+	s.Failed = v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *UngroupResourcesOutput) SetPending(v []*PendingResource) *UngroupResourcesOutput {
+	s.Pending = v
+	return s
+}
+
+// SetSucceeded sets the Succeeded field's value.
+func (s *UngroupResourcesOutput) SetSucceeded(v []*string) *UngroupResourcesOutput {
+	s.Succeeded = v
+	return s
+}
+
 type UntagInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource from which to remove tags.
+	// The ARN of the resource group from which to remove tags. The command removed
+	// both the specified keys and any values associated with those keys.
 	//
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"Arn" min:"12" type:"string" required:"true"`
@@ -2984,12 +5036,20 @@ type UntagInput struct {
 	Keys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagInput) GoString() string {
 	return s.String()
 }
@@ -3028,19 +5088,27 @@ func (s *UntagInput) SetKeys(v []*string) *UntagInput {
 type UntagOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource from which tags have been removed.
+	// The ARN of the resource group from which tags have been removed.
 	Arn *string `min:"12" type:"string"`
 
-	// The keys of tags that have been removed.
+	// The keys of the tags that were removed.
 	Keys []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagOutput) GoString() string {
 	return s.String()
 }
@@ -3057,26 +5125,99 @@ func (s *UntagOutput) SetKeys(v []*string) *UntagOutput {
 	return s
 }
 
+type UpdateAccountSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether you want to turn group lifecycle events (https://docs.aws.amazon.com/ARG/latest/userguide/monitor-groups.html)
+	// on or off.
+	GroupLifecycleEventsDesiredStatus *string `type:"string" enum:"GroupLifecycleEventsDesiredStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsInput) GoString() string {
+	return s.String()
+}
+
+// SetGroupLifecycleEventsDesiredStatus sets the GroupLifecycleEventsDesiredStatus field's value.
+func (s *UpdateAccountSettingsInput) SetGroupLifecycleEventsDesiredStatus(v string) *UpdateAccountSettingsInput {
+	s.GroupLifecycleEventsDesiredStatus = &v
+	return s
+}
+
+type UpdateAccountSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that displays the status of the optional features in the account.
+	AccountSettings *AccountSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountSettings sets the AccountSettings field's value.
+func (s *UpdateAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *UpdateAccountSettingsOutput {
+	s.AccountSettings = v
+	return s
+}
+
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the resource group. Descriptions can have a maximum of
-	// 511 characters, including letters, numbers, hyphens, underscores, punctuation,
-	// and spaces.
+	// The new description that you want to update the resource group with. Descriptions
+	// can contain letters, numbers, hyphens, underscores, periods, and spaces.
 	Description *string `type:"string"`
 
-	// The name of the resource group for which you want to update its description.
+	// The name or the ARN of the resource group to modify.
+	Group *string `min:"1" type:"string"`
+
+	// Don't use this parameter. Use Group instead.
 	//
-	// GroupName is a required field
-	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+	// Deprecated: This field is deprecated, use Group instead.
+	GroupName *string `min:"1" deprecated:"true" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupInput) GoString() string {
 	return s.String()
 }
@@ -3084,8 +5225,8 @@ func (s UpdateGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateGroupInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -3103,6 +5244,12 @@ func (s *UpdateGroupInput) SetDescription(v string) *UpdateGroupInput {
 	return s
 }
 
+// SetGroup sets the Group field's value.
+func (s *UpdateGroupInput) SetGroup(v string) *UpdateGroupInput {
+	s.Group = &v
+	return s
+}
+
 // SetGroupName sets the GroupName field's value.
 func (s *UpdateGroupInput) SetGroupName(v string) *UpdateGroupInput {
 	s.GroupName = &v
@@ -3112,16 +5259,24 @@ func (s *UpdateGroupInput) SetGroupName(v string) *UpdateGroupInput {
 type UpdateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The full description of the resource group after it has been updated.
+	// The update description of the resource group.
 	Group *Group `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupOutput) GoString() string {
 	return s.String()
 }
@@ -3135,24 +5290,38 @@ func (s *UpdateGroupOutput) SetGroup(v *Group) *UpdateGroupOutput {
 type UpdateGroupQueryInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the resource group for which you want to edit the query.
-	//
-	// GroupName is a required field
-	GroupName *string `location:"uri" locationName:"GroupName" min:"1" type:"string" required:"true"`
+	// The name or the ARN of the resource group to query.
+	Group *string `min:"1" type:"string"`
 
-	// The resource query that determines which AWS resources are members of the
-	// resource group.
+	// Don't use this parameter. Use Group instead.
+	//
+	// Deprecated: This field is deprecated, use Group instead.
+	GroupName *string `min:"1" deprecated:"true" type:"string"`
+
+	// The resource query to determine which Amazon Web Services resources are members
+	// of this resource group.
+	//
+	// A resource group can contain either a Configuration or a ResourceQuery, but
+	// not both.
 	//
 	// ResourceQuery is a required field
 	ResourceQuery *ResourceQuery `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupQueryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupQueryInput) GoString() string {
 	return s.String()
 }
@@ -3160,8 +5329,8 @@ func (s UpdateGroupQueryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateGroupQueryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateGroupQueryInput"}
-	if s.GroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
 	}
 	if s.GroupName != nil && len(*s.GroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
@@ -3181,6 +5350,12 @@ func (s *UpdateGroupQueryInput) Validate() error {
 	return nil
 }
 
+// SetGroup sets the Group field's value.
+func (s *UpdateGroupQueryInput) SetGroup(v string) *UpdateGroupQueryInput {
+	s.Group = &v
+	return s
+}
+
 // SetGroupName sets the GroupName field's value.
 func (s *UpdateGroupQueryInput) SetGroupName(v string) *UpdateGroupQueryInput {
 	s.GroupName = &v
@@ -3196,16 +5371,24 @@ func (s *UpdateGroupQueryInput) SetResourceQuery(v *ResourceQuery) *UpdateGroupQ
 type UpdateGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource query associated with the resource group after the update.
+	// The updated resource query associated with the resource group after the update.
 	GroupQuery *GroupQuery `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupQueryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupQueryOutput) GoString() string {
 	return s.String()
 }
@@ -3217,9 +5400,80 @@ func (s *UpdateGroupQueryOutput) SetGroupQuery(v *GroupQuery) *UpdateGroupQueryO
 }
 
 const (
+	// GroupConfigurationStatusUpdating is a GroupConfigurationStatus enum value
+	GroupConfigurationStatusUpdating = "UPDATING"
+
+	// GroupConfigurationStatusUpdateComplete is a GroupConfigurationStatus enum value
+	GroupConfigurationStatusUpdateComplete = "UPDATE_COMPLETE"
+
+	// GroupConfigurationStatusUpdateFailed is a GroupConfigurationStatus enum value
+	GroupConfigurationStatusUpdateFailed = "UPDATE_FAILED"
+)
+
+// GroupConfigurationStatus_Values returns all elements of the GroupConfigurationStatus enum
+func GroupConfigurationStatus_Values() []string {
+	return []string{
+		GroupConfigurationStatusUpdating,
+		GroupConfigurationStatusUpdateComplete,
+		GroupConfigurationStatusUpdateFailed,
+	}
+}
+
+const (
 	// GroupFilterNameResourceType is a GroupFilterName enum value
 	GroupFilterNameResourceType = "resource-type"
+
+	// GroupFilterNameConfigurationType is a GroupFilterName enum value
+	GroupFilterNameConfigurationType = "configuration-type"
 )
+
+// GroupFilterName_Values returns all elements of the GroupFilterName enum
+func GroupFilterName_Values() []string {
+	return []string{
+		GroupFilterNameResourceType,
+		GroupFilterNameConfigurationType,
+	}
+}
+
+const (
+	// GroupLifecycleEventsDesiredStatusActive is a GroupLifecycleEventsDesiredStatus enum value
+	GroupLifecycleEventsDesiredStatusActive = "ACTIVE"
+
+	// GroupLifecycleEventsDesiredStatusInactive is a GroupLifecycleEventsDesiredStatus enum value
+	GroupLifecycleEventsDesiredStatusInactive = "INACTIVE"
+)
+
+// GroupLifecycleEventsDesiredStatus_Values returns all elements of the GroupLifecycleEventsDesiredStatus enum
+func GroupLifecycleEventsDesiredStatus_Values() []string {
+	return []string{
+		GroupLifecycleEventsDesiredStatusActive,
+		GroupLifecycleEventsDesiredStatusInactive,
+	}
+}
+
+const (
+	// GroupLifecycleEventsStatusActive is a GroupLifecycleEventsStatus enum value
+	GroupLifecycleEventsStatusActive = "ACTIVE"
+
+	// GroupLifecycleEventsStatusInactive is a GroupLifecycleEventsStatus enum value
+	GroupLifecycleEventsStatusInactive = "INACTIVE"
+
+	// GroupLifecycleEventsStatusInProgress is a GroupLifecycleEventsStatus enum value
+	GroupLifecycleEventsStatusInProgress = "IN_PROGRESS"
+
+	// GroupLifecycleEventsStatusError is a GroupLifecycleEventsStatus enum value
+	GroupLifecycleEventsStatusError = "ERROR"
+)
+
+// GroupLifecycleEventsStatus_Values returns all elements of the GroupLifecycleEventsStatus enum
+func GroupLifecycleEventsStatus_Values() []string {
+	return []string{
+		GroupLifecycleEventsStatusActive,
+		GroupLifecycleEventsStatusInactive,
+		GroupLifecycleEventsStatusInProgress,
+		GroupLifecycleEventsStatusError,
+	}
+}
 
 const (
 	// QueryErrorCodeCloudformationStackInactive is a QueryErrorCode enum value
@@ -3227,7 +5481,19 @@ const (
 
 	// QueryErrorCodeCloudformationStackNotExisting is a QueryErrorCode enum value
 	QueryErrorCodeCloudformationStackNotExisting = "CLOUDFORMATION_STACK_NOT_EXISTING"
+
+	// QueryErrorCodeCloudformationStackUnassumableRole is a QueryErrorCode enum value
+	QueryErrorCodeCloudformationStackUnassumableRole = "CLOUDFORMATION_STACK_UNASSUMABLE_ROLE"
 )
+
+// QueryErrorCode_Values returns all elements of the QueryErrorCode enum
+func QueryErrorCode_Values() []string {
+	return []string{
+		QueryErrorCodeCloudformationStackInactive,
+		QueryErrorCodeCloudformationStackNotExisting,
+		QueryErrorCodeCloudformationStackUnassumableRole,
+	}
+}
 
 const (
 	// QueryTypeTagFilters10 is a QueryType enum value
@@ -3237,7 +5503,34 @@ const (
 	QueryTypeCloudformationStack10 = "CLOUDFORMATION_STACK_1_0"
 )
 
+// QueryType_Values returns all elements of the QueryType enum
+func QueryType_Values() []string {
+	return []string{
+		QueryTypeTagFilters10,
+		QueryTypeCloudformationStack10,
+	}
+}
+
 const (
 	// ResourceFilterNameResourceType is a ResourceFilterName enum value
 	ResourceFilterNameResourceType = "resource-type"
 )
+
+// ResourceFilterName_Values returns all elements of the ResourceFilterName enum
+func ResourceFilterName_Values() []string {
+	return []string{
+		ResourceFilterNameResourceType,
+	}
+}
+
+const (
+	// ResourceStatusValuePending is a ResourceStatusValue enum value
+	ResourceStatusValuePending = "PENDING"
+)
+
+// ResourceStatusValue_Values returns all elements of the ResourceStatusValue enum
+func ResourceStatusValue_Values() []string {
+	return []string{
+		ResourceStatusValuePending,
+	}
+}

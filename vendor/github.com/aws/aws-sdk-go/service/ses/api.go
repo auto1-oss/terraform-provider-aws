@@ -29,14 +29,13 @@ const opCloneReceiptRuleSet = "CloneReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CloneReceiptRuleSetRequest method.
+//	req, resp := client.CloneReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the CloneReceiptRuleSetRequest method.
-//    req, resp := client.CloneReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CloneReceiptRuleSet
 func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *request.Request, output *CloneReceiptRuleSetOutput) {
@@ -75,15 +74,16 @@ func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *
 // API operation CloneReceiptRuleSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExists"
-//   Indicates that a resource could not be created because of a naming conflict.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeAlreadyExistsException "AlreadyExists"
+//     Indicates that a resource could not be created because of a naming conflict.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CloneReceiptRuleSet
 func (c *SES) CloneReceiptRuleSet(input *CloneReceiptRuleSetInput) (*CloneReceiptRuleSetOutput, error) {
@@ -123,14 +123,13 @@ const opCreateConfigurationSet = "CreateConfigurationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationSetRequest method.
+//	req, resp := client.CreateConfigurationSetRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationSetRequest method.
-//    req, resp := client.CreateConfigurationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSet
 func (c *SES) CreateConfigurationSetRequest(input *CreateConfigurationSetInput) (req *request.Request, output *CreateConfigurationSetOutput) {
@@ -167,17 +166,18 @@ func (c *SES) CreateConfigurationSetRequest(input *CreateConfigurationSetInput) 
 // API operation CreateConfigurationSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetAlreadyExistsException "ConfigurationSetAlreadyExists"
-//   Indicates that the configuration set could not be created because of a naming
-//   conflict.
 //
-//   * ErrCodeInvalidConfigurationSetException "InvalidConfigurationSet"
-//   Indicates that the configuration set is invalid. See the error message for
-//   details.
+//   - ErrCodeConfigurationSetAlreadyExistsException "ConfigurationSetAlreadyExists"
+//     Indicates that the configuration set could not be created because of a naming
+//     conflict.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeInvalidConfigurationSetException "InvalidConfigurationSet"
+//     Indicates that the configuration set is invalid. See the error message for
+//     details.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSet
 func (c *SES) CreateConfigurationSet(input *CreateConfigurationSetInput) (*CreateConfigurationSetOutput, error) {
@@ -217,14 +217,13 @@ const opCreateConfigurationSetEventDestination = "CreateConfigurationSetEventDes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationSetEventDestinationRequest method.
+//	req, resp := client.CreateConfigurationSetEventDestinationRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationSetEventDestinationRequest method.
-//    req, resp := client.CreateConfigurationSetEventDestinationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSetEventDestination
 func (c *SES) CreateConfigurationSetEventDestinationRequest(input *CreateConfigurationSetEventDestinationInput) (req *request.Request, output *CreateConfigurationSetEventDestinationOutput) {
@@ -266,28 +265,29 @@ func (c *SES) CreateConfigurationSetEventDestinationRequest(input *CreateConfigu
 // API operation CreateConfigurationSetEventDestination for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeEventDestinationAlreadyExistsException "EventDestinationAlreadyExists"
-//   Indicates that the event destination could not be created because of a naming
-//   conflict.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeInvalidCloudWatchDestinationException "InvalidCloudWatchDestination"
-//   Indicates that the Amazon CloudWatch destination is invalid. See the error
-//   message for details.
+//   - ErrCodeEventDestinationAlreadyExistsException "EventDestinationAlreadyExists"
+//     Indicates that the event destination could not be created because of a naming
+//     conflict.
 //
-//   * ErrCodeInvalidFirehoseDestinationException "InvalidFirehoseDestination"
-//   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
-//   error message for details.
+//   - ErrCodeInvalidCloudWatchDestinationException "InvalidCloudWatchDestination"
+//     Indicates that the Amazon CloudWatch destination is invalid. See the error
+//     message for details.
 //
-//   * ErrCodeInvalidSNSDestinationException "InvalidSNSDestination"
-//   Indicates that the Amazon Simple Notification Service (Amazon SNS) destination
-//   is invalid. See the error message for details.
+//   - ErrCodeInvalidFirehoseDestinationException "InvalidFirehoseDestination"
+//     Indicates that the Amazon Kinesis Firehose destination is invalid. See the
+//     error message for details.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeInvalidSNSDestinationException "InvalidSNSDestination"
+//     Indicates that the Amazon Simple Notification Service (Amazon SNS) destination
+//     is invalid. See the error message for details.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSetEventDestination
 func (c *SES) CreateConfigurationSetEventDestination(input *CreateConfigurationSetEventDestinationInput) (*CreateConfigurationSetEventDestinationOutput, error) {
@@ -327,14 +327,13 @@ const opCreateConfigurationSetTrackingOptions = "CreateConfigurationSetTrackingO
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConfigurationSetTrackingOptionsRequest method.
+//	req, resp := client.CreateConfigurationSetTrackingOptionsRequest(params)
 //
-//    // Example sending a request using the CreateConfigurationSetTrackingOptionsRequest method.
-//    req, resp := client.CreateConfigurationSetTrackingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSetTrackingOptions
 func (c *SES) CreateConfigurationSetTrackingOptionsRequest(input *CreateConfigurationSetTrackingOptionsInput) (req *request.Request, output *CreateConfigurationSetTrackingOptionsOutput) {
@@ -372,20 +371,21 @@ func (c *SES) CreateConfigurationSetTrackingOptionsRequest(input *CreateConfigur
 // API operation CreateConfigurationSetTrackingOptions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeTrackingOptionsAlreadyExistsException "TrackingOptionsAlreadyExistsException"
-//   Indicates that the configuration set you specified already contains a TrackingOptions
-//   object.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeInvalidTrackingOptionsException "InvalidTrackingOptions"
-//   Indicates that the custom domain to be used for open and click tracking redirects
-//   is invalid. This error appears most often in the following situations:
+//   - ErrCodeTrackingOptionsAlreadyExistsException "TrackingOptionsAlreadyExistsException"
+//     Indicates that the configuration set you specified already contains a TrackingOptions
+//     object.
 //
-//      * When the tracking domain you specified is not verified in Amazon SES.
+//   - ErrCodeInvalidTrackingOptionsException "InvalidTrackingOptions"
+//     Indicates that the custom domain to be used for open and click tracking redirects
+//     is invalid. This error appears most often in the following situations:
 //
-//      * When the tracking domain you specified is not a valid domain or subdomain.
+//   - When the tracking domain you specified is not verified in Amazon SES.
+//
+//   - When the tracking domain you specified is not a valid domain or subdomain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSetTrackingOptions
 func (c *SES) CreateConfigurationSetTrackingOptions(input *CreateConfigurationSetTrackingOptionsInput) (*CreateConfigurationSetTrackingOptionsOutput, error) {
@@ -425,14 +425,13 @@ const opCreateCustomVerificationEmailTemplate = "CreateCustomVerificationEmailTe
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCustomVerificationEmailTemplateRequest method.
+//	req, resp := client.CreateCustomVerificationEmailTemplateRequest(params)
 //
-//    // Example sending a request using the CreateCustomVerificationEmailTemplateRequest method.
-//    req, resp := client.CreateCustomVerificationEmailTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateCustomVerificationEmailTemplate
 func (c *SES) CreateCustomVerificationEmailTemplateRequest(input *CreateCustomVerificationEmailTemplateInput) (req *request.Request, output *CreateCustomVerificationEmailTemplateOutput) {
@@ -470,21 +469,22 @@ func (c *SES) CreateCustomVerificationEmailTemplateRequest(input *CreateCustomVe
 // API operation CreateCustomVerificationEmailTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeCustomVerificationEmailTemplateAlreadyExistsException "CustomVerificationEmailTemplateAlreadyExists"
-//   Indicates that a custom verification email template with the name you specified
-//   already exists.
 //
-//   * ErrCodeFromEmailAddressNotVerifiedException "FromEmailAddressNotVerified"
-//   Indicates that the sender address specified for a custom verification email
-//   is not verified, and is therefore not eligible to send the custom verification
-//   email.
+//   - ErrCodeCustomVerificationEmailTemplateAlreadyExistsException "CustomVerificationEmailTemplateAlreadyExists"
+//     Indicates that a custom verification email template with the name you specified
+//     already exists.
 //
-//   * ErrCodeCustomVerificationEmailInvalidContentException "CustomVerificationEmailInvalidContent"
-//   Indicates that custom verification email template provided content is invalid.
+//   - ErrCodeFromEmailAddressNotVerifiedException "FromEmailAddressNotVerified"
+//     Indicates that the sender address specified for a custom verification email
+//     is not verified, and is therefore not eligible to send the custom verification
+//     email.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeCustomVerificationEmailInvalidContentException "CustomVerificationEmailInvalidContent"
+//     Indicates that custom verification email template provided content is invalid.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateCustomVerificationEmailTemplate
 func (c *SES) CreateCustomVerificationEmailTemplate(input *CreateCustomVerificationEmailTemplateInput) (*CreateCustomVerificationEmailTemplateOutput, error) {
@@ -524,14 +524,13 @@ const opCreateReceiptFilter = "CreateReceiptFilter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReceiptFilterRequest method.
+//	req, resp := client.CreateReceiptFilterRequest(params)
 //
-//    // Example sending a request using the CreateReceiptFilterRequest method.
-//    req, resp := client.CreateReceiptFilterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptFilter
 func (c *SES) CreateReceiptFilterRequest(input *CreateReceiptFilterInput) (req *request.Request, output *CreateReceiptFilterOutput) {
@@ -568,12 +567,13 @@ func (c *SES) CreateReceiptFilterRequest(input *CreateReceiptFilterInput) (req *
 // API operation CreateReceiptFilter for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExists"
-//   Indicates that a resource could not be created because of a naming conflict.
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
+//   - ErrCodeAlreadyExistsException "AlreadyExists"
+//     Indicates that a resource could not be created because of a naming conflict.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptFilter
 func (c *SES) CreateReceiptFilter(input *CreateReceiptFilterInput) (*CreateReceiptFilterOutput, error) {
@@ -613,14 +613,13 @@ const opCreateReceiptRule = "CreateReceiptRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReceiptRuleRequest method.
+//	req, resp := client.CreateReceiptRuleRequest(params)
 //
-//    // Example sending a request using the CreateReceiptRuleRequest method.
-//    req, resp := client.CreateReceiptRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptRule
 func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *request.Request, output *CreateReceiptRuleOutput) {
@@ -657,35 +656,36 @@ func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *requ
 // API operation CreateReceiptRule for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInvalidSnsTopicException "InvalidSnsTopic"
-//   Indicates that the provided Amazon SNS topic is invalid, or that Amazon SES
-//   could not publish to the topic, possibly due to permissions issues. For information
-//   about giving permissions, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeInvalidS3ConfigurationException "InvalidS3Configuration"
-//   Indicates that the provided Amazon S3 bucket or AWS KMS encryption key is
-//   invalid, or that Amazon SES could not publish to the bucket, possibly due
-//   to permissions issues. For information about giving permissions, see the
-//   Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//   - ErrCodeInvalidSnsTopicException "InvalidSnsTopic"
+//     Indicates that the provided Amazon SNS topic is invalid, or that Amazon SES
+//     could not publish to the topic, possibly due to permissions issues. For information
+//     about giving permissions, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeInvalidLambdaFunctionException "InvalidLambdaFunction"
-//   Indicates that the provided AWS Lambda function is invalid, or that Amazon
-//   SES could not execute the provided function, possibly due to permissions
-//   issues. For information about giving permissions, see the Amazon SES Developer
-//   Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//   - ErrCodeInvalidS3ConfigurationException "InvalidS3Configuration"
+//     Indicates that the provided Amazon S3 bucket or AWS KMS encryption key is
+//     invalid, or that Amazon SES could not publish to the bucket, possibly due
+//     to permissions issues. For information about giving permissions, see the
+//     Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExists"
-//   Indicates that a resource could not be created because of a naming conflict.
+//   - ErrCodeInvalidLambdaFunctionException "InvalidLambdaFunction"
+//     Indicates that the provided AWS Lambda function is invalid, or that Amazon
+//     SES could not execute the provided function, possibly due to permissions
+//     issues. For information about giving permissions, see the Amazon SES Developer
+//     Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
-//   Indicates that the provided receipt rule does not exist.
+//   - ErrCodeAlreadyExistsException "AlreadyExists"
+//     Indicates that a resource could not be created because of a naming conflict.
 //
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
+//   - ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
+//     Indicates that the provided receipt rule does not exist.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptRule
 func (c *SES) CreateReceiptRule(input *CreateReceiptRuleInput) (*CreateReceiptRuleOutput, error) {
@@ -725,14 +725,13 @@ const opCreateReceiptRuleSet = "CreateReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateReceiptRuleSetRequest method.
+//	req, resp := client.CreateReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the CreateReceiptRuleSetRequest method.
-//    req, resp := client.CreateReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptRuleSet
 func (c *SES) CreateReceiptRuleSetRequest(input *CreateReceiptRuleSetInput) (req *request.Request, output *CreateReceiptRuleSetOutput) {
@@ -769,12 +768,13 @@ func (c *SES) CreateReceiptRuleSetRequest(input *CreateReceiptRuleSetInput) (req
 // API operation CreateReceiptRuleSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExists"
-//   Indicates that a resource could not be created because of a naming conflict.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeAlreadyExistsException "AlreadyExists"
+//     Indicates that a resource could not be created because of a naming conflict.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptRuleSet
 func (c *SES) CreateReceiptRuleSet(input *CreateReceiptRuleSetInput) (*CreateReceiptRuleSetOutput, error) {
@@ -814,14 +814,13 @@ const opCreateTemplate = "CreateTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateTemplateRequest method.
+//	req, resp := client.CreateTemplateRequest(params)
 //
-//    // Example sending a request using the CreateTemplateRequest method.
-//    req, resp := client.CreateTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateTemplate
 func (c *SES) CreateTemplateRequest(input *CreateTemplateInput) (req *request.Request, output *CreateTemplateOutput) {
@@ -857,16 +856,17 @@ func (c *SES) CreateTemplateRequest(input *CreateTemplateInput) (req *request.Re
 // API operation CreateTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExists"
-//   Indicates that a resource could not be created because of a naming conflict.
 //
-//   * ErrCodeInvalidTemplateException "InvalidTemplate"
-//   Indicates that the template that you specified could not be rendered. This
-//   issue may occur when a template refers to a partial that does not exist.
+//   - ErrCodeAlreadyExistsException "AlreadyExists"
+//     Indicates that a resource could not be created because of a naming conflict.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeInvalidTemplateException "InvalidTemplate"
+//     Indicates that the template that you specified could not be rendered. This
+//     issue may occur when a template refers to a partial that does not exist.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateTemplate
 func (c *SES) CreateTemplate(input *CreateTemplateInput) (*CreateTemplateOutput, error) {
@@ -906,14 +906,13 @@ const opDeleteConfigurationSet = "DeleteConfigurationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationSetRequest method.
+//	req, resp := client.DeleteConfigurationSetRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationSetRequest method.
-//    req, resp := client.DeleteConfigurationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSet
 func (c *SES) DeleteConfigurationSetRequest(input *DeleteConfigurationSetInput) (req *request.Request, output *DeleteConfigurationSetOutput) {
@@ -949,8 +948,8 @@ func (c *SES) DeleteConfigurationSetRequest(input *DeleteConfigurationSetInput) 
 // API operation DeleteConfigurationSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSet
 func (c *SES) DeleteConfigurationSet(input *DeleteConfigurationSetInput) (*DeleteConfigurationSetOutput, error) {
@@ -990,14 +989,13 @@ const opDeleteConfigurationSetEventDestination = "DeleteConfigurationSetEventDes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationSetEventDestinationRequest method.
+//	req, resp := client.DeleteConfigurationSetEventDestinationRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationSetEventDestinationRequest method.
-//    req, resp := client.DeleteConfigurationSetEventDestinationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSetEventDestination
 func (c *SES) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfigurationSetEventDestinationInput) (req *request.Request, output *DeleteConfigurationSetEventDestinationOutput) {
@@ -1034,11 +1032,12 @@ func (c *SES) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfigu
 // API operation DeleteConfigurationSetEventDestination for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeEventDestinationDoesNotExistException "EventDestinationDoesNotExist"
-//   Indicates that the event destination does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
+//
+//   - ErrCodeEventDestinationDoesNotExistException "EventDestinationDoesNotExist"
+//     Indicates that the event destination does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSetEventDestination
 func (c *SES) DeleteConfigurationSetEventDestination(input *DeleteConfigurationSetEventDestinationInput) (*DeleteConfigurationSetEventDestinationOutput, error) {
@@ -1078,14 +1077,13 @@ const opDeleteConfigurationSetTrackingOptions = "DeleteConfigurationSetTrackingO
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConfigurationSetTrackingOptionsRequest method.
+//	req, resp := client.DeleteConfigurationSetTrackingOptionsRequest(params)
 //
-//    // Example sending a request using the DeleteConfigurationSetTrackingOptionsRequest method.
-//    req, resp := client.DeleteConfigurationSetTrackingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSetTrackingOptions
 func (c *SES) DeleteConfigurationSetTrackingOptionsRequest(input *DeleteConfigurationSetTrackingOptionsInput) (req *request.Request, output *DeleteConfigurationSetTrackingOptionsOutput) {
@@ -1127,11 +1125,12 @@ func (c *SES) DeleteConfigurationSetTrackingOptionsRequest(input *DeleteConfigur
 // API operation DeleteConfigurationSetTrackingOptions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeTrackingOptionsDoesNotExistException "TrackingOptionsDoesNotExistException"
-//   Indicates that the TrackingOptions object you specified does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
+//
+//   - ErrCodeTrackingOptionsDoesNotExistException "TrackingOptionsDoesNotExistException"
+//     Indicates that the TrackingOptions object you specified does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSetTrackingOptions
 func (c *SES) DeleteConfigurationSetTrackingOptions(input *DeleteConfigurationSetTrackingOptionsInput) (*DeleteConfigurationSetTrackingOptionsOutput, error) {
@@ -1171,14 +1170,13 @@ const opDeleteCustomVerificationEmailTemplate = "DeleteCustomVerificationEmailTe
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCustomVerificationEmailTemplateRequest method.
+//	req, resp := client.DeleteCustomVerificationEmailTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteCustomVerificationEmailTemplateRequest method.
-//    req, resp := client.DeleteCustomVerificationEmailTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteCustomVerificationEmailTemplate
 func (c *SES) DeleteCustomVerificationEmailTemplateRequest(input *DeleteCustomVerificationEmailTemplateInput) (req *request.Request, output *DeleteCustomVerificationEmailTemplateOutput) {
@@ -1252,14 +1250,13 @@ const opDeleteIdentity = "DeleteIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIdentityRequest method.
+//	req, resp := client.DeleteIdentityRequest(params)
 //
-//    // Example sending a request using the DeleteIdentityRequest method.
-//    req, resp := client.DeleteIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteIdentity
 func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *request.Request, output *DeleteIdentityOutput) {
@@ -1330,14 +1327,13 @@ const opDeleteIdentityPolicy = "DeleteIdentityPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIdentityPolicyRequest method.
+//	req, resp := client.DeleteIdentityPolicyRequest(params)
 //
-//    // Example sending a request using the DeleteIdentityPolicyRequest method.
-//    req, resp := client.DeleteIdentityPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteIdentityPolicy
 func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req *request.Request, output *DeleteIdentityPolicyOutput) {
@@ -1416,14 +1412,13 @@ const opDeleteReceiptFilter = "DeleteReceiptFilter"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReceiptFilterRequest method.
+//	req, resp := client.DeleteReceiptFilterRequest(params)
 //
-//    // Example sending a request using the DeleteReceiptFilterRequest method.
-//    req, resp := client.DeleteReceiptFilterRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptFilter
 func (c *SES) DeleteReceiptFilterRequest(input *DeleteReceiptFilterInput) (req *request.Request, output *DeleteReceiptFilterOutput) {
@@ -1496,14 +1491,13 @@ const opDeleteReceiptRule = "DeleteReceiptRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReceiptRuleRequest method.
+//	req, resp := client.DeleteReceiptRuleRequest(params)
 //
-//    // Example sending a request using the DeleteReceiptRuleRequest method.
-//    req, resp := client.DeleteReceiptRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptRule
 func (c *SES) DeleteReceiptRuleRequest(input *DeleteReceiptRuleInput) (req *request.Request, output *DeleteReceiptRuleOutput) {
@@ -1540,8 +1534,8 @@ func (c *SES) DeleteReceiptRuleRequest(input *DeleteReceiptRuleInput) (req *requ
 // API operation DeleteReceiptRule for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptRule
 func (c *SES) DeleteReceiptRule(input *DeleteReceiptRuleInput) (*DeleteReceiptRuleOutput, error) {
@@ -1581,14 +1575,13 @@ const opDeleteReceiptRuleSet = "DeleteReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteReceiptRuleSetRequest method.
+//	req, resp := client.DeleteReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the DeleteReceiptRuleSetRequest method.
-//    req, resp := client.DeleteReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptRuleSet
 func (c *SES) DeleteReceiptRuleSetRequest(input *DeleteReceiptRuleSetInput) (req *request.Request, output *DeleteReceiptRuleSetOutput) {
@@ -1627,8 +1620,8 @@ func (c *SES) DeleteReceiptRuleSetRequest(input *DeleteReceiptRuleSetInput) (req
 // API operation DeleteReceiptRuleSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeCannotDeleteException "CannotDelete"
-//   Indicates that the delete operation could not be completed.
+//   - ErrCodeCannotDeleteException "CannotDelete"
+//     Indicates that the delete operation could not be completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptRuleSet
 func (c *SES) DeleteReceiptRuleSet(input *DeleteReceiptRuleSetInput) (*DeleteReceiptRuleSetOutput, error) {
@@ -1668,14 +1661,13 @@ const opDeleteTemplate = "DeleteTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteTemplateRequest method.
+//	req, resp := client.DeleteTemplateRequest(params)
 //
-//    // Example sending a request using the DeleteTemplateRequest method.
-//    req, resp := client.DeleteTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteTemplate
 func (c *SES) DeleteTemplateRequest(input *DeleteTemplateInput) (req *request.Request, output *DeleteTemplateOutput) {
@@ -1745,14 +1737,13 @@ const opDeleteVerifiedEmailAddress = "DeleteVerifiedEmailAddress"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteVerifiedEmailAddressRequest method.
+//	req, resp := client.DeleteVerifiedEmailAddressRequest(params)
 //
-//    // Example sending a request using the DeleteVerifiedEmailAddressRequest method.
-//    req, resp := client.DeleteVerifiedEmailAddressRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteVerifiedEmailAddress
 func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *request.Request, output *DeleteVerifiedEmailAddressOutput) {
@@ -1821,14 +1812,13 @@ const opDescribeActiveReceiptRuleSet = "DescribeActiveReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeActiveReceiptRuleSetRequest method.
+//	req, resp := client.DescribeActiveReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the DescribeActiveReceiptRuleSetRequest method.
-//    req, resp := client.DescribeActiveReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeActiveReceiptRuleSet
 func (c *SES) DescribeActiveReceiptRuleSetRequest(input *DescribeActiveReceiptRuleSetInput) (req *request.Request, output *DescribeActiveReceiptRuleSetOutput) {
@@ -1901,14 +1891,13 @@ const opDescribeConfigurationSet = "DescribeConfigurationSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeConfigurationSetRequest method.
+//	req, resp := client.DescribeConfigurationSetRequest(params)
 //
-//    // Example sending a request using the DescribeConfigurationSetRequest method.
-//    req, resp := client.DescribeConfigurationSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeConfigurationSet
 func (c *SES) DescribeConfigurationSetRequest(input *DescribeConfigurationSetInput) (req *request.Request, output *DescribeConfigurationSetOutput) {
@@ -1942,8 +1931,8 @@ func (c *SES) DescribeConfigurationSetRequest(input *DescribeConfigurationSetInp
 // API operation DescribeConfigurationSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeConfigurationSet
 func (c *SES) DescribeConfigurationSet(input *DescribeConfigurationSetInput) (*DescribeConfigurationSetOutput, error) {
@@ -1983,14 +1972,13 @@ const opDescribeReceiptRule = "DescribeReceiptRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReceiptRuleRequest method.
+//	req, resp := client.DescribeReceiptRuleRequest(params)
 //
-//    // Example sending a request using the DescribeReceiptRuleRequest method.
-//    req, resp := client.DescribeReceiptRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeReceiptRule
 func (c *SES) DescribeReceiptRuleRequest(input *DescribeReceiptRuleInput) (req *request.Request, output *DescribeReceiptRuleOutput) {
@@ -2026,11 +2014,12 @@ func (c *SES) DescribeReceiptRuleRequest(input *DescribeReceiptRuleInput) (req *
 // API operation DescribeReceiptRule for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
-//   Indicates that the provided receipt rule does not exist.
 //
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
+//   - ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
+//     Indicates that the provided receipt rule does not exist.
+//
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeReceiptRule
 func (c *SES) DescribeReceiptRule(input *DescribeReceiptRuleInput) (*DescribeReceiptRuleOutput, error) {
@@ -2070,14 +2059,13 @@ const opDescribeReceiptRuleSet = "DescribeReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeReceiptRuleSetRequest method.
+//	req, resp := client.DescribeReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the DescribeReceiptRuleSetRequest method.
-//    req, resp := client.DescribeReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeReceiptRuleSet
 func (c *SES) DescribeReceiptRuleSetRequest(input *DescribeReceiptRuleSetInput) (req *request.Request, output *DescribeReceiptRuleSetOutput) {
@@ -2113,8 +2101,8 @@ func (c *SES) DescribeReceiptRuleSetRequest(input *DescribeReceiptRuleSetInput) 
 // API operation DescribeReceiptRuleSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeReceiptRuleSet
 func (c *SES) DescribeReceiptRuleSet(input *DescribeReceiptRuleSetInput) (*DescribeReceiptRuleSetOutput, error) {
@@ -2154,14 +2142,13 @@ const opGetAccountSendingEnabled = "GetAccountSendingEnabled"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAccountSendingEnabledRequest method.
+//	req, resp := client.GetAccountSendingEnabledRequest(params)
 //
-//    // Example sending a request using the GetAccountSendingEnabledRequest method.
-//    req, resp := client.GetAccountSendingEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetAccountSendingEnabled
 func (c *SES) GetAccountSendingEnabledRequest(input *GetAccountSendingEnabledInput) (req *request.Request, output *GetAccountSendingEnabledOutput) {
@@ -2231,14 +2218,13 @@ const opGetCustomVerificationEmailTemplate = "GetCustomVerificationEmailTemplate
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCustomVerificationEmailTemplateRequest method.
+//	req, resp := client.GetCustomVerificationEmailTemplateRequest(params)
 //
-//    // Example sending a request using the GetCustomVerificationEmailTemplateRequest method.
-//    req, resp := client.GetCustomVerificationEmailTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetCustomVerificationEmailTemplate
 func (c *SES) GetCustomVerificationEmailTemplateRequest(input *GetCustomVerificationEmailTemplateInput) (req *request.Request, output *GetCustomVerificationEmailTemplateOutput) {
@@ -2276,9 +2262,9 @@ func (c *SES) GetCustomVerificationEmailTemplateRequest(input *GetCustomVerifica
 // API operation GetCustomVerificationEmailTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeCustomVerificationEmailTemplateDoesNotExistException "CustomVerificationEmailTemplateDoesNotExist"
-//   Indicates that a custom verification email template with the name you specified
-//   does not exist.
+//   - ErrCodeCustomVerificationEmailTemplateDoesNotExistException "CustomVerificationEmailTemplateDoesNotExist"
+//     Indicates that a custom verification email template with the name you specified
+//     does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetCustomVerificationEmailTemplate
 func (c *SES) GetCustomVerificationEmailTemplate(input *GetCustomVerificationEmailTemplateInput) (*GetCustomVerificationEmailTemplateOutput, error) {
@@ -2318,14 +2304,13 @@ const opGetIdentityDkimAttributes = "GetIdentityDkimAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdentityDkimAttributesRequest method.
+//	req, resp := client.GetIdentityDkimAttributesRequest(params)
 //
-//    // Example sending a request using the GetIdentityDkimAttributesRequest method.
-//    req, resp := client.GetIdentityDkimAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityDkimAttributes
 func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesInput) (req *request.Request, output *GetIdentityDkimAttributesOutput) {
@@ -2354,14 +2339,14 @@ func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesI
 // This operation takes a list of identities as input and returns the following
 // information for each:
 //
-//    * Whether Easy DKIM signing is enabled or disabled.
+//   - Whether Easy DKIM signing is enabled or disabled.
 //
-//    * A set of DKIM tokens that represent the identity. If the identity is
-//    an email address, the tokens represent the domain of that address.
+//   - A set of DKIM tokens that represent the identity. If the identity is
+//     an email address, the tokens represent the domain of that address.
 //
-//    * Whether Amazon SES has successfully verified the DKIM tokens published
-//    in the domain's DNS. This information is only returned for domain name
-//    identities, not for email addresses.
+//   - Whether Amazon SES has successfully verified the DKIM tokens published
+//     in the domain's DNS. This information is only returned for domain name
+//     identities, not for email addresses.
 //
 // This operation is throttled at one request per second and can only get DKIM
 // attributes for up to 100 identities at a time.
@@ -2413,14 +2398,13 @@ const opGetIdentityMailFromDomainAttributes = "GetIdentityMailFromDomainAttribut
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdentityMailFromDomainAttributesRequest method.
+//	req, resp := client.GetIdentityMailFromDomainAttributesRequest(params)
 //
-//    // Example sending a request using the GetIdentityMailFromDomainAttributesRequest method.
-//    req, resp := client.GetIdentityMailFromDomainAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityMailFromDomainAttributes
 func (c *SES) GetIdentityMailFromDomainAttributesRequest(input *GetIdentityMailFromDomainAttributesInput) (req *request.Request, output *GetIdentityMailFromDomainAttributesOutput) {
@@ -2491,14 +2475,13 @@ const opGetIdentityNotificationAttributes = "GetIdentityNotificationAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdentityNotificationAttributesRequest method.
+//	req, resp := client.GetIdentityNotificationAttributesRequest(params)
 //
-//    // Example sending a request using the GetIdentityNotificationAttributesRequest method.
-//    req, resp := client.GetIdentityNotificationAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityNotificationAttributes
 func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *request.Request, output *GetIdentityNotificationAttributesOutput) {
@@ -2572,14 +2555,13 @@ const opGetIdentityPolicies = "GetIdentityPolicies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdentityPoliciesRequest method.
+//	req, resp := client.GetIdentityPoliciesRequest(params)
 //
-//    // Example sending a request using the GetIdentityPoliciesRequest method.
-//    req, resp := client.GetIdentityPoliciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityPolicies
 func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *request.Request, output *GetIdentityPoliciesOutput) {
@@ -2658,14 +2640,13 @@ const opGetIdentityVerificationAttributes = "GetIdentityVerificationAttributes"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIdentityVerificationAttributesRequest method.
+//	req, resp := client.GetIdentityVerificationAttributesRequest(params)
 //
-//    // Example sending a request using the GetIdentityVerificationAttributesRequest method.
-//    req, resp := client.GetIdentityVerificationAttributesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityVerificationAttributes
 func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *request.Request, output *GetIdentityVerificationAttributesOutput) {
@@ -2753,14 +2734,13 @@ const opGetSendQuota = "GetSendQuota"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSendQuotaRequest method.
+//	req, resp := client.GetSendQuotaRequest(params)
 //
-//    // Example sending a request using the GetSendQuotaRequest method.
-//    req, resp := client.GetSendQuotaRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetSendQuota
 func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *request.Request, output *GetSendQuotaOutput) {
@@ -2829,14 +2809,13 @@ const opGetSendStatistics = "GetSendStatistics"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSendStatisticsRequest method.
+//	req, resp := client.GetSendStatisticsRequest(params)
 //
-//    // Example sending a request using the GetSendStatisticsRequest method.
-//    req, resp := client.GetSendStatisticsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetSendStatistics
 func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *request.Request, output *GetSendStatisticsOutput) {
@@ -2907,14 +2886,13 @@ const opGetTemplate = "GetTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetTemplateRequest method.
+//	req, resp := client.GetTemplateRequest(params)
 //
-//    // Example sending a request using the GetTemplateRequest method.
-//    req, resp := client.GetTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetTemplate
 func (c *SES) GetTemplateRequest(input *GetTemplateInput) (req *request.Request, output *GetTemplateOutput) {
@@ -2948,9 +2926,9 @@ func (c *SES) GetTemplateRequest(input *GetTemplateInput) (req *request.Request,
 // API operation GetTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
-//   Indicates that the Template object you specified does not exist in your Amazon
-//   SES account.
+//   - ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
+//     Indicates that the Template object you specified does not exist in your Amazon
+//     SES account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetTemplate
 func (c *SES) GetTemplate(input *GetTemplateInput) (*GetTemplateOutput, error) {
@@ -2990,14 +2968,13 @@ const opListConfigurationSets = "ListConfigurationSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConfigurationSetsRequest method.
+//	req, resp := client.ListConfigurationSetsRequest(params)
 //
-//    // Example sending a request using the ListConfigurationSetsRequest method.
-//    req, resp := client.ListConfigurationSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListConfigurationSets
 func (c *SES) ListConfigurationSetsRequest(input *ListConfigurationSetsInput) (req *request.Request, output *ListConfigurationSetsOutput) {
@@ -3074,14 +3051,13 @@ const opListCustomVerificationEmailTemplates = "ListCustomVerificationEmailTempl
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCustomVerificationEmailTemplatesRequest method.
+//	req, resp := client.ListCustomVerificationEmailTemplatesRequest(params)
 //
-//    // Example sending a request using the ListCustomVerificationEmailTemplatesRequest method.
-//    req, resp := client.ListCustomVerificationEmailTemplatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListCustomVerificationEmailTemplates
 func (c *SES) ListCustomVerificationEmailTemplatesRequest(input *ListCustomVerificationEmailTemplatesInput) (req *request.Request, output *ListCustomVerificationEmailTemplatesOutput) {
@@ -3153,15 +3129,14 @@ func (c *SES) ListCustomVerificationEmailTemplatesWithContext(ctx aws.Context, i
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListCustomVerificationEmailTemplates operation.
-//    pageNum := 0
-//    err := client.ListCustomVerificationEmailTemplatesPages(params,
-//        func(page *ses.ListCustomVerificationEmailTemplatesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListCustomVerificationEmailTemplates operation.
+//	pageNum := 0
+//	err := client.ListCustomVerificationEmailTemplatesPages(params,
+//	    func(page *ses.ListCustomVerificationEmailTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SES) ListCustomVerificationEmailTemplatesPages(input *ListCustomVerificationEmailTemplatesInput, fn func(*ListCustomVerificationEmailTemplatesOutput, bool) bool) error {
 	return c.ListCustomVerificationEmailTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3213,14 +3188,13 @@ const opListIdentities = "ListIdentities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIdentitiesRequest method.
+//	req, resp := client.ListIdentitiesRequest(params)
 //
-//    // Example sending a request using the ListIdentitiesRequest method.
-//    req, resp := client.ListIdentitiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListIdentities
 func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Request, output *ListIdentitiesOutput) {
@@ -3289,15 +3263,14 @@ func (c *SES) ListIdentitiesWithContext(ctx aws.Context, input *ListIdentitiesIn
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a ListIdentities operation.
-//    pageNum := 0
-//    err := client.ListIdentitiesPages(params,
-//        func(page *ses.ListIdentitiesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a ListIdentities operation.
+//	pageNum := 0
+//	err := client.ListIdentitiesPages(params,
+//	    func(page *ses.ListIdentitiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(*ListIdentitiesOutput, bool) bool) error {
 	return c.ListIdentitiesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3349,14 +3322,13 @@ const opListIdentityPolicies = "ListIdentityPolicies"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIdentityPoliciesRequest method.
+//	req, resp := client.ListIdentityPoliciesRequest(params)
 //
-//    // Example sending a request using the ListIdentityPoliciesRequest method.
-//    req, resp := client.ListIdentityPoliciesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListIdentityPolicies
 func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req *request.Request, output *ListIdentityPoliciesOutput) {
@@ -3434,14 +3406,13 @@ const opListReceiptFilters = "ListReceiptFilters"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListReceiptFiltersRequest method.
+//	req, resp := client.ListReceiptFiltersRequest(params)
 //
-//    // Example sending a request using the ListReceiptFiltersRequest method.
-//    req, resp := client.ListReceiptFiltersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListReceiptFilters
 func (c *SES) ListReceiptFiltersRequest(input *ListReceiptFiltersInput) (req *request.Request, output *ListReceiptFiltersOutput) {
@@ -3514,14 +3485,13 @@ const opListReceiptRuleSets = "ListReceiptRuleSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListReceiptRuleSetsRequest method.
+//	req, resp := client.ListReceiptRuleSetsRequest(params)
 //
-//    // Example sending a request using the ListReceiptRuleSetsRequest method.
-//    req, resp := client.ListReceiptRuleSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListReceiptRuleSets
 func (c *SES) ListReceiptRuleSetsRequest(input *ListReceiptRuleSetsInput) (req *request.Request, output *ListReceiptRuleSetsOutput) {
@@ -3596,14 +3566,13 @@ const opListTemplates = "ListTemplates"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTemplatesRequest method.
+//	req, resp := client.ListTemplatesRequest(params)
 //
-//    // Example sending a request using the ListTemplatesRequest method.
-//    req, resp := client.ListTemplatesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListTemplates
 func (c *SES) ListTemplatesRequest(input *ListTemplatesInput) (req *request.Request, output *ListTemplatesOutput) {
@@ -3673,14 +3642,13 @@ const opListVerifiedEmailAddresses = "ListVerifiedEmailAddresses"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListVerifiedEmailAddressesRequest method.
+//	req, resp := client.ListVerifiedEmailAddressesRequest(params)
 //
-//    // Example sending a request using the ListVerifiedEmailAddressesRequest method.
-//    req, resp := client.ListVerifiedEmailAddressesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListVerifiedEmailAddresses
 func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *request.Request, output *ListVerifiedEmailAddressesOutput) {
@@ -3748,14 +3716,13 @@ const opPutConfigurationSetDeliveryOptions = "PutConfigurationSetDeliveryOptions
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutConfigurationSetDeliveryOptionsRequest method.
+//	req, resp := client.PutConfigurationSetDeliveryOptionsRequest(params)
 //
-//    // Example sending a request using the PutConfigurationSetDeliveryOptionsRequest method.
-//    req, resp := client.PutConfigurationSetDeliveryOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/PutConfigurationSetDeliveryOptions
 func (c *SES) PutConfigurationSetDeliveryOptionsRequest(input *PutConfigurationSetDeliveryOptionsInput) (req *request.Request, output *PutConfigurationSetDeliveryOptionsOutput) {
@@ -3787,11 +3754,12 @@ func (c *SES) PutConfigurationSetDeliveryOptionsRequest(input *PutConfigurationS
 // API operation PutConfigurationSetDeliveryOptions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeInvalidDeliveryOptionsException "InvalidDeliveryOptions"
-//   Indicates that provided delivery option is invalid.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
+//
+//   - ErrCodeInvalidDeliveryOptionsException "InvalidDeliveryOptions"
+//     Indicates that provided delivery option is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/PutConfigurationSetDeliveryOptions
 func (c *SES) PutConfigurationSetDeliveryOptions(input *PutConfigurationSetDeliveryOptionsInput) (*PutConfigurationSetDeliveryOptionsOutput, error) {
@@ -3831,14 +3799,13 @@ const opPutIdentityPolicy = "PutIdentityPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutIdentityPolicyRequest method.
+//	req, resp := client.PutIdentityPolicyRequest(params)
 //
-//    // Example sending a request using the PutIdentityPolicyRequest method.
-//    req, resp := client.PutIdentityPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/PutIdentityPolicy
 func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *request.Request, output *PutIdentityPolicyOutput) {
@@ -3880,9 +3847,9 @@ func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *requ
 // API operation PutIdentityPolicy for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInvalidPolicyException "InvalidPolicy"
-//   Indicates that the provided policy is invalid. Check the error stack for
-//   more information about what caused the error.
+//   - ErrCodeInvalidPolicyException "InvalidPolicy"
+//     Indicates that the provided policy is invalid. Check the error stack for
+//     more information about what caused the error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/PutIdentityPolicy
 func (c *SES) PutIdentityPolicy(input *PutIdentityPolicyInput) (*PutIdentityPolicyOutput, error) {
@@ -3922,14 +3889,13 @@ const opReorderReceiptRuleSet = "ReorderReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ReorderReceiptRuleSetRequest method.
+//	req, resp := client.ReorderReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the ReorderReceiptRuleSetRequest method.
-//    req, resp := client.ReorderReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReorderReceiptRuleSet
 func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (req *request.Request, output *ReorderReceiptRuleSetOutput) {
@@ -3970,11 +3936,12 @@ func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (r
 // API operation ReorderReceiptRuleSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
 //
-//   * ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
-//   Indicates that the provided receipt rule does not exist.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
+//
+//   - ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
+//     Indicates that the provided receipt rule does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReorderReceiptRuleSet
 func (c *SES) ReorderReceiptRuleSet(input *ReorderReceiptRuleSetInput) (*ReorderReceiptRuleSetOutput, error) {
@@ -4014,14 +3981,13 @@ const opSendBounce = "SendBounce"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendBounceRequest method.
+//	req, resp := client.SendBounceRequest(params)
 //
-//    // Example sending a request using the SendBounceRequest method.
-//    req, resp := client.SendBounceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendBounce
 func (c *SES) SendBounceRequest(input *SendBounceInput) (req *request.Request, output *SendBounceOutput) {
@@ -4062,9 +4028,9 @@ func (c *SES) SendBounceRequest(input *SendBounceInput) (req *request.Request, o
 // API operation SendBounce for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeMessageRejected "MessageRejected"
-//   Indicates that the action failed, and the message could not be sent. Check
-//   the error stack for more information about what caused the error.
+//   - ErrCodeMessageRejected "MessageRejected"
+//     Indicates that the action failed, and the message could not be sent. Check
+//     the error stack for more information about what caused the error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendBounce
 func (c *SES) SendBounce(input *SendBounceInput) (*SendBounceOutput, error) {
@@ -4104,14 +4070,13 @@ const opSendBulkTemplatedEmail = "SendBulkTemplatedEmail"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendBulkTemplatedEmailRequest method.
+//	req, resp := client.SendBulkTemplatedEmailRequest(params)
 //
-//    // Example sending a request using the SendBulkTemplatedEmailRequest method.
-//    req, resp := client.SendBulkTemplatedEmailRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendBulkTemplatedEmail
 func (c *SES) SendBulkTemplatedEmailRequest(input *SendBulkTemplatedEmailInput) (req *request.Request, output *SendBulkTemplatedEmailOutput) {
@@ -4138,34 +4103,34 @@ func (c *SES) SendBulkTemplatedEmailRequest(input *SendBulkTemplatedEmailInput) 
 // In order to send email using the SendBulkTemplatedEmail operation, your call
 // to the API must meet the following requirements:
 //
-//    * The call must refer to an existing email template. You can create email
-//    templates using the CreateTemplate operation.
+//   - The call must refer to an existing email template. You can create email
+//     templates using the CreateTemplate operation.
 //
-//    * The message must be sent from a verified email address or domain.
+//   - The message must be sent from a verified email address or domain.
 //
-//    * If your account is still in the Amazon SES sandbox, you may only send
-//    to verified addresses or domains, or to email addresses associated with
-//    the Amazon SES Mailbox Simulator. For more information, see Verifying
-//    Email Addresses and Domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html)
-//    in the Amazon SES Developer Guide.
+//   - If your account is still in the Amazon SES sandbox, you may only send
+//     to verified addresses or domains, or to email addresses associated with
+//     the Amazon SES Mailbox Simulator. For more information, see Verifying
+//     Email Addresses and Domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html)
+//     in the Amazon SES Developer Guide.
 //
-//    * The maximum message size is 10 MB.
+//   - The maximum message size is 10 MB.
 //
-//    * Each Destination parameter must include at least one recipient email
-//    address. The recipient address can be a To: address, a CC: address, or
-//    a BCC: address. If a recipient email address is invalid (that is, it is
-//    not in the format UserName@[SubDomain.]Domain.TopLevelDomain), the entire
-//    message will be rejected, even if the message contains other recipients
-//    that are valid.
+//   - Each Destination parameter must include at least one recipient email
+//     address. The recipient address can be a To: address, a CC: address, or
+//     a BCC: address. If a recipient email address is invalid (that is, it is
+//     not in the format UserName@[SubDomain.]Domain.TopLevelDomain), the entire
+//     message will be rejected, even if the message contains other recipients
+//     that are valid.
 //
-//    * The message may not include more than 50 recipients, across the To:,
-//    CC: and BCC: fields. If you need to send an email message to a larger
-//    audience, you can divide your recipient list into groups of 50 or fewer,
-//    and then call the SendBulkTemplatedEmail operation several times to send
-//    the message to each group.
+//   - The message may not include more than 50 recipients, across the To:,
+//     CC: and BCC: fields. If you need to send an email message to a larger
+//     audience, you can divide your recipient list into groups of 50 or fewer,
+//     and then call the SendBulkTemplatedEmail operation several times to send
+//     the message to each group.
 //
-//    * The number of destinations you can contact in a single call to the API
-//    may be limited by your account's maximum sending rate.
+//   - The number of destinations you can contact in a single call to the API
+//     may be limited by your account's maximum sending rate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4175,33 +4140,34 @@ func (c *SES) SendBulkTemplatedEmailRequest(input *SendBulkTemplatedEmailInput) 
 // API operation SendBulkTemplatedEmail for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeMessageRejected "MessageRejected"
-//   Indicates that the action failed, and the message could not be sent. Check
-//   the error stack for more information about what caused the error.
 //
-//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
-//   Indicates that the message could not be sent because Amazon SES could not
-//   read the MX record required to use the specified MAIL FROM domain. For information
-//   about editing the custom MAIL FROM domain settings for an identity, see the
-//   Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//   - ErrCodeMessageRejected "MessageRejected"
+//     Indicates that the action failed, and the message could not be sent. Check
+//     the error stack for more information about what caused the error.
 //
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//     Indicates that the message could not be sent because Amazon SES could not
+//     read the MX record required to use the specified MAIL FROM domain. For information
+//     about editing the custom MAIL FROM domain settings for an identity, see the
+//     Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
 //
-//   * ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
-//   Indicates that the Template object you specified does not exist in your Amazon
-//   SES account.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
-//   Indicates that email sending is disabled for the configuration set.
+//   - ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
+//     Indicates that the Template object you specified does not exist in your Amazon
+//     SES account.
 //
-//   You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
+//   - ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
+//     Indicates that email sending is disabled for the configuration set.
 //
-//   * ErrCodeAccountSendingPausedException "AccountSendingPausedException"
-//   Indicates that email sending is disabled for your entire Amazon SES account.
+//     You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
 //
-//   You can enable or disable email sending for your Amazon SES account using
-//   UpdateAccountSendingEnabled.
+//   - ErrCodeAccountSendingPausedException "AccountSendingPausedException"
+//     Indicates that email sending is disabled for your entire Amazon SES account.
+//
+//     You can enable or disable email sending for your Amazon SES account using
+//     UpdateAccountSendingEnabled.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendBulkTemplatedEmail
 func (c *SES) SendBulkTemplatedEmail(input *SendBulkTemplatedEmailInput) (*SendBulkTemplatedEmailOutput, error) {
@@ -4241,14 +4207,13 @@ const opSendCustomVerificationEmail = "SendCustomVerificationEmail"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendCustomVerificationEmailRequest method.
+//	req, resp := client.SendCustomVerificationEmailRequest(params)
 //
-//    // Example sending a request using the SendCustomVerificationEmailRequest method.
-//    req, resp := client.SendCustomVerificationEmailRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendCustomVerificationEmail
 func (c *SES) SendCustomVerificationEmailRequest(input *SendCustomVerificationEmailInput) (req *request.Request, output *SendCustomVerificationEmailOutput) {
@@ -4289,24 +4254,25 @@ func (c *SES) SendCustomVerificationEmailRequest(input *SendCustomVerificationEm
 // API operation SendCustomVerificationEmail for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeMessageRejected "MessageRejected"
-//   Indicates that the action failed, and the message could not be sent. Check
-//   the error stack for more information about what caused the error.
 //
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeMessageRejected "MessageRejected"
+//     Indicates that the action failed, and the message could not be sent. Check
+//     the error stack for more information about what caused the error.
 //
-//   * ErrCodeCustomVerificationEmailTemplateDoesNotExistException "CustomVerificationEmailTemplateDoesNotExist"
-//   Indicates that a custom verification email template with the name you specified
-//   does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeFromEmailAddressNotVerifiedException "FromEmailAddressNotVerified"
-//   Indicates that the sender address specified for a custom verification email
-//   is not verified, and is therefore not eligible to send the custom verification
-//   email.
+//   - ErrCodeCustomVerificationEmailTemplateDoesNotExistException "CustomVerificationEmailTemplateDoesNotExist"
+//     Indicates that a custom verification email template with the name you specified
+//     does not exist.
 //
-//   * ErrCodeProductionAccessNotGrantedException "ProductionAccessNotGranted"
-//   Indicates that the account has not been granted production access.
+//   - ErrCodeFromEmailAddressNotVerifiedException "FromEmailAddressNotVerified"
+//     Indicates that the sender address specified for a custom verification email
+//     is not verified, and is therefore not eligible to send the custom verification
+//     email.
+//
+//   - ErrCodeProductionAccessNotGrantedException "ProductionAccessNotGranted"
+//     Indicates that the account has not been granted production access.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendCustomVerificationEmail
 func (c *SES) SendCustomVerificationEmail(input *SendCustomVerificationEmailInput) (*SendCustomVerificationEmailOutput, error) {
@@ -4346,14 +4312,13 @@ const opSendEmail = "SendEmail"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendEmailRequest method.
+//	req, resp := client.SendEmailRequest(params)
 //
-//    // Example sending a request using the SendEmailRequest method.
-//    req, resp := client.SendEmailRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendEmail
 func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, output *SendEmailOutput) {
@@ -4378,29 +4343,29 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 // to send email using the SendEmail operation, your message must meet the following
 // requirements:
 //
-//    * The message must be sent from a verified email address or domain. If
-//    you attempt to send email using a non-verified address or domain, the
-//    operation will result in an "Email address not verified" error.
+//   - The message must be sent from a verified email address or domain. If
+//     you attempt to send email using a non-verified address or domain, the
+//     operation will result in an "Email address not verified" error.
 //
-//    * If your account is still in the Amazon SES sandbox, you may only send
-//    to verified addresses or domains, or to email addresses associated with
-//    the Amazon SES Mailbox Simulator. For more information, see Verifying
-//    Email Addresses and Domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html)
-//    in the Amazon SES Developer Guide.
+//   - If your account is still in the Amazon SES sandbox, you may only send
+//     to verified addresses or domains, or to email addresses associated with
+//     the Amazon SES Mailbox Simulator. For more information, see Verifying
+//     Email Addresses and Domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html)
+//     in the Amazon SES Developer Guide.
 //
-//    * The maximum message size is 10 MB.
+//   - The maximum message size is 10 MB.
 //
-//    * The message must include at least one recipient email address. The recipient
-//    address can be a To: address, a CC: address, or a BCC: address. If a recipient
-//    email address is invalid (that is, it is not in the format UserName@[SubDomain.]Domain.TopLevelDomain),
-//    the entire message will be rejected, even if the message contains other
-//    recipients that are valid.
+//   - The message must include at least one recipient email address. The recipient
+//     address can be a To: address, a CC: address, or a BCC: address. If a recipient
+//     email address is invalid (that is, it is not in the format UserName@[SubDomain.]Domain.TopLevelDomain),
+//     the entire message will be rejected, even if the message contains other
+//     recipients that are valid.
 //
-//    * The message may not include more than 50 recipients, across the To:,
-//    CC: and BCC: fields. If you need to send an email message to a larger
-//    audience, you can divide your recipient list into groups of 50 or fewer,
-//    and then call the SendEmail operation several times to send the message
-//    to each group.
+//   - The message may not include more than 50 recipients, across the To:,
+//     CC: and BCC: fields. If you need to send an email message to a larger
+//     audience, you can divide your recipient list into groups of 50 or fewer,
+//     and then call the SendEmail operation several times to send the message
+//     to each group.
 //
 // For every message that you send, the total number of recipients (including
 // each recipient in the To:, CC: and BCC: fields) is counted against the maximum
@@ -4417,29 +4382,30 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 // API operation SendEmail for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeMessageRejected "MessageRejected"
-//   Indicates that the action failed, and the message could not be sent. Check
-//   the error stack for more information about what caused the error.
 //
-//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
-//   Indicates that the message could not be sent because Amazon SES could not
-//   read the MX record required to use the specified MAIL FROM domain. For information
-//   about editing the custom MAIL FROM domain settings for an identity, see the
-//   Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//   - ErrCodeMessageRejected "MessageRejected"
+//     Indicates that the action failed, and the message could not be sent. Check
+//     the error stack for more information about what caused the error.
 //
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//     Indicates that the message could not be sent because Amazon SES could not
+//     read the MX record required to use the specified MAIL FROM domain. For information
+//     about editing the custom MAIL FROM domain settings for an identity, see the
+//     Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
 //
-//   * ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
-//   Indicates that email sending is disabled for the configuration set.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
+//   - ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
+//     Indicates that email sending is disabled for the configuration set.
 //
-//   * ErrCodeAccountSendingPausedException "AccountSendingPausedException"
-//   Indicates that email sending is disabled for your entire Amazon SES account.
+//     You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
 //
-//   You can enable or disable email sending for your Amazon SES account using
-//   UpdateAccountSendingEnabled.
+//   - ErrCodeAccountSendingPausedException "AccountSendingPausedException"
+//     Indicates that email sending is disabled for your entire Amazon SES account.
+//
+//     You can enable or disable email sending for your Amazon SES account using
+//     UpdateAccountSendingEnabled.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendEmail
 func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
@@ -4479,14 +4445,13 @@ const opSendRawEmail = "SendRawEmail"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendRawEmailRequest method.
+//	req, resp := client.SendRawEmailRequest(params)
 //
-//    // Example sending a request using the SendRawEmailRequest method.
-//    req, resp := client.SendRawEmailRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendRawEmail
 func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Request, output *SendRawEmailOutput) {
@@ -4518,66 +4483,66 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 //
 // The SendRawEmail operation has the following requirements:
 //
-//    * You can only send email from verified email addresses or domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
-//    If you try to send email from an address that isn't verified, the operation
-//    results in an "Email address not verified" error.
+//   - You can only send email from verified email addresses or domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//     If you try to send email from an address that isn't verified, the operation
+//     results in an "Email address not verified" error.
 //
-//    * If your account is still in the Amazon SES sandbox (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html),
-//    you can only send email to other verified addresses in your account, or
-//    to addresses that are associated with the Amazon SES mailbox simulator
-//    (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html).
+//   - If your account is still in the Amazon SES sandbox (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html),
+//     you can only send email to other verified addresses in your account, or
+//     to addresses that are associated with the Amazon SES mailbox simulator
+//     (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html).
 //
-//    * The maximum message size, including attachments, is 10 MB.
+//   - The maximum message size, including attachments, is 10 MB.
 //
-//    * Each message has to include at least one recipient address. A recipient
-//    address includes any address on the To:, CC:, or BCC: lines.
+//   - Each message has to include at least one recipient address. A recipient
+//     address includes any address on the To:, CC:, or BCC: lines.
 //
-//    * If you send a single message to more than one recipient address, and
-//    one of the recipient addresses isn't in a valid format (that is, it's
-//    not in the format UserName@[SubDomain.]Domain.TopLevelDomain), Amazon
-//    SES rejects the entire message, even if the other addresses are valid.
+//   - If you send a single message to more than one recipient address, and
+//     one of the recipient addresses isn't in a valid format (that is, it's
+//     not in the format UserName@[SubDomain.]Domain.TopLevelDomain), Amazon
+//     SES rejects the entire message, even if the other addresses are valid.
 //
-//    * Each message can include up to 50 recipient addresses across the To:,
-//    CC:, or BCC: lines. If you need to send a single message to more than
-//    50 recipients, you have to split the list of recipient addresses into
-//    groups of less than 50 recipients, and send separate messages to each
-//    group.
+//   - Each message can include up to 50 recipient addresses across the To:,
+//     CC:, or BCC: lines. If you need to send a single message to more than
+//     50 recipients, you have to split the list of recipient addresses into
+//     groups of less than 50 recipients, and send separate messages to each
+//     group.
 //
-//    * Amazon SES allows you to specify 8-bit Content-Transfer-Encoding for
-//    MIME message parts. However, if Amazon SES has to modify the contents
-//    of your message (for example, if you use open and click tracking), 8-bit
-//    content isn't preserved. For this reason, we highly recommend that you
-//    encode all content that isn't 7-bit ASCII. For more information, see MIME
-//    Encoding (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html#send-email-mime-encoding)
-//    in the Amazon SES Developer Guide.
+//   - Amazon SES allows you to specify 8-bit Content-Transfer-Encoding for
+//     MIME message parts. However, if Amazon SES has to modify the contents
+//     of your message (for example, if you use open and click tracking), 8-bit
+//     content isn't preserved. For this reason, we highly recommend that you
+//     encode all content that isn't 7-bit ASCII. For more information, see MIME
+//     Encoding (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html#send-email-mime-encoding)
+//     in the Amazon SES Developer Guide.
 //
 // Additionally, keep the following considerations in mind when using the SendRawEmail
 // operation:
 //
-//    * Although you can customize the message headers when using the SendRawEmail
-//    operation, Amazon SES will automatically apply its own Message-ID and
-//    Date headers; if you passed these headers when creating the message, they
-//    will be overwritten by the values that Amazon SES provides.
+//   - Although you can customize the message headers when using the SendRawEmail
+//     operation, Amazon SES will automatically apply its own Message-ID and
+//     Date headers; if you passed these headers when creating the message, they
+//     will be overwritten by the values that Amazon SES provides.
 //
-//    * If you are using sending authorization to send on behalf of another
-//    user, SendRawEmail enables you to specify the cross-account identity for
-//    the email's Source, From, and Return-Path parameters in one of two ways:
-//    you can pass optional parameters SourceArn, FromArn, and/or ReturnPathArn
-//    to the API, or you can include the following X-headers in the header of
-//    your raw email: X-SES-SOURCE-ARN X-SES-FROM-ARN X-SES-RETURN-PATH-ARN
-//    Don't include these X-headers in the DKIM signature. Amazon SES removes
-//    these before it sends the email. If you only specify the SourceIdentityArn
-//    parameter, Amazon SES sets the From and Return-Path addresses to the same
-//    identity that you specified. For more information about sending authorization,
-//    see the Using Sending Authorization with Amazon SES (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html)
-//    in the Amazon SES Developer Guide.
+//   - If you are using sending authorization to send on behalf of another
+//     user, SendRawEmail enables you to specify the cross-account identity for
+//     the email's Source, From, and Return-Path parameters in one of two ways:
+//     you can pass optional parameters SourceArn, FromArn, and/or ReturnPathArn
+//     to the API, or you can include the following X-headers in the header of
+//     your raw email: X-SES-SOURCE-ARN X-SES-FROM-ARN X-SES-RETURN-PATH-ARN
+//     Don't include these X-headers in the DKIM signature. Amazon SES removes
+//     these before it sends the email. If you only specify the SourceIdentityArn
+//     parameter, Amazon SES sets the From and Return-Path addresses to the same
+//     identity that you specified. For more information about sending authorization,
+//     see the Using Sending Authorization with Amazon SES (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html)
+//     in the Amazon SES Developer Guide.
 //
-//    * For every message that you send, the total number of recipients (including
-//    each recipient in the To:, CC: and BCC: fields) is counted against the
-//    maximum number of emails you can send in a 24-hour period (your sending
-//    quota). For more information about sending quotas in Amazon SES, see Managing
-//    Your Amazon SES Sending Limits (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html)
-//    in the Amazon SES Developer Guide.
+//   - For every message that you send, the total number of recipients (including
+//     each recipient in the To:, CC: and BCC: fields) is counted against the
+//     maximum number of emails you can send in a 24-hour period (your sending
+//     quota). For more information about sending quotas in Amazon SES, see Managing
+//     Your Amazon SES Sending Limits (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html)
+//     in the Amazon SES Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4587,29 +4552,30 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 // API operation SendRawEmail for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeMessageRejected "MessageRejected"
-//   Indicates that the action failed, and the message could not be sent. Check
-//   the error stack for more information about what caused the error.
 //
-//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
-//   Indicates that the message could not be sent because Amazon SES could not
-//   read the MX record required to use the specified MAIL FROM domain. For information
-//   about editing the custom MAIL FROM domain settings for an identity, see the
-//   Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//   - ErrCodeMessageRejected "MessageRejected"
+//     Indicates that the action failed, and the message could not be sent. Check
+//     the error stack for more information about what caused the error.
 //
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//     Indicates that the message could not be sent because Amazon SES could not
+//     read the MX record required to use the specified MAIL FROM domain. For information
+//     about editing the custom MAIL FROM domain settings for an identity, see the
+//     Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
 //
-//   * ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
-//   Indicates that email sending is disabled for the configuration set.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
+//   - ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
+//     Indicates that email sending is disabled for the configuration set.
 //
-//   * ErrCodeAccountSendingPausedException "AccountSendingPausedException"
-//   Indicates that email sending is disabled for your entire Amazon SES account.
+//     You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
 //
-//   You can enable or disable email sending for your Amazon SES account using
-//   UpdateAccountSendingEnabled.
+//   - ErrCodeAccountSendingPausedException "AccountSendingPausedException"
+//     Indicates that email sending is disabled for your entire Amazon SES account.
+//
+//     You can enable or disable email sending for your Amazon SES account using
+//     UpdateAccountSendingEnabled.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendRawEmail
 func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error) {
@@ -4649,14 +4615,13 @@ const opSendTemplatedEmail = "SendTemplatedEmail"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SendTemplatedEmailRequest method.
+//	req, resp := client.SendTemplatedEmailRequest(params)
 //
-//    // Example sending a request using the SendTemplatedEmailRequest method.
-//    req, resp := client.SendTemplatedEmailRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendTemplatedEmail
 func (c *SES) SendTemplatedEmailRequest(input *SendTemplatedEmailInput) (req *request.Request, output *SendTemplatedEmailOutput) {
@@ -4683,30 +4648,30 @@ func (c *SES) SendTemplatedEmailRequest(input *SendTemplatedEmailInput) (req *re
 // In order to send email using the SendTemplatedEmail operation, your call
 // to the API must meet the following requirements:
 //
-//    * The call must refer to an existing email template. You can create email
-//    templates using the CreateTemplate operation.
+//   - The call must refer to an existing email template. You can create email
+//     templates using the CreateTemplate operation.
 //
-//    * The message must be sent from a verified email address or domain.
+//   - The message must be sent from a verified email address or domain.
 //
-//    * If your account is still in the Amazon SES sandbox, you may only send
-//    to verified addresses or domains, or to email addresses associated with
-//    the Amazon SES Mailbox Simulator. For more information, see Verifying
-//    Email Addresses and Domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html)
-//    in the Amazon SES Developer Guide.
+//   - If your account is still in the Amazon SES sandbox, you may only send
+//     to verified addresses or domains, or to email addresses associated with
+//     the Amazon SES Mailbox Simulator. For more information, see Verifying
+//     Email Addresses and Domains (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html)
+//     in the Amazon SES Developer Guide.
 //
-//    * The maximum message size is 10 MB.
+//   - The maximum message size is 10 MB.
 //
-//    * Calls to the SendTemplatedEmail operation may only include one Destination
-//    parameter. A destination is a set of recipients who will receive the same
-//    version of the email. The Destination parameter can include up to 50 recipients,
-//    across the To:, CC: and BCC: fields.
+//   - Calls to the SendTemplatedEmail operation may only include one Destination
+//     parameter. A destination is a set of recipients who will receive the same
+//     version of the email. The Destination parameter can include up to 50 recipients,
+//     across the To:, CC: and BCC: fields.
 //
-//    * The Destination parameter must include at least one recipient email
-//    address. The recipient address can be a To: address, a CC: address, or
-//    a BCC: address. If a recipient email address is invalid (that is, it is
-//    not in the format UserName@[SubDomain.]Domain.TopLevelDomain), the entire
-//    message will be rejected, even if the message contains other recipients
-//    that are valid.
+//   - The Destination parameter must include at least one recipient email
+//     address. The recipient address can be a To: address, a CC: address, or
+//     a BCC: address. If a recipient email address is invalid (that is, it is
+//     not in the format UserName@[SubDomain.]Domain.TopLevelDomain), the entire
+//     message will be rejected, even if the message contains other recipients
+//     that are valid.
 //
 // If your call to the SendTemplatedEmail operation includes all of the required
 // parameters, Amazon SES accepts it and returns a Message ID. However, if Amazon
@@ -4727,33 +4692,34 @@ func (c *SES) SendTemplatedEmailRequest(input *SendTemplatedEmailInput) (req *re
 // API operation SendTemplatedEmail for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeMessageRejected "MessageRejected"
-//   Indicates that the action failed, and the message could not be sent. Check
-//   the error stack for more information about what caused the error.
 //
-//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
-//   Indicates that the message could not be sent because Amazon SES could not
-//   read the MX record required to use the specified MAIL FROM domain. For information
-//   about editing the custom MAIL FROM domain settings for an identity, see the
-//   Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//   - ErrCodeMessageRejected "MessageRejected"
+//     Indicates that the action failed, and the message could not be sent. Check
+//     the error stack for more information about what caused the error.
 //
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//     Indicates that the message could not be sent because Amazon SES could not
+//     read the MX record required to use the specified MAIL FROM domain. For information
+//     about editing the custom MAIL FROM domain settings for an identity, see the
+//     Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
 //
-//   * ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
-//   Indicates that the Template object you specified does not exist in your Amazon
-//   SES account.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
-//   Indicates that email sending is disabled for the configuration set.
+//   - ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
+//     Indicates that the Template object you specified does not exist in your Amazon
+//     SES account.
 //
-//   You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
+//   - ErrCodeConfigurationSetSendingPausedException "ConfigurationSetSendingPausedException"
+//     Indicates that email sending is disabled for the configuration set.
 //
-//   * ErrCodeAccountSendingPausedException "AccountSendingPausedException"
-//   Indicates that email sending is disabled for your entire Amazon SES account.
+//     You can enable or disable email sending for a configuration set using UpdateConfigurationSetSendingEnabled.
 //
-//   You can enable or disable email sending for your Amazon SES account using
-//   UpdateAccountSendingEnabled.
+//   - ErrCodeAccountSendingPausedException "AccountSendingPausedException"
+//     Indicates that email sending is disabled for your entire Amazon SES account.
+//
+//     You can enable or disable email sending for your Amazon SES account using
+//     UpdateAccountSendingEnabled.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendTemplatedEmail
 func (c *SES) SendTemplatedEmail(input *SendTemplatedEmailInput) (*SendTemplatedEmailOutput, error) {
@@ -4793,14 +4759,13 @@ const opSetActiveReceiptRuleSet = "SetActiveReceiptRuleSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetActiveReceiptRuleSetRequest method.
+//	req, resp := client.SetActiveReceiptRuleSetRequest(params)
 //
-//    // Example sending a request using the SetActiveReceiptRuleSetRequest method.
-//    req, resp := client.SetActiveReceiptRuleSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetActiveReceiptRuleSet
 func (c *SES) SetActiveReceiptRuleSetRequest(input *SetActiveReceiptRuleSetInput) (req *request.Request, output *SetActiveReceiptRuleSetOutput) {
@@ -4840,8 +4805,8 @@ func (c *SES) SetActiveReceiptRuleSetRequest(input *SetActiveReceiptRuleSetInput
 // API operation SetActiveReceiptRuleSet for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetActiveReceiptRuleSet
 func (c *SES) SetActiveReceiptRuleSet(input *SetActiveReceiptRuleSetInput) (*SetActiveReceiptRuleSetOutput, error) {
@@ -4881,14 +4846,13 @@ const opSetIdentityDkimEnabled = "SetIdentityDkimEnabled"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetIdentityDkimEnabledRequest method.
+//	req, resp := client.SetIdentityDkimEnabledRequest(params)
 //
-//    // Example sending a request using the SetIdentityDkimEnabledRequest method.
-//    req, resp := client.SetIdentityDkimEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityDkimEnabled
 func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) (req *request.Request, output *SetIdentityDkimEnabledOutput) {
@@ -4973,14 +4937,13 @@ const opSetIdentityFeedbackForwardingEnabled = "SetIdentityFeedbackForwardingEna
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetIdentityFeedbackForwardingEnabledRequest method.
+//	req, resp := client.SetIdentityFeedbackForwardingEnabledRequest(params)
 //
-//    // Example sending a request using the SetIdentityFeedbackForwardingEnabledRequest method.
-//    req, resp := client.SetIdentityFeedbackForwardingEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityFeedbackForwardingEnabled
 func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *request.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
@@ -5059,14 +5022,13 @@ const opSetIdentityHeadersInNotificationsEnabled = "SetIdentityHeadersInNotifica
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetIdentityHeadersInNotificationsEnabledRequest method.
+//	req, resp := client.SetIdentityHeadersInNotificationsEnabledRequest(params)
 //
-//    // Example sending a request using the SetIdentityHeadersInNotificationsEnabledRequest method.
-//    req, resp := client.SetIdentityHeadersInNotificationsEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityHeadersInNotificationsEnabled
 func (c *SES) SetIdentityHeadersInNotificationsEnabledRequest(input *SetIdentityHeadersInNotificationsEnabledInput) (req *request.Request, output *SetIdentityHeadersInNotificationsEnabledOutput) {
@@ -5141,14 +5103,13 @@ const opSetIdentityMailFromDomain = "SetIdentityMailFromDomain"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetIdentityMailFromDomainRequest method.
+//	req, resp := client.SetIdentityMailFromDomainRequest(params)
 //
-//    // Example sending a request using the SetIdentityMailFromDomainRequest method.
-//    req, resp := client.SetIdentityMailFromDomainRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityMailFromDomain
 func (c *SES) SetIdentityMailFromDomainRequest(input *SetIdentityMailFromDomainInput) (req *request.Request, output *SetIdentityMailFromDomainOutput) {
@@ -5224,14 +5185,13 @@ const opSetIdentityNotificationTopic = "SetIdentityNotificationTopic"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetIdentityNotificationTopicRequest method.
+//	req, resp := client.SetIdentityNotificationTopicRequest(params)
 //
-//    // Example sending a request using the SetIdentityNotificationTopicRequest method.
-//    req, resp := client.SetIdentityNotificationTopicRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityNotificationTopic
 func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *request.Request, output *SetIdentityNotificationTopicOutput) {
@@ -5309,14 +5269,13 @@ const opSetReceiptRulePosition = "SetReceiptRulePosition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the SetReceiptRulePositionRequest method.
+//	req, resp := client.SetReceiptRulePositionRequest(params)
 //
-//    // Example sending a request using the SetReceiptRulePositionRequest method.
-//    req, resp := client.SetReceiptRulePositionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetReceiptRulePosition
 func (c *SES) SetReceiptRulePositionRequest(input *SetReceiptRulePositionInput) (req *request.Request, output *SetReceiptRulePositionOutput) {
@@ -5353,11 +5312,12 @@ func (c *SES) SetReceiptRulePositionRequest(input *SetReceiptRulePositionInput) 
 // API operation SetReceiptRulePosition for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
 //
-//   * ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
-//   Indicates that the provided receipt rule does not exist.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
+//
+//   - ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
+//     Indicates that the provided receipt rule does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetReceiptRulePosition
 func (c *SES) SetReceiptRulePosition(input *SetReceiptRulePositionInput) (*SetReceiptRulePositionOutput, error) {
@@ -5397,14 +5357,13 @@ const opTestRenderTemplate = "TestRenderTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TestRenderTemplateRequest method.
+//	req, resp := client.TestRenderTemplateRequest(params)
 //
-//    // Example sending a request using the TestRenderTemplateRequest method.
-//    req, resp := client.TestRenderTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/TestRenderTemplate
 func (c *SES) TestRenderTemplateRequest(input *TestRenderTemplateInput) (req *request.Request, output *TestRenderTemplateOutput) {
@@ -5438,18 +5397,19 @@ func (c *SES) TestRenderTemplateRequest(input *TestRenderTemplateInput) (req *re
 // API operation TestRenderTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
-//   Indicates that the Template object you specified does not exist in your Amazon
-//   SES account.
 //
-//   * ErrCodeInvalidRenderingParameterException "InvalidRenderingParameter"
-//   Indicates that one or more of the replacement values you provided is invalid.
-//   This error may occur when the TemplateData object contains invalid JSON.
+//   - ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
+//     Indicates that the Template object you specified does not exist in your Amazon
+//     SES account.
 //
-//   * ErrCodeMissingRenderingAttributeException "MissingRenderingAttribute"
-//   Indicates that one or more of the replacement values for the specified template
-//   was not specified. Ensure that the TemplateData object contains references
-//   to all of the replacement tags in the specified template.
+//   - ErrCodeInvalidRenderingParameterException "InvalidRenderingParameter"
+//     Indicates that one or more of the replacement values you provided is invalid.
+//     This error may occur when the TemplateData object contains invalid JSON.
+//
+//   - ErrCodeMissingRenderingAttributeException "MissingRenderingAttribute"
+//     Indicates that one or more of the replacement values for the specified template
+//     was not specified. Ensure that the TemplateData object contains references
+//     to all of the replacement tags in the specified template.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/TestRenderTemplate
 func (c *SES) TestRenderTemplate(input *TestRenderTemplateInput) (*TestRenderTemplateOutput, error) {
@@ -5489,14 +5449,13 @@ const opUpdateAccountSendingEnabled = "UpdateAccountSendingEnabled"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateAccountSendingEnabledRequest method.
+//	req, resp := client.UpdateAccountSendingEnabledRequest(params)
 //
-//    // Example sending a request using the UpdateAccountSendingEnabledRequest method.
-//    req, resp := client.UpdateAccountSendingEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateAccountSendingEnabled
 func (c *SES) UpdateAccountSendingEnabledRequest(input *UpdateAccountSendingEnabledInput) (req *request.Request, output *UpdateAccountSendingEnabledOutput) {
@@ -5570,14 +5529,13 @@ const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDes
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationSetEventDestinationRequest method.
+//	req, resp := client.UpdateConfigurationSetEventDestinationRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationSetEventDestinationRequest method.
-//    req, resp := client.UpdateConfigurationSetEventDestinationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetEventDestination
 func (c *SES) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigurationSetEventDestinationInput) (req *request.Request, output *UpdateConfigurationSetEventDestinationOutput) {
@@ -5620,23 +5578,24 @@ func (c *SES) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigu
 // API operation UpdateConfigurationSetEventDestination for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeEventDestinationDoesNotExistException "EventDestinationDoesNotExist"
-//   Indicates that the event destination does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeInvalidCloudWatchDestinationException "InvalidCloudWatchDestination"
-//   Indicates that the Amazon CloudWatch destination is invalid. See the error
-//   message for details.
+//   - ErrCodeEventDestinationDoesNotExistException "EventDestinationDoesNotExist"
+//     Indicates that the event destination does not exist.
 //
-//   * ErrCodeInvalidFirehoseDestinationException "InvalidFirehoseDestination"
-//   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
-//   error message for details.
+//   - ErrCodeInvalidCloudWatchDestinationException "InvalidCloudWatchDestination"
+//     Indicates that the Amazon CloudWatch destination is invalid. See the error
+//     message for details.
 //
-//   * ErrCodeInvalidSNSDestinationException "InvalidSNSDestination"
-//   Indicates that the Amazon Simple Notification Service (Amazon SNS) destination
-//   is invalid. See the error message for details.
+//   - ErrCodeInvalidFirehoseDestinationException "InvalidFirehoseDestination"
+//     Indicates that the Amazon Kinesis Firehose destination is invalid. See the
+//     error message for details.
+//
+//   - ErrCodeInvalidSNSDestinationException "InvalidSNSDestination"
+//     Indicates that the Amazon Simple Notification Service (Amazon SNS) destination
+//     is invalid. See the error message for details.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetEventDestination
 func (c *SES) UpdateConfigurationSetEventDestination(input *UpdateConfigurationSetEventDestinationInput) (*UpdateConfigurationSetEventDestinationOutput, error) {
@@ -5676,14 +5635,13 @@ const opUpdateConfigurationSetReputationMetricsEnabled = "UpdateConfigurationSet
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationSetReputationMetricsEnabledRequest method.
+//	req, resp := client.UpdateConfigurationSetReputationMetricsEnabledRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationSetReputationMetricsEnabledRequest method.
-//    req, resp := client.UpdateConfigurationSetReputationMetricsEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetReputationMetricsEnabled
 func (c *SES) UpdateConfigurationSetReputationMetricsEnabledRequest(input *UpdateConfigurationSetReputationMetricsEnabledInput) (req *request.Request, output *UpdateConfigurationSetReputationMetricsEnabledOutput) {
@@ -5721,8 +5679,8 @@ func (c *SES) UpdateConfigurationSetReputationMetricsEnabledRequest(input *Updat
 // API operation UpdateConfigurationSetReputationMetricsEnabled for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetReputationMetricsEnabled
 func (c *SES) UpdateConfigurationSetReputationMetricsEnabled(input *UpdateConfigurationSetReputationMetricsEnabledInput) (*UpdateConfigurationSetReputationMetricsEnabledOutput, error) {
@@ -5762,14 +5720,13 @@ const opUpdateConfigurationSetSendingEnabled = "UpdateConfigurationSetSendingEna
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationSetSendingEnabledRequest method.
+//	req, resp := client.UpdateConfigurationSetSendingEnabledRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationSetSendingEnabledRequest method.
-//    req, resp := client.UpdateConfigurationSetSendingEnabledRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetSendingEnabled
 func (c *SES) UpdateConfigurationSetSendingEnabledRequest(input *UpdateConfigurationSetSendingEnabledInput) (req *request.Request, output *UpdateConfigurationSetSendingEnabledOutput) {
@@ -5807,8 +5764,8 @@ func (c *SES) UpdateConfigurationSetSendingEnabledRequest(input *UpdateConfigura
 // API operation UpdateConfigurationSetSendingEnabled for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetSendingEnabled
 func (c *SES) UpdateConfigurationSetSendingEnabled(input *UpdateConfigurationSetSendingEnabledInput) (*UpdateConfigurationSetSendingEnabledOutput, error) {
@@ -5848,14 +5805,13 @@ const opUpdateConfigurationSetTrackingOptions = "UpdateConfigurationSetTrackingO
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConfigurationSetTrackingOptionsRequest method.
+//	req, resp := client.UpdateConfigurationSetTrackingOptionsRequest(params)
 //
-//    // Example sending a request using the UpdateConfigurationSetTrackingOptionsRequest method.
-//    req, resp := client.UpdateConfigurationSetTrackingOptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetTrackingOptions
 func (c *SES) UpdateConfigurationSetTrackingOptionsRequest(input *UpdateConfigurationSetTrackingOptionsInput) (req *request.Request, output *UpdateConfigurationSetTrackingOptionsOutput) {
@@ -5893,19 +5849,20 @@ func (c *SES) UpdateConfigurationSetTrackingOptionsRequest(input *UpdateConfigur
 // API operation UpdateConfigurationSetTrackingOptions for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
-//   Indicates that the configuration set does not exist.
 //
-//   * ErrCodeTrackingOptionsDoesNotExistException "TrackingOptionsDoesNotExistException"
-//   Indicates that the TrackingOptions object you specified does not exist.
+//   - ErrCodeConfigurationSetDoesNotExistException "ConfigurationSetDoesNotExist"
+//     Indicates that the configuration set does not exist.
 //
-//   * ErrCodeInvalidTrackingOptionsException "InvalidTrackingOptions"
-//   Indicates that the custom domain to be used for open and click tracking redirects
-//   is invalid. This error appears most often in the following situations:
+//   - ErrCodeTrackingOptionsDoesNotExistException "TrackingOptionsDoesNotExistException"
+//     Indicates that the TrackingOptions object you specified does not exist.
 //
-//      * When the tracking domain you specified is not verified in Amazon SES.
+//   - ErrCodeInvalidTrackingOptionsException "InvalidTrackingOptions"
+//     Indicates that the custom domain to be used for open and click tracking redirects
+//     is invalid. This error appears most often in the following situations:
 //
-//      * When the tracking domain you specified is not a valid domain or subdomain.
+//   - When the tracking domain you specified is not verified in Amazon SES.
+//
+//   - When the tracking domain you specified is not a valid domain or subdomain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetTrackingOptions
 func (c *SES) UpdateConfigurationSetTrackingOptions(input *UpdateConfigurationSetTrackingOptionsInput) (*UpdateConfigurationSetTrackingOptionsOutput, error) {
@@ -5945,14 +5902,13 @@ const opUpdateCustomVerificationEmailTemplate = "UpdateCustomVerificationEmailTe
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCustomVerificationEmailTemplateRequest method.
+//	req, resp := client.UpdateCustomVerificationEmailTemplateRequest(params)
 //
-//    // Example sending a request using the UpdateCustomVerificationEmailTemplateRequest method.
-//    req, resp := client.UpdateCustomVerificationEmailTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateCustomVerificationEmailTemplate
 func (c *SES) UpdateCustomVerificationEmailTemplateRequest(input *UpdateCustomVerificationEmailTemplateInput) (req *request.Request, output *UpdateCustomVerificationEmailTemplateOutput) {
@@ -5990,17 +5946,18 @@ func (c *SES) UpdateCustomVerificationEmailTemplateRequest(input *UpdateCustomVe
 // API operation UpdateCustomVerificationEmailTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeCustomVerificationEmailTemplateDoesNotExistException "CustomVerificationEmailTemplateDoesNotExist"
-//   Indicates that a custom verification email template with the name you specified
-//   does not exist.
 //
-//   * ErrCodeFromEmailAddressNotVerifiedException "FromEmailAddressNotVerified"
-//   Indicates that the sender address specified for a custom verification email
-//   is not verified, and is therefore not eligible to send the custom verification
-//   email.
+//   - ErrCodeCustomVerificationEmailTemplateDoesNotExistException "CustomVerificationEmailTemplateDoesNotExist"
+//     Indicates that a custom verification email template with the name you specified
+//     does not exist.
 //
-//   * ErrCodeCustomVerificationEmailInvalidContentException "CustomVerificationEmailInvalidContent"
-//   Indicates that custom verification email template provided content is invalid.
+//   - ErrCodeFromEmailAddressNotVerifiedException "FromEmailAddressNotVerified"
+//     Indicates that the sender address specified for a custom verification email
+//     is not verified, and is therefore not eligible to send the custom verification
+//     email.
+//
+//   - ErrCodeCustomVerificationEmailInvalidContentException "CustomVerificationEmailInvalidContent"
+//     Indicates that custom verification email template provided content is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateCustomVerificationEmailTemplate
 func (c *SES) UpdateCustomVerificationEmailTemplate(input *UpdateCustomVerificationEmailTemplateInput) (*UpdateCustomVerificationEmailTemplateOutput, error) {
@@ -6040,14 +5997,13 @@ const opUpdateReceiptRule = "UpdateReceiptRule"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateReceiptRuleRequest method.
+//	req, resp := client.UpdateReceiptRuleRequest(params)
 //
-//    // Example sending a request using the UpdateReceiptRuleRequest method.
-//    req, resp := client.UpdateReceiptRuleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateReceiptRule
 func (c *SES) UpdateReceiptRuleRequest(input *UpdateReceiptRuleInput) (req *request.Request, output *UpdateReceiptRuleOutput) {
@@ -6084,32 +6040,33 @@ func (c *SES) UpdateReceiptRuleRequest(input *UpdateReceiptRuleInput) (req *requ
 // API operation UpdateReceiptRule for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeInvalidSnsTopicException "InvalidSnsTopic"
-//   Indicates that the provided Amazon SNS topic is invalid, or that Amazon SES
-//   could not publish to the topic, possibly due to permissions issues. For information
-//   about giving permissions, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeInvalidS3ConfigurationException "InvalidS3Configuration"
-//   Indicates that the provided Amazon S3 bucket or AWS KMS encryption key is
-//   invalid, or that Amazon SES could not publish to the bucket, possibly due
-//   to permissions issues. For information about giving permissions, see the
-//   Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//   - ErrCodeInvalidSnsTopicException "InvalidSnsTopic"
+//     Indicates that the provided Amazon SNS topic is invalid, or that Amazon SES
+//     could not publish to the topic, possibly due to permissions issues. For information
+//     about giving permissions, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeInvalidLambdaFunctionException "InvalidLambdaFunction"
-//   Indicates that the provided AWS Lambda function is invalid, or that Amazon
-//   SES could not execute the provided function, possibly due to permissions
-//   issues. For information about giving permissions, see the Amazon SES Developer
-//   Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//   - ErrCodeInvalidS3ConfigurationException "InvalidS3Configuration"
+//     Indicates that the provided Amazon S3 bucket or AWS KMS encryption key is
+//     invalid, or that Amazon SES could not publish to the bucket, possibly due
+//     to permissions issues. For information about giving permissions, see the
+//     Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
-//   Indicates that the provided receipt rule set does not exist.
+//   - ErrCodeInvalidLambdaFunctionException "InvalidLambdaFunction"
+//     Indicates that the provided AWS Lambda function is invalid, or that Amazon
+//     SES could not execute the provided function, possibly due to permissions
+//     issues. For information about giving permissions, see the Amazon SES Developer
+//     Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
-//   * ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
-//   Indicates that the provided receipt rule does not exist.
+//   - ErrCodeRuleSetDoesNotExistException "RuleSetDoesNotExist"
+//     Indicates that the provided receipt rule set does not exist.
 //
-//   * ErrCodeLimitExceededException "LimitExceeded"
-//   Indicates that a resource could not be created because of service limits.
-//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   - ErrCodeRuleDoesNotExistException "RuleDoesNotExist"
+//     Indicates that the provided receipt rule does not exist.
+//
+//   - ErrCodeLimitExceededException "LimitExceeded"
+//     Indicates that a resource could not be created because of service limits.
+//     For a list of Amazon SES limits, see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateReceiptRule
 func (c *SES) UpdateReceiptRule(input *UpdateReceiptRuleInput) (*UpdateReceiptRuleOutput, error) {
@@ -6149,14 +6106,13 @@ const opUpdateTemplate = "UpdateTemplate"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateTemplateRequest method.
+//	req, resp := client.UpdateTemplateRequest(params)
 //
-//    // Example sending a request using the UpdateTemplateRequest method.
-//    req, resp := client.UpdateTemplateRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateTemplate
 func (c *SES) UpdateTemplateRequest(input *UpdateTemplateInput) (req *request.Request, output *UpdateTemplateOutput) {
@@ -6192,13 +6148,14 @@ func (c *SES) UpdateTemplateRequest(input *UpdateTemplateInput) (req *request.Re
 // API operation UpdateTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
-//   Indicates that the Template object you specified does not exist in your Amazon
-//   SES account.
 //
-//   * ErrCodeInvalidTemplateException "InvalidTemplate"
-//   Indicates that the template that you specified could not be rendered. This
-//   issue may occur when a template refers to a partial that does not exist.
+//   - ErrCodeTemplateDoesNotExistException "TemplateDoesNotExist"
+//     Indicates that the Template object you specified does not exist in your Amazon
+//     SES account.
+//
+//   - ErrCodeInvalidTemplateException "InvalidTemplate"
+//     Indicates that the template that you specified could not be rendered. This
+//     issue may occur when a template refers to a partial that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateTemplate
 func (c *SES) UpdateTemplate(input *UpdateTemplateInput) (*UpdateTemplateOutput, error) {
@@ -6238,14 +6195,13 @@ const opVerifyDomainDkim = "VerifyDomainDkim"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the VerifyDomainDkimRequest method.
+//	req, resp := client.VerifyDomainDkimRequest(params)
 //
-//    // Example sending a request using the VerifyDomainDkimRequest method.
-//    req, resp := client.VerifyDomainDkimRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyDomainDkim
 func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *request.Request, output *VerifyDomainDkimOutput) {
@@ -6284,11 +6240,11 @@ func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *reques
 //
 // To create the CNAME records for DKIM authentication, use the following values:
 //
-//    * Name: token._domainkey.example.com
+//   - Name: token._domainkey.example.com
 //
-//    * Type: CNAME
+//   - Type: CNAME
 //
-//    * Value: token.dkim.amazonses.com
+//   - Value: token.dkim.amazonses.com
 //
 // In the preceding example, replace token with one of the tokens that are generated
 // when you execute this operation. Replace example.com with your domain. Repeat
@@ -6340,14 +6296,13 @@ const opVerifyDomainIdentity = "VerifyDomainIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the VerifyDomainIdentityRequest method.
+//	req, resp := client.VerifyDomainIdentityRequest(params)
 //
-//    // Example sending a request using the VerifyDomainIdentityRequest method.
-//    req, resp := client.VerifyDomainIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyDomainIdentity
 func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *request.Request, output *VerifyDomainIdentityOutput) {
@@ -6419,14 +6374,13 @@ const opVerifyEmailAddress = "VerifyEmailAddress"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the VerifyEmailAddressRequest method.
+//	req, resp := client.VerifyEmailAddressRequest(params)
 //
-//    // Example sending a request using the VerifyEmailAddressRequest method.
-//    req, resp := client.VerifyEmailAddressRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyEmailAddress
 func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *request.Request, output *VerifyEmailAddressOutput) {
@@ -6494,14 +6448,13 @@ const opVerifyEmailIdentity = "VerifyEmailIdentity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the VerifyEmailIdentityRequest method.
+//	req, resp := client.VerifyEmailIdentityRequest(params)
 //
-//    // Example sending a request using the VerifyEmailIdentityRequest method.
-//    req, resp := client.VerifyEmailIdentityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyEmailIdentity
 func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *request.Request, output *VerifyEmailIdentityOutput) {
@@ -6578,12 +6531,20 @@ type AddHeaderAction struct {
 	HeaderValue *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddHeaderAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddHeaderAction) GoString() string {
 	return s.String()
 }
@@ -6632,12 +6593,20 @@ type Body struct {
 	Text *Content `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) GoString() string {
 	return s.String()
 }
@@ -6709,12 +6678,20 @@ type BounceAction struct {
 	TopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BounceAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BounceAction) GoString() string {
 	return s.String()
 }
@@ -6796,12 +6773,20 @@ type BouncedRecipientInfo struct {
 	RecipientDsnFields *RecipientDsnFields `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BouncedRecipientInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BouncedRecipientInfo) GoString() string {
 	return s.String()
 }
@@ -6878,12 +6863,20 @@ type BulkEmailDestination struct {
 	ReplacementTemplateData *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkEmailDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkEmailDestination) GoString() string {
 	return s.String()
 }
@@ -6987,12 +6980,20 @@ type BulkEmailDestinationStatus struct {
 	Status *string `type:"string" enum:"BulkEmailStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkEmailDestinationStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkEmailDestinationStatus) GoString() string {
 	return s.String()
 }
@@ -7039,12 +7040,20 @@ type CloneReceiptRuleSetInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -7082,12 +7091,20 @@ type CloneReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloneReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -7108,12 +7125,20 @@ type CloudWatchDestination struct {
 	DimensionConfigurations []*CloudWatchDimensionConfiguration `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDestination) GoString() string {
 	return s.String()
 }
@@ -7188,12 +7213,20 @@ type CloudWatchDimensionConfiguration struct {
 	DimensionValueSource *string `type:"string" required:"true" enum:"DimensionValueSource"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDimensionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CloudWatchDimensionConfiguration) GoString() string {
 	return s.String()
 }
@@ -7255,12 +7288,20 @@ type ConfigurationSet struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationSet) GoString() string {
 	return s.String()
 }
@@ -7301,12 +7342,20 @@ type Content struct {
 	Data *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Content) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Content) GoString() string {
 	return s.String()
 }
@@ -7357,12 +7406,20 @@ type CreateConfigurationSetEventDestinationInput struct {
 	EventDestination *EventDestination `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationInput) GoString() string {
 	return s.String()
 }
@@ -7405,12 +7462,20 @@ type CreateConfigurationSetEventDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
@@ -7427,12 +7492,20 @@ type CreateConfigurationSetInput struct {
 	ConfigurationSet *ConfigurationSet `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetInput) GoString() string {
 	return s.String()
 }
@@ -7466,12 +7539,20 @@ type CreateConfigurationSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetOutput) GoString() string {
 	return s.String()
 }
@@ -7499,12 +7580,20 @@ type CreateConfigurationSetTrackingOptionsInput struct {
 	TrackingOptions *TrackingOptions `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetTrackingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetTrackingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -7542,12 +7631,20 @@ type CreateConfigurationSetTrackingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetTrackingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConfigurationSetTrackingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -7593,12 +7690,20 @@ type CreateCustomVerificationEmailTemplateInput struct {
 	TemplateSubject *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomVerificationEmailTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomVerificationEmailTemplateInput) GoString() string {
 	return s.String()
 }
@@ -7671,12 +7776,20 @@ type CreateCustomVerificationEmailTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomVerificationEmailTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCustomVerificationEmailTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -7694,12 +7807,20 @@ type CreateReceiptFilterInput struct {
 	Filter *ReceiptFilter `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptFilterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptFilterInput) GoString() string {
 	return s.String()
 }
@@ -7733,12 +7854,20 @@ type CreateReceiptFilterOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptFilterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptFilterOutput) GoString() string {
 	return s.String()
 }
@@ -7766,12 +7895,20 @@ type CreateReceiptRuleInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleInput) GoString() string {
 	return s.String()
 }
@@ -7820,12 +7957,20 @@ type CreateReceiptRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleOutput) GoString() string {
 	return s.String()
 }
@@ -7849,12 +7994,20 @@ type CreateReceiptRuleSetInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -7883,12 +8036,20 @@ type CreateReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -7905,12 +8066,20 @@ type CreateTemplateInput struct {
 	Template *Template `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateInput) GoString() string {
 	return s.String()
 }
@@ -7943,12 +8112,20 @@ type CreateTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -7975,12 +8152,20 @@ type CustomVerificationEmailTemplate struct {
 	TemplateSubject *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomVerificationEmailTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomVerificationEmailTemplate) GoString() string {
 	return s.String()
 }
@@ -8033,12 +8218,20 @@ type DeleteConfigurationSetEventDestinationInput struct {
 	EventDestinationName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationInput) GoString() string {
 	return s.String()
 }
@@ -8076,12 +8269,20 @@ type DeleteConfigurationSetEventDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
@@ -8098,12 +8299,20 @@ type DeleteConfigurationSetInput struct {
 	ConfigurationSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetInput) GoString() string {
 	return s.String()
 }
@@ -8132,12 +8341,20 @@ type DeleteConfigurationSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetOutput) GoString() string {
 	return s.String()
 }
@@ -8154,12 +8371,20 @@ type DeleteConfigurationSetTrackingOptionsInput struct {
 	ConfigurationSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetTrackingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetTrackingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -8188,12 +8413,20 @@ type DeleteConfigurationSetTrackingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetTrackingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationSetTrackingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -8208,12 +8441,20 @@ type DeleteCustomVerificationEmailTemplateInput struct {
 	TemplateName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomVerificationEmailTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomVerificationEmailTemplateInput) GoString() string {
 	return s.String()
 }
@@ -8241,12 +8482,20 @@ type DeleteCustomVerificationEmailTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomVerificationEmailTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCustomVerificationEmailTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -8262,12 +8511,20 @@ type DeleteIdentityInput struct {
 	Identity *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityInput) GoString() string {
 	return s.String()
 }
@@ -8296,12 +8553,20 @@ type DeleteIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -8328,12 +8593,20 @@ type DeleteIdentityPolicyInput struct {
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPolicyInput) GoString() string {
 	return s.String()
 }
@@ -8374,12 +8647,20 @@ type DeleteIdentityPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIdentityPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -8396,12 +8677,20 @@ type DeleteReceiptFilterInput struct {
 	FilterName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptFilterInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptFilterInput) GoString() string {
 	return s.String()
 }
@@ -8430,12 +8719,20 @@ type DeleteReceiptFilterOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptFilterOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptFilterOutput) GoString() string {
 	return s.String()
 }
@@ -8457,12 +8754,20 @@ type DeleteReceiptRuleInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleInput) GoString() string {
 	return s.String()
 }
@@ -8500,12 +8805,20 @@ type DeleteReceiptRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleOutput) GoString() string {
 	return s.String()
 }
@@ -8522,12 +8835,20 @@ type DeleteReceiptRuleSetInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -8556,12 +8877,20 @@ type DeleteReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -8577,12 +8906,20 @@ type DeleteTemplateInput struct {
 	TemplateName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateInput) GoString() string {
 	return s.String()
 }
@@ -8610,12 +8947,20 @@ type DeleteTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -8631,12 +8976,20 @@ type DeleteVerifiedEmailAddressInput struct {
 	EmailAddress *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVerifiedEmailAddressInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVerifiedEmailAddressInput) GoString() string {
 	return s.String()
 }
@@ -8664,12 +9017,20 @@ type DeleteVerifiedEmailAddressOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVerifiedEmailAddressOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVerifiedEmailAddressOutput) GoString() string {
 	return s.String()
 }
@@ -8686,12 +9047,20 @@ type DeliveryOptions struct {
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryOptions) GoString() string {
 	return s.String()
 }
@@ -8710,12 +9079,20 @@ type DescribeActiveReceiptRuleSetInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeActiveReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeActiveReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -8733,12 +9110,20 @@ type DescribeActiveReceiptRuleSetOutput struct {
 	Rules []*ReceiptRule `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeActiveReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeActiveReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -8762,7 +9147,7 @@ type DescribeConfigurationSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of configuration set attributes to return.
-	ConfigurationSetAttributeNames []*string `type:"list"`
+	ConfigurationSetAttributeNames []*string `type:"list" enum:"ConfigurationSetAttribute"`
 
 	// The name of the configuration set to describe.
 	//
@@ -8770,12 +9155,20 @@ type DescribeConfigurationSetInput struct {
 	ConfigurationSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSetInput) GoString() string {
 	return s.String()
 }
@@ -8830,12 +9223,20 @@ type DescribeConfigurationSetOutput struct {
 	TrackingOptions *TrackingOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationSetOutput) GoString() string {
 	return s.String()
 }
@@ -8887,12 +9288,20 @@ type DescribeReceiptRuleInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleInput) GoString() string {
 	return s.String()
 }
@@ -8935,12 +9344,20 @@ type DescribeReceiptRuleOutput struct {
 	Rule *ReceiptRule `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleOutput) GoString() string {
 	return s.String()
 }
@@ -8963,12 +9380,20 @@ type DescribeReceiptRuleSetInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -9004,12 +9429,20 @@ type DescribeReceiptRuleSetOutput struct {
 	Rules []*ReceiptRule `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -9049,12 +9482,20 @@ type Destination struct {
 	ToAddresses []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Destination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Destination) GoString() string {
 	return s.String()
 }
@@ -9108,7 +9549,7 @@ type EventDestination struct {
 	// The type of email sending events to publish to the event destination.
 	//
 	// MatchingEventTypes is a required field
-	MatchingEventTypes []*string `type:"list" required:"true"`
+	MatchingEventTypes []*string `type:"list" required:"true" enum:"EventType"`
 
 	// The name of the event destination. The name must:
 	//
@@ -9125,12 +9566,20 @@ type EventDestination struct {
 	SNSDestination *SNSDestination `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventDestination) GoString() string {
 	return s.String()
 }
@@ -9223,12 +9672,20 @@ type ExtensionField struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExtensionField) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExtensionField) GoString() string {
 	return s.String()
 }
@@ -9265,12 +9722,20 @@ type GetAccountSendingEnabledInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSendingEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSendingEnabledInput) GoString() string {
 	return s.String()
 }
@@ -9285,12 +9750,20 @@ type GetAccountSendingEnabledOutput struct {
 	Enabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSendingEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccountSendingEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -9311,12 +9784,20 @@ type GetCustomVerificationEmailTemplateInput struct {
 	TemplateName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCustomVerificationEmailTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCustomVerificationEmailTemplateInput) GoString() string {
 	return s.String()
 }
@@ -9365,12 +9846,20 @@ type GetCustomVerificationEmailTemplateOutput struct {
 	TemplateSubject *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCustomVerificationEmailTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCustomVerificationEmailTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -9426,12 +9915,20 @@ type GetIdentityDkimAttributesInput struct {
 	Identities []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityDkimAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityDkimAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9468,12 +9965,20 @@ type GetIdentityDkimAttributesOutput struct {
 	DkimAttributes map[string]*IdentityDkimAttributes `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityDkimAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityDkimAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9496,12 +10001,20 @@ type GetIdentityMailFromDomainAttributesInput struct {
 	Identities []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityMailFromDomainAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityMailFromDomainAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9535,12 +10048,20 @@ type GetIdentityMailFromDomainAttributesOutput struct {
 	MailFromDomainAttributes map[string]*IdentityMailFromDomainAttributes `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityMailFromDomainAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityMailFromDomainAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9565,12 +10086,20 @@ type GetIdentityNotificationAttributesInput struct {
 	Identities []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityNotificationAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityNotificationAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9604,12 +10133,20 @@ type GetIdentityNotificationAttributesOutput struct {
 	NotificationAttributes map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityNotificationAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityNotificationAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9644,12 +10181,20 @@ type GetIdentityPoliciesInput struct {
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoliciesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoliciesInput) GoString() string {
 	return s.String()
 }
@@ -9692,12 +10237,20 @@ type GetIdentityPoliciesOutput struct {
 	Policies map[string]*string `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoliciesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityPoliciesOutput) GoString() string {
 	return s.String()
 }
@@ -9721,12 +10274,20 @@ type GetIdentityVerificationAttributesInput struct {
 	Identities []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityVerificationAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityVerificationAttributesInput) GoString() string {
 	return s.String()
 }
@@ -9761,12 +10322,20 @@ type GetIdentityVerificationAttributesOutput struct {
 	VerificationAttributes map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityVerificationAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIdentityVerificationAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -9781,12 +10350,20 @@ type GetSendQuotaInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendQuotaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendQuotaInput) GoString() string {
 	return s.String()
 }
@@ -9811,12 +10388,20 @@ type GetSendQuotaOutput struct {
 	SentLast24Hours *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendQuotaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendQuotaOutput) GoString() string {
 	return s.String()
 }
@@ -9843,12 +10428,20 @@ type GetSendStatisticsInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendStatisticsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendStatisticsInput) GoString() string {
 	return s.String()
 }
@@ -9862,12 +10455,20 @@ type GetSendStatisticsOutput struct {
 	SendDataPoints []*SendDataPoint `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendStatisticsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSendStatisticsOutput) GoString() string {
 	return s.String()
 }
@@ -9887,12 +10488,20 @@ type GetTemplateInput struct {
 	TemplateName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTemplateInput) GoString() string {
 	return s.String()
 }
@@ -9924,12 +10533,20 @@ type GetTemplateOutput struct {
 	Template *Template `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -9970,12 +10587,20 @@ type IdentityDkimAttributes struct {
 	DkimVerificationStatus *string `type:"string" required:"true" enum:"VerificationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityDkimAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityDkimAttributes) GoString() string {
 	return s.String()
 }
@@ -10031,12 +10656,20 @@ type IdentityMailFromDomainAttributes struct {
 	MailFromDomainStatus *string `type:"string" required:"true" enum:"CustomMailFromStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityMailFromDomainAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityMailFromDomainAttributes) GoString() string {
 	return s.String()
 }
@@ -10111,12 +10744,20 @@ type IdentityNotificationAttributes struct {
 	HeadersInDeliveryNotificationsEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityNotificationAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityNotificationAttributes) GoString() string {
 	return s.String()
 }
@@ -10177,12 +10818,20 @@ type IdentityVerificationAttributes struct {
 	VerificationToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityVerificationAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityVerificationAttributes) GoString() string {
 	return s.String()
 }
@@ -10222,12 +10871,20 @@ type KinesisFirehoseDestination struct {
 	IAMRoleARN *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisFirehoseDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisFirehoseDestination) GoString() string {
 	return s.String()
 }
@@ -10301,12 +10958,20 @@ type LambdaAction struct {
 	TopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaAction) GoString() string {
 	return s.String()
 }
@@ -10357,12 +11022,20 @@ type ListConfigurationSetsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsInput) GoString() string {
 	return s.String()
 }
@@ -10393,12 +11066,20 @@ type ListConfigurationSetsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConfigurationSetsOutput) GoString() string {
 	return s.String()
 }
@@ -10435,12 +11116,20 @@ type ListCustomVerificationEmailTemplatesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCustomVerificationEmailTemplatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCustomVerificationEmailTemplatesInput) GoString() string {
 	return s.String()
 }
@@ -10483,12 +11172,20 @@ type ListCustomVerificationEmailTemplatesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCustomVerificationEmailTemplatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCustomVerificationEmailTemplatesOutput) GoString() string {
 	return s.String()
 }
@@ -10522,12 +11219,20 @@ type ListIdentitiesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesInput) GoString() string {
 	return s.String()
 }
@@ -10564,12 +11269,20 @@ type ListIdentitiesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentitiesOutput) GoString() string {
 	return s.String()
 }
@@ -10603,12 +11316,20 @@ type ListIdentityPoliciesInput struct {
 	Identity *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoliciesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoliciesInput) GoString() string {
 	return s.String()
 }
@@ -10642,12 +11363,20 @@ type ListIdentityPoliciesOutput struct {
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoliciesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIdentityPoliciesOutput) GoString() string {
 	return s.String()
 }
@@ -10665,12 +11394,20 @@ type ListReceiptFiltersInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptFiltersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptFiltersInput) GoString() string {
 	return s.String()
 }
@@ -10684,12 +11421,20 @@ type ListReceiptFiltersOutput struct {
 	Filters []*ReceiptFilter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptFiltersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptFiltersOutput) GoString() string {
 	return s.String()
 }
@@ -10711,12 +11456,20 @@ type ListReceiptRuleSetsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptRuleSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptRuleSetsInput) GoString() string {
 	return s.String()
 }
@@ -10741,12 +11494,20 @@ type ListReceiptRuleSetsOutput struct {
 	RuleSets []*ReceiptRuleSetMetadata `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptRuleSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceiptRuleSetsOutput) GoString() string {
 	return s.String()
 }
@@ -10777,12 +11538,20 @@ type ListTemplatesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesInput) GoString() string {
 	return s.String()
 }
@@ -10812,12 +11581,20 @@ type ListTemplatesOutput struct {
 	TemplatesMetadata []*TemplateMetadata `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesOutput) GoString() string {
 	return s.String()
 }
@@ -10838,12 +11615,20 @@ type ListVerifiedEmailAddressesInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVerifiedEmailAddressesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVerifiedEmailAddressesInput) GoString() string {
 	return s.String()
 }
@@ -10857,12 +11642,20 @@ type ListVerifiedEmailAddressesOutput struct {
 	VerifiedEmailAddresses []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVerifiedEmailAddressesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVerifiedEmailAddressesOutput) GoString() string {
 	return s.String()
 }
@@ -10889,12 +11682,20 @@ type Message struct {
 	Subject *Content `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Message) GoString() string {
 	return s.String()
 }
@@ -10960,12 +11761,20 @@ type MessageDsn struct {
 	ReportingMta *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageDsn) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageDsn) GoString() string {
 	return s.String()
 }
@@ -11041,12 +11850,20 @@ type MessageTag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MessageTag) GoString() string {
 	return s.String()
 }
@@ -11094,12 +11911,20 @@ type PutConfigurationSetDeliveryOptionsInput struct {
 	DeliveryOptions *DeliveryOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsInput) GoString() string {
 	return s.String()
 }
@@ -11135,12 +11960,20 @@ type PutConfigurationSetDeliveryOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationSetDeliveryOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -11178,12 +12011,20 @@ type PutIdentityPolicyInput struct {
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutIdentityPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutIdentityPolicyInput) GoString() string {
 	return s.String()
 }
@@ -11236,12 +12077,20 @@ type PutIdentityPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutIdentityPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutIdentityPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -11267,19 +12116,26 @@ type RawMessage struct {
 	// by Amazon SES before sending the email.
 	//
 	// For more information, go to the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
-	//
 	// Data is automatically base64 encoded/decoded by the SDK.
 	//
 	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RawMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RawMessage) GoString() string {
 	return s.String()
 }
@@ -11340,12 +12196,20 @@ type ReceiptAction struct {
 	WorkmailAction *WorkmailAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptAction) GoString() string {
 	return s.String()
 }
@@ -11464,12 +12328,20 @@ type ReceiptFilter struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptFilter) GoString() string {
 	return s.String()
 }
@@ -11529,12 +12401,20 @@ type ReceiptIpFilter struct {
 	Policy *string `type:"string" required:"true" enum:"ReceiptFilterPolicy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptIpFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptIpFilter) GoString() string {
 	return s.String()
 }
@@ -11616,12 +12496,20 @@ type ReceiptRule struct {
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptRule) GoString() string {
 	return s.String()
 }
@@ -11709,12 +12597,20 @@ type ReceiptRuleSetMetadata struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptRuleSetMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceiptRuleSetMetadata) GoString() string {
 	return s.String()
 }
@@ -11781,12 +12677,20 @@ type RecipientDsnFields struct {
 	Status *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecipientDsnFields) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecipientDsnFields) GoString() string {
 	return s.String()
 }
@@ -11877,12 +12781,20 @@ type ReorderReceiptRuleSetInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReorderReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReorderReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -11920,12 +12832,20 @@ type ReorderReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReorderReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReorderReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -11960,12 +12880,20 @@ type ReputationOptions struct {
 	SendingEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReputationOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReputationOptions) GoString() string {
 	return s.String()
 }
@@ -12053,12 +12981,20 @@ type S3Action struct {
 	TopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Action) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Action) GoString() string {
 	return s.String()
 }
@@ -12136,12 +13072,20 @@ type SNSAction struct {
 	TopicArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSAction) GoString() string {
 	return s.String()
 }
@@ -12189,12 +13133,20 @@ type SNSDestination struct {
 	TopicARN *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SNSDestination) GoString() string {
 	return s.String()
 }
@@ -12257,12 +13209,20 @@ type SendBounceInput struct {
 	OriginalMessageId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBounceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBounceInput) GoString() string {
 	return s.String()
 }
@@ -12345,12 +13305,20 @@ type SendBounceOutput struct {
 	MessageId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBounceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBounceOutput) GoString() string {
 	return s.String()
 }
@@ -12460,12 +13428,20 @@ type SendBulkTemplatedEmailInput struct {
 	TemplateArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBulkTemplatedEmailInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBulkTemplatedEmailInput) GoString() string {
 	return s.String()
 }
@@ -12584,12 +13560,20 @@ type SendBulkTemplatedEmailOutput struct {
 	Status []*BulkEmailDestinationStatus `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBulkTemplatedEmailOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendBulkTemplatedEmailOutput) GoString() string {
 	return s.String()
 }
@@ -12619,12 +13603,20 @@ type SendCustomVerificationEmailInput struct {
 	TemplateName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendCustomVerificationEmailInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendCustomVerificationEmailInput) GoString() string {
 	return s.String()
 }
@@ -12672,12 +13664,20 @@ type SendCustomVerificationEmailOutput struct {
 	MessageId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendCustomVerificationEmailOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendCustomVerificationEmailOutput) GoString() string {
 	return s.String()
 }
@@ -12709,12 +13709,20 @@ type SendDataPoint struct {
 	Timestamp *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendDataPoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendDataPoint) GoString() string {
 	return s.String()
 }
@@ -12836,12 +13844,20 @@ type SendEmailInput struct {
 	Tags []*MessageTag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailInput) GoString() string {
 	return s.String()
 }
@@ -12944,12 +13960,20 @@ type SendEmailOutput struct {
 	MessageId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendEmailOutput) GoString() string {
 	return s.String()
 }
@@ -13075,12 +14099,20 @@ type SendRawEmailInput struct {
 	Tags []*MessageTag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendRawEmailInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendRawEmailInput) GoString() string {
 	return s.String()
 }
@@ -13171,12 +14203,20 @@ type SendRawEmailOutput struct {
 	MessageId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendRawEmailOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendRawEmailOutput) GoString() string {
 	return s.String()
 }
@@ -13285,12 +14325,20 @@ type SendTemplatedEmailInput struct {
 	TemplateData *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendTemplatedEmailInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendTemplatedEmailInput) GoString() string {
 	return s.String()
 }
@@ -13402,12 +14450,20 @@ type SendTemplatedEmailOutput struct {
 	MessageId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendTemplatedEmailOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SendTemplatedEmailOutput) GoString() string {
 	return s.String()
 }
@@ -13429,12 +14485,20 @@ type SetActiveReceiptRuleSetInput struct {
 	RuleSetName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetActiveReceiptRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetActiveReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -13450,12 +14514,20 @@ type SetActiveReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetActiveReceiptRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetActiveReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -13478,12 +14550,20 @@ type SetIdentityDkimEnabledInput struct {
 	Identity *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityDkimEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityDkimEnabledInput) GoString() string {
 	return s.String()
 }
@@ -13521,12 +14601,20 @@ type SetIdentityDkimEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityDkimEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityDkimEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -13554,12 +14642,20 @@ type SetIdentityFeedbackForwardingEnabledInput struct {
 	Identity *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityFeedbackForwardingEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityFeedbackForwardingEnabledInput) GoString() string {
 	return s.String()
 }
@@ -13597,12 +14693,20 @@ type SetIdentityFeedbackForwardingEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityFeedbackForwardingEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityFeedbackForwardingEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -13636,12 +14740,20 @@ type SetIdentityHeadersInNotificationsEnabledInput struct {
 	NotificationType *string `type:"string" required:"true" enum:"NotificationType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityHeadersInNotificationsEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityHeadersInNotificationsEnabledInput) GoString() string {
 	return s.String()
 }
@@ -13688,12 +14800,20 @@ type SetIdentityHeadersInNotificationsEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityHeadersInNotificationsEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityHeadersInNotificationsEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -13730,12 +14850,20 @@ type SetIdentityMailFromDomainInput struct {
 	MailFromDomain *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityMailFromDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityMailFromDomainInput) GoString() string {
 	return s.String()
 }
@@ -13776,12 +14904,20 @@ type SetIdentityMailFromDomainOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityMailFromDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityMailFromDomainOutput) GoString() string {
 	return s.String()
 }
@@ -13817,12 +14953,20 @@ type SetIdentityNotificationTopicInput struct {
 	SnsTopic *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityNotificationTopicInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityNotificationTopicInput) GoString() string {
 	return s.String()
 }
@@ -13866,12 +15010,20 @@ type SetIdentityNotificationTopicOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityNotificationTopicOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetIdentityNotificationTopicOutput) GoString() string {
 	return s.String()
 }
@@ -13896,12 +15048,20 @@ type SetReceiptRulePositionInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetReceiptRulePositionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetReceiptRulePositionInput) GoString() string {
 	return s.String()
 }
@@ -13945,12 +15105,20 @@ type SetReceiptRulePositionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetReceiptRulePositionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SetReceiptRulePositionOutput) GoString() string {
 	return s.String()
 }
@@ -13976,12 +15144,20 @@ type StopAction struct {
 	TopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopAction) GoString() string {
 	return s.String()
 }
@@ -14033,12 +15209,20 @@ type Template struct {
 	TextPart *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Template) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Template) GoString() string {
 	return s.String()
 }
@@ -14091,12 +15275,20 @@ type TemplateMetadata struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateMetadata) GoString() string {
 	return s.String()
 }
@@ -14129,12 +15321,20 @@ type TestRenderTemplateInput struct {
 	TemplateName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRenderTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRenderTemplateInput) GoString() string {
 	return s.String()
 }
@@ -14175,12 +15375,20 @@ type TestRenderTemplateOutput struct {
 	RenderedTemplate *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRenderTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TestRenderTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -14206,12 +15414,20 @@ type TrackingOptions struct {
 	CustomRedirectDomain *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TrackingOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TrackingOptions) GoString() string {
 	return s.String()
 }
@@ -14232,12 +15448,20 @@ type UpdateAccountSendingEnabledInput struct {
 	Enabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSendingEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSendingEnabledInput) GoString() string {
 	return s.String()
 }
@@ -14252,12 +15476,20 @@ type UpdateAccountSendingEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSendingEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSendingEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -14281,12 +15513,20 @@ type UpdateConfigurationSetEventDestinationInput struct {
 	EventDestination *EventDestination `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationInput) GoString() string {
 	return s.String()
 }
@@ -14329,12 +15569,20 @@ type UpdateConfigurationSetEventDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetEventDestinationOutput) GoString() string {
 	return s.String()
 }
@@ -14356,12 +15604,20 @@ type UpdateConfigurationSetReputationMetricsEnabledInput struct {
 	Enabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetReputationMetricsEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetReputationMetricsEnabledInput) GoString() string {
 	return s.String()
 }
@@ -14398,12 +15654,20 @@ type UpdateConfigurationSetReputationMetricsEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetReputationMetricsEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetReputationMetricsEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -14425,12 +15689,20 @@ type UpdateConfigurationSetSendingEnabledInput struct {
 	Enabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetSendingEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetSendingEnabledInput) GoString() string {
 	return s.String()
 }
@@ -14467,12 +15739,20 @@ type UpdateConfigurationSetSendingEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetSendingEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetSendingEnabledOutput) GoString() string {
 	return s.String()
 }
@@ -14499,12 +15779,20 @@ type UpdateConfigurationSetTrackingOptionsInput struct {
 	TrackingOptions *TrackingOptions `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetTrackingOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetTrackingOptionsInput) GoString() string {
 	return s.String()
 }
@@ -14542,12 +15830,20 @@ type UpdateConfigurationSetTrackingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetTrackingOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConfigurationSetTrackingOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -14583,12 +15879,20 @@ type UpdateCustomVerificationEmailTemplateInput struct {
 	TemplateSubject *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCustomVerificationEmailTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCustomVerificationEmailTemplateInput) GoString() string {
 	return s.String()
 }
@@ -14646,12 +15950,20 @@ type UpdateCustomVerificationEmailTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCustomVerificationEmailTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCustomVerificationEmailTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -14673,12 +15985,20 @@ type UpdateReceiptRuleInput struct {
 	RuleSetName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReceiptRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReceiptRuleInput) GoString() string {
 	return s.String()
 }
@@ -14721,12 +16041,20 @@ type UpdateReceiptRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReceiptRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateReceiptRuleOutput) GoString() string {
 	return s.String()
 }
@@ -14741,12 +16069,20 @@ type UpdateTemplateInput struct {
 	Template *Template `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateInput) GoString() string {
 	return s.String()
 }
@@ -14779,12 +16115,20 @@ type UpdateTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -14801,12 +16145,20 @@ type VerifyDomainDkimInput struct {
 	Domain *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainDkimInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainDkimInput) GoString() string {
 	return s.String()
 }
@@ -14852,12 +16204,20 @@ type VerifyDomainDkimOutput struct {
 	DkimTokens []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainDkimOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainDkimOutput) GoString() string {
 	return s.String()
 }
@@ -14881,12 +16241,20 @@ type VerifyDomainIdentityInput struct {
 	Domain *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainIdentityInput) GoString() string {
 	return s.String()
 }
@@ -14929,12 +16297,20 @@ type VerifyDomainIdentityOutput struct {
 	VerificationToken *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyDomainIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -14957,12 +16333,20 @@ type VerifyEmailAddressInput struct {
 	EmailAddress *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailAddressInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailAddressInput) GoString() string {
 	return s.String()
 }
@@ -14990,12 +16374,20 @@ type VerifyEmailAddressOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailAddressOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailAddressOutput) GoString() string {
 	return s.String()
 }
@@ -15012,12 +16404,20 @@ type VerifyEmailIdentityInput struct {
 	EmailAddress *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailIdentityInput) GoString() string {
 	return s.String()
 }
@@ -15046,12 +16446,20 @@ type VerifyEmailIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VerifyEmailIdentityOutput) GoString() string {
 	return s.String()
 }
@@ -15081,12 +16489,20 @@ type WorkmailAction struct {
 	TopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorkmailAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WorkmailAction) GoString() string {
 	return s.String()
 }
@@ -15124,6 +16540,14 @@ const (
 	BehaviorOnMXFailureRejectMessage = "RejectMessage"
 )
 
+// BehaviorOnMXFailure_Values returns all elements of the BehaviorOnMXFailure enum
+func BehaviorOnMXFailure_Values() []string {
+	return []string{
+		BehaviorOnMXFailureUseDefaultValue,
+		BehaviorOnMXFailureRejectMessage,
+	}
+}
+
 const (
 	// BounceTypeDoesNotExist is a BounceType enum value
 	BounceTypeDoesNotExist = "DoesNotExist"
@@ -15143,6 +16567,18 @@ const (
 	// BounceTypeTemporaryFailure is a BounceType enum value
 	BounceTypeTemporaryFailure = "TemporaryFailure"
 )
+
+// BounceType_Values returns all elements of the BounceType enum
+func BounceType_Values() []string {
+	return []string{
+		BounceTypeDoesNotExist,
+		BounceTypeMessageTooLarge,
+		BounceTypeExceededQuota,
+		BounceTypeContentRejected,
+		BounceTypeUndefined,
+		BounceTypeTemporaryFailure,
+	}
+}
 
 const (
 	// BulkEmailStatusSuccess is a BulkEmailStatus enum value
@@ -15188,6 +16624,26 @@ const (
 	BulkEmailStatusFailed = "Failed"
 )
 
+// BulkEmailStatus_Values returns all elements of the BulkEmailStatus enum
+func BulkEmailStatus_Values() []string {
+	return []string{
+		BulkEmailStatusSuccess,
+		BulkEmailStatusMessageRejected,
+		BulkEmailStatusMailFromDomainNotVerified,
+		BulkEmailStatusConfigurationSetDoesNotExist,
+		BulkEmailStatusTemplateDoesNotExist,
+		BulkEmailStatusAccountSuspended,
+		BulkEmailStatusAccountThrottled,
+		BulkEmailStatusAccountDailyQuotaExceeded,
+		BulkEmailStatusInvalidSendingPoolName,
+		BulkEmailStatusAccountSendingPaused,
+		BulkEmailStatusConfigurationSetSendingPaused,
+		BulkEmailStatusInvalidParameterValue,
+		BulkEmailStatusTransientFailure,
+		BulkEmailStatusFailed,
+	}
+}
+
 const (
 	// ConfigurationSetAttributeEventDestinations is a ConfigurationSetAttribute enum value
 	ConfigurationSetAttributeEventDestinations = "eventDestinations"
@@ -15201,6 +16657,16 @@ const (
 	// ConfigurationSetAttributeReputationOptions is a ConfigurationSetAttribute enum value
 	ConfigurationSetAttributeReputationOptions = "reputationOptions"
 )
+
+// ConfigurationSetAttribute_Values returns all elements of the ConfigurationSetAttribute enum
+func ConfigurationSetAttribute_Values() []string {
+	return []string{
+		ConfigurationSetAttributeEventDestinations,
+		ConfigurationSetAttributeTrackingOptions,
+		ConfigurationSetAttributeDeliveryOptions,
+		ConfigurationSetAttributeReputationOptions,
+	}
+}
 
 const (
 	// CustomMailFromStatusPending is a CustomMailFromStatus enum value
@@ -15216,6 +16682,16 @@ const (
 	CustomMailFromStatusTemporaryFailure = "TemporaryFailure"
 )
 
+// CustomMailFromStatus_Values returns all elements of the CustomMailFromStatus enum
+func CustomMailFromStatus_Values() []string {
+	return []string{
+		CustomMailFromStatusPending,
+		CustomMailFromStatusSuccess,
+		CustomMailFromStatusFailed,
+		CustomMailFromStatusTemporaryFailure,
+	}
+}
+
 const (
 	// DimensionValueSourceMessageTag is a DimensionValueSource enum value
 	DimensionValueSourceMessageTag = "messageTag"
@@ -15226,6 +16702,15 @@ const (
 	// DimensionValueSourceLinkTag is a DimensionValueSource enum value
 	DimensionValueSourceLinkTag = "linkTag"
 )
+
+// DimensionValueSource_Values returns all elements of the DimensionValueSource enum
+func DimensionValueSource_Values() []string {
+	return []string{
+		DimensionValueSourceMessageTag,
+		DimensionValueSourceEmailHeader,
+		DimensionValueSourceLinkTag,
+	}
+}
 
 const (
 	// DsnActionFailed is a DsnAction enum value
@@ -15243,6 +16728,17 @@ const (
 	// DsnActionExpanded is a DsnAction enum value
 	DsnActionExpanded = "expanded"
 )
+
+// DsnAction_Values returns all elements of the DsnAction enum
+func DsnAction_Values() []string {
+	return []string{
+		DsnActionFailed,
+		DsnActionDelayed,
+		DsnActionDelivered,
+		DsnActionRelayed,
+		DsnActionExpanded,
+	}
+}
 
 const (
 	// EventTypeSend is a EventType enum value
@@ -15270,6 +16766,20 @@ const (
 	EventTypeRenderingFailure = "renderingFailure"
 )
 
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeSend,
+		EventTypeReject,
+		EventTypeBounce,
+		EventTypeComplaint,
+		EventTypeDelivery,
+		EventTypeOpen,
+		EventTypeClick,
+		EventTypeRenderingFailure,
+	}
+}
+
 const (
 	// IdentityTypeEmailAddress is a IdentityType enum value
 	IdentityTypeEmailAddress = "EmailAddress"
@@ -15278,6 +16788,14 @@ const (
 	IdentityTypeDomain = "Domain"
 )
 
+// IdentityType_Values returns all elements of the IdentityType enum
+func IdentityType_Values() []string {
+	return []string{
+		IdentityTypeEmailAddress,
+		IdentityTypeDomain,
+	}
+}
+
 const (
 	// InvocationTypeEvent is a InvocationType enum value
 	InvocationTypeEvent = "Event"
@@ -15285,6 +16803,14 @@ const (
 	// InvocationTypeRequestResponse is a InvocationType enum value
 	InvocationTypeRequestResponse = "RequestResponse"
 )
+
+// InvocationType_Values returns all elements of the InvocationType enum
+func InvocationType_Values() []string {
+	return []string{
+		InvocationTypeEvent,
+		InvocationTypeRequestResponse,
+	}
+}
 
 const (
 	// NotificationTypeBounce is a NotificationType enum value
@@ -15297,6 +16823,15 @@ const (
 	NotificationTypeDelivery = "Delivery"
 )
 
+// NotificationType_Values returns all elements of the NotificationType enum
+func NotificationType_Values() []string {
+	return []string{
+		NotificationTypeBounce,
+		NotificationTypeComplaint,
+		NotificationTypeDelivery,
+	}
+}
+
 const (
 	// ReceiptFilterPolicyBlock is a ReceiptFilterPolicy enum value
 	ReceiptFilterPolicyBlock = "Block"
@@ -15304,6 +16839,14 @@ const (
 	// ReceiptFilterPolicyAllow is a ReceiptFilterPolicy enum value
 	ReceiptFilterPolicyAllow = "Allow"
 )
+
+// ReceiptFilterPolicy_Values returns all elements of the ReceiptFilterPolicy enum
+func ReceiptFilterPolicy_Values() []string {
+	return []string{
+		ReceiptFilterPolicyBlock,
+		ReceiptFilterPolicyAllow,
+	}
+}
 
 const (
 	// SNSActionEncodingUtf8 is a SNSActionEncoding enum value
@@ -15313,10 +16856,25 @@ const (
 	SNSActionEncodingBase64 = "Base64"
 )
 
+// SNSActionEncoding_Values returns all elements of the SNSActionEncoding enum
+func SNSActionEncoding_Values() []string {
+	return []string{
+		SNSActionEncodingUtf8,
+		SNSActionEncodingBase64,
+	}
+}
+
 const (
 	// StopScopeRuleSet is a StopScope enum value
 	StopScopeRuleSet = "RuleSet"
 )
+
+// StopScope_Values returns all elements of the StopScope enum
+func StopScope_Values() []string {
+	return []string{
+		StopScopeRuleSet,
+	}
+}
 
 const (
 	// TlsPolicyRequire is a TlsPolicy enum value
@@ -15325,6 +16883,14 @@ const (
 	// TlsPolicyOptional is a TlsPolicy enum value
 	TlsPolicyOptional = "Optional"
 )
+
+// TlsPolicy_Values returns all elements of the TlsPolicy enum
+func TlsPolicy_Values() []string {
+	return []string{
+		TlsPolicyRequire,
+		TlsPolicyOptional,
+	}
+}
 
 const (
 	// VerificationStatusPending is a VerificationStatus enum value
@@ -15342,3 +16908,14 @@ const (
 	// VerificationStatusNotStarted is a VerificationStatus enum value
 	VerificationStatusNotStarted = "NotStarted"
 )
+
+// VerificationStatus_Values returns all elements of the VerificationStatus enum
+func VerificationStatus_Values() []string {
+	return []string{
+		VerificationStatusPending,
+		VerificationStatusSuccess,
+		VerificationStatusFailed,
+		VerificationStatusTemporaryFailure,
+		VerificationStatusNotStarted,
+	}
+}

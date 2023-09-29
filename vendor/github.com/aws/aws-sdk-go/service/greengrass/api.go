@@ -28,14 +28,13 @@ const opAssociateRoleToGroup = "AssociateRoleToGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateRoleToGroupRequest method.
+//	req, resp := client.AssociateRoleToGroupRequest(params)
 //
-//    // Example sending a request using the AssociateRoleToGroupRequest method.
-//    req, resp := client.AssociateRoleToGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/AssociateRoleToGroup
 func (c *Greengrass) AssociateRoleToGroupRequest(input *AssociateRoleToGroupInput) (req *request.Request, output *AssociateRoleToGroupOutput) {
@@ -68,11 +67,12 @@ func (c *Greengrass) AssociateRoleToGroupRequest(input *AssociateRoleToGroupInpu
 // API operation AssociateRoleToGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/AssociateRoleToGroup
 func (c *Greengrass) AssociateRoleToGroup(input *AssociateRoleToGroupInput) (*AssociateRoleToGroupOutput, error) {
@@ -112,14 +112,13 @@ const opAssociateServiceRoleToAccount = "AssociateServiceRoleToAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateServiceRoleToAccountRequest method.
+//	req, resp := client.AssociateServiceRoleToAccountRequest(params)
 //
-//    // Example sending a request using the AssociateServiceRoleToAccountRequest method.
-//    req, resp := client.AssociateServiceRoleToAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/AssociateServiceRoleToAccount
 func (c *Greengrass) AssociateServiceRoleToAccountRequest(input *AssociateServiceRoleToAccountInput) (req *request.Request, output *AssociateServiceRoleToAccountOutput) {
@@ -143,7 +142,7 @@ func (c *Greengrass) AssociateServiceRoleToAccountRequest(input *AssociateServic
 // Associates a role with your account. AWS IoT Greengrass will use the role
 // to access your Lambda functions and AWS IoT resources. This is necessary
 // for deployments to succeed. The role must have at least minimum permissions
-// in the policy ''AWSGreengrassResourceAccessRolePolicy''.
+// in the policy ”AWSGreengrassResourceAccessRolePolicy”.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -153,11 +152,12 @@ func (c *Greengrass) AssociateServiceRoleToAccountRequest(input *AssociateServic
 // API operation AssociateServiceRoleToAccount for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/AssociateServiceRoleToAccount
 func (c *Greengrass) AssociateServiceRoleToAccount(input *AssociateServiceRoleToAccountInput) (*AssociateServiceRoleToAccountOutput, error) {
@@ -197,14 +197,13 @@ const opCreateConnectorDefinition = "CreateConnectorDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConnectorDefinitionRequest method.
+//	req, resp := client.CreateConnectorDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateConnectorDefinitionRequest method.
-//    req, resp := client.CreateConnectorDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinition
 func (c *Greengrass) CreateConnectorDefinitionRequest(input *CreateConnectorDefinitionInput) (req *request.Request, output *CreateConnectorDefinitionOutput) {
@@ -226,7 +225,7 @@ func (c *Greengrass) CreateConnectorDefinitionRequest(input *CreateConnectorDefi
 // CreateConnectorDefinition API operation for AWS Greengrass.
 //
 // Creates a connector definition. You may provide the initial version of the
-// connector definition now or use ''CreateConnectorDefinitionVersion'' at a
+// connector definition now or use ”CreateConnectorDefinitionVersion” at a
 // later time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -237,8 +236,8 @@ func (c *Greengrass) CreateConnectorDefinitionRequest(input *CreateConnectorDefi
 // API operation CreateConnectorDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinition
 func (c *Greengrass) CreateConnectorDefinition(input *CreateConnectorDefinitionInput) (*CreateConnectorDefinitionOutput, error) {
@@ -278,14 +277,13 @@ const opCreateConnectorDefinitionVersion = "CreateConnectorDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateConnectorDefinitionVersionRequest method.
+//	req, resp := client.CreateConnectorDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateConnectorDefinitionVersionRequest method.
-//    req, resp := client.CreateConnectorDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinitionVersion
 func (c *Greengrass) CreateConnectorDefinitionVersionRequest(input *CreateConnectorDefinitionVersionInput) (req *request.Request, output *CreateConnectorDefinitionVersionOutput) {
@@ -316,8 +314,8 @@ func (c *Greengrass) CreateConnectorDefinitionVersionRequest(input *CreateConnec
 // API operation CreateConnectorDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateConnectorDefinitionVersion
 func (c *Greengrass) CreateConnectorDefinitionVersion(input *CreateConnectorDefinitionVersionInput) (*CreateConnectorDefinitionVersionOutput, error) {
@@ -357,14 +355,13 @@ const opCreateCoreDefinition = "CreateCoreDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCoreDefinitionRequest method.
+//	req, resp := client.CreateCoreDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateCoreDefinitionRequest method.
-//    req, resp := client.CreateCoreDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateCoreDefinition
 func (c *Greengrass) CreateCoreDefinitionRequest(input *CreateCoreDefinitionInput) (req *request.Request, output *CreateCoreDefinitionOutput) {
@@ -386,7 +383,7 @@ func (c *Greengrass) CreateCoreDefinitionRequest(input *CreateCoreDefinitionInpu
 // CreateCoreDefinition API operation for AWS Greengrass.
 //
 // Creates a core definition. You may provide the initial version of the core
-// definition now or use ''CreateCoreDefinitionVersion'' at a later time. Greengrass
+// definition now or use ”CreateCoreDefinitionVersion” at a later time. Greengrass
 // groups must each contain exactly one Greengrass core.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -397,8 +394,8 @@ func (c *Greengrass) CreateCoreDefinitionRequest(input *CreateCoreDefinitionInpu
 // API operation CreateCoreDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateCoreDefinition
 func (c *Greengrass) CreateCoreDefinition(input *CreateCoreDefinitionInput) (*CreateCoreDefinitionOutput, error) {
@@ -438,14 +435,13 @@ const opCreateCoreDefinitionVersion = "CreateCoreDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateCoreDefinitionVersionRequest method.
+//	req, resp := client.CreateCoreDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateCoreDefinitionVersionRequest method.
-//    req, resp := client.CreateCoreDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateCoreDefinitionVersion
 func (c *Greengrass) CreateCoreDefinitionVersionRequest(input *CreateCoreDefinitionVersionInput) (req *request.Request, output *CreateCoreDefinitionVersionOutput) {
@@ -477,8 +473,8 @@ func (c *Greengrass) CreateCoreDefinitionVersionRequest(input *CreateCoreDefinit
 // API operation CreateCoreDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateCoreDefinitionVersion
 func (c *Greengrass) CreateCoreDefinitionVersion(input *CreateCoreDefinitionVersionInput) (*CreateCoreDefinitionVersionOutput, error) {
@@ -518,14 +514,13 @@ const opCreateDeployment = "CreateDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeploymentRequest method.
+//	req, resp := client.CreateDeploymentRequest(params)
 //
-//    // Example sending a request using the CreateDeploymentRequest method.
-//    req, resp := client.CreateDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateDeployment
 func (c *Greengrass) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request.Request, output *CreateDeploymentOutput) {
@@ -546,8 +541,8 @@ func (c *Greengrass) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 
 // CreateDeployment API operation for AWS Greengrass.
 //
-// Creates a deployment. ''CreateDeployment'' requests are idempotent with respect
-// to the ''X-Amzn-Client-Token'' token and the request parameters.
+// Creates a deployment. ”CreateDeployment” requests are idempotent with respect
+// to the ”X-Amzn-Client-Token” token and the request parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -557,8 +552,8 @@ func (c *Greengrass) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 // API operation CreateDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateDeployment
 func (c *Greengrass) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
@@ -598,14 +593,13 @@ const opCreateDeviceDefinition = "CreateDeviceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeviceDefinitionRequest method.
+//	req, resp := client.CreateDeviceDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateDeviceDefinitionRequest method.
-//    req, resp := client.CreateDeviceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateDeviceDefinition
 func (c *Greengrass) CreateDeviceDefinitionRequest(input *CreateDeviceDefinitionInput) (req *request.Request, output *CreateDeviceDefinitionOutput) {
@@ -627,7 +621,7 @@ func (c *Greengrass) CreateDeviceDefinitionRequest(input *CreateDeviceDefinition
 // CreateDeviceDefinition API operation for AWS Greengrass.
 //
 // Creates a device definition. You may provide the initial version of the device
-// definition now or use ''CreateDeviceDefinitionVersion'' at a later time.
+// definition now or use ”CreateDeviceDefinitionVersion” at a later time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -637,8 +631,8 @@ func (c *Greengrass) CreateDeviceDefinitionRequest(input *CreateDeviceDefinition
 // API operation CreateDeviceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateDeviceDefinition
 func (c *Greengrass) CreateDeviceDefinition(input *CreateDeviceDefinitionInput) (*CreateDeviceDefinitionOutput, error) {
@@ -678,14 +672,13 @@ const opCreateDeviceDefinitionVersion = "CreateDeviceDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDeviceDefinitionVersionRequest method.
+//	req, resp := client.CreateDeviceDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateDeviceDefinitionVersionRequest method.
-//    req, resp := client.CreateDeviceDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateDeviceDefinitionVersion
 func (c *Greengrass) CreateDeviceDefinitionVersionRequest(input *CreateDeviceDefinitionVersionInput) (req *request.Request, output *CreateDeviceDefinitionVersionOutput) {
@@ -716,8 +709,8 @@ func (c *Greengrass) CreateDeviceDefinitionVersionRequest(input *CreateDeviceDef
 // API operation CreateDeviceDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateDeviceDefinitionVersion
 func (c *Greengrass) CreateDeviceDefinitionVersion(input *CreateDeviceDefinitionVersionInput) (*CreateDeviceDefinitionVersionOutput, error) {
@@ -757,14 +750,13 @@ const opCreateFunctionDefinition = "CreateFunctionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFunctionDefinitionRequest method.
+//	req, resp := client.CreateFunctionDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateFunctionDefinitionRequest method.
-//    req, resp := client.CreateFunctionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateFunctionDefinition
 func (c *Greengrass) CreateFunctionDefinitionRequest(input *CreateFunctionDefinitionInput) (req *request.Request, output *CreateFunctionDefinitionOutput) {
@@ -788,7 +780,7 @@ func (c *Greengrass) CreateFunctionDefinitionRequest(input *CreateFunctionDefini
 // Creates a Lambda function definition which contains a list of Lambda functions
 // and their configurations to be used in a group. You can create an initial
 // version of the definition by providing a list of Lambda functions and their
-// configurations now, or use ''CreateFunctionDefinitionVersion'' later.
+// configurations now, or use ”CreateFunctionDefinitionVersion” later.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -798,8 +790,8 @@ func (c *Greengrass) CreateFunctionDefinitionRequest(input *CreateFunctionDefini
 // API operation CreateFunctionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateFunctionDefinition
 func (c *Greengrass) CreateFunctionDefinition(input *CreateFunctionDefinitionInput) (*CreateFunctionDefinitionOutput, error) {
@@ -839,14 +831,13 @@ const opCreateFunctionDefinitionVersion = "CreateFunctionDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFunctionDefinitionVersionRequest method.
+//	req, resp := client.CreateFunctionDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateFunctionDefinitionVersionRequest method.
-//    req, resp := client.CreateFunctionDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateFunctionDefinitionVersion
 func (c *Greengrass) CreateFunctionDefinitionVersionRequest(input *CreateFunctionDefinitionVersionInput) (req *request.Request, output *CreateFunctionDefinitionVersionOutput) {
@@ -877,8 +868,8 @@ func (c *Greengrass) CreateFunctionDefinitionVersionRequest(input *CreateFunctio
 // API operation CreateFunctionDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateFunctionDefinitionVersion
 func (c *Greengrass) CreateFunctionDefinitionVersion(input *CreateFunctionDefinitionVersionInput) (*CreateFunctionDefinitionVersionOutput, error) {
@@ -918,14 +909,13 @@ const opCreateGroup = "CreateGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGroupRequest method.
+//	req, resp := client.CreateGroupRequest(params)
 //
-//    // Example sending a request using the CreateGroupRequest method.
-//    req, resp := client.CreateGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateGroup
 func (c *Greengrass) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
@@ -947,7 +937,7 @@ func (c *Greengrass) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 // CreateGroup API operation for AWS Greengrass.
 //
 // Creates a group. You may provide the initial version of the group or use
-// ''CreateGroupVersion'' at a later time. Tip: You can use the ''gg_group_setup''
+// ”CreateGroupVersion” at a later time. Tip: You can use the ”gg_group_setup”
 // package (https://github.com/awslabs/aws-greengrass-group-setup) as a library
 // or command-line application to create and deploy Greengrass groups.
 //
@@ -959,8 +949,8 @@ func (c *Greengrass) CreateGroupRequest(input *CreateGroupInput) (req *request.R
 // API operation CreateGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateGroup
 func (c *Greengrass) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
@@ -1000,14 +990,13 @@ const opCreateGroupCertificateAuthority = "CreateGroupCertificateAuthority"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGroupCertificateAuthorityRequest method.
+//	req, resp := client.CreateGroupCertificateAuthorityRequest(params)
 //
-//    // Example sending a request using the CreateGroupCertificateAuthorityRequest method.
-//    req, resp := client.CreateGroupCertificateAuthorityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateGroupCertificateAuthority
 func (c *Greengrass) CreateGroupCertificateAuthorityRequest(input *CreateGroupCertificateAuthorityInput) (req *request.Request, output *CreateGroupCertificateAuthorityOutput) {
@@ -1039,11 +1028,12 @@ func (c *Greengrass) CreateGroupCertificateAuthorityRequest(input *CreateGroupCe
 // API operation CreateGroupCertificateAuthority for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateGroupCertificateAuthority
 func (c *Greengrass) CreateGroupCertificateAuthority(input *CreateGroupCertificateAuthorityInput) (*CreateGroupCertificateAuthorityOutput, error) {
@@ -1083,14 +1073,13 @@ const opCreateGroupVersion = "CreateGroupVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateGroupVersionRequest method.
+//	req, resp := client.CreateGroupVersionRequest(params)
 //
-//    // Example sending a request using the CreateGroupVersionRequest method.
-//    req, resp := client.CreateGroupVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateGroupVersion
 func (c *Greengrass) CreateGroupVersionRequest(input *CreateGroupVersionInput) (req *request.Request, output *CreateGroupVersionOutput) {
@@ -1121,8 +1110,8 @@ func (c *Greengrass) CreateGroupVersionRequest(input *CreateGroupVersionInput) (
 // API operation CreateGroupVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateGroupVersion
 func (c *Greengrass) CreateGroupVersion(input *CreateGroupVersionInput) (*CreateGroupVersionOutput, error) {
@@ -1162,14 +1151,13 @@ const opCreateLoggerDefinition = "CreateLoggerDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLoggerDefinitionRequest method.
+//	req, resp := client.CreateLoggerDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateLoggerDefinitionRequest method.
-//    req, resp := client.CreateLoggerDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateLoggerDefinition
 func (c *Greengrass) CreateLoggerDefinitionRequest(input *CreateLoggerDefinitionInput) (req *request.Request, output *CreateLoggerDefinitionOutput) {
@@ -1191,7 +1179,7 @@ func (c *Greengrass) CreateLoggerDefinitionRequest(input *CreateLoggerDefinition
 // CreateLoggerDefinition API operation for AWS Greengrass.
 //
 // Creates a logger definition. You may provide the initial version of the logger
-// definition now or use ''CreateLoggerDefinitionVersion'' at a later time.
+// definition now or use ”CreateLoggerDefinitionVersion” at a later time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,8 +1189,8 @@ func (c *Greengrass) CreateLoggerDefinitionRequest(input *CreateLoggerDefinition
 // API operation CreateLoggerDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateLoggerDefinition
 func (c *Greengrass) CreateLoggerDefinition(input *CreateLoggerDefinitionInput) (*CreateLoggerDefinitionOutput, error) {
@@ -1242,14 +1230,13 @@ const opCreateLoggerDefinitionVersion = "CreateLoggerDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateLoggerDefinitionVersionRequest method.
+//	req, resp := client.CreateLoggerDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateLoggerDefinitionVersionRequest method.
-//    req, resp := client.CreateLoggerDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateLoggerDefinitionVersion
 func (c *Greengrass) CreateLoggerDefinitionVersionRequest(input *CreateLoggerDefinitionVersionInput) (req *request.Request, output *CreateLoggerDefinitionVersionOutput) {
@@ -1280,8 +1267,8 @@ func (c *Greengrass) CreateLoggerDefinitionVersionRequest(input *CreateLoggerDef
 // API operation CreateLoggerDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateLoggerDefinitionVersion
 func (c *Greengrass) CreateLoggerDefinitionVersion(input *CreateLoggerDefinitionVersionInput) (*CreateLoggerDefinitionVersionOutput, error) {
@@ -1321,14 +1308,13 @@ const opCreateResourceDefinition = "CreateResourceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateResourceDefinitionRequest method.
+//	req, resp := client.CreateResourceDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateResourceDefinitionRequest method.
-//    req, resp := client.CreateResourceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateResourceDefinition
 func (c *Greengrass) CreateResourceDefinitionRequest(input *CreateResourceDefinitionInput) (req *request.Request, output *CreateResourceDefinitionOutput) {
@@ -1351,7 +1337,7 @@ func (c *Greengrass) CreateResourceDefinitionRequest(input *CreateResourceDefini
 //
 // Creates a resource definition which contains a list of resources to be used
 // in a group. You can create an initial version of the definition by providing
-// a list of resources now, or use ''CreateResourceDefinitionVersion'' later.
+// a list of resources now, or use ”CreateResourceDefinitionVersion” later.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1361,8 +1347,8 @@ func (c *Greengrass) CreateResourceDefinitionRequest(input *CreateResourceDefini
 // API operation CreateResourceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateResourceDefinition
 func (c *Greengrass) CreateResourceDefinition(input *CreateResourceDefinitionInput) (*CreateResourceDefinitionOutput, error) {
@@ -1402,14 +1388,13 @@ const opCreateResourceDefinitionVersion = "CreateResourceDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateResourceDefinitionVersionRequest method.
+//	req, resp := client.CreateResourceDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateResourceDefinitionVersionRequest method.
-//    req, resp := client.CreateResourceDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateResourceDefinitionVersion
 func (c *Greengrass) CreateResourceDefinitionVersionRequest(input *CreateResourceDefinitionVersionInput) (req *request.Request, output *CreateResourceDefinitionVersionOutput) {
@@ -1440,8 +1425,8 @@ func (c *Greengrass) CreateResourceDefinitionVersionRequest(input *CreateResourc
 // API operation CreateResourceDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateResourceDefinitionVersion
 func (c *Greengrass) CreateResourceDefinitionVersion(input *CreateResourceDefinitionVersionInput) (*CreateResourceDefinitionVersionOutput, error) {
@@ -1481,14 +1466,13 @@ const opCreateSoftwareUpdateJob = "CreateSoftwareUpdateJob"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSoftwareUpdateJobRequest method.
+//	req, resp := client.CreateSoftwareUpdateJobRequest(params)
 //
-//    // Example sending a request using the CreateSoftwareUpdateJobRequest method.
-//    req, resp := client.CreateSoftwareUpdateJobRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateSoftwareUpdateJob
 func (c *Greengrass) CreateSoftwareUpdateJobRequest(input *CreateSoftwareUpdateJobInput) (req *request.Request, output *CreateSoftwareUpdateJobOutput) {
@@ -1522,11 +1506,12 @@ func (c *Greengrass) CreateSoftwareUpdateJobRequest(input *CreateSoftwareUpdateJ
 // API operation CreateSoftwareUpdateJob for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateSoftwareUpdateJob
 func (c *Greengrass) CreateSoftwareUpdateJob(input *CreateSoftwareUpdateJobInput) (*CreateSoftwareUpdateJobOutput, error) {
@@ -1566,14 +1551,13 @@ const opCreateSubscriptionDefinition = "CreateSubscriptionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSubscriptionDefinitionRequest method.
+//	req, resp := client.CreateSubscriptionDefinitionRequest(params)
 //
-//    // Example sending a request using the CreateSubscriptionDefinitionRequest method.
-//    req, resp := client.CreateSubscriptionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateSubscriptionDefinition
 func (c *Greengrass) CreateSubscriptionDefinitionRequest(input *CreateSubscriptionDefinitionInput) (req *request.Request, output *CreateSubscriptionDefinitionOutput) {
@@ -1595,7 +1579,7 @@ func (c *Greengrass) CreateSubscriptionDefinitionRequest(input *CreateSubscripti
 // CreateSubscriptionDefinition API operation for AWS Greengrass.
 //
 // Creates a subscription definition. You may provide the initial version of
-// the subscription definition now or use ''CreateSubscriptionDefinitionVersion''
+// the subscription definition now or use ”CreateSubscriptionDefinitionVersion”
 // at a later time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1606,8 +1590,8 @@ func (c *Greengrass) CreateSubscriptionDefinitionRequest(input *CreateSubscripti
 // API operation CreateSubscriptionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateSubscriptionDefinition
 func (c *Greengrass) CreateSubscriptionDefinition(input *CreateSubscriptionDefinitionInput) (*CreateSubscriptionDefinitionOutput, error) {
@@ -1647,14 +1631,13 @@ const opCreateSubscriptionDefinitionVersion = "CreateSubscriptionDefinitionVersi
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateSubscriptionDefinitionVersionRequest method.
+//	req, resp := client.CreateSubscriptionDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the CreateSubscriptionDefinitionVersionRequest method.
-//    req, resp := client.CreateSubscriptionDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateSubscriptionDefinitionVersion
 func (c *Greengrass) CreateSubscriptionDefinitionVersionRequest(input *CreateSubscriptionDefinitionVersionInput) (req *request.Request, output *CreateSubscriptionDefinitionVersionOutput) {
@@ -1685,8 +1668,8 @@ func (c *Greengrass) CreateSubscriptionDefinitionVersionRequest(input *CreateSub
 // API operation CreateSubscriptionDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/CreateSubscriptionDefinitionVersion
 func (c *Greengrass) CreateSubscriptionDefinitionVersion(input *CreateSubscriptionDefinitionVersionInput) (*CreateSubscriptionDefinitionVersionOutput, error) {
@@ -1726,14 +1709,13 @@ const opDeleteConnectorDefinition = "DeleteConnectorDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteConnectorDefinitionRequest method.
+//	req, resp := client.DeleteConnectorDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteConnectorDefinitionRequest method.
-//    req, resp := client.DeleteConnectorDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteConnectorDefinition
 func (c *Greengrass) DeleteConnectorDefinitionRequest(input *DeleteConnectorDefinitionInput) (req *request.Request, output *DeleteConnectorDefinitionOutput) {
@@ -1765,8 +1747,8 @@ func (c *Greengrass) DeleteConnectorDefinitionRequest(input *DeleteConnectorDefi
 // API operation DeleteConnectorDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteConnectorDefinition
 func (c *Greengrass) DeleteConnectorDefinition(input *DeleteConnectorDefinitionInput) (*DeleteConnectorDefinitionOutput, error) {
@@ -1806,14 +1788,13 @@ const opDeleteCoreDefinition = "DeleteCoreDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteCoreDefinitionRequest method.
+//	req, resp := client.DeleteCoreDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteCoreDefinitionRequest method.
-//    req, resp := client.DeleteCoreDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteCoreDefinition
 func (c *Greengrass) DeleteCoreDefinitionRequest(input *DeleteCoreDefinitionInput) (req *request.Request, output *DeleteCoreDefinitionOutput) {
@@ -1845,8 +1826,8 @@ func (c *Greengrass) DeleteCoreDefinitionRequest(input *DeleteCoreDefinitionInpu
 // API operation DeleteCoreDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteCoreDefinition
 func (c *Greengrass) DeleteCoreDefinition(input *DeleteCoreDefinitionInput) (*DeleteCoreDefinitionOutput, error) {
@@ -1886,14 +1867,13 @@ const opDeleteDeviceDefinition = "DeleteDeviceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDeviceDefinitionRequest method.
+//	req, resp := client.DeleteDeviceDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteDeviceDefinitionRequest method.
-//    req, resp := client.DeleteDeviceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteDeviceDefinition
 func (c *Greengrass) DeleteDeviceDefinitionRequest(input *DeleteDeviceDefinitionInput) (req *request.Request, output *DeleteDeviceDefinitionOutput) {
@@ -1925,8 +1905,8 @@ func (c *Greengrass) DeleteDeviceDefinitionRequest(input *DeleteDeviceDefinition
 // API operation DeleteDeviceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteDeviceDefinition
 func (c *Greengrass) DeleteDeviceDefinition(input *DeleteDeviceDefinitionInput) (*DeleteDeviceDefinitionOutput, error) {
@@ -1966,14 +1946,13 @@ const opDeleteFunctionDefinition = "DeleteFunctionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFunctionDefinitionRequest method.
+//	req, resp := client.DeleteFunctionDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteFunctionDefinitionRequest method.
-//    req, resp := client.DeleteFunctionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteFunctionDefinition
 func (c *Greengrass) DeleteFunctionDefinitionRequest(input *DeleteFunctionDefinitionInput) (req *request.Request, output *DeleteFunctionDefinitionOutput) {
@@ -2005,8 +1984,8 @@ func (c *Greengrass) DeleteFunctionDefinitionRequest(input *DeleteFunctionDefini
 // API operation DeleteFunctionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteFunctionDefinition
 func (c *Greengrass) DeleteFunctionDefinition(input *DeleteFunctionDefinitionInput) (*DeleteFunctionDefinitionOutput, error) {
@@ -2046,14 +2025,13 @@ const opDeleteGroup = "DeleteGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteGroupRequest method.
+//	req, resp := client.DeleteGroupRequest(params)
 //
-//    // Example sending a request using the DeleteGroupRequest method.
-//    req, resp := client.DeleteGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteGroup
 func (c *Greengrass) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
@@ -2085,8 +2063,8 @@ func (c *Greengrass) DeleteGroupRequest(input *DeleteGroupInput) (req *request.R
 // API operation DeleteGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteGroup
 func (c *Greengrass) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
@@ -2126,14 +2104,13 @@ const opDeleteLoggerDefinition = "DeleteLoggerDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteLoggerDefinitionRequest method.
+//	req, resp := client.DeleteLoggerDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteLoggerDefinitionRequest method.
-//    req, resp := client.DeleteLoggerDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteLoggerDefinition
 func (c *Greengrass) DeleteLoggerDefinitionRequest(input *DeleteLoggerDefinitionInput) (req *request.Request, output *DeleteLoggerDefinitionOutput) {
@@ -2165,8 +2142,8 @@ func (c *Greengrass) DeleteLoggerDefinitionRequest(input *DeleteLoggerDefinition
 // API operation DeleteLoggerDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteLoggerDefinition
 func (c *Greengrass) DeleteLoggerDefinition(input *DeleteLoggerDefinitionInput) (*DeleteLoggerDefinitionOutput, error) {
@@ -2206,14 +2183,13 @@ const opDeleteResourceDefinition = "DeleteResourceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteResourceDefinitionRequest method.
+//	req, resp := client.DeleteResourceDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteResourceDefinitionRequest method.
-//    req, resp := client.DeleteResourceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteResourceDefinition
 func (c *Greengrass) DeleteResourceDefinitionRequest(input *DeleteResourceDefinitionInput) (req *request.Request, output *DeleteResourceDefinitionOutput) {
@@ -2245,8 +2221,8 @@ func (c *Greengrass) DeleteResourceDefinitionRequest(input *DeleteResourceDefini
 // API operation DeleteResourceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteResourceDefinition
 func (c *Greengrass) DeleteResourceDefinition(input *DeleteResourceDefinitionInput) (*DeleteResourceDefinitionOutput, error) {
@@ -2286,14 +2262,13 @@ const opDeleteSubscriptionDefinition = "DeleteSubscriptionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteSubscriptionDefinitionRequest method.
+//	req, resp := client.DeleteSubscriptionDefinitionRequest(params)
 //
-//    // Example sending a request using the DeleteSubscriptionDefinitionRequest method.
-//    req, resp := client.DeleteSubscriptionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteSubscriptionDefinition
 func (c *Greengrass) DeleteSubscriptionDefinitionRequest(input *DeleteSubscriptionDefinitionInput) (req *request.Request, output *DeleteSubscriptionDefinitionOutput) {
@@ -2325,8 +2300,8 @@ func (c *Greengrass) DeleteSubscriptionDefinitionRequest(input *DeleteSubscripti
 // API operation DeleteSubscriptionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DeleteSubscriptionDefinition
 func (c *Greengrass) DeleteSubscriptionDefinition(input *DeleteSubscriptionDefinitionInput) (*DeleteSubscriptionDefinitionOutput, error) {
@@ -2366,14 +2341,13 @@ const opDisassociateRoleFromGroup = "DisassociateRoleFromGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateRoleFromGroupRequest method.
+//	req, resp := client.DisassociateRoleFromGroupRequest(params)
 //
-//    // Example sending a request using the DisassociateRoleFromGroupRequest method.
-//    req, resp := client.DisassociateRoleFromGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DisassociateRoleFromGroup
 func (c *Greengrass) DisassociateRoleFromGroupRequest(input *DisassociateRoleFromGroupInput) (req *request.Request, output *DisassociateRoleFromGroupOutput) {
@@ -2404,11 +2378,12 @@ func (c *Greengrass) DisassociateRoleFromGroupRequest(input *DisassociateRoleFro
 // API operation DisassociateRoleFromGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DisassociateRoleFromGroup
 func (c *Greengrass) DisassociateRoleFromGroup(input *DisassociateRoleFromGroupInput) (*DisassociateRoleFromGroupOutput, error) {
@@ -2448,14 +2423,13 @@ const opDisassociateServiceRoleFromAccount = "DisassociateServiceRoleFromAccount
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateServiceRoleFromAccountRequest method.
+//	req, resp := client.DisassociateServiceRoleFromAccountRequest(params)
 //
-//    // Example sending a request using the DisassociateServiceRoleFromAccountRequest method.
-//    req, resp := client.DisassociateServiceRoleFromAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DisassociateServiceRoleFromAccount
 func (c *Greengrass) DisassociateServiceRoleFromAccountRequest(input *DisassociateServiceRoleFromAccountInput) (req *request.Request, output *DisassociateServiceRoleFromAccountOutput) {
@@ -2487,8 +2461,8 @@ func (c *Greengrass) DisassociateServiceRoleFromAccountRequest(input *Disassocia
 // API operation DisassociateServiceRoleFromAccount for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerErrorException
-//   General error information.
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/DisassociateServiceRoleFromAccount
 func (c *Greengrass) DisassociateServiceRoleFromAccount(input *DisassociateServiceRoleFromAccountInput) (*DisassociateServiceRoleFromAccountOutput, error) {
@@ -2528,14 +2502,13 @@ const opGetAssociatedRole = "GetAssociatedRole"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetAssociatedRoleRequest method.
+//	req, resp := client.GetAssociatedRoleRequest(params)
 //
-//    // Example sending a request using the GetAssociatedRoleRequest method.
-//    req, resp := client.GetAssociatedRoleRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetAssociatedRole
 func (c *Greengrass) GetAssociatedRoleRequest(input *GetAssociatedRoleInput) (req *request.Request, output *GetAssociatedRoleOutput) {
@@ -2566,11 +2539,12 @@ func (c *Greengrass) GetAssociatedRoleRequest(input *GetAssociatedRoleInput) (re
 // API operation GetAssociatedRole for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetAssociatedRole
 func (c *Greengrass) GetAssociatedRole(input *GetAssociatedRoleInput) (*GetAssociatedRoleOutput, error) {
@@ -2610,14 +2584,13 @@ const opGetBulkDeploymentStatus = "GetBulkDeploymentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetBulkDeploymentStatusRequest method.
+//	req, resp := client.GetBulkDeploymentStatusRequest(params)
 //
-//    // Example sending a request using the GetBulkDeploymentStatusRequest method.
-//    req, resp := client.GetBulkDeploymentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetBulkDeploymentStatus
 func (c *Greengrass) GetBulkDeploymentStatusRequest(input *GetBulkDeploymentStatusInput) (req *request.Request, output *GetBulkDeploymentStatusOutput) {
@@ -2648,8 +2621,8 @@ func (c *Greengrass) GetBulkDeploymentStatusRequest(input *GetBulkDeploymentStat
 // API operation GetBulkDeploymentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetBulkDeploymentStatus
 func (c *Greengrass) GetBulkDeploymentStatus(input *GetBulkDeploymentStatusInput) (*GetBulkDeploymentStatusOutput, error) {
@@ -2689,14 +2662,13 @@ const opGetConnectivityInfo = "GetConnectivityInfo"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConnectivityInfoRequest method.
+//	req, resp := client.GetConnectivityInfoRequest(params)
 //
-//    // Example sending a request using the GetConnectivityInfoRequest method.
-//    req, resp := client.GetConnectivityInfoRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectivityInfo
 func (c *Greengrass) GetConnectivityInfoRequest(input *GetConnectivityInfoInput) (req *request.Request, output *GetConnectivityInfoOutput) {
@@ -2727,11 +2699,12 @@ func (c *Greengrass) GetConnectivityInfoRequest(input *GetConnectivityInfoInput)
 // API operation GetConnectivityInfo for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectivityInfo
 func (c *Greengrass) GetConnectivityInfo(input *GetConnectivityInfoInput) (*GetConnectivityInfoOutput, error) {
@@ -2771,14 +2744,13 @@ const opGetConnectorDefinition = "GetConnectorDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConnectorDefinitionRequest method.
+//	req, resp := client.GetConnectorDefinitionRequest(params)
 //
-//    // Example sending a request using the GetConnectorDefinitionRequest method.
-//    req, resp := client.GetConnectorDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinition
 func (c *Greengrass) GetConnectorDefinitionRequest(input *GetConnectorDefinitionInput) (req *request.Request, output *GetConnectorDefinitionOutput) {
@@ -2809,8 +2781,8 @@ func (c *Greengrass) GetConnectorDefinitionRequest(input *GetConnectorDefinition
 // API operation GetConnectorDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinition
 func (c *Greengrass) GetConnectorDefinition(input *GetConnectorDefinitionInput) (*GetConnectorDefinitionOutput, error) {
@@ -2850,14 +2822,13 @@ const opGetConnectorDefinitionVersion = "GetConnectorDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetConnectorDefinitionVersionRequest method.
+//	req, resp := client.GetConnectorDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetConnectorDefinitionVersionRequest method.
-//    req, resp := client.GetConnectorDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinitionVersion
 func (c *Greengrass) GetConnectorDefinitionVersionRequest(input *GetConnectorDefinitionVersionInput) (req *request.Request, output *GetConnectorDefinitionVersionOutput) {
@@ -2891,8 +2862,8 @@ func (c *Greengrass) GetConnectorDefinitionVersionRequest(input *GetConnectorDef
 // API operation GetConnectorDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetConnectorDefinitionVersion
 func (c *Greengrass) GetConnectorDefinitionVersion(input *GetConnectorDefinitionVersionInput) (*GetConnectorDefinitionVersionOutput, error) {
@@ -2932,14 +2903,13 @@ const opGetCoreDefinition = "GetCoreDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCoreDefinitionRequest method.
+//	req, resp := client.GetCoreDefinitionRequest(params)
 //
-//    // Example sending a request using the GetCoreDefinitionRequest method.
-//    req, resp := client.GetCoreDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetCoreDefinition
 func (c *Greengrass) GetCoreDefinitionRequest(input *GetCoreDefinitionInput) (req *request.Request, output *GetCoreDefinitionOutput) {
@@ -2970,8 +2940,8 @@ func (c *Greengrass) GetCoreDefinitionRequest(input *GetCoreDefinitionInput) (re
 // API operation GetCoreDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetCoreDefinition
 func (c *Greengrass) GetCoreDefinition(input *GetCoreDefinitionInput) (*GetCoreDefinitionOutput, error) {
@@ -3011,14 +2981,13 @@ const opGetCoreDefinitionVersion = "GetCoreDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetCoreDefinitionVersionRequest method.
+//	req, resp := client.GetCoreDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetCoreDefinitionVersionRequest method.
-//    req, resp := client.GetCoreDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetCoreDefinitionVersion
 func (c *Greengrass) GetCoreDefinitionVersionRequest(input *GetCoreDefinitionVersionInput) (req *request.Request, output *GetCoreDefinitionVersionOutput) {
@@ -3049,8 +3018,8 @@ func (c *Greengrass) GetCoreDefinitionVersionRequest(input *GetCoreDefinitionVer
 // API operation GetCoreDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetCoreDefinitionVersion
 func (c *Greengrass) GetCoreDefinitionVersion(input *GetCoreDefinitionVersionInput) (*GetCoreDefinitionVersionOutput, error) {
@@ -3090,14 +3059,13 @@ const opGetDeploymentStatus = "GetDeploymentStatus"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeploymentStatusRequest method.
+//	req, resp := client.GetDeploymentStatusRequest(params)
 //
-//    // Example sending a request using the GetDeploymentStatusRequest method.
-//    req, resp := client.GetDeploymentStatusRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetDeploymentStatus
 func (c *Greengrass) GetDeploymentStatusRequest(input *GetDeploymentStatusInput) (req *request.Request, output *GetDeploymentStatusOutput) {
@@ -3128,8 +3096,8 @@ func (c *Greengrass) GetDeploymentStatusRequest(input *GetDeploymentStatusInput)
 // API operation GetDeploymentStatus for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetDeploymentStatus
 func (c *Greengrass) GetDeploymentStatus(input *GetDeploymentStatusInput) (*GetDeploymentStatusOutput, error) {
@@ -3169,14 +3137,13 @@ const opGetDeviceDefinition = "GetDeviceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeviceDefinitionRequest method.
+//	req, resp := client.GetDeviceDefinitionRequest(params)
 //
-//    // Example sending a request using the GetDeviceDefinitionRequest method.
-//    req, resp := client.GetDeviceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetDeviceDefinition
 func (c *Greengrass) GetDeviceDefinitionRequest(input *GetDeviceDefinitionInput) (req *request.Request, output *GetDeviceDefinitionOutput) {
@@ -3207,8 +3174,8 @@ func (c *Greengrass) GetDeviceDefinitionRequest(input *GetDeviceDefinitionInput)
 // API operation GetDeviceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetDeviceDefinition
 func (c *Greengrass) GetDeviceDefinition(input *GetDeviceDefinitionInput) (*GetDeviceDefinitionOutput, error) {
@@ -3248,14 +3215,13 @@ const opGetDeviceDefinitionVersion = "GetDeviceDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetDeviceDefinitionVersionRequest method.
+//	req, resp := client.GetDeviceDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetDeviceDefinitionVersionRequest method.
-//    req, resp := client.GetDeviceDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetDeviceDefinitionVersion
 func (c *Greengrass) GetDeviceDefinitionVersionRequest(input *GetDeviceDefinitionVersionInput) (req *request.Request, output *GetDeviceDefinitionVersionOutput) {
@@ -3286,8 +3252,8 @@ func (c *Greengrass) GetDeviceDefinitionVersionRequest(input *GetDeviceDefinitio
 // API operation GetDeviceDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetDeviceDefinitionVersion
 func (c *Greengrass) GetDeviceDefinitionVersion(input *GetDeviceDefinitionVersionInput) (*GetDeviceDefinitionVersionOutput, error) {
@@ -3327,14 +3293,13 @@ const opGetFunctionDefinition = "GetFunctionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFunctionDefinitionRequest method.
+//	req, resp := client.GetFunctionDefinitionRequest(params)
 //
-//    // Example sending a request using the GetFunctionDefinitionRequest method.
-//    req, resp := client.GetFunctionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetFunctionDefinition
 func (c *Greengrass) GetFunctionDefinitionRequest(input *GetFunctionDefinitionInput) (req *request.Request, output *GetFunctionDefinitionOutput) {
@@ -3366,8 +3331,8 @@ func (c *Greengrass) GetFunctionDefinitionRequest(input *GetFunctionDefinitionIn
 // API operation GetFunctionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetFunctionDefinition
 func (c *Greengrass) GetFunctionDefinition(input *GetFunctionDefinitionInput) (*GetFunctionDefinitionOutput, error) {
@@ -3407,14 +3372,13 @@ const opGetFunctionDefinitionVersion = "GetFunctionDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetFunctionDefinitionVersionRequest method.
+//	req, resp := client.GetFunctionDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetFunctionDefinitionVersionRequest method.
-//    req, resp := client.GetFunctionDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetFunctionDefinitionVersion
 func (c *Greengrass) GetFunctionDefinitionVersionRequest(input *GetFunctionDefinitionVersionInput) (req *request.Request, output *GetFunctionDefinitionVersionOutput) {
@@ -3446,8 +3410,8 @@ func (c *Greengrass) GetFunctionDefinitionVersionRequest(input *GetFunctionDefin
 // API operation GetFunctionDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetFunctionDefinitionVersion
 func (c *Greengrass) GetFunctionDefinitionVersion(input *GetFunctionDefinitionVersionInput) (*GetFunctionDefinitionVersionOutput, error) {
@@ -3487,14 +3451,13 @@ const opGetGroup = "GetGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupRequest method.
+//	req, resp := client.GetGroupRequest(params)
 //
-//    // Example sending a request using the GetGroupRequest method.
-//    req, resp := client.GetGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroup
 func (c *Greengrass) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
@@ -3525,8 +3488,8 @@ func (c *Greengrass) GetGroupRequest(input *GetGroupInput) (req *request.Request
 // API operation GetGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroup
 func (c *Greengrass) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
@@ -3566,14 +3529,13 @@ const opGetGroupCertificateAuthority = "GetGroupCertificateAuthority"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupCertificateAuthorityRequest method.
+//	req, resp := client.GetGroupCertificateAuthorityRequest(params)
 //
-//    // Example sending a request using the GetGroupCertificateAuthorityRequest method.
-//    req, resp := client.GetGroupCertificateAuthorityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroupCertificateAuthority
 func (c *Greengrass) GetGroupCertificateAuthorityRequest(input *GetGroupCertificateAuthorityInput) (req *request.Request, output *GetGroupCertificateAuthorityOutput) {
@@ -3604,11 +3566,12 @@ func (c *Greengrass) GetGroupCertificateAuthorityRequest(input *GetGroupCertific
 // API operation GetGroupCertificateAuthority for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroupCertificateAuthority
 func (c *Greengrass) GetGroupCertificateAuthority(input *GetGroupCertificateAuthorityInput) (*GetGroupCertificateAuthorityOutput, error) {
@@ -3648,14 +3611,13 @@ const opGetGroupCertificateConfiguration = "GetGroupCertificateConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupCertificateConfigurationRequest method.
+//	req, resp := client.GetGroupCertificateConfigurationRequest(params)
 //
-//    // Example sending a request using the GetGroupCertificateConfigurationRequest method.
-//    req, resp := client.GetGroupCertificateConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroupCertificateConfiguration
 func (c *Greengrass) GetGroupCertificateConfigurationRequest(input *GetGroupCertificateConfigurationInput) (req *request.Request, output *GetGroupCertificateConfigurationOutput) {
@@ -3686,11 +3648,12 @@ func (c *Greengrass) GetGroupCertificateConfigurationRequest(input *GetGroupCert
 // API operation GetGroupCertificateConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroupCertificateConfiguration
 func (c *Greengrass) GetGroupCertificateConfiguration(input *GetGroupCertificateConfigurationInput) (*GetGroupCertificateConfigurationOutput, error) {
@@ -3730,14 +3693,13 @@ const opGetGroupVersion = "GetGroupVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetGroupVersionRequest method.
+//	req, resp := client.GetGroupVersionRequest(params)
 //
-//    // Example sending a request using the GetGroupVersionRequest method.
-//    req, resp := client.GetGroupVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroupVersion
 func (c *Greengrass) GetGroupVersionRequest(input *GetGroupVersionInput) (req *request.Request, output *GetGroupVersionOutput) {
@@ -3768,8 +3730,8 @@ func (c *Greengrass) GetGroupVersionRequest(input *GetGroupVersionInput) (req *r
 // API operation GetGroupVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetGroupVersion
 func (c *Greengrass) GetGroupVersion(input *GetGroupVersionInput) (*GetGroupVersionOutput, error) {
@@ -3809,14 +3771,13 @@ const opGetLoggerDefinition = "GetLoggerDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetLoggerDefinitionRequest method.
+//	req, resp := client.GetLoggerDefinitionRequest(params)
 //
-//    // Example sending a request using the GetLoggerDefinitionRequest method.
-//    req, resp := client.GetLoggerDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetLoggerDefinition
 func (c *Greengrass) GetLoggerDefinitionRequest(input *GetLoggerDefinitionInput) (req *request.Request, output *GetLoggerDefinitionOutput) {
@@ -3847,8 +3808,8 @@ func (c *Greengrass) GetLoggerDefinitionRequest(input *GetLoggerDefinitionInput)
 // API operation GetLoggerDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetLoggerDefinition
 func (c *Greengrass) GetLoggerDefinition(input *GetLoggerDefinitionInput) (*GetLoggerDefinitionOutput, error) {
@@ -3888,14 +3849,13 @@ const opGetLoggerDefinitionVersion = "GetLoggerDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetLoggerDefinitionVersionRequest method.
+//	req, resp := client.GetLoggerDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetLoggerDefinitionVersionRequest method.
-//    req, resp := client.GetLoggerDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetLoggerDefinitionVersion
 func (c *Greengrass) GetLoggerDefinitionVersionRequest(input *GetLoggerDefinitionVersionInput) (req *request.Request, output *GetLoggerDefinitionVersionOutput) {
@@ -3926,8 +3886,8 @@ func (c *Greengrass) GetLoggerDefinitionVersionRequest(input *GetLoggerDefinitio
 // API operation GetLoggerDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetLoggerDefinitionVersion
 func (c *Greengrass) GetLoggerDefinitionVersion(input *GetLoggerDefinitionVersionInput) (*GetLoggerDefinitionVersionOutput, error) {
@@ -3967,14 +3927,13 @@ const opGetResourceDefinition = "GetResourceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResourceDefinitionRequest method.
+//	req, resp := client.GetResourceDefinitionRequest(params)
 //
-//    // Example sending a request using the GetResourceDefinitionRequest method.
-//    req, resp := client.GetResourceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetResourceDefinition
 func (c *Greengrass) GetResourceDefinitionRequest(input *GetResourceDefinitionInput) (req *request.Request, output *GetResourceDefinitionOutput) {
@@ -4006,8 +3965,8 @@ func (c *Greengrass) GetResourceDefinitionRequest(input *GetResourceDefinitionIn
 // API operation GetResourceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetResourceDefinition
 func (c *Greengrass) GetResourceDefinition(input *GetResourceDefinitionInput) (*GetResourceDefinitionOutput, error) {
@@ -4047,14 +4006,13 @@ const opGetResourceDefinitionVersion = "GetResourceDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetResourceDefinitionVersionRequest method.
+//	req, resp := client.GetResourceDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetResourceDefinitionVersionRequest method.
-//    req, resp := client.GetResourceDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetResourceDefinitionVersion
 func (c *Greengrass) GetResourceDefinitionVersionRequest(input *GetResourceDefinitionVersionInput) (req *request.Request, output *GetResourceDefinitionVersionOutput) {
@@ -4086,8 +4044,8 @@ func (c *Greengrass) GetResourceDefinitionVersionRequest(input *GetResourceDefin
 // API operation GetResourceDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetResourceDefinitionVersion
 func (c *Greengrass) GetResourceDefinitionVersion(input *GetResourceDefinitionVersionInput) (*GetResourceDefinitionVersionOutput, error) {
@@ -4127,14 +4085,13 @@ const opGetServiceRoleForAccount = "GetServiceRoleForAccount"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetServiceRoleForAccountRequest method.
+//	req, resp := client.GetServiceRoleForAccountRequest(params)
 //
-//    // Example sending a request using the GetServiceRoleForAccountRequest method.
-//    req, resp := client.GetServiceRoleForAccountRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetServiceRoleForAccount
 func (c *Greengrass) GetServiceRoleForAccountRequest(input *GetServiceRoleForAccountInput) (req *request.Request, output *GetServiceRoleForAccountOutput) {
@@ -4165,8 +4122,8 @@ func (c *Greengrass) GetServiceRoleForAccountRequest(input *GetServiceRoleForAcc
 // API operation GetServiceRoleForAccount for usage and error information.
 //
 // Returned Error Types:
-//   * InternalServerErrorException
-//   General error information.
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetServiceRoleForAccount
 func (c *Greengrass) GetServiceRoleForAccount(input *GetServiceRoleForAccountInput) (*GetServiceRoleForAccountOutput, error) {
@@ -4206,14 +4163,13 @@ const opGetSubscriptionDefinition = "GetSubscriptionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSubscriptionDefinitionRequest method.
+//	req, resp := client.GetSubscriptionDefinitionRequest(params)
 //
-//    // Example sending a request using the GetSubscriptionDefinitionRequest method.
-//    req, resp := client.GetSubscriptionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetSubscriptionDefinition
 func (c *Greengrass) GetSubscriptionDefinitionRequest(input *GetSubscriptionDefinitionInput) (req *request.Request, output *GetSubscriptionDefinitionOutput) {
@@ -4244,8 +4200,8 @@ func (c *Greengrass) GetSubscriptionDefinitionRequest(input *GetSubscriptionDefi
 // API operation GetSubscriptionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetSubscriptionDefinition
 func (c *Greengrass) GetSubscriptionDefinition(input *GetSubscriptionDefinitionInput) (*GetSubscriptionDefinitionOutput, error) {
@@ -4285,14 +4241,13 @@ const opGetSubscriptionDefinitionVersion = "GetSubscriptionDefinitionVersion"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSubscriptionDefinitionVersionRequest method.
+//	req, resp := client.GetSubscriptionDefinitionVersionRequest(params)
 //
-//    // Example sending a request using the GetSubscriptionDefinitionVersionRequest method.
-//    req, resp := client.GetSubscriptionDefinitionVersionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetSubscriptionDefinitionVersion
 func (c *Greengrass) GetSubscriptionDefinitionVersionRequest(input *GetSubscriptionDefinitionVersionInput) (req *request.Request, output *GetSubscriptionDefinitionVersionOutput) {
@@ -4323,8 +4278,8 @@ func (c *Greengrass) GetSubscriptionDefinitionVersionRequest(input *GetSubscript
 // API operation GetSubscriptionDefinitionVersion for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetSubscriptionDefinitionVersion
 func (c *Greengrass) GetSubscriptionDefinitionVersion(input *GetSubscriptionDefinitionVersionInput) (*GetSubscriptionDefinitionVersionOutput, error) {
@@ -4348,6 +4303,88 @@ func (c *Greengrass) GetSubscriptionDefinitionVersionWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opGetThingRuntimeConfiguration = "GetThingRuntimeConfiguration"
+
+// GetThingRuntimeConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetThingRuntimeConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetThingRuntimeConfiguration for more information on using the GetThingRuntimeConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetThingRuntimeConfigurationRequest method.
+//	req, resp := client.GetThingRuntimeConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetThingRuntimeConfiguration
+func (c *Greengrass) GetThingRuntimeConfigurationRequest(input *GetThingRuntimeConfigurationInput) (req *request.Request, output *GetThingRuntimeConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetThingRuntimeConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/things/{ThingName}/runtimeconfig",
+	}
+
+	if input == nil {
+		input = &GetThingRuntimeConfigurationInput{}
+	}
+
+	output = &GetThingRuntimeConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetThingRuntimeConfiguration API operation for AWS Greengrass.
+//
+// Get the runtime configuration of a thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation GetThingRuntimeConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/GetThingRuntimeConfiguration
+func (c *Greengrass) GetThingRuntimeConfiguration(input *GetThingRuntimeConfigurationInput) (*GetThingRuntimeConfigurationOutput, error) {
+	req, out := c.GetThingRuntimeConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetThingRuntimeConfigurationWithContext is the same as GetThingRuntimeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetThingRuntimeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) GetThingRuntimeConfigurationWithContext(ctx aws.Context, input *GetThingRuntimeConfigurationInput, opts ...request.Option) (*GetThingRuntimeConfigurationOutput, error) {
+	req, out := c.GetThingRuntimeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListBulkDeploymentDetailedReports = "ListBulkDeploymentDetailedReports"
 
 // ListBulkDeploymentDetailedReportsRequest generates a "aws/request.Request" representing the
@@ -4364,14 +4401,13 @@ const opListBulkDeploymentDetailedReports = "ListBulkDeploymentDetailedReports"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBulkDeploymentDetailedReportsRequest method.
+//	req, resp := client.ListBulkDeploymentDetailedReportsRequest(params)
 //
-//    // Example sending a request using the ListBulkDeploymentDetailedReportsRequest method.
-//    req, resp := client.ListBulkDeploymentDetailedReportsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeploymentDetailedReports
 func (c *Greengrass) ListBulkDeploymentDetailedReportsRequest(input *ListBulkDeploymentDetailedReportsInput) (req *request.Request, output *ListBulkDeploymentDetailedReportsOutput) {
@@ -4403,8 +4439,8 @@ func (c *Greengrass) ListBulkDeploymentDetailedReportsRequest(input *ListBulkDep
 // API operation ListBulkDeploymentDetailedReports for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeploymentDetailedReports
 func (c *Greengrass) ListBulkDeploymentDetailedReports(input *ListBulkDeploymentDetailedReportsInput) (*ListBulkDeploymentDetailedReportsOutput, error) {
@@ -4444,14 +4480,13 @@ const opListBulkDeployments = "ListBulkDeployments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListBulkDeploymentsRequest method.
+//	req, resp := client.ListBulkDeploymentsRequest(params)
 //
-//    // Example sending a request using the ListBulkDeploymentsRequest method.
-//    req, resp := client.ListBulkDeploymentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeployments
 func (c *Greengrass) ListBulkDeploymentsRequest(input *ListBulkDeploymentsInput) (req *request.Request, output *ListBulkDeploymentsOutput) {
@@ -4482,8 +4517,8 @@ func (c *Greengrass) ListBulkDeploymentsRequest(input *ListBulkDeploymentsInput)
 // API operation ListBulkDeployments for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListBulkDeployments
 func (c *Greengrass) ListBulkDeployments(input *ListBulkDeploymentsInput) (*ListBulkDeploymentsOutput, error) {
@@ -4523,14 +4558,13 @@ const opListConnectorDefinitionVersions = "ListConnectorDefinitionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConnectorDefinitionVersionsRequest method.
+//	req, resp := client.ListConnectorDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListConnectorDefinitionVersionsRequest method.
-//    req, resp := client.ListConnectorDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitionVersions
 func (c *Greengrass) ListConnectorDefinitionVersionsRequest(input *ListConnectorDefinitionVersionsInput) (req *request.Request, output *ListConnectorDefinitionVersionsOutput) {
@@ -4563,8 +4597,8 @@ func (c *Greengrass) ListConnectorDefinitionVersionsRequest(input *ListConnector
 // API operation ListConnectorDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitionVersions
 func (c *Greengrass) ListConnectorDefinitionVersions(input *ListConnectorDefinitionVersionsInput) (*ListConnectorDefinitionVersionsOutput, error) {
@@ -4604,14 +4638,13 @@ const opListConnectorDefinitions = "ListConnectorDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListConnectorDefinitionsRequest method.
+//	req, resp := client.ListConnectorDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListConnectorDefinitionsRequest method.
-//    req, resp := client.ListConnectorDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListConnectorDefinitions
 func (c *Greengrass) ListConnectorDefinitionsRequest(input *ListConnectorDefinitionsInput) (req *request.Request, output *ListConnectorDefinitionsOutput) {
@@ -4678,14 +4711,13 @@ const opListCoreDefinitionVersions = "ListCoreDefinitionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCoreDefinitionVersionsRequest method.
+//	req, resp := client.ListCoreDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListCoreDefinitionVersionsRequest method.
-//    req, resp := client.ListCoreDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListCoreDefinitionVersions
 func (c *Greengrass) ListCoreDefinitionVersionsRequest(input *ListCoreDefinitionVersionsInput) (req *request.Request, output *ListCoreDefinitionVersionsOutput) {
@@ -4716,8 +4748,8 @@ func (c *Greengrass) ListCoreDefinitionVersionsRequest(input *ListCoreDefinition
 // API operation ListCoreDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListCoreDefinitionVersions
 func (c *Greengrass) ListCoreDefinitionVersions(input *ListCoreDefinitionVersionsInput) (*ListCoreDefinitionVersionsOutput, error) {
@@ -4757,14 +4789,13 @@ const opListCoreDefinitions = "ListCoreDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListCoreDefinitionsRequest method.
+//	req, resp := client.ListCoreDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListCoreDefinitionsRequest method.
-//    req, resp := client.ListCoreDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListCoreDefinitions
 func (c *Greengrass) ListCoreDefinitionsRequest(input *ListCoreDefinitionsInput) (req *request.Request, output *ListCoreDefinitionsOutput) {
@@ -4831,14 +4862,13 @@ const opListDeployments = "ListDeployments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeploymentsRequest method.
+//	req, resp := client.ListDeploymentsRequest(params)
 //
-//    // Example sending a request using the ListDeploymentsRequest method.
-//    req, resp := client.ListDeploymentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListDeployments
 func (c *Greengrass) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.Request, output *ListDeploymentsOutput) {
@@ -4869,8 +4899,8 @@ func (c *Greengrass) ListDeploymentsRequest(input *ListDeploymentsInput) (req *r
 // API operation ListDeployments for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListDeployments
 func (c *Greengrass) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
@@ -4910,14 +4940,13 @@ const opListDeviceDefinitionVersions = "ListDeviceDefinitionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeviceDefinitionVersionsRequest method.
+//	req, resp := client.ListDeviceDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListDeviceDefinitionVersionsRequest method.
-//    req, resp := client.ListDeviceDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListDeviceDefinitionVersions
 func (c *Greengrass) ListDeviceDefinitionVersionsRequest(input *ListDeviceDefinitionVersionsInput) (req *request.Request, output *ListDeviceDefinitionVersionsOutput) {
@@ -4948,8 +4977,8 @@ func (c *Greengrass) ListDeviceDefinitionVersionsRequest(input *ListDeviceDefini
 // API operation ListDeviceDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListDeviceDefinitionVersions
 func (c *Greengrass) ListDeviceDefinitionVersions(input *ListDeviceDefinitionVersionsInput) (*ListDeviceDefinitionVersionsOutput, error) {
@@ -4989,14 +5018,13 @@ const opListDeviceDefinitions = "ListDeviceDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListDeviceDefinitionsRequest method.
+//	req, resp := client.ListDeviceDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListDeviceDefinitionsRequest method.
-//    req, resp := client.ListDeviceDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListDeviceDefinitions
 func (c *Greengrass) ListDeviceDefinitionsRequest(input *ListDeviceDefinitionsInput) (req *request.Request, output *ListDeviceDefinitionsOutput) {
@@ -5063,14 +5091,13 @@ const opListFunctionDefinitionVersions = "ListFunctionDefinitionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFunctionDefinitionVersionsRequest method.
+//	req, resp := client.ListFunctionDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListFunctionDefinitionVersionsRequest method.
-//    req, resp := client.ListFunctionDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListFunctionDefinitionVersions
 func (c *Greengrass) ListFunctionDefinitionVersionsRequest(input *ListFunctionDefinitionVersionsInput) (req *request.Request, output *ListFunctionDefinitionVersionsOutput) {
@@ -5101,8 +5128,8 @@ func (c *Greengrass) ListFunctionDefinitionVersionsRequest(input *ListFunctionDe
 // API operation ListFunctionDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListFunctionDefinitionVersions
 func (c *Greengrass) ListFunctionDefinitionVersions(input *ListFunctionDefinitionVersionsInput) (*ListFunctionDefinitionVersionsOutput, error) {
@@ -5142,14 +5169,13 @@ const opListFunctionDefinitions = "ListFunctionDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListFunctionDefinitionsRequest method.
+//	req, resp := client.ListFunctionDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListFunctionDefinitionsRequest method.
-//    req, resp := client.ListFunctionDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListFunctionDefinitions
 func (c *Greengrass) ListFunctionDefinitionsRequest(input *ListFunctionDefinitionsInput) (req *request.Request, output *ListFunctionDefinitionsOutput) {
@@ -5216,14 +5242,13 @@ const opListGroupCertificateAuthorities = "ListGroupCertificateAuthorities"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupCertificateAuthoritiesRequest method.
+//	req, resp := client.ListGroupCertificateAuthoritiesRequest(params)
 //
-//    // Example sending a request using the ListGroupCertificateAuthoritiesRequest method.
-//    req, resp := client.ListGroupCertificateAuthoritiesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListGroupCertificateAuthorities
 func (c *Greengrass) ListGroupCertificateAuthoritiesRequest(input *ListGroupCertificateAuthoritiesInput) (req *request.Request, output *ListGroupCertificateAuthoritiesOutput) {
@@ -5254,11 +5279,12 @@ func (c *Greengrass) ListGroupCertificateAuthoritiesRequest(input *ListGroupCert
 // API operation ListGroupCertificateAuthorities for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListGroupCertificateAuthorities
 func (c *Greengrass) ListGroupCertificateAuthorities(input *ListGroupCertificateAuthoritiesInput) (*ListGroupCertificateAuthoritiesOutput, error) {
@@ -5298,14 +5324,13 @@ const opListGroupVersions = "ListGroupVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupVersionsRequest method.
+//	req, resp := client.ListGroupVersionsRequest(params)
 //
-//    // Example sending a request using the ListGroupVersionsRequest method.
-//    req, resp := client.ListGroupVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListGroupVersions
 func (c *Greengrass) ListGroupVersionsRequest(input *ListGroupVersionsInput) (req *request.Request, output *ListGroupVersionsOutput) {
@@ -5336,8 +5361,8 @@ func (c *Greengrass) ListGroupVersionsRequest(input *ListGroupVersionsInput) (re
 // API operation ListGroupVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListGroupVersions
 func (c *Greengrass) ListGroupVersions(input *ListGroupVersionsInput) (*ListGroupVersionsOutput, error) {
@@ -5377,14 +5402,13 @@ const opListGroups = "ListGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListGroupsRequest method.
+//	req, resp := client.ListGroupsRequest(params)
 //
-//    // Example sending a request using the ListGroupsRequest method.
-//    req, resp := client.ListGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListGroups
 func (c *Greengrass) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
@@ -5451,14 +5475,13 @@ const opListLoggerDefinitionVersions = "ListLoggerDefinitionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLoggerDefinitionVersionsRequest method.
+//	req, resp := client.ListLoggerDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListLoggerDefinitionVersionsRequest method.
-//    req, resp := client.ListLoggerDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListLoggerDefinitionVersions
 func (c *Greengrass) ListLoggerDefinitionVersionsRequest(input *ListLoggerDefinitionVersionsInput) (req *request.Request, output *ListLoggerDefinitionVersionsOutput) {
@@ -5489,8 +5512,8 @@ func (c *Greengrass) ListLoggerDefinitionVersionsRequest(input *ListLoggerDefini
 // API operation ListLoggerDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListLoggerDefinitionVersions
 func (c *Greengrass) ListLoggerDefinitionVersions(input *ListLoggerDefinitionVersionsInput) (*ListLoggerDefinitionVersionsOutput, error) {
@@ -5530,14 +5553,13 @@ const opListLoggerDefinitions = "ListLoggerDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLoggerDefinitionsRequest method.
+//	req, resp := client.ListLoggerDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListLoggerDefinitionsRequest method.
-//    req, resp := client.ListLoggerDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListLoggerDefinitions
 func (c *Greengrass) ListLoggerDefinitionsRequest(input *ListLoggerDefinitionsInput) (req *request.Request, output *ListLoggerDefinitionsOutput) {
@@ -5604,14 +5626,13 @@ const opListResourceDefinitionVersions = "ListResourceDefinitionVersions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResourceDefinitionVersionsRequest method.
+//	req, resp := client.ListResourceDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListResourceDefinitionVersionsRequest method.
-//    req, resp := client.ListResourceDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListResourceDefinitionVersions
 func (c *Greengrass) ListResourceDefinitionVersionsRequest(input *ListResourceDefinitionVersionsInput) (req *request.Request, output *ListResourceDefinitionVersionsOutput) {
@@ -5642,8 +5663,8 @@ func (c *Greengrass) ListResourceDefinitionVersionsRequest(input *ListResourceDe
 // API operation ListResourceDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListResourceDefinitionVersions
 func (c *Greengrass) ListResourceDefinitionVersions(input *ListResourceDefinitionVersionsInput) (*ListResourceDefinitionVersionsOutput, error) {
@@ -5683,14 +5704,13 @@ const opListResourceDefinitions = "ListResourceDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResourceDefinitionsRequest method.
+//	req, resp := client.ListResourceDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListResourceDefinitionsRequest method.
-//    req, resp := client.ListResourceDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListResourceDefinitions
 func (c *Greengrass) ListResourceDefinitionsRequest(input *ListResourceDefinitionsInput) (req *request.Request, output *ListResourceDefinitionsOutput) {
@@ -5757,14 +5777,13 @@ const opListSubscriptionDefinitionVersions = "ListSubscriptionDefinitionVersions
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSubscriptionDefinitionVersionsRequest method.
+//	req, resp := client.ListSubscriptionDefinitionVersionsRequest(params)
 //
-//    // Example sending a request using the ListSubscriptionDefinitionVersionsRequest method.
-//    req, resp := client.ListSubscriptionDefinitionVersionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListSubscriptionDefinitionVersions
 func (c *Greengrass) ListSubscriptionDefinitionVersionsRequest(input *ListSubscriptionDefinitionVersionsInput) (req *request.Request, output *ListSubscriptionDefinitionVersionsOutput) {
@@ -5795,8 +5814,8 @@ func (c *Greengrass) ListSubscriptionDefinitionVersionsRequest(input *ListSubscr
 // API operation ListSubscriptionDefinitionVersions for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListSubscriptionDefinitionVersions
 func (c *Greengrass) ListSubscriptionDefinitionVersions(input *ListSubscriptionDefinitionVersionsInput) (*ListSubscriptionDefinitionVersionsOutput, error) {
@@ -5836,14 +5855,13 @@ const opListSubscriptionDefinitions = "ListSubscriptionDefinitions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListSubscriptionDefinitionsRequest method.
+//	req, resp := client.ListSubscriptionDefinitionsRequest(params)
 //
-//    // Example sending a request using the ListSubscriptionDefinitionsRequest method.
-//    req, resp := client.ListSubscriptionDefinitionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListSubscriptionDefinitions
 func (c *Greengrass) ListSubscriptionDefinitionsRequest(input *ListSubscriptionDefinitionsInput) (req *request.Request, output *ListSubscriptionDefinitionsOutput) {
@@ -5910,14 +5928,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListTagsForResource
 func (c *Greengrass) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -5948,8 +5965,8 @@ func (c *Greengrass) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ListTagsForResource
 func (c *Greengrass) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5989,14 +6006,13 @@ const opResetDeployments = "ResetDeployments"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ResetDeploymentsRequest method.
+//	req, resp := client.ResetDeploymentsRequest(params)
 //
-//    // Example sending a request using the ResetDeploymentsRequest method.
-//    req, resp := client.ResetDeploymentsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ResetDeployments
 func (c *Greengrass) ResetDeploymentsRequest(input *ResetDeploymentsInput) (req *request.Request, output *ResetDeploymentsOutput) {
@@ -6027,8 +6043,8 @@ func (c *Greengrass) ResetDeploymentsRequest(input *ResetDeploymentsInput) (req 
 // API operation ResetDeployments for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/ResetDeployments
 func (c *Greengrass) ResetDeployments(input *ResetDeploymentsInput) (*ResetDeploymentsOutput, error) {
@@ -6068,14 +6084,13 @@ const opStartBulkDeployment = "StartBulkDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartBulkDeploymentRequest method.
+//	req, resp := client.StartBulkDeploymentRequest(params)
 //
-//    // Example sending a request using the StartBulkDeploymentRequest method.
-//    req, resp := client.StartBulkDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StartBulkDeployment
 func (c *Greengrass) StartBulkDeploymentRequest(input *StartBulkDeploymentInput) (req *request.Request, output *StartBulkDeploymentOutput) {
@@ -6099,7 +6114,7 @@ func (c *Greengrass) StartBulkDeploymentRequest(input *StartBulkDeploymentInput)
 // Deploys multiple groups in one operation. This action starts the bulk deployment
 // of a specified set of group versions. Each group version deployment will
 // be triggered with an adaptive rate that has a fixed upper limit. We recommend
-// that you include an ''X-Amzn-Client-Token'' token in every ''StartBulkDeployment''
+// that you include an ”X-Amzn-Client-Token” token in every ”StartBulkDeployment”
 // request. These requests are idempotent with respect to the token and the
 // request parameters.
 //
@@ -6111,8 +6126,8 @@ func (c *Greengrass) StartBulkDeploymentRequest(input *StartBulkDeploymentInput)
 // API operation StartBulkDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StartBulkDeployment
 func (c *Greengrass) StartBulkDeployment(input *StartBulkDeploymentInput) (*StartBulkDeploymentOutput, error) {
@@ -6152,14 +6167,13 @@ const opStopBulkDeployment = "StopBulkDeployment"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopBulkDeploymentRequest method.
+//	req, resp := client.StopBulkDeploymentRequest(params)
 //
-//    // Example sending a request using the StopBulkDeploymentRequest method.
-//    req, resp := client.StopBulkDeploymentRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StopBulkDeployment
 func (c *Greengrass) StopBulkDeploymentRequest(input *StopBulkDeploymentInput) (req *request.Request, output *StopBulkDeploymentOutput) {
@@ -6182,8 +6196,8 @@ func (c *Greengrass) StopBulkDeploymentRequest(input *StopBulkDeploymentInput) (
 // StopBulkDeployment API operation for AWS Greengrass.
 //
 // Stops the execution of a bulk deployment. This action returns a status of
-// ''Stopping'' until the deployment is stopped. You cannot start a new bulk
-// deployment while a previous deployment is in the ''Stopping'' state. This
+// ”Stopping” until the deployment is stopped. You cannot start a new bulk
+// deployment while a previous deployment is in the ”Stopping” state. This
 // action doesn't rollback completed deployments or cancel pending deployments.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6194,8 +6208,8 @@ func (c *Greengrass) StopBulkDeploymentRequest(input *StopBulkDeploymentInput) (
 // API operation StopBulkDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/StopBulkDeployment
 func (c *Greengrass) StopBulkDeployment(input *StopBulkDeploymentInput) (*StopBulkDeploymentOutput, error) {
@@ -6235,14 +6249,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/TagResource
 func (c *Greengrass) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -6276,8 +6289,8 @@ func (c *Greengrass) TagResourceRequest(input *TagResourceInput) (req *request.R
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/TagResource
 func (c *Greengrass) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -6317,14 +6330,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UntagResource
 func (c *Greengrass) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -6356,8 +6368,8 @@ func (c *Greengrass) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UntagResource
 func (c *Greengrass) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -6397,14 +6409,13 @@ const opUpdateConnectivityInfo = "UpdateConnectivityInfo"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConnectivityInfoRequest method.
+//	req, resp := client.UpdateConnectivityInfoRequest(params)
 //
-//    // Example sending a request using the UpdateConnectivityInfoRequest method.
-//    req, resp := client.UpdateConnectivityInfoRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateConnectivityInfo
 func (c *Greengrass) UpdateConnectivityInfoRequest(input *UpdateConnectivityInfoInput) (req *request.Request, output *UpdateConnectivityInfoOutput) {
@@ -6437,11 +6448,12 @@ func (c *Greengrass) UpdateConnectivityInfoRequest(input *UpdateConnectivityInfo
 // API operation UpdateConnectivityInfo for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateConnectivityInfo
 func (c *Greengrass) UpdateConnectivityInfo(input *UpdateConnectivityInfoInput) (*UpdateConnectivityInfoOutput, error) {
@@ -6481,14 +6493,13 @@ const opUpdateConnectorDefinition = "UpdateConnectorDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateConnectorDefinitionRequest method.
+//	req, resp := client.UpdateConnectorDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateConnectorDefinitionRequest method.
-//    req, resp := client.UpdateConnectorDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateConnectorDefinition
 func (c *Greengrass) UpdateConnectorDefinitionRequest(input *UpdateConnectorDefinitionInput) (req *request.Request, output *UpdateConnectorDefinitionOutput) {
@@ -6520,8 +6531,8 @@ func (c *Greengrass) UpdateConnectorDefinitionRequest(input *UpdateConnectorDefi
 // API operation UpdateConnectorDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateConnectorDefinition
 func (c *Greengrass) UpdateConnectorDefinition(input *UpdateConnectorDefinitionInput) (*UpdateConnectorDefinitionOutput, error) {
@@ -6561,14 +6572,13 @@ const opUpdateCoreDefinition = "UpdateCoreDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateCoreDefinitionRequest method.
+//	req, resp := client.UpdateCoreDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateCoreDefinitionRequest method.
-//    req, resp := client.UpdateCoreDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateCoreDefinition
 func (c *Greengrass) UpdateCoreDefinitionRequest(input *UpdateCoreDefinitionInput) (req *request.Request, output *UpdateCoreDefinitionOutput) {
@@ -6600,8 +6610,8 @@ func (c *Greengrass) UpdateCoreDefinitionRequest(input *UpdateCoreDefinitionInpu
 // API operation UpdateCoreDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateCoreDefinition
 func (c *Greengrass) UpdateCoreDefinition(input *UpdateCoreDefinitionInput) (*UpdateCoreDefinitionOutput, error) {
@@ -6641,14 +6651,13 @@ const opUpdateDeviceDefinition = "UpdateDeviceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDeviceDefinitionRequest method.
+//	req, resp := client.UpdateDeviceDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateDeviceDefinitionRequest method.
-//    req, resp := client.UpdateDeviceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateDeviceDefinition
 func (c *Greengrass) UpdateDeviceDefinitionRequest(input *UpdateDeviceDefinitionInput) (req *request.Request, output *UpdateDeviceDefinitionOutput) {
@@ -6680,8 +6689,8 @@ func (c *Greengrass) UpdateDeviceDefinitionRequest(input *UpdateDeviceDefinition
 // API operation UpdateDeviceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateDeviceDefinition
 func (c *Greengrass) UpdateDeviceDefinition(input *UpdateDeviceDefinitionInput) (*UpdateDeviceDefinitionOutput, error) {
@@ -6721,14 +6730,13 @@ const opUpdateFunctionDefinition = "UpdateFunctionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFunctionDefinitionRequest method.
+//	req, resp := client.UpdateFunctionDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateFunctionDefinitionRequest method.
-//    req, resp := client.UpdateFunctionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateFunctionDefinition
 func (c *Greengrass) UpdateFunctionDefinitionRequest(input *UpdateFunctionDefinitionInput) (req *request.Request, output *UpdateFunctionDefinitionOutput) {
@@ -6760,8 +6768,8 @@ func (c *Greengrass) UpdateFunctionDefinitionRequest(input *UpdateFunctionDefini
 // API operation UpdateFunctionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateFunctionDefinition
 func (c *Greengrass) UpdateFunctionDefinition(input *UpdateFunctionDefinitionInput) (*UpdateFunctionDefinitionOutput, error) {
@@ -6801,14 +6809,13 @@ const opUpdateGroup = "UpdateGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateGroupRequest method.
+//	req, resp := client.UpdateGroupRequest(params)
 //
-//    // Example sending a request using the UpdateGroupRequest method.
-//    req, resp := client.UpdateGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateGroup
 func (c *Greengrass) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
@@ -6840,8 +6847,8 @@ func (c *Greengrass) UpdateGroupRequest(input *UpdateGroupInput) (req *request.R
 // API operation UpdateGroup for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateGroup
 func (c *Greengrass) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
@@ -6881,14 +6888,13 @@ const opUpdateGroupCertificateConfiguration = "UpdateGroupCertificateConfigurati
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateGroupCertificateConfigurationRequest method.
+//	req, resp := client.UpdateGroupCertificateConfigurationRequest(params)
 //
-//    // Example sending a request using the UpdateGroupCertificateConfigurationRequest method.
-//    req, resp := client.UpdateGroupCertificateConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateGroupCertificateConfiguration
 func (c *Greengrass) UpdateGroupCertificateConfigurationRequest(input *UpdateGroupCertificateConfigurationInput) (req *request.Request, output *UpdateGroupCertificateConfigurationOutput) {
@@ -6919,11 +6925,12 @@ func (c *Greengrass) UpdateGroupCertificateConfigurationRequest(input *UpdateGro
 // API operation UpdateGroupCertificateConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
 //
-//   * InternalServerErrorException
-//   General error information.
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateGroupCertificateConfiguration
 func (c *Greengrass) UpdateGroupCertificateConfiguration(input *UpdateGroupCertificateConfigurationInput) (*UpdateGroupCertificateConfigurationOutput, error) {
@@ -6963,14 +6970,13 @@ const opUpdateLoggerDefinition = "UpdateLoggerDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateLoggerDefinitionRequest method.
+//	req, resp := client.UpdateLoggerDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateLoggerDefinitionRequest method.
-//    req, resp := client.UpdateLoggerDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateLoggerDefinition
 func (c *Greengrass) UpdateLoggerDefinitionRequest(input *UpdateLoggerDefinitionInput) (req *request.Request, output *UpdateLoggerDefinitionOutput) {
@@ -7002,8 +7008,8 @@ func (c *Greengrass) UpdateLoggerDefinitionRequest(input *UpdateLoggerDefinition
 // API operation UpdateLoggerDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateLoggerDefinition
 func (c *Greengrass) UpdateLoggerDefinition(input *UpdateLoggerDefinitionInput) (*UpdateLoggerDefinitionOutput, error) {
@@ -7043,14 +7049,13 @@ const opUpdateResourceDefinition = "UpdateResourceDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateResourceDefinitionRequest method.
+//	req, resp := client.UpdateResourceDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateResourceDefinitionRequest method.
-//    req, resp := client.UpdateResourceDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateResourceDefinition
 func (c *Greengrass) UpdateResourceDefinitionRequest(input *UpdateResourceDefinitionInput) (req *request.Request, output *UpdateResourceDefinitionOutput) {
@@ -7082,8 +7087,8 @@ func (c *Greengrass) UpdateResourceDefinitionRequest(input *UpdateResourceDefini
 // API operation UpdateResourceDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateResourceDefinition
 func (c *Greengrass) UpdateResourceDefinition(input *UpdateResourceDefinitionInput) (*UpdateResourceDefinitionOutput, error) {
@@ -7123,14 +7128,13 @@ const opUpdateSubscriptionDefinition = "UpdateSubscriptionDefinition"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateSubscriptionDefinitionRequest method.
+//	req, resp := client.UpdateSubscriptionDefinitionRequest(params)
 //
-//    // Example sending a request using the UpdateSubscriptionDefinitionRequest method.
-//    req, resp := client.UpdateSubscriptionDefinitionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateSubscriptionDefinition
 func (c *Greengrass) UpdateSubscriptionDefinitionRequest(input *UpdateSubscriptionDefinitionInput) (req *request.Request, output *UpdateSubscriptionDefinitionOutput) {
@@ -7162,8 +7166,8 @@ func (c *Greengrass) UpdateSubscriptionDefinitionRequest(input *UpdateSubscripti
 // API operation UpdateSubscriptionDefinition for usage and error information.
 //
 // Returned Error Types:
-//   * BadRequestException
-//   General error information.
+//   - BadRequestException
+//     General error information.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateSubscriptionDefinition
 func (c *Greengrass) UpdateSubscriptionDefinition(input *UpdateSubscriptionDefinitionInput) (*UpdateSubscriptionDefinitionOutput, error) {
@@ -7187,6 +7191,89 @@ func (c *Greengrass) UpdateSubscriptionDefinitionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opUpdateThingRuntimeConfiguration = "UpdateThingRuntimeConfiguration"
+
+// UpdateThingRuntimeConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateThingRuntimeConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateThingRuntimeConfiguration for more information on using the UpdateThingRuntimeConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateThingRuntimeConfigurationRequest method.
+//	req, resp := client.UpdateThingRuntimeConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateThingRuntimeConfiguration
+func (c *Greengrass) UpdateThingRuntimeConfigurationRequest(input *UpdateThingRuntimeConfigurationInput) (req *request.Request, output *UpdateThingRuntimeConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateThingRuntimeConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/greengrass/things/{ThingName}/runtimeconfig",
+	}
+
+	if input == nil {
+		input = &UpdateThingRuntimeConfigurationInput{}
+	}
+
+	output = &UpdateThingRuntimeConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateThingRuntimeConfiguration API operation for AWS Greengrass.
+//
+// Updates the runtime configuration of a thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Greengrass's
+// API operation UpdateThingRuntimeConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     General error information.
+//
+//   - InternalServerErrorException
+//     General error information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrass-2017-06-07/UpdateThingRuntimeConfiguration
+func (c *Greengrass) UpdateThingRuntimeConfiguration(input *UpdateThingRuntimeConfigurationInput) (*UpdateThingRuntimeConfigurationOutput, error) {
+	req, out := c.UpdateThingRuntimeConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateThingRuntimeConfigurationWithContext is the same as UpdateThingRuntimeConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateThingRuntimeConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Greengrass) UpdateThingRuntimeConfigurationWithContext(ctx aws.Context, input *UpdateThingRuntimeConfigurationInput, opts ...request.Option) (*UpdateThingRuntimeConfigurationOutput, error) {
+	req, out := c.UpdateThingRuntimeConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AssociateRoleToGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7200,12 +7287,20 @@ type AssociateRoleToGroupInput struct {
 	RoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoleToGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoleToGroupInput) GoString() string {
 	return s.String()
 }
@@ -7249,12 +7344,20 @@ type AssociateRoleToGroupOutput struct {
 	AssociatedAt *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoleToGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoleToGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7274,12 +7377,20 @@ type AssociateServiceRoleToAccountInput struct {
 	RoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceRoleToAccountInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceRoleToAccountInput) GoString() string {
 	return s.String()
 }
@@ -7310,12 +7421,20 @@ type AssociateServiceRoleToAccountOutput struct {
 	AssociatedAt *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceRoleToAccountOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateServiceRoleToAccountOutput) GoString() string {
 	return s.String()
 }
@@ -7337,12 +7456,20 @@ type BadRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
@@ -7400,12 +7527,20 @@ type BulkDeployment struct {
 	CreatedAt *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkDeployment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkDeployment) GoString() string {
 	return s.String()
 }
@@ -7449,12 +7584,20 @@ type BulkDeploymentMetrics struct {
 	RetryAttempts *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkDeploymentMetrics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkDeploymentMetrics) GoString() string {
 	return s.String()
 }
@@ -7507,12 +7650,20 @@ type BulkDeploymentResult struct {
 	GroupArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkDeploymentResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BulkDeploymentResult) GoString() string {
 	return s.String()
 }
@@ -7582,12 +7733,20 @@ type ConnectivityInfo struct {
 	PortNumber *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConnectivityInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConnectivityInfo) GoString() string {
 	return s.String()
 }
@@ -7638,12 +7797,20 @@ type Connector struct {
 	Parameters map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connector) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connector) GoString() string {
 	return s.String()
 }
@@ -7692,12 +7859,20 @@ type ConnectorDefinitionVersion struct {
 	Connectors []*Connector `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConnectorDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConnectorDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -7752,12 +7927,20 @@ type Core struct {
 	ThingArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Core) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Core) GoString() string {
 	return s.String()
 }
@@ -7813,12 +7996,20 @@ type CoreDefinitionVersion struct {
 	Cores []*Core `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CoreDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CoreDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -7864,12 +8055,20 @@ type CreateConnectorDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -7931,12 +8130,20 @@ type CreateConnectorDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -7994,12 +8201,20 @@ type CreateConnectorDefinitionVersionInput struct {
 	Connectors []*Connector `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -8060,12 +8275,20 @@ type CreateConnectorDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectorDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -8108,12 +8331,20 @@ type CreateCoreDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -8175,12 +8406,20 @@ type CreateCoreDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -8238,12 +8477,20 @@ type CreateCoreDefinitionVersionInput struct {
 	Cores []*Core `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -8304,12 +8551,20 @@ type CreateCoreDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateCoreDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -8360,12 +8615,20 @@ type CreateDeploymentInput struct {
 	GroupVersionId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -8429,12 +8692,20 @@ type CreateDeploymentOutput struct {
 	DeploymentId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -8465,12 +8736,20 @@ type CreateDeviceDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -8532,12 +8811,20 @@ type CreateDeviceDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -8595,12 +8882,20 @@ type CreateDeviceDefinitionVersionInput struct {
 	Devices []*Device `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -8661,12 +8956,20 @@ type CreateDeviceDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDeviceDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -8709,12 +9012,20 @@ type CreateFunctionDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -8776,12 +9087,20 @@ type CreateFunctionDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -8843,12 +9162,20 @@ type CreateFunctionDefinitionVersionInput struct {
 	Functions []*Function `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -8915,12 +9242,20 @@ type CreateFunctionDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFunctionDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -8950,7 +9285,7 @@ func (s *CreateFunctionDefinitionVersionOutput) SetVersion(v string) *CreateFunc
 }
 
 type CreateGroupCertificateAuthorityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
 
@@ -8958,12 +9293,20 @@ type CreateGroupCertificateAuthorityInput struct {
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupCertificateAuthorityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupCertificateAuthorityInput) GoString() string {
 	return s.String()
 }
@@ -9003,12 +9346,20 @@ type CreateGroupCertificateAuthorityOutput struct {
 	GroupCertificateAuthorityArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupCertificateAuthorityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupCertificateAuthorityOutput) GoString() string {
 	return s.String()
 }
@@ -9027,20 +9378,42 @@ type CreateGroupInput struct {
 	// Information about a group version.
 	InitialVersion *GroupVersion `type:"structure"`
 
-	Name *string `type:"string"`
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
 
 	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGroupInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.
@@ -9085,12 +9458,20 @@ type CreateGroupOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupOutput) GoString() string {
 	return s.String()
 }
@@ -9160,12 +9541,20 @@ type CreateGroupVersionInput struct {
 	SubscriptionDefinitionVersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupVersionInput) GoString() string {
 	return s.String()
 }
@@ -9252,12 +9641,20 @@ type CreateGroupVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupVersionOutput) GoString() string {
 	return s.String()
 }
@@ -9300,12 +9697,20 @@ type CreateLoggerDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -9367,12 +9772,20 @@ type CreateLoggerDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -9430,12 +9843,20 @@ type CreateLoggerDefinitionVersionInput struct {
 	Loggers []*Logger `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -9496,12 +9917,20 @@ type CreateLoggerDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLoggerDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -9544,12 +9973,20 @@ type CreateResourceDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -9611,12 +10048,20 @@ type CreateResourceDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -9674,12 +10119,20 @@ type CreateResourceDefinitionVersionInput struct {
 	Resources []*Resource `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -9740,12 +10193,20 @@ type CreateResourceDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateResourceDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -9812,12 +10273,20 @@ type CreateSoftwareUpdateJobInput struct {
 	UpdateTargetsOperatingSystem *string `type:"string" required:"true" enum:"UpdateTargetsOperatingSystem"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSoftwareUpdateJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSoftwareUpdateJobInput) GoString() string {
 	return s.String()
 }
@@ -9902,12 +10371,20 @@ type CreateSoftwareUpdateJobOutput struct {
 	PlatformSoftwareVersion *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSoftwareUpdateJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSoftwareUpdateJobOutput) GoString() string {
 	return s.String()
 }
@@ -9944,12 +10421,20 @@ type CreateSubscriptionDefinitionInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10011,12 +10496,20 @@ type CreateSubscriptionDefinitionOutput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -10074,12 +10567,20 @@ type CreateSubscriptionDefinitionVersionInput struct {
 	Subscriptions []*Subscription `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -10140,12 +10641,20 @@ type CreateSubscriptionDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateSubscriptionDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -10203,12 +10712,20 @@ type DefinitionInformation struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefinitionInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefinitionInformation) GoString() string {
 	return s.String()
 }
@@ -10262,18 +10779,26 @@ func (s *DefinitionInformation) SetTags(v map[string]*string) *DefinitionInforma
 }
 
 type DeleteConnectorDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectorDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectorDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10304,29 +10829,45 @@ type DeleteConnectorDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectorDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectorDefinitionOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteCoreDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCoreDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCoreDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10357,29 +10898,45 @@ type DeleteCoreDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCoreDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteCoreDefinitionOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteDeviceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeviceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeviceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10410,29 +10967,45 @@ type DeleteDeviceDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeviceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeviceDefinitionOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteFunctionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFunctionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFunctionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10463,29 +11036,45 @@ type DeleteFunctionDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFunctionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFunctionDefinitionOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupInput) GoString() string {
 	return s.String()
 }
@@ -10516,29 +11105,45 @@ type DeleteGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteLoggerDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggerDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggerDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10569,29 +11174,45 @@ type DeleteLoggerDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggerDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggerDefinitionOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteResourceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceDefinitionId is a required field
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10622,29 +11243,45 @@ type DeleteResourceDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceDefinitionOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteSubscriptionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SubscriptionDefinitionId is a required field
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSubscriptionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSubscriptionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -10675,12 +11312,20 @@ type DeleteSubscriptionDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSubscriptionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteSubscriptionDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -10705,12 +11350,20 @@ type Deployment struct {
 	GroupArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Deployment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Deployment) GoString() string {
 	return s.String()
 }
@@ -10771,12 +11424,20 @@ type Device struct {
 	ThingArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Device) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Device) GoString() string {
 	return s.String()
 }
@@ -10832,12 +11493,20 @@ type DeviceDefinitionVersion struct {
 	Devices []*Device `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeviceDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -10869,18 +11538,26 @@ func (s *DeviceDefinitionVersion) SetDevices(v []*Device) *DeviceDefinitionVersi
 }
 
 type DisassociateRoleFromGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoleFromGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoleFromGroupInput) GoString() string {
 	return s.String()
 }
@@ -10915,12 +11592,20 @@ type DisassociateRoleFromGroupOutput struct {
 	DisassociatedAt *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoleFromGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoleFromGroupOutput) GoString() string {
 	return s.String()
 }
@@ -10932,15 +11617,23 @@ func (s *DisassociateRoleFromGroupOutput) SetDisassociatedAt(v string) *Disassoc
 }
 
 type DisassociateServiceRoleFromAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceRoleFromAccountInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceRoleFromAccountInput) GoString() string {
 	return s.String()
 }
@@ -10952,12 +11645,20 @@ type DisassociateServiceRoleFromAccountOutput struct {
 	DisassociatedAt *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceRoleFromAccountOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateServiceRoleFromAccountOutput) GoString() string {
 	return s.String()
 }
@@ -10979,12 +11680,20 @@ type ErrorDetail struct {
 	DetailedErrorMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetail) GoString() string {
 	return s.String()
 }
@@ -11019,12 +11728,20 @@ type Function struct {
 	Id *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Function) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Function) GoString() string {
 	return s.String()
 }
@@ -11082,6 +11799,10 @@ type FunctionConfiguration struct {
 	// The name of the function executable.
 	Executable *string `type:"string"`
 
+	// The Lambda runtime supported by Greengrass which is to be used instead of
+	// the one specified in the Lambda function.
+	FunctionRuntimeOverride *string `type:"string"`
+
 	// The memory size, in KB, which the function requires. This setting is not
 	// applicable and should be cleared when you run the Lambda function without
 	// containerization.
@@ -11097,12 +11818,20 @@ type FunctionConfiguration struct {
 	Timeout *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionConfiguration) GoString() string {
 	return s.String()
 }
@@ -11143,6 +11872,12 @@ func (s *FunctionConfiguration) SetExecArgs(v string) *FunctionConfiguration {
 // SetExecutable sets the Executable field's value.
 func (s *FunctionConfiguration) SetExecutable(v string) *FunctionConfiguration {
 	s.Executable = &v
+	return s
+}
+
+// SetFunctionRuntimeOverride sets the FunctionRuntimeOverride field's value.
+func (s *FunctionConfiguration) SetFunctionRuntimeOverride(v string) *FunctionConfiguration {
+	s.FunctionRuntimeOverride = &v
 	return s
 }
 
@@ -11187,12 +11922,20 @@ type FunctionConfigurationEnvironment struct {
 	Variables map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionConfigurationEnvironment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionConfigurationEnvironment) GoString() string {
 	return s.String()
 }
@@ -11250,12 +11993,20 @@ type FunctionDefaultConfig struct {
 	Execution *FunctionDefaultExecutionConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionDefaultConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionDefaultConfig) GoString() string {
 	return s.String()
 }
@@ -11286,12 +12037,20 @@ type FunctionDefaultExecutionConfig struct {
 	RunAs *FunctionRunAsConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionDefaultExecutionConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionDefaultExecutionConfig) GoString() string {
 	return s.String()
 }
@@ -11320,12 +12079,20 @@ type FunctionDefinitionVersion struct {
 	Functions []*Function `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -11382,12 +12149,20 @@ type FunctionExecutionConfig struct {
 	RunAs *FunctionRunAsConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionExecutionConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionExecutionConfig) GoString() string {
 	return s.String()
 }
@@ -11408,8 +12183,8 @@ func (s *FunctionExecutionConfig) SetRunAs(v *FunctionRunAsConfig) *FunctionExec
 // Lambda function. You can specify one or both values to override the default
 // values. We recommend that you avoid running as root unless absolutely necessary
 // to minimize the risk of unintended changes or malicious attacks. To run as
-// root, you must set ''IsolationMode'' to ''NoContainer'' and update config.json
-// in ''greengrass-root/config'' to set ''allowFunctionsToRunAsRoot'' to ''yes''.
+// root, you must set ”IsolationMode” to ”NoContainer” and update config.json
+// in ”greengrass-root/config” to set ”allowFunctionsToRunAsRoot” to ”yes”.
 type FunctionRunAsConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -11420,12 +12195,20 @@ type FunctionRunAsConfig struct {
 	Uid *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionRunAsConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FunctionRunAsConfig) GoString() string {
 	return s.String()
 }
@@ -11443,18 +12226,26 @@ func (s *FunctionRunAsConfig) SetUid(v int64) *FunctionRunAsConfig {
 }
 
 type GetAssociatedRoleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssociatedRoleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssociatedRoleInput) GoString() string {
 	return s.String()
 }
@@ -11491,12 +12282,20 @@ type GetAssociatedRoleOutput struct {
 	RoleArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssociatedRoleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAssociatedRoleOutput) GoString() string {
 	return s.String()
 }
@@ -11514,18 +12313,26 @@ func (s *GetAssociatedRoleOutput) SetRoleArn(v string) *GetAssociatedRoleOutput 
 }
 
 type GetBulkDeploymentStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BulkDeploymentId is a required field
 	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBulkDeploymentStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBulkDeploymentStatusInput) GoString() string {
 	return s.String()
 }
@@ -11575,12 +12382,20 @@ type GetBulkDeploymentStatusOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBulkDeploymentStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBulkDeploymentStatusOutput) GoString() string {
 	return s.String()
 }
@@ -11622,18 +12437,26 @@ func (s *GetBulkDeploymentStatusOutput) SetTags(v map[string]*string) *GetBulkDe
 }
 
 type GetConnectivityInfoInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"ThingName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectivityInfoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectivityInfoInput) GoString() string {
 	return s.String()
 }
@@ -11671,12 +12494,20 @@ type GetConnectivityInfoOutput struct {
 	Message *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectivityInfoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectivityInfoOutput) GoString() string {
 	return s.String()
 }
@@ -11694,18 +12525,26 @@ func (s *GetConnectivityInfoOutput) SetMessage(v string) *GetConnectivityInfoOut
 }
 
 type GetConnectorDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -11753,12 +12592,20 @@ type GetConnectorDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -11812,7 +12659,7 @@ func (s *GetConnectorDefinitionOutput) SetTags(v map[string]*string) *GetConnect
 }
 
 type GetConnectorDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
@@ -11823,12 +12670,20 @@ type GetConnectorDefinitionVersionInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -11898,12 +12753,20 @@ type GetConnectorDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConnectorDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -11945,18 +12808,26 @@ func (s *GetConnectorDefinitionVersionOutput) SetVersion(v string) *GetConnector
 }
 
 type GetCoreDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -12004,12 +12875,20 @@ type GetCoreDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -12063,7 +12942,7 @@ func (s *GetCoreDefinitionOutput) SetTags(v map[string]*string) *GetCoreDefiniti
 }
 
 type GetCoreDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
@@ -12072,12 +12951,20 @@ type GetCoreDefinitionVersionInput struct {
 	CoreDefinitionVersionId *string `location:"uri" locationName:"CoreDefinitionVersionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -12140,12 +13027,20 @@ type GetCoreDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCoreDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -12187,7 +13082,7 @@ func (s *GetCoreDefinitionVersionOutput) SetVersion(v string) *GetCoreDefinition
 }
 
 type GetDeploymentStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"DeploymentId" type:"string" required:"true"`
@@ -12196,12 +13091,20 @@ type GetDeploymentStatusInput struct {
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStatusInput) GoString() string {
 	return s.String()
 }
@@ -12262,12 +13165,20 @@ type GetDeploymentStatusOutput struct {
 	UpdatedAt *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeploymentStatusOutput) GoString() string {
 	return s.String()
 }
@@ -12303,18 +13214,26 @@ func (s *GetDeploymentStatusOutput) SetUpdatedAt(v string) *GetDeploymentStatusO
 }
 
 type GetDeviceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -12362,12 +13281,20 @@ type GetDeviceDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -12421,7 +13348,7 @@ func (s *GetDeviceDefinitionOutput) SetTags(v map[string]*string) *GetDeviceDefi
 }
 
 type GetDeviceDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
@@ -12432,12 +13359,20 @@ type GetDeviceDefinitionVersionInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -12506,12 +13441,20 @@ type GetDeviceDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDeviceDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -12553,18 +13496,26 @@ func (s *GetDeviceDefinitionVersionOutput) SetVersion(v string) *GetDeviceDefini
 }
 
 type GetFunctionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -12612,12 +13563,20 @@ type GetFunctionDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -12671,7 +13630,7 @@ func (s *GetFunctionDefinitionOutput) SetTags(v map[string]*string) *GetFunction
 }
 
 type GetFunctionDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
@@ -12682,12 +13641,20 @@ type GetFunctionDefinitionVersionInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -12757,12 +13724,20 @@ type GetFunctionDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFunctionDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -12804,7 +13779,7 @@ func (s *GetFunctionDefinitionVersionOutput) SetVersion(v string) *GetFunctionDe
 }
 
 type GetGroupCertificateAuthorityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CertificateAuthorityId is a required field
 	CertificateAuthorityId *string `location:"uri" locationName:"CertificateAuthorityId" type:"string" required:"true"`
@@ -12813,12 +13788,20 @@ type GetGroupCertificateAuthorityInput struct {
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateAuthorityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateAuthorityInput) GoString() string {
 	return s.String()
 }
@@ -12871,12 +13854,20 @@ type GetGroupCertificateAuthorityOutput struct {
 	PemEncodedCertificate *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateAuthorityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateAuthorityOutput) GoString() string {
 	return s.String()
 }
@@ -12900,18 +13891,26 @@ func (s *GetGroupCertificateAuthorityOutput) SetPemEncodedCertificate(v string) 
 }
 
 type GetGroupCertificateConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -12948,12 +13947,20 @@ type GetGroupCertificateConfigurationOutput struct {
 	GroupId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupCertificateConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -12977,18 +13984,26 @@ func (s *GetGroupCertificateConfigurationOutput) SetGroupId(v string) *GetGroupC
 }
 
 type GetGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupInput) GoString() string {
 	return s.String()
 }
@@ -13036,12 +14051,20 @@ type GetGroupOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupOutput) GoString() string {
 	return s.String()
 }
@@ -13095,7 +14118,7 @@ func (s *GetGroupOutput) SetTags(v map[string]*string) *GetGroupOutput {
 }
 
 type GetGroupVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -13104,12 +14127,20 @@ type GetGroupVersionInput struct {
 	GroupVersionId *string `location:"uri" locationName:"GroupVersionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupVersionInput) GoString() string {
 	return s.String()
 }
@@ -13168,12 +14199,20 @@ type GetGroupVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGroupVersionOutput) GoString() string {
 	return s.String()
 }
@@ -13209,18 +14248,26 @@ func (s *GetGroupVersionOutput) SetVersion(v string) *GetGroupVersionOutput {
 }
 
 type GetLoggerDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -13268,12 +14315,20 @@ type GetLoggerDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -13327,7 +14382,7 @@ func (s *GetLoggerDefinitionOutput) SetTags(v map[string]*string) *GetLoggerDefi
 }
 
 type GetLoggerDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
@@ -13338,12 +14393,20 @@ type GetLoggerDefinitionVersionInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -13409,12 +14472,20 @@ type GetLoggerDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggerDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -13450,18 +14521,26 @@ func (s *GetLoggerDefinitionVersionOutput) SetVersion(v string) *GetLoggerDefini
 }
 
 type GetResourceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceDefinitionId is a required field
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -13509,12 +14588,20 @@ type GetResourceDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -13568,7 +14655,7 @@ func (s *GetResourceDefinitionOutput) SetTags(v map[string]*string) *GetResource
 }
 
 type GetResourceDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceDefinitionId is a required field
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
@@ -13577,12 +14664,20 @@ type GetResourceDefinitionVersionInput struct {
 	ResourceDefinitionVersionId *string `location:"uri" locationName:"ResourceDefinitionVersionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -13642,12 +14737,20 @@ type GetResourceDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -13683,15 +14786,23 @@ func (s *GetResourceDefinitionVersionOutput) SetVersion(v string) *GetResourceDe
 }
 
 type GetServiceRoleForAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceRoleForAccountInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceRoleForAccountInput) GoString() string {
 	return s.String()
 }
@@ -13706,12 +14817,20 @@ type GetServiceRoleForAccountOutput struct {
 	RoleArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceRoleForAccountOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceRoleForAccountOutput) GoString() string {
 	return s.String()
 }
@@ -13729,18 +14848,26 @@ func (s *GetServiceRoleForAccountOutput) SetRoleArn(v string) *GetServiceRoleFor
 }
 
 type GetSubscriptionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SubscriptionDefinitionId is a required field
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -13788,12 +14915,20 @@ type GetSubscriptionDefinitionOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -13847,7 +14982,7 @@ func (s *GetSubscriptionDefinitionOutput) SetTags(v map[string]*string) *GetSubs
 }
 
 type GetSubscriptionDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
@@ -13858,12 +14993,20 @@ type GetSubscriptionDefinitionVersionInput struct {
 	SubscriptionDefinitionVersionId *string `location:"uri" locationName:"SubscriptionDefinitionVersionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionVersionInput) GoString() string {
 	return s.String()
 }
@@ -13933,12 +15076,20 @@ type GetSubscriptionDefinitionVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSubscriptionDefinitionVersionOutput) GoString() string {
 	return s.String()
 }
@@ -13979,6 +15130,85 @@ func (s *GetSubscriptionDefinitionVersionOutput) SetVersion(v string) *GetSubscr
 	return s
 }
 
+type GetThingRuntimeConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ThingName is a required field
+	ThingName *string `location:"uri" locationName:"ThingName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetThingRuntimeConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetThingRuntimeConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetThingRuntimeConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetThingRuntimeConfigurationInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *GetThingRuntimeConfigurationInput) SetThingName(v string) *GetThingRuntimeConfigurationInput {
+	s.ThingName = &v
+	return s
+}
+
+// The runtime configuration for a thing.
+type GetThingRuntimeConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Runtime configuration for a thing.
+	RuntimeConfiguration *RuntimeConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetThingRuntimeConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetThingRuntimeConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *GetThingRuntimeConfigurationOutput) SetRuntimeConfiguration(v *RuntimeConfiguration) *GetThingRuntimeConfigurationOutput {
+	s.RuntimeConfiguration = v
+	return s
+}
+
 // Information about a certificate authority for a group.
 type GroupCertificateAuthorityProperties struct {
 	_ struct{} `type:"structure"`
@@ -13990,12 +15220,20 @@ type GroupCertificateAuthorityProperties struct {
 	GroupCertificateAuthorityId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupCertificateAuthorityProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupCertificateAuthorityProperties) GoString() string {
 	return s.String()
 }
@@ -14038,12 +15276,20 @@ type GroupInformation struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupInformation) GoString() string {
 	return s.String()
 }
@@ -14104,12 +15350,20 @@ type GroupOwnerSetting struct {
 	GroupOwner *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupOwnerSetting) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupOwnerSetting) GoString() string {
 	return s.String()
 }
@@ -14152,12 +15406,20 @@ type GroupVersion struct {
 	SubscriptionDefinitionVersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupVersion) GoString() string {
 	return s.String()
 }
@@ -14215,12 +15477,20 @@ type InternalServerErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerErrorException) GoString() string {
 	return s.String()
 }
@@ -14264,7 +15534,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListBulkDeploymentDetailedReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BulkDeploymentId is a required field
 	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
@@ -14274,12 +15544,20 @@ type ListBulkDeploymentDetailedReportsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentDetailedReportsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentDetailedReportsInput) GoString() string {
 	return s.String()
 }
@@ -14329,12 +15607,20 @@ type ListBulkDeploymentDetailedReportsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentDetailedReportsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentDetailedReportsOutput) GoString() string {
 	return s.String()
 }
@@ -14352,19 +15638,27 @@ func (s *ListBulkDeploymentDetailedReportsOutput) SetNextToken(v string) *ListBu
 }
 
 type ListBulkDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentsInput) GoString() string {
 	return s.String()
 }
@@ -14392,12 +15686,20 @@ type ListBulkDeploymentsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBulkDeploymentsOutput) GoString() string {
 	return s.String()
 }
@@ -14415,7 +15717,7 @@ func (s *ListBulkDeploymentsOutput) SetNextToken(v string) *ListBulkDeploymentsO
 }
 
 type ListConnectorDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
@@ -14425,12 +15727,20 @@ type ListConnectorDefinitionVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -14477,12 +15787,20 @@ type ListConnectorDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -14500,19 +15818,27 @@ func (s *ListConnectorDefinitionVersionsOutput) SetVersions(v []*VersionInformat
 }
 
 type ListConnectorDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -14537,12 +15863,20 @@ type ListConnectorDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectorDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -14560,7 +15894,7 @@ func (s *ListConnectorDefinitionsOutput) SetNextToken(v string) *ListConnectorDe
 }
 
 type ListCoreDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
@@ -14570,12 +15904,20 @@ type ListCoreDefinitionVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -14622,12 +15964,20 @@ type ListCoreDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -14645,19 +15995,27 @@ func (s *ListCoreDefinitionVersionsOutput) SetVersions(v []*VersionInformation) 
 }
 
 type ListCoreDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -14682,12 +16040,20 @@ type ListCoreDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListCoreDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -14705,7 +16071,7 @@ func (s *ListCoreDefinitionsOutput) SetNextToken(v string) *ListCoreDefinitionsO
 }
 
 type ListDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -14715,12 +16081,20 @@ type ListDeploymentsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsInput) GoString() string {
 	return s.String()
 }
@@ -14770,12 +16144,20 @@ type ListDeploymentsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeploymentsOutput) GoString() string {
 	return s.String()
 }
@@ -14793,7 +16175,7 @@ func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 }
 
 type ListDeviceDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
@@ -14803,12 +16185,20 @@ type ListDeviceDefinitionVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -14855,12 +16245,20 @@ type ListDeviceDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -14878,19 +16276,27 @@ func (s *ListDeviceDefinitionVersionsOutput) SetVersions(v []*VersionInformation
 }
 
 type ListDeviceDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -14915,12 +16321,20 @@ type ListDeviceDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDeviceDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -14938,7 +16352,7 @@ func (s *ListDeviceDefinitionsOutput) SetNextToken(v string) *ListDeviceDefiniti
 }
 
 type ListFunctionDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
@@ -14948,12 +16362,20 @@ type ListFunctionDefinitionVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -15000,12 +16422,20 @@ type ListFunctionDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -15023,19 +16453,27 @@ func (s *ListFunctionDefinitionVersionsOutput) SetVersions(v []*VersionInformati
 }
 
 type ListFunctionDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -15060,12 +16498,20 @@ type ListFunctionDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFunctionDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -15083,18 +16529,26 @@ func (s *ListFunctionDefinitionsOutput) SetNextToken(v string) *ListFunctionDefi
 }
 
 type ListGroupCertificateAuthoritiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupCertificateAuthoritiesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupCertificateAuthoritiesInput) GoString() string {
 	return s.String()
 }
@@ -15128,12 +16582,20 @@ type ListGroupCertificateAuthoritiesOutput struct {
 	GroupCertificateAuthorities []*GroupCertificateAuthorityProperties `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupCertificateAuthoritiesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupCertificateAuthoritiesOutput) GoString() string {
 	return s.String()
 }
@@ -15145,7 +16607,7 @@ func (s *ListGroupCertificateAuthoritiesOutput) SetGroupCertificateAuthorities(v
 }
 
 type ListGroupVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -15155,12 +16617,20 @@ type ListGroupVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupVersionsInput) GoString() string {
 	return s.String()
 }
@@ -15207,12 +16677,20 @@ type ListGroupVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -15230,19 +16708,27 @@ func (s *ListGroupVersionsOutput) SetVersions(v []*VersionInformation) *ListGrou
 }
 
 type ListGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsInput) GoString() string {
 	return s.String()
 }
@@ -15270,12 +16756,20 @@ type ListGroupsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -15293,7 +16787,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 }
 
 type ListLoggerDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
@@ -15303,12 +16797,20 @@ type ListLoggerDefinitionVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -15355,12 +16857,20 @@ type ListLoggerDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -15378,19 +16888,27 @@ func (s *ListLoggerDefinitionVersionsOutput) SetVersions(v []*VersionInformation
 }
 
 type ListLoggerDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -15415,12 +16933,20 @@ type ListLoggerDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggerDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -15438,7 +16964,7 @@ func (s *ListLoggerDefinitionsOutput) SetNextToken(v string) *ListLoggerDefiniti
 }
 
 type ListResourceDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -15448,12 +16974,20 @@ type ListResourceDefinitionVersionsInput struct {
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -15500,12 +17034,20 @@ type ListResourceDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -15523,19 +17065,27 @@ func (s *ListResourceDefinitionVersionsOutput) SetVersions(v []*VersionInformati
 }
 
 type ListResourceDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -15560,12 +17110,20 @@ type ListResourceDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -15583,7 +17141,7 @@ func (s *ListResourceDefinitionsOutput) SetNextToken(v string) *ListResourceDefi
 }
 
 type ListSubscriptionDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -15593,12 +17151,20 @@ type ListSubscriptionDefinitionVersionsInput struct {
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionVersionsInput) GoString() string {
 	return s.String()
 }
@@ -15645,12 +17211,20 @@ type ListSubscriptionDefinitionVersionsOutput struct {
 	Versions []*VersionInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -15668,19 +17242,27 @@ func (s *ListSubscriptionDefinitionVersionsOutput) SetVersions(v []*VersionInfor
 }
 
 type ListSubscriptionDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionsInput) GoString() string {
 	return s.String()
 }
@@ -15705,12 +17287,20 @@ type ListSubscriptionDefinitionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSubscriptionDefinitionsOutput) GoString() string {
 	return s.String()
 }
@@ -15728,18 +17318,26 @@ func (s *ListSubscriptionDefinitionsOutput) SetNextToken(v string) *ListSubscrip
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -15773,12 +17371,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -15801,12 +17407,20 @@ type LocalDeviceResourceData struct {
 	SourcePath *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocalDeviceResourceData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocalDeviceResourceData) GoString() string {
 	return s.String()
 }
@@ -15839,12 +17453,20 @@ type LocalVolumeResourceData struct {
 	SourcePath *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocalVolumeResourceData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocalVolumeResourceData) GoString() string {
 	return s.String()
 }
@@ -15898,12 +17520,20 @@ type Logger struct {
 	Type *string `type:"string" required:"true" enum:"LoggerType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Logger) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Logger) GoString() string {
 	return s.String()
 }
@@ -15968,12 +17598,20 @@ type LoggerDefinitionVersion struct {
 	Loggers []*Logger `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggerDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggerDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -16017,12 +17655,20 @@ type ResetDeploymentsInput struct {
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetDeploymentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetDeploymentsInput) GoString() string {
 	return s.String()
 }
@@ -16071,12 +17717,20 @@ type ResetDeploymentsOutput struct {
 	DeploymentId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetDeploymentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResetDeploymentsOutput) GoString() string {
 	return s.String()
 }
@@ -16117,12 +17771,20 @@ type Resource struct {
 	ResourceDataContainer *ResourceDataContainer `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Resource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Resource) GoString() string {
 	return s.String()
 }
@@ -16184,12 +17846,20 @@ type ResourceAccessPolicy struct {
 	ResourceId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAccessPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAccessPolicy) GoString() string {
 	return s.String()
 }
@@ -16220,9 +17890,9 @@ func (s *ResourceAccessPolicy) SetResourceId(v string) *ResourceAccessPolicy {
 }
 
 // A container for resource data. The container takes only one of the following
-// supported resource data types: ''LocalDeviceResourceData'', ''LocalVolumeResourceData'',
-// ''SageMakerMachineLearningModelResourceData'', ''S3MachineLearningModelResourceData'',
-// ''SecretsManagerSecretResourceData''.
+// supported resource data types: ”LocalDeviceResourceData”, ”LocalVolumeResourceData”,
+// ”SageMakerMachineLearningModelResourceData”, ”S3MachineLearningModelResourceData”,
+// ”SecretsManagerSecretResourceData”.
 type ResourceDataContainer struct {
 	_ struct{} `type:"structure"`
 
@@ -16243,12 +17913,20 @@ type ResourceDataContainer struct {
 	SecretsManagerSecretResourceData *SecretsManagerSecretResourceData `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDataContainer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDataContainer) GoString() string {
 	return s.String()
 }
@@ -16311,12 +17989,20 @@ type ResourceDefinitionVersion struct {
 	Resources []*Resource `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -16365,12 +18051,20 @@ type ResourceDownloadOwnerSetting struct {
 	GroupPermission *string `type:"string" required:"true" enum:"Permission"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDownloadOwnerSetting) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceDownloadOwnerSetting) GoString() string {
 	return s.String()
 }
@@ -16403,6 +18097,38 @@ func (s *ResourceDownloadOwnerSetting) SetGroupPermission(v string) *ResourceDow
 	return s
 }
 
+// Runtime configuration for a thing.
+type RuntimeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration for telemetry service.
+	TelemetryConfiguration *TelemetryConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimeConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTelemetryConfiguration sets the TelemetryConfiguration field's value.
+func (s *RuntimeConfiguration) SetTelemetryConfiguration(v *TelemetryConfiguration) *RuntimeConfiguration {
+	s.TelemetryConfiguration = v
+	return s
+}
+
 // Attributes that define an Amazon S3 machine learning resource.
 type S3MachineLearningModelResourceData struct {
 	_ struct{} `type:"structure"`
@@ -16418,12 +18144,20 @@ type S3MachineLearningModelResourceData struct {
 	S3Uri *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3MachineLearningModelResourceData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3MachineLearningModelResourceData) GoString() string {
 	return s.String()
 }
@@ -16475,12 +18209,20 @@ type SageMakerMachineLearningModelResourceData struct {
 	SageMakerJobArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SageMakerMachineLearningModelResourceData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SageMakerMachineLearningModelResourceData) GoString() string {
 	return s.String()
 }
@@ -16535,12 +18277,20 @@ type SecretsManagerSecretResourceData struct {
 	AdditionalStagingLabelsToDownload []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecretsManagerSecretResourceData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecretsManagerSecretResourceData) GoString() string {
 	return s.String()
 }
@@ -16586,12 +18336,20 @@ type StartBulkDeploymentInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBulkDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBulkDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -16646,12 +18404,20 @@ type StartBulkDeploymentOutput struct {
 	BulkDeploymentId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBulkDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBulkDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -16669,18 +18435,26 @@ func (s *StartBulkDeploymentOutput) SetBulkDeploymentId(v string) *StartBulkDepl
 }
 
 type StopBulkDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BulkDeploymentId is a required field
 	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBulkDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBulkDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -16711,12 +18485,20 @@ type StopBulkDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBulkDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBulkDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -16750,12 +18532,20 @@ type Subscription struct {
 	Target *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Subscription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Subscription) GoString() string {
 	return s.String()
 }
@@ -16814,12 +18604,20 @@ type SubscriptionDefinitionVersion struct {
 	Subscriptions []*Subscription `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubscriptionDefinitionVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SubscriptionDefinitionVersion) GoString() string {
 	return s.String()
 }
@@ -16860,12 +18658,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -16902,18 +18708,117 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-type UntagResourceInput struct {
+// Configuration settings for running telemetry.
+type TelemetryConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// Synchronization status of the device reported configuration with the desired
+	// configuration.
+	ConfigurationSyncStatus *string `type:"string" enum:"ConfigurationSyncStatus"`
+
+	// Configure telemetry to be on or off.
+	//
+	// Telemetry is a required field
+	Telemetry *string `type:"string" required:"true" enum:"Telemetry"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TelemetryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TelemetryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationSyncStatus sets the ConfigurationSyncStatus field's value.
+func (s *TelemetryConfiguration) SetConfigurationSyncStatus(v string) *TelemetryConfiguration {
+	s.ConfigurationSyncStatus = &v
+	return s
+}
+
+// SetTelemetry sets the Telemetry field's value.
+func (s *TelemetryConfiguration) SetTelemetry(v string) *TelemetryConfiguration {
+	s.Telemetry = &v
+	return s
+}
+
+// Configuration settings for running telemetry.
+type TelemetryConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Configure telemetry to be on or off.
+	//
+	// Telemetry is a required field
+	Telemetry *string `type:"string" required:"true" enum:"Telemetry"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TelemetryConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TelemetryConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TelemetryConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TelemetryConfigurationUpdate"}
+	if s.Telemetry == nil {
+		invalidParams.Add(request.NewErrParamRequired("Telemetry"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTelemetry sets the Telemetry field's value.
+func (s *TelemetryConfigurationUpdate) SetTelemetry(v string) *TelemetryConfigurationUpdate {
+	s.Telemetry = &v
+	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -16922,12 +18827,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -16967,12 +18880,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -16988,12 +18909,20 @@ type UpdateConnectivityInfoInput struct {
 	ThingName *string `location:"uri" locationName:"ThingName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectivityInfoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectivityInfoInput) GoString() string {
 	return s.String()
 }
@@ -17036,12 +18965,20 @@ type UpdateConnectivityInfoOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectivityInfoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectivityInfoOutput) GoString() string {
 	return s.String()
 }
@@ -17067,12 +19004,20 @@ type UpdateConnectorDefinitionInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectorDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectorDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17109,12 +19054,20 @@ type UpdateConnectorDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectorDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectorDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -17128,12 +19081,20 @@ type UpdateCoreDefinitionInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCoreDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCoreDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17170,12 +19131,20 @@ type UpdateCoreDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCoreDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateCoreDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -17189,12 +19158,20 @@ type UpdateDeviceDefinitionInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17231,12 +19208,20 @@ type UpdateDeviceDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDeviceDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -17250,12 +19235,20 @@ type UpdateFunctionDefinitionInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFunctionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFunctionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17292,12 +19285,20 @@ type UpdateFunctionDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFunctionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFunctionDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -17312,12 +19313,20 @@ type UpdateGroupCertificateConfigurationInput struct {
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupCertificateConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupCertificateConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -17360,12 +19369,20 @@ type UpdateGroupCertificateConfigurationOutput struct {
 	GroupId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupCertificateConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupCertificateConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -17397,12 +19414,20 @@ type UpdateGroupInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupInput) GoString() string {
 	return s.String()
 }
@@ -17439,12 +19464,20 @@ type UpdateGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupOutput) GoString() string {
 	return s.String()
 }
@@ -17458,12 +19491,20 @@ type UpdateLoggerDefinitionInput struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLoggerDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLoggerDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17500,12 +19541,20 @@ type UpdateLoggerDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLoggerDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLoggerDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -17519,12 +19568,20 @@ type UpdateResourceDefinitionInput struct {
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17561,12 +19618,20 @@ type UpdateResourceDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateResourceDefinitionOutput) GoString() string {
 	return s.String()
 }
@@ -17580,12 +19645,20 @@ type UpdateSubscriptionDefinitionInput struct {
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSubscriptionDefinitionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSubscriptionDefinitionInput) GoString() string {
 	return s.String()
 }
@@ -17622,13 +19695,104 @@ type UpdateSubscriptionDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSubscriptionDefinitionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateSubscriptionDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateThingRuntimeConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration settings for running telemetry.
+	TelemetryConfiguration *TelemetryConfigurationUpdate `type:"structure"`
+
+	// ThingName is a required field
+	ThingName *string `location:"uri" locationName:"ThingName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateThingRuntimeConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateThingRuntimeConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateThingRuntimeConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateThingRuntimeConfigurationInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+	if s.TelemetryConfiguration != nil {
+		if err := s.TelemetryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TelemetryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTelemetryConfiguration sets the TelemetryConfiguration field's value.
+func (s *UpdateThingRuntimeConfigurationInput) SetTelemetryConfiguration(v *TelemetryConfigurationUpdate) *UpdateThingRuntimeConfigurationInput {
+	s.TelemetryConfiguration = v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *UpdateThingRuntimeConfigurationInput) SetThingName(v string) *UpdateThingRuntimeConfigurationInput {
+	s.ThingName = &v
+	return s
+}
+
+type UpdateThingRuntimeConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateThingRuntimeConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateThingRuntimeConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -17649,12 +19813,20 @@ type VersionInformation struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionInformation) GoString() string {
 	return s.String()
 }
@@ -17704,8 +19876,36 @@ const (
 	BulkDeploymentStatusFailed = "Failed"
 )
 
-// The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment''
-// and ''Redeployment'' are valid.
+// BulkDeploymentStatus_Values returns all elements of the BulkDeploymentStatus enum
+func BulkDeploymentStatus_Values() []string {
+	return []string{
+		BulkDeploymentStatusInitializing,
+		BulkDeploymentStatusRunning,
+		BulkDeploymentStatusCompleted,
+		BulkDeploymentStatusStopping,
+		BulkDeploymentStatusStopped,
+		BulkDeploymentStatusFailed,
+	}
+}
+
+const (
+	// ConfigurationSyncStatusInSync is a ConfigurationSyncStatus enum value
+	ConfigurationSyncStatusInSync = "InSync"
+
+	// ConfigurationSyncStatusOutOfSync is a ConfigurationSyncStatus enum value
+	ConfigurationSyncStatusOutOfSync = "OutOfSync"
+)
+
+// ConfigurationSyncStatus_Values returns all elements of the ConfigurationSyncStatus enum
+func ConfigurationSyncStatus_Values() []string {
+	return []string{
+		ConfigurationSyncStatusInSync,
+		ConfigurationSyncStatusOutOfSync,
+	}
+}
+
+// The type of deployment. When used for ”CreateDeployment”, only ”NewDeployment”
+// and ”Redeployment” are valid.
 const (
 	// DeploymentTypeNewDeployment is a DeploymentType enum value
 	DeploymentTypeNewDeployment = "NewDeployment"
@@ -17720,6 +19920,16 @@ const (
 	DeploymentTypeForceResetDeployment = "ForceResetDeployment"
 )
 
+// DeploymentType_Values returns all elements of the DeploymentType enum
+func DeploymentType_Values() []string {
+	return []string{
+		DeploymentTypeNewDeployment,
+		DeploymentTypeRedeployment,
+		DeploymentTypeResetDeployment,
+		DeploymentTypeForceResetDeployment,
+	}
+}
+
 const (
 	// EncodingTypeBinary is a EncodingType enum value
 	EncodingTypeBinary = "binary"
@@ -17727,6 +19937,14 @@ const (
 	// EncodingTypeJson is a EncodingType enum value
 	EncodingTypeJson = "json"
 )
+
+// EncodingType_Values returns all elements of the EncodingType enum
+func EncodingType_Values() []string {
+	return []string{
+		EncodingTypeBinary,
+		EncodingTypeJson,
+	}
+}
 
 // Specifies whether the Lambda function runs in a Greengrass container (default)
 // or without containerization. Unless your scenario requires that you run without
@@ -17741,6 +19959,14 @@ const (
 	FunctionIsolationModeNoContainer = "NoContainer"
 )
 
+// FunctionIsolationMode_Values returns all elements of the FunctionIsolationMode enum
+func FunctionIsolationMode_Values() []string {
+	return []string{
+		FunctionIsolationModeGreengrassContainer,
+		FunctionIsolationModeNoContainer,
+	}
+}
+
 const (
 	// LoggerComponentGreengrassSystem is a LoggerComponent enum value
 	LoggerComponentGreengrassSystem = "GreengrassSystem"
@@ -17748,6 +19974,14 @@ const (
 	// LoggerComponentLambda is a LoggerComponent enum value
 	LoggerComponentLambda = "Lambda"
 )
+
+// LoggerComponent_Values returns all elements of the LoggerComponent enum
+func LoggerComponent_Values() []string {
+	return []string{
+		LoggerComponentGreengrassSystem,
+		LoggerComponentLambda,
+	}
+}
 
 const (
 	// LoggerLevelDebug is a LoggerLevel enum value
@@ -17766,6 +20000,17 @@ const (
 	LoggerLevelFatal = "FATAL"
 )
 
+// LoggerLevel_Values returns all elements of the LoggerLevel enum
+func LoggerLevel_Values() []string {
+	return []string{
+		LoggerLevelDebug,
+		LoggerLevelInfo,
+		LoggerLevelWarn,
+		LoggerLevelError,
+		LoggerLevelFatal,
+	}
+}
+
 const (
 	// LoggerTypeFileSystem is a LoggerType enum value
 	LoggerTypeFileSystem = "FileSystem"
@@ -17773,6 +20018,14 @@ const (
 	// LoggerTypeAwscloudWatch is a LoggerType enum value
 	LoggerTypeAwscloudWatch = "AWSCloudWatch"
 )
+
+// LoggerType_Values returns all elements of the LoggerType enum
+func LoggerType_Values() []string {
+	return []string{
+		LoggerTypeFileSystem,
+		LoggerTypeAwscloudWatch,
+	}
+}
 
 // The type of permission a function has to access a resource.
 const (
@@ -17783,6 +20036,14 @@ const (
 	PermissionRw = "rw"
 )
 
+// Permission_Values returns all elements of the Permission enum
+func Permission_Values() []string {
+	return []string{
+		PermissionRo,
+		PermissionRw,
+	}
+}
+
 // The piece of software on the Greengrass core that will be updated.
 const (
 	// SoftwareToUpdateCore is a SoftwareToUpdate enum value
@@ -17791,6 +20052,30 @@ const (
 	// SoftwareToUpdateOtaAgent is a SoftwareToUpdate enum value
 	SoftwareToUpdateOtaAgent = "ota_agent"
 )
+
+// SoftwareToUpdate_Values returns all elements of the SoftwareToUpdate enum
+func SoftwareToUpdate_Values() []string {
+	return []string{
+		SoftwareToUpdateCore,
+		SoftwareToUpdateOtaAgent,
+	}
+}
+
+const (
+	// TelemetryOn is a Telemetry enum value
+	TelemetryOn = "On"
+
+	// TelemetryOff is a Telemetry enum value
+	TelemetryOff = "Off"
+)
+
+// Telemetry_Values returns all elements of the Telemetry enum
+func Telemetry_Values() []string {
+	return []string{
+		TelemetryOn,
+		TelemetryOff,
+	}
+}
 
 // The minimum level of log statements that should be logged by the OTA Agent
 // during an update.
@@ -17820,6 +20105,20 @@ const (
 	UpdateAgentLogLevelFatal = "FATAL"
 )
 
+// UpdateAgentLogLevel_Values returns all elements of the UpdateAgentLogLevel enum
+func UpdateAgentLogLevel_Values() []string {
+	return []string{
+		UpdateAgentLogLevelNone,
+		UpdateAgentLogLevelTrace,
+		UpdateAgentLogLevelDebug,
+		UpdateAgentLogLevelVerbose,
+		UpdateAgentLogLevelInfo,
+		UpdateAgentLogLevelWarn,
+		UpdateAgentLogLevelError,
+		UpdateAgentLogLevelFatal,
+	}
+}
+
 // The architecture of the cores which are the targets of an update.
 const (
 	// UpdateTargetsArchitectureArmv6l is a UpdateTargetsArchitecture enum value
@@ -17835,6 +20134,16 @@ const (
 	UpdateTargetsArchitectureAarch64 = "aarch64"
 )
 
+// UpdateTargetsArchitecture_Values returns all elements of the UpdateTargetsArchitecture enum
+func UpdateTargetsArchitecture_Values() []string {
+	return []string{
+		UpdateTargetsArchitectureArmv6l,
+		UpdateTargetsArchitectureArmv7l,
+		UpdateTargetsArchitectureX8664,
+		UpdateTargetsArchitectureAarch64,
+	}
+}
+
 // The operating system of the cores which are the targets of an update.
 const (
 	// UpdateTargetsOperatingSystemUbuntu is a UpdateTargetsOperatingSystem enum value
@@ -17849,3 +20158,13 @@ const (
 	// UpdateTargetsOperatingSystemOpenwrt is a UpdateTargetsOperatingSystem enum value
 	UpdateTargetsOperatingSystemOpenwrt = "openwrt"
 )
+
+// UpdateTargetsOperatingSystem_Values returns all elements of the UpdateTargetsOperatingSystem enum
+func UpdateTargetsOperatingSystem_Values() []string {
+	return []string{
+		UpdateTargetsOperatingSystemUbuntu,
+		UpdateTargetsOperatingSystemRaspbian,
+		UpdateTargetsOperatingSystemAmazonLinux,
+		UpdateTargetsOperatingSystemOpenwrt,
+	}
+}

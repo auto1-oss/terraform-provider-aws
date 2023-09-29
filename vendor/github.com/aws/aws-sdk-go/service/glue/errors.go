@@ -38,6 +38,12 @@ const (
 	// A specified condition was not satisfied.
 	ErrCodeConditionCheckFailureException = "ConditionCheckFailureException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// The CreatePartitions API was called on a table that has indexes enabled.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeCrawlerNotRunningException for service response error code
 	// "CrawlerNotRunningException".
 	//
@@ -74,6 +80,24 @@ const (
 	// The same unique identifier was associated with two different records.
 	ErrCodeIdempotentParameterMismatchException = "IdempotentParameterMismatchException"
 
+	// ErrCodeIllegalBlueprintStateException for service response error code
+	// "IllegalBlueprintStateException".
+	//
+	// The blueprint is in an invalid state to perform a requested operation.
+	ErrCodeIllegalBlueprintStateException = "IllegalBlueprintStateException"
+
+	// ErrCodeIllegalSessionStateException for service response error code
+	// "IllegalSessionStateException".
+	//
+	// The session is in an invalid state to perform a requested operation.
+	ErrCodeIllegalSessionStateException = "IllegalSessionStateException"
+
+	// ErrCodeIllegalWorkflowStateException for service response error code
+	// "IllegalWorkflowStateException".
+	//
+	// The workflow is in an invalid state to perform a requested operation.
+	ErrCodeIllegalWorkflowStateException = "IllegalWorkflowStateException"
+
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
@@ -85,6 +109,12 @@ const (
 	//
 	// The input provided was not valid.
 	ErrCodeInvalidInputException = "InvalidInputException"
+
+	// ErrCodeInvalidStateException for service response error code
+	// "InvalidStateException".
+	//
+	// An error that indicates your data is in an invalid state.
+	ErrCodeInvalidStateException = "InvalidStateException"
 
 	// ErrCodeMLTransformNotReadyException for service response error code
 	// "MLTransformNotReadyException".
@@ -103,6 +133,16 @@ const (
 	//
 	// The operation timed out.
 	ErrCodeOperationTimeoutException = "OperationTimeoutException"
+
+	// ErrCodePermissionTypeMismatchException for service response error code
+	// "PermissionTypeMismatchException".
+	ErrCodePermissionTypeMismatchException = "PermissionTypeMismatchException"
+
+	// ErrCodeResourceNotReadyException for service response error code
+	// "ResourceNotReadyException".
+	//
+	// A resource was not ready for a transaction.
+	ErrCodeResourceNotReadyException = "ResourceNotReadyException"
 
 	// ErrCodeResourceNumberLimitExceededException for service response error code
 	// "ResourceNumberLimitExceededException".
@@ -147,17 +187,24 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConcurrentModificationException":      newErrorConcurrentModificationException,
 	"ConcurrentRunsExceededException":      newErrorConcurrentRunsExceededException,
 	"ConditionCheckFailureException":       newErrorConditionCheckFailureException,
+	"ConflictException":                    newErrorConflictException,
 	"CrawlerNotRunningException":           newErrorCrawlerNotRunningException,
 	"CrawlerRunningException":              newErrorCrawlerRunningException,
 	"CrawlerStoppingException":             newErrorCrawlerStoppingException,
 	"GlueEncryptionException":              newErrorEncryptionException,
 	"EntityNotFoundException":              newErrorEntityNotFoundException,
 	"IdempotentParameterMismatchException": newErrorIdempotentParameterMismatchException,
+	"IllegalBlueprintStateException":       newErrorIllegalBlueprintStateException,
+	"IllegalSessionStateException":         newErrorIllegalSessionStateException,
+	"IllegalWorkflowStateException":        newErrorIllegalWorkflowStateException,
 	"InternalServiceException":             newErrorInternalServiceException,
 	"InvalidInputException":                newErrorInvalidInputException,
+	"InvalidStateException":                newErrorInvalidStateException,
 	"MLTransformNotReadyException":         newErrorMLTransformNotReadyException,
 	"NoScheduleException":                  newErrorNoScheduleException,
 	"OperationTimeoutException":            newErrorOperationTimeoutException,
+	"PermissionTypeMismatchException":      newErrorPermissionTypeMismatchException,
+	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ResourceNumberLimitExceededException": newErrorResourceNumberLimitExceededException,
 	"SchedulerNotRunningException":         newErrorSchedulerNotRunningException,
 	"SchedulerRunningException":            newErrorSchedulerRunningException,

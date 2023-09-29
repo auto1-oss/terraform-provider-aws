@@ -29,14 +29,13 @@ const opAssociateWebACL = "AssociateWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateWebACLRequest method.
+//	req, resp := client.AssociateWebACLRequest(params)
 //
-//    // Example sending a request using the AssociateWebACLRequest method.
-//    req, resp := client.AssociateWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/AssociateWebACL
 func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *request.Request, output *AssociateWebACLOutput) {
@@ -58,19 +57,28 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 
 // AssociateWebACL API operation for AWS WAFV2.
 //
+// Associates a web ACL with a regional application resource, to protect the
+// resource. A regional application can be an Application Load Balancer (ALB),
+// an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito
+// user pool.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// For Amazon CloudFront, don't use this call. Instead, use your CloudFront
+// distribution configuration. To associate a web ACL, in the CloudFront call
+// UpdateDistribution, set the web ACL ID to the Amazon Resource Name (ARN)
+// of the web ACL. For information, see UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html).
 //
-// Associates a Web ACL with a regional application resource, to protect the
-// resource. A regional application can be an Application Load Balancer (ALB)
-// or an API Gateway stage.
-//
-// For AWS CloudFront, don't use this call. Instead, use your CloudFront distribution
-// configuration. To associate a Web ACL, in the CloudFront call UpdateDistribution,
-// set the web ACL ID to the Amazon Resource Name (ARN) of the Web ACL. For
-// information, see UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html).
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -80,34 +88,41 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 // API operation AssociateWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/AssociateWebACL
 func (c *WAFV2) AssociateWebACL(input *AssociateWebACLInput) (*AssociateWebACLOutput, error) {
@@ -147,14 +162,13 @@ const opCheckCapacity = "CheckCapacity"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CheckCapacityRequest method.
+//	req, resp := client.CheckCapacityRequest(params)
 //
-//    // Example sending a request using the CheckCapacityRequest method.
-//    req, resp := client.CheckCapacityRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CheckCapacity
 func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Request, output *CheckCapacityOutput) {
@@ -175,22 +189,17 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 
 // CheckCapacity API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Returns the web ACL capacity unit (WCU) requirements for a specified scope
 // and set of rules. You can use this to check the capacity requirements for
 // the rules you want to use in a RuleGroup or WebACL.
 //
-// AWS WAF uses WCUs to calculate and control the operating resources that are
-// used to run your rules, rule groups, and web ACLs. AWS WAF calculates capacity
-// differently for each rule type, to reflect the relative cost of each rule.
-// Simple rules that cost little to run use fewer WCUs than more complex rules
-// that use more processing power. Rule group capacity is fixed at creation,
-// which helps users plan their web ACL WCU usage when they use a rule group.
-// The WCU limit for web ACLs is 1,500.
+// WAF uses WCUs to calculate and control the operating resources that are used
+// to run your rules, rule groups, and web ACLs. WAF calculates capacity differently
+// for each rule type, to reflect the relative cost of each rule. Simple rules
+// that cost little to run use fewer WCUs than more complex rules that use more
+// processing power. Rule group capacity is fixed at creation, which helps users
+// plan their web ACL WCU usage when they use a rule group. The WCU limit for
+// web ACLs is 1,500.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -200,43 +209,60 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 // API operation CheckCapacity for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidResourceException
-//   AWS WAF couldn’t perform the operation because the resource that you requested
-//   isn’t valid. Check the resource, and try again.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - WAFInvalidResourceException
+//     WAF couldn’t perform the operation because the resource that you requested
+//     isn’t valid. Check the resource, and try again.
 //
-//   * WAFSubscriptionNotFoundException
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
+//
+//   - WAFSubscriptionNotFoundException
+//     You tried to use a managed rule group that's available by subscription, but
+//     you aren't subscribed to it yet.
+//
+//   - WAFExpiredManagedRuleGroupVersionException
+//     The operation failed because the specified version for the managed rule group
+//     has expired. You can retrieve the available versions for the managed rule
+//     group by calling ListAvailableManagedRuleGroupVersions.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CheckCapacity
 func (c *WAFV2) CheckCapacity(input *CheckCapacityInput) (*CheckCapacityOutput, error) {
@@ -276,14 +302,13 @@ const opCreateIPSet = "CreateIPSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateIPSetRequest method.
+//	req, resp := client.CreateIPSetRequest(params)
 //
-//    // Example sending a request using the CreateIPSetRequest method.
-//    req, resp := client.CreateIPSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateIPSet
 func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Request, output *CreateIPSetOutput) {
@@ -304,15 +329,10 @@ func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Reques
 
 // CreateIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Creates an IPSet, which you use to identify web requests that originate from
 // specific IP addresses or ranges of IP addresses. For example, if you're receiving
-// a lot of requests from a ranges of IP addresses, you can configure AWS WAF
-// to block them using an IPSet that lists those IP addresses.
+// a lot of requests from a ranges of IP addresses, you can configure WAF to
+// block them using an IPSet that lists those IP addresses.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -322,50 +342,50 @@ func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Reques
 // API operation CreateIPSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateIPSet
 func (c *WAFV2) CreateIPSet(input *CreateIPSetInput) (*CreateIPSetOutput, error) {
@@ -405,14 +425,13 @@ const opCreateRegexPatternSet = "CreateRegexPatternSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRegexPatternSetRequest method.
+//	req, resp := client.CreateRegexPatternSetRequest(params)
 //
-//    // Example sending a request using the CreateRegexPatternSetRequest method.
-//    req, resp := client.CreateRegexPatternSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateRegexPatternSet
 func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) (req *request.Request, output *CreateRegexPatternSetOutput) {
@@ -433,13 +452,8 @@ func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) 
 
 // CreateRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Creates a RegexPatternSet, which you reference in a RegexPatternSetReferenceStatement,
-// to have AWS WAF inspect a web request component for the specified patterns.
+// to have WAF inspect a web request component for the specified patterns.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -449,50 +463,50 @@ func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) 
 // API operation CreateRegexPatternSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateRegexPatternSet
 func (c *WAFV2) CreateRegexPatternSet(input *CreateRegexPatternSetInput) (*CreateRegexPatternSetOutput, error) {
@@ -532,14 +546,13 @@ const opCreateRuleGroup = "CreateRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateRuleGroupRequest method.
+//	req, resp := client.CreateRuleGroupRequest(params)
 //
-//    // Example sending a request using the CreateRuleGroupRequest method.
-//    req, resp := client.CreateRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateRuleGroup
 func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *request.Request, output *CreateRuleGroupOutput) {
@@ -560,11 +573,6 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 
 // CreateRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Creates a RuleGroup per the specifications provided.
 //
 // A rule group defines a collection of rules to inspect and control web requests
@@ -581,59 +589,67 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 // API operation CreateRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFSubscriptionNotFoundException
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFSubscriptionNotFoundException
+//     You tried to use a managed rule group that's available by subscription, but
+//     you aren't subscribed to it yet.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateRuleGroup
 func (c *WAFV2) CreateRuleGroup(input *CreateRuleGroupInput) (*CreateRuleGroupOutput, error) {
@@ -673,14 +689,13 @@ const opCreateWebACL = "CreateWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateWebACLRequest method.
+//	req, resp := client.CreateWebACLRequest(params)
 //
-//    // Example sending a request using the CreateWebACLRequest method.
-//    req, resp := client.CreateWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateWebACL
 func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Request, output *CreateWebACLOutput) {
@@ -701,21 +716,17 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 
 // CreateWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Creates a WebACL per the specifications provided.
 //
-// A Web ACL defines a collection of rules to use to inspect and control web
+// A web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has an action defined (allow, block, or count) for requests
-// that match the statement of the rule. In the Web ACL, you assign a default
+// that match the statement of the rule. In the web ACL, you assign a default
 // action to take (allow, block) for any request that does not match any of
-// the rules. The rules in a Web ACL can be a combination of the types Rule,
-// RuleGroup, and managed rule group. You can associate a Web ACL with one or
-// more AWS resources to protect. The resources can be Amazon CloudFront, an
-// Amazon API Gateway API, or an Application Load Balancer.
+// the rules. The rules in a web ACL can be a combination of the types Rule,
+// RuleGroup, and managed rule group. You can associate a web ACL with one or
+// more Amazon Web Services resources to protect. The resources can be an Amazon
+// CloudFront distribution, an Amazon API Gateway REST API, an Application Load
+// Balancer, an AppSync GraphQL API, or an Amazon Cognito user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -725,63 +736,90 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 // API operation CreateWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFInvalidResourceException
-//   AWS WAF couldn’t perform the operation because the resource that you requested
-//   isn’t valid. Check the resource, and try again.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - WAFInvalidResourceException
+//     WAF couldn’t perform the operation because the resource that you requested
+//     isn’t valid. Check the resource, and try again.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFSubscriptionNotFoundException
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFSubscriptionNotFoundException
+//     You tried to use a managed rule group that's available by subscription, but
+//     you aren't subscribed to it yet.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFConfigurationWarningException
+//     The operation failed because you are inspecting the web request body, headers,
+//     or cookies without specifying how to handle oversize components. Rules that
+//     inspect the body must either provide an OversizeHandling configuration or
+//     they must be preceded by a SizeConstraintStatement that blocks the body content
+//     from being too large. Rules that inspect the headers or cookies must provide
+//     an OversizeHandling configuration.
+//
+//     Provide the handling configuration and retry your operation.
+//
+//     Alternately, you can suppress this warning by adding the following tag to
+//     the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+//     value:true).
+//
+//   - WAFExpiredManagedRuleGroupVersionException
+//     The operation failed because the specified version for the managed rule group
+//     has expired. You can retrieve the available versions for the managed rule
+//     group by calling ListAvailableManagedRuleGroupVersions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateWebACL
 func (c *WAFV2) CreateWebACL(input *CreateWebACLInput) (*CreateWebACLOutput, error) {
@@ -821,14 +859,13 @@ const opDeleteFirewallManagerRuleGroups = "DeleteFirewallManagerRuleGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFirewallManagerRuleGroupsRequest method.
+//	req, resp := client.DeleteFirewallManagerRuleGroupsRequest(params)
 //
-//    // Example sending a request using the DeleteFirewallManagerRuleGroupsRequest method.
-//    req, resp := client.DeleteFirewallManagerRuleGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteFirewallManagerRuleGroups
 func (c *WAFV2) DeleteFirewallManagerRuleGroupsRequest(input *DeleteFirewallManagerRuleGroupsInput) (req *request.Request, output *DeleteFirewallManagerRuleGroupsOutput) {
@@ -849,8 +886,8 @@ func (c *WAFV2) DeleteFirewallManagerRuleGroupsRequest(input *DeleteFirewallMana
 
 // DeleteFirewallManagerRuleGroups API operation for AWS WAFV2.
 //
-// Deletes all rule groups that are managed by AWS Firewall Manager for the
-// specified web ACL.
+// Deletes all rule groups that are managed by Firewall Manager for the specified
+// web ACL.
 //
 // You can only use this if ManagedByFirewallManager is false in the specified
 // WebACL.
@@ -863,37 +900,39 @@ func (c *WAFV2) DeleteFirewallManagerRuleGroupsRequest(input *DeleteFirewallMana
 // API operation DeleteFirewallManagerRuleGroups for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteFirewallManagerRuleGroups
 func (c *WAFV2) DeleteFirewallManagerRuleGroups(input *DeleteFirewallManagerRuleGroupsInput) (*DeleteFirewallManagerRuleGroupsOutput, error) {
@@ -933,14 +972,13 @@ const opDeleteIPSet = "DeleteIPSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteIPSetRequest method.
+//	req, resp := client.DeleteIPSetRequest(params)
 //
-//    // Example sending a request using the DeleteIPSetRequest method.
-//    req, resp := client.DeleteIPSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteIPSet
 func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Request, output *DeleteIPSetOutput) {
@@ -962,11 +1000,6 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 
 // DeleteIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified IPSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -977,48 +1010,50 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 // API operation DeleteIPSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFAssociatedItemException
-//   AWS WAF couldn’t perform the operation because your resource is being used
-//   by another resource or it’s associated with another resource.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFAssociatedItemException
+//     WAF couldn’t perform the operation because your resource is being used
+//     by another resource or it’s associated with another resource.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteIPSet
 func (c *WAFV2) DeleteIPSet(input *DeleteIPSetInput) (*DeleteIPSetOutput, error) {
@@ -1058,14 +1093,13 @@ const opDeleteLoggingConfiguration = "DeleteLoggingConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteLoggingConfigurationRequest method.
+//	req, resp := client.DeleteLoggingConfigurationRequest(params)
 //
-//    // Example sending a request using the DeleteLoggingConfigurationRequest method.
-//    req, resp := client.DeleteLoggingConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteLoggingConfiguration
 func (c *WAFV2) DeleteLoggingConfigurationRequest(input *DeleteLoggingConfigurationInput) (req *request.Request, output *DeleteLoggingConfigurationOutput) {
@@ -1087,11 +1121,6 @@ func (c *WAFV2) DeleteLoggingConfigurationRequest(input *DeleteLoggingConfigurat
 
 // DeleteLoggingConfiguration API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the LoggingConfiguration from the specified web ACL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1102,37 +1131,39 @@ func (c *WAFV2) DeleteLoggingConfigurationRequest(input *DeleteLoggingConfigurat
 // API operation DeleteLoggingConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteLoggingConfiguration
 func (c *WAFV2) DeleteLoggingConfiguration(input *DeleteLoggingConfigurationInput) (*DeleteLoggingConfigurationOutput, error) {
@@ -1172,14 +1203,13 @@ const opDeletePermissionPolicy = "DeletePermissionPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeletePermissionPolicyRequest method.
+//	req, resp := client.DeletePermissionPolicyRequest(params)
 //
-//    // Example sending a request using the DeletePermissionPolicyRequest method.
-//    req, resp := client.DeletePermissionPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeletePermissionPolicy
 func (c *WAFV2) DeletePermissionPolicyRequest(input *DeletePermissionPolicyInput) (req *request.Request, output *DeletePermissionPolicyOutput) {
@@ -1213,28 +1243,31 @@ func (c *WAFV2) DeletePermissionPolicyRequest(input *DeletePermissionPolicyInput
 // API operation DeletePermissionPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
 //
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeletePermissionPolicy
 func (c *WAFV2) DeletePermissionPolicy(input *DeletePermissionPolicyInput) (*DeletePermissionPolicyOutput, error) {
@@ -1274,14 +1307,13 @@ const opDeleteRegexPatternSet = "DeleteRegexPatternSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRegexPatternSetRequest method.
+//	req, resp := client.DeleteRegexPatternSetRequest(params)
 //
-//    // Example sending a request using the DeleteRegexPatternSetRequest method.
-//    req, resp := client.DeleteRegexPatternSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteRegexPatternSet
 func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) (req *request.Request, output *DeleteRegexPatternSetOutput) {
@@ -1303,11 +1335,6 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 
 // DeleteRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified RegexPatternSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1318,48 +1345,50 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 // API operation DeleteRegexPatternSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFAssociatedItemException
-//   AWS WAF couldn’t perform the operation because your resource is being used
-//   by another resource or it’s associated with another resource.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFAssociatedItemException
+//     WAF couldn’t perform the operation because your resource is being used
+//     by another resource or it’s associated with another resource.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteRegexPatternSet
 func (c *WAFV2) DeleteRegexPatternSet(input *DeleteRegexPatternSetInput) (*DeleteRegexPatternSetOutput, error) {
@@ -1399,14 +1428,13 @@ const opDeleteRuleGroup = "DeleteRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteRuleGroupRequest method.
+//	req, resp := client.DeleteRuleGroupRequest(params)
 //
-//    // Example sending a request using the DeleteRuleGroupRequest method.
-//    req, resp := client.DeleteRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteRuleGroup
 func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *request.Request, output *DeleteRuleGroupOutput) {
@@ -1428,11 +1456,6 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 
 // DeleteRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified RuleGroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1443,48 +1466,50 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 // API operation DeleteRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFAssociatedItemException
-//   AWS WAF couldn’t perform the operation because your resource is being used
-//   by another resource or it’s associated with another resource.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFAssociatedItemException
+//     WAF couldn’t perform the operation because your resource is being used
+//     by another resource or it’s associated with another resource.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteRuleGroup
 func (c *WAFV2) DeleteRuleGroup(input *DeleteRuleGroupInput) (*DeleteRuleGroupOutput, error) {
@@ -1524,14 +1549,13 @@ const opDeleteWebACL = "DeleteWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteWebACLRequest method.
+//	req, resp := client.DeleteWebACLRequest(params)
 //
-//    // Example sending a request using the DeleteWebACLRequest method.
-//    req, resp := client.DeleteWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteWebACL
 func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Request, output *DeleteWebACLOutput) {
@@ -1553,15 +1577,22 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 
 // DeleteWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified WebACL.
 //
 // You can only use this if ManagedByFirewallManager is false in the specified
 // WebACL.
+//
+// Before deleting any web ACL, first disassociate it from all resources.
+//
+//   - To retrieve a list of the resources that are associated with a web ACL,
+//     use the following calls: For regional resources, call ListResourcesForWebACL.
+//     For Amazon CloudFront distributions, use the CloudFront call ListDistributionsByWebACLId.
+//     For information, see ListDistributionsByWebACLId (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html).
+//
+//   - To disassociate a resource from a web ACL, use the following calls:
+//     For regional resources, call DisassociateWebACL. For Amazon CloudFront
+//     distributions, provide an empty web ACL ID in the CloudFront call UpdateDistribution.
+//     For information, see UpdateDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1571,48 +1602,50 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 // API operation DeleteWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFAssociatedItemException
-//   AWS WAF couldn’t perform the operation because your resource is being used
-//   by another resource or it’s associated with another resource.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFAssociatedItemException
+//     WAF couldn’t perform the operation because your resource is being used
+//     by another resource or it’s associated with another resource.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteWebACL
 func (c *WAFV2) DeleteWebACL(input *DeleteWebACLInput) (*DeleteWebACLOutput, error) {
@@ -1652,14 +1685,13 @@ const opDescribeManagedRuleGroup = "DescribeManagedRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeManagedRuleGroupRequest method.
+//	req, resp := client.DescribeManagedRuleGroupRequest(params)
 //
-//    // Example sending a request using the DescribeManagedRuleGroupRequest method.
-//    req, resp := client.DescribeManagedRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeManagedRuleGroup
 func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupInput) (req *request.Request, output *DescribeManagedRuleGroupOutput) {
@@ -1680,11 +1712,6 @@ func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupI
 
 // DescribeManagedRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Provides high-level information for a managed rule group, including descriptions
 // of the rules.
 //
@@ -1696,35 +1723,43 @@ func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupI
 // API operation DescribeManagedRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidResourceException
-//   AWS WAF couldn’t perform the operation because the resource that you requested
-//   isn’t valid. Check the resource, and try again.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFInvalidResourceException
+//     WAF couldn’t perform the operation because the resource that you requested
+//     isn’t valid. Check the resource, and try again.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFExpiredManagedRuleGroupVersionException
+//     The operation failed because the specified version for the managed rule group
+//     has expired. You can retrieve the available versions for the managed rule
+//     group by calling ListAvailableManagedRuleGroupVersions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeManagedRuleGroup
 func (c *WAFV2) DescribeManagedRuleGroup(input *DescribeManagedRuleGroupInput) (*DescribeManagedRuleGroupOutput, error) {
@@ -1764,14 +1799,13 @@ const opDisassociateWebACL = "DisassociateWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateWebACLRequest method.
+//	req, resp := client.DisassociateWebACLRequest(params)
 //
-//    // Example sending a request using the DisassociateWebACLRequest method.
-//    req, resp := client.DisassociateWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DisassociateWebACL
 func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *request.Request, output *DisassociateWebACLOutput) {
@@ -1793,17 +1827,14 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 
 // DisassociateWebACL API operation for AWS WAFV2.
 //
+// Disassociates the specified regional application resource from any existing
+// web ACL association. A resource can have at most one web ACL association.
+// A regional application can be an Application Load Balancer (ALB), an Amazon
+// API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Disassociates a Web ACL from a regional application resource. A regional
-// application can be an Application Load Balancer (ALB) or an API Gateway stage.
-//
-// For AWS CloudFront, don't use this call. Instead, use your CloudFront distribution
-// configuration. To disassociate a Web ACL, provide an empty web ACL ID in
-// the CloudFront call UpdateDistribution. For information, see UpdateDistribution
+// For Amazon CloudFront, don't use this call. Instead, use your CloudFront
+// distribution configuration. To disassociate a web ACL, provide an empty web
+// ACL ID in the CloudFront call UpdateDistribution. For information, see UpdateDistribution
 // (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1814,31 +1845,34 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 // API operation DisassociateWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DisassociateWebACL
 func (c *WAFV2) DisassociateWebACL(input *DisassociateWebACLInput) (*DisassociateWebACLOutput, error) {
@@ -1862,6 +1896,117 @@ func (c *WAFV2) DisassociateWebACLWithContext(ctx aws.Context, input *Disassocia
 	return out, req.Send()
 }
 
+const opGenerateMobileSdkReleaseUrl = "GenerateMobileSdkReleaseUrl"
+
+// GenerateMobileSdkReleaseUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GenerateMobileSdkReleaseUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GenerateMobileSdkReleaseUrl for more information on using the GenerateMobileSdkReleaseUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GenerateMobileSdkReleaseUrlRequest method.
+//	req, resp := client.GenerateMobileSdkReleaseUrlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GenerateMobileSdkReleaseUrl
+func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkReleaseUrlInput) (req *request.Request, output *GenerateMobileSdkReleaseUrlOutput) {
+	op := &request.Operation{
+		Name:       opGenerateMobileSdkReleaseUrl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GenerateMobileSdkReleaseUrlInput{}
+	}
+
+	output = &GenerateMobileSdkReleaseUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GenerateMobileSdkReleaseUrl API operation for AWS WAFV2.
+//
+// Generates a presigned download URL for the specified release of the mobile
+// SDK.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GenerateMobileSdkReleaseUrl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GenerateMobileSdkReleaseUrl
+func (c *WAFV2) GenerateMobileSdkReleaseUrl(input *GenerateMobileSdkReleaseUrlInput) (*GenerateMobileSdkReleaseUrlOutput, error) {
+	req, out := c.GenerateMobileSdkReleaseUrlRequest(input)
+	return out, req.Send()
+}
+
+// GenerateMobileSdkReleaseUrlWithContext is the same as GenerateMobileSdkReleaseUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GenerateMobileSdkReleaseUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GenerateMobileSdkReleaseUrlWithContext(ctx aws.Context, input *GenerateMobileSdkReleaseUrlInput, opts ...request.Option) (*GenerateMobileSdkReleaseUrlOutput, error) {
+	req, out := c.GenerateMobileSdkReleaseUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIPSet = "GetIPSet"
 
 // GetIPSetRequest generates a "aws/request.Request" representing the
@@ -1878,14 +2023,13 @@ const opGetIPSet = "GetIPSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetIPSetRequest method.
+//	req, resp := client.GetIPSetRequest(params)
 //
-//    // Example sending a request using the GetIPSetRequest method.
-//    req, resp := client.GetIPSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetIPSet
 func (c *WAFV2) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, output *GetIPSetOutput) {
@@ -1906,11 +2050,6 @@ func (c *WAFV2) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, out
 
 // GetIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified IPSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1921,31 +2060,34 @@ func (c *WAFV2) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, out
 // API operation GetIPSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetIPSet
 func (c *WAFV2) GetIPSet(input *GetIPSetInput) (*GetIPSetOutput, error) {
@@ -1985,14 +2127,13 @@ const opGetLoggingConfiguration = "GetLoggingConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetLoggingConfigurationRequest method.
+//	req, resp := client.GetLoggingConfigurationRequest(params)
 //
-//    // Example sending a request using the GetLoggingConfigurationRequest method.
-//    req, resp := client.GetLoggingConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetLoggingConfiguration
 func (c *WAFV2) GetLoggingConfigurationRequest(input *GetLoggingConfigurationInput) (req *request.Request, output *GetLoggingConfigurationOutput) {
@@ -2013,11 +2154,6 @@ func (c *WAFV2) GetLoggingConfigurationRequest(input *GetLoggingConfigurationInp
 
 // GetLoggingConfiguration API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Returns the LoggingConfiguration for the specified web ACL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2028,31 +2164,34 @@ func (c *WAFV2) GetLoggingConfigurationRequest(input *GetLoggingConfigurationInp
 // API operation GetLoggingConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetLoggingConfiguration
 func (c *WAFV2) GetLoggingConfiguration(input *GetLoggingConfigurationInput) (*GetLoggingConfigurationOutput, error) {
@@ -2076,6 +2215,229 @@ func (c *WAFV2) GetLoggingConfigurationWithContext(ctx aws.Context, input *GetLo
 	return out, req.Send()
 }
 
+const opGetManagedRuleSet = "GetManagedRuleSet"
+
+// GetManagedRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetManagedRuleSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetManagedRuleSet for more information on using the GetManagedRuleSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetManagedRuleSetRequest method.
+//	req, resp := client.GetManagedRuleSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetManagedRuleSet
+func (c *WAFV2) GetManagedRuleSetRequest(input *GetManagedRuleSetInput) (req *request.Request, output *GetManagedRuleSetOutput) {
+	op := &request.Operation{
+		Name:       opGetManagedRuleSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetManagedRuleSetInput{}
+	}
+
+	output = &GetManagedRuleSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetManagedRuleSet API operation for AWS WAFV2.
+//
+// Retrieves the specified managed rule set.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GetManagedRuleSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetManagedRuleSet
+func (c *WAFV2) GetManagedRuleSet(input *GetManagedRuleSetInput) (*GetManagedRuleSetOutput, error) {
+	req, out := c.GetManagedRuleSetRequest(input)
+	return out, req.Send()
+}
+
+// GetManagedRuleSetWithContext is the same as GetManagedRuleSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetManagedRuleSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GetManagedRuleSetWithContext(ctx aws.Context, input *GetManagedRuleSetInput, opts ...request.Option) (*GetManagedRuleSetOutput, error) {
+	req, out := c.GetManagedRuleSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMobileSdkRelease = "GetMobileSdkRelease"
+
+// GetMobileSdkReleaseRequest generates a "aws/request.Request" representing the
+// client's request for the GetMobileSdkRelease operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMobileSdkRelease for more information on using the GetMobileSdkRelease
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMobileSdkReleaseRequest method.
+//	req, resp := client.GetMobileSdkReleaseRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetMobileSdkRelease
+func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req *request.Request, output *GetMobileSdkReleaseOutput) {
+	op := &request.Operation{
+		Name:       opGetMobileSdkRelease,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMobileSdkReleaseInput{}
+	}
+
+	output = &GetMobileSdkReleaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMobileSdkRelease API operation for AWS WAFV2.
+//
+// Retrieves information for the specified mobile SDK release, including release
+// notes and tags.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GetMobileSdkRelease for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetMobileSdkRelease
+func (c *WAFV2) GetMobileSdkRelease(input *GetMobileSdkReleaseInput) (*GetMobileSdkReleaseOutput, error) {
+	req, out := c.GetMobileSdkReleaseRequest(input)
+	return out, req.Send()
+}
+
+// GetMobileSdkReleaseWithContext is the same as GetMobileSdkRelease with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMobileSdkRelease for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GetMobileSdkReleaseWithContext(ctx aws.Context, input *GetMobileSdkReleaseInput, opts ...request.Option) (*GetMobileSdkReleaseOutput, error) {
+	req, out := c.GetMobileSdkReleaseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPermissionPolicy = "GetPermissionPolicy"
 
 // GetPermissionPolicyRequest generates a "aws/request.Request" representing the
@@ -2092,14 +2454,13 @@ const opGetPermissionPolicy = "GetPermissionPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetPermissionPolicyRequest method.
+//	req, resp := client.GetPermissionPolicyRequest(params)
 //
-//    // Example sending a request using the GetPermissionPolicyRequest method.
-//    req, resp := client.GetPermissionPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetPermissionPolicy
 func (c *WAFV2) GetPermissionPolicyRequest(input *GetPermissionPolicyInput) (req *request.Request, output *GetPermissionPolicyOutput) {
@@ -2132,28 +2493,31 @@ func (c *WAFV2) GetPermissionPolicyRequest(input *GetPermissionPolicyInput) (req
 // API operation GetPermissionPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
 //
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetPermissionPolicy
 func (c *WAFV2) GetPermissionPolicy(input *GetPermissionPolicyInput) (*GetPermissionPolicyOutput, error) {
@@ -2193,14 +2557,13 @@ const opGetRateBasedStatementManagedKeys = "GetRateBasedStatementManagedKeys"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRateBasedStatementManagedKeysRequest method.
+//	req, resp := client.GetRateBasedStatementManagedKeysRequest(params)
 //
-//    // Example sending a request using the GetRateBasedStatementManagedKeysRequest method.
-//    req, resp := client.GetRateBasedStatementManagedKeysRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRateBasedStatementManagedKeys
 func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedStatementManagedKeysInput) (req *request.Request, output *GetRateBasedStatementManagedKeysOutput) {
@@ -2221,15 +2584,22 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 
 // GetRateBasedStatementManagedKeys API operation for AWS WAFV2.
 //
+// Retrieves the keys that are currently blocked by a rate-based rule instance.
+// The maximum number of managed keys that can be blocked for a single rate-based
+// rule instance is 10,000. If more than 10,000 addresses exceed the rate limit,
+// those with the highest rates are blocked.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// For a rate-based rule that you've defined inside a rule group, provide the
+// name of the rule group reference statement in your request, in addition to
+// the rate-based rule name and the web ACL name.
 //
-// Retrieves the keys that are currently blocked by a rate-based rule. The maximum
-// number of managed keys that can be blocked for a single rate-based rule is
-// 10,000. If more than 10,000 addresses exceed the rate limit, those with the
-// highest rates are blocked.
+// WAF monitors web requests and manages keys independently for each unique
+// combination of web ACL, optional rule group, and rate-based rule. For example,
+// if you define a rate-based rule inside a rule group, and then use the rule
+// group in a web ACL, WAF monitors web requests and manages keys for that web
+// ACL, rule group reference statement, and rate-based rule instance. If you
+// use the same rule group in a second web ACL, WAF monitors web requests and
+// manages keys for this second usage completely independent of your first.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2239,31 +2609,34 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 // API operation GetRateBasedStatementManagedKeys for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRateBasedStatementManagedKeys
 func (c *WAFV2) GetRateBasedStatementManagedKeys(input *GetRateBasedStatementManagedKeysInput) (*GetRateBasedStatementManagedKeysOutput, error) {
@@ -2303,14 +2676,13 @@ const opGetRegexPatternSet = "GetRegexPatternSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRegexPatternSetRequest method.
+//	req, resp := client.GetRegexPatternSetRequest(params)
 //
-//    // Example sending a request using the GetRegexPatternSetRequest method.
-//    req, resp := client.GetRegexPatternSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRegexPatternSet
 func (c *WAFV2) GetRegexPatternSetRequest(input *GetRegexPatternSetInput) (req *request.Request, output *GetRegexPatternSetOutput) {
@@ -2331,11 +2703,6 @@ func (c *WAFV2) GetRegexPatternSetRequest(input *GetRegexPatternSetInput) (req *
 
 // GetRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified RegexPatternSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2346,31 +2713,34 @@ func (c *WAFV2) GetRegexPatternSetRequest(input *GetRegexPatternSetInput) (req *
 // API operation GetRegexPatternSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRegexPatternSet
 func (c *WAFV2) GetRegexPatternSet(input *GetRegexPatternSetInput) (*GetRegexPatternSetOutput, error) {
@@ -2410,14 +2780,13 @@ const opGetRuleGroup = "GetRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetRuleGroupRequest method.
+//	req, resp := client.GetRuleGroupRequest(params)
 //
-//    // Example sending a request using the GetRuleGroupRequest method.
-//    req, resp := client.GetRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRuleGroup
 func (c *WAFV2) GetRuleGroupRequest(input *GetRuleGroupInput) (req *request.Request, output *GetRuleGroupOutput) {
@@ -2438,11 +2807,6 @@ func (c *WAFV2) GetRuleGroupRequest(input *GetRuleGroupInput) (req *request.Requ
 
 // GetRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified RuleGroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2453,31 +2817,34 @@ func (c *WAFV2) GetRuleGroupRequest(input *GetRuleGroupInput) (req *request.Requ
 // API operation GetRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRuleGroup
 func (c *WAFV2) GetRuleGroup(input *GetRuleGroupInput) (*GetRuleGroupOutput, error) {
@@ -2517,14 +2884,13 @@ const opGetSampledRequests = "GetSampledRequests"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetSampledRequestsRequest method.
+//	req, resp := client.GetSampledRequestsRequest(params)
 //
-//    // Example sending a request using the GetSampledRequestsRequest method.
-//    req, resp := client.GetSampledRequestsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetSampledRequests
 func (c *WAFV2) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *request.Request, output *GetSampledRequestsOutput) {
@@ -2545,22 +2911,17 @@ func (c *WAFV2) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *
 
 // GetSampledRequests API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Gets detailed information about a specified number of requests--a sample--that
-// AWS WAF randomly selects from among the first 5,000 requests that your AWS
-// resource received during a time range that you choose. You can specify a
-// sample size of up to 500 requests, and you can specify any time range in
-// the previous three hours.
+// WAF randomly selects from among the first 5,000 requests that your Amazon
+// Web Services resource received during a time range that you choose. You can
+// specify a sample size of up to 500 requests, and you can specify any time
+// range in the previous three hours.
 //
 // GetSampledRequests returns a time range, which is usually the time range
 // that you specified. However, if your resource (such as a CloudFront distribution)
 // received 5,000 requests before the specified time range elapsed, GetSampledRequests
 // returns an updated time range. This new time range indicates the actual period
-// during which AWS WAF selected the requests in the sample.
+// during which WAF selected the requests in the sample.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2570,28 +2931,31 @@ func (c *WAFV2) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *
 // API operation GetSampledRequests for usage and error information.
 //
 // Returned Error Types:
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
 //
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetSampledRequests
 func (c *WAFV2) GetSampledRequests(input *GetSampledRequestsInput) (*GetSampledRequestsOutput, error) {
@@ -2631,14 +2995,13 @@ const opGetWebACL = "GetWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetWebACLRequest method.
+//	req, resp := client.GetWebACLRequest(params)
 //
-//    // Example sending a request using the GetWebACLRequest method.
-//    req, resp := client.GetWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetWebACL
 func (c *WAFV2) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, output *GetWebACLOutput) {
@@ -2659,11 +3022,6 @@ func (c *WAFV2) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, o
 
 // GetWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified WebACL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2674,31 +3032,34 @@ func (c *WAFV2) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, o
 // API operation GetWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetWebACL
 func (c *WAFV2) GetWebACL(input *GetWebACLInput) (*GetWebACLOutput, error) {
@@ -2738,14 +3099,13 @@ const opGetWebACLForResource = "GetWebACLForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the GetWebACLForResourceRequest method.
+//	req, resp := client.GetWebACLForResourceRequest(params)
 //
-//    // Example sending a request using the GetWebACLForResourceRequest method.
-//    req, resp := client.GetWebACLForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetWebACLForResource
 func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (req *request.Request, output *GetWebACLForResourceOutput) {
@@ -2766,11 +3126,6 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 
 // GetWebACLForResource API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the WebACL for the specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2781,34 +3136,41 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 // API operation GetWebACLForResource for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetWebACLForResource
 func (c *WAFV2) GetWebACLForResource(input *GetWebACLForResourceInput) (*GetWebACLForResourceOutput, error) {
@@ -2832,6 +3194,110 @@ func (c *WAFV2) GetWebACLForResourceWithContext(ctx aws.Context, input *GetWebAC
 	return out, req.Send()
 }
 
+const opListAvailableManagedRuleGroupVersions = "ListAvailableManagedRuleGroupVersions"
+
+// ListAvailableManagedRuleGroupVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAvailableManagedRuleGroupVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAvailableManagedRuleGroupVersions for more information on using the ListAvailableManagedRuleGroupVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAvailableManagedRuleGroupVersionsRequest method.
+//	req, resp := client.ListAvailableManagedRuleGroupVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAvailableManagedRuleGroupVersions
+func (c *WAFV2) ListAvailableManagedRuleGroupVersionsRequest(input *ListAvailableManagedRuleGroupVersionsInput) (req *request.Request, output *ListAvailableManagedRuleGroupVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListAvailableManagedRuleGroupVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListAvailableManagedRuleGroupVersionsInput{}
+	}
+
+	output = &ListAvailableManagedRuleGroupVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAvailableManagedRuleGroupVersions API operation for AWS WAFV2.
+//
+// Returns a list of the available versions for the specified managed rule group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListAvailableManagedRuleGroupVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAvailableManagedRuleGroupVersions
+func (c *WAFV2) ListAvailableManagedRuleGroupVersions(input *ListAvailableManagedRuleGroupVersionsInput) (*ListAvailableManagedRuleGroupVersionsOutput, error) {
+	req, out := c.ListAvailableManagedRuleGroupVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListAvailableManagedRuleGroupVersionsWithContext is the same as ListAvailableManagedRuleGroupVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAvailableManagedRuleGroupVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListAvailableManagedRuleGroupVersionsWithContext(ctx aws.Context, input *ListAvailableManagedRuleGroupVersionsInput, opts ...request.Option) (*ListAvailableManagedRuleGroupVersionsOutput, error) {
+	req, out := c.ListAvailableManagedRuleGroupVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAvailableManagedRuleGroups = "ListAvailableManagedRuleGroups"
 
 // ListAvailableManagedRuleGroupsRequest generates a "aws/request.Request" representing the
@@ -2848,14 +3314,13 @@ const opListAvailableManagedRuleGroups = "ListAvailableManagedRuleGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAvailableManagedRuleGroupsRequest method.
+//	req, resp := client.ListAvailableManagedRuleGroupsRequest(params)
 //
-//    // Example sending a request using the ListAvailableManagedRuleGroupsRequest method.
-//    req, resp := client.ListAvailableManagedRuleGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAvailableManagedRuleGroups
 func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManagedRuleGroupsInput) (req *request.Request, output *ListAvailableManagedRuleGroupsOutput) {
@@ -2876,14 +3341,10 @@ func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManage
 
 // ListAvailableManagedRuleGroups API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of managed rule groups that are available for you to use.
-// This list includes all AWS Managed Rules rule groups and the AWS Marketplace
-// managed rule groups that you're subscribed to.
+// This list includes all Amazon Web Services Managed Rules rule groups and
+// all of the Amazon Web Services Marketplace managed rule groups that you're
+// subscribed to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2893,27 +3354,28 @@ func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManage
 // API operation ListAvailableManagedRuleGroups for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAvailableManagedRuleGroups
 func (c *WAFV2) ListAvailableManagedRuleGroups(input *ListAvailableManagedRuleGroupsInput) (*ListAvailableManagedRuleGroupsOutput, error) {
@@ -2953,14 +3415,13 @@ const opListIPSets = "ListIPSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListIPSetsRequest method.
+//	req, resp := client.ListIPSetsRequest(params)
 //
-//    // Example sending a request using the ListIPSetsRequest method.
-//    req, resp := client.ListIPSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListIPSets
 func (c *WAFV2) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Request, output *ListIPSetsOutput) {
@@ -2981,11 +3442,6 @@ func (c *WAFV2) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Request,
 
 // ListIPSets API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of IPSetSummary objects for the IP sets that you manage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2996,27 +3452,28 @@ func (c *WAFV2) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Request,
 // API operation ListIPSets for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListIPSets
 func (c *WAFV2) ListIPSets(input *ListIPSetsInput) (*ListIPSetsOutput, error) {
@@ -3056,14 +3513,13 @@ const opListLoggingConfigurations = "ListLoggingConfigurations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListLoggingConfigurationsRequest method.
+//	req, resp := client.ListLoggingConfigurationsRequest(params)
 //
-//    // Example sending a request using the ListLoggingConfigurationsRequest method.
-//    req, resp := client.ListLoggingConfigurationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListLoggingConfigurations
 func (c *WAFV2) ListLoggingConfigurationsRequest(input *ListLoggingConfigurationsInput) (req *request.Request, output *ListLoggingConfigurationsOutput) {
@@ -3084,11 +3540,6 @@ func (c *WAFV2) ListLoggingConfigurationsRequest(input *ListLoggingConfiguration
 
 // ListLoggingConfigurations API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of your LoggingConfiguration objects.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3099,27 +3550,28 @@ func (c *WAFV2) ListLoggingConfigurationsRequest(input *ListLoggingConfiguration
 // API operation ListLoggingConfigurations for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListLoggingConfigurations
 func (c *WAFV2) ListLoggingConfigurations(input *ListLoggingConfigurationsInput) (*ListLoggingConfigurationsOutput, error) {
@@ -3143,6 +3595,217 @@ func (c *WAFV2) ListLoggingConfigurationsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opListManagedRuleSets = "ListManagedRuleSets"
+
+// ListManagedRuleSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListManagedRuleSets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListManagedRuleSets for more information on using the ListManagedRuleSets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListManagedRuleSetsRequest method.
+//	req, resp := client.ListManagedRuleSetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListManagedRuleSets
+func (c *WAFV2) ListManagedRuleSetsRequest(input *ListManagedRuleSetsInput) (req *request.Request, output *ListManagedRuleSetsOutput) {
+	op := &request.Operation{
+		Name:       opListManagedRuleSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListManagedRuleSetsInput{}
+	}
+
+	output = &ListManagedRuleSetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListManagedRuleSets API operation for AWS WAFV2.
+//
+// Retrieves the managed rule sets that you own.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListManagedRuleSets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListManagedRuleSets
+func (c *WAFV2) ListManagedRuleSets(input *ListManagedRuleSetsInput) (*ListManagedRuleSetsOutput, error) {
+	req, out := c.ListManagedRuleSetsRequest(input)
+	return out, req.Send()
+}
+
+// ListManagedRuleSetsWithContext is the same as ListManagedRuleSets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListManagedRuleSets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListManagedRuleSetsWithContext(ctx aws.Context, input *ListManagedRuleSetsInput, opts ...request.Option) (*ListManagedRuleSetsOutput, error) {
+	req, out := c.ListManagedRuleSetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListMobileSdkReleases = "ListMobileSdkReleases"
+
+// ListMobileSdkReleasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMobileSdkReleases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMobileSdkReleases for more information on using the ListMobileSdkReleases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMobileSdkReleasesRequest method.
+//	req, resp := client.ListMobileSdkReleasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListMobileSdkReleases
+func (c *WAFV2) ListMobileSdkReleasesRequest(input *ListMobileSdkReleasesInput) (req *request.Request, output *ListMobileSdkReleasesOutput) {
+	op := &request.Operation{
+		Name:       opListMobileSdkReleases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListMobileSdkReleasesInput{}
+	}
+
+	output = &ListMobileSdkReleasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMobileSdkReleases API operation for AWS WAFV2.
+//
+// Retrieves a list of the available releases for the mobile SDK and the specified
+// device platform.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListMobileSdkReleases for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListMobileSdkReleases
+func (c *WAFV2) ListMobileSdkReleases(input *ListMobileSdkReleasesInput) (*ListMobileSdkReleasesOutput, error) {
+	req, out := c.ListMobileSdkReleasesRequest(input)
+	return out, req.Send()
+}
+
+// ListMobileSdkReleasesWithContext is the same as ListMobileSdkReleases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMobileSdkReleases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListMobileSdkReleasesWithContext(ctx aws.Context, input *ListMobileSdkReleasesInput, opts ...request.Option) (*ListMobileSdkReleasesOutput, error) {
+	req, out := c.ListMobileSdkReleasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListRegexPatternSets = "ListRegexPatternSets"
 
 // ListRegexPatternSetsRequest generates a "aws/request.Request" representing the
@@ -3159,14 +3822,13 @@ const opListRegexPatternSets = "ListRegexPatternSets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRegexPatternSetsRequest method.
+//	req, resp := client.ListRegexPatternSetsRequest(params)
 //
-//    // Example sending a request using the ListRegexPatternSetsRequest method.
-//    req, resp := client.ListRegexPatternSetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListRegexPatternSets
 func (c *WAFV2) ListRegexPatternSetsRequest(input *ListRegexPatternSetsInput) (req *request.Request, output *ListRegexPatternSetsOutput) {
@@ -3187,11 +3849,6 @@ func (c *WAFV2) ListRegexPatternSetsRequest(input *ListRegexPatternSetsInput) (r
 
 // ListRegexPatternSets API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of RegexPatternSetSummary objects for the regex pattern
 // sets that you manage.
 //
@@ -3203,27 +3860,28 @@ func (c *WAFV2) ListRegexPatternSetsRequest(input *ListRegexPatternSetsInput) (r
 // API operation ListRegexPatternSets for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListRegexPatternSets
 func (c *WAFV2) ListRegexPatternSets(input *ListRegexPatternSetsInput) (*ListRegexPatternSetsOutput, error) {
@@ -3263,14 +3921,13 @@ const opListResourcesForWebACL = "ListResourcesForWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListResourcesForWebACLRequest method.
+//	req, resp := client.ListResourcesForWebACLRequest(params)
 //
-//    // Example sending a request using the ListResourcesForWebACLRequest method.
-//    req, resp := client.ListResourcesForWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListResourcesForWebACL
 func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput) (req *request.Request, output *ListResourcesForWebACLOutput) {
@@ -3291,14 +3948,9 @@ func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput
 
 // ListResourcesForWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of the Amazon Resource Names (ARNs) for the regional resources
-// that are associated with the specified web ACL. If you want the list of AWS
-// CloudFront resources, use the AWS CloudFront call ListDistributionsByWebACLId.
+// that are associated with the specified web ACL. If you want the list of Amazon
+// CloudFront resources, use the CloudFront call ListDistributionsByWebACLId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3308,31 +3960,34 @@ func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput
 // API operation ListResourcesForWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListResourcesForWebACL
 func (c *WAFV2) ListResourcesForWebACL(input *ListResourcesForWebACLInput) (*ListResourcesForWebACLOutput, error) {
@@ -3372,14 +4027,13 @@ const opListRuleGroups = "ListRuleGroups"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListRuleGroupsRequest method.
+//	req, resp := client.ListRuleGroupsRequest(params)
 //
-//    // Example sending a request using the ListRuleGroupsRequest method.
-//    req, resp := client.ListRuleGroupsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListRuleGroups
 func (c *WAFV2) ListRuleGroupsRequest(input *ListRuleGroupsInput) (req *request.Request, output *ListRuleGroupsOutput) {
@@ -3400,11 +4054,6 @@ func (c *WAFV2) ListRuleGroupsRequest(input *ListRuleGroupsInput) (req *request.
 
 // ListRuleGroups API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of RuleGroupSummary objects for the rule groups that you
 // manage.
 //
@@ -3416,27 +4065,28 @@ func (c *WAFV2) ListRuleGroupsRequest(input *ListRuleGroupsInput) (req *request.
 // API operation ListRuleGroups for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListRuleGroups
 func (c *WAFV2) ListRuleGroups(input *ListRuleGroupsInput) (*ListRuleGroupsOutput, error) {
@@ -3476,14 +4126,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListTagsForResource
 func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -3504,12 +4153,15 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 
 // ListTagsForResource API operation for AWS WAFV2.
 //
+// Retrieves the TagInfoForResource for the specified resource. Tags are key:value
+// pairs that you can use to categorize and manage your resources, for purposes
+// like billing. For example, you might set the tag key to "customer" and the
+// value to the customer name or ID. You can specify one or more tags to add
+// to each Amazon Web Services resource, up to 50 tags for a resource.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Retrieves the TagInfoForResource for the specified resource.
+// You can tag the Amazon Web Services resources that you manage through WAF:
+// web ACLs, rule groups, IP sets, and regex pattern sets. You can't manage
+// or view tags through the WAF console.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3519,38 +4171,41 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListTagsForResource
 func (c *WAFV2) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3590,14 +4245,13 @@ const opListWebACLs = "ListWebACLs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListWebACLsRequest method.
+//	req, resp := client.ListWebACLsRequest(params)
 //
-//    // Example sending a request using the ListWebACLsRequest method.
-//    req, resp := client.ListWebACLsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListWebACLs
 func (c *WAFV2) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Request, output *ListWebACLsOutput) {
@@ -3618,11 +4272,6 @@ func (c *WAFV2) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Reques
 
 // ListWebACLs API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of WebACLSummary objects for the web ACLs that you manage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3633,27 +4282,28 @@ func (c *WAFV2) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Reques
 // API operation ListWebACLs for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListWebACLs
 func (c *WAFV2) ListWebACLs(input *ListWebACLsInput) (*ListWebACLsOutput, error) {
@@ -3693,14 +4343,13 @@ const opPutLoggingConfiguration = "PutLoggingConfiguration"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutLoggingConfigurationRequest method.
+//	req, resp := client.PutLoggingConfigurationRequest(params)
 //
-//    // Example sending a request using the PutLoggingConfigurationRequest method.
-//    req, resp := client.PutLoggingConfigurationRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutLoggingConfiguration
 func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInput) (req *request.Request, output *PutLoggingConfigurationOutput) {
@@ -3721,32 +4370,50 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 
 // PutLoggingConfiguration API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Enables the specified LoggingConfiguration, to start logging from a web ACL,
 // according to the configuration provided.
 //
-// You can access information about all traffic that AWS WAF inspects using
-// the following steps:
+// This operation completely replaces any mutable specifications that you already
+// have for a logging configuration with the ones that you provide to this call.
 //
-// Create an Amazon Kinesis Data Firehose.
+// To modify an existing logging configuration, do the following:
 //
-// Create the data firehose with a PUT source and in the Region that you are
-// operating. If you are capturing logs for Amazon CloudFront, always create
-// the firehose in US East (N. Virginia).
+// # Retrieve it by calling GetLoggingConfiguration
 //
-// Do not create the data firehose using a Kinesis stream as your source.
+// # Update its settings as needed
 //
-// Associate that firehose to your web ACL using a PutLoggingConfiguration request.
+// # Provide the complete logging configuration specification to this call
+//
+// You can define one logging destination per web ACL.
+//
+// You can access information about the traffic that WAF inspects using the
+// following steps:
+//
+// Create your logging destination. You can use an Amazon CloudWatch Logs log
+// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+// Kinesis Data Firehose.
+//
+// The name that you give the destination must start with aws-waf-logs-. Depending
+// on the type of destination, you might need to configure additional settings
+// or permissions.
+//
+// For configuration requirements and pricing information for each destination
+// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
+//
+// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+// request.
 //
 // When you successfully enable logging using a PutLoggingConfiguration request,
-// AWS WAF will create a service linked role with the necessary permissions
-// to write logs to the Amazon Kinesis Data Firehose. For more information,
-// see Logging Web ACL Traffic Information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
-// in the AWS WAF Developer Guide.
+// WAF creates an additional role or policy that is required to write logs to
+// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+// role.
+//
+// For additional information about web ACL logging, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3756,47 +4423,61 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // API operation PutLoggingConfiguration for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFServiceLinkedRoleErrorException
-//   AWS WAF is not able to access the service linked role. This can be caused
-//   by a previous PutLoggingConfiguration request, which can lock the service
-//   linked role for about 20 seconds. Please try your request again. The service
-//   linked role can also be locked by a previous DeleteServiceLinkedRole request,
-//   which can lock the role for 15 minutes or more. If you recently made a call
-//   to DeleteServiceLinkedRole, wait at least 15 minutes and try the request
-//   again. If you receive this same exception again, you will have to wait additional
-//   time until the role is unlocked.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFServiceLinkedRoleErrorException
+//     WAF is not able to access the service linked role. This can be caused by
+//     a previous PutLoggingConfiguration request, which can lock the service linked
+//     role for about 20 seconds. Please try your request again. The service linked
+//     role can also be locked by a previous DeleteServiceLinkedRole request, which
+//     can lock the role for 15 minutes or more. If you recently made a call to
+//     DeleteServiceLinkedRole, wait at least 15 minutes and try the request again.
+//     If you receive this same exception again, you will have to wait additional
+//     time until the role is unlocked.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
+//
+//   - WAFLogDestinationPermissionIssueException
+//     The operation failed because you don't have the permissions that your logging
+//     configuration requires. For information, see Logging web ACL traffic information
+//     (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+//     WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutLoggingConfiguration
 func (c *WAFV2) PutLoggingConfiguration(input *PutLoggingConfigurationInput) (*PutLoggingConfigurationOutput, error) {
@@ -3820,6 +4501,133 @@ func (c *WAFV2) PutLoggingConfigurationWithContext(ctx aws.Context, input *PutLo
 	return out, req.Send()
 }
 
+const opPutManagedRuleSetVersions = "PutManagedRuleSetVersions"
+
+// PutManagedRuleSetVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the PutManagedRuleSetVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutManagedRuleSetVersions for more information on using the PutManagedRuleSetVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutManagedRuleSetVersionsRequest method.
+//	req, resp := client.PutManagedRuleSetVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutManagedRuleSetVersions
+func (c *WAFV2) PutManagedRuleSetVersionsRequest(input *PutManagedRuleSetVersionsInput) (req *request.Request, output *PutManagedRuleSetVersionsOutput) {
+	op := &request.Operation{
+		Name:       opPutManagedRuleSetVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutManagedRuleSetVersionsInput{}
+	}
+
+	output = &PutManagedRuleSetVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutManagedRuleSetVersions API operation for AWS WAFV2.
+//
+// Defines the versions of your managed rule set that you are offering to the
+// customers. Customers see your offerings as managed rule groups with versioning.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Customers retrieve their managed rule group list by calling ListAvailableManagedRuleGroups.
+// The name that you provide here for your managed rule set is the name the
+// customer sees for the corresponding managed rule group. Customers can retrieve
+// the available versions for a managed rule group by calling ListAvailableManagedRuleGroupVersions.
+// You provide a rule group specification for each version. For each managed
+// rule set, you must specify a version that you recommend using.
+//
+// To initiate the expiration of a managed rule group version, use UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation PutManagedRuleSetVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutManagedRuleSetVersions
+func (c *WAFV2) PutManagedRuleSetVersions(input *PutManagedRuleSetVersionsInput) (*PutManagedRuleSetVersionsOutput, error) {
+	req, out := c.PutManagedRuleSetVersionsRequest(input)
+	return out, req.Send()
+}
+
+// PutManagedRuleSetVersionsWithContext is the same as PutManagedRuleSetVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutManagedRuleSetVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) PutManagedRuleSetVersionsWithContext(ctx aws.Context, input *PutManagedRuleSetVersionsInput, opts ...request.Option) (*PutManagedRuleSetVersionsOutput, error) {
+	req, out := c.PutManagedRuleSetVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutPermissionPolicy = "PutPermissionPolicy"
 
 // PutPermissionPolicyRequest generates a "aws/request.Request" representing the
@@ -3836,14 +4644,13 @@ const opPutPermissionPolicy = "PutPermissionPolicy"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the PutPermissionPolicyRequest method.
+//	req, resp := client.PutPermissionPolicyRequest(params)
 //
-//    // Example sending a request using the PutPermissionPolicyRequest method.
-//    req, resp := client.PutPermissionPolicyRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutPermissionPolicy
 func (c *WAFV2) PutPermissionPolicyRequest(input *PutPermissionPolicyInput) (req *request.Request, output *PutPermissionPolicyOutput) {
@@ -3872,12 +4679,12 @@ func (c *WAFV2) PutPermissionPolicyRequest(input *PutPermissionPolicyInput) (req
 //
 // This action is subject to the following restrictions:
 //
-//    * You can attach only one policy with each PutPermissionPolicy request.
+//   - You can attach only one policy with each PutPermissionPolicy request.
 //
-//    * The ARN in the request must be a valid WAF RuleGroup ARN and the rule
-//    group must exist in the same region.
+//   - The ARN in the request must be a valid WAF RuleGroup ARN and the rule
+//     group must exist in the same Region.
 //
-//    * The user making the request must be the owner of the rule group.
+//   - The user making the request must be the owner of the rule group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3887,47 +4694,51 @@ func (c *WAFV2) PutPermissionPolicyRequest(input *PutPermissionPolicyInput) (req
 // API operation PutPermissionPolicy for usage and error information.
 //
 // Returned Error Types:
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
 //
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFInvalidPermissionPolicyException
-//   The operation failed because the specified policy isn't in the proper format.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   The policy specifications must conform to the following:
+//   - WAFInvalidPermissionPolicyException
+//     The operation failed because the specified policy isn't in the proper format.
 //
-//      * The policy must be composed using IAM Policy version 2012-10-17 or version
-//      2015-01-01.
+//     The policy specifications must conform to the following:
 //
-//      * The policy must include specifications for Effect, Action, and Principal.
+//   - The policy must be composed using IAM Policy version 2012-10-17 or version
+//     2015-01-01.
 //
-//      * Effect must specify Allow.
+//   - The policy must include specifications for Effect, Action, and Principal.
 //
-//      * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups.
-//      AWS WAF rejects any extra actions or wildcard actions in the policy.
+//   - Effect must specify Allow.
 //
-//      * The policy must not include a Resource parameter.
+//   - Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups
+//     and may optionally specify wafv2:GetRuleGroup. WAF rejects any extra actions
+//     or wildcard actions in the policy.
 //
-//   For more information, see IAM Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
+//   - The policy must not include a Resource parameter.
+//
+//     For more information, see IAM Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutPermissionPolicy
 func (c *WAFV2) PutPermissionPolicy(input *PutPermissionPolicyInput) (*PutPermissionPolicyOutput, error) {
@@ -3967,14 +4778,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/TagResource
 func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3996,16 +4806,15 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 
 // TagResource API operation for AWS WAFV2.
 //
+// Associates tags with the specified Amazon Web Services resource. Tags are
+// key:value pairs that you can use to categorize and manage your resources,
+// for purposes like billing. For example, you might set the tag key to "customer"
+// and the value to the customer name or ID. You can specify one or more tags
+// to add to each Amazon Web Services resource, up to 50 tags for a resource.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Associates tags with the specified AWS resource. Tags are key:value pairs
-// that you can associate with AWS resources. For example, the tag key might
-// be "customer" and the tag value might be "companyA." You can specify one
-// or more tags to add to each container. You can add up to 50 tags to each
-// AWS resource.
+// You can tag the Amazon Web Services resources that you manage through WAF:
+// web ACLs, rule groups, IP sets, and regex pattern sets. You can't manage
+// or view tags through the WAF console.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4015,44 +4824,47 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/TagResource
 func (c *WAFV2) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -4092,14 +4904,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UntagResource
 func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -4121,15 +4932,11 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 
 // UntagResource API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Disassociates tags from an AWS resource. Tags are key:value pairs that you
-// can associate with AWS resources. For example, the tag key might be "customer"
-// and the tag value might be "companyA." You can specify one or more tags to
-// add to each container. You can add up to 50 tags to each AWS resource.
+// Disassociates tags from an Amazon Web Services resource. Tags are key:value
+// pairs that you can associate with Amazon Web Services resources. For example,
+// the tag key might be "customer" and the tag value might be "companyA." You
+// can specify one or more tags to add to each container. You can add up to
+// 50 tags to each Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4139,38 +4946,41 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFTagOperationException
-//   An error occurred during the tagging operation. Retry your request.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFTagOperationInternalErrorException
-//   AWS WAF couldn’t perform your tagging operation because of an internal
-//   error. Retry your request.
+//   - WAFTagOperationException
+//     An error occurred during the tagging operation. Retry your request.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFTagOperationInternalErrorException
+//     WAF couldn’t perform your tagging operation because of an internal error.
+//     Retry your request.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UntagResource
 func (c *WAFV2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -4210,14 +5020,13 @@ const opUpdateIPSet = "UpdateIPSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateIPSetRequest method.
+//	req, resp := client.UpdateIPSetRequest(params)
 //
-//    // Example sending a request using the UpdateIPSetRequest method.
-//    req, resp := client.UpdateIPSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateIPSet
 func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request, output *UpdateIPSetOutput) {
@@ -4238,12 +5047,31 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 
 // UpdateIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Updates the specified IPSet.
+//
+// This operation completely replaces the mutable specifications that you already
+// have for the IP set with the ones that you provide to this call.
+//
+// To modify an IP set, do the following:
+//
+// # Retrieve it by calling GetIPSet
+//
+// # Update its settings as needed
+//
+// # Provide the complete IP set specification to this call
+//
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4253,47 +5081,49 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 // API operation UpdateIPSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateIPSet
 func (c *WAFV2) UpdateIPSet(input *UpdateIPSetInput) (*UpdateIPSetOutput, error) {
@@ -4317,6 +5147,126 @@ func (c *WAFV2) UpdateIPSetWithContext(ctx aws.Context, input *UpdateIPSetInput,
 	return out, req.Send()
 }
 
+const opUpdateManagedRuleSetVersionExpiryDate = "UpdateManagedRuleSetVersionExpiryDate"
+
+// UpdateManagedRuleSetVersionExpiryDateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateManagedRuleSetVersionExpiryDate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateManagedRuleSetVersionExpiryDate for more information on using the UpdateManagedRuleSetVersionExpiryDate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateManagedRuleSetVersionExpiryDateRequest method.
+//	req, resp := client.UpdateManagedRuleSetVersionExpiryDateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateManagedRuleSetVersionExpiryDate
+func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManagedRuleSetVersionExpiryDateInput) (req *request.Request, output *UpdateManagedRuleSetVersionExpiryDateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateManagedRuleSetVersionExpiryDate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateManagedRuleSetVersionExpiryDateInput{}
+	}
+
+	output = &UpdateManagedRuleSetVersionExpiryDateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateManagedRuleSetVersionExpiryDate API operation for AWS WAFV2.
+//
+// Updates the expiration information for your managed rule set. Use this to
+// initiate the expiration of a managed rule group version. After you initiate
+// expiration for a version, WAF excludes it from the response to ListAvailableManagedRuleGroupVersions
+// for the managed rule group.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation UpdateManagedRuleSetVersionExpiryDate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateManagedRuleSetVersionExpiryDate
+func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDate(input *UpdateManagedRuleSetVersionExpiryDateInput) (*UpdateManagedRuleSetVersionExpiryDateOutput, error) {
+	req, out := c.UpdateManagedRuleSetVersionExpiryDateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateManagedRuleSetVersionExpiryDateWithContext is the same as UpdateManagedRuleSetVersionExpiryDate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateManagedRuleSetVersionExpiryDate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateWithContext(ctx aws.Context, input *UpdateManagedRuleSetVersionExpiryDateInput, opts ...request.Option) (*UpdateManagedRuleSetVersionExpiryDateOutput, error) {
+	req, out := c.UpdateManagedRuleSetVersionExpiryDateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRegexPatternSet = "UpdateRegexPatternSet"
 
 // UpdateRegexPatternSetRequest generates a "aws/request.Request" representing the
@@ -4333,14 +5283,13 @@ const opUpdateRegexPatternSet = "UpdateRegexPatternSet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRegexPatternSetRequest method.
+//	req, resp := client.UpdateRegexPatternSetRequest(params)
 //
-//    // Example sending a request using the UpdateRegexPatternSetRequest method.
-//    req, resp := client.UpdateRegexPatternSetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateRegexPatternSet
 func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) (req *request.Request, output *UpdateRegexPatternSetOutput) {
@@ -4361,12 +5310,31 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 
 // UpdateRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Updates the specified RegexPatternSet.
+//
+// This operation completely replaces the mutable specifications that you already
+// have for the regex pattern set with the ones that you provide to this call.
+//
+// To modify a regex pattern set, do the following:
+//
+// # Retrieve it by calling GetRegexPatternSet
+//
+// # Update its settings as needed
+//
+// # Provide the complete regex pattern set specification to this call
+//
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4376,47 +5344,49 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 // API operation UpdateRegexPatternSet for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateRegexPatternSet
 func (c *WAFV2) UpdateRegexPatternSet(input *UpdateRegexPatternSetInput) (*UpdateRegexPatternSetOutput, error) {
@@ -4456,14 +5426,13 @@ const opUpdateRuleGroup = "UpdateRuleGroup"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateRuleGroupRequest method.
+//	req, resp := client.UpdateRuleGroupRequest(params)
 //
-//    // Example sending a request using the UpdateRuleGroupRequest method.
-//    req, resp := client.UpdateRuleGroupRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateRuleGroup
 func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *request.Request, output *UpdateRuleGroupOutput) {
@@ -4484,12 +5453,31 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 
 // UpdateRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Updates the specified RuleGroup.
+//
+// This operation completely replaces the mutable specifications that you already
+// have for the rule group with the ones that you provide to this call.
+//
+// To modify a rule group, do the following:
+//
+// # Retrieve it by calling GetRuleGroup
+//
+// # Update its settings as needed
+//
+// # Provide the complete rule group specification to this call
+//
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
 //
 // A rule group defines a collection of rules to inspect and control web requests
 // that you can use in a WebACL. When you create a rule group, you define an
@@ -4505,52 +5493,74 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 // API operation UpdateRuleGroup for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFSubscriptionNotFoundException
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFSubscriptionNotFoundException
+//     You tried to use a managed rule group that's available by subscription, but
+//     you aren't subscribed to it yet.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFConfigurationWarningException
+//     The operation failed because you are inspecting the web request body, headers,
+//     or cookies without specifying how to handle oversize components. Rules that
+//     inspect the body must either provide an OversizeHandling configuration or
+//     they must be preceded by a SizeConstraintStatement that blocks the body content
+//     from being too large. Rules that inspect the headers or cookies must provide
+//     an OversizeHandling configuration.
+//
+//     Provide the handling configuration and retry your operation.
+//
+//     Alternately, you can suppress this warning by adding the following tag to
+//     the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+//     value:true).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateRuleGroup
 func (c *WAFV2) UpdateRuleGroup(input *UpdateRuleGroupInput) (*UpdateRuleGroupOutput, error) {
@@ -4590,14 +5600,13 @@ const opUpdateWebACL = "UpdateWebACL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateWebACLRequest method.
+//	req, resp := client.UpdateWebACLRequest(params)
 //
-//    // Example sending a request using the UpdateWebACLRequest method.
-//    req, resp := client.UpdateWebACLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateWebACL
 func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Request, output *UpdateWebACLOutput) {
@@ -4618,21 +5627,42 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 
 // UpdateWebACL API operation for AWS WAFV2.
 //
+// Updates the specified WebACL. While updating a web ACL, WAF provides continuous
+// coverage to the resources that you have associated with the web ACL.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// This operation completely replaces the mutable specifications that you already
+// have for the web ACL with the ones that you provide to this call.
 //
-// Updates the specified WebACL.
+// To modify a web ACL, do the following:
 //
-// A Web ACL defines a collection of rules to use to inspect and control web
+// # Retrieve it by calling GetWebACL
+//
+// # Update its settings as needed
+//
+// # Provide the complete web ACL specification to this call
+//
+// When you make changes to web ACLs or web ACL components, like rules and rule
+// groups, WAF propagates the changes everywhere that the web ACL and its components
+// are stored and used. Your changes are applied within seconds, but there might
+// be a brief period of inconsistency when the changes have arrived in some
+// places and not in others. So, for example, if you change a rule action setting,
+// the action might be the old action in one area and the new action in another
+// area. Or if you add an IP address to an IP set used in a blocking rule, the
+// new address might briefly be blocked in one area while still allowed in another.
+// This temporary inconsistency can occur when you first associate a web ACL
+// with an Amazon Web Services resource and when you change a web ACL that is
+// already associated with a resource. Generally, any inconsistencies of this
+// type last only a few seconds.
+//
+// A web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has an action defined (allow, block, or count) for requests
-// that match the statement of the rule. In the Web ACL, you assign a default
+// that match the statement of the rule. In the web ACL, you assign a default
 // action to take (allow, block) for any request that does not match any of
-// the rules. The rules in a Web ACL can be a combination of the types Rule,
-// RuleGroup, and managed rule group. You can associate a Web ACL with one or
-// more AWS resources to protect. The resources can be Amazon CloudFront, an
-// Amazon API Gateway API, or an Application Load Balancer.
+// the rules. The rules in a web ACL can be a combination of the types Rule,
+// RuleGroup, and managed rule group. You can associate a web ACL with one or
+// more Amazon Web Services resources to protect. The resources can be an Amazon
+// CloudFront distribution, an Amazon API Gateway REST API, an Application Load
+// Balancer, an AppSync GraphQL API, or an Amazon Cognito user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4642,56 +5672,83 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 // API operation UpdateWebACL for usage and error information.
 //
 // Returned Error Types:
-//   * WAFInternalErrorException
-//   Your request is valid, but AWS WAF couldn’t perform the operation because
-//   of a system problem. Retry your request.
 //
-//   * WAFInvalidParameterException
-//   The operation failed because AWS WAF didn't recognize a parameter in the
-//   request. For example:
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
 //
-//      * You specified an invalid parameter name or value.
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
 //
-//      * Your nested statement isn't valid. You might have tried to nest a statement
-//      that can’t be nested.
+//   - You specified a parameter name or value that isn't valid.
 //
-//      * You tried to update a WebACL with a DefaultAction that isn't among the
-//      types available at DefaultAction.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//      * Your request references an ARN that is malformed, or corresponds to
-//      a resource with which a Web ACL cannot be associated.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//   * WAFNonexistentItemException
-//   AWS WAF couldn’t perform the operation because your resource doesn’t
-//   exist.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 //
-//   * WAFDuplicateItemException
-//   AWS WAF couldn’t perform the operation because the resource that you tried
-//   to save is a duplicate of an existing one.
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
-//   * WAFOptimisticLockException
-//   AWS WAF couldn’t save your changes because you tried to update or delete
-//   a resource that has changed since you last retrieved it. Get the resource
-//   again, make any changes you need to make to the new copy, and retry your
-//   operation.
+//   - WAFDuplicateItemException
+//     WAF couldn’t perform the operation because the resource that you tried
+//     to save is a duplicate of an existing one.
 //
-//   * WAFLimitsExceededException
-//   AWS WAF couldn’t perform the operation because you exceeded your resource
-//   limit. For example, the maximum number of WebACL objects that you can create
-//   for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-//   in the AWS WAF Developer Guide.
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
 //
-//   * WAFInvalidResourceException
-//   AWS WAF couldn’t perform the operation because the resource that you requested
-//   isn’t valid. Check the resource, and try again.
+//   - WAFLimitsExceededException
+//     WAF couldn’t perform the operation because you exceeded your resource limit.
+//     For example, the maximum number of WebACL objects that you can create for
+//     an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//     in the WAF Developer Guide.
 //
-//   * WAFUnavailableEntityException
-//   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+//   - WAFInvalidResourceException
+//     WAF couldn’t perform the operation because the resource that you requested
+//     isn’t valid. Check the resource, and try again.
 //
-//   * WAFSubscriptionNotFoundException
+//   - WAFUnavailableEntityException
+//     WAF couldn’t retrieve a resource that you specified for this operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
-//   * WAFInvalidOperationException
-//   The operation isn't valid.
+//   - WAFSubscriptionNotFoundException
+//     You tried to use a managed rule group that's available by subscription, but
+//     you aren't subscribed to it yet.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+//   - WAFExpiredManagedRuleGroupVersionException
+//     The operation failed because the specified version for the managed rule group
+//     has expired. You can retrieve the available versions for the managed rule
+//     group by calling ListAvailableManagedRuleGroupVersions.
+//
+//   - WAFConfigurationWarningException
+//     The operation failed because you are inspecting the web request body, headers,
+//     or cookies without specifying how to handle oversize components. Rules that
+//     inspect the body must either provide an OversizeHandling configuration or
+//     they must be preceded by a SizeConstraintStatement that blocks the body content
+//     from being too large. Rules that inspect the headers or cookies must provide
+//     an OversizeHandling configuration.
+//
+//     Provide the handling configuration and retry your operation.
+//
+//     Alternately, you can suppress this warning by adding the following tag to
+//     the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+//     value:true).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateWebACL
 func (c *WAFV2) UpdateWebACL(input *UpdateWebACLInput) (*UpdateWebACLOutput, error) {
@@ -4715,57 +5772,221 @@ func (c *WAFV2) UpdateWebACLWithContext(ctx aws.Context, input *UpdateWebACLInpu
 	return out, req.Send()
 }
 
+// Details for your use of the Bot Control managed rule group, used in ManagedRuleGroupConfig.
+type AWSManagedRulesBotControlRuleSet struct {
+	_ struct{} `type:"structure"`
+
+	// The inspection level to use for the Bot Control rule group. The common level
+	// is the least expensive. The targeted level includes all common level rules
+	// and adds rules with more advanced inspection criteria. For details, see WAF
+	// Bot Control rule group (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-bot.html).
+	//
+	// InspectionLevel is a required field
+	InspectionLevel *string `type:"string" required:"true" enum:"InspectionLevel"`
+}
+
+// String returns the string representation.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AWSManagedRulesBotControlRuleSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
-// All query arguments of a web request.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AWSManagedRulesBotControlRuleSet) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AWSManagedRulesBotControlRuleSet) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AWSManagedRulesBotControlRuleSet"}
+	if s.InspectionLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("InspectionLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInspectionLevel sets the InspectionLevel field's value.
+func (s *AWSManagedRulesBotControlRuleSet) SetInspectionLevel(v string) *AWSManagedRulesBotControlRuleSet {
+	s.InspectionLevel = &v
+	return s
+}
+
+// A single action condition for a Condition in a logging filter.
+type ActionCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The action setting that a log record must contain in order to meet the condition.
+	// This is the action that WAF applied to the web request.
+	//
+	// For rule groups, this is either the configured rule action setting, or if
+	// you've applied a rule action override to the rule, it's the override action.
+	// The value EXCLUDED_AS_COUNT matches on excluded rules and also on rules that
+	// have a rule action override of Count.
+	//
+	// Action is a required field
+	Action *string `type:"string" required:"true" enum:"ActionValue"`
+}
+
+// String returns the string representation.
 //
-// This is used only to indicate the web request component for AWS WAF to inspect,
-// in the FieldToMatch specification.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionCondition"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *ActionCondition) SetAction(v string) *ActionCondition {
+	s.Action = &v
+	return s
+}
+
+// Inspect all of the elements that WAF has parsed and extracted from the web
+// request component that you've identified in your FieldToMatch specifications.
+//
+// This is used only in the FieldToMatch specification for some web request
+// component types.
+//
+// JSON specification: "All": {}
+type All struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s All) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s All) GoString() string {
+	return s.String()
+}
+
+// Inspect all query arguments of the web request.
+//
+// This is used only in the FieldToMatch specification for some web request
+// component types.
+//
+// JSON specification: "AllQueryArguments": {}
 type AllQueryArguments struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllQueryArguments) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllQueryArguments) GoString() string {
 	return s.String()
 }
 
+// Specifies that WAF should allow the request and optionally defines additional
+// custom handling for the request.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Specifies that AWS WAF should allow requests.
-//
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
 type AllowAction struct {
 	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllowAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllowAction) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *AllowAction) SetCustomRequestHandling(v *CustomRequestHandling) *AllowAction {
+	s.CustomRequestHandling = v
+	return s
+}
+
 // A logical rule statement used to combine other rule statements with AND logic.
 // You provide more than one Statement within the AndStatement.
 type AndStatement struct {
@@ -4778,12 +5999,20 @@ type AndStatement struct {
 	Statements []*Statement `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AndStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AndStatement) GoString() string {
 	return s.String()
 }
@@ -4817,24 +6046,36 @@ type AssociateWebACLInput struct {
 	//
 	//    * For an Application Load Balancer: arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/load-balancer-name/load-balancer-id
 	//
-	//    * For an Amazon API Gateway stage: arn:aws:apigateway:region::/restapis/api-id/stages/stage-name
+	//    * For an Amazon API Gateway REST API: arn:aws:apigateway:region::/restapis/api-id/stages/stage-name
+	//
+	//    * For an AppSync GraphQL API: arn:aws:appsync:region:account-id:apis/GraphQLApiId
+	//
+	//    * For an Amazon Cognito user pool: arn:aws:cognito-idp:region:account-id:userpool/user-pool-id
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Web ACL that you want to associate
+	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
 	// with the resource.
 	//
 	// WebACLArn is a required field
 	WebACLArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -4877,83 +6118,149 @@ type AssociateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies that WAF should block the request and optionally defines additional
+// custom handling for the response to the web request.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Specifies that AWS WAF should block requests.
-//
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
 type BlockAction struct {
 	_ struct{} `type:"structure"`
+
+	// Defines a custom response for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponse *CustomResponse `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockAction) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// The body of a web request. This immediately follows the request headers.
-//
-// This is used only to indicate the web request component for AWS WAF to inspect,
-// in the FieldToMatch specification.
-type Body struct {
-	_ struct{} `type:"structure"`
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BlockAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BlockAction"}
+	if s.CustomResponse != nil {
+		if err := s.CustomResponse.Validate(); err != nil {
+			invalidParams.AddNested("CustomResponse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
-// String returns the string representation
+// SetCustomResponse sets the CustomResponse field's value.
+func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
+	s.CustomResponse = v
+	return s
+}
+
+// Inspect the body of the web request. The body immediately follows the request
+// headers.
+//
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
+type Body struct {
+	_ struct{} `type:"structure"`
+
+	// What WAF should do if the body is larger than WAF can inspect. WAF does not
+	// support inspecting the entire contents of the body of a web request when
+	// the body exceeds 8 KB (8192 bytes). Only the first 8 KB of the request body
+	// are forwarded to WAF by the underlying host service.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the body normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// You can combine the MATCH or NO_MATCH settings for oversize handling with
+	// your rule and web ACL action settings, so that you block any request whose
+	// body is over 8 KB.
+	//
+	// Default: CONTINUE
+	OversizeHandling *string `type:"string" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// A rule statement that defines a string match search for AWS WAF to apply
-// to web requests. The byte match statement provides the bytes to search for,
-// the location in requests that you want AWS WAF to search, and other settings.
-// The bytes to search for are typically a string that corresponds with ASCII
-// characters. In the AWS WAF console and the developer guide, this is refered
-// to as a string match statement.
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *Body) SetOversizeHandling(v string) *Body {
+	s.OversizeHandling = &v
+	return s
+}
+
+// A rule statement that defines a string match search for WAF to apply to web
+// requests. The byte match statement provides the bytes to search for, the
+// location in requests that you want WAF to search, and other settings. The
+// bytes to search for are typically a string that corresponds with ASCII characters.
+// In the WAF console and the developer guide, this is called a string match
+// statement.
 type ByteMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want AWS WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
-	// The area within the portion of a web request that you want AWS WAF to search
+	// The area within the portion of the web request that you want WAF to search
 	// for SearchString. Valid values include the following:
 	//
 	// CONTAINS
@@ -4994,22 +6301,22 @@ type ByteMatchStatement struct {
 	// PositionalConstraint is a required field
 	PositionalConstraint *string `type:"string" required:"true" enum:"PositionalConstraint"`
 
-	// A string value that you want AWS WAF to search for. AWS WAF searches only
-	// in the part of web requests that you designate for inspection in FieldToMatch.
-	// The maximum length of the value is 50 bytes.
+	// A string value that you want WAF to search for. WAF searches only in the
+	// part of web requests that you designate for inspection in FieldToMatch. The
+	// maximum length of the value is 50 bytes.
 	//
 	// Valid values depend on the component that you specify for inspection in FieldToMatch:
 	//
-	//    * Method: The HTTP method that you want AWS WAF to search for. This indicates
+	//    * Method: The HTTP method that you want WAF to search for. This indicates
 	//    the type of operation specified in the request.
 	//
-	//    * UriPath: The value that you want AWS WAF to search for in the URI path,
+	//    * UriPath: The value that you want WAF to search for in the URI path,
 	//    for example, /images/daily-ad.jpg.
 	//
 	// If SearchString includes alphabetic characters A-Z and a-z, note that the
 	// value is case sensitive.
 	//
-	// If you're using the AWS WAF API
+	// If you're using the WAF API
 	//
 	// Specify a base64-encoded version of the value. The maximum length of the
 	// value before you base64-encode it is 50 bytes.
@@ -5019,11 +6326,10 @@ type ByteMatchStatement struct {
 	// you base64-encode BadBot using MIME base64-encoding and include the resulting
 	// value, QmFkQm90, in the value of SearchString.
 	//
-	// If you're using the AWS CLI or one of the AWS SDKs
+	// If you're using the CLI or one of the Amazon Web Services SDKs
 	//
-	// The value that you want AWS WAF to search for. The SDK automatically base64
-	// encodes the value.
-	//
+	// The value that you want WAF to search for. The SDK automatically base64 encodes
+	// the value.
 	// SearchString is automatically base64 encoded/decoded by the SDK.
 	//
 	// SearchString is a required field
@@ -5031,7 +6337,7 @@ type ByteMatchStatement struct {
 
 	// Text transformations eliminate some of the unusual formatting that attackers
 	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, AWS WAF performs all transformations
+	// or more transformations in a rule statement, WAF performs all transformations
 	// on the content of the request component identified by FieldToMatch, starting
 	// from the lowest priority setting, before inspecting the content for a match.
 	//
@@ -5039,12 +6345,20 @@ type ByteMatchStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ByteMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ByteMatchStatement) GoString() string {
 	return s.String()
 }
@@ -5113,6 +6427,361 @@ func (s *ByteMatchStatement) SetTextTransformations(v []*TextTransformation) *By
 	return s
 }
 
+// Specifies that WAF should run a CAPTCHA check against the request:
+//
+//   - If the request includes a valid, unexpired CAPTCHA token, WAF applies
+//     any custom request handling and labels that you've configured and then
+//     allows the web request inspection to proceed to the next rule, similar
+//     to a CountAction.
+//
+//   - If the request doesn't include a valid, unexpired token, WAF discontinues
+//     the web ACL evaluation of the request and blocks it from going to its
+//     intended destination. WAF generates a response that it sends back to the
+//     client, which includes the following: The header x-amzn-waf-action with
+//     a value of captcha. The HTTP status code 405 Method Not Allowed. If the
+//     request contains an Accept header with a value of text/html, the response
+//     includes a CAPTCHA JavaScript page interstitial.
+//
+// You can configure the expiration time in the CaptchaConfig ImmunityTimeProperty
+// setting at the rule and web ACL level. The rule setting overrides the web
+// ACL setting.
+//
+// This action option is available for rules. It isn't available for web ACL
+// default actions.
+type CaptchaAction struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request, used when the CAPTCHA inspection
+	// determines that the request's token is valid and unexpired.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptchaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptchaAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *CaptchaAction) SetCustomRequestHandling(v *CustomRequestHandling) *CaptchaAction {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies how WAF should handle CAPTCHA evaluations. This is available at
+// the web ACL level and in each rule.
+type CaptchaConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how long a CAPTCHA timestamp in the token remains valid after
+	// the client successfully solves a CAPTCHA puzzle.
+	ImmunityTimeProperty *ImmunityTimeProperty `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptchaConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptchaConfig"}
+	if s.ImmunityTimeProperty != nil {
+		if err := s.ImmunityTimeProperty.Validate(); err != nil {
+			invalidParams.AddNested("ImmunityTimeProperty", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTimeProperty sets the ImmunityTimeProperty field's value.
+func (s *CaptchaConfig) SetImmunityTimeProperty(v *ImmunityTimeProperty) *CaptchaConfig {
+	s.ImmunityTimeProperty = v
+	return s
+}
+
+// The result from the inspection of the web request for a valid CAPTCHA token.
+type CaptchaResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The reason for failure, populated when the evaluation of the token fails.
+	FailureReason *string `type:"string" enum:"FailureReason"`
+
+	// The HTTP response code indicating the status of the CAPTCHA token in the
+	// web request. If the token is missing, invalid, or expired, this code is 405
+	// Method Not Allowed.
+	ResponseCode *int64 `type:"integer"`
+
+	// The time that the CAPTCHA was last solved for the supplied token.
+	SolveTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaResponse) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CaptchaResponse) SetFailureReason(v string) *CaptchaResponse {
+	s.FailureReason = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *CaptchaResponse) SetResponseCode(v int64) *CaptchaResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetSolveTimestamp sets the SolveTimestamp field's value.
+func (s *CaptchaResponse) SetSolveTimestamp(v int64) *CaptchaResponse {
+	s.SolveTimestamp = &v
+	return s
+}
+
+// Specifies that WAF should run a Challenge check against the request to verify
+// that the request is coming from a legitimate client session:
+//
+//   - If the request includes a valid, unexpired challenge token, WAF applies
+//     any custom request handling and labels that you've configured and then
+//     allows the web request inspection to proceed to the next rule, similar
+//     to a CountAction.
+//
+//   - If the request doesn't include a valid, unexpired challenge token, WAF
+//     discontinues the web ACL evaluation of the request and blocks it from
+//     going to its intended destination. WAF then generates a challenge response
+//     that it sends back to the client, which includes the following: The header
+//     x-amzn-waf-action with a value of challenge. The HTTP status code 202
+//     Request Accepted. If the request contains an Accept header with a value
+//     of text/html, the response includes a JavaScript page interstitial with
+//     a challenge script. Challenges run silent browser interrogations in the
+//     background, and don't generally affect the end user experience. A challenge
+//     enforces token acquisition using an interstitial JavaScript challenge
+//     that inspects the client session for legitimate behavior. The challenge
+//     blocks bots or at least increases the cost of operating sophisticated
+//     bots. After the client session successfully responds to the challenge,
+//     it receives a new token from WAF, which the challenge script uses to resubmit
+//     the original request.
+//
+// You can configure the expiration time in the ChallengeConfig ImmunityTimeProperty
+// setting at the rule and web ACL level. The rule setting overrides the web
+// ACL setting.
+//
+// This action option is available for rules. It isn't available for web ACL
+// default actions.
+type ChallengeAction struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request, used when the challenge inspection
+	// determines that the request's token is valid and unexpired.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChallengeAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChallengeAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *ChallengeAction) SetCustomRequestHandling(v *CustomRequestHandling) *ChallengeAction {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies how WAF should handle Challenge evaluations. This is available
+// at the web ACL level and in each rule.
+type ChallengeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how long a challenge timestamp in the token remains valid after
+	// the client successfully responds to a challenge.
+	ImmunityTimeProperty *ImmunityTimeProperty `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChallengeConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChallengeConfig"}
+	if s.ImmunityTimeProperty != nil {
+		if err := s.ImmunityTimeProperty.Validate(); err != nil {
+			invalidParams.AddNested("ImmunityTimeProperty", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTimeProperty sets the ImmunityTimeProperty field's value.
+func (s *ChallengeConfig) SetImmunityTimeProperty(v *ImmunityTimeProperty) *ChallengeConfig {
+	s.ImmunityTimeProperty = v
+	return s
+}
+
+// The result from the inspection of the web request for a valid challenge token.
+type ChallengeResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The reason for failure, populated when the evaluation of the token fails.
+	FailureReason *string `type:"string" enum:"FailureReason"`
+
+	// The HTTP response code indicating the status of the challenge token in the
+	// web request. If the token is missing, invalid, or expired, this code is 202
+	// Request Accepted.
+	ResponseCode *int64 `type:"integer"`
+
+	// The time that the challenge was last solved for the supplied token.
+	SolveTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeResponse) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *ChallengeResponse) SetFailureReason(v string) *ChallengeResponse {
+	s.FailureReason = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *ChallengeResponse) SetResponseCode(v int64) *ChallengeResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetSolveTimestamp sets the SolveTimestamp field's value.
+func (s *ChallengeResponse) SetSolveTimestamp(v int64) *ChallengeResponse {
+	s.SolveTimestamp = &v
+	return s
+}
+
 type CheckCapacityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5121,9 +6790,10 @@ type CheckCapacityInput struct {
 	// Rules is a required field
 	Rules []*Rule `type:"list" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -5137,12 +6807,20 @@ type CheckCapacityInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityInput) GoString() string {
 	return s.String()
 }
@@ -5192,12 +6870,20 @@ type CheckCapacityOutput struct {
 	Capacity *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityOutput) GoString() string {
 	return s.String()
 }
@@ -5208,62 +6894,351 @@ func (s *CheckCapacityOutput) SetCapacity(v int64) *CheckCapacityOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Specifies that AWS WAF should count requests.
-//
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
-type CountAction struct {
+// A single match condition for a Filter.
+type Condition struct {
 	_ struct{} `type:"structure"`
+
+	// A single action condition. This is the action setting that a log record must
+	// contain in order to meet the condition.
+	ActionCondition *ActionCondition `type:"structure"`
+
+	// A single label name condition. This is the fully qualified label name that
+	// a log record must contain in order to meet the condition. Fully qualified
+	// labels have a prefix, optional namespaces, and label name. The prefix identifies
+	// the rule group or web ACL context of the rule that added the label.
+	LabelNameCondition *LabelNameCondition `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Condition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Condition"}
+	if s.ActionCondition != nil {
+		if err := s.ActionCondition.Validate(); err != nil {
+			invalidParams.AddNested("ActionCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LabelNameCondition != nil {
+		if err := s.LabelNameCondition.Validate(); err != nil {
+			invalidParams.AddNested("LabelNameCondition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionCondition sets the ActionCondition field's value.
+func (s *Condition) SetActionCondition(v *ActionCondition) *Condition {
+	s.ActionCondition = v
+	return s
+}
+
+// SetLabelNameCondition sets the LabelNameCondition field's value.
+func (s *Condition) SetLabelNameCondition(v *LabelNameCondition) *Condition {
+	s.LabelNameCondition = v
+	return s
+}
+
+// The filter to use to identify the subset of cookies to inspect in a web request.
+//
+// You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
+//
+// Example JSON: "MatchPattern": { "IncludedCookies": {"KeyToInclude1", "KeyToInclude2",
+// "KeyToInclude3"} }
+type CookieMatchPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Inspect all cookies.
+	All *All `type:"structure"`
+
+	// Inspect only the cookies whose keys don't match any of the strings specified
+	// here.
+	ExcludedCookies []*string `min:"1" type:"list"`
+
+	// Inspect only the cookies that have a key that matches one of the strings
+	// specified here.
+	IncludedCookies []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieMatchPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CookieMatchPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CookieMatchPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CookieMatchPattern"}
+	if s.ExcludedCookies != nil && len(s.ExcludedCookies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExcludedCookies", 1))
+	}
+	if s.IncludedCookies != nil && len(s.IncludedCookies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedCookies", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAll sets the All field's value.
+func (s *CookieMatchPattern) SetAll(v *All) *CookieMatchPattern {
+	s.All = v
+	return s
+}
+
+// SetExcludedCookies sets the ExcludedCookies field's value.
+func (s *CookieMatchPattern) SetExcludedCookies(v []*string) *CookieMatchPattern {
+	s.ExcludedCookies = v
+	return s
+}
+
+// SetIncludedCookies sets the IncludedCookies field's value.
+func (s *CookieMatchPattern) SetIncludedCookies(v []*string) *CookieMatchPattern {
+	s.IncludedCookies = v
+	return s
+}
+
+// Inspect the cookies in the web request. You can specify the parts of the
+// cookies to inspect and you can narrow the set of cookies to inspect by including
+// or excluding specific keys.
+//
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
+//
+// Example JSON: "Cookies": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
+// "OversizeHandling": "MATCH" }
+type Cookies struct {
+	_ struct{} `type:"structure"`
+
+	// The filter to use to identify the subset of cookies to inspect in a web request.
+	//
+	// You must specify exactly one setting: either All, IncludedCookies, or ExcludedCookies.
+	//
+	// Example JSON: "MatchPattern": { "IncludedCookies": {"KeyToInclude1", "KeyToInclude2",
+	// "KeyToInclude3"} }
+	//
+	// MatchPattern is a required field
+	MatchPattern *CookieMatchPattern `type:"structure" required:"true"`
+
+	// The parts of the cookies to inspect with the rule inspection criteria. If
+	// you specify All, WAF inspects both keys and values.
+	//
+	// MatchScope is a required field
+	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
+
+	// What WAF should do if the cookies of the request are larger than WAF can
+	// inspect. WAF does not support inspecting the entire contents of request cookies
+	// when they exceed 8 KB (8192 bytes) or 200 total cookies. The underlying host
+	// service forwards a maximum of 200 cookies and at most 8 KB of cookie contents
+	// to WAF.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the cookies normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// OversizeHandling is a required field
+	OversizeHandling *string `type:"string" required:"true" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cookies) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cookies) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Cookies) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Cookies"}
+	if s.MatchPattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchPattern"))
+	}
+	if s.MatchScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchScope"))
+	}
+	if s.OversizeHandling == nil {
+		invalidParams.Add(request.NewErrParamRequired("OversizeHandling"))
+	}
+	if s.MatchPattern != nil {
+		if err := s.MatchPattern.Validate(); err != nil {
+			invalidParams.AddNested("MatchPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchPattern sets the MatchPattern field's value.
+func (s *Cookies) SetMatchPattern(v *CookieMatchPattern) *Cookies {
+	s.MatchPattern = v
+	return s
+}
+
+// SetMatchScope sets the MatchScope field's value.
+func (s *Cookies) SetMatchScope(v string) *Cookies {
+	s.MatchScope = &v
+	return s
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *Cookies) SetOversizeHandling(v string) *Cookies {
+	s.OversizeHandling = &v
+	return s
+}
+
+// Specifies that WAF should count the request. Optionally defines additional
+// custom handling for the request.
+//
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
+type CountAction struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CountAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CountAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CountAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CountAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *CountAction) SetCustomRequestHandling(v *CustomRequestHandling) *CountAction {
+	s.CustomRequestHandling = v
+	return s
 }
 
 type CreateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF
-	// supports all address ranges for IP versions IPv4 and IPv6.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from IP addresses from 192.0.2.0 to 192.0.2.255, specify 192.0.2.0/24.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 1111:0000:0000:0000:0000:0000:0000:0111, specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from IP addresses 1111:0000:0000:0000:0000:0000:0000:0000 to 1111:0000:0000:0000:ffff:ffff:ffff:ffff,
 	//    specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
+	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// Specify IPV4 or IPV6.
+	// The version of the IP addresses, either IPV4 or IPV6.
 	//
 	// IPAddressVersion is a required field
 	IPAddressVersion *string `type:"string" required:"true" enum:"IPAddressVersion"`
@@ -5274,9 +7249,10 @@ type CreateIPSetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -5293,12 +7269,20 @@ type CreateIPSetInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetInput) GoString() string {
 	return s.String()
 }
@@ -5390,12 +7374,20 @@ type CreateIPSetOutput struct {
 	Summary *IPSetSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -5409,8 +7401,7 @@ func (s *CreateIPSetOutput) SetSummary(v *IPSetSummary) *CreateIPSetOutput {
 type CreateRegexPatternSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the set. You cannot change the name after you create the set.
@@ -5423,9 +7414,10 @@ type CreateRegexPatternSetInput struct {
 	// RegularExpressionList is a required field
 	RegularExpressionList []*Regex `type:"list" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -5442,12 +7434,20 @@ type CreateRegexPatternSetInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -5540,12 +7540,20 @@ type CreateRegexPatternSetOutput struct {
 	Summary *RegexPatternSetSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -5562,23 +7570,36 @@ type CreateRuleGroupInput struct {
 	// The web ACL capacity units (WCUs) required for this rule group.
 	//
 	// When you create your own rule group, you define this, and you cannot change
-	// it after creation. When you add or modify the rules in a rule group, AWS
-	// WAF enforces this limit. You can check the capacity for a set of rules using
+	// it after creation. When you add or modify the rules in a rule group, WAF
+	// enforces this limit. You can check the capacity for a set of rules using
 	// CheckCapacity.
 	//
-	// AWS WAF uses WCUs to calculate and control the operating resources that are
-	// used to run your rules, rule groups, and web ACLs. AWS WAF calculates capacity
-	// differently for each rule type, to reflect the relative cost of each rule.
-	// Simple rules that cost little to run use fewer WCUs than more complex rules
-	// that use more processing power. Rule group capacity is fixed at creation,
-	// which helps users plan their web ACL WCU usage when they use a rule group.
-	// The WCU limit for web ACLs is 1,500.
+	// WAF uses WCUs to calculate and control the operating resources that are used
+	// to run your rules, rule groups, and web ACLs. WAF calculates capacity differently
+	// for each rule type, to reflect the relative cost of each rule. Simple rules
+	// that cost little to run use fewer WCUs than more complex rules that use more
+	// processing power. Rule group capacity is fixed at creation, which helps users
+	// plan their web ACL WCU usage when they use a rule group. The WCU limit for
+	// web ACLs is 1,500.
 	//
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the rule group, and then use them in the rules that you
+	// define in the rule group.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the rule group. You cannot change the name of a rule group after
@@ -5588,14 +7609,15 @@ type CreateRuleGroupInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Rule statements used to identify the web requests that you want to allow,
-	// block, or count. Each rule includes one top-level statement that AWS WAF
-	// uses to identify matching web requests, and parameters that govern how AWS
-	// WAF handles them.
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
 	Rules []*Rule `type:"list"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -5617,12 +7639,20 @@ type CreateRuleGroupInput struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -5635,6 +7665,9 @@ func (s *CreateRuleGroupInput) Validate() error {
 	}
 	if s.Capacity != nil && *s.Capacity < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Capacity", 1))
+	}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -5653,6 +7686,16 @@ func (s *CreateRuleGroupInput) Validate() error {
 	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
@@ -5689,6 +7732,12 @@ func (s *CreateRuleGroupInput) Validate() error {
 // SetCapacity sets the Capacity field's value.
 func (s *CreateRuleGroupInput) SetCapacity(v int64) *CreateRuleGroupInput {
 	s.Capacity = &v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *CreateRuleGroupInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *CreateRuleGroupInput {
+	s.CustomResponseBodies = v
 	return s
 }
 
@@ -5738,12 +7787,20 @@ type CreateRuleGroupOutput struct {
 	Summary *RuleGroupSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -5757,30 +7814,54 @@ func (s *CreateRuleGroupOutput) SetSummary(v *RuleGroupSummary) *CreateRuleGroup
 type CreateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
+	// Specifies how WAF should handle challenge evaluations for rules that don't
+	// have their own ChallengeConfig settings. If you don't specify this, WAF uses
+	// its default settings for ChallengeConfig.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the web ACL, and then use them in the rules and default
+	// actions that you define in the web ACL.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// The action to perform if none of the Rules contained in the WebACL match.
 	//
 	// DefaultAction is a required field
 	DefaultAction *DefaultAction `type:"structure" required:"true"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Rule statements used to identify the web requests that you want to allow,
-	// block, or count. Each rule includes one top-level statement that AWS WAF
-	// uses to identify matching web requests, and parameters that govern how AWS
-	// WAF handles them.
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
 	Rules []*Rule `type:"list"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -5796,18 +7877,40 @@ type CreateWebACLInput struct {
 	// An array of key:value pairs to associate with the resource.
 	Tags []*Tag `min:"1" type:"list"`
 
+	// Specifies the domains that WAF should accept in a web request token. This
+	// enables the use of tokens across multiple protected websites. When WAF provides
+	// a token, it uses the domain of the Amazon Web Services resource that the
+	// web ACL is protecting. If you don't specify a list of token domains, WAF
+	// accepts tokens only for the domain of the protected resource. With a token
+	// domain list, WAF accepts the resource's host domain plus all domains in the
+	// token domain list, including their prefixed subdomains.
+	//
+	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
+	//
+	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// as token domains.
+	TokenDomains []*string `min:"1" type:"list"`
+
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -5815,6 +7918,9 @@ func (s CreateWebACLInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateWebACLInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateWebACLInput"}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.DefaultAction == nil {
 		invalidParams.Add(request.NewErrParamRequired("DefaultAction"))
 	}
@@ -5833,8 +7939,36 @@ func (s *CreateWebACLInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.TokenDomains != nil && len(s.TokenDomains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenDomains", 1))
+	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ChallengeConfig != nil {
+		if err := s.ChallengeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ChallengeConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DefaultAction != nil {
+		if err := s.DefaultAction.Validate(); err != nil {
+			invalidParams.AddNested("DefaultAction", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
@@ -5866,6 +8000,24 @@ func (s *CreateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *CreateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *CreateWebACLInput {
+	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *CreateWebACLInput) SetChallengeConfig(v *ChallengeConfig) *CreateWebACLInput {
+	s.ChallengeConfig = v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *CreateWebACLInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *CreateWebACLInput {
+	s.CustomResponseBodies = v
+	return s
 }
 
 // SetDefaultAction sets the DefaultAction field's value.
@@ -5904,6 +8056,12 @@ func (s *CreateWebACLInput) SetTags(v []*Tag) *CreateWebACLInput {
 	return s
 }
 
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *CreateWebACLInput) SetTokenDomains(v []*string) *CreateWebACLInput {
+	s.TokenDomains = v
+	return s
+}
+
 // SetVisibilityConfig sets the VisibilityConfig field's value.
 func (s *CreateWebACLInput) SetVisibilityConfig(v *VisibilityConfig) *CreateWebACLInput {
 	s.VisibilityConfig = v
@@ -5919,12 +8077,20 @@ type CreateWebACLOutput struct {
 	Summary *WebACLSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -5935,32 +8101,374 @@ func (s *CreateWebACLOutput) SetSummary(v *WebACLSummary) *CreateWebACLOutput {
 	return s
 }
 
+// A custom header for custom request and response handling. This is used in
+// CustomResponse and CustomRequestHandling.
+type CustomHTTPHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom header.
+	//
+	// For custom request header insertion, when WAF inserts the header into the
+	// request, it prefixes this name x-amzn-waf-, to avoid confusion with the headers
+	// that are already in the request. For example, for the header name sample,
+	// WAF inserts the header x-amzn-waf-sample.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the custom header.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomHTTPHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
-// In a WebACL, this is the action that you want AWS WAF to perform when a web
-// request doesn't match any of the rules in the WebACL. The default action
-// must be a terminating action, so count is not allowed.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomHTTPHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomHTTPHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomHTTPHeader"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CustomHTTPHeader) SetName(v string) *CustomHTTPHeader {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CustomHTTPHeader) SetValue(v string) *CustomHTTPHeader {
+	s.Value = &v
+	return s
+}
+
+// Custom request handling behavior that inserts custom headers into a web request.
+// You can add custom request handling for WAF to use when the rule action doesn't
+// block the request. For example, CaptchaAction for requests with valid t okens,
+// and AllowAction.
+//
+// For information about customizing web requests and responses, see Customizing
+// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+type CustomRequestHandling struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP headers to insert into the request. Duplicate header names are not
+	// allowed.
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// InsertHeaders is a required field
+	InsertHeaders []*CustomHTTPHeader `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomRequestHandling) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomRequestHandling) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomRequestHandling) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomRequestHandling"}
+	if s.InsertHeaders == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsertHeaders"))
+	}
+	if s.InsertHeaders != nil && len(s.InsertHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InsertHeaders", 1))
+	}
+	if s.InsertHeaders != nil {
+		for i, v := range s.InsertHeaders {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InsertHeaders", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsertHeaders sets the InsertHeaders field's value.
+func (s *CustomRequestHandling) SetInsertHeaders(v []*CustomHTTPHeader) *CustomRequestHandling {
+	s.InsertHeaders = v
+	return s
+}
+
+// A custom response to send to the client. You can define a custom response
+// for rule actions and default web ACL actions that are set to BlockAction.
+//
+// For information about customizing web requests and responses, see Customizing
+// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+type CustomResponse struct {
+	_ struct{} `type:"structure"`
+
+	// References the response body that you want WAF to return to the web request
+	// client. You can define a custom response for a rule action or a default web
+	// ACL action that is set to block. To do this, you first define the response
+	// body key and value in the CustomResponseBodies setting for the WebACL or
+	// RuleGroup where you want to use it. Then, in the rule action or web ACL default
+	// action BlockAction setting, you reference the response body using this key.
+	CustomResponseBodyKey *string `min:"1" type:"string"`
+
+	// The HTTP status code to return to the client.
+	//
+	// For a list of status codes that you can use in your custom responses, see
+	// Supported status codes for custom response (https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-response-status-codes.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// ResponseCode is a required field
+	ResponseCode *int64 `min:"200" type:"integer" required:"true"`
+
+	// The HTTP headers to use in the response. Duplicate header names are not allowed.
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	ResponseHeaders []*CustomHTTPHeader `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomResponse) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomResponse) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomResponse"}
+	if s.CustomResponseBodyKey != nil && len(*s.CustomResponseBodyKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodyKey", 1))
+	}
+	if s.ResponseCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResponseCode"))
+	}
+	if s.ResponseCode != nil && *s.ResponseCode < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("ResponseCode", 200))
+	}
+	if s.ResponseHeaders != nil && len(s.ResponseHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResponseHeaders", 1))
+	}
+	if s.ResponseHeaders != nil {
+		for i, v := range s.ResponseHeaders {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResponseHeaders", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomResponseBodyKey sets the CustomResponseBodyKey field's value.
+func (s *CustomResponse) SetCustomResponseBodyKey(v string) *CustomResponse {
+	s.CustomResponseBodyKey = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *CustomResponse) SetResponseCode(v int64) *CustomResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetResponseHeaders sets the ResponseHeaders field's value.
+func (s *CustomResponse) SetResponseHeaders(v []*CustomHTTPHeader) *CustomResponse {
+	s.ResponseHeaders = v
+	return s
+}
+
+// The response body to use in a custom response to a web request. This is referenced
+// by key from CustomResponse CustomResponseBodyKey.
+type CustomResponseBody struct {
+	_ struct{} `type:"structure"`
+
+	// The payload of the custom response.
+	//
+	// You can use JSON escape strings in JSON content. To do this, you must specify
+	// JSON content in the ContentType setting.
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The type of content in the payload that you are defining in the Content string.
+	//
+	// ContentType is a required field
+	ContentType *string `type:"string" required:"true" enum:"ResponseContentType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomResponseBody) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomResponseBody) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomResponseBody) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomResponseBody"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *CustomResponseBody) SetContent(v string) *CustomResponseBody {
+	s.Content = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *CustomResponseBody) SetContentType(v string) *CustomResponseBody {
+	s.ContentType = &v
+	return s
+}
+
+// In a WebACL, this is the action that you want WAF to perform when a web request
+// doesn't match any of the rules in the WebACL. The default action must be
+// a terminating action.
 type DefaultAction struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies that AWS WAF should allow requests by default.
+	// Specifies that WAF should allow requests by default.
 	Allow *AllowAction `type:"structure"`
 
-	// Specifies that AWS WAF should block requests by default.
+	// Specifies that WAF should block requests by default.
 	Block *BlockAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultAction"}
+	if s.Allow != nil {
+		if err := s.Allow.Validate(); err != nil {
+			invalidParams.AddNested("Allow", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Block != nil {
+		if err := s.Block.Validate(); err != nil {
+			invalidParams.AddNested("Block", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAllow sets the Allow field's value.
@@ -5983,10 +8491,10 @@ type DeleteFirewallManagerRuleGroupsInput struct {
 	// WebACLArn is a required field
 	WebACLArn *string `min:"20" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -5996,12 +8504,20 @@ type DeleteFirewallManagerRuleGroupsInput struct {
 	WebACLLockToken *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -6043,10 +8559,10 @@ func (s *DeleteFirewallManagerRuleGroupsInput) SetWebACLLockToken(v string) *Del
 type DeleteFirewallManagerRuleGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -6054,12 +8570,20 @@ type DeleteFirewallManagerRuleGroupsOutput struct {
 	NextWebACLLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -6079,10 +8603,10 @@ type DeleteIPSetInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -6097,9 +8621,10 @@ type DeleteIPSetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -6113,12 +8638,20 @@ type DeleteIPSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetInput) GoString() string {
 	return s.String()
 }
@@ -6182,12 +8715,20 @@ type DeleteIPSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -6202,12 +8743,20 @@ type DeleteLoggingConfigurationInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6238,12 +8787,20 @@ type DeleteLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6260,12 +8817,20 @@ type DeletePermissionPolicyInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyInput) GoString() string {
 	return s.String()
 }
@@ -6296,12 +8861,20 @@ type DeletePermissionPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -6315,10 +8888,10 @@ type DeleteRegexPatternSetInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -6332,9 +8905,10 @@ type DeleteRegexPatternSetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -6348,12 +8922,20 @@ type DeleteRegexPatternSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -6417,12 +8999,20 @@ type DeleteRegexPatternSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -6437,10 +9027,10 @@ type DeleteRuleGroupInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -6455,9 +9045,10 @@ type DeleteRuleGroupInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -6471,12 +9062,20 @@ type DeleteRuleGroupInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -6540,12 +9139,20 @@ type DeleteRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -6553,17 +9160,17 @@ func (s DeleteRuleGroupOutput) GoString() string {
 type DeleteWebACLInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the Web ACL. This ID is returned in the responses
+	// The unique identifier for the web ACL. This ID is returned in the responses
 	// to create and list commands. You provide it to operations like update and
 	// delete.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -6572,15 +9179,16 @@ type DeleteWebACLInput struct {
 	// LockToken is a required field
 	LockToken *string `min:"1" type:"string" required:"true"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -6594,12 +9202,20 @@ type DeleteWebACLInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLInput) GoString() string {
 	return s.String()
 }
@@ -6663,12 +9279,20 @@ type DeleteWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -6682,9 +9306,10 @@ type DescribeManagedRuleGroupInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -6702,14 +9327,27 @@ type DescribeManagedRuleGroupInput struct {
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the rule group. You can only use a version that is not scheduled
+	// for expiration. If you don't provide this, WAF uses the vendor's default
+	// version.
+	VersionName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -6731,6 +9369,9 @@ func (s *DescribeManagedRuleGroupInput) Validate() error {
 	}
 	if s.VendorName != nil && len(*s.VendorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
+	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6757,28 +9398,81 @@ func (s *DescribeManagedRuleGroupInput) SetVendorName(v string) *DescribeManaged
 	return s
 }
 
+// SetVersionName sets the VersionName field's value.
+func (s *DescribeManagedRuleGroupInput) SetVersionName(v string) *DescribeManagedRuleGroupInput {
+	s.VersionName = &v
+	return s
+}
+
 type DescribeManagedRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The web ACL capacity units (WCUs) required for this rule group. AWS WAF uses
+	// The labels that one or more rules in this rule group add to matching web
+	// requests. These labels are defined in the RuleLabels for a Rule.
+	AvailableLabels []*LabelSummary `type:"list"`
+
+	// The web ACL capacity units (WCUs) required for this rule group. WAF uses
 	// web ACL capacity units (WCU) to calculate and control the operating resources
-	// that are used to run your rules, rule groups, and web ACLs. AWS WAF calculates
+	// that are used to run your rules, rule groups, and web ACLs. WAF calculates
 	// capacity differently for each rule type, to reflect each rule's relative
 	// cost. Rule group capacity is fixed at creation, so users can plan their web
 	// ACL WCU usage when they use a rule group. The WCU limit for web ACLs is 1,500.
 	Capacity *int64 `min:"1" type:"long"`
 
+	// The labels that one or more rules in this rule group match against in label
+	// match statements. These labels are defined in a LabelMatchStatement specification,
+	// in the Statement definition of a rule.
+	ConsumedLabels []*LabelSummary `type:"list"`
+
+	// The label namespace prefix for this rule group. All labels added by rules
+	// in this rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a managed rule group is
+	//    the following: awswaf:managed:<vendor>:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
 	Rules []*RuleSummary `type:"list"`
+
+	// The Amazon resource name (ARN) of the Amazon Simple Notification Service
+	// SNS topic that's used to record changes to the managed rule group. You can
+	// subscribe to the SNS topic to receive notifications when the managed rule
+	// group is modified, such as for new versions and for version expiration. For
+	// more information, see the Amazon Simple Notification Service Developer Guide
+	// (https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+	SnsTopicArn *string `min:"20" type:"string"`
+
+	// The managed rule group's version.
+	VersionName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetAvailableLabels sets the AvailableLabels field's value.
+func (s *DescribeManagedRuleGroupOutput) SetAvailableLabels(v []*LabelSummary) *DescribeManagedRuleGroupOutput {
+	s.AvailableLabels = v
+	return s
 }
 
 // SetCapacity sets the Capacity field's value.
@@ -6787,9 +9481,33 @@ func (s *DescribeManagedRuleGroupOutput) SetCapacity(v int64) *DescribeManagedRu
 	return s
 }
 
+// SetConsumedLabels sets the ConsumedLabels field's value.
+func (s *DescribeManagedRuleGroupOutput) SetConsumedLabels(v []*LabelSummary) *DescribeManagedRuleGroupOutput {
+	s.ConsumedLabels = v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *DescribeManagedRuleGroupOutput) SetLabelNamespace(v string) *DescribeManagedRuleGroupOutput {
+	s.LabelNamespace = &v
+	return s
+}
+
 // SetRules sets the Rules field's value.
 func (s *DescribeManagedRuleGroupOutput) SetRules(v []*RuleSummary) *DescribeManagedRuleGroupOutput {
 	s.Rules = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *DescribeManagedRuleGroupOutput) SetSnsTopicArn(v string) *DescribeManagedRuleGroupOutput {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *DescribeManagedRuleGroupOutput) SetVersionName(v string) *DescribeManagedRuleGroupOutput {
+	s.VersionName = &v
 	return s
 }
 
@@ -6803,18 +9521,30 @@ type DisassociateWebACLInput struct {
 	//
 	//    * For an Application Load Balancer: arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/load-balancer-name/load-balancer-id
 	//
-	//    * For an Amazon API Gateway stage: arn:aws:apigateway:region::/restapis/api-id/stages/stage-name
+	//    * For an Amazon API Gateway REST API: arn:aws:apigateway:region::/restapis/api-id/stages/stage-name
+	//
+	//    * For an AppSync GraphQL API: arn:aws:appsync:region:account-id:apis/GraphQLApiId
+	//
+	//    * For an Amazon Cognito user pool: arn:aws:cognito-idp:region:account-id:userpool/user-pool-id
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -6845,39 +9575,52 @@ type DisassociateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies a single rule in a rule group whose action you want to override
+// to Count.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Specifies a single rule to exclude from the rule group. Excluding a rule
-// overrides its action setting for the rule group in the web ACL, setting it
-// to COUNT. This effectively excludes the rule from acting on web requests.
+// Instead of this option, use RuleActionOverrides. It accepts any valid action
+// setting, including Count.
 type ExcludedRule struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the rule to exclude.
+	// The name of the rule whose action you want to override to Count.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExcludedRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExcludedRule) GoString() string {
 	return s.String()
 }
@@ -6904,37 +9647,67 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// The part of a web request that you want AWS WAF to inspect. Include the single
+// The part of the web request that you want WAF to inspect. Include the single
 // FieldToMatch type that you want to inspect, with additional specifications
 // as needed, according to the type. You specify a single request component
 // in FieldToMatch for each rule statement that requires it. To inspect more
-// than one component of a web request, create a separate rule statement for
+// than one component of the web request, create a separate rule statement for
 // each component.
+//
+// Example JSON for a QueryString field to match:
+//
+// "FieldToMatch": { "QueryString": {} }
+//
+// Example JSON for a Method field to match specification:
+//
+// "FieldToMatch": { "Method": { "Name": "DELETE" } }
 type FieldToMatch struct {
 	_ struct{} `type:"structure"`
 
 	// Inspect all query arguments.
 	AllQueryArguments *AllQueryArguments `type:"structure"`
 
-	// Inspect the request body, which immediately follows the request headers.
-	// This is the part of a request that contains any additional data that you
-	// want to send to your web server as the HTTP request body, such as data from
-	// a form.
+	// Inspect the request body as plain text. The request body immediately follows
+	// the request headers. This is the part of a request that contains any additional
+	// data that you want to send to your web server as the HTTP request body, such
+	// as data from a form.
 	//
-	// Note that only the first 8 KB (8192 bytes) of the request body are forwarded
-	// to AWS WAF for inspection by the underlying host service. If you don't need
-	// to inspect more than 8 KB, you can guarantee that you don't allow additional
-	// bytes in by combining a statement that inspects the body of the web request,
-	// such as ByteMatchStatement or RegexPatternSetReferenceStatement, with a SizeConstraintStatement
-	// that enforces an 8 KB size limit on the body of the request. AWS WAF doesn't
-	// support inspecting the entire contents of web requests whose bodies exceed
-	// the 8 KB limit.
+	// Only the first 8 KB (8192 bytes) of the request body are forwarded to WAF
+	// for inspection by the underlying host service. For information about how
+	// to handle oversized request bodies, see the Body object configuration.
 	Body *Body `type:"structure"`
+
+	// Inspect the request cookies. You must configure scope and pattern matching
+	// filters in the Cookies object, to define the set of cookies and the parts
+	// of the cookies that WAF inspects.
+	//
+	// Only the first 8 KB (8192 bytes) of a request's cookies and only the first
+	// 200 cookies are forwarded to WAF for inspection by the underlying host service.
+	// You must configure how to handle any oversize cookie content in the Cookies
+	// object. WAF applies the pattern matching filters to the cookies that it receives
+	// from the underlying host service.
+	Cookies *Cookies `type:"structure"`
+
+	// Inspect the request headers. You must configure scope and pattern matching
+	// filters in the Headers object, to define the set of headers to and the parts
+	// of the headers that WAF inspects.
+	//
+	// Only the first 8 KB (8192 bytes) of a request's headers and only the first
+	// 200 headers are forwarded to WAF for inspection by the underlying host service.
+	// You must configure how to handle any oversize header content in the Headers
+	// object. WAF applies the pattern matching filters to the headers that it receives
+	// from the underlying host service.
+	Headers *Headers `type:"structure"`
+
+	// Inspect the request body as JSON. The request body immediately follows the
+	// request headers. This is the part of a request that contains any additional
+	// data that you want to send to your web server as the HTTP request body, such
+	// as data from a form.
+	//
+	// Only the first 8 KB (8192 bytes) of the request body are forwarded to WAF
+	// for inspection by the underlying host service. For information about how
+	// to handle oversized request bodies, see the JsonBody object configuration.
+	JsonBody *JsonBody `type:"structure"`
 
 	// Inspect the HTTP method. The method indicates the type of operation that
 	// the request is asking the origin to perform.
@@ -6946,27 +9719,39 @@ type FieldToMatch struct {
 
 	// Inspect a single header. Provide the name of the header to inspect, for example,
 	// User-Agent or Referer. This setting isn't case sensitive.
+	//
+	// Example JSON: "SingleHeader": { "Name": "haystack" }
+	//
+	// Alternately, you can filter and inspect all headers with the Headers FieldToMatch
+	// setting.
 	SingleHeader *SingleHeader `type:"structure"`
 
 	// Inspect a single query argument. Provide the name of the query argument to
 	// inspect, such as UserName or SalesRegion. The name can be up to 30 characters
 	// long and isn't case sensitive.
 	//
-	// This is used only to indicate the web request component for AWS WAF to inspect,
-	// in the FieldToMatch specification.
+	// Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 	SingleQueryArgument *SingleQueryArgument `type:"structure"`
 
-	// Inspect the request URI path. This is the part of a web request that identifies
+	// Inspect the request URI path. This is the part of the web request that identifies
 	// a resource, for example, /images/daily-ad.jpg.
 	UriPath *UriPath `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldToMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldToMatch) GoString() string {
 	return s.String()
 }
@@ -6974,6 +9759,21 @@ func (s FieldToMatch) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FieldToMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FieldToMatch"}
+	if s.Cookies != nil {
+		if err := s.Cookies.Validate(); err != nil {
+			invalidParams.AddNested("Cookies", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Headers != nil {
+		if err := s.Headers.Validate(); err != nil {
+			invalidParams.AddNested("Headers", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JsonBody != nil {
+		if err := s.JsonBody.Validate(); err != nil {
+			invalidParams.AddNested("JsonBody", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SingleHeader != nil {
 		if err := s.SingleHeader.Validate(); err != nil {
 			invalidParams.AddNested("SingleHeader", err.(request.ErrInvalidParams))
@@ -7000,6 +9800,24 @@ func (s *FieldToMatch) SetAllQueryArguments(v *AllQueryArguments) *FieldToMatch 
 // SetBody sets the Body field's value.
 func (s *FieldToMatch) SetBody(v *Body) *FieldToMatch {
 	s.Body = v
+	return s
+}
+
+// SetCookies sets the Cookies field's value.
+func (s *FieldToMatch) SetCookies(v *Cookies) *FieldToMatch {
+	s.Cookies = v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *FieldToMatch) SetHeaders(v *Headers) *FieldToMatch {
+	s.Headers = v
+	return s
+}
+
+// SetJsonBody sets the JsonBody field's value.
+func (s *FieldToMatch) SetJsonBody(v *JsonBody) *FieldToMatch {
+	s.JsonBody = v
 	return s
 }
 
@@ -7033,12 +9851,102 @@ func (s *FieldToMatch) SetUriPath(v *UriPath) *FieldToMatch {
 	return s
 }
 
-// A rule group that's defined for an AWS Firewall Manager WAF policy.
+// A single logging filter, used in LoggingFilter.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// How to handle logs that satisfy the filter's conditions and requirement.
+	//
+	// Behavior is a required field
+	Behavior *string `type:"string" required:"true" enum:"FilterBehavior"`
+
+	// Match conditions for the filter.
+	//
+	// Conditions is a required field
+	Conditions []*Condition `min:"1" type:"list" required:"true"`
+
+	// Logic to apply to the filtering conditions. You can specify that, in order
+	// to satisfy the filter, a log must match all conditions or must match at least
+	// one condition.
+	//
+	// Requirement is a required field
+	Requirement *string `type:"string" required:"true" enum:"FilterRequirement"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Filter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Filter"}
+	if s.Behavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("Behavior"))
+	}
+	if s.Conditions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Conditions"))
+	}
+	if s.Conditions != nil && len(s.Conditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Conditions", 1))
+	}
+	if s.Requirement == nil {
+		invalidParams.Add(request.NewErrParamRequired("Requirement"))
+	}
+	if s.Conditions != nil {
+		for i, v := range s.Conditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Conditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBehavior sets the Behavior field's value.
+func (s *Filter) SetBehavior(v string) *Filter {
+	s.Behavior = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *Filter) SetConditions(v []*Condition) *Filter {
+	s.Conditions = v
+	return s
+}
+
+// SetRequirement sets the Requirement field's value.
+func (s *Filter) SetRequirement(v string) *Filter {
+	s.Requirement = &v
+	return s
+}
+
+// A rule group that's defined for an Firewall Manager WAF policy.
 type FirewallManagerRuleGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The processing guidance for an AWS Firewall Manager rule. This is like a
-	// regular rule Statement, but it can only contain a rule group reference.
+	// The processing guidance for an Firewall Manager rule. This is like a regular
+	// rule Statement, but it can only contain a rule group reference.
 	//
 	// FirewallManagerStatement is a required field
 	FirewallManagerStatement *FirewallManagerStatement `type:"structure" required:"true"`
@@ -7049,50 +9957,49 @@ type FirewallManagerRuleGroup struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The override action to apply to the rules in a rule group. Used only for
-	// rule statements that reference a rule group, like RuleGroupReferenceStatement
-	// and ManagedRuleGroupStatement.
+	// The action to use in the place of the action that results from the rule group
+	// evaluation. Set the override action to none to leave the result of the rule
+	// group alone. Set it to count to override the result to count only.
 	//
-	// Set the override action to none to leave the rule actions in effect. Set
-	// it to count to only count matches, regardless of the rule action settings.
+	// You can only use this for rule statements that reference a rule group, like
+	// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 	//
-	// In a Rule, you must specify either this OverrideAction setting or the rule
-	// Action setting, but not both:
-	//
-	//    * If the rule statement references a rule group, use this override action
-	//    setting and not the action setting.
-	//
-	//    * If the rule statement does not reference a rule group, use the rule
-	//    action setting and not this rule override action setting.
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead use the rule action override option,
+	// with Count action, in your rule group reference statement settings.
 	//
 	// OverrideAction is a required field
 	OverrideAction *OverrideAction `type:"structure" required:"true"`
 
 	// If you define more than one rule group in the first or last Firewall Manager
-	// rule groups, AWS WAF evaluates each request against the rule groups in order,
+	// rule groups, WAF evaluates each request against the rule groups in order,
 	// starting from the lowest priority setting. The priorities don't need to be
 	// consecutive, but they must all be different.
 	//
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerRuleGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerRuleGroup) GoString() string {
 	return s.String()
 }
@@ -7127,46 +10034,49 @@ func (s *FirewallManagerRuleGroup) SetVisibilityConfig(v *VisibilityConfig) *Fir
 	return s
 }
 
-// The processing guidance for an AWS Firewall Manager rule. This is like a
-// regular rule Statement, but it can only contain a rule group reference.
+// The processing guidance for an Firewall Manager rule. This is like a regular
+// rule Statement, but it can only contain a rule group reference.
 type FirewallManagerStatement struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// A rule statement used to run the rules that are defined in a managed rule
 	// group. To use this, provide the vendor name and the name of the rule group
 	// in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
 	//
-	// You can't nest a ManagedRuleGroupStatement, for example for use inside a
+	// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 	// NotStatement or OrStatement. It can only be referenced as a top-level statement
 	// within a rule.
+	//
+	// You are charged additional fees when you use the WAF Bot Control managed
+	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// A rule statement used to run the rules that are defined in a RuleGroup. To
 	// use this, create a rule group with your rules, then provide the ARN of the
 	// rule group in this statement.
 	//
 	// You cannot nest a RuleGroupReferenceStatement, for example for use inside
-	// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-	// within a rule.
+	// a NotStatement or OrStatement. You can only use a rule group reference statement
+	// at the top level inside a web ACL.
 	RuleGroupReferenceStatement *RuleGroupReferenceStatement `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerStatement) GoString() string {
 	return s.String()
 }
@@ -7183,26 +10093,257 @@ func (s *FirewallManagerStatement) SetRuleGroupReferenceStatement(v *RuleGroupRe
 	return s
 }
 
+// The configuration for inspecting IP addresses in an HTTP header that you
+// specify, instead of using the IP address that's reported by the web request
+// origin. Commonly, this is the X-Forwarded-For (XFF) header, but you can specify
+// any header name.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// If the specified header isn't present in the request, WAF doesn't apply the
+// rule to the web request at all.
 //
-// A rule statement used to identify web requests based on country of origin.
+// This configuration is used for GeoMatchStatement and RateBasedStatement.
+// For IPSetReferenceStatement, use IPSetForwardedIPConfig instead.
+//
+// WAF only evaluates the first IP address found in the specified HTTP header.
+type ForwardedIPConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The match status to assign to the web request if the request doesn't have
+	// a valid IP address in the specified position.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	//
+	// You can specify the following fallback behaviors:
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// FallbackBehavior is a required field
+	FallbackBehavior *string `type:"string" required:"true" enum:"FallbackBehavior"`
+
+	// The name of the HTTP header to use for the IP address. For example, to use
+	// the X-Forwarded-For (XFF) header, set this to X-Forwarded-For.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	//
+	// HeaderName is a required field
+	HeaderName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForwardedIPConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForwardedIPConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ForwardedIPConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ForwardedIPConfig"}
+	if s.FallbackBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("FallbackBehavior"))
+	}
+	if s.HeaderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("HeaderName"))
+	}
+	if s.HeaderName != nil && len(*s.HeaderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HeaderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFallbackBehavior sets the FallbackBehavior field's value.
+func (s *ForwardedIPConfig) SetFallbackBehavior(v string) *ForwardedIPConfig {
+	s.FallbackBehavior = &v
+	return s
+}
+
+// SetHeaderName sets the HeaderName field's value.
+func (s *ForwardedIPConfig) SetHeaderName(v string) *ForwardedIPConfig {
+	s.HeaderName = &v
+	return s
+}
+
+type GenerateMobileSdkReleaseUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device platform.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+
+	// The release version. For the latest available version, specify LATEST.
+	//
+	// ReleaseVersion is a required field
+	ReleaseVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerateMobileSdkReleaseUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerateMobileSdkReleaseUrlInput"}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.ReleaseVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseVersion"))
+	}
+	if s.ReleaseVersion != nil && len(*s.ReleaseVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *GenerateMobileSdkReleaseUrlInput) SetPlatform(v string) *GenerateMobileSdkReleaseUrlInput {
+	s.Platform = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *GenerateMobileSdkReleaseUrlInput) SetReleaseVersion(v string) *GenerateMobileSdkReleaseUrlInput {
+	s.ReleaseVersion = &v
+	return s
+}
+
+type GenerateMobileSdkReleaseUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The presigned download URL for the specified SDK release.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *GenerateMobileSdkReleaseUrlOutput) SetUrl(v string) *GenerateMobileSdkReleaseUrlOutput {
+	s.Url = &v
+	return s
+}
+
+// A rule statement that labels web requests by country and region and that
+// matches against web requests based on country code. A geo match rule labels
+// every request that it inspects regardless of whether it finds a match.
+//
+//   - To manage requests only by country, you can use this statement by itself
+//     and specify the countries that you want to match against in the CountryCodes
+//     array.
+//
+//   - Otherwise, configure your geo match rule with Count action so that it
+//     only labels requests. Then, add one or more label match rules to run after
+//     the geo match rule and configure them to match against the geographic
+//     labels and handle the requests as needed.
+//
+// WAF labels requests using the alpha-2 country and region codes from the International
+// Organization for Standardization (ISO) 3166 standard. WAF determines the
+// codes using either the IP address in the web request origin or, if you specify
+// it, the address in the geo match ForwardedIPConfig.
+//
+// If you use the web request origin, the label formats are awswaf:clientip:geo:region:<ISO
+// country code>-<ISO region code> and awswaf:clientip:geo:country:<ISO country
+// code>.
+//
+// If you use a forwarded IP address, the label formats are awswaf:forwardedip:geo:region:<ISO
+// country code>-<ISO region code> and awswaf:forwardedip:geo:country:<ISO country
+// code>.
+//
+// For additional details, see Geographic match rule statement (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html)
+// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 type GeoMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// An array of two-character country codes, for example, [ "US", "CN" ], from
-	// the alpha-2 country ISO codes of the ISO 3166 international standard.
-	CountryCodes []*string `min:"1" type:"list"`
+	// An array of two-character country codes that you want to match against, for
+	// example, [ "US", "CN" ], from the alpha-2 country ISO codes of the ISO 3166
+	// international standard.
+	//
+	// When you use a geo match statement just for the region and country labels
+	// that it adds to requests, you still have to supply a country code for the
+	// rule to evaluate. In this case, you configure the rule to only count matching
+	// requests, but it will still generate logging and count metrics for any matches.
+	// You can reduce the logging and metrics that the rule produces by specifying
+	// a country that's unlikely to be a source of traffic to your site.
+	CountryCodes []*string `min:"1" type:"list" enum:"CountryCode"`
+
+	// The configuration for inspecting IP addresses in an HTTP header that you
+	// specify, instead of using the IP address that's reported by the web request
+	// origin. Commonly, this is the X-Forwarded-For (XFF) header, but you can specify
+	// any header name.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	ForwardedIPConfig *ForwardedIPConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GeoMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GeoMatchStatement) GoString() string {
 	return s.String()
 }
@@ -7212,6 +10353,11 @@ func (s *GeoMatchStatement) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GeoMatchStatement"}
 	if s.CountryCodes != nil && len(s.CountryCodes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CountryCodes", 1))
+	}
+	if s.ForwardedIPConfig != nil {
+		if err := s.ForwardedIPConfig.Validate(); err != nil {
+			invalidParams.AddNested("ForwardedIPConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7223,6 +10369,12 @@ func (s *GeoMatchStatement) Validate() error {
 // SetCountryCodes sets the CountryCodes field's value.
 func (s *GeoMatchStatement) SetCountryCodes(v []*string) *GeoMatchStatement {
 	s.CountryCodes = v
+	return s
+}
+
+// SetForwardedIPConfig sets the ForwardedIPConfig field's value.
+func (s *GeoMatchStatement) SetForwardedIPConfig(v *ForwardedIPConfig) *GeoMatchStatement {
+	s.ForwardedIPConfig = v
 	return s
 }
 
@@ -7241,9 +10393,10 @@ type GetIPSetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7257,12 +10410,20 @@ type GetIPSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetInput) GoString() string {
 	return s.String()
 }
@@ -7313,24 +10474,19 @@ func (s *GetIPSetInput) SetScope(v string) *GetIPSetInput {
 type GetIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains zero or more IP addresses or blocks of IP addresses specified in
+	// Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
+	// IPv6 CIDR ranges except for /0. For information about CIDR notation, see
+	// the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
-	// Contains one or more IP addresses or blocks of IP addresses specified in
-	// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports any CIDR
-	// range. For information about CIDR notation, see the Wikipedia entry Classless
-	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
-	//
-	// AWS WAF assigns an ARN to each IPSet that you create. To use an IP set in
-	// a rule, you provide the ARN to the Rule statement IPSetReferenceStatement.
+	// WAF assigns an ARN to each IPSet that you create. To use an IP set in a rule,
+	// you provide the ARN to the Rule statement IPSetReferenceStatement.
 	IPSet *IPSet `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -7338,12 +10494,20 @@ type GetIPSetOutput struct {
 	LockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -7370,12 +10534,20 @@ type GetLoggingConfigurationInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -7409,12 +10581,20 @@ type GetLoggingConfigurationOutput struct {
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -7422,6 +10602,243 @@ func (s GetLoggingConfigurationOutput) GoString() string {
 // SetLoggingConfiguration sets the LoggingConfiguration field's value.
 func (s *GetLoggingConfigurationOutput) SetLoggingConfiguration(v *LoggingConfiguration) *GetLoggingConfigurationOutput {
 	s.LoggingConfiguration = v
+	return s
+}
+
+type GetManagedRuleSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedRuleSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedRuleSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetManagedRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetManagedRuleSetInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetManagedRuleSetInput) SetId(v string) *GetManagedRuleSetInput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetManagedRuleSetInput) SetName(v string) *GetManagedRuleSetInput {
+	s.Name = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *GetManagedRuleSetInput) SetScope(v string) *GetManagedRuleSetInput {
+	s.Scope = &v
+	return s
+}
+
+type GetManagedRuleSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	LockToken *string `min:"1" type:"string"`
+
+	// The managed rule set that you requested.
+	ManagedRuleSet *ManagedRuleSet `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedRuleSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetManagedRuleSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *GetManagedRuleSetOutput) SetLockToken(v string) *GetManagedRuleSetOutput {
+	s.LockToken = &v
+	return s
+}
+
+// SetManagedRuleSet sets the ManagedRuleSet field's value.
+func (s *GetManagedRuleSetOutput) SetManagedRuleSet(v *ManagedRuleSet) *GetManagedRuleSetOutput {
+	s.ManagedRuleSet = v
+	return s
+}
+
+type GetMobileSdkReleaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device platform.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+
+	// The release version. For the latest available version, specify LATEST.
+	//
+	// ReleaseVersion is a required field
+	ReleaseVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMobileSdkReleaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMobileSdkReleaseInput"}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.ReleaseVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseVersion"))
+	}
+	if s.ReleaseVersion != nil && len(*s.ReleaseVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *GetMobileSdkReleaseInput) SetPlatform(v string) *GetMobileSdkReleaseInput {
+	s.Platform = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *GetMobileSdkReleaseInput) SetReleaseVersion(v string) *GetMobileSdkReleaseInput {
+	s.ReleaseVersion = &v
+	return s
+}
+
+type GetMobileSdkReleaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information for a specified SDK release, including release notes and tags.
+	MobileSdkRelease *MobileSdkRelease `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetMobileSdkRelease sets the MobileSdkRelease field's value.
+func (s *GetMobileSdkReleaseOutput) SetMobileSdkRelease(v *MobileSdkRelease) *GetMobileSdkReleaseOutput {
+	s.MobileSdkRelease = v
 	return s
 }
 
@@ -7435,12 +10852,20 @@ type GetPermissionPolicyInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyInput) GoString() string {
 	return s.String()
 }
@@ -7474,12 +10899,20 @@ type GetPermissionPolicyOutput struct {
 	Policy *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -7493,14 +10926,21 @@ func (s *GetPermissionPolicyOutput) SetPolicy(v string) *GetPermissionPolicyOutp
 type GetRateBasedStatementManagedKeysInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the rate-based rule to get the keys for.
+	// The name of the rule group reference statement in your web ACL. This is required
+	// only when you have the rate-based rule nested inside a rule group.
+	RuleGroupRuleName *string `min:"1" type:"string"`
+
+	// The name of the rate-based rule to get the keys for. If you have the rule
+	// defined inside a rule group that you're using in your web ACL, also provide
+	// the name of the rule group reference statement in the request parameter RuleGroupRuleName.
 	//
 	// RuleName is a required field
 	RuleName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7513,26 +10953,34 @@ type GetRateBasedStatementManagedKeysInput struct {
 	// Scope is a required field
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
-	// The unique identifier for the Web ACL. This ID is returned in the responses
+	// The unique identifier for the web ACL. This ID is returned in the responses
 	// to create and list commands. You provide it to operations like update and
 	// delete.
 	//
 	// WebACLId is a required field
 	WebACLId *string `min:"1" type:"string" required:"true"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	//
 	// WebACLName is a required field
 	WebACLName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysInput) GoString() string {
 	return s.String()
 }
@@ -7540,6 +10988,9 @@ func (s GetRateBasedStatementManagedKeysInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetRateBasedStatementManagedKeysInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetRateBasedStatementManagedKeysInput"}
+	if s.RuleGroupRuleName != nil && len(*s.RuleGroupRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleGroupRuleName", 1))
+	}
 	if s.RuleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleName"))
 	}
@@ -7566,6 +11017,12 @@ func (s *GetRateBasedStatementManagedKeysInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRuleGroupRuleName sets the RuleGroupRuleName field's value.
+func (s *GetRateBasedStatementManagedKeysInput) SetRuleGroupRuleName(v string) *GetRateBasedStatementManagedKeysInput {
+	s.RuleGroupRuleName = &v
+	return s
 }
 
 // SetRuleName sets the RuleName field's value.
@@ -7602,12 +11059,20 @@ type GetRateBasedStatementManagedKeysOutput struct {
 	ManagedKeysIPV6 *RateBasedStatementManagedKeysIPSet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysOutput) GoString() string {
 	return s.String()
 }
@@ -7638,9 +11103,10 @@ type GetRegexPatternSetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7654,12 +11120,20 @@ type GetRegexPatternSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -7710,34 +11184,37 @@ func (s *GetRegexPatternSetInput) SetScope(v string) *GetRegexPatternSetInput {
 type GetRegexPatternSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
 	// operation.
 	LockToken *string `min:"1" type:"string"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Contains one or more regular expressions.
 	//
-	// AWS WAF assigns an ARN to each RegexPatternSet that you create. To use a
-	// set in a rule, you provide the ARN to the Rule statement RegexPatternSetReferenceStatement.
+	// WAF assigns an ARN to each RegexPatternSet that you create. To use a set
+	// in a rule, you provide the ARN to the Rule statement RegexPatternSetReferenceStatement.
 	RegexPatternSet *RegexPatternSet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -7757,22 +11234,22 @@ func (s *GetRegexPatternSetOutput) SetRegexPatternSet(v *RegexPatternSet) *GetRe
 type GetRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the entity.
+	ARN *string `min:"20" type:"string"`
+
 	// A unique identifier for the rule group. This ID is returned in the responses
 	// to create and list commands. You provide it to operations like update and
 	// delete.
-	//
-	// Id is a required field
-	Id *string `min:"1" type:"string" required:"true"`
+	Id *string `min:"1" type:"string"`
 
 	// The name of the rule group. You cannot change the name of a rule group after
 	// you create it.
-	//
-	// Name is a required field
-	Name *string `min:"1" type:"string" required:"true"`
+	Name *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7781,17 +11258,23 @@ type GetRuleGroupInput struct {
 	//    --region=us-east-1.
 	//
 	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
-	//
-	// Scope is a required field
-	Scope *string `type:"string" required:"true" enum:"Scope"`
+	Scope *string `type:"string" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -7799,26 +11282,26 @@ func (s GetRuleGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetRuleGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetRuleGroupInput"}
-	if s.Id == nil {
-		invalidParams.Add(request.NewErrParamRequired("Id"))
+	if s.ARN != nil && len(*s.ARN) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ARN", 20))
 	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
-	if s.Name == nil {
-		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.Scope == nil {
-		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetARN sets the ARN field's value.
+func (s *GetRuleGroupInput) SetARN(v string) *GetRuleGroupInput {
+	s.ARN = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -7842,21 +11325,16 @@ func (s *GetRuleGroupInput) SetScope(v string) *GetRuleGroupInput {
 type GetRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
 	// operation.
 	LockToken *string `min:"1" type:"string"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// A rule group defines a collection of rules to inspect and control web requests
 	// that you can use in a WebACL. When you create a rule group, you define an
 	// immutable capacity limit. If you update a rule group, you must stay within
@@ -7865,12 +11343,20 @@ type GetRuleGroupOutput struct {
 	RuleGroup *RuleGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7890,23 +11376,24 @@ func (s *GetRuleGroupOutput) SetRuleGroup(v *RuleGroup) *GetRuleGroupOutput {
 type GetSampledRequestsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The number of requests that you want AWS WAF to return from among the first
-	// 5,000 requests that your AWS resource received during the time range. If
-	// your resource received fewer requests than the value of MaxItems, GetSampledRequests
-	// returns information about all of them.
+	// The number of requests that you want WAF to return from among the first 5,000
+	// requests that your Amazon Web Services resource received during the time
+	// range. If your resource received fewer requests than the value of MaxItems,
+	// GetSampledRequests returns information about all of them.
 	//
 	// MaxItems is a required field
 	MaxItems *int64 `min:"1" type:"long" required:"true"`
 
-	// The metric name assigned to the Rule or RuleGroup for which you want a sample
-	// of requests.
+	// The metric name assigned to the Rule or RuleGroup dimension for which you
+	// want a sample of requests.
 	//
 	// RuleMetricName is a required field
 	RuleMetricName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -7920,9 +11407,11 @@ type GetSampledRequestsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
 	// The start date and time and the end date and time of the range for which
-	// you want GetSampledRequests to return a sample of requests. Specify the date
-	// and time in the following format: "2016-09-27T14:50Z". You can specify any
-	// time range in the previous three hours.
+	// you want GetSampledRequests to return a sample of requests. You must specify
+	// the times in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z". You can specify
+	// any time range in the previous three hours. If you specify a start time that's
+	// earlier than three hours ago, WAF sets it to three hours ago.
 	//
 	// TimeWindow is a required field
 	TimeWindow *TimeWindow `type:"structure" required:"true"`
@@ -7934,12 +11423,20 @@ type GetSampledRequestsInput struct {
 	WebAclArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsInput) GoString() string {
 	return s.String()
 }
@@ -8018,7 +11515,8 @@ type GetSampledRequestsOutput struct {
 
 	// The total number of requests from which GetSampledRequests got a sample of
 	// MaxItems requests. If PopulationSize is less than MaxItems, the sample includes
-	// every request that your AWS resource received during the specified time range.
+	// every request that your Amazon Web Services resource received during the
+	// specified time range.
 	PopulationSize *int64 `type:"long"`
 
 	// A complex type that contains detailed information about each of the requests
@@ -8026,18 +11524,27 @@ type GetSampledRequestsOutput struct {
 	SampledRequests []*SampledHTTPRequest `type:"list"`
 
 	// Usually, TimeWindow is the time range that you specified in the GetSampledRequests
-	// request. However, if your AWS resource received more than 5,000 requests
-	// during the time range that you specified in the request, GetSampledRequests
-	// returns the time range for the first 5,000 requests.
+	// request. However, if your Amazon Web Services resource received more than
+	// 5,000 requests during the time range that you specified in the request, GetSampledRequests
+	// returns the time range for the first 5,000 requests. Times are in Coordinated
+	// Universal Time (UTC) format.
 	TimeWindow *TimeWindow `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsOutput) GoString() string {
 	return s.String()
 }
@@ -8063,18 +11570,37 @@ func (s *GetSampledRequestsOutput) SetTimeWindow(v *TimeWindow) *GetSampledReque
 type GetWebACLForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN (Amazon Resource Name) of the resource.
+	// The Amazon Resource Name (ARN) of the resource whose web ACL you want to
+	// retrieve.
+	//
+	// The ARN must be in one of the following formats:
+	//
+	//    * For an Application Load Balancer: arn:aws:elasticloadbalancing:region:account-id:loadbalancer/app/load-balancer-name/load-balancer-id
+	//
+	//    * For an Amazon API Gateway REST API: arn:aws:apigateway:region::/restapis/api-id/stages/stage-name
+	//
+	//    * For an AppSync GraphQL API: arn:aws:appsync:region:account-id:apis/GraphQLApiId
+	//
+	//    * For an Amazon Cognito user pool: arn:aws:cognito-idp:region:account-id:userpool/user-pool-id
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceInput) GoString() string {
 	return s.String()
 }
@@ -8104,17 +11630,25 @@ func (s *GetWebACLForResourceInput) SetResourceArn(v string) *GetWebACLForResour
 type GetWebACLForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Web ACL that is associated with the resource. If there is no associated
-	// resource, AWS WAF returns a null Web ACL.
+	// The web ACL that is associated with the resource. If there is no associated
+	// resource, WAF returns a null web ACL.
 	WebACL *WebACL `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -8128,22 +11662,23 @@ func (s *GetWebACLForResourceOutput) SetWebACL(v *WebACL) *GetWebACLForResourceO
 type GetWebACLInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the Web ACL. This ID is returned in the responses
+	// The unique identifier for the web ACL. This ID is returned in the responses
 	// to create and list commands. You provide it to operations like update and
 	// delete.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8157,12 +11692,20 @@ type GetWebACLInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLInput) GoString() string {
 	return s.String()
 }
@@ -8213,29 +11756,52 @@ func (s *GetWebACLInput) SetScope(v string) *GetWebACLInput {
 type GetWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// The URL to use in SDK integrations with Amazon Web Services managed rule
+	// groups. For example, you can use the integration SDKs with the account takeover
+	// prevention managed rule group AWSManagedRulesATPRuleSet. This is only populated
+	// if you are using a rule group in your web ACL that integrates with your applications
+	// in this way. For more information, see WAF client application integration
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in the WAF Developer Guide.
+	ApplicationIntegrationURL *string `type:"string"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
 	// operation.
 	LockToken *string `min:"1" type:"string"`
 
-	// The Web ACL specification. You can modify the settings in this Web ACL and
-	// use it to update this Web ACL or create a new one.
+	// The web ACL specification. You can modify the settings in this web ACL and
+	// use it to update this web ACL or create a new one.
 	WebACL *WebACL `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationIntegrationURL sets the ApplicationIntegrationURL field's value.
+func (s *GetWebACLOutput) SetApplicationIntegrationURL(v string) *GetWebACLOutput {
+	s.ApplicationIntegrationURL = &v
+	return s
 }
 
 // SetLockToken sets the LockToken field's value.
@@ -8250,11 +11816,6 @@ func (s *GetWebACLOutput) SetWebACL(v *WebACL) *GetWebACLOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Part of the response from GetSampledRequests. This is a complex type that
 // appears as Headers in the response syntax. HTTPHeader contains the names
 // and values of all of the headers that appear in one of the web requests.
@@ -8268,12 +11829,20 @@ type HTTPHeader struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPHeader) GoString() string {
 	return s.String()
 }
@@ -8290,11 +11859,6 @@ func (s *HTTPHeader) SetValue(v string) *HTTPHeader {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Part of the response from GetSampledRequests. This is a complex type that
 // appears as Request in the response syntax. HTTPRequest contains information
 // about one of the web requests.
@@ -8332,12 +11896,20 @@ type HTTPRequest struct {
 	URI *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPRequest) GoString() string {
 	return s.String()
 }
@@ -8378,18 +11950,197 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 	return s
 }
 
+// The filter to use to identify the subset of headers to inspect in a web request.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
 //
-// Contains one or more IP addresses or blocks of IP addresses specified in
-// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports any CIDR
-// range. For information about CIDR notation, see the Wikipedia entry Classless
-// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+// Example JSON: "MatchPattern": { "ExcludedHeaders": {"KeyToExclude1", "KeyToExclude2"}
+// }
+type HeaderMatchPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Inspect all headers.
+	All *All `type:"structure"`
+
+	// Inspect only the headers whose keys don't match any of the strings specified
+	// here.
+	ExcludedHeaders []*string `min:"1" type:"list"`
+
+	// Inspect only the headers that have a key that matches one of the strings
+	// specified here.
+	IncludedHeaders []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
 //
-// AWS WAF assigns an ARN to each IPSet that you create. To use an IP set in
-// a rule, you provide the ARN to the Rule statement IPSetReferenceStatement.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HeaderMatchPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HeaderMatchPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HeaderMatchPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HeaderMatchPattern"}
+	if s.ExcludedHeaders != nil && len(s.ExcludedHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExcludedHeaders", 1))
+	}
+	if s.IncludedHeaders != nil && len(s.IncludedHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedHeaders", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAll sets the All field's value.
+func (s *HeaderMatchPattern) SetAll(v *All) *HeaderMatchPattern {
+	s.All = v
+	return s
+}
+
+// SetExcludedHeaders sets the ExcludedHeaders field's value.
+func (s *HeaderMatchPattern) SetExcludedHeaders(v []*string) *HeaderMatchPattern {
+	s.ExcludedHeaders = v
+	return s
+}
+
+// SetIncludedHeaders sets the IncludedHeaders field's value.
+func (s *HeaderMatchPattern) SetIncludedHeaders(v []*string) *HeaderMatchPattern {
+	s.IncludedHeaders = v
+	return s
+}
+
+// Inspect all headers in the web request. You can specify the parts of the
+// headers to inspect and you can narrow the set of headers to inspect by including
+// or excluding specific keys.
+//
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
+//
+// If you want to inspect just the value of a single header, use the SingleHeader
+// FieldToMatch setting instead.
+//
+// Example JSON: "Headers": { "MatchPattern": { "All": {} }, "MatchScope": "KEY",
+// "OversizeHandling": "MATCH" }
+type Headers struct {
+	_ struct{} `type:"structure"`
+
+	// The filter to use to identify the subset of headers to inspect in a web request.
+	//
+	// You must specify exactly one setting: either All, IncludedHeaders, or ExcludedHeaders.
+	//
+	// Example JSON: "MatchPattern": { "ExcludedHeaders": {"KeyToExclude1", "KeyToExclude2"}
+	// }
+	//
+	// MatchPattern is a required field
+	MatchPattern *HeaderMatchPattern `type:"structure" required:"true"`
+
+	// The parts of the headers to match with the rule inspection criteria. If you
+	// specify All, WAF inspects both keys and values.
+	//
+	// MatchScope is a required field
+	MatchScope *string `type:"string" required:"true" enum:"MapMatchScope"`
+
+	// What WAF should do if the headers of the request are larger than WAF can
+	// inspect. WAF does not support inspecting the entire contents of request headers
+	// when they exceed 8 KB (8192 bytes) or 200 total headers. The underlying host
+	// service forwards a maximum of 200 headers and at most 8 KB of header contents
+	// to WAF.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the headers normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// OversizeHandling is a required field
+	OversizeHandling *string `type:"string" required:"true" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Headers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Headers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Headers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Headers"}
+	if s.MatchPattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchPattern"))
+	}
+	if s.MatchScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchScope"))
+	}
+	if s.OversizeHandling == nil {
+		invalidParams.Add(request.NewErrParamRequired("OversizeHandling"))
+	}
+	if s.MatchPattern != nil {
+		if err := s.MatchPattern.Validate(); err != nil {
+			invalidParams.AddNested("MatchPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchPattern sets the MatchPattern field's value.
+func (s *Headers) SetMatchPattern(v *HeaderMatchPattern) *Headers {
+	s.MatchPattern = v
+	return s
+}
+
+// SetMatchScope sets the MatchScope field's value.
+func (s *Headers) SetMatchScope(v string) *Headers {
+	s.MatchScope = &v
+	return s
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *Headers) SetOversizeHandling(v string) *Headers {
+	s.OversizeHandling = &v
+	return s
+}
+
+// Contains zero or more IP addresses or blocks of IP addresses specified in
+// Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
+// IPv6 CIDR ranges except for /0. For information about CIDR notation, see
+// the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+//
+// WAF assigns an ARN to each IPSet that you create. To use an IP set in a rule,
+// you provide the ARN to the Rule statement IPSetReferenceStatement.
 type IPSet struct {
 	_ struct{} `type:"structure"`
 
@@ -8398,36 +12149,47 @@ type IPSet struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF
-	// supports all address ranges for IP versions IPv4 and IPv6.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from IP addresses from 192.0.2.0 to 192.0.2.255, specify 192.0.2.0/24.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 1111:0000:0000:0000:0000:0000:0000:0111, specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from IP addresses 1111:0000:0000:0000:0000:0000:0000:0000 to 1111:0000:0000:0000:ffff:ffff:ffff:ffff,
 	//    specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
+	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// Specify IPV4 or IPV6.
+	// The version of the IP addresses, either IPV4 or IPV6.
 	//
 	// IPAddressVersion is a required field
 	IPAddressVersion *string `type:"string" required:"true" enum:"IPAddressVersion"`
@@ -8445,12 +12207,20 @@ type IPSet struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSet) GoString() string {
 	return s.String()
 }
@@ -8491,11 +12261,123 @@ func (s *IPSet) SetName(v string) *IPSet {
 	return s
 }
 
+// The configuration for inspecting IP addresses in an HTTP header that you
+// specify, instead of using the IP address that's reported by the web request
+// origin. Commonly, this is the X-Forwarded-For (XFF) header, but you can specify
+// any header name.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// If the specified header isn't present in the request, WAF doesn't apply the
+// rule to the web request at all.
 //
+// This configuration is used only for IPSetReferenceStatement. For GeoMatchStatement
+// and RateBasedStatement, use ForwardedIPConfig instead.
+type IPSetForwardedIPConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The match status to assign to the web request if the request doesn't have
+	// a valid IP address in the specified position.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	//
+	// You can specify the following fallback behaviors:
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// FallbackBehavior is a required field
+	FallbackBehavior *string `type:"string" required:"true" enum:"FallbackBehavior"`
+
+	// The name of the HTTP header to use for the IP address. For example, to use
+	// the X-Forwarded-For (XFF) header, set this to X-Forwarded-For.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	//
+	// HeaderName is a required field
+	HeaderName *string `min:"1" type:"string" required:"true"`
+
+	// The position in the header to search for the IP address. The header can contain
+	// IP addresses of the original client and also of proxies. For example, the
+	// header value could be 10.1.1.1, 127.0.0.0, 10.10.10.10 where the first IP
+	// address identifies the original client and the rest identify proxies that
+	// the request went through.
+	//
+	// The options for this setting are the following:
+	//
+	//    * FIRST - Inspect the first IP address in the list of IP addresses in
+	//    the header. This is usually the client's original IP.
+	//
+	//    * LAST - Inspect the last IP address in the list of IP addresses in the
+	//    header.
+	//
+	//    * ANY - Inspect all IP addresses in the header for a match. If the header
+	//    contains more than 10 IP addresses, WAF inspects the last 10.
+	//
+	// Position is a required field
+	Position *string `type:"string" required:"true" enum:"ForwardedIPPosition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPSetForwardedIPConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPSetForwardedIPConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IPSetForwardedIPConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IPSetForwardedIPConfig"}
+	if s.FallbackBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("FallbackBehavior"))
+	}
+	if s.HeaderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("HeaderName"))
+	}
+	if s.HeaderName != nil && len(*s.HeaderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HeaderName", 1))
+	}
+	if s.Position == nil {
+		invalidParams.Add(request.NewErrParamRequired("Position"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFallbackBehavior sets the FallbackBehavior field's value.
+func (s *IPSetForwardedIPConfig) SetFallbackBehavior(v string) *IPSetForwardedIPConfig {
+	s.FallbackBehavior = &v
+	return s
+}
+
+// SetHeaderName sets the HeaderName field's value.
+func (s *IPSetForwardedIPConfig) SetHeaderName(v string) *IPSetForwardedIPConfig {
+	s.HeaderName = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *IPSetForwardedIPConfig) SetPosition(v string) *IPSetForwardedIPConfig {
+	s.Position = &v
+	return s
+}
+
 // A rule statement used to detect web requests coming from particular IP addresses
 // or address ranges. To use this, create an IPSet that specifies the addresses
 // you want to detect, then use the ARN of that set in this statement. To create
@@ -8503,7 +12385,7 @@ func (s *IPSet) SetName(v string) *IPSet {
 //
 // Each IP set rule statement references an IP set. You create and maintain
 // the set independent of your rules. This allows you to use the single set
-// in multiple rules. When you update the referenced set, AWS WAF automatically
+// in multiple rules. When you update the referenced set, WAF automatically
 // updates all rules that reference it.
 type IPSetReferenceStatement struct {
 	_ struct{} `type:"structure"`
@@ -8512,14 +12394,31 @@ type IPSetReferenceStatement struct {
 	//
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
+
+	// The configuration for inspecting IP addresses in an HTTP header that you
+	// specify, instead of using the IP address that's reported by the web request
+	// origin. Commonly, this is the X-Forwarded-For (XFF) header, but you can specify
+	// any header name.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	IPSetForwardedIPConfig *IPSetForwardedIPConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetReferenceStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetReferenceStatement) GoString() string {
 	return s.String()
 }
@@ -8532,6 +12431,11 @@ func (s *IPSetReferenceStatement) Validate() error {
 	}
 	if s.ARN != nil && len(*s.ARN) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ARN", 20))
+	}
+	if s.IPSetForwardedIPConfig != nil {
+		if err := s.IPSetForwardedIPConfig.Validate(); err != nil {
+			invalidParams.AddNested("IPSetForwardedIPConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8546,11 +12450,12 @@ func (s *IPSetReferenceStatement) SetARN(v string) *IPSetReferenceStatement {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
+// SetIPSetForwardedIPConfig sets the IPSetForwardedIPConfig field's value.
+func (s *IPSetReferenceStatement) SetIPSetForwardedIPConfig(v *IPSetForwardedIPConfig) *IPSetReferenceStatement {
+	s.IPSetForwardedIPConfig = v
+	return s
+}
+
 // High-level information about an IPSet, returned by operations like create
 // and list. This provides information like the ID, that you can use to retrieve
 // and manage an IPSet, and the ARN, that you provide to the IPSetReferenceStatement
@@ -8561,18 +12466,17 @@ type IPSetSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
 	// create and list commands. You provide it to operations like update and delete.
 	Id *string `min:"1" type:"string"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -8584,12 +12488,20 @@ type IPSetSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetSummary) GoString() string {
 	return s.String()
 }
@@ -8624,23 +12536,695 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 	return s
 }
 
+// Used for CAPTCHA and challenge token settings. Determines how long a CAPTCHA
+// or challenge timestamp remains valid after WAF updates it for a successful
+// CAPTCHA or challenge response.
+type ImmunityTimeProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time, in seconds, that a CAPTCHA or challenge timestamp is
+	// considered valid by WAF. The default setting is 300.
+	//
+	// For the Challenge action, the minimum setting is 300.
+	//
+	// ImmunityTime is a required field
+	ImmunityTime *int64 `min:"60" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImmunityTimeProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImmunityTimeProperty) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImmunityTimeProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImmunityTimeProperty"}
+	if s.ImmunityTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImmunityTime"))
+	}
+	if s.ImmunityTime != nil && *s.ImmunityTime < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ImmunityTime", 60))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTime sets the ImmunityTime field's value.
+func (s *ImmunityTimeProperty) SetImmunityTime(v int64) *ImmunityTimeProperty {
+	s.ImmunityTime = &v
+	return s
+}
+
+// Inspect the body of the web request as JSON. The body immediately follows
+// the request headers.
+//
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
+//
+// Use the specifications in this object to indicate which parts of the JSON
+// body to inspect using the rule's inspection criteria. WAF inspects only the
+// parts of the JSON that result from the matches that you indicate.
+//
+// Example JSON: "JsonBody": { "MatchPattern": { "All": {} }, "MatchScope":
+// "ALL" }
+type JsonBody struct {
+	_ struct{} `type:"structure"`
+
+	// What WAF should do if it fails to completely parse the JSON body. The options
+	// are the following:
+	//
+	//    * EVALUATE_AS_STRING - Inspect the body as plain text. WAF applies the
+	//    text transformations and inspection criteria that you defined for the
+	//    JSON inspection to the body text string.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// If you don't provide this setting, WAF parses and evaluates the content only
+	// up to the first parsing failure that it encounters.
+	//
+	// WAF does its best to parse the entire JSON body, but might be forced to stop
+	// for reasons such as invalid characters, duplicate keys, truncation, and any
+	// content whose root node isn't an object or an array.
+	//
+	// WAF parses the JSON in the following examples as two valid key, value pairs:
+	//
+	//    * Missing comma: {"key1":"value1""key2":"value2"}
+	//
+	//    * Missing colon: {"key1":"value1","key2""value2"}
+	//
+	//    * Extra colons: {"key1"::"value1","key2""value2"}
+	InvalidFallbackBehavior *string `type:"string" enum:"BodyParsingFallbackBehavior"`
+
+	// The patterns to look for in the JSON body. WAF inspects the results of these
+	// pattern matches against the rule inspection criteria.
+	//
+	// MatchPattern is a required field
+	MatchPattern *JsonMatchPattern `type:"structure" required:"true"`
+
+	// The parts of the JSON to match against using the MatchPattern. If you specify
+	// All, WAF matches against keys and values.
+	//
+	// MatchScope is a required field
+	MatchScope *string `type:"string" required:"true" enum:"JsonMatchScope"`
+
+	// What WAF should do if the body is larger than WAF can inspect. WAF does not
+	// support inspecting the entire contents of the body of a web request when
+	// the body exceeds 8 KB (8192 bytes). Only the first 8 KB of the request body
+	// are forwarded to WAF by the underlying host service.
+	//
+	// The options for oversize handling are the following:
+	//
+	//    * CONTINUE - Inspect the body normally, according to the rule inspection
+	//    criteria.
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. WAF applies
+	//    the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	// You can combine the MATCH or NO_MATCH settings for oversize handling with
+	// your rule and web ACL action settings, so that you block any request whose
+	// body is over 8 KB.
+	//
+	// Default: CONTINUE
+	OversizeHandling *string `type:"string" enum:"OversizeHandling"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JsonBody) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JsonBody) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JsonBody) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JsonBody"}
+	if s.MatchPattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchPattern"))
+	}
+	if s.MatchScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchScope"))
+	}
+	if s.MatchPattern != nil {
+		if err := s.MatchPattern.Validate(); err != nil {
+			invalidParams.AddNested("MatchPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInvalidFallbackBehavior sets the InvalidFallbackBehavior field's value.
+func (s *JsonBody) SetInvalidFallbackBehavior(v string) *JsonBody {
+	s.InvalidFallbackBehavior = &v
+	return s
+}
+
+// SetMatchPattern sets the MatchPattern field's value.
+func (s *JsonBody) SetMatchPattern(v *JsonMatchPattern) *JsonBody {
+	s.MatchPattern = v
+	return s
+}
+
+// SetMatchScope sets the MatchScope field's value.
+func (s *JsonBody) SetMatchScope(v string) *JsonBody {
+	s.MatchScope = &v
+	return s
+}
+
+// SetOversizeHandling sets the OversizeHandling field's value.
+func (s *JsonBody) SetOversizeHandling(v string) *JsonBody {
+	s.OversizeHandling = &v
+	return s
+}
+
+// The patterns to look for in the JSON body. WAF inspects the results of these
+// pattern matches against the rule inspection criteria. This is used with the
+// FieldToMatch option JsonBody.
+type JsonMatchPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Match all of the elements. See also MatchScope in JsonBody.
+	//
+	// You must specify either this setting or the IncludedPaths setting, but not
+	// both.
+	All *All `type:"structure"`
+
+	// Match only the specified include paths. See also MatchScope in JsonBody.
+	//
+	// Provide the include paths using JSON Pointer syntax. For example, "IncludedPaths":
+	// ["/dogs/0/name", "/dogs/1/name"]. For information about this syntax, see
+	// the Internet Engineering Task Force (IETF) documentation JavaScript Object
+	// Notation (JSON) Pointer (https://tools.ietf.org/html/rfc6901).
+	//
+	// You must specify either this setting or the All setting, but not both.
+	//
+	// Don't use this option to include all paths. Instead, use the All setting.
+	IncludedPaths []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JsonMatchPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JsonMatchPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JsonMatchPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JsonMatchPattern"}
+	if s.IncludedPaths != nil && len(s.IncludedPaths) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedPaths", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAll sets the All field's value.
+func (s *JsonMatchPattern) SetAll(v *All) *JsonMatchPattern {
+	s.All = v
+	return s
+}
+
+// SetIncludedPaths sets the IncludedPaths field's value.
+func (s *JsonMatchPattern) SetIncludedPaths(v []*string) *JsonMatchPattern {
+	s.IncludedPaths = v
+	return s
+}
+
+// A single label container. This is used as an element of a label array in
+// multiple contexts, for example, in RuleLabels inside a Rule and in Labels
+// inside a SampledHTTPRequest.
+type Label struct {
+	_ struct{} `type:"structure"`
+
+	// The label string.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Label) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Label) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Label) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Label"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *Label) SetName(v string) *Label {
+	s.Name = &v
+	return s
+}
+
+// A rule statement to match against labels that have been added to the web
+// request by rules that have already run in the web ACL.
+//
+// The label match statement provides the label or namespace string to search
+// for. The label string can represent a part or all of the fully qualified
+// label name that had been added to the web request. Fully qualified labels
+// have a prefix, optional namespaces, and label name. The prefix identifies
+// the rule group or web ACL context of the rule that added the label. If you
+// do not provide the fully qualified name in your label match string, WAF performs
+// the search for labels that were added in the same context as the label match
+// statement.
+type LabelMatchStatement struct {
+	_ struct{} `type:"structure"`
+
+	// The string to match against. The setting you provide for this depends on
+	// the match statement's Scope setting:
+	//
+	//    * If the Scope indicates LABEL, then this specification must include the
+	//    name and can include any number of preceding namespace specifications
+	//    and prefix up to providing the fully qualified label name.
+	//
+	//    * If the Scope indicates NAMESPACE, then this specification can include
+	//    any number of contiguous namespace strings, and can include the entire
+	//    label namespace prefix from the rule group or web ACL where the label
+	//    originates.
+	//
+	// Labels are case sensitive and components of a label must be separated by
+	// colon, for example NS1:NS2:name.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// Specify whether you want to match using the label name or just the namespace.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"LabelMatchScope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelMatchStatement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelMatchStatement) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LabelMatchStatement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LabelMatchStatement"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *LabelMatchStatement) SetKey(v string) *LabelMatchStatement {
+	s.Key = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *LabelMatchStatement) SetScope(v string) *LabelMatchStatement {
+	s.Scope = &v
+	return s
+}
+
+// A single label name condition for a Condition in a logging filter.
+type LabelNameCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The label name that a log record must contain in order to meet the condition.
+	// This must be a fully qualified label name. Fully qualified labels have a
+	// prefix, optional namespaces, and label name. The prefix identifies the rule
+	// group or web ACL context of the rule that added the label.
+	//
+	// LabelName is a required field
+	LabelName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelNameCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelNameCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LabelNameCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LabelNameCondition"}
+	if s.LabelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelName"))
+	}
+	if s.LabelName != nil && len(*s.LabelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelName sets the LabelName field's value.
+func (s *LabelNameCondition) SetLabelName(v string) *LabelNameCondition {
+	s.LabelName = &v
+	return s
+}
+
+// List of labels used by one or more of the rules of a RuleGroup. This summary
+// object is used for the following rule group lists:
+//
+//   - AvailableLabels - Labels that rules add to matching requests. These
+//     labels are defined in the RuleLabels for a Rule.
+//
+//   - ConsumedLabels - Labels that rules match against. These labels are defined
+//     in a LabelMatchStatement specification, in the Statement definition of
+//     a rule.
+type LabelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// An individual label specification.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelSummary) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LabelSummary) SetName(v string) *LabelSummary {
+	s.Name = &v
+	return s
+}
+
+type ListAvailableManagedRuleGroupVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// The name of the managed rule group. You use this, along with the vendor name,
+	// to identify the rule group.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The name of the managed rule group vendor. You use this, along with the rule
+	// group name, to identify the rule group.
+	//
+	// VendorName is a required field
+	VendorName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableManagedRuleGroupVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableManagedRuleGroupVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAvailableManagedRuleGroupVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAvailableManagedRuleGroupVersionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VendorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VendorName"))
+	}
+	if s.VendorName != nil && len(*s.VendorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetLimit(v int64) *ListAvailableManagedRuleGroupVersionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetName(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetNextMarker(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetScope(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVendorName sets the VendorName field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetVendorName(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.VendorName = &v
+	return s
+}
+
+type ListAvailableManagedRuleGroupVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the version that's currently set as the default.
+	CurrentDefaultVersion *string `min:"1" type:"string"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// The versions that are currently available for the specified managed rule
+	// group.
+	Versions []*ManagedRuleGroupVersion `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableManagedRuleGroupVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAvailableManagedRuleGroupVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCurrentDefaultVersion sets the CurrentDefaultVersion field's value.
+func (s *ListAvailableManagedRuleGroupVersionsOutput) SetCurrentDefaultVersion(v string) *ListAvailableManagedRuleGroupVersionsOutput {
+	s.CurrentDefaultVersion = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListAvailableManagedRuleGroupVersionsOutput) SetNextMarker(v string) *ListAvailableManagedRuleGroupVersionsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetVersions sets the Versions field's value.
+func (s *ListAvailableManagedRuleGroupVersionsOutput) SetVersions(v []*ManagedRuleGroupVersion) *ListAvailableManagedRuleGroupVersionsOutput {
+	s.Versions = v
+	return s
+}
+
 type ListAvailableManagedRuleGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8654,12 +13238,20 @@ type ListAvailableManagedRuleGroupsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -8707,18 +13299,26 @@ type ListAvailableManagedRuleGroupsOutput struct {
 	ManagedRuleGroups []*ManagedRuleGroupSummary `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -8738,20 +13338,21 @@ func (s *ListAvailableManagedRuleGroupsOutput) SetNextMarker(v string) *ListAvai
 type ListIPSetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8765,12 +13366,20 @@ type ListIPSetsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsInput) GoString() string {
 	return s.String()
 }
@@ -8820,18 +13429,26 @@ type ListIPSetsOutput struct {
 	IPSets []*IPSetSummary `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsOutput) GoString() string {
 	return s.String()
 }
@@ -8851,20 +13468,21 @@ func (s *ListIPSetsOutput) SetNextMarker(v string) *ListIPSetsOutput {
 type ListLoggingConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8873,15 +13491,25 @@ type ListLoggingConfigurationsInput struct {
 	//    --region=us-east-1.
 	//
 	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
-	Scope *string `type:"string" enum:"Scope"`
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -8894,6 +13522,9 @@ func (s *ListLoggingConfigurationsInput) Validate() error {
 	}
 	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8926,18 +13557,26 @@ type ListLoggingConfigurationsOutput struct {
 	LoggingConfigurations []*LoggingConfiguration `type:"list"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -8954,23 +13593,24 @@ func (s *ListLoggingConfigurationsOutput) SetNextMarker(v string) *ListLoggingCo
 	return s
 }
 
-type ListRegexPatternSetsInput struct {
+type ListManagedRuleSetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -8984,12 +13624,267 @@ type ListRegexPatternSetsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedRuleSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedRuleSetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListManagedRuleSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListManagedRuleSetsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListManagedRuleSetsInput) SetLimit(v int64) *ListManagedRuleSetsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListManagedRuleSetsInput) SetNextMarker(v string) *ListManagedRuleSetsInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListManagedRuleSetsInput) SetScope(v string) *ListManagedRuleSetsInput {
+	s.Scope = &v
+	return s
+}
+
+type ListManagedRuleSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Your managed rule sets.
+	ManagedRuleSets []*ManagedRuleSetSummary `type:"list"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedRuleSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedRuleSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetManagedRuleSets sets the ManagedRuleSets field's value.
+func (s *ListManagedRuleSetsOutput) SetManagedRuleSets(v []*ManagedRuleSetSummary) *ListManagedRuleSetsOutput {
+	s.ManagedRuleSets = v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListManagedRuleSetsOutput) SetNextMarker(v string) *ListManagedRuleSetsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+type ListMobileSdkReleasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// The device platform to retrieve the list for.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMobileSdkReleasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMobileSdkReleasesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListMobileSdkReleasesInput) SetLimit(v int64) *ListMobileSdkReleasesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListMobileSdkReleasesInput) SetNextMarker(v string) *ListMobileSdkReleasesInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ListMobileSdkReleasesInput) SetPlatform(v string) *ListMobileSdkReleasesInput {
+	s.Platform = &v
+	return s
+}
+
+type ListMobileSdkReleasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// High level information for the available SDK releases.
+	ReleaseSummaries []*ReleaseSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListMobileSdkReleasesOutput) SetNextMarker(v string) *ListMobileSdkReleasesOutput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetReleaseSummaries sets the ReleaseSummaries field's value.
+func (s *ListMobileSdkReleasesOutput) SetReleaseSummaries(v []*ReleaseSummary) *ListMobileSdkReleasesOutput {
+	s.ReleaseSummaries = v
+	return s
+}
+
+type ListRegexPatternSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsInput) GoString() string {
 	return s.String()
 }
@@ -9035,20 +13930,28 @@ type ListRegexPatternSetsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
 	RegexPatternSets []*RegexPatternSetSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsOutput) GoString() string {
 	return s.String()
 }
@@ -9069,21 +13972,34 @@ type ListResourcesForWebACLInput struct {
 	_ struct{} `type:"structure"`
 
 	// Used for web ACLs that are scoped for regional applications. A regional application
-	// can be an Application Load Balancer (ALB) or an API Gateway stage.
+	// can be an Application Load Balancer (ALB), an Amazon API Gateway REST API,
+	// an AppSync GraphQL API, or an Amazon Cognito user pool.
+	//
+	// If you don't provide a resource type, the call uses the resource type APPLICATION_LOAD_BALANCER.
+	//
+	// Default: APPLICATION_LOAD_BALANCER
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
-	// The Amazon Resource Name (ARN) of the Web ACL.
+	// The Amazon Resource Name (ARN) of the web ACL.
 	//
 	// WebACLArn is a required field
 	WebACLArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLInput) GoString() string {
 	return s.String()
 }
@@ -9123,12 +14039,20 @@ type ListResourcesForWebACLOutput struct {
 	ResourceArns []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -9142,20 +14066,21 @@ func (s *ListResourcesForWebACLOutput) SetResourceArns(v []*string) *ListResourc
 type ListRuleGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9169,12 +14094,20 @@ type ListRuleGroupsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -9220,20 +14153,28 @@ type ListRuleGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
 	RuleGroups []*RuleGroupSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -9253,15 +14194,15 @@ func (s *ListRuleGroupsOutput) SetRuleGroups(v []*RuleGroupSummary) *ListRuleGro
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource.
@@ -9270,12 +14211,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -9324,21 +14273,29 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
 	// The collection of tagging definitions for the resource.
 	TagInfoForResource *TagInfoForResource `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9358,20 +14315,21 @@ func (s *ListTagsForResourceOutput) SetTagInfoForResource(v *TagInfoForResource)
 type ListWebACLsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of objects that you want AWS WAF to return for this request.
-	// If more objects are available, in the response, AWS WAF provides a NextMarker
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -9385,12 +14343,20 @@ type ListWebACLsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsInput) GoString() string {
 	return s.String()
 }
@@ -9436,20 +14402,28 @@ type ListWebACLsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When you request a list of objects with a Limit setting, if the number of
-	// objects that are still available for retrieval exceeds the limit, AWS WAF
-	// returns a NextMarker value in the response. To retrieve the next batch of
-	// objects, provide the marker from the prior call in your next request.
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
 	NextMarker *string `min:"1" type:"string"`
 
 	WebACLs []*WebACLSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsOutput) GoString() string {
 	return s.String()
 }
@@ -9466,26 +14440,68 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 	return s
 }
 
+// Defines an association between logging destinations and a web ACL resource,
+// for logging from WAF. As part of the association, you can specify parts of
+// the standard logging fields to keep out of the logs and you can specify filters
+// so that you log only a subset of the logging records.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// You can define one logging destination per web ACL.
 //
-// Defines an association between Amazon Kinesis Data Firehose destinations
-// and a web ACL resource, for logging from AWS WAF. As part of the association,
-// you can specify parts of the standard logging fields to keep out of the logs.
+// You can access information about the traffic that WAF inspects using the
+// following steps:
+//
+// Create your logging destination. You can use an Amazon CloudWatch Logs log
+// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+// Kinesis Data Firehose.
+//
+// The name that you give the destination must start with aws-waf-logs-. Depending
+// on the type of destination, you might need to configure additional settings
+// or permissions.
+//
+// For configuration requirements and pricing information for each destination
+// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
+//
+// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+// request.
+//
+// When you successfully enable logging using a PutLoggingConfiguration request,
+// WAF creates an additional role or policy that is required to write logs to
+// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+// role.
+//
+// For additional information about web ACL logging, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Kinesis Data Firehose Amazon Resource Name (ARNs) that you want
-	// to associate with the web ACL.
+	// The logging destination configuration that you want to associate with the
+	// web ACL.
+	//
+	// You can associate one logging destination to a web ACL.
 	//
 	// LogDestinationConfigs is a required field
 	LogDestinationConfigs []*string `min:"1" type:"list" required:"true"`
 
+	// Filtering that specifies which web requests are kept in the logs and which
+	// are dropped. You can filter on the rule action and on the web request labels
+	// that were applied by matching rules during web ACL evaluation.
+	LoggingFilter *LoggingFilter `type:"structure"`
+
+	// Indicates whether the logging configuration was created by Firewall Manager,
+	// as part of an WAF policy configuration. If true, only Firewall Manager can
+	// modify or delete the configuration.
+	ManagedByFirewallManager *bool `type:"boolean"`
+
 	// The parts of the request that you want to keep out of the logs. For example,
-	// if you redact the cookie field, the cookie field in the firehose will be
+	// if you redact the SingleHeader field, the HEADER field in the logs will be
 	// xxx.
+	//
+	// You can specify only the following fields for redaction: UriPath, QueryString,
+	// SingleHeader, Method, and JsonBody.
 	RedactedFields []*FieldToMatch `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
@@ -9495,12 +14511,20 @@ type LoggingConfiguration struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingConfiguration) GoString() string {
 	return s.String()
 }
@@ -9519,6 +14543,11 @@ func (s *LoggingConfiguration) Validate() error {
 	}
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.LoggingFilter != nil {
+		if err := s.LoggingFilter.Validate(); err != nil {
+			invalidParams.AddNested("LoggingFilter", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RedactedFields != nil {
 		for i, v := range s.RedactedFields {
@@ -9543,6 +14572,18 @@ func (s *LoggingConfiguration) SetLogDestinationConfigs(v []*string) *LoggingCon
 	return s
 }
 
+// SetLoggingFilter sets the LoggingFilter field's value.
+func (s *LoggingConfiguration) SetLoggingFilter(v *LoggingFilter) *LoggingConfiguration {
+	s.LoggingFilter = v
+	return s
+}
+
+// SetManagedByFirewallManager sets the ManagedByFirewallManager field's value.
+func (s *LoggingConfiguration) SetManagedByFirewallManager(v bool) *LoggingConfiguration {
+	s.ManagedByFirewallManager = &v
+	return s
+}
+
 // SetRedactedFields sets the RedactedFields field's value.
 func (s *LoggingConfiguration) SetRedactedFields(v []*FieldToMatch) *LoggingConfiguration {
 	s.RedactedFields = v
@@ -9555,25 +14596,220 @@ func (s *LoggingConfiguration) SetResourceArn(v string) *LoggingConfiguration {
 	return s
 }
 
+// Filtering that specifies which web requests are kept in the logs and which
+// are dropped, defined for a web ACL's LoggingConfiguration.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// You can filter on the rule action and on the web request labels that were
+// applied by matching rules during web ACL evaluation.
+type LoggingFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Default handling for logs that don't match any of the specified filtering
+	// conditions.
+	//
+	// DefaultBehavior is a required field
+	DefaultBehavior *string `type:"string" required:"true" enum:"FilterBehavior"`
+
+	// The filters that you want to apply to the logs.
+	//
+	// Filters is a required field
+	Filters []*Filter `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
 //
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoggingFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoggingFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoggingFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoggingFilter"}
+	if s.DefaultBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultBehavior"))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultBehavior sets the DefaultBehavior field's value.
+func (s *LoggingFilter) SetDefaultBehavior(v string) *LoggingFilter {
+	s.DefaultBehavior = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
+	s.Filters = v
+	return s
+}
+
+// Additional information that's used by a managed rule group. Many managed
+// rule groups don't require this.
+//
+// Use the AWSManagedRulesBotControlRuleSet configuration object to configure
+// the protection level that you want the Bot Control rule group to use.
+//
+// For example specifications, see the examples section of CreateWebACL.
+type ManagedRuleGroupConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Additional configuration for using the Bot Control managed rule group. Use
+	// this to specify the inspection level that you want to use. For information
+	// about using the Bot Control managed rule group, see WAF Bot Control rule
+	// group (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-bot.html)
+	// and WAF Bot Control (https://docs.aws.amazon.com/waf/latest/developerguide/waf-bot-control.html)
+	// in the WAF Developer Guide.
+	AWSManagedRulesBotControlRuleSet *AWSManagedRulesBotControlRuleSet `type:"structure"`
+
+	// The path of the login endpoint for your application. For example, for the
+	// URL https://example.com/web/login, you would provide the path /web/login.
+	LoginPath *string `min:"1" type:"string"`
+
+	// Details about your login page password field.
+	PasswordField *PasswordField `type:"structure"`
+
+	// The payload type for your login endpoint, either JSON or form encoded.
+	PayloadType *string `type:"string" enum:"PayloadType"`
+
+	// Details about your login page username field.
+	UsernameField *UsernameField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ManagedRuleGroupConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ManagedRuleGroupConfig"}
+	if s.LoginPath != nil && len(*s.LoginPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LoginPath", 1))
+	}
+	if s.AWSManagedRulesBotControlRuleSet != nil {
+		if err := s.AWSManagedRulesBotControlRuleSet.Validate(); err != nil {
+			invalidParams.AddNested("AWSManagedRulesBotControlRuleSet", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PasswordField != nil {
+		if err := s.PasswordField.Validate(); err != nil {
+			invalidParams.AddNested("PasswordField", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UsernameField != nil {
+		if err := s.UsernameField.Validate(); err != nil {
+			invalidParams.AddNested("UsernameField", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAWSManagedRulesBotControlRuleSet sets the AWSManagedRulesBotControlRuleSet field's value.
+func (s *ManagedRuleGroupConfig) SetAWSManagedRulesBotControlRuleSet(v *AWSManagedRulesBotControlRuleSet) *ManagedRuleGroupConfig {
+	s.AWSManagedRulesBotControlRuleSet = v
+	return s
+}
+
+// SetLoginPath sets the LoginPath field's value.
+func (s *ManagedRuleGroupConfig) SetLoginPath(v string) *ManagedRuleGroupConfig {
+	s.LoginPath = &v
+	return s
+}
+
+// SetPasswordField sets the PasswordField field's value.
+func (s *ManagedRuleGroupConfig) SetPasswordField(v *PasswordField) *ManagedRuleGroupConfig {
+	s.PasswordField = v
+	return s
+}
+
+// SetPayloadType sets the PayloadType field's value.
+func (s *ManagedRuleGroupConfig) SetPayloadType(v string) *ManagedRuleGroupConfig {
+	s.PayloadType = &v
+	return s
+}
+
+// SetUsernameField sets the UsernameField field's value.
+func (s *ManagedRuleGroupConfig) SetUsernameField(v *UsernameField) *ManagedRuleGroupConfig {
+	s.UsernameField = v
+	return s
+}
+
 // A rule statement used to run the rules that are defined in a managed rule
 // group. To use this, provide the vendor name and the name of the rule group
 // in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
 //
-// You can't nest a ManagedRuleGroupStatement, for example for use inside a
+// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 // NotStatement or OrStatement. It can only be referenced as a top-level statement
 // within a rule.
+//
+// You are charged additional fees when you use the WAF Bot Control managed
+// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 type ManagedRuleGroupStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The rules whose actions are set to COUNT by the web ACL, regardless of the
-	// action that is set on the rule. This effectively excludes the rule from acting
-	// on web requests.
+	// Rules in the referenced rule group whose actions are set to Count.
+	//
+	// Instead of this option, use RuleActionOverrides. It accepts any valid action
+	// setting, including Count.
 	ExcludedRules []*ExcludedRule `type:"list"`
+
+	// Additional information that's used by a managed rule group. Many managed
+	// rule groups don't require this.
+	//
+	// Use the AWSManagedRulesBotControlRuleSet configuration object to configure
+	// the protection level that you want the Bot Control rule group to use.
+	ManagedRuleGroupConfigs []*ManagedRuleGroupConfig `min:"1" type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
 	// to identify the rule group.
@@ -9581,19 +14817,51 @@ type ManagedRuleGroupStatement struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Action settings to use in the place of the rule actions that are configured
+	// inside the rule group. You specify one override for each rule whose action
+	// you want to change.
+	//
+	// You can use overrides for testing, for example you can override all of rule
+	// actions to Count and then monitor the resulting count metrics to understand
+	// how the rule group would handle your web traffic. You can also permanently
+	// override some or all actions, to modify how the rule group manages your web
+	// traffic.
+	RuleActionOverrides []*RuleActionOverride `min:"1" type:"list"`
+
+	// An optional nested statement that narrows the scope of the web requests that
+	// are evaluated by the managed rule group. Requests are only evaluated by the
+	// rule group if they match the scope-down statement. You can use any nestable
+	// Statement in the scope-down statement, and you can nest statements at any
+	// level, the same as you can for a rule statement.
+	ScopeDownStatement *Statement `type:"structure"`
+
 	// The name of the managed rule group vendor. You use this, along with the rule
 	// group name, to identify the rule group.
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the managed rule group to use. If you specify this, the version
+	// setting is fixed until you change it. If you don't specify this, WAF uses
+	// the vendor's default version, and then keeps the version at the vendor's
+	// default when the vendor updates the managed rule group settings.
+	Version *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupStatement) GoString() string {
 	return s.String()
 }
@@ -9601,17 +14869,26 @@ func (s ManagedRuleGroupStatement) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ManagedRuleGroupStatement) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ManagedRuleGroupStatement"}
+	if s.ManagedRuleGroupConfigs != nil && len(s.ManagedRuleGroupConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ManagedRuleGroupConfigs", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.RuleActionOverrides != nil && len(s.RuleActionOverrides) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleActionOverrides", 1))
+	}
 	if s.VendorName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VendorName"))
 	}
 	if s.VendorName != nil && len(*s.VendorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
 	}
 	if s.ExcludedRules != nil {
 		for i, v := range s.ExcludedRules {
@@ -9621,6 +14898,31 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExcludedRules", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.ManagedRuleGroupConfigs != nil {
+		for i, v := range s.ManagedRuleGroupConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ManagedRuleGroupConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RuleActionOverrides != nil {
+		for i, v := range s.RuleActionOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleActionOverrides", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScopeDownStatement != nil {
+		if err := s.ScopeDownStatement.Validate(); err != nil {
+			invalidParams.AddNested("ScopeDownStatement", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -9636,9 +14938,27 @@ func (s *ManagedRuleGroupStatement) SetExcludedRules(v []*ExcludedRule) *Managed
 	return s
 }
 
+// SetManagedRuleGroupConfigs sets the ManagedRuleGroupConfigs field's value.
+func (s *ManagedRuleGroupStatement) SetManagedRuleGroupConfigs(v []*ManagedRuleGroupConfig) *ManagedRuleGroupStatement {
+	s.ManagedRuleGroupConfigs = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *ManagedRuleGroupStatement) SetName(v string) *ManagedRuleGroupStatement {
 	s.Name = &v
+	return s
+}
+
+// SetRuleActionOverrides sets the RuleActionOverrides field's value.
+func (s *ManagedRuleGroupStatement) SetRuleActionOverrides(v []*RuleActionOverride) *ManagedRuleGroupStatement {
+	s.RuleActionOverrides = v
+	return s
+}
+
+// SetScopeDownStatement sets the ScopeDownStatement field's value.
+func (s *ManagedRuleGroupStatement) SetScopeDownStatement(v *Statement) *ManagedRuleGroupStatement {
+	s.ScopeDownStatement = v
 	return s
 }
 
@@ -9648,22 +14968,23 @@ func (s *ManagedRuleGroupStatement) SetVendorName(v string) *ManagedRuleGroupSta
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
+// SetVersion sets the Version field's value.
+func (s *ManagedRuleGroupStatement) SetVersion(v string) *ManagedRuleGroupStatement {
+	s.Version = &v
+	return s
+}
+
 // High-level information about a managed rule group, returned by ListAvailableManagedRuleGroups.
 // This provides information like the name and vendor name, that you provide
 // when you add a ManagedRuleGroupStatement to a web ACL. Managed rule groups
-// include AWS Managed Rules rule groups, which are free of charge to AWS WAF
-// customers, and AWS Marketplace managed rule groups, which you can subscribe
-// to through AWS Marketplace.
+// include Amazon Web Services Managed Rules rule groups, which are free of
+// charge to WAF customers, and Amazon Web Services Marketplace managed rule
+// groups, which you can subscribe to through Amazon Web Services Marketplace.
 type ManagedRuleGroupSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the managed rule group, provided by AWS Managed Rules
-	// or the AWS Marketplace seller who manages it.
+	// The description of the managed rule group, provided by Amazon Web Services
+	// Managed Rules or the Amazon Web Services Marketplace seller who manages it.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -9673,14 +14994,26 @@ type ManagedRuleGroupSummary struct {
 	// The name of the managed rule group vendor. You use this, along with the rule
 	// group name, to identify the rule group.
 	VendorName *string `min:"1" type:"string"`
+
+	// Indicates whether the managed rule group is versioned. If it is, you can
+	// retrieve the versions list by calling ListAvailableManagedRuleGroupVersions.
+	VersioningSupported *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupSummary) GoString() string {
 	return s.String()
 }
@@ -9703,60 +15036,508 @@ func (s *ManagedRuleGroupSummary) SetVendorName(v string) *ManagedRuleGroupSumma
 	return s
 }
 
+// SetVersioningSupported sets the VersioningSupported field's value.
+func (s *ManagedRuleGroupSummary) SetVersioningSupported(v bool) *ManagedRuleGroupSummary {
+	s.VersioningSupported = &v
+	return s
+}
+
+// Describes a single version of a managed rule group.
+type ManagedRuleGroupVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the managed rule group owner updated the rule group
+	// version information.
+	LastUpdateTimestamp *time.Time `type:"timestamp"`
+
+	// The version name.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
-// The HTTP method of a web request. The method indicates the type of operation
-// that the request is asking the origin to perform.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupVersion) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdateTimestamp sets the LastUpdateTimestamp field's value.
+func (s *ManagedRuleGroupVersion) SetLastUpdateTimestamp(v time.Time) *ManagedRuleGroupVersion {
+	s.LastUpdateTimestamp = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ManagedRuleGroupVersion) SetName(v string) *ManagedRuleGroupVersion {
+	s.Name = &v
+	return s
+}
+
+// A set of rules that is managed by Amazon Web Services and Amazon Web Services
+// Marketplace sellers to provide versioned managed rule groups for customers
+// of WAF.
 //
-// This is used only to indicate the web request component for AWS WAF to inspect,
-// in the FieldToMatch specification.
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type ManagedRuleSet struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entity.
+	//
+	// ARN is a required field
+	ARN *string `min:"20" type:"string" required:"true"`
+
+	// A description of the set that helps with identification.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The label namespace prefix for the managed rule groups that are offered to
+	// customers from this managed rule set. All labels that are added by rules
+	// in the managed rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a managed rule group is
+	//    the following: awswaf:managed:<vendor>:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The versions of this managed rule set that are available for use by customers.
+	PublishedVersions map[string]*ManagedRuleSetVersion `type:"map"`
+
+	// The version that you would like your customers to use.
+	RecommendedVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleSet) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ManagedRuleSet) SetARN(v string) *ManagedRuleSet {
+	s.ARN = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ManagedRuleSet) SetDescription(v string) *ManagedRuleSet {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ManagedRuleSet) SetId(v string) *ManagedRuleSet {
+	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *ManagedRuleSet) SetLabelNamespace(v string) *ManagedRuleSet {
+	s.LabelNamespace = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ManagedRuleSet) SetName(v string) *ManagedRuleSet {
+	s.Name = &v
+	return s
+}
+
+// SetPublishedVersions sets the PublishedVersions field's value.
+func (s *ManagedRuleSet) SetPublishedVersions(v map[string]*ManagedRuleSetVersion) *ManagedRuleSet {
+	s.PublishedVersions = v
+	return s
+}
+
+// SetRecommendedVersion sets the RecommendedVersion field's value.
+func (s *ManagedRuleSet) SetRecommendedVersion(v string) *ManagedRuleSet {
+	s.RecommendedVersion = &v
+	return s
+}
+
+// High-level information for a managed rule set.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type ManagedRuleSetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entity.
+	ARN *string `min:"20" type:"string"`
+
+	// A description of the set that helps with identification.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	Id *string `min:"1" type:"string"`
+
+	// The label namespace prefix for the managed rule groups that are offered to
+	// customers from this managed rule set. All labels that are added by rules
+	// in the managed rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a managed rule group is
+	//    the following: awswaf:managed:<vendor>:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	LockToken *string `min:"1" type:"string"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleSetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleSetSummary) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ManagedRuleSetSummary) SetARN(v string) *ManagedRuleSetSummary {
+	s.ARN = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ManagedRuleSetSummary) SetDescription(v string) *ManagedRuleSetSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ManagedRuleSetSummary) SetId(v string) *ManagedRuleSetSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *ManagedRuleSetSummary) SetLabelNamespace(v string) *ManagedRuleSetSummary {
+	s.LabelNamespace = &v
+	return s
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *ManagedRuleSetSummary) SetLockToken(v string) *ManagedRuleSetSummary {
+	s.LockToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ManagedRuleSetSummary) SetName(v string) *ManagedRuleSetSummary {
+	s.Name = &v
+	return s
+}
+
+// Information for a single version of a managed rule set.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type ManagedRuleSetVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the vendor rule group that's used to define
+	// the published version of your managed rule group.
+	AssociatedRuleGroupArn *string `min:"20" type:"string"`
+
+	// The web ACL capacity units (WCUs) required for this rule group.
+	//
+	// WAF uses WCUs to calculate and control the operating resources that are used
+	// to run your rules, rule groups, and web ACLs. WAF calculates capacity differently
+	// for each rule type, to reflect the relative cost of each rule. Simple rules
+	// that cost little to run use fewer WCUs than more complex rules that use more
+	// processing power. Rule group capacity is fixed at creation, which helps users
+	// plan their web ACL WCU usage when they use a rule group. The WCU limit for
+	// web ACLs is 1,500.
+	Capacity *int64 `min:"1" type:"long"`
+
+	// The time that this version is set to expire.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	ExpiryTimestamp *time.Time `type:"timestamp"`
+
+	// The amount of time you expect this version of your managed rule group to
+	// last, in days.
+	ForecastedLifetime *int64 `min:"1" type:"integer"`
+
+	// The last time that you updated this version.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	LastUpdateTimestamp *time.Time `type:"timestamp"`
+
+	// The time that you first published this version.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	PublishTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleSetVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleSetVersion) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedRuleGroupArn sets the AssociatedRuleGroupArn field's value.
+func (s *ManagedRuleSetVersion) SetAssociatedRuleGroupArn(v string) *ManagedRuleSetVersion {
+	s.AssociatedRuleGroupArn = &v
+	return s
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *ManagedRuleSetVersion) SetCapacity(v int64) *ManagedRuleSetVersion {
+	s.Capacity = &v
+	return s
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *ManagedRuleSetVersion) SetExpiryTimestamp(v time.Time) *ManagedRuleSetVersion {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// SetForecastedLifetime sets the ForecastedLifetime field's value.
+func (s *ManagedRuleSetVersion) SetForecastedLifetime(v int64) *ManagedRuleSetVersion {
+	s.ForecastedLifetime = &v
+	return s
+}
+
+// SetLastUpdateTimestamp sets the LastUpdateTimestamp field's value.
+func (s *ManagedRuleSetVersion) SetLastUpdateTimestamp(v time.Time) *ManagedRuleSetVersion {
+	s.LastUpdateTimestamp = &v
+	return s
+}
+
+// SetPublishTimestamp sets the PublishTimestamp field's value.
+func (s *ManagedRuleSetVersion) SetPublishTimestamp(v time.Time) *ManagedRuleSetVersion {
+	s.PublishTimestamp = &v
+	return s
+}
+
+// Inspect the HTTP method of the web request. The method indicates the type
+// of operation that the request is asking the origin to perform.
+//
+// This is used only in the FieldToMatch specification for some web request
+// component types.
+//
+// JSON specification: "Method": {}
 type Method struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Method) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Method) GoString() string {
 	return s.String()
 }
 
+// Information for a release of the mobile SDK, including release notes and
+// tags.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+type MobileSdkRelease struct {
+	_ struct{} `type:"structure"`
+
+	// Notes describing the release.
+	ReleaseNotes *string `type:"string"`
+
+	// The release version.
+	ReleaseVersion *string `min:"1" type:"string"`
+
+	// Tags that are associated with the release.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The timestamp of the release.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
 //
-// Specifies that AWS WAF should do nothing. This is generally used to try out
-// a rule without performing any actions. You set the OverrideAction on the
-// Rule.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileSdkRelease) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileSdkRelease) GoString() string {
+	return s.String()
+}
+
+// SetReleaseNotes sets the ReleaseNotes field's value.
+func (s *MobileSdkRelease) SetReleaseNotes(v string) *MobileSdkRelease {
+	s.ReleaseNotes = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *MobileSdkRelease) SetReleaseVersion(v string) *MobileSdkRelease {
+	s.ReleaseVersion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *MobileSdkRelease) SetTags(v []*Tag) *MobileSdkRelease {
+	s.Tags = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *MobileSdkRelease) SetTimestamp(v time.Time) *MobileSdkRelease {
+	s.Timestamp = &v
+	return s
+}
+
+// Specifies that WAF should do nothing. This is used for the OverrideAction
+// setting on a Rule when the rule uses a rule group reference statement.
+//
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
+//
+// JSON specification: "None": {}
 type NoneAction struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoneAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoneAction) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A logical rule statement used to negate the results of another rule statement.
 // You provide one Statement within the NotStatement.
 type NotStatement struct {
@@ -9768,12 +15549,20 @@ type NotStatement struct {
 	Statement *Statement `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotStatement) GoString() string {
 	return s.String()
 }
@@ -9802,11 +15591,6 @@ func (s *NotStatement) SetStatement(v *Statement) *NotStatement {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A logical rule statement used to combine other rule statements with OR logic.
 // You provide more than one Statement within the OrStatement.
 type OrStatement struct {
@@ -9819,12 +15603,20 @@ type OrStatement struct {
 	Statements []*Statement `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrStatement) GoString() string {
 	return s.String()
 }
@@ -9858,39 +15650,64 @@ func (s *OrStatement) SetStatements(v []*Statement) *OrStatement {
 	return s
 }
 
-// The override action to apply to the rules in a rule group. Used only for
-// rule statements that reference a rule group, like RuleGroupReferenceStatement
-// and ManagedRuleGroupStatement.
+// The action to use in the place of the action that results from the rule group
+// evaluation. Set the override action to none to leave the result of the rule
+// group alone. Set it to count to override the result to count only.
 //
-// Set the override action to none to leave the rule actions in effect. Set
-// it to count to only count matches, regardless of the rule action settings.
+// You can only use this for rule statements that reference a rule group, like
+// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 //
-// In a Rule, you must specify either this OverrideAction setting or the rule
-// Action setting, but not both:
-//
-//    * If the rule statement references a rule group, use this override action
-//    setting and not the action setting.
-//
-//    * If the rule statement does not reference a rule group, use the rule
-//    action setting and not this rule override action setting.
+// This option is usually set to none. It does not affect how the rules in the
+// rule group are evaluated. If you want the rules in the rule group to only
+// count matches, do not use this and instead use the rule action override option,
+// with Count action, in your rule group reference statement settings.
 type OverrideAction struct {
 	_ struct{} `type:"structure"`
 
-	// Override the rule action setting to count.
+	// Override the rule group evaluation result to count only.
+	//
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead use the rule action override option,
+	// with Count action, in your rule group reference statement settings.
 	Count *CountAction `type:"structure"`
 
-	// Don't override the rule action setting.
+	// Don't override the rule group evaluation result. This is the most common
+	// setting.
 	None *NoneAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OverrideAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OverrideAction"}
+	if s.Count != nil {
+		if err := s.Count.Validate(); err != nil {
+			invalidParams.AddNested("Count", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCount sets the Count field's value.
@@ -9905,28 +15722,113 @@ func (s *OverrideAction) SetNone(v *NoneAction) *OverrideAction {
 	return s
 }
 
+// Details about your login page password field, used in a ManagedRuleGroupConfig.
+type PasswordField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the password field. For example /form/password.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PasswordField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PasswordField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PasswordField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PasswordField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *PasswordField) SetIdentifier(v string) *PasswordField {
+	s.Identifier = &v
+	return s
+}
+
 type PutLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Defines an association between logging destinations and a web ACL resource,
+	// for logging from WAF. As part of the association, you can specify parts of
+	// the standard logging fields to keep out of the logs and you can specify filters
+	// so that you log only a subset of the logging records.
 	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	// You can define one logging destination per web ACL.
 	//
-	// Defines an association between Amazon Kinesis Data Firehose destinations
-	// and a web ACL resource, for logging from AWS WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs.
+	// You can access information about the traffic that WAF inspects using the
+	// following steps:
+	//
+	// Create your logging destination. You can use an Amazon CloudWatch Logs log
+	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+	// Kinesis Data Firehose.
+	//
+	// The name that you give the destination must start with aws-waf-logs-. Depending
+	// on the type of destination, you might need to configure additional settings
+	// or permissions.
+	//
+	// For configuration requirements and pricing information for each destination
+	// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
+	//
+	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+	// request.
+	//
+	// When you successfully enable logging using a PutLoggingConfiguration request,
+	// WAF creates an additional role or policy that is required to write logs to
+	// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+	// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+	// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+	// role.
+	//
+	// For additional information about web ACL logging, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
 	//
 	// LoggingConfiguration is a required field
 	LoggingConfiguration *LoggingConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -9958,23 +15860,58 @@ func (s *PutLoggingConfigurationInput) SetLoggingConfiguration(v *LoggingConfigu
 type PutLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Defines an association between logging destinations and a web ACL resource,
+	// for logging from WAF. As part of the association, you can specify parts of
+	// the standard logging fields to keep out of the logs and you can specify filters
+	// so that you log only a subset of the logging records.
 	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	// You can define one logging destination per web ACL.
 	//
-	// Defines an association between Amazon Kinesis Data Firehose destinations
-	// and a web ACL resource, for logging from AWS WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs.
+	// You can access information about the traffic that WAF inspects using the
+	// following steps:
+	//
+	// Create your logging destination. You can use an Amazon CloudWatch Logs log
+	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+	// Kinesis Data Firehose.
+	//
+	// The name that you give the destination must start with aws-waf-logs-. Depending
+	// on the type of destination, you might need to configure additional settings
+	// or permissions.
+	//
+	// For configuration requirements and pricing information for each destination
+	// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
+	//
+	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+	// request.
+	//
+	// When you successfully enable logging using a PutLoggingConfiguration request,
+	// WAF creates an additional role or policy that is required to write logs to
+	// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+	// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+	// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+	// role.
+	//
+	// For additional information about web ACL logging, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -9982,6 +15919,197 @@ func (s PutLoggingConfigurationOutput) GoString() string {
 // SetLoggingConfiguration sets the LoggingConfiguration field's value.
 func (s *PutLoggingConfigurationOutput) SetLoggingConfiguration(v *LoggingConfiguration) *PutLoggingConfigurationOutput {
 	s.LoggingConfiguration = v
+	return s
+}
+
+type PutManagedRuleSetVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	//
+	// LockToken is a required field
+	LockToken *string `min:"1" type:"string" required:"true"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The version of the named managed rule group that you'd like your customers
+	// to choose, from among your version offerings.
+	RecommendedVersion *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The versions of the named managed rule group that you want to offer to your
+	// customers.
+	VersionsToPublish map[string]*VersionToPublish `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedRuleSetVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedRuleSetVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutManagedRuleSetVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutManagedRuleSetVersionsInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.LockToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("LockToken"))
+	}
+	if s.LockToken != nil && len(*s.LockToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LockToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RecommendedVersion != nil && len(*s.RecommendedVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendedVersion", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VersionsToPublish != nil {
+		for i, v := range s.VersionsToPublish {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VersionsToPublish", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *PutManagedRuleSetVersionsInput) SetId(v string) *PutManagedRuleSetVersionsInput {
+	s.Id = &v
+	return s
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *PutManagedRuleSetVersionsInput) SetLockToken(v string) *PutManagedRuleSetVersionsInput {
+	s.LockToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutManagedRuleSetVersionsInput) SetName(v string) *PutManagedRuleSetVersionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetRecommendedVersion sets the RecommendedVersion field's value.
+func (s *PutManagedRuleSetVersionsInput) SetRecommendedVersion(v string) *PutManagedRuleSetVersionsInput {
+	s.RecommendedVersion = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *PutManagedRuleSetVersionsInput) SetScope(v string) *PutManagedRuleSetVersionsInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVersionsToPublish sets the VersionsToPublish field's value.
+func (s *PutManagedRuleSetVersionsInput) SetVersionsToPublish(v map[string]*VersionToPublish) *PutManagedRuleSetVersionsInput {
+	s.VersionsToPublish = v
+	return s
+}
+
+type PutManagedRuleSetVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	NextLockToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedRuleSetVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutManagedRuleSetVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextLockToken sets the NextLockToken field's value.
+func (s *PutManagedRuleSetVersionsOutput) SetNextLockToken(v string) *PutManagedRuleSetVersionsOutput {
+	s.NextLockToken = &v
 	return s
 }
 
@@ -9999,8 +16127,9 @@ type PutPermissionPolicyInput struct {
 	//
 	//    * Effect must specify Allow.
 	//
-	//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups.
-	//    AWS WAF rejects any extra actions or wildcard actions in the policy.
+	//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups
+	//    and may optionally specify wafv2:GetRuleGroup. WAF rejects any extra actions
+	//    or wildcard actions in the policy.
 	//
 	//    * The policy must not include a Resource parameter.
 	//
@@ -10016,12 +16145,20 @@ type PutPermissionPolicyInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyInput) GoString() string {
 	return s.String()
 }
@@ -10064,53 +16201,69 @@ type PutPermissionPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyOutput) GoString() string {
 	return s.String()
 }
 
+// Inspect the query string of the web request. This is the part of a URL that
+// appears after a ? character, if any.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
-// The query string of a web request. This is the part of a URL that appears
-// after a ? character, if any.
-//
-// This is used only to indicate the web request component for AWS WAF to inspect,
-// in the FieldToMatch specification.
+// JSON specification: "QueryString": {}
 type QueryString struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryString) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryString) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rate-based rule tracks the rate of requests for each originating IP address,
 // and triggers the rule action when the rate exceeds a limit that you specify
 // on the number of requests in any 5-minute time span. You can use this to
 // put a temporary block on requests from an IP address that is sending excessive
 // requests.
 //
-// When the rule action triggers, AWS WAF blocks additional requests from the
-// IP address until the request rate falls below the limit.
+// WAF tracks and manages web requests separately for each instance of a rate-based
+// rule that you use. For example, if you provide the same rate-based rule settings
+// in two web ACLs, each of the two rule statements represents a separate instance
+// of the rate-based rule and gets its own tracking and management by WAF. If
+// you define a rate-based rule inside a rule group, and then use that rule
+// group in multiple places, each use creates a separate instance of the rate-based
+// rule that gets its own tracking and management by WAF.
+//
+// When the rule action triggers, WAF blocks additional requests from the IP
+// address until the request rate falls below the limit.
 //
 // You can optionally nest another statement inside the rate-based statement,
 // to narrow the scope of the rule so that it only counts requests that match
@@ -10118,48 +16271,77 @@ func (s QueryString) GoString() string {
 // seen from an attacker, you might create a rate-based rule with a nested AND
 // rule statement that contains the following nested statements:
 //
-//    * An IP match statement with an IP set that specified the address 192.0.2.44.
+//   - An IP match statement with an IP set that specified the address 192.0.2.44.
 //
-//    * A string match statement that searches in the User-Agent header for
-//    the string BadBot.
+//   - A string match statement that searches in the User-Agent header for
+//     the string BadBot.
 //
 // In this rate-based rule, you also define a rate limit. For this example,
-// the rate limit is 1,000. Requests that meet both of the conditions in the
+// the rate limit is 1,000. Requests that meet the criteria of both of the nested
 // statements are counted. If the count exceeds 1,000 requests per five minutes,
-// the rule action triggers. Requests that do not meet both conditions are not
-// counted towards the rate limit and are not affected by this rule.
+// the rule action triggers. Requests that do not meet the criteria of both
+// of the nested statements are not counted towards the rate limit and are not
+// affected by this rule.
 //
-// You cannot nest a RateBasedStatement, for example for use inside a NotStatement
-// or OrStatement. It can only be referenced as a top-level statement within
-// a rule.
+// You cannot nest a RateBasedStatement inside another statement, for example
+// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+// inside a web ACL and inside a rule group.
 type RateBasedStatement struct {
 	_ struct{} `type:"structure"`
 
-	// Setting that indicates how to aggregate the request counts. Currently, you
-	// must set this to IP. The request counts are aggregated on IP addresses.
+	// Setting that indicates how to aggregate the request counts. The options are
+	// the following:
+	//
+	//    * IP - Aggregate the request counts on the IP address from the web request
+	//    origin.
+	//
+	//    * FORWARDED_IP - Aggregate the request counts on the first IP address
+	//    in an HTTP header. If you use this, configure the ForwardedIPConfig, to
+	//    specify the header to use.
 	//
 	// AggregateKeyType is a required field
 	AggregateKeyType *string `type:"string" required:"true" enum:"RateBasedStatementAggregateKeyType"`
 
+	// The configuration for inspecting IP addresses in an HTTP header that you
+	// specify, instead of using the IP address that's reported by the web request
+	// origin. Commonly, this is the X-Forwarded-For (XFF) header, but you can specify
+	// any header name.
+	//
+	// If the specified header isn't present in the request, WAF doesn't apply the
+	// rule to the web request at all.
+	//
+	// This is required if AggregateKeyType is set to FORWARDED_IP.
+	ForwardedIPConfig *ForwardedIPConfig `type:"structure"`
+
 	// The limit on requests per 5-minute period for a single originating IP address.
-	// If the statement includes a ScopDownStatement, this limit is applied only
+	// If the statement includes a ScopeDownStatement, this limit is applied only
 	// to the requests that match the statement.
 	//
 	// Limit is a required field
 	Limit *int64 `min:"100" type:"long" required:"true"`
 
-	// An optional nested statement that narrows the scope of the rate-based statement
-	// to matching web requests. This can be any nestable statement, and you can
-	// nest statements at any level below this scope-down statement.
+	// An optional nested statement that narrows the scope of the web requests that
+	// are evaluated by the rate-based statement. Requests are only tracked by the
+	// rate-based statement if they match the scope-down statement. You can use
+	// any nestable Statement in the scope-down statement, and you can nest statements
+	// at any level, the same as you can for a rule statement.
 	ScopeDownStatement *Statement `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatement) GoString() string {
 	return s.String()
 }
@@ -10175,6 +16357,11 @@ func (s *RateBasedStatement) Validate() error {
 	}
 	if s.Limit != nil && *s.Limit < 100 {
 		invalidParams.Add(request.NewErrParamMinValue("Limit", 100))
+	}
+	if s.ForwardedIPConfig != nil {
+		if err := s.ForwardedIPConfig.Validate(); err != nil {
+			invalidParams.AddNested("ForwardedIPConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.ScopeDownStatement != nil {
 		if err := s.ScopeDownStatement.Validate(); err != nil {
@@ -10194,6 +16381,12 @@ func (s *RateBasedStatement) SetAggregateKeyType(v string) *RateBasedStatement {
 	return s
 }
 
+// SetForwardedIPConfig sets the ForwardedIPConfig field's value.
+func (s *RateBasedStatement) SetForwardedIPConfig(v *ForwardedIPConfig) *RateBasedStatement {
+	s.ForwardedIPConfig = v
+	return s
+}
+
 // SetLimit sets the Limit field's value.
 func (s *RateBasedStatement) SetLimit(v int64) *RateBasedStatement {
 	s.Limit = &v
@@ -10206,27 +16399,31 @@ func (s *RateBasedStatement) SetScopeDownStatement(v *Statement) *RateBasedState
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// The set of IP addresses that are currently blocked for a rate-based statement.
+// The set of IP addresses that are currently blocked for a RateBasedStatement.
 type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
 
 	// The IP addresses that are currently blocked.
 	Addresses []*string `type:"list"`
 
+	// The version of the IP addresses, either IPV4 or IPV6.
 	IPAddressVersion *string `type:"string" enum:"IPAddressVersion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatementManagedKeysIPSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatementManagedKeysIPSet) GoString() string {
 	return s.String()
 }
@@ -10243,11 +16440,6 @@ func (s *RateBasedStatementManagedKeysIPSet) SetIPAddressVersion(v string) *Rate
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A single regular expression. This is used in a RegexPatternSet.
 type Regex struct {
 	_ struct{} `type:"structure"`
@@ -10256,12 +16448,20 @@ type Regex struct {
 	RegexString *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Regex) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Regex) GoString() string {
 	return s.String()
 }
@@ -10285,23 +16485,118 @@ func (s *Regex) SetRegexString(v string) *Regex {
 	return s
 }
 
+// A rule statement used to search web request components for a match against
+// a single regular expression.
+type RegexMatchStatement struct {
+	_ struct{} `type:"structure"`
+
+	// The part of the web request that you want WAF to inspect.
+	//
+	// FieldToMatch is a required field
+	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
+
+	// The string representing the regular expression.
+	//
+	// RegexString is a required field
+	RegexString *string `min:"1" type:"string" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. If you specify one
+	// or more transformations in a rule statement, WAF performs all transformations
+	// on the content of the request component identified by FieldToMatch, starting
+	// from the lowest priority setting, before inspecting the content for a match.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegexMatchStatement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegexMatchStatement) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegexMatchStatement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegexMatchStatement"}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.RegexString == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegexString"))
+	}
+	if s.RegexString != nil && len(*s.RegexString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegexString", 1))
+	}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldToMatch sets the FieldToMatch field's value.
+func (s *RegexMatchStatement) SetFieldToMatch(v *FieldToMatch) *RegexMatchStatement {
+	s.FieldToMatch = v
+	return s
+}
+
+// SetRegexString sets the RegexString field's value.
+func (s *RegexMatchStatement) SetRegexString(v string) *RegexMatchStatement {
+	s.RegexString = &v
+	return s
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RegexMatchStatement) SetTextTransformations(v []*TextTransformation) *RegexMatchStatement {
+	s.TextTransformations = v
+	return s
+}
+
 // Contains one or more regular expressions.
 //
-// AWS WAF assigns an ARN to each RegexPatternSet that you create. To use a
-// set in a rule, you provide the ARN to the Rule statement RegexPatternSetReferenceStatement.
+// WAF assigns an ARN to each RegexPatternSet that you create. To use a set
+// in a rule, you provide the ARN to the Rule statement RegexPatternSetReferenceStatement.
 type RegexPatternSet struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -10315,12 +16610,20 @@ type RegexPatternSet struct {
 	RegularExpressionList []*Regex `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSet) GoString() string {
 	return s.String()
 }
@@ -10355,11 +16658,6 @@ func (s *RegexPatternSet) SetRegularExpressionList(v []*Regex) *RegexPatternSet 
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to search web request components for matches with regular
 // expressions. To use this, create a RegexPatternSet that specifies the expressions
 // that you want to detect, then use the ARN of that set in this statement.
@@ -10370,7 +16668,7 @@ func (s *RegexPatternSet) SetRegularExpressionList(v []*Regex) *RegexPatternSet 
 // Each regex pattern set rule statement references a regex pattern set. You
 // create and maintain the set independent of your rules. This allows you to
 // use the single set in multiple rules. When you update the referenced set,
-// AWS WAF automatically updates all rules that reference it.
+// WAF automatically updates all rules that reference it.
 type RegexPatternSetReferenceStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -10380,15 +16678,14 @@ type RegexPatternSetReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The part of a web request that you want AWS WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
 	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, AWS WAF performs all transformations
+	// or more transformations in a rule statement, WAF performs all transformations
 	// on the content of the request component identified by FieldToMatch, starting
 	// from the lowest priority setting, before inspecting the content for a match.
 	//
@@ -10396,12 +16693,20 @@ type RegexPatternSetReferenceStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetReferenceStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetReferenceStatement) GoString() string {
 	return s.String()
 }
@@ -10464,11 +16769,6 @@ func (s *RegexPatternSetReferenceStatement) SetTextTransformations(v []*TextTran
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a RegexPatternSet, returned by operations like
 // create and list. This provides information like the ID, that you can use
 // to retrieve and manage a RegexPatternSet, and the ARN, that you provide to
@@ -10479,18 +16779,17 @@ type RegexPatternSetSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
 	// create and list commands. You provide it to operations like update and delete.
 	Id *string `min:"1" type:"string"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -10502,12 +16801,20 @@ type RegexPatternSetSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetSummary) GoString() string {
 	return s.String()
 }
@@ -10542,21 +16849,56 @@ func (s *RegexPatternSetSummary) SetName(v string) *RegexPatternSetSummary {
 	return s
 }
 
+// High level information for an SDK release.
+type ReleaseSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The release version.
+	ReleaseVersion *string `min:"1" type:"string"`
+
+	// The timestamp of the release.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseSummary) GoString() string {
+	return s.String()
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *ReleaseSummary) SetReleaseVersion(v string) *ReleaseSummary {
+	s.ReleaseVersion = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ReleaseSummary) SetTimestamp(v time.Time) *ReleaseSummary {
+	s.Timestamp = &v
+	return s
+}
+
 // A single rule, which you can use in a WebACL or RuleGroup to identify web
 // requests that you want to allow, block, or count. Each rule includes one
-// top-level Statement that AWS WAF uses to identify matching web requests,
-// and parameters that govern how AWS WAF handles them.
+// top-level Statement that WAF uses to identify matching web requests, and
+// parameters that govern how WAF handles them.
 type Rule struct {
 	_ struct{} `type:"structure"`
 
-	// The action that AWS WAF should take on a web request when it matches the
-	// rule statement. Settings at the web ACL level can override the rule action
-	// setting.
+	// The action that WAF should take on a web request when it matches the rule
+	// statement. Settings at the web ACL level can override the rule action setting.
 	//
 	// This is used only for rules whose statements do not reference a rule group.
 	// Rule statements that reference a rule group include RuleGroupReferenceStatement
@@ -10572,38 +16914,65 @@ type Rule struct {
 	//    setting and not this action setting.
 	Action *RuleAction `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations. If you don't specify
+	// this, WAF uses the CAPTCHA configuration that's defined for the web ACL.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
+	// Specifies how WAF should handle Challenge evaluations. If you don't specify
+	// this, WAF uses the challenge configuration that's defined for the web ACL.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
 	// The name of the rule. You can't change the name of a Rule after you create
 	// it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The override action to apply to the rules in a rule group. Used only for
-	// rule statements that reference a rule group, like RuleGroupReferenceStatement
-	// and ManagedRuleGroupStatement.
+	// The action to use in the place of the action that results from the rule group
+	// evaluation. Set the override action to none to leave the result of the rule
+	// group alone. Set it to count to override the result to count only.
 	//
-	// Set the override action to none to leave the rule actions in effect. Set
-	// it to count to only count matches, regardless of the rule action settings.
+	// You can only use this for rule statements that reference a rule group, like
+	// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 	//
-	// In a Rule, you must specify either this OverrideAction setting or the rule
-	// Action setting, but not both:
-	//
-	//    * If the rule statement references a rule group, use this override action
-	//    setting and not the action setting.
-	//
-	//    * If the rule statement does not reference a rule group, use the rule
-	//    action setting and not this rule override action setting.
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead use the rule action override option,
+	// with Count action, in your rule group reference statement settings.
 	OverrideAction *OverrideAction `type:"structure"`
 
-	// If you define more than one Rule in a WebACL, AWS WAF evaluates each request
-	// against the Rules in order based on the value of Priority. AWS WAF processes
+	// If you define more than one Rule in a WebACL, WAF evaluates each request
+	// against the Rules in order based on the value of Priority. WAF processes
 	// rules with lower priority first. The priorities don't need to be consecutive,
 	// but they must all be different.
 	//
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
 
-	// The AWS WAF processing statement for the rule, for example ByteMatchStatement
+	// Labels to apply to web requests that match the rule match statement. WAF
+	// applies fully qualified labels to matching web requests. A fully qualified
+	// label is the concatenation of a label namespace and a rule label. The rule's
+	// rule group or web ACL defines the label namespace.
+	//
+	// Rules that run after this rule in the web ACL can match against these labels
+	// using a LabelMatchStatement.
+	//
+	// For each label, provide a case-sensitive string containing optional namespaces
+	// and a label name, according to the following guidelines:
+	//
+	//    * Separate each component of the label with a colon.
+	//
+	//    * Each namespace or name can have up to 128 characters.
+	//
+	//    * You can specify up to 5 namespaces in a label.
+	//
+	//    * Don't use the following reserved words in your label specification:
+	//    aws, waf, managed, rulegroup, webacl, regexpatternset, or ipset.
+	//
+	// For example, myLabelName or nameSpace1:nameSpace2:myLabelName.
+	RuleLabels []*Label `type:"list"`
+
+	// The WAF processing statement for the rule, for example ByteMatchStatement
 	// or SizeConstraintStatement.
 	//
 	// Statement is a required field
@@ -10615,12 +16984,20 @@ type Rule struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Rule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Rule) GoString() string {
 	return s.String()
 }
@@ -10642,6 +17019,36 @@ func (s *Rule) Validate() error {
 	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ChallengeConfig != nil {
+		if err := s.ChallengeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ChallengeConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OverrideAction != nil {
+		if err := s.OverrideAction.Validate(); err != nil {
+			invalidParams.AddNested("OverrideAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RuleLabels != nil {
+		for i, v := range s.RuleLabels {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleLabels", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Statement != nil {
 		if err := s.Statement.Validate(); err != nil {
@@ -10666,6 +17073,18 @@ func (s *Rule) SetAction(v *RuleAction) *Rule {
 	return s
 }
 
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *Rule) SetCaptchaConfig(v *CaptchaConfig) *Rule {
+	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *Rule) SetChallengeConfig(v *ChallengeConfig) *Rule {
+	s.ChallengeConfig = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Rule) SetName(v string) *Rule {
 	s.Name = &v
@@ -10684,6 +17103,12 @@ func (s *Rule) SetPriority(v int64) *Rule {
 	return s
 }
 
+// SetRuleLabels sets the RuleLabels field's value.
+func (s *Rule) SetRuleLabels(v []*Label) *Rule {
+	s.RuleLabels = v
+	return s
+}
+
 // SetStatement sets the Statement field's value.
 func (s *Rule) SetStatement(v *Statement) *Rule {
 	s.Statement = v
@@ -10696,34 +17121,79 @@ func (s *Rule) SetVisibilityConfig(v *VisibilityConfig) *Rule {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// The action that AWS WAF should take on a web request when it matches a rule's
+// The action that WAF should take on a web request when it matches a rule's
 // statement. Settings at the web ACL level can override the rule action setting.
 type RuleAction struct {
 	_ struct{} `type:"structure"`
 
-	// Instructs AWS WAF to allow the web request.
+	// Instructs WAF to allow the web request.
 	Allow *AllowAction `type:"structure"`
 
-	// Instructs AWS WAF to block the web request.
+	// Instructs WAF to block the web request.
 	Block *BlockAction `type:"structure"`
 
-	// Instructs AWS WAF to count the web request and allow it.
+	// Instructs WAF to run a CAPTCHA check against the web request.
+	Captcha *CaptchaAction `type:"structure"`
+
+	// Instructs WAF to run a Challenge check against the web request.
+	Challenge *ChallengeAction `type:"structure"`
+
+	// Instructs WAF to count the web request and then continue evaluating the request
+	// using the remaining rules in the web ACL.
 	Count *CountAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleAction"}
+	if s.Allow != nil {
+		if err := s.Allow.Validate(); err != nil {
+			invalidParams.AddNested("Allow", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Block != nil {
+		if err := s.Block.Validate(); err != nil {
+			invalidParams.AddNested("Block", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Captcha != nil {
+		if err := s.Captcha.Validate(); err != nil {
+			invalidParams.AddNested("Captcha", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Challenge != nil {
+		if err := s.Challenge.Validate(); err != nil {
+			invalidParams.AddNested("Challenge", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Count != nil {
+		if err := s.Count.Validate(); err != nil {
+			invalidParams.AddNested("Count", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAllow sets the Allow field's value.
@@ -10738,17 +17208,102 @@ func (s *RuleAction) SetBlock(v *BlockAction) *RuleAction {
 	return s
 }
 
+// SetCaptcha sets the Captcha field's value.
+func (s *RuleAction) SetCaptcha(v *CaptchaAction) *RuleAction {
+	s.Captcha = v
+	return s
+}
+
+// SetChallenge sets the Challenge field's value.
+func (s *RuleAction) SetChallenge(v *ChallengeAction) *RuleAction {
+	s.Challenge = v
+	return s
+}
+
 // SetCount sets the Count field's value.
 func (s *RuleAction) SetCount(v *CountAction) *RuleAction {
 	s.Count = v
 	return s
 }
 
+// Action setting to use in the place of a rule action that is configured inside
+// the rule group. You specify one override for each rule whose action you want
+// to change.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// You can use overrides for testing, for example you can override all of rule
+// actions to Count and then monitor the resulting count metrics to understand
+// how the rule group would handle your web traffic. You can also permanently
+// override some or all actions, to modify how the rule group manages your web
+// traffic.
+type RuleActionOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The override action to use, in place of the configured action of the rule
+	// in the rule group.
+	//
+	// ActionToUse is a required field
+	ActionToUse *RuleAction `type:"structure" required:"true"`
+
+	// The name of the rule to override.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
 //
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleActionOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleActionOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleActionOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleActionOverride"}
+	if s.ActionToUse == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionToUse"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ActionToUse != nil {
+		if err := s.ActionToUse.Validate(); err != nil {
+			invalidParams.AddNested("ActionToUse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionToUse sets the ActionToUse field's value.
+func (s *RuleActionOverride) SetActionToUse(v *RuleAction) *RuleActionOverride {
+	s.ActionToUse = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleActionOverride) SetName(v string) *RuleActionOverride {
+	s.Name = &v
+	return s
+}
+
 // A rule group defines a collection of rules to inspect and control web requests
 // that you can use in a WebACL. When you create a rule group, you define an
 // immutable capacity limit. If you update a rule group, you must stay within
@@ -10762,26 +17317,48 @@ type RuleGroup struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
+	// The labels that one or more rules in this rule group add to matching web
+	// requests. These labels are defined in the RuleLabels for a Rule.
+	AvailableLabels []*LabelSummary `type:"list"`
+
 	// The web ACL capacity units (WCUs) required for this rule group.
 	//
 	// When you create your own rule group, you define this, and you cannot change
-	// it after creation. When you add or modify the rules in a rule group, AWS
-	// WAF enforces this limit. You can check the capacity for a set of rules using
+	// it after creation. When you add or modify the rules in a rule group, WAF
+	// enforces this limit. You can check the capacity for a set of rules using
 	// CheckCapacity.
 	//
-	// AWS WAF uses WCUs to calculate and control the operating resources that are
-	// used to run your rules, rule groups, and web ACLs. AWS WAF calculates capacity
-	// differently for each rule type, to reflect the relative cost of each rule.
-	// Simple rules that cost little to run use fewer WCUs than more complex rules
-	// that use more processing power. Rule group capacity is fixed at creation,
-	// which helps users plan their web ACL WCU usage when they use a rule group.
-	// The WCU limit for web ACLs is 1,500.
+	// WAF uses WCUs to calculate and control the operating resources that are used
+	// to run your rules, rule groups, and web ACLs. WAF calculates capacity differently
+	// for each rule type, to reflect the relative cost of each rule. Simple rules
+	// that cost little to run use fewer WCUs than more complex rules that use more
+	// processing power. Rule group capacity is fixed at creation, which helps users
+	// plan their web ACL WCU usage when they use a rule group. The WCU limit for
+	// web ACLs is 1,500.
 	//
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// The labels that one or more rules in this rule group match against in label
+	// match statements. These labels are defined in a LabelMatchStatement specification,
+	// in the Statement definition of a rule.
+	ConsumedLabels []*LabelSummary `type:"list"`
+
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the rule group, and then use them in the rules that you
+	// define in the rule group.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the rule group. This ID is returned in the responses
@@ -10791,6 +17368,19 @@ type RuleGroup struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
+	// The label namespace prefix for this rule group. All labels added by rules
+	// in this rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for your rule groups is the
+	//    following: awswaf:<account ID>:rulegroup:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
 	// The name of the rule group. You cannot change the name of a rule group after
 	// you create it.
 	//
@@ -10798,9 +17388,9 @@ type RuleGroup struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Rule statements used to identify the web requests that you want to allow,
-	// block, or count. Each rule includes one top-level statement that AWS WAF
-	// uses to identify matching web requests, and parameters that govern how AWS
-	// WAF handles them.
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
 	Rules []*Rule `type:"list"`
 
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
@@ -10809,12 +17399,20 @@ type RuleGroup struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroup) GoString() string {
 	return s.String()
 }
@@ -10825,9 +17423,27 @@ func (s *RuleGroup) SetARN(v string) *RuleGroup {
 	return s
 }
 
+// SetAvailableLabels sets the AvailableLabels field's value.
+func (s *RuleGroup) SetAvailableLabels(v []*LabelSummary) *RuleGroup {
+	s.AvailableLabels = v
+	return s
+}
+
 // SetCapacity sets the Capacity field's value.
 func (s *RuleGroup) SetCapacity(v int64) *RuleGroup {
 	s.Capacity = &v
+	return s
+}
+
+// SetConsumedLabels sets the ConsumedLabels field's value.
+func (s *RuleGroup) SetConsumedLabels(v []*LabelSummary) *RuleGroup {
+	s.ConsumedLabels = v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *RuleGroup) SetCustomResponseBodies(v map[string]*CustomResponseBody) *RuleGroup {
+	s.CustomResponseBodies = v
 	return s
 }
 
@@ -10840,6 +17456,12 @@ func (s *RuleGroup) SetDescription(v string) *RuleGroup {
 // SetId sets the Id field's value.
 func (s *RuleGroup) SetId(v string) *RuleGroup {
 	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *RuleGroup) SetLabelNamespace(v string) *RuleGroup {
+	s.LabelNamespace = &v
 	return s
 }
 
@@ -10861,18 +17483,13 @@ func (s *RuleGroup) SetVisibilityConfig(v *VisibilityConfig) *RuleGroup {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to run the rules that are defined in a RuleGroup. To
 // use this, create a rule group with your rules, then provide the ARN of the
 // rule group in this statement.
 //
 // You cannot nest a RuleGroupReferenceStatement, for example for use inside
-// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-// within a rule.
+// a NotStatement or OrStatement. You can only use a rule group reference statement
+// at the top level inside a web ACL.
 type RuleGroupReferenceStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -10881,17 +17498,38 @@ type RuleGroupReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The names of rules that are in the referenced rule group, but that you want
-	// AWS WAF to exclude from processing for this rule statement.
+	// Rules in the referenced rule group whose actions are set to Count.
+	//
+	// Instead of this option, use RuleActionOverrides. It accepts any valid action
+	// setting, including Count.
 	ExcludedRules []*ExcludedRule `type:"list"`
+
+	// Action settings to use in the place of the rule actions that are configured
+	// inside the rule group. You specify one override for each rule whose action
+	// you want to change.
+	//
+	// You can use overrides for testing, for example you can override all of rule
+	// actions to Count and then monitor the resulting count metrics to understand
+	// how the rule group would handle your web traffic. You can also permanently
+	// override some or all actions, to modify how the rule group manages your web
+	// traffic.
+	RuleActionOverrides []*RuleActionOverride `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupReferenceStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupReferenceStatement) GoString() string {
 	return s.String()
 }
@@ -10905,6 +17543,9 @@ func (s *RuleGroupReferenceStatement) Validate() error {
 	if s.ARN != nil && len(*s.ARN) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ARN", 20))
 	}
+	if s.RuleActionOverrides != nil && len(s.RuleActionOverrides) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleActionOverrides", 1))
+	}
 	if s.ExcludedRules != nil {
 		for i, v := range s.ExcludedRules {
 			if v == nil {
@@ -10912,6 +17553,16 @@ func (s *RuleGroupReferenceStatement) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExcludedRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RuleActionOverrides != nil {
+		for i, v := range s.RuleActionOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleActionOverrides", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -10934,11 +17585,12 @@ func (s *RuleGroupReferenceStatement) SetExcludedRules(v []*ExcludedRule) *RuleG
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
+// SetRuleActionOverrides sets the RuleActionOverrides field's value.
+func (s *RuleGroupReferenceStatement) SetRuleActionOverrides(v []*RuleActionOverride) *RuleGroupReferenceStatement {
+	s.RuleActionOverrides = v
+	return s
+}
+
 // High-level information about a RuleGroup, returned by operations like create
 // and list. This provides information like the ID, that you can use to retrieve
 // and manage a RuleGroup, and the ARN, that you provide to the RuleGroupReferenceStatement
@@ -10949,8 +17601,7 @@ type RuleGroupSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the rule group. This ID is returned in the responses
@@ -10958,10 +17609,10 @@ type RuleGroupSummary struct {
 	// delete.
 	Id *string `min:"1" type:"string"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -10973,12 +17624,20 @@ type RuleGroupSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupSummary) GoString() string {
 	return s.String()
 }
@@ -11013,11 +17672,6 @@ func (s *RuleGroupSummary) SetName(v string) *RuleGroupSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a Rule, returned by operations like DescribeManagedRuleGroup.
 // This provides information like the ID, that you can use to retrieve and manage
 // a RuleGroup, and the ARN, that you provide to the RuleGroupReferenceStatement
@@ -11025,12 +17679,7 @@ func (s *RuleGroupSummary) SetName(v string) *RuleGroupSummary {
 type RuleSummary struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
-	// The action that AWS WAF should take on a web request when it matches a rule's
+	// The action that WAF should take on a web request when it matches a rule's
 	// statement. Settings at the web ACL level can override the rule action setting.
 	Action *RuleAction `type:"structure"`
 
@@ -11038,12 +17687,20 @@ type RuleSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleSummary) GoString() string {
 	return s.String()
 }
@@ -11060,11 +17717,6 @@ func (s *RuleSummary) SetName(v string) *RuleSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Represents a single sampled web request. The response from GetSampledRequests
 // includes a SampledHTTPRequests complex type that appears as SampledRequests
 // in the response syntax. SampledHTTPRequests contains an array of SampledHTTPRequest
@@ -11072,22 +17724,50 @@ func (s *RuleSummary) SetName(v string) *RuleSummary {
 type SampledHTTPRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The action for the Rule that the request matched: ALLOW, BLOCK, or COUNT.
+	// The action that WAF applied to the request.
 	Action *string `type:"string"`
+
+	// The CAPTCHA response for the request.
+	CaptchaResponse *CaptchaResponse `type:"structure"`
+
+	// The Challenge response for the request.
+	ChallengeResponse *ChallengeResponse `type:"structure"`
+
+	// Labels applied to the web request by matching rules. WAF applies fully qualified
+	// labels to matching web requests. A fully qualified label is the concatenation
+	// of a label namespace and a rule label. The rule's rule group or web ACL defines
+	// the label namespace.
+	//
+	// For example, awswaf:111122223333:myRuleGroup:testRules:testNS1:testNS2:labelNameA
+	// or awswaf:managed:aws:managed-rule-set:header:encoding:utf8.
+	Labels []*Label `type:"list"`
+
+	// Used only for rule group rules that have a rule action override in place
+	// in the web ACL. This is the action that the rule group rule is configured
+	// for, and not the action that was applied to the request. The action that
+	// WAF applied is the Action value.
+	OverriddenAction *string `type:"string"`
 
 	// A complex type that contains detailed information about the request.
 	//
 	// Request is a required field
 	Request *HTTPRequest `type:"structure" required:"true"`
 
+	// Custom request headers inserted by WAF into the request, according to the
+	// custom request configuration for the matching rule action.
+	RequestHeadersInserted []*HTTPHeader `type:"list"`
+
+	// The response code that was sent for the request.
+	ResponseCodeSent *int64 `min:"200" type:"integer"`
+
 	// The name of the Rule that the request matched. For managed rule groups, the
 	// format for this name is <vendor name>#<managed rule group name>#<rule name>.
 	// For your own rule groups, the format for this name is <rule group name>#<rule
-	// name>. If the rule is not in a rule group, the format is <rule name>.
+	// name>. If the rule is not in a rule group, this field is absent.
 	RuleNameWithinRuleGroup *string `min:"1" type:"string"`
 
-	// The time at which AWS WAF received the request from your AWS resource, in
-	// Unix time format (in seconds).
+	// The time at which WAF received the request from your Amazon Web Services
+	// resource, in Unix time format (in seconds).
 	Timestamp *time.Time `type:"timestamp"`
 
 	// A value that indicates how one result in the response relates proportionally
@@ -11099,12 +17779,20 @@ type SampledHTTPRequest struct {
 	Weight *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SampledHTTPRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SampledHTTPRequest) GoString() string {
 	return s.String()
 }
@@ -11115,9 +17803,45 @@ func (s *SampledHTTPRequest) SetAction(v string) *SampledHTTPRequest {
 	return s
 }
 
+// SetCaptchaResponse sets the CaptchaResponse field's value.
+func (s *SampledHTTPRequest) SetCaptchaResponse(v *CaptchaResponse) *SampledHTTPRequest {
+	s.CaptchaResponse = v
+	return s
+}
+
+// SetChallengeResponse sets the ChallengeResponse field's value.
+func (s *SampledHTTPRequest) SetChallengeResponse(v *ChallengeResponse) *SampledHTTPRequest {
+	s.ChallengeResponse = v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *SampledHTTPRequest) SetLabels(v []*Label) *SampledHTTPRequest {
+	s.Labels = v
+	return s
+}
+
+// SetOverriddenAction sets the OverriddenAction field's value.
+func (s *SampledHTTPRequest) SetOverriddenAction(v string) *SampledHTTPRequest {
+	s.OverriddenAction = &v
+	return s
+}
+
 // SetRequest sets the Request field's value.
 func (s *SampledHTTPRequest) SetRequest(v *HTTPRequest) *SampledHTTPRequest {
 	s.Request = v
+	return s
+}
+
+// SetRequestHeadersInserted sets the RequestHeadersInserted field's value.
+func (s *SampledHTTPRequest) SetRequestHeadersInserted(v []*HTTPHeader) *SampledHTTPRequest {
+	s.RequestHeadersInserted = v
+	return s
+}
+
+// SetResponseCodeSent sets the ResponseCodeSent field's value.
+func (s *SampledHTTPRequest) SetResponseCodeSent(v int64) *SampledHTTPRequest {
+	s.ResponseCodeSent = &v
 	return s
 }
 
@@ -11139,16 +17863,15 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 	return s
 }
 
+// Inspect one of the headers in the web request, identified by name, for example,
+// User-Agent or Referer. The name isn't case sensitive.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// You can filter and inspect all headers with the FieldToMatch setting Headers.
 //
-// One of the headers in a web request, identified by name, for example, User-Agent
-// or Referer. This setting isn't case sensitive.
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
-// This is used only to indicate the web request component for AWS WAF to inspect,
-// in the FieldToMatch specification.
+// Example JSON: "SingleHeader": { "Name": "haystack" }
 type SingleHeader struct {
 	_ struct{} `type:"structure"`
 
@@ -11158,12 +17881,20 @@ type SingleHeader struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleHeader) GoString() string {
 	return s.String()
 }
@@ -11190,13 +17921,13 @@ func (s *SingleHeader) SetName(v string) *SingleHeader {
 	return s
 }
 
+// Inspect one query argument in the web request, identified by name, for example
+// UserName or SalesRegion. The name isn't case sensitive.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// This is used to indicate the web request component to inspect, in the FieldToMatch
+// specification.
 //
-// One query argument in a web request, identified by name, for example UserName
-// or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
+// Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 type SingleQueryArgument struct {
 	_ struct{} `type:"structure"`
 
@@ -11206,12 +17937,20 @@ type SingleQueryArgument struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleQueryArgument) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleQueryArgument) GoString() string {
 	return s.String()
 }
@@ -11238,20 +17977,15 @@ func (s *SingleQueryArgument) SetName(v string) *SingleQueryArgument {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement that compares a number of bytes against the size of a request
 // component, using a comparison operator, such as greater than (>) or less
 // than (<). For example, you can use a size constraint statement to look for
 // query strings that are longer than 100 bytes.
 //
-// If you configure AWS WAF to inspect the request body, AWS WAF inspects only
-// the first 8192 bytes (8 KB). If the request body for your web requests never
-// exceeds 8192 bytes, you can create a size constraint condition and block
-// requests that have a request body greater than 8192 bytes.
+// If you configure WAF to inspect the request body, WAF inspects only the first
+// 8192 bytes (8 KB). If the request body for your web requests never exceeds
+// 8192 bytes, you could use a size constraint statement to block requests that
+// have a request body greater than 8192 bytes.
 //
 // If you choose URI for the value of Part of the request to filter on, the
 // slash (/) in the URI counts as one character. For example, the URI /logo.jpg
@@ -11264,8 +17998,7 @@ type SizeConstraintStatement struct {
 	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
-	// The part of a web request that you want AWS WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
@@ -11277,7 +18010,7 @@ type SizeConstraintStatement struct {
 
 	// Text transformations eliminate some of the unusual formatting that attackers
 	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, AWS WAF performs all transformations
+	// or more transformations in a rule statement, WAF performs all transformations
 	// on the content of the request component identified by FieldToMatch, starting
 	// from the lowest priority setting, before inspecting the content for a match.
 	//
@@ -11285,12 +18018,20 @@ type SizeConstraintStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SizeConstraintStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SizeConstraintStatement) GoString() string {
 	return s.String()
 }
@@ -11359,30 +18100,34 @@ func (s *SizeConstraintStatement) SetTextTransformations(v []*TextTransformation
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// Attackers sometimes insert malicious SQL code into web requests in an effort
-// to extract data from your database. To allow or block web requests that appear
-// to contain malicious SQL code, create one or more SQL injection match conditions.
-// An SQL injection match condition identifies the part of web requests, such
-// as the URI or the query string, that you want AWS WAF to inspect. Later in
-// the process, when you create a web ACL, you specify whether to allow or block
-// requests that appear to contain malicious SQL code.
+// A rule statement that inspects for malicious SQL code. Attackers insert malicious
+// SQL code into web requests to do things like modify your database or extract
+// data from it.
 type SqliMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want AWS WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
+	// The sensitivity that you want WAF to use to inspect for SQL injection attacks.
+	//
+	// HIGH detects more attacks, but might generate more false positives, especially
+	// if your web requests frequently contain unusual strings. For information
+	// about identifying and mitigating false positives, see Testing and tuning
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-testing.html)
+	// in the WAF Developer Guide.
+	//
+	// LOW is generally a better choice for resources that already have other protections
+	// against SQL injection attacks or that have a low tolerance for false positives.
+	//
+	// Default: LOW
+	SensitivityLevel *string `type:"string" enum:"SensitivityLevel"`
+
 	// Text transformations eliminate some of the unusual formatting that attackers
 	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, AWS WAF performs all transformations
+	// or more transformations in a rule statement, WAF performs all transformations
 	// on the content of the request component identified by FieldToMatch, starting
 	// from the lowest priority setting, before inspecting the content for a match.
 	//
@@ -11390,12 +18135,20 @@ type SqliMatchStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqliMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqliMatchStatement) GoString() string {
 	return s.String()
 }
@@ -11440,19 +18193,22 @@ func (s *SqliMatchStatement) SetFieldToMatch(v *FieldToMatch) *SqliMatchStatemen
 	return s
 }
 
+// SetSensitivityLevel sets the SensitivityLevel field's value.
+func (s *SqliMatchStatement) SetSensitivityLevel(v string) *SqliMatchStatement {
+	s.SensitivityLevel = &v
+	return s
+}
+
 // SetTextTransformations sets the TextTransformations field's value.
 func (s *SqliMatchStatement) SetTextTransformations(v []*TextTransformation) *SqliMatchStatement {
 	s.TextTransformations = v
 	return s
 }
 
+// The processing guidance for a Rule, used by WAF to determine whether a web
+// request matches the rule.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// The processing guidance for a Rule, used by AWS WAF to determine whether
-// a web request matches the rule.
+// For example specifications, see the examples section of CreateWebACL.
 type Statement struct {
 	_ struct{} `type:"structure"`
 
@@ -11460,15 +18216,42 @@ type Statement struct {
 	// You provide more than one Statement within the AndStatement.
 	AndStatement *AndStatement `type:"structure"`
 
-	// A rule statement that defines a string match search for AWS WAF to apply
-	// to web requests. The byte match statement provides the bytes to search for,
-	// the location in requests that you want AWS WAF to search, and other settings.
-	// The bytes to search for are typically a string that corresponds with ASCII
-	// characters. In the AWS WAF console and the developer guide, this is refered
-	// to as a string match statement.
+	// A rule statement that defines a string match search for WAF to apply to web
+	// requests. The byte match statement provides the bytes to search for, the
+	// location in requests that you want WAF to search, and other settings. The
+	// bytes to search for are typically a string that corresponds with ASCII characters.
+	// In the WAF console and the developer guide, this is called a string match
+	// statement.
 	ByteMatchStatement *ByteMatchStatement `type:"structure"`
 
-	// A rule statement used to identify web requests based on country of origin.
+	// A rule statement that labels web requests by country and region and that
+	// matches against web requests based on country code. A geo match rule labels
+	// every request that it inspects regardless of whether it finds a match.
+	//
+	//    * To manage requests only by country, you can use this statement by itself
+	//    and specify the countries that you want to match against in the CountryCodes
+	//    array.
+	//
+	//    * Otherwise, configure your geo match rule with Count action so that it
+	//    only labels requests. Then, add one or more label match rules to run after
+	//    the geo match rule and configure them to match against the geographic
+	//    labels and handle the requests as needed.
+	//
+	// WAF labels requests using the alpha-2 country and region codes from the International
+	// Organization for Standardization (ISO) 3166 standard. WAF determines the
+	// codes using either the IP address in the web request origin or, if you specify
+	// it, the address in the geo match ForwardedIPConfig.
+	//
+	// If you use the web request origin, the label formats are awswaf:clientip:geo:region:<ISO
+	// country code>-<ISO region code> and awswaf:clientip:geo:country:<ISO country
+	// code>.
+	//
+	// If you use a forwarded IP address, the label formats are awswaf:forwardedip:geo:region:<ISO
+	// country code>-<ISO region code> and awswaf:forwardedip:geo:country:<ISO country
+	// code>.
+	//
+	// For additional details, see Geographic match rule statement (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 	GeoMatchStatement *GeoMatchStatement `type:"structure"`
 
 	// A rule statement used to detect web requests coming from particular IP addresses
@@ -11478,17 +18261,35 @@ type Statement struct {
 	//
 	// Each IP set rule statement references an IP set. You create and maintain
 	// the set independent of your rules. This allows you to use the single set
-	// in multiple rules. When you update the referenced set, AWS WAF automatically
+	// in multiple rules. When you update the referenced set, WAF automatically
 	// updates all rules that reference it.
 	IPSetReferenceStatement *IPSetReferenceStatement `type:"structure"`
+
+	// A rule statement to match against labels that have been added to the web
+	// request by rules that have already run in the web ACL.
+	//
+	// The label match statement provides the label or namespace string to search
+	// for. The label string can represent a part or all of the fully qualified
+	// label name that had been added to the web request. Fully qualified labels
+	// have a prefix, optional namespaces, and label name. The prefix identifies
+	// the rule group or web ACL context of the rule that added the label. If you
+	// do not provide the fully qualified name in your label match string, WAF performs
+	// the search for labels that were added in the same context as the label match
+	// statement.
+	LabelMatchStatement *LabelMatchStatement `type:"structure"`
 
 	// A rule statement used to run the rules that are defined in a managed rule
 	// group. To use this, provide the vendor name and the name of the rule group
 	// in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
 	//
-	// You can't nest a ManagedRuleGroupStatement, for example for use inside a
+	// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 	// NotStatement or OrStatement. It can only be referenced as a top-level statement
 	// within a rule.
+	//
+	// You are charged additional fees when you use the WAF Bot Control managed
+	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
 	// A logical rule statement used to negate the results of another rule statement.
@@ -11505,8 +18306,16 @@ type Statement struct {
 	// put a temporary block on requests from an IP address that is sending excessive
 	// requests.
 	//
-	// When the rule action triggers, AWS WAF blocks additional requests from the
-	// IP address until the request rate falls below the limit.
+	// WAF tracks and manages web requests separately for each instance of a rate-based
+	// rule that you use. For example, if you provide the same rate-based rule settings
+	// in two web ACLs, each of the two rule statements represents a separate instance
+	// of the rate-based rule and gets its own tracking and management by WAF. If
+	// you define a rate-based rule inside a rule group, and then use that rule
+	// group in multiple places, each use creates a separate instance of the rate-based
+	// rule that gets its own tracking and management by WAF.
+	//
+	// When the rule action triggers, WAF blocks additional requests from the IP
+	// address until the request rate falls below the limit.
 	//
 	// You can optionally nest another statement inside the rate-based statement,
 	// to narrow the scope of the rule so that it only counts requests that match
@@ -11520,15 +18329,20 @@ type Statement struct {
 	//    the string BadBot.
 	//
 	// In this rate-based rule, you also define a rate limit. For this example,
-	// the rate limit is 1,000. Requests that meet both of the conditions in the
+	// the rate limit is 1,000. Requests that meet the criteria of both of the nested
 	// statements are counted. If the count exceeds 1,000 requests per five minutes,
-	// the rule action triggers. Requests that do not meet both conditions are not
-	// counted towards the rate limit and are not affected by this rule.
+	// the rule action triggers. Requests that do not meet the criteria of both
+	// of the nested statements are not counted towards the rate limit and are not
+	// affected by this rule.
 	//
-	// You cannot nest a RateBasedStatement, for example for use inside a NotStatement
-	// or OrStatement. It can only be referenced as a top-level statement within
-	// a rule.
+	// You cannot nest a RateBasedStatement inside another statement, for example
+	// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+	// inside a web ACL and inside a rule group.
 	RateBasedStatement *RateBasedStatement `type:"structure"`
+
+	// A rule statement used to search web request components for a match against
+	// a single regular expression.
+	RegexMatchStatement *RegexMatchStatement `type:"structure"`
 
 	// A rule statement used to search web request components for matches with regular
 	// expressions. To use this, create a RegexPatternSet that specifies the expressions
@@ -11540,7 +18354,7 @@ type Statement struct {
 	// Each regex pattern set rule statement references a regex pattern set. You
 	// create and maintain the set independent of your rules. This allows you to
 	// use the single set in multiple rules. When you update the referenced set,
-	// AWS WAF automatically updates all rules that reference it.
+	// WAF automatically updates all rules that reference it.
 	RegexPatternSetReferenceStatement *RegexPatternSetReferenceStatement `type:"structure"`
 
 	// A rule statement used to run the rules that are defined in a RuleGroup. To
@@ -11548,8 +18362,8 @@ type Statement struct {
 	// rule group in this statement.
 	//
 	// You cannot nest a RuleGroupReferenceStatement, for example for use inside
-	// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-	// within a rule.
+	// a NotStatement or OrStatement. You can only use a rule group reference statement
+	// at the top level inside a web ACL.
 	RuleGroupReferenceStatement *RuleGroupReferenceStatement `type:"structure"`
 
 	// A rule statement that compares a number of bytes against the size of a request
@@ -11557,41 +18371,41 @@ type Statement struct {
 	// than (<). For example, you can use a size constraint statement to look for
 	// query strings that are longer than 100 bytes.
 	//
-	// If you configure AWS WAF to inspect the request body, AWS WAF inspects only
-	// the first 8192 bytes (8 KB). If the request body for your web requests never
-	// exceeds 8192 bytes, you can create a size constraint condition and block
-	// requests that have a request body greater than 8192 bytes.
+	// If you configure WAF to inspect the request body, WAF inspects only the first
+	// 8192 bytes (8 KB). If the request body for your web requests never exceeds
+	// 8192 bytes, you could use a size constraint statement to block requests that
+	// have a request body greater than 8192 bytes.
 	//
 	// If you choose URI for the value of Part of the request to filter on, the
 	// slash (/) in the URI counts as one character. For example, the URI /logo.jpg
 	// is nine characters long.
 	SizeConstraintStatement *SizeConstraintStatement `type:"structure"`
 
-	// Attackers sometimes insert malicious SQL code into web requests in an effort
-	// to extract data from your database. To allow or block web requests that appear
-	// to contain malicious SQL code, create one or more SQL injection match conditions.
-	// An SQL injection match condition identifies the part of web requests, such
-	// as the URI or the query string, that you want AWS WAF to inspect. Later in
-	// the process, when you create a web ACL, you specify whether to allow or block
-	// requests that appear to contain malicious SQL code.
+	// A rule statement that inspects for malicious SQL code. Attackers insert malicious
+	// SQL code into web requests to do things like modify your database or extract
+	// data from it.
 	SqliMatchStatement *SqliMatchStatement `type:"structure"`
 
-	// A rule statement that defines a cross-site scripting (XSS) match search for
-	// AWS WAF to apply to web requests. XSS attacks are those where the attacker
-	// uses vulnerabilities in a benign website as a vehicle to inject malicious
-	// client-site scripts into other legitimate web browsers. The XSS match statement
-	// provides the location in requests that you want AWS WAF to search and text
-	// transformations to use on the search area before AWS WAF searches for character
-	// sequences that are likely to be malicious strings.
+	// A rule statement that inspects for cross-site scripting (XSS) attacks. In
+	// XSS attacks, the attacker uses vulnerabilities in a benign website as a vehicle
+	// to inject malicious client-site scripts into other legitimate web browsers.
 	XssMatchStatement *XssMatchStatement `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Statement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Statement) GoString() string {
 	return s.String()
 }
@@ -11619,6 +18433,11 @@ func (s *Statement) Validate() error {
 			invalidParams.AddNested("IPSetReferenceStatement", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LabelMatchStatement != nil {
+		if err := s.LabelMatchStatement.Validate(); err != nil {
+			invalidParams.AddNested("LabelMatchStatement", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ManagedRuleGroupStatement != nil {
 		if err := s.ManagedRuleGroupStatement.Validate(); err != nil {
 			invalidParams.AddNested("ManagedRuleGroupStatement", err.(request.ErrInvalidParams))
@@ -11637,6 +18456,11 @@ func (s *Statement) Validate() error {
 	if s.RateBasedStatement != nil {
 		if err := s.RateBasedStatement.Validate(); err != nil {
 			invalidParams.AddNested("RateBasedStatement", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RegexMatchStatement != nil {
+		if err := s.RegexMatchStatement.Validate(); err != nil {
+			invalidParams.AddNested("RegexMatchStatement", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.RegexPatternSetReferenceStatement != nil {
@@ -11695,6 +18519,12 @@ func (s *Statement) SetIPSetReferenceStatement(v *IPSetReferenceStatement) *Stat
 	return s
 }
 
+// SetLabelMatchStatement sets the LabelMatchStatement field's value.
+func (s *Statement) SetLabelMatchStatement(v *LabelMatchStatement) *Statement {
+	s.LabelMatchStatement = v
+	return s
+}
+
 // SetManagedRuleGroupStatement sets the ManagedRuleGroupStatement field's value.
 func (s *Statement) SetManagedRuleGroupStatement(v *ManagedRuleGroupStatement) *Statement {
 	s.ManagedRuleGroupStatement = v
@@ -11716,6 +18546,12 @@ func (s *Statement) SetOrStatement(v *OrStatement) *Statement {
 // SetRateBasedStatement sets the RateBasedStatement field's value.
 func (s *Statement) SetRateBasedStatement(v *RateBasedStatement) *Statement {
 	s.RateBasedStatement = v
+	return s
+}
+
+// SetRegexMatchStatement sets the RegexMatchStatement field's value.
+func (s *Statement) SetRegexMatchStatement(v *RegexMatchStatement) *Statement {
+	s.RegexMatchStatement = v
 	return s
 }
 
@@ -11749,16 +18585,18 @@ func (s *Statement) SetXssMatchStatement(v *XssMatchStatement) *Statement {
 	return s
 }
 
+// A tag associated with an Amazon Web Services resource. Tags are key:value
+// pairs that you can use to categorize and manage your resources, for purposes
+// like billing or other management. Typically, the tag key represents a category,
+// such as "environment", and the tag value represents a specific value within
+// that category, such as "test," "development," or "production". Or you might
+// set the tag key to "customer" and the value to the customer name or ID. You
+// can specify one or more tags to add to each Amazon Web Services resource,
+// up to 50 tags for a resource.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// A collection of key:value pairs associated with an AWS resource. The key:value
-// pair can be anything you define. Typically, the tag key represents a category
-// (such as "environment") and the tag value represents a specific value within
-// that category (such as "test," "development," or "production"). You can add
-// up to 50 tags to each AWS resource.
+// You can tag the Amazon Web Services resources that you manage through WAF:
+// web ACLs, rule groups, IP sets, and regex pattern sets. You can't manage
+// or view tags through the WAF console.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -11776,12 +18614,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -11817,12 +18663,18 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
+// The collection of tagging definitions for an Amazon Web Services resource.
+// Tags are key:value pairs that you can use to categorize and manage your resources,
+// for purposes like billing or other management. Typically, the tag key represents
+// a category, such as "environment", and the tag value represents a specific
+// value within that category, such as "test," "development," or "production".
+// Or you might set the tag key to "customer" and the value to the customer
+// name or ID. You can specify one or more tags to add to each Amazon Web Services
+// resource, up to 50 tags for a resource.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// The collection of tagging definitions for an AWS resource.
+// You can tag the Amazon Web Services resources that you manage through WAF:
+// web ACLs, rule groups, IP sets, and regex pattern sets. You can't manage
+// or view tags through the WAF console.
 type TagInfoForResource struct {
 	_ struct{} `type:"structure"`
 
@@ -11833,12 +18685,20 @@ type TagInfoForResource struct {
 	TagList []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagInfoForResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagInfoForResource) GoString() string {
 	return s.String()
 }
@@ -11869,12 +18729,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -11927,41 +18795,47 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Text transformations eliminate some of the unusual formatting that attackers
 // use in web requests in an effort to bypass detection.
 type TextTransformation struct {
 	_ struct{} `type:"structure"`
 
 	// Sets the relative processing order for multiple transformations that are
-	// defined for a rule statement. AWS WAF processes all transformations, from
-	// lowest priority to highest, before inspecting the transformed content. The
-	// priorities don't need to be consecutive, but they must all be different.
+	// defined for a rule statement. WAF processes all transformations, from lowest
+	// priority to highest, before inspecting the transformed content. The priorities
+	// don't need to be consecutive, but they must all be different.
 	//
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
 
 	// You can specify the following transformation types:
 	//
-	// CMD_LINE
+	// BASE64_DECODE - Decode a Base64-encoded string.
 	//
-	// When you're concerned that attackers are injecting an operating system command
-	// line command and using unusual formatting to disguise some or all of the
-	// command, use this option to perform the following transformations:
+	// BASE64_DECODE_EXT - Decode a Base64-encoded string, but use a forgiving implementation
+	// that ignores characters that aren't valid.
+	//
+	// CMD_LINE - Command-line transformations. These are helpful in reducing effectiveness
+	// of attackers who inject an operating system command-line command and use
+	// unusual formatting to disguise some or all of the command.
 	//
 	//    * Delete the following characters: \ " ' ^
 	//
@@ -11973,10 +18847,8 @@ type TextTransformation struct {
 	//
 	//    * Convert uppercase letters (A-Z) to lowercase (a-z)
 	//
-	// COMPRESS_WHITE_SPACE
-	//
-	// Use this option to replace the following characters with a space character
-	// (decimal 32):
+	// COMPRESS_WHITE_SPACE - Replace these characters with a space character (decimal
+	// 32):
 	//
 	//    * \f, formfeed, decimal 12
 	//
@@ -11988,14 +18860,25 @@ type TextTransformation struct {
 	//
 	//    * \v, vertical tab, decimal 11
 	//
-	//    * non-breaking space, decimal 160
+	//    * Non-breaking space, decimal 160
 	//
 	// COMPRESS_WHITE_SPACE also replaces multiple spaces with one space.
 	//
-	// HTML_ENTITY_DECODE
+	// CSS_DECODE - Decode characters that were encoded using CSS 2.x escape rules
+	// syndata.html#characters. This function uses up to two bytes in the decoding
+	// process, so it can help to uncover ASCII characters that were encoded using
+	// CSS encoding that wouldn’t typically be encoded. It's also useful in countering
+	// evasion, which is a combination of a backslash and non-hexadecimal characters.
+	// For example, ja\vascript for javascript.
 	//
-	// Use this option to replace HTML-encoded characters with unencoded characters.
-	// HTML_ENTITY_DECODE performs the following operations:
+	// ESCAPE_SEQ_DECODE - Decode the following ANSI C escape sequences: \a, \b,
+	// \f, \n, \r, \t, \v, \\, \?, \', \", \xHH (hexadecimal), \0OOO (octal). Encodings
+	// that aren't valid remain in the output.
+	//
+	// HEX_DECODE - Decode a string of hexadecimal characters into a binary.
+	//
+	// HTML_ENTITY_DECODE - Replace HTML-encoded characters with unencoded characters.
+	// HTML_ENTITY_DECODE performs these operations:
 	//
 	//    * Replaces (ampersand)quot; with "
 	//
@@ -12011,28 +18894,67 @@ type TextTransformation struct {
 	//    * Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
 	//    with the corresponding characters
 	//
-	// LOWERCASE
+	// JS_DECODE - Decode JavaScript escape sequences. If a \ u HHHH code is in
+	// the full-width ASCII code range of FF01-FF5E, then the higher byte is used
+	// to detect and adjust the lower byte. If not, only the lower byte is used
+	// and the higher byte is zeroed, causing a possible loss of information.
 	//
-	// Use this option to convert uppercase letters (A-Z) to lowercase (a-z).
+	// LOWERCASE - Convert uppercase letters (A-Z) to lowercase (a-z).
 	//
-	// URL_DECODE
+	// MD5 - Calculate an MD5 hash from the data in the input. The computed hash
+	// is in a raw binary form.
 	//
-	// Use this option to decode a URL-encoded value.
+	// NONE - Specify NONE if you don't want any text transformations.
 	//
-	// NONE
+	// NORMALIZE_PATH - Remove multiple slashes, directory self-references, and
+	// directory back-references that are not at the beginning of the input from
+	// an input string.
 	//
-	// Specify NONE if you don't want any text transformations.
+	// NORMALIZE_PATH_WIN - This is the same as NORMALIZE_PATH, but first converts
+	// backslash characters to forward slashes.
+	//
+	// REMOVE_NULLS - Remove all NULL bytes from the input.
+	//
+	// REPLACE_COMMENTS - Replace each occurrence of a C-style comment (/* ... */)
+	// with a single space. Multiple consecutive occurrences are not compressed.
+	// Unterminated comments are also replaced with a space (ASCII 0x20). However,
+	// a standalone termination of a comment (*/) is not acted upon.
+	//
+	// REPLACE_NULLS - Replace NULL bytes in the input with space characters (ASCII
+	// 0x20).
+	//
+	// SQL_HEX_DECODE - Decode SQL hex data. Example (0x414243) will be decoded
+	// to (ABC).
+	//
+	// URL_DECODE - Decode a URL-encoded value.
+	//
+	// URL_DECODE_UNI - Like URL_DECODE, but with support for Microsoft-specific
+	// %u encoding. If the code is in the full-width ASCII code range of FF01-FF5E,
+	// the higher byte is used to detect and adjust the lower byte. Otherwise, only
+	// the lower byte is used and the higher byte is zeroed.
+	//
+	// UTF8_TO_UNICODE - Convert all UTF-8 character sequences to Unicode. This
+	// helps input normalization, and minimizing false-positives and false-negatives
+	// for non-English languages.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"TextTransformationType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextTransformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextTransformation) GoString() string {
 	return s.String()
 }
@@ -12065,47 +18987,56 @@ func (s *TextTransformation) SetType(v string) *TextTransformation {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // In a GetSampledRequests request, the StartTime and EndTime objects specify
-// the time range for which you want AWS WAF to return a sample of web requests.
+// the time range for which you want WAF to return a sample of web requests.
+//
+// You must specify the times in Coordinated Universal Time (UTC) format. UTC
+// format includes the special designator, Z. For example, "2016-09-27T14:50Z".
+// You can specify any time range in the previous three hours.
 //
 // In a GetSampledRequests response, the StartTime and EndTime objects specify
-// the time range for which AWS WAF actually returned a sample of web requests.
-// AWS WAF gets the specified number of requests from among the first 5,000
-// requests that your AWS resource receives during the specified time period.
-// If your resource receives more than 5,000 requests during that period, AWS
+// the time range for which WAF actually returned a sample of web requests.
+// WAF gets the specified number of requests from among the first 5,000 requests
+// that your Amazon Web Services resource receives during the specified time
+// period. If your resource receives more than 5,000 requests during that period,
 // WAF stops sampling after the 5,000th request. In that case, EndTime is the
-// time that AWS WAF received the 5,000th request.
+// time that WAF received the 5,000th request.
 type TimeWindow struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the time range from which you want GetSampledRequests to return
-	// a sample of the requests that your AWS resource received. Specify the date
-	// and time in the following format: "2016-09-27T14:50Z". You can specify any
-	// time range in the previous three hours.
+	// a sample of the requests that your Amazon Web Services resource received.
+	// You must specify the times in Coordinated Universal Time (UTC) format. UTC
+	// format includes the special designator, Z. For example, "2016-09-27T14:50Z".
+	// You can specify any time range in the previous three hours.
 	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
 	// The beginning of the time range from which you want GetSampledRequests to
-	// return a sample of the requests that your AWS resource received. Specify
-	// the date and time in the following format: "2016-09-27T14:50Z". You can specify
-	// any time range in the previous three hours.
+	// return a sample of the requests that your Amazon Web Services resource received.
+	// You must specify the times in Coordinated Universal Time (UTC) format. UTC
+	// format includes the special designator, Z. For example, "2016-09-27T14:50Z".
+	// You can specify any time range in the previous three hours.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimeWindow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimeWindow) GoString() string {
 	return s.String()
 }
@@ -12152,12 +19083,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -12200,12 +19139,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -12213,33 +19160,44 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF
-	// supports all address ranges for IP versions IPv4 and IPv6.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from IP addresses from 192.0.2.0 to 192.0.2.255, specify 192.0.2.0/24.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 1111:0000:0000:0000:0000:0000:0000:0111, specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
 	//
-	//    * To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure WAF to allow, block, or count requests that originated
 	//    from IP addresses 1111:0000:0000:0000:0000:0000:0000:0000 to 1111:0000:0000:0000:ffff:ffff:ffff:ffff,
 	//    specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
+	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -12248,10 +19206,10 @@ type UpdateIPSetInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -12266,9 +19224,10 @@ type UpdateIPSetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12282,12 +19241,20 @@ type UpdateIPSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetInput) GoString() string {
 	return s.String()
 }
@@ -12368,17 +19335,25 @@ func (s *UpdateIPSetInput) SetScope(v string) *UpdateIPSetInput {
 type UpdateIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns this token to your update
+	// A token used for optimistic locking. WAF returns this token to your update
 	// requests. You use NextLockToken in the same manner as you use LockToken.
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -12389,11 +19364,224 @@ func (s *UpdateIPSetOutput) SetNextLockToken(v string) *UpdateIPSetOutput {
 	return s
 }
 
+type UpdateManagedRuleSetVersionExpiryDateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that you want the version to expire.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	//
+	// ExpiryTimestamp is a required field
+	ExpiryTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	//
+	// LockToken is a required field
+	LockToken *string `min:"1" type:"string" required:"true"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The version that you want to remove from your list of offerings for the named
+	// managed rule group.
+	//
+	// VersionToExpire is a required field
+	VersionToExpire *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateManagedRuleSetVersionExpiryDateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateManagedRuleSetVersionExpiryDateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateManagedRuleSetVersionExpiryDateInput"}
+	if s.ExpiryTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExpiryTimestamp"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.LockToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("LockToken"))
+	}
+	if s.LockToken != nil && len(*s.LockToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LockToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VersionToExpire == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionToExpire"))
+	}
+	if s.VersionToExpire != nil && len(*s.VersionToExpire) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionToExpire", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetExpiryTimestamp(v time.Time) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetId(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.Id = &v
+	return s
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetLockToken(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.LockToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetName(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.Name = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetScope(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVersionToExpire sets the VersionToExpire field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetVersionToExpire(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.VersionToExpire = &v
+	return s
+}
+
+type UpdateManagedRuleSetVersionExpiryDateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The version that is set to expire.
+	ExpiringVersion *string `min:"1" type:"string"`
+
+	// The time that the version will expire.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	ExpiryTimestamp *time.Time `type:"timestamp"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	NextLockToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateManagedRuleSetVersionExpiryDateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateManagedRuleSetVersionExpiryDateOutput) GoString() string {
+	return s.String()
+}
+
+// SetExpiringVersion sets the ExpiringVersion field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateOutput) SetExpiringVersion(v string) *UpdateManagedRuleSetVersionExpiryDateOutput {
+	s.ExpiringVersion = &v
+	return s
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateOutput) SetExpiryTimestamp(v time.Time) *UpdateManagedRuleSetVersionExpiryDateOutput {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// SetNextLockToken sets the NextLockToken field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateOutput) SetNextLockToken(v string) *UpdateManagedRuleSetVersionExpiryDateOutput {
+	s.NextLockToken = &v
+	return s
+}
+
 type UpdateRegexPatternSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -12402,10 +19590,10 @@ type UpdateRegexPatternSetInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -12422,9 +19610,10 @@ type UpdateRegexPatternSetInput struct {
 	// RegularExpressionList is a required field
 	RegularExpressionList []*Regex `type:"list" required:"true"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12438,12 +19627,20 @@ type UpdateRegexPatternSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -12534,17 +19731,25 @@ func (s *UpdateRegexPatternSetInput) SetScope(v string) *UpdateRegexPatternSetIn
 type UpdateRegexPatternSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns this token to your update
+	// A token used for optimistic locking. WAF returns this token to your update
 	// requests. You use NextLockToken in the same manner as you use LockToken.
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -12558,8 +19763,21 @@ func (s *UpdateRegexPatternSetOutput) SetNextLockToken(v string) *UpdateRegexPat
 type UpdateRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the rule group, and then use them in the rules that you
+	// define in the rule group.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the rule group. This ID is returned in the responses
@@ -12569,10 +19787,10 @@ type UpdateRuleGroupInput struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -12588,14 +19806,15 @@ type UpdateRuleGroupInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Rule statements used to identify the web requests that you want to allow,
-	// block, or count. Each rule includes one top-level statement that AWS WAF
-	// uses to identify matching web requests, and parameters that govern how AWS
-	// WAF handles them.
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
 	Rules []*Rule `type:"list"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12614,12 +19833,20 @@ type UpdateRuleGroupInput struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -12627,6 +19854,9 @@ func (s UpdateRuleGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateRuleGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateRuleGroupInput"}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
@@ -12654,6 +19884,16 @@ func (s *UpdateRuleGroupInput) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
 			if v == nil {
@@ -12674,6 +19914,12 @@ func (s *UpdateRuleGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *UpdateRuleGroupInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *UpdateRuleGroupInput {
+	s.CustomResponseBodies = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -12721,17 +19967,25 @@ func (s *UpdateRuleGroupInput) SetVisibilityConfig(v *VisibilityConfig) *UpdateR
 type UpdateRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns this token to your update
+	// A token used for optimistic locking. WAF returns this token to your update
 	// requests. You use NextLockToken in the same manner as you use LockToken.
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -12745,26 +19999,49 @@ func (s *UpdateRuleGroupOutput) SetNextLockToken(v string) *UpdateRuleGroupOutpu
 type UpdateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
+	// Specifies how WAF should handle challenge evaluations for rules that don't
+	// have their own ChallengeConfig settings. If you don't specify this, WAF uses
+	// its default settings for ChallengeConfig.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the web ACL, and then use them in the rules and default
+	// actions that you define in the web ACL.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// The action to perform if none of the Rules contained in the WebACL match.
 	//
 	// DefaultAction is a required field
 	DefaultAction *DefaultAction `type:"structure" required:"true"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// The unique identifier for the Web ACL. This ID is returned in the responses
+	// The unique identifier for the web ACL. This ID is returned in the responses
 	// to create and list commands. You provide it to operations like update and
 	// delete.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
@@ -12773,21 +20050,22 @@ type UpdateWebACLInput struct {
 	// LockToken is a required field
 	LockToken *string `min:"1" type:"string" required:"true"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Rule statements used to identify the web requests that you want to allow,
-	// block, or count. Each rule includes one top-level statement that AWS WAF
-	// uses to identify matching web requests, and parameters that govern how AWS
-	// WAF handles them.
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
 	Rules []*Rule `type:"list"`
 
-	// Specifies whether this is for an AWS CloudFront distribution or for a regional
-	// application. A regional application can be an Application Load Balancer (ALB)
-	// or an API Gateway stage.
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon
+	// Cognito user pool.
 	//
 	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
 	// as follows:
@@ -12800,18 +20078,40 @@ type UpdateWebACLInput struct {
 	// Scope is a required field
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
+	// Specifies the domains that WAF should accept in a web request token. This
+	// enables the use of tokens across multiple protected websites. When WAF provides
+	// a token, it uses the domain of the Amazon Web Services resource that the
+	// web ACL is protecting. If you don't specify a list of token domains, WAF
+	// accepts tokens only for the domain of the protected resource. With a token
+	// domain list, WAF accepts the resource's host domain plus all domains in the
+	// token domain list, including their prefixed subdomains.
+	//
+	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
+	//
+	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// as token domains.
+	TokenDomains []*string `min:"1" type:"list"`
+
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -12819,6 +20119,9 @@ func (s UpdateWebACLInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateWebACLInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateWebACLInput"}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.DefaultAction == nil {
 		invalidParams.Add(request.NewErrParamRequired("DefaultAction"))
 	}
@@ -12846,8 +20149,36 @@ func (s *UpdateWebACLInput) Validate() error {
 	if s.Scope == nil {
 		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
+	if s.TokenDomains != nil && len(s.TokenDomains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenDomains", 1))
+	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ChallengeConfig != nil {
+		if err := s.ChallengeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ChallengeConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DefaultAction != nil {
+		if err := s.DefaultAction.Validate(); err != nil {
+			invalidParams.AddNested("DefaultAction", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
@@ -12869,6 +20200,24 @@ func (s *UpdateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *UpdateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *UpdateWebACLInput {
+	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *UpdateWebACLInput) SetChallengeConfig(v *ChallengeConfig) *UpdateWebACLInput {
+	s.ChallengeConfig = v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *UpdateWebACLInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *UpdateWebACLInput {
+	s.CustomResponseBodies = v
+	return s
 }
 
 // SetDefaultAction sets the DefaultAction field's value.
@@ -12913,6 +20262,12 @@ func (s *UpdateWebACLInput) SetScope(v string) *UpdateWebACLInput {
 	return s
 }
 
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *UpdateWebACLInput) SetTokenDomains(v []*string) *UpdateWebACLInput {
+	s.TokenDomains = v
+	return s
+}
+
 // SetVisibilityConfig sets the VisibilityConfig field's value.
 func (s *UpdateWebACLInput) SetVisibilityConfig(v *VisibilityConfig) *UpdateWebACLInput {
 	s.VisibilityConfig = v
@@ -12922,17 +20277,25 @@ func (s *UpdateWebACLInput) SetVisibilityConfig(v *VisibilityConfig) *UpdateWebA
 type UpdateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used for optimistic locking. AWS WAF returns this token to your update
+	// A token used for optimistic locking. WAF returns this token to your update
 	// requests. You use NextLockToken in the same manner as you use LockToken.
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -12943,67 +20306,192 @@ func (s *UpdateWebACLOutput) SetNextLockToken(v string) *UpdateWebACLOutput {
 	return s
 }
 
+// Inspect the path component of the URI of the web request. This is the part
+// of the web request that identifies a resource. For example, /images/daily-ad.jpg.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// This is used only in the FieldToMatch specification for some web request
+// component types.
 //
-// The path component of the URI of a web request. This is the part of a web
-// request that identifies a resource, for example, /images/daily-ad.jpg.
-//
-// This is used only to indicate the web request component for AWS WAF to inspect,
-// in the FieldToMatch specification.
+// JSON specification: "UriPath": {}
 type UriPath struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UriPath) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UriPath) GoString() string {
 	return s.String()
 }
 
+// Details about your login page username field, used in a ManagedRuleGroupConfig.
+type UsernameField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the username field. For example /form/username.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernameField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernameField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UsernameField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UsernameField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UsernameField) SetIdentifier(v string) *UsernameField {
+	s.Identifier = &v
+	return s
+}
+
+// A version of the named managed rule group, that the rule group's vendor publishes
+// for use by customers.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type VersionToPublish struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the vendor's rule group that's used in
+	// the published managed rule group version.
+	AssociatedRuleGroupArn *string `min:"20" type:"string"`
+
+	// The amount of time the vendor expects this version of the managed rule group
+	// to last, in days.
+	ForecastedLifetime *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersionToPublish) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersionToPublish) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VersionToPublish) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VersionToPublish"}
+	if s.AssociatedRuleGroupArn != nil && len(*s.AssociatedRuleGroupArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociatedRuleGroupArn", 20))
+	}
+	if s.ForecastedLifetime != nil && *s.ForecastedLifetime < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ForecastedLifetime", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedRuleGroupArn sets the AssociatedRuleGroupArn field's value.
+func (s *VersionToPublish) SetAssociatedRuleGroupArn(v string) *VersionToPublish {
+	s.AssociatedRuleGroupArn = &v
+	return s
+}
+
+// SetForecastedLifetime sets the ForecastedLifetime field's value.
+func (s *VersionToPublish) SetForecastedLifetime(v int64) *VersionToPublish {
+	s.ForecastedLifetime = &v
+	return s
+}
+
 // Defines and enables Amazon CloudWatch metrics and web request sample collection.
 type VisibilityConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A boolean indicating whether the associated resource sends metrics to CloudWatch.
-	// For the list of available metrics, see AWS WAF Metrics (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics).
+	// A boolean indicating whether the associated resource sends metrics to Amazon
+	// CloudWatch. For the list of available metrics, see WAF Metrics (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics).
 	//
 	// CloudWatchMetricsEnabled is a required field
 	CloudWatchMetricsEnabled *bool `type:"boolean" required:"true"`
 
-	// A name of the CloudWatch metric. The name can contain only alphanumeric characters
-	// (A-Z, a-z, 0-9), with length from one to 128 characters. It can't contain
-	// whitespace or metric names reserved for AWS WAF, for example "All" and "Default_Action."
-	// You can't change a MetricName after you create a VisibilityConfig.
+	// A name of the Amazon CloudWatch metric dimension. The name can contain only
+	// the characters: A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can
+	// be from one to 128 characters long. It can't contain whitespace or metric
+	// names that are reserved for WAF, for example All and Default_Action.
 	//
 	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
-	// A boolean indicating whether AWS WAF should store a sampling of the web requests
-	// that match the rules. You can view the sampled requests through the AWS WAF
-	// console.
+	// A boolean indicating whether WAF should store a sampling of the web requests
+	// that match the rules. You can view the sampled requests through the WAF console.
 	//
 	// SampledRequestsEnabled is a required field
 	SampledRequestsEnabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VisibilityConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VisibilityConfig) GoString() string {
 	return s.String()
 }
@@ -13048,7 +20536,7 @@ func (s *VisibilityConfig) SetSampledRequestsEnabled(v bool) *VisibilityConfig {
 	return s
 }
 
-// AWS WAF couldn’t perform the operation because your resource is being used
+// WAF couldn’t perform the operation because your resource is being used
 // by another resource or it’s associated with another resource.
 type WAFAssociatedItemException struct {
 	_            struct{}                  `type:"structure"`
@@ -13057,12 +20545,20 @@ type WAFAssociatedItemException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFAssociatedItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFAssociatedItemException) GoString() string {
 	return s.String()
 }
@@ -13105,7 +20601,82 @@ func (s *WAFAssociatedItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t perform the operation because the resource that you tried
+// The operation failed because you are inspecting the web request body, headers,
+// or cookies without specifying how to handle oversize components. Rules that
+// inspect the body must either provide an OversizeHandling configuration or
+// they must be preceded by a SizeConstraintStatement that blocks the body content
+// from being too large. Rules that inspect the headers or cookies must provide
+// an OversizeHandling configuration.
+//
+// Provide the handling configuration and retry your operation.
+//
+// Alternately, you can suppress this warning by adding the following tag to
+// the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
+// value:true).
+type WAFConfigurationWarningException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFConfigurationWarningException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFConfigurationWarningException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFConfigurationWarningException(v protocol.ResponseMetadata) error {
+	return &WAFConfigurationWarningException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFConfigurationWarningException) Code() string {
+	return "WAFConfigurationWarningException"
+}
+
+// Message returns the exception's message.
+func (s *WAFConfigurationWarningException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFConfigurationWarningException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFConfigurationWarningException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFConfigurationWarningException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFConfigurationWarningException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// WAF couldn’t perform the operation because the resource that you tried
 // to save is a duplicate of an existing one.
 type WAFDuplicateItemException struct {
 	_            struct{}                  `type:"structure"`
@@ -13114,12 +20685,20 @@ type WAFDuplicateItemException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFDuplicateItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFDuplicateItemException) GoString() string {
 	return s.String()
 }
@@ -13162,8 +20741,74 @@ func (s *WAFDuplicateItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Your request is valid, but AWS WAF couldn’t perform the operation because
-// of a system problem. Retry your request.
+// The operation failed because the specified version for the managed rule group
+// has expired. You can retrieve the available versions for the managed rule
+// group by calling ListAvailableManagedRuleGroupVersions.
+type WAFExpiredManagedRuleGroupVersionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFExpiredManagedRuleGroupVersionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFExpiredManagedRuleGroupVersionException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFExpiredManagedRuleGroupVersionException(v protocol.ResponseMetadata) error {
+	return &WAFExpiredManagedRuleGroupVersionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFExpiredManagedRuleGroupVersionException) Code() string {
+	return "WAFExpiredManagedRuleGroupVersionException"
+}
+
+// Message returns the exception's message.
+func (s *WAFExpiredManagedRuleGroupVersionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFExpiredManagedRuleGroupVersionException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFExpiredManagedRuleGroupVersionException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFExpiredManagedRuleGroupVersionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFExpiredManagedRuleGroupVersionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Your request is valid, but WAF couldn’t perform the operation because of
+// a system problem. Retry your request.
 type WAFInternalErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13171,12 +20816,20 @@ type WAFInternalErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInternalErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInternalErrorException) GoString() string {
 	return s.String()
 }
@@ -13227,12 +20880,20 @@ type WAFInvalidOperationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidOperationException) GoString() string {
 	return s.String()
 }
@@ -13275,38 +20936,49 @@ func (s *WAFInvalidOperationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The operation failed because AWS WAF didn't recognize a parameter in the
-// request. For example:
+// The operation failed because WAF didn't recognize a parameter in the request.
+// For example:
 //
-//    * You specified an invalid parameter name or value.
+//   - You specified a parameter name or value that isn't valid.
 //
-//    * Your nested statement isn't valid. You might have tried to nest a statement
-//    that can’t be nested.
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
 //
-//    * You tried to update a WebACL with a DefaultAction that isn't among the
-//    types available at DefaultAction.
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
 //
-//    * Your request references an ARN that is malformed, or corresponds to
-//    a resource with which a Web ACL cannot be associated.
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
 type WAFInvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The settings where the invalid parameter was found.
 	Field *string `type:"string" enum:"ParameterExceptionField"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
+	// The invalid parameter that resulted in the exception.
 	Parameter *string `min:"1" type:"string"`
 
+	// Additional information about the exception.
 	Reason *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -13353,17 +21025,18 @@ func (s *WAFInvalidParameterException) RequestID() string {
 //
 // The policy specifications must conform to the following:
 //
-//    * The policy must be composed using IAM Policy version 2012-10-17 or version
-//    2015-01-01.
+//   - The policy must be composed using IAM Policy version 2012-10-17 or version
+//     2015-01-01.
 //
-//    * The policy must include specifications for Effect, Action, and Principal.
+//   - The policy must include specifications for Effect, Action, and Principal.
 //
-//    * Effect must specify Allow.
+//   - Effect must specify Allow.
 //
-//    * Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups.
-//    AWS WAF rejects any extra actions or wildcard actions in the policy.
+//   - Action must specify wafv2:CreateWebACL, wafv2:UpdateWebACL, and wafv2:PutFirewallManagerRuleGroups
+//     and may optionally specify wafv2:GetRuleGroup. WAF rejects any extra actions
+//     or wildcard actions in the policy.
 //
-//    * The policy must not include a Resource parameter.
+//   - The policy must not include a Resource parameter.
 //
 // For more information, see IAM Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 type WAFInvalidPermissionPolicyException struct {
@@ -13373,12 +21046,20 @@ type WAFInvalidPermissionPolicyException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidPermissionPolicyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidPermissionPolicyException) GoString() string {
 	return s.String()
 }
@@ -13421,7 +21102,7 @@ func (s *WAFInvalidPermissionPolicyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t perform the operation because the resource that you requested
+// WAF couldn’t perform the operation because the resource that you requested
 // isn’t valid. Check the resource, and try again.
 type WAFInvalidResourceException struct {
 	_            struct{}                  `type:"structure"`
@@ -13430,12 +21111,20 @@ type WAFInvalidResourceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidResourceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidResourceException) GoString() string {
 	return s.String()
 }
@@ -13478,10 +21167,10 @@ func (s *WAFInvalidResourceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t perform the operation because you exceeded your resource
-// limit. For example, the maximum number of WebACL objects that you can create
-// for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
-// in the AWS WAF Developer Guide.
+// WAF couldn’t perform the operation because you exceeded your resource limit.
+// For example, the maximum number of WebACL objects that you can create for
+// an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+// in the WAF Developer Guide.
 type WAFLimitsExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13489,12 +21178,20 @@ type WAFLimitsExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFLimitsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFLimitsExceededException) GoString() string {
 	return s.String()
 }
@@ -13537,8 +21234,77 @@ func (s *WAFLimitsExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t perform the operation because your resource doesn’t
-// exist.
+// The operation failed because you don't have the permissions that your logging
+// configuration requires. For information, see Logging web ACL traffic information
+// (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+// WAF Developer Guide.
+type WAFLogDestinationPermissionIssueException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFLogDestinationPermissionIssueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFLogDestinationPermissionIssueException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFLogDestinationPermissionIssueException(v protocol.ResponseMetadata) error {
+	return &WAFLogDestinationPermissionIssueException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFLogDestinationPermissionIssueException) Code() string {
+	return "WAFLogDestinationPermissionIssueException"
+}
+
+// Message returns the exception's message.
+func (s *WAFLogDestinationPermissionIssueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFLogDestinationPermissionIssueException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFLogDestinationPermissionIssueException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFLogDestinationPermissionIssueException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFLogDestinationPermissionIssueException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// WAF couldn’t perform the operation because your resource doesn't exist.
+// If you've just created a resource that you're using in this operation, you
+// might just need to wait a few minutes. It can take from a few seconds to
+// a number of minutes for changes to propagate.
 type WAFNonexistentItemException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13546,12 +21312,20 @@ type WAFNonexistentItemException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFNonexistentItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFNonexistentItemException) GoString() string {
 	return s.String()
 }
@@ -13594,10 +21368,9 @@ func (s *WAFNonexistentItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t save your changes because you tried to update or delete
-// a resource that has changed since you last retrieved it. Get the resource
-// again, make any changes you need to make to the new copy, and retry your
-// operation.
+// WAF couldn’t save your changes because you tried to update or delete a
+// resource that has changed since you last retrieved it. Get the resource again,
+// make any changes you need to make to the new copy, and retry your operation.
 type WAFOptimisticLockException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13605,12 +21378,20 @@ type WAFOptimisticLockException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFOptimisticLockException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFOptimisticLockException) GoString() string {
 	return s.String()
 }
@@ -13653,13 +21434,13 @@ func (s *WAFOptimisticLockException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF is not able to access the service linked role. This can be caused
-// by a previous PutLoggingConfiguration request, which can lock the service
-// linked role for about 20 seconds. Please try your request again. The service
-// linked role can also be locked by a previous DeleteServiceLinkedRole request,
-// which can lock the role for 15 minutes or more. If you recently made a call
-// to DeleteServiceLinkedRole, wait at least 15 minutes and try the request
-// again. If you receive this same exception again, you will have to wait additional
+// WAF is not able to access the service linked role. This can be caused by
+// a previous PutLoggingConfiguration request, which can lock the service linked
+// role for about 20 seconds. Please try your request again. The service linked
+// role can also be locked by a previous DeleteServiceLinkedRole request, which
+// can lock the role for 15 minutes or more. If you recently made a call to
+// DeleteServiceLinkedRole, wait at least 15 minutes and try the request again.
+// If you receive this same exception again, you will have to wait additional
 // time until the role is unlocked.
 type WAFServiceLinkedRoleErrorException struct {
 	_            struct{}                  `type:"structure"`
@@ -13668,12 +21449,20 @@ type WAFServiceLinkedRoleErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFServiceLinkedRoleErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFServiceLinkedRoleErrorException) GoString() string {
 	return s.String()
 }
@@ -13716,6 +21505,8 @@ func (s *WAFServiceLinkedRoleErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// You tried to use a managed rule group that's available by subscription, but
+// you aren't subscribed to it yet.
 type WAFSubscriptionNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13723,12 +21514,20 @@ type WAFSubscriptionNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFSubscriptionNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFSubscriptionNotFoundException) GoString() string {
 	return s.String()
 }
@@ -13779,12 +21578,20 @@ type WAFTagOperationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationException) GoString() string {
 	return s.String()
 }
@@ -13827,8 +21634,8 @@ func (s *WAFTagOperationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t perform your tagging operation because of an internal
-// error. Retry your request.
+// WAF couldn’t perform your tagging operation because of an internal error.
+// Retry your request.
 type WAFTagOperationInternalErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13836,12 +21643,20 @@ type WAFTagOperationInternalErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationInternalErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationInternalErrorException) GoString() string {
 	return s.String()
 }
@@ -13884,7 +21699,11 @@ func (s *WAFTagOperationInternalErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
+// WAF couldn’t retrieve a resource that you specified for this operation.
+// If you've just created a resource that you're using in this operation, you
+// might just need to wait a few minutes. It can take from a few seconds to
+// a number of minutes for changes to propagate. Verify the resources that you
+// are specifying in your request parameters and then retry the operation.
 type WAFUnavailableEntityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13892,12 +21711,20 @@ type WAFUnavailableEntityException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFUnavailableEntityException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFUnavailableEntityException) GoString() string {
 	return s.String()
 }
@@ -13940,23 +21767,19 @@ func (s *WAFUnavailableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// A Web ACL defines a collection of rules to use to inspect and control web
+// A web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has an action defined (allow, block, or count) for requests
-// that match the statement of the rule. In the Web ACL, you assign a default
+// that match the statement of the rule. In the web ACL, you assign a default
 // action to take (allow, block) for any request that does not match any of
-// the rules. The rules in a Web ACL can be a combination of the types Rule,
-// RuleGroup, and managed rule group. You can associate a Web ACL with one or
-// more AWS resources to protect. The resources can be Amazon CloudFront, an
-// Amazon API Gateway API, or an Application Load Balancer.
+// the rules. The rules in a web ACL can be a combination of the types Rule,
+// RuleGroup, and managed rule group. You can associate a web ACL with one or
+// more Amazon Web Services resources to protect. The resources can be an Amazon
+// CloudFront distribution, an Amazon API Gateway REST API, an Application Load
+// Balancer, an AppSync GraphQL API, or an Amazon Cognito user pool.
 type WebACL struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Web ACL that you want to associate
+	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
 	// with the resource.
 	//
 	// ARN is a required field
@@ -13964,22 +21787,45 @@ type WebACL struct {
 
 	// The web ACL capacity units (WCUs) currently being used by this web ACL.
 	//
-	// AWS WAF uses WCUs to calculate and control the operating resources that are
-	// used to run your rules, rule groups, and web ACLs. AWS WAF calculates capacity
-	// differently for each rule type, to reflect the relative cost of each rule.
-	// Simple rules that cost little to run use fewer WCUs than more complex rules
-	// that use more processing power. Rule group capacity is fixed at creation,
-	// which helps users plan their web ACL WCU usage when they use a rule group.
-	// The WCU limit for web ACLs is 1,500.
+	// WAF uses WCUs to calculate and control the operating resources that are used
+	// to run your rules, rule groups, and web ACLs. WAF calculates capacity differently
+	// for each rule type, to reflect the relative cost of each rule. Simple rules
+	// that cost little to run use fewer WCUs than more complex rules that use more
+	// processing power. Rule group capacity is fixed at creation, which helps users
+	// plan their web ACL WCU usage when they use a rule group. The WCU limit for
+	// web ACLs is 1,500.
 	Capacity *int64 `type:"long"`
+
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
+	// Specifies how WAF should handle challenge evaluations for rules that don't
+	// have their own ChallengeConfig settings. If you don't specify this, WAF uses
+	// its default settings for ChallengeConfig.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the web ACL, and then use them in the rules and default
+	// actions that you define in the web ACL.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
 
 	// The action to perform if none of the Rules contained in the WebACL match.
 	//
 	// DefaultAction is a required field
 	DefaultAction *DefaultAction `type:"structure" required:"true"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the WebACL. This ID is returned in the responses
@@ -13989,19 +21835,32 @@ type WebACL struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// Indicates whether this web ACL is managed by AWS Firewall Manager. If true,
-	// then only AWS Firewall Manager can delete the web ACL or any Firewall Manager
-	// rule groups in the web ACL.
+	// The label namespace prefix for this web ACL. All labels added by rules in
+	// this web ACL have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a web ACL is the following:
+	//    awswaf:<account ID>:webacl:<web ACL name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
+	// Indicates whether this web ACL is managed by Firewall Manager. If true, then
+	// only Firewall Manager can delete the web ACL or any Firewall Manager rule
+	// groups in the web ACL.
 	ManagedByFirewallManager *bool `type:"boolean"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The last set of rules for AWS WAF to process in the web ACL. This is defined
-	// in an AWS Firewall Manager WAF policy and contains only rule group references.
+	// The last set of rules for WAF to process in the web ACL. This is defined
+	// in an Firewall Manager WAF policy and contains only rule group references.
 	// You can't alter these. Any rules and rule groups that you define for the
 	// web ACL are prioritized before these.
 	//
@@ -14011,8 +21870,8 @@ type WebACL struct {
 	// groups, to determine their relative processing order.
 	PostProcessFirewallManagerRuleGroups []*FirewallManagerRuleGroup `type:"list"`
 
-	// The first set of rules for AWS WAF to process in the web ACL. This is defined
-	// in an AWS Firewall Manager WAF policy and contains only rule group references.
+	// The first set of rules for WAF to process in the web ACL. This is defined
+	// in an Firewall Manager WAF policy and contains only rule group references.
 	// You can't alter these. Any rules and rule groups that you define for the
 	// web ACL are prioritized after these.
 	//
@@ -14023,10 +21882,19 @@ type WebACL struct {
 	PreProcessFirewallManagerRuleGroups []*FirewallManagerRuleGroup `type:"list"`
 
 	// The Rule statements used to identify the web requests that you want to allow,
-	// block, or count. Each rule includes one top-level statement that AWS WAF
-	// uses to identify matching web requests, and parameters that govern how AWS
-	// WAF handles them.
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
 	Rules []*Rule `type:"list"`
+
+	// Specifies the domains that WAF should accept in a web request token. This
+	// enables the use of tokens across multiple protected websites. When WAF provides
+	// a token, it uses the domain of the Amazon Web Services resource that the
+	// web ACL is protecting. If you don't specify a list of token domains, WAF
+	// accepts tokens only for the domain of the protected resource. With a token
+	// domain list, WAF accepts the resource's host domain plus all domains in the
+	// token domain list, including their prefixed subdomains.
+	TokenDomains []*string `min:"1" type:"list"`
 
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
@@ -14034,12 +21902,20 @@ type WebACL struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACL) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACL) GoString() string {
 	return s.String()
 }
@@ -14053,6 +21929,24 @@ func (s *WebACL) SetARN(v string) *WebACL {
 // SetCapacity sets the Capacity field's value.
 func (s *WebACL) SetCapacity(v int64) *WebACL {
 	s.Capacity = &v
+	return s
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *WebACL) SetCaptchaConfig(v *CaptchaConfig) *WebACL {
+	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *WebACL) SetChallengeConfig(v *ChallengeConfig) *WebACL {
+	s.ChallengeConfig = v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *WebACL) SetCustomResponseBodies(v map[string]*CustomResponseBody) *WebACL {
+	s.CustomResponseBodies = v
 	return s
 }
 
@@ -14071,6 +21965,12 @@ func (s *WebACL) SetDescription(v string) *WebACL {
 // SetId sets the Id field's value.
 func (s *WebACL) SetId(v string) *WebACL {
 	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *WebACL) SetLabelNamespace(v string) *WebACL {
+	s.LabelNamespace = &v
 	return s
 }
 
@@ -14104,17 +22004,18 @@ func (s *WebACL) SetRules(v []*Rule) *WebACL {
 	return s
 }
 
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *WebACL) SetTokenDomains(v []*string) *WebACL {
+	s.TokenDomains = v
+	return s
+}
+
 // SetVisibilityConfig sets the VisibilityConfig field's value.
 func (s *WebACL) SetVisibilityConfig(v *VisibilityConfig) *WebACL {
 	s.VisibilityConfig = v
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a WebACL, returned by operations like create
 // and list. This provides information like the ID, that you can use to retrieve
 // and manage a WebACL, and the ARN, that you provide to operations like AssociateWebACL.
@@ -14124,36 +22025,43 @@ type WebACLSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// The unique identifier for the Web ACL. This ID is returned in the responses
+	// The unique identifier for the web ACL. This ID is returned in the responses
 	// to create and list commands. You provide it to operations like update and
 	// delete.
 	Id *string `min:"1" type:"string"`
 
-	// A token used for optimistic locking. AWS WAF returns a token to your get
-	// and list requests, to mark the state of the entity at the time of the request.
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
-	// token to operations like update and delete. AWS WAF uses the token to ensure
+	// token to operations like update and delete. WAF uses the token to ensure
 	// that no changes have been made to the entity since you last retrieved it.
 	// If a change has been made, the update fails with a WAFOptimisticLockException.
 	// If this happens, perform another get, and use the new token returned by that
 	// operation.
 	LockToken *string `min:"1" type:"string"`
 
-	// The name of the Web ACL. You cannot change the name of a Web ACL after you
+	// The name of the web ACL. You cannot change the name of a web ACL after you
 	// create it.
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACLSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACLSummary) GoString() string {
 	return s.String()
 }
@@ -14188,30 +22096,20 @@ func (s *WebACLSummary) SetName(v string) *WebACLSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
-// A rule statement that defines a cross-site scripting (XSS) match search for
-// AWS WAF to apply to web requests. XSS attacks are those where the attacker
-// uses vulnerabilities in a benign website as a vehicle to inject malicious
-// client-site scripts into other legitimate web browsers. The XSS match statement
-// provides the location in requests that you want AWS WAF to search and text
-// transformations to use on the search area before AWS WAF searches for character
-// sequences that are likely to be malicious strings.
+// A rule statement that inspects for cross-site scripting (XSS) attacks. In
+// XSS attacks, the attacker uses vulnerabilities in a benign website as a vehicle
+// to inject malicious client-site scripts into other legitimate web browsers.
 type XssMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The part of a web request that you want AWS WAF to inspect. For more information,
-	// see FieldToMatch.
+	// The part of the web request that you want WAF to inspect.
 	//
 	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
 	// use in web requests in an effort to bypass detection. If you specify one
-	// or more transformations in a rule statement, AWS WAF performs all transformations
+	// or more transformations in a rule statement, WAF performs all transformations
 	// on the content of the request component identified by FieldToMatch, starting
 	// from the lowest priority setting, before inspecting the content for a match.
 	//
@@ -14219,12 +22117,20 @@ type XssMatchStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s XssMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s XssMatchStatement) GoString() string {
 	return s.String()
 }
@@ -14276,6 +22182,58 @@ func (s *XssMatchStatement) SetTextTransformations(v []*TextTransformation) *Xss
 }
 
 const (
+	// ActionValueAllow is a ActionValue enum value
+	ActionValueAllow = "ALLOW"
+
+	// ActionValueBlock is a ActionValue enum value
+	ActionValueBlock = "BLOCK"
+
+	// ActionValueCount is a ActionValue enum value
+	ActionValueCount = "COUNT"
+
+	// ActionValueCaptcha is a ActionValue enum value
+	ActionValueCaptcha = "CAPTCHA"
+
+	// ActionValueChallenge is a ActionValue enum value
+	ActionValueChallenge = "CHALLENGE"
+
+	// ActionValueExcludedAsCount is a ActionValue enum value
+	ActionValueExcludedAsCount = "EXCLUDED_AS_COUNT"
+)
+
+// ActionValue_Values returns all elements of the ActionValue enum
+func ActionValue_Values() []string {
+	return []string{
+		ActionValueAllow,
+		ActionValueBlock,
+		ActionValueCount,
+		ActionValueCaptcha,
+		ActionValueChallenge,
+		ActionValueExcludedAsCount,
+	}
+}
+
+const (
+	// BodyParsingFallbackBehaviorMatch is a BodyParsingFallbackBehavior enum value
+	BodyParsingFallbackBehaviorMatch = "MATCH"
+
+	// BodyParsingFallbackBehaviorNoMatch is a BodyParsingFallbackBehavior enum value
+	BodyParsingFallbackBehaviorNoMatch = "NO_MATCH"
+
+	// BodyParsingFallbackBehaviorEvaluateAsString is a BodyParsingFallbackBehavior enum value
+	BodyParsingFallbackBehaviorEvaluateAsString = "EVALUATE_AS_STRING"
+)
+
+// BodyParsingFallbackBehavior_Values returns all elements of the BodyParsingFallbackBehavior enum
+func BodyParsingFallbackBehavior_Values() []string {
+	return []string{
+		BodyParsingFallbackBehaviorMatch,
+		BodyParsingFallbackBehaviorNoMatch,
+		BodyParsingFallbackBehaviorEvaluateAsString,
+	}
+}
+
+const (
 	// ComparisonOperatorEq is a ComparisonOperator enum value
 	ComparisonOperatorEq = "EQ"
 
@@ -14294,6 +22252,18 @@ const (
 	// ComparisonOperatorGt is a ComparisonOperator enum value
 	ComparisonOperatorGt = "GT"
 )
+
+// ComparisonOperator_Values returns all elements of the ComparisonOperator enum
+func ComparisonOperator_Values() []string {
+	return []string{
+		ComparisonOperatorEq,
+		ComparisonOperatorNe,
+		ComparisonOperatorLe,
+		ComparisonOperatorLt,
+		ComparisonOperatorGe,
+		ComparisonOperatorGt,
+	}
+}
 
 const (
 	// CountryCodeAf is a CountryCode enum value
@@ -15042,7 +23012,358 @@ const (
 
 	// CountryCodeZw is a CountryCode enum value
 	CountryCodeZw = "ZW"
+
+	// CountryCodeXk is a CountryCode enum value
+	CountryCodeXk = "XK"
 )
+
+// CountryCode_Values returns all elements of the CountryCode enum
+func CountryCode_Values() []string {
+	return []string{
+		CountryCodeAf,
+		CountryCodeAx,
+		CountryCodeAl,
+		CountryCodeDz,
+		CountryCodeAs,
+		CountryCodeAd,
+		CountryCodeAo,
+		CountryCodeAi,
+		CountryCodeAq,
+		CountryCodeAg,
+		CountryCodeAr,
+		CountryCodeAm,
+		CountryCodeAw,
+		CountryCodeAu,
+		CountryCodeAt,
+		CountryCodeAz,
+		CountryCodeBs,
+		CountryCodeBh,
+		CountryCodeBd,
+		CountryCodeBb,
+		CountryCodeBy,
+		CountryCodeBe,
+		CountryCodeBz,
+		CountryCodeBj,
+		CountryCodeBm,
+		CountryCodeBt,
+		CountryCodeBo,
+		CountryCodeBq,
+		CountryCodeBa,
+		CountryCodeBw,
+		CountryCodeBv,
+		CountryCodeBr,
+		CountryCodeIo,
+		CountryCodeBn,
+		CountryCodeBg,
+		CountryCodeBf,
+		CountryCodeBi,
+		CountryCodeKh,
+		CountryCodeCm,
+		CountryCodeCa,
+		CountryCodeCv,
+		CountryCodeKy,
+		CountryCodeCf,
+		CountryCodeTd,
+		CountryCodeCl,
+		CountryCodeCn,
+		CountryCodeCx,
+		CountryCodeCc,
+		CountryCodeCo,
+		CountryCodeKm,
+		CountryCodeCg,
+		CountryCodeCd,
+		CountryCodeCk,
+		CountryCodeCr,
+		CountryCodeCi,
+		CountryCodeHr,
+		CountryCodeCu,
+		CountryCodeCw,
+		CountryCodeCy,
+		CountryCodeCz,
+		CountryCodeDk,
+		CountryCodeDj,
+		CountryCodeDm,
+		CountryCodeDo,
+		CountryCodeEc,
+		CountryCodeEg,
+		CountryCodeSv,
+		CountryCodeGq,
+		CountryCodeEr,
+		CountryCodeEe,
+		CountryCodeEt,
+		CountryCodeFk,
+		CountryCodeFo,
+		CountryCodeFj,
+		CountryCodeFi,
+		CountryCodeFr,
+		CountryCodeGf,
+		CountryCodePf,
+		CountryCodeTf,
+		CountryCodeGa,
+		CountryCodeGm,
+		CountryCodeGe,
+		CountryCodeDe,
+		CountryCodeGh,
+		CountryCodeGi,
+		CountryCodeGr,
+		CountryCodeGl,
+		CountryCodeGd,
+		CountryCodeGp,
+		CountryCodeGu,
+		CountryCodeGt,
+		CountryCodeGg,
+		CountryCodeGn,
+		CountryCodeGw,
+		CountryCodeGy,
+		CountryCodeHt,
+		CountryCodeHm,
+		CountryCodeVa,
+		CountryCodeHn,
+		CountryCodeHk,
+		CountryCodeHu,
+		CountryCodeIs,
+		CountryCodeIn,
+		CountryCodeId,
+		CountryCodeIr,
+		CountryCodeIq,
+		CountryCodeIe,
+		CountryCodeIm,
+		CountryCodeIl,
+		CountryCodeIt,
+		CountryCodeJm,
+		CountryCodeJp,
+		CountryCodeJe,
+		CountryCodeJo,
+		CountryCodeKz,
+		CountryCodeKe,
+		CountryCodeKi,
+		CountryCodeKp,
+		CountryCodeKr,
+		CountryCodeKw,
+		CountryCodeKg,
+		CountryCodeLa,
+		CountryCodeLv,
+		CountryCodeLb,
+		CountryCodeLs,
+		CountryCodeLr,
+		CountryCodeLy,
+		CountryCodeLi,
+		CountryCodeLt,
+		CountryCodeLu,
+		CountryCodeMo,
+		CountryCodeMk,
+		CountryCodeMg,
+		CountryCodeMw,
+		CountryCodeMy,
+		CountryCodeMv,
+		CountryCodeMl,
+		CountryCodeMt,
+		CountryCodeMh,
+		CountryCodeMq,
+		CountryCodeMr,
+		CountryCodeMu,
+		CountryCodeYt,
+		CountryCodeMx,
+		CountryCodeFm,
+		CountryCodeMd,
+		CountryCodeMc,
+		CountryCodeMn,
+		CountryCodeMe,
+		CountryCodeMs,
+		CountryCodeMa,
+		CountryCodeMz,
+		CountryCodeMm,
+		CountryCodeNa,
+		CountryCodeNr,
+		CountryCodeNp,
+		CountryCodeNl,
+		CountryCodeNc,
+		CountryCodeNz,
+		CountryCodeNi,
+		CountryCodeNe,
+		CountryCodeNg,
+		CountryCodeNu,
+		CountryCodeNf,
+		CountryCodeMp,
+		CountryCodeNo,
+		CountryCodeOm,
+		CountryCodePk,
+		CountryCodePw,
+		CountryCodePs,
+		CountryCodePa,
+		CountryCodePg,
+		CountryCodePy,
+		CountryCodePe,
+		CountryCodePh,
+		CountryCodePn,
+		CountryCodePl,
+		CountryCodePt,
+		CountryCodePr,
+		CountryCodeQa,
+		CountryCodeRe,
+		CountryCodeRo,
+		CountryCodeRu,
+		CountryCodeRw,
+		CountryCodeBl,
+		CountryCodeSh,
+		CountryCodeKn,
+		CountryCodeLc,
+		CountryCodeMf,
+		CountryCodePm,
+		CountryCodeVc,
+		CountryCodeWs,
+		CountryCodeSm,
+		CountryCodeSt,
+		CountryCodeSa,
+		CountryCodeSn,
+		CountryCodeRs,
+		CountryCodeSc,
+		CountryCodeSl,
+		CountryCodeSg,
+		CountryCodeSx,
+		CountryCodeSk,
+		CountryCodeSi,
+		CountryCodeSb,
+		CountryCodeSo,
+		CountryCodeZa,
+		CountryCodeGs,
+		CountryCodeSs,
+		CountryCodeEs,
+		CountryCodeLk,
+		CountryCodeSd,
+		CountryCodeSr,
+		CountryCodeSj,
+		CountryCodeSz,
+		CountryCodeSe,
+		CountryCodeCh,
+		CountryCodeSy,
+		CountryCodeTw,
+		CountryCodeTj,
+		CountryCodeTz,
+		CountryCodeTh,
+		CountryCodeTl,
+		CountryCodeTg,
+		CountryCodeTk,
+		CountryCodeTo,
+		CountryCodeTt,
+		CountryCodeTn,
+		CountryCodeTr,
+		CountryCodeTm,
+		CountryCodeTc,
+		CountryCodeTv,
+		CountryCodeUg,
+		CountryCodeUa,
+		CountryCodeAe,
+		CountryCodeGb,
+		CountryCodeUs,
+		CountryCodeUm,
+		CountryCodeUy,
+		CountryCodeUz,
+		CountryCodeVu,
+		CountryCodeVe,
+		CountryCodeVn,
+		CountryCodeVg,
+		CountryCodeVi,
+		CountryCodeWf,
+		CountryCodeEh,
+		CountryCodeYe,
+		CountryCodeZm,
+		CountryCodeZw,
+		CountryCodeXk,
+	}
+}
+
+const (
+	// FailureReasonTokenMissing is a FailureReason enum value
+	FailureReasonTokenMissing = "TOKEN_MISSING"
+
+	// FailureReasonTokenExpired is a FailureReason enum value
+	FailureReasonTokenExpired = "TOKEN_EXPIRED"
+
+	// FailureReasonTokenInvalid is a FailureReason enum value
+	FailureReasonTokenInvalid = "TOKEN_INVALID"
+
+	// FailureReasonTokenDomainMismatch is a FailureReason enum value
+	FailureReasonTokenDomainMismatch = "TOKEN_DOMAIN_MISMATCH"
+)
+
+// FailureReason_Values returns all elements of the FailureReason enum
+func FailureReason_Values() []string {
+	return []string{
+		FailureReasonTokenMissing,
+		FailureReasonTokenExpired,
+		FailureReasonTokenInvalid,
+		FailureReasonTokenDomainMismatch,
+	}
+}
+
+const (
+	// FallbackBehaviorMatch is a FallbackBehavior enum value
+	FallbackBehaviorMatch = "MATCH"
+
+	// FallbackBehaviorNoMatch is a FallbackBehavior enum value
+	FallbackBehaviorNoMatch = "NO_MATCH"
+)
+
+// FallbackBehavior_Values returns all elements of the FallbackBehavior enum
+func FallbackBehavior_Values() []string {
+	return []string{
+		FallbackBehaviorMatch,
+		FallbackBehaviorNoMatch,
+	}
+}
+
+const (
+	// FilterBehaviorKeep is a FilterBehavior enum value
+	FilterBehaviorKeep = "KEEP"
+
+	// FilterBehaviorDrop is a FilterBehavior enum value
+	FilterBehaviorDrop = "DROP"
+)
+
+// FilterBehavior_Values returns all elements of the FilterBehavior enum
+func FilterBehavior_Values() []string {
+	return []string{
+		FilterBehaviorKeep,
+		FilterBehaviorDrop,
+	}
+}
+
+const (
+	// FilterRequirementMeetsAll is a FilterRequirement enum value
+	FilterRequirementMeetsAll = "MEETS_ALL"
+
+	// FilterRequirementMeetsAny is a FilterRequirement enum value
+	FilterRequirementMeetsAny = "MEETS_ANY"
+)
+
+// FilterRequirement_Values returns all elements of the FilterRequirement enum
+func FilterRequirement_Values() []string {
+	return []string{
+		FilterRequirementMeetsAll,
+		FilterRequirementMeetsAny,
+	}
+}
+
+const (
+	// ForwardedIPPositionFirst is a ForwardedIPPosition enum value
+	ForwardedIPPositionFirst = "FIRST"
+
+	// ForwardedIPPositionLast is a ForwardedIPPosition enum value
+	ForwardedIPPositionLast = "LAST"
+
+	// ForwardedIPPositionAny is a ForwardedIPPosition enum value
+	ForwardedIPPositionAny = "ANY"
+)
+
+// ForwardedIPPosition_Values returns all elements of the ForwardedIPPosition enum
+func ForwardedIPPosition_Values() []string {
+	return []string{
+		ForwardedIPPositionFirst,
+		ForwardedIPPositionLast,
+		ForwardedIPPositionAny,
+	}
+}
 
 const (
 	// IPAddressVersionIpv4 is a IPAddressVersion enum value
@@ -15051,6 +23372,106 @@ const (
 	// IPAddressVersionIpv6 is a IPAddressVersion enum value
 	IPAddressVersionIpv6 = "IPV6"
 )
+
+// IPAddressVersion_Values returns all elements of the IPAddressVersion enum
+func IPAddressVersion_Values() []string {
+	return []string{
+		IPAddressVersionIpv4,
+		IPAddressVersionIpv6,
+	}
+}
+
+const (
+	// InspectionLevelCommon is a InspectionLevel enum value
+	InspectionLevelCommon = "COMMON"
+
+	// InspectionLevelTargeted is a InspectionLevel enum value
+	InspectionLevelTargeted = "TARGETED"
+)
+
+// InspectionLevel_Values returns all elements of the InspectionLevel enum
+func InspectionLevel_Values() []string {
+	return []string{
+		InspectionLevelCommon,
+		InspectionLevelTargeted,
+	}
+}
+
+const (
+	// JsonMatchScopeAll is a JsonMatchScope enum value
+	JsonMatchScopeAll = "ALL"
+
+	// JsonMatchScopeKey is a JsonMatchScope enum value
+	JsonMatchScopeKey = "KEY"
+
+	// JsonMatchScopeValue is a JsonMatchScope enum value
+	JsonMatchScopeValue = "VALUE"
+)
+
+// JsonMatchScope_Values returns all elements of the JsonMatchScope enum
+func JsonMatchScope_Values() []string {
+	return []string{
+		JsonMatchScopeAll,
+		JsonMatchScopeKey,
+		JsonMatchScopeValue,
+	}
+}
+
+const (
+	// LabelMatchScopeLabel is a LabelMatchScope enum value
+	LabelMatchScopeLabel = "LABEL"
+
+	// LabelMatchScopeNamespace is a LabelMatchScope enum value
+	LabelMatchScopeNamespace = "NAMESPACE"
+)
+
+// LabelMatchScope_Values returns all elements of the LabelMatchScope enum
+func LabelMatchScope_Values() []string {
+	return []string{
+		LabelMatchScopeLabel,
+		LabelMatchScopeNamespace,
+	}
+}
+
+const (
+	// MapMatchScopeAll is a MapMatchScope enum value
+	MapMatchScopeAll = "ALL"
+
+	// MapMatchScopeKey is a MapMatchScope enum value
+	MapMatchScopeKey = "KEY"
+
+	// MapMatchScopeValue is a MapMatchScope enum value
+	MapMatchScopeValue = "VALUE"
+)
+
+// MapMatchScope_Values returns all elements of the MapMatchScope enum
+func MapMatchScope_Values() []string {
+	return []string{
+		MapMatchScopeAll,
+		MapMatchScopeKey,
+		MapMatchScopeValue,
+	}
+}
+
+const (
+	// OversizeHandlingContinue is a OversizeHandling enum value
+	OversizeHandlingContinue = "CONTINUE"
+
+	// OversizeHandlingMatch is a OversizeHandling enum value
+	OversizeHandlingMatch = "MATCH"
+
+	// OversizeHandlingNoMatch is a OversizeHandling enum value
+	OversizeHandlingNoMatch = "NO_MATCH"
+)
+
+// OversizeHandling_Values returns all elements of the OversizeHandling enum
+func OversizeHandling_Values() []string {
+	return []string{
+		OversizeHandlingContinue,
+		OversizeHandlingMatch,
+		OversizeHandlingNoMatch,
+	}
+}
 
 const (
 	// ParameterExceptionFieldWebAcl is a ParameterExceptionField enum value
@@ -15106,6 +23527,9 @@ const (
 
 	// ParameterExceptionFieldManagedRuleSetStatement is a ParameterExceptionField enum value
 	ParameterExceptionFieldManagedRuleSetStatement = "MANAGED_RULE_SET_STATEMENT"
+
+	// ParameterExceptionFieldLabelMatchStatement is a ParameterExceptionField enum value
+	ParameterExceptionFieldLabelMatchStatement = "LABEL_MATCH_STATEMENT"
 
 	// ParameterExceptionFieldAndStatement is a ParameterExceptionField enum value
 	ParameterExceptionFieldAndStatement = "AND_STATEMENT"
@@ -15166,7 +23590,188 @@ const (
 
 	// ParameterExceptionFieldFirewallManagerStatement is a ParameterExceptionField enum value
 	ParameterExceptionFieldFirewallManagerStatement = "FIREWALL_MANAGER_STATEMENT"
+
+	// ParameterExceptionFieldFallbackBehavior is a ParameterExceptionField enum value
+	ParameterExceptionFieldFallbackBehavior = "FALLBACK_BEHAVIOR"
+
+	// ParameterExceptionFieldPosition is a ParameterExceptionField enum value
+	ParameterExceptionFieldPosition = "POSITION"
+
+	// ParameterExceptionFieldForwardedIpConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldForwardedIpConfig = "FORWARDED_IP_CONFIG"
+
+	// ParameterExceptionFieldIpSetForwardedIpConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldIpSetForwardedIpConfig = "IP_SET_FORWARDED_IP_CONFIG"
+
+	// ParameterExceptionFieldHeaderName is a ParameterExceptionField enum value
+	ParameterExceptionFieldHeaderName = "HEADER_NAME"
+
+	// ParameterExceptionFieldCustomRequestHandling is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomRequestHandling = "CUSTOM_REQUEST_HANDLING"
+
+	// ParameterExceptionFieldResponseContentType is a ParameterExceptionField enum value
+	ParameterExceptionFieldResponseContentType = "RESPONSE_CONTENT_TYPE"
+
+	// ParameterExceptionFieldCustomResponse is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomResponse = "CUSTOM_RESPONSE"
+
+	// ParameterExceptionFieldCustomResponseBody is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomResponseBody = "CUSTOM_RESPONSE_BODY"
+
+	// ParameterExceptionFieldJsonMatchPattern is a ParameterExceptionField enum value
+	ParameterExceptionFieldJsonMatchPattern = "JSON_MATCH_PATTERN"
+
+	// ParameterExceptionFieldJsonMatchScope is a ParameterExceptionField enum value
+	ParameterExceptionFieldJsonMatchScope = "JSON_MATCH_SCOPE"
+
+	// ParameterExceptionFieldBodyParsingFallbackBehavior is a ParameterExceptionField enum value
+	ParameterExceptionFieldBodyParsingFallbackBehavior = "BODY_PARSING_FALLBACK_BEHAVIOR"
+
+	// ParameterExceptionFieldLoggingFilter is a ParameterExceptionField enum value
+	ParameterExceptionFieldLoggingFilter = "LOGGING_FILTER"
+
+	// ParameterExceptionFieldFilterCondition is a ParameterExceptionField enum value
+	ParameterExceptionFieldFilterCondition = "FILTER_CONDITION"
+
+	// ParameterExceptionFieldExpireTimestamp is a ParameterExceptionField enum value
+	ParameterExceptionFieldExpireTimestamp = "EXPIRE_TIMESTAMP"
+
+	// ParameterExceptionFieldChangePropagationStatus is a ParameterExceptionField enum value
+	ParameterExceptionFieldChangePropagationStatus = "CHANGE_PROPAGATION_STATUS"
+
+	// ParameterExceptionFieldAssociableResource is a ParameterExceptionField enum value
+	ParameterExceptionFieldAssociableResource = "ASSOCIABLE_RESOURCE"
+
+	// ParameterExceptionFieldLogDestination is a ParameterExceptionField enum value
+	ParameterExceptionFieldLogDestination = "LOG_DESTINATION"
+
+	// ParameterExceptionFieldManagedRuleGroupConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldManagedRuleGroupConfig = "MANAGED_RULE_GROUP_CONFIG"
+
+	// ParameterExceptionFieldPayloadType is a ParameterExceptionField enum value
+	ParameterExceptionFieldPayloadType = "PAYLOAD_TYPE"
+
+	// ParameterExceptionFieldHeaderMatchPattern is a ParameterExceptionField enum value
+	ParameterExceptionFieldHeaderMatchPattern = "HEADER_MATCH_PATTERN"
+
+	// ParameterExceptionFieldCookieMatchPattern is a ParameterExceptionField enum value
+	ParameterExceptionFieldCookieMatchPattern = "COOKIE_MATCH_PATTERN"
+
+	// ParameterExceptionFieldMapMatchScope is a ParameterExceptionField enum value
+	ParameterExceptionFieldMapMatchScope = "MAP_MATCH_SCOPE"
+
+	// ParameterExceptionFieldOversizeHandling is a ParameterExceptionField enum value
+	ParameterExceptionFieldOversizeHandling = "OVERSIZE_HANDLING"
+
+	// ParameterExceptionFieldChallengeConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldChallengeConfig = "CHALLENGE_CONFIG"
+
+	// ParameterExceptionFieldTokenDomain is a ParameterExceptionField enum value
+	ParameterExceptionFieldTokenDomain = "TOKEN_DOMAIN"
 )
+
+// ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
+func ParameterExceptionField_Values() []string {
+	return []string{
+		ParameterExceptionFieldWebAcl,
+		ParameterExceptionFieldRuleGroup,
+		ParameterExceptionFieldRegexPatternSet,
+		ParameterExceptionFieldIpSet,
+		ParameterExceptionFieldManagedRuleSet,
+		ParameterExceptionFieldRule,
+		ParameterExceptionFieldExcludedRule,
+		ParameterExceptionFieldStatement,
+		ParameterExceptionFieldByteMatchStatement,
+		ParameterExceptionFieldSqliMatchStatement,
+		ParameterExceptionFieldXssMatchStatement,
+		ParameterExceptionFieldSizeConstraintStatement,
+		ParameterExceptionFieldGeoMatchStatement,
+		ParameterExceptionFieldRateBasedStatement,
+		ParameterExceptionFieldRuleGroupReferenceStatement,
+		ParameterExceptionFieldRegexPatternReferenceStatement,
+		ParameterExceptionFieldIpSetReferenceStatement,
+		ParameterExceptionFieldManagedRuleSetStatement,
+		ParameterExceptionFieldLabelMatchStatement,
+		ParameterExceptionFieldAndStatement,
+		ParameterExceptionFieldOrStatement,
+		ParameterExceptionFieldNotStatement,
+		ParameterExceptionFieldIpAddress,
+		ParameterExceptionFieldIpAddressVersion,
+		ParameterExceptionFieldFieldToMatch,
+		ParameterExceptionFieldTextTransformation,
+		ParameterExceptionFieldSingleQueryArgument,
+		ParameterExceptionFieldSingleHeader,
+		ParameterExceptionFieldDefaultAction,
+		ParameterExceptionFieldRuleAction,
+		ParameterExceptionFieldEntityLimit,
+		ParameterExceptionFieldOverrideAction,
+		ParameterExceptionFieldScopeValue,
+		ParameterExceptionFieldResourceArn,
+		ParameterExceptionFieldResourceType,
+		ParameterExceptionFieldTags,
+		ParameterExceptionFieldTagKeys,
+		ParameterExceptionFieldMetricName,
+		ParameterExceptionFieldFirewallManagerStatement,
+		ParameterExceptionFieldFallbackBehavior,
+		ParameterExceptionFieldPosition,
+		ParameterExceptionFieldForwardedIpConfig,
+		ParameterExceptionFieldIpSetForwardedIpConfig,
+		ParameterExceptionFieldHeaderName,
+		ParameterExceptionFieldCustomRequestHandling,
+		ParameterExceptionFieldResponseContentType,
+		ParameterExceptionFieldCustomResponse,
+		ParameterExceptionFieldCustomResponseBody,
+		ParameterExceptionFieldJsonMatchPattern,
+		ParameterExceptionFieldJsonMatchScope,
+		ParameterExceptionFieldBodyParsingFallbackBehavior,
+		ParameterExceptionFieldLoggingFilter,
+		ParameterExceptionFieldFilterCondition,
+		ParameterExceptionFieldExpireTimestamp,
+		ParameterExceptionFieldChangePropagationStatus,
+		ParameterExceptionFieldAssociableResource,
+		ParameterExceptionFieldLogDestination,
+		ParameterExceptionFieldManagedRuleGroupConfig,
+		ParameterExceptionFieldPayloadType,
+		ParameterExceptionFieldHeaderMatchPattern,
+		ParameterExceptionFieldCookieMatchPattern,
+		ParameterExceptionFieldMapMatchScope,
+		ParameterExceptionFieldOversizeHandling,
+		ParameterExceptionFieldChallengeConfig,
+		ParameterExceptionFieldTokenDomain,
+	}
+}
+
+const (
+	// PayloadTypeJson is a PayloadType enum value
+	PayloadTypeJson = "JSON"
+
+	// PayloadTypeFormEncoded is a PayloadType enum value
+	PayloadTypeFormEncoded = "FORM_ENCODED"
+)
+
+// PayloadType_Values returns all elements of the PayloadType enum
+func PayloadType_Values() []string {
+	return []string{
+		PayloadTypeJson,
+		PayloadTypeFormEncoded,
+	}
+}
+
+const (
+	// PlatformIos is a Platform enum value
+	PlatformIos = "IOS"
+
+	// PlatformAndroid is a Platform enum value
+	PlatformAndroid = "ANDROID"
+)
+
+// Platform_Values returns all elements of the Platform enum
+func Platform_Values() []string {
+	return []string{
+		PlatformIos,
+		PlatformAndroid,
+	}
+}
 
 const (
 	// PositionalConstraintExactly is a PositionalConstraint enum value
@@ -15185,10 +23790,32 @@ const (
 	PositionalConstraintContainsWord = "CONTAINS_WORD"
 )
 
+// PositionalConstraint_Values returns all elements of the PositionalConstraint enum
+func PositionalConstraint_Values() []string {
+	return []string{
+		PositionalConstraintExactly,
+		PositionalConstraintStartsWith,
+		PositionalConstraintEndsWith,
+		PositionalConstraintContains,
+		PositionalConstraintContainsWord,
+	}
+}
+
 const (
 	// RateBasedStatementAggregateKeyTypeIp is a RateBasedStatementAggregateKeyType enum value
 	RateBasedStatementAggregateKeyTypeIp = "IP"
+
+	// RateBasedStatementAggregateKeyTypeForwardedIp is a RateBasedStatementAggregateKeyType enum value
+	RateBasedStatementAggregateKeyTypeForwardedIp = "FORWARDED_IP"
 )
+
+// RateBasedStatementAggregateKeyType_Values returns all elements of the RateBasedStatementAggregateKeyType enum
+func RateBasedStatementAggregateKeyType_Values() []string {
+	return []string{
+		RateBasedStatementAggregateKeyTypeIp,
+		RateBasedStatementAggregateKeyTypeForwardedIp,
+	}
+}
 
 const (
 	// ResourceTypeApplicationLoadBalancer is a ResourceType enum value
@@ -15196,7 +23823,43 @@ const (
 
 	// ResourceTypeApiGateway is a ResourceType enum value
 	ResourceTypeApiGateway = "API_GATEWAY"
+
+	// ResourceTypeAppsync is a ResourceType enum value
+	ResourceTypeAppsync = "APPSYNC"
+
+	// ResourceTypeCognitoUserPool is a ResourceType enum value
+	ResourceTypeCognitoUserPool = "COGNITO_USER_POOL"
 )
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeApplicationLoadBalancer,
+		ResourceTypeApiGateway,
+		ResourceTypeAppsync,
+		ResourceTypeCognitoUserPool,
+	}
+}
+
+const (
+	// ResponseContentTypeTextPlain is a ResponseContentType enum value
+	ResponseContentTypeTextPlain = "TEXT_PLAIN"
+
+	// ResponseContentTypeTextHtml is a ResponseContentType enum value
+	ResponseContentTypeTextHtml = "TEXT_HTML"
+
+	// ResponseContentTypeApplicationJson is a ResponseContentType enum value
+	ResponseContentTypeApplicationJson = "APPLICATION_JSON"
+)
+
+// ResponseContentType_Values returns all elements of the ResponseContentType enum
+func ResponseContentType_Values() []string {
+	return []string{
+		ResponseContentTypeTextPlain,
+		ResponseContentTypeTextHtml,
+		ResponseContentTypeApplicationJson,
+	}
+}
 
 const (
 	// ScopeCloudfront is a Scope enum value
@@ -15205,6 +23868,30 @@ const (
 	// ScopeRegional is a Scope enum value
 	ScopeRegional = "REGIONAL"
 )
+
+// Scope_Values returns all elements of the Scope enum
+func Scope_Values() []string {
+	return []string{
+		ScopeCloudfront,
+		ScopeRegional,
+	}
+}
+
+const (
+	// SensitivityLevelLow is a SensitivityLevel enum value
+	SensitivityLevelLow = "LOW"
+
+	// SensitivityLevelHigh is a SensitivityLevel enum value
+	SensitivityLevelHigh = "HIGH"
+)
+
+// SensitivityLevel_Values returns all elements of the SensitivityLevel enum
+func SensitivityLevel_Values() []string {
+	return []string{
+		SensitivityLevelLow,
+		SensitivityLevelHigh,
+	}
+}
 
 const (
 	// TextTransformationTypeNone is a TextTransformationType enum value
@@ -15224,4 +23911,76 @@ const (
 
 	// TextTransformationTypeUrlDecode is a TextTransformationType enum value
 	TextTransformationTypeUrlDecode = "URL_DECODE"
+
+	// TextTransformationTypeBase64Decode is a TextTransformationType enum value
+	TextTransformationTypeBase64Decode = "BASE64_DECODE"
+
+	// TextTransformationTypeHexDecode is a TextTransformationType enum value
+	TextTransformationTypeHexDecode = "HEX_DECODE"
+
+	// TextTransformationTypeMd5 is a TextTransformationType enum value
+	TextTransformationTypeMd5 = "MD5"
+
+	// TextTransformationTypeReplaceComments is a TextTransformationType enum value
+	TextTransformationTypeReplaceComments = "REPLACE_COMMENTS"
+
+	// TextTransformationTypeEscapeSeqDecode is a TextTransformationType enum value
+	TextTransformationTypeEscapeSeqDecode = "ESCAPE_SEQ_DECODE"
+
+	// TextTransformationTypeSqlHexDecode is a TextTransformationType enum value
+	TextTransformationTypeSqlHexDecode = "SQL_HEX_DECODE"
+
+	// TextTransformationTypeCssDecode is a TextTransformationType enum value
+	TextTransformationTypeCssDecode = "CSS_DECODE"
+
+	// TextTransformationTypeJsDecode is a TextTransformationType enum value
+	TextTransformationTypeJsDecode = "JS_DECODE"
+
+	// TextTransformationTypeNormalizePath is a TextTransformationType enum value
+	TextTransformationTypeNormalizePath = "NORMALIZE_PATH"
+
+	// TextTransformationTypeNormalizePathWin is a TextTransformationType enum value
+	TextTransformationTypeNormalizePathWin = "NORMALIZE_PATH_WIN"
+
+	// TextTransformationTypeRemoveNulls is a TextTransformationType enum value
+	TextTransformationTypeRemoveNulls = "REMOVE_NULLS"
+
+	// TextTransformationTypeReplaceNulls is a TextTransformationType enum value
+	TextTransformationTypeReplaceNulls = "REPLACE_NULLS"
+
+	// TextTransformationTypeBase64DecodeExt is a TextTransformationType enum value
+	TextTransformationTypeBase64DecodeExt = "BASE64_DECODE_EXT"
+
+	// TextTransformationTypeUrlDecodeUni is a TextTransformationType enum value
+	TextTransformationTypeUrlDecodeUni = "URL_DECODE_UNI"
+
+	// TextTransformationTypeUtf8ToUnicode is a TextTransformationType enum value
+	TextTransformationTypeUtf8ToUnicode = "UTF8_TO_UNICODE"
 )
+
+// TextTransformationType_Values returns all elements of the TextTransformationType enum
+func TextTransformationType_Values() []string {
+	return []string{
+		TextTransformationTypeNone,
+		TextTransformationTypeCompressWhiteSpace,
+		TextTransformationTypeHtmlEntityDecode,
+		TextTransformationTypeLowercase,
+		TextTransformationTypeCmdLine,
+		TextTransformationTypeUrlDecode,
+		TextTransformationTypeBase64Decode,
+		TextTransformationTypeHexDecode,
+		TextTransformationTypeMd5,
+		TextTransformationTypeReplaceComments,
+		TextTransformationTypeEscapeSeqDecode,
+		TextTransformationTypeSqlHexDecode,
+		TextTransformationTypeCssDecode,
+		TextTransformationTypeJsDecode,
+		TextTransformationTypeNormalizePath,
+		TextTransformationTypeNormalizePathWin,
+		TextTransformationTypeRemoveNulls,
+		TextTransformationTypeReplaceNulls,
+		TextTransformationTypeBase64DecodeExt,
+		TextTransformationTypeUrlDecodeUni,
+		TextTransformationTypeUtf8ToUnicode,
+	}
+}

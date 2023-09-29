@@ -4,18 +4,26 @@
 // requests to Amazon Managed Blockchain.
 //
 // Amazon Managed Blockchain is a fully managed service for creating and managing
-// blockchain networks using open source frameworks. Blockchain allows you to
+// blockchain networks using open-source frameworks. Blockchain allows you to
 // build applications where multiple parties can securely and transparently
 // run transactions and share data without the need for a trusted, central authority.
-// Currently, Managed Blockchain supports the Hyperledger Fabric open source
-// framework.
+//
+// Managed Blockchain supports the Hyperledger Fabric and Ethereum open-source
+// frameworks. Because of fundamental differences between the frameworks, some
+// API actions or data types may only apply in the context of one framework
+// and not the other. For example, actions related to Hyperledger Fabric network
+// members such as CreateMember and DeleteMember don't apply to Ethereum.
+//
+// The description for each action indicates the framework or frameworks to
+// which it applies. Data types and properties that apply only in the context
+// of a particular framework are similarly indicated.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24 for more information on this service.
 //
 // See managedblockchain package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/managedblockchain/
 //
-// Using the Client
+// # Using the Client
 //
 // To contact Amazon Managed Blockchain with the SDK use the New function to create
 // a new service client. With that client you can make API requests to the service.

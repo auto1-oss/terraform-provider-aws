@@ -39,8 +39,8 @@ const (
 	// "LimitExceededException".
 	//
 	// You have exceeded a service limit for your account. For more information,
-	// see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service_limits.html)
-	// in the AWS App Mesh User Guide.
+	// see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service-quotas.html)
+	// in the App Mesh User Guide.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeNotFoundException for service response error code

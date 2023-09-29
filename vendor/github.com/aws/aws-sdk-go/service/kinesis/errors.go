@@ -8,6 +8,12 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// Specifies that you do not have the permissions required to perform this operation.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeExpiredIteratorException for service response error code
 	// "ExpiredIteratorException".
 	//
@@ -22,6 +28,9 @@ const (
 
 	// ErrCodeInternalFailureException for service response error code
 	// "InternalFailureException".
+	//
+	// The processing of the request failed because of an unknown error, exception,
+	// or failure.
 	ErrCodeInternalFailureException = "InternalFailureException"
 
 	// ErrCodeInvalidArgumentException for service response error code
@@ -50,8 +59,8 @@ const (
 	//
 	// The request was rejected because the state of the specified resource isn't
 	// valid for this request. For more information, see How Key State Affects Use
-	// of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
-	// in the AWS Key Management Service Developer Guide.
+	// of a Customer Master Key (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
+	// in the Amazon Web Services Key Management Service Developer Guide.
 	ErrCodeKMSInvalidStateException = "KMSInvalidStateException"
 
 	// ErrCodeKMSNotFoundException for service response error code
@@ -64,15 +73,15 @@ const (
 	// ErrCodeKMSOptInRequired for service response error code
 	// "KMSOptInRequired".
 	//
-	// The AWS access key ID needs a subscription for the service.
+	// The Amazon Web Services access key ID needs a subscription for the service.
 	ErrCodeKMSOptInRequired = "KMSOptInRequired"
 
 	// ErrCodeKMSThrottlingException for service response error code
 	// "KMSThrottlingException".
 	//
 	// The request was denied due to request throttling. For more information about
-	// throttling, see Limits (http://docs.aws.amazon.com/kms/latest/developerguide/limits.html#requests-per-second)
-	// in the AWS Key Management Service Developer Guide.
+	// throttling, see Limits (https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#requests-per-second)
+	// in the Amazon Web Services Key Management Service Developer Guide.
 	ErrCodeKMSThrottlingException = "KMSThrottlingException"
 
 	// ErrCodeLimitExceededException for service response error code
@@ -87,10 +96,10 @@ const (
 	//
 	// The request rate for the stream is too high, or the requested data is too
 	// large for the available throughput. Reduce the frequency or size of your
-	// requests. For more information, see Streams Limits (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
+	// requests. For more information, see Streams Limits (https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
 	// in the Amazon Kinesis Data Streams Developer Guide, and Error Retries and
-	// Exponential Backoff in AWS (http://docs.aws.amazon.com/general/latest/gr/api-retries.html)
-	// in the AWS General Reference.
+	// Exponential Backoff in Amazon Web Services (https://docs.aws.amazon.com/general/latest/gr/api-retries.html)
+	// in the Amazon Web Services General Reference.
 	ErrCodeProvisionedThroughputExceededException = "ProvisionedThroughputExceededException"
 
 	// ErrCodeResourceInUseException for service response error code
@@ -106,9 +115,18 @@ const (
 	// The requested resource could not be found. The stream might not be specified
 	// correctly.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeValidationException for service response error code
+	// "ValidationException".
+	//
+	// Specifies that you tried to invoke this API for a data stream with the on-demand
+	// capacity mode. This API is only supported for data streams with the provisioned
+	// capacity mode.
+	ErrCodeValidationException = "ValidationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":                  newErrorAccessDeniedException,
 	"ExpiredIteratorException":               newErrorExpiredIteratorException,
 	"ExpiredNextTokenException":              newErrorExpiredNextTokenException,
 	"InternalFailureException":               newErrorInternalFailureException,
@@ -123,4 +141,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ProvisionedThroughputExceededException": newErrorProvisionedThroughputExceededException,
 	"ResourceInUseException":                 newErrorResourceInUseException,
 	"ResourceNotFoundException":              newErrorResourceNotFoundException,
+	"ValidationException":                    newErrorValidationException,
 }

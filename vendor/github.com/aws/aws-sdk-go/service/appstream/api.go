@@ -13,6 +13,190 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAssociateApplicationFleet = "AssociateApplicationFleet"
+
+// AssociateApplicationFleetRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateApplicationFleet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateApplicationFleet for more information on using the AssociateApplicationFleet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateApplicationFleetRequest method.
+//	req, resp := client.AssociateApplicationFleetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateApplicationFleet
+func (c *AppStream) AssociateApplicationFleetRequest(input *AssociateApplicationFleetInput) (req *request.Request, output *AssociateApplicationFleetOutput) {
+	op := &request.Operation{
+		Name:       opAssociateApplicationFleet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateApplicationFleetInput{}
+	}
+
+	output = &AssociateApplicationFleetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateApplicationFleet API operation for Amazon AppStream.
+//
+// Associates the specified application with the specified fleet. This is only
+// supported for Elastic fleets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation AssociateApplicationFleet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateApplicationFleet
+func (c *AppStream) AssociateApplicationFleet(input *AssociateApplicationFleetInput) (*AssociateApplicationFleetOutput, error) {
+	req, out := c.AssociateApplicationFleetRequest(input)
+	return out, req.Send()
+}
+
+// AssociateApplicationFleetWithContext is the same as AssociateApplicationFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateApplicationFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) AssociateApplicationFleetWithContext(ctx aws.Context, input *AssociateApplicationFleetInput, opts ...request.Option) (*AssociateApplicationFleetOutput, error) {
+	req, out := c.AssociateApplicationFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateApplicationToEntitlement = "AssociateApplicationToEntitlement"
+
+// AssociateApplicationToEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateApplicationToEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateApplicationToEntitlement for more information on using the AssociateApplicationToEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateApplicationToEntitlementRequest method.
+//	req, resp := client.AssociateApplicationToEntitlementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateApplicationToEntitlement
+func (c *AppStream) AssociateApplicationToEntitlementRequest(input *AssociateApplicationToEntitlementInput) (req *request.Request, output *AssociateApplicationToEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opAssociateApplicationToEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateApplicationToEntitlementInput{}
+	}
+
+	output = &AssociateApplicationToEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateApplicationToEntitlement API operation for Amazon AppStream.
+//
+// Associates an application to entitle.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation AssociateApplicationToEntitlement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - EntitlementNotFoundException
+//     The entitlement can't be found.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateApplicationToEntitlement
+func (c *AppStream) AssociateApplicationToEntitlement(input *AssociateApplicationToEntitlementInput) (*AssociateApplicationToEntitlementOutput, error) {
+	req, out := c.AssociateApplicationToEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// AssociateApplicationToEntitlementWithContext is the same as AssociateApplicationToEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateApplicationToEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) AssociateApplicationToEntitlementWithContext(ctx aws.Context, input *AssociateApplicationToEntitlementInput, opts ...request.Option) (*AssociateApplicationToEntitlementOutput, error) {
+	req, out := c.AssociateApplicationToEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateFleet = "AssociateFleet"
 
 // AssociateFleetRequest generates a "aws/request.Request" representing the
@@ -29,14 +213,13 @@ const opAssociateFleet = "AssociateFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the AssociateFleetRequest method.
+//	req, resp := client.AssociateFleetRequest(params)
 //
-//    // Example sending a request using the AssociateFleetRequest method.
-//    req, resp := client.AssociateFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateFleet
 func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *request.Request, output *AssociateFleetOutput) {
@@ -68,24 +251,25 @@ func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *requ
 // API operation AssociateFleet for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateFleet
 func (c *AppStream) AssociateFleet(input *AssociateFleetInput) (*AssociateFleetOutput, error) {
@@ -125,14 +309,13 @@ const opBatchAssociateUserStack = "BatchAssociateUserStack"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchAssociateUserStackRequest method.
+//	req, resp := client.BatchAssociateUserStackRequest(params)
 //
-//    // Example sending a request using the BatchAssociateUserStackRequest method.
-//    req, resp := client.BatchAssociateUserStackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/BatchAssociateUserStack
 func (c *AppStream) BatchAssociateUserStackRequest(input *BatchAssociateUserStackInput) (req *request.Request, output *BatchAssociateUserStackOutput) {
@@ -165,8 +348,12 @@ func (c *AppStream) BatchAssociateUserStackRequest(input *BatchAssociateUserStac
 // API operation BatchAssociateUserStack for usage and error information.
 //
 // Returned Error Types:
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/BatchAssociateUserStack
 func (c *AppStream) BatchAssociateUserStack(input *BatchAssociateUserStackInput) (*BatchAssociateUserStackOutput, error) {
@@ -206,14 +393,13 @@ const opBatchDisassociateUserStack = "BatchDisassociateUserStack"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the BatchDisassociateUserStackRequest method.
+//	req, resp := client.BatchDisassociateUserStackRequest(params)
 //
-//    // Example sending a request using the BatchDisassociateUserStackRequest method.
-//    req, resp := client.BatchDisassociateUserStackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/BatchDisassociateUserStack
 func (c *AppStream) BatchDisassociateUserStackRequest(input *BatchDisassociateUserStackInput) (req *request.Request, output *BatchDisassociateUserStackOutput) {
@@ -242,6 +428,15 @@ func (c *AppStream) BatchDisassociateUserStackRequest(input *BatchDisassociateUs
 //
 // See the AWS API reference guide for Amazon AppStream's
 // API operation BatchDisassociateUserStack for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/BatchDisassociateUserStack
 func (c *AppStream) BatchDisassociateUserStack(input *BatchDisassociateUserStackInput) (*BatchDisassociateUserStackOutput, error) {
 	req, out := c.BatchDisassociateUserStackRequest(input)
@@ -280,14 +475,13 @@ const opCopyImage = "CopyImage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CopyImageRequest method.
+//	req, resp := client.CopyImageRequest(params)
 //
-//    // Example sending a request using the CopyImageRequest method.
-//    req, resp := client.CopyImageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CopyImage
 func (c *AppStream) CopyImageRequest(input *CopyImageInput) (req *request.Request, output *CopyImageOutput) {
@@ -319,24 +513,25 @@ func (c *AppStream) CopyImageRequest(input *CopyImageInput) (req *request.Reques
 // API operation CopyImage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CopyImage
 func (c *AppStream) CopyImage(input *CopyImageInput) (*CopyImageOutput, error) {
@@ -360,6 +555,202 @@ func (c *AppStream) CopyImageWithContext(ctx aws.Context, input *CopyImageInput,
 	return out, req.Send()
 }
 
+const opCreateAppBlock = "CreateAppBlock"
+
+// CreateAppBlockRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAppBlock operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAppBlock for more information on using the CreateAppBlock
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAppBlockRequest method.
+//	req, resp := client.CreateAppBlockRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateAppBlock
+func (c *AppStream) CreateAppBlockRequest(input *CreateAppBlockInput) (req *request.Request, output *CreateAppBlockOutput) {
+	op := &request.Operation{
+		Name:       opCreateAppBlock,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAppBlockInput{}
+	}
+
+	output = &CreateAppBlockOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAppBlock API operation for Amazon AppStream.
+//
+// Creates an app block.
+//
+// App blocks are an Amazon AppStream 2.0 resource that stores the details about
+// the virtual hard disk in an S3 bucket. It also stores the setup script with
+// details about how to mount the virtual hard disk. The virtual hard disk includes
+// the application binaries and other files necessary to launch your applications.
+// Multiple applications can be assigned to a single app block.
+//
+// This is only supported for Elastic fleets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateAppBlock for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateAppBlock
+func (c *AppStream) CreateAppBlock(input *CreateAppBlockInput) (*CreateAppBlockOutput, error) {
+	req, out := c.CreateAppBlockRequest(input)
+	return out, req.Send()
+}
+
+// CreateAppBlockWithContext is the same as CreateAppBlock with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAppBlock for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateAppBlockWithContext(ctx aws.Context, input *CreateAppBlockInput, opts ...request.Option) (*CreateAppBlockOutput, error) {
+	req, out := c.CreateAppBlockRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateApplication = "CreateApplication"
+
+// CreateApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateApplication for more information on using the CreateApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateApplicationRequest method.
+//	req, resp := client.CreateApplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateApplication
+func (c *AppStream) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *CreateApplicationOutput) {
+	op := &request.Operation{
+		Name:       opCreateApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateApplicationInput{}
+	}
+
+	output = &CreateApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateApplication API operation for Amazon AppStream.
+//
+// Creates an application.
+//
+// Applications are an Amazon AppStream 2.0 resource that stores the details
+// about how to launch applications on Elastic fleet streaming instances. An
+// application consists of the launch details, icon, and display name. Applications
+// are associated with an app block that contains the application binaries and
+// other files. The applications assigned to an Elastic fleet are the applications
+// users can launch.
+//
+// This is only supported for Elastic fleets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateApplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateApplication
+func (c *AppStream) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
+	req, out := c.CreateApplicationRequest(input)
+	return out, req.Send()
+}
+
+// CreateApplicationWithContext is the same as CreateApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateApplicationWithContext(ctx aws.Context, input *CreateApplicationInput, opts ...request.Option) (*CreateApplicationOutput, error) {
+	req, out := c.CreateApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDirectoryConfig = "CreateDirectoryConfig"
 
 // CreateDirectoryConfigRequest generates a "aws/request.Request" representing the
@@ -376,14 +767,13 @@ const opCreateDirectoryConfig = "CreateDirectoryConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateDirectoryConfigRequest method.
+//	req, resp := client.CreateDirectoryConfigRequest(params)
 //
-//    // Example sending a request using the CreateDirectoryConfigRequest method.
-//    req, resp := client.CreateDirectoryConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateDirectoryConfig
 func (c *AppStream) CreateDirectoryConfigRequest(input *CreateDirectoryConfigInput) (req *request.Request, output *CreateDirectoryConfigOutput) {
@@ -416,15 +806,25 @@ func (c *AppStream) CreateDirectoryConfigRequest(input *CreateDirectoryConfigInp
 // API operation CreateDirectoryConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateDirectoryConfig
 func (c *AppStream) CreateDirectoryConfig(input *CreateDirectoryConfigInput) (*CreateDirectoryConfigOutput, error) {
@@ -448,6 +848,99 @@ func (c *AppStream) CreateDirectoryConfigWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
+const opCreateEntitlement = "CreateEntitlement"
+
+// CreateEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEntitlement for more information on using the CreateEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEntitlementRequest method.
+//	req, resp := client.CreateEntitlementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateEntitlement
+func (c *AppStream) CreateEntitlementRequest(input *CreateEntitlementInput) (req *request.Request, output *CreateEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opCreateEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEntitlementInput{}
+	}
+
+	output = &CreateEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEntitlement API operation for Amazon AppStream.
+//
+// Creates a new entitlement. Entitlements control access to specific applications
+// within a stack, based on user attributes. Entitlements apply to SAML 2.0
+// federated user identities. Amazon AppStream 2.0 user pool and streaming URL
+// users are entitled to all applications in a stack. Entitlements don't apply
+// to the desktop stream view application, or to applications managed by a dynamic
+// app provider using the Dynamic Application Framework.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateEntitlement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - EntitlementAlreadyExistsException
+//     The entitlement already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateEntitlement
+func (c *AppStream) CreateEntitlement(input *CreateEntitlementInput) (*CreateEntitlementOutput, error) {
+	req, out := c.CreateEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// CreateEntitlementWithContext is the same as CreateEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateEntitlementWithContext(ctx aws.Context, input *CreateEntitlementInput, opts ...request.Option) (*CreateEntitlementOutput, error) {
+	req, out := c.CreateEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateFleet = "CreateFleet"
 
 // CreateFleetRequest generates a "aws/request.Request" representing the
@@ -464,14 +957,13 @@ const opCreateFleet = "CreateFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateFleetRequest method.
+//	req, resp := client.CreateFleetRequest(params)
 //
-//    // Example sending a request using the CreateFleetRequest method.
-//    req, resp := client.CreateFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleet
 func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Request, output *CreateFleetOutput) {
@@ -492,8 +984,8 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 
 // CreateFleet API operation for Amazon AppStream.
 //
-// Creates a fleet. A fleet consists of streaming instances that run a specified
-// image.
+// Creates a fleet. A fleet consists of streaming instances that your users
+// access for their applications and desktops.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -503,36 +995,42 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 // API operation CreateFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * InvalidRoleException
-//   The specified role is invalid.
+//   - RequestLimitExceededException
+//     AppStream 2.0 can’t process the request right now because the Describe
+//     calls from your AWS account are being throttled by Amazon EC2. Try again
+//     later.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleet
 func (c *AppStream) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
@@ -572,14 +1070,13 @@ const opCreateImageBuilder = "CreateImageBuilder"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateImageBuilderRequest method.
+//	req, resp := client.CreateImageBuilderRequest(params)
 //
-//    // Example sending a request using the CreateImageBuilderRequest method.
-//    req, resp := client.CreateImageBuilderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateImageBuilder
 func (c *AppStream) CreateImageBuilderRequest(input *CreateImageBuilderInput) (req *request.Request, output *CreateImageBuilderOutput) {
@@ -614,36 +1111,42 @@ func (c *AppStream) CreateImageBuilderRequest(input *CreateImageBuilderInput) (r
 // API operation CreateImageBuilder for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - RequestLimitExceededException
+//     AppStream 2.0 can’t process the request right now because the Describe
+//     calls from your AWS account are being throttled by Amazon EC2. Try again
+//     later.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * InvalidRoleException
-//   The specified role is invalid.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateImageBuilder
 func (c *AppStream) CreateImageBuilder(input *CreateImageBuilderInput) (*CreateImageBuilderOutput, error) {
@@ -683,14 +1186,13 @@ const opCreateImageBuilderStreamingURL = "CreateImageBuilderStreamingURL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateImageBuilderStreamingURLRequest method.
+//	req, resp := client.CreateImageBuilderStreamingURLRequest(params)
 //
-//    // Example sending a request using the CreateImageBuilderStreamingURLRequest method.
-//    req, resp := client.CreateImageBuilderStreamingURLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateImageBuilderStreamingURL
 func (c *AppStream) CreateImageBuilderStreamingURLRequest(input *CreateImageBuilderStreamingURLInput) (req *request.Request, output *CreateImageBuilderStreamingURLOutput) {
@@ -721,11 +1223,12 @@ func (c *AppStream) CreateImageBuilderStreamingURLRequest(input *CreateImageBuil
 // API operation CreateImageBuilderStreamingURL for usage and error information.
 //
 // Returned Error Types:
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateImageBuilderStreamingURL
 func (c *AppStream) CreateImageBuilderStreamingURL(input *CreateImageBuilderStreamingURLInput) (*CreateImageBuilderStreamingURLOutput, error) {
@@ -765,14 +1268,13 @@ const opCreateStack = "CreateStack"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateStackRequest method.
+//	req, resp := client.CreateStackRequest(params)
 //
-//    // Example sending a request using the CreateStackRequest method.
-//    req, resp := client.CreateStackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStack
 func (c *AppStream) CreateStackRequest(input *CreateStackInput) (req *request.Request, output *CreateStackOutput) {
@@ -804,27 +1306,28 @@ func (c *AppStream) CreateStackRequest(input *CreateStackInput) (req *request.Re
 // API operation CreateStack for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * InvalidRoleException
-//   The specified role is invalid.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStack
 func (c *AppStream) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
@@ -864,14 +1367,13 @@ const opCreateStreamingURL = "CreateStreamingURL"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateStreamingURLRequest method.
+//	req, resp := client.CreateStreamingURLRequest(params)
 //
-//    // Example sending a request using the CreateStreamingURLRequest method.
-//    req, resp := client.CreateStreamingURLRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStreamingURL
 func (c *AppStream) CreateStreamingURLRequest(input *CreateStreamingURLInput) (req *request.Request, output *CreateStreamingURLOutput) {
@@ -904,17 +1406,18 @@ func (c *AppStream) CreateStreamingURLRequest(input *CreateStreamingURLInput) (r
 // API operation CreateStreamingURL for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStreamingURL
 func (c *AppStream) CreateStreamingURL(input *CreateStreamingURLInput) (*CreateStreamingURLOutput, error) {
@@ -938,6 +1441,109 @@ func (c *AppStream) CreateStreamingURLWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateUpdatedImage = "CreateUpdatedImage"
+
+// CreateUpdatedImageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUpdatedImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUpdatedImage for more information on using the CreateUpdatedImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateUpdatedImageRequest method.
+//	req, resp := client.CreateUpdatedImageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUpdatedImage
+func (c *AppStream) CreateUpdatedImageRequest(input *CreateUpdatedImageInput) (req *request.Request, output *CreateUpdatedImageOutput) {
+	op := &request.Operation{
+		Name:       opCreateUpdatedImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUpdatedImageInput{}
+	}
+
+	output = &CreateUpdatedImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUpdatedImage API operation for Amazon AppStream.
+//
+// Creates a new image with the latest Windows operating system updates, driver
+// updates, and AppStream 2.0 agent software.
+//
+// For more information, see the "Update an Image by Using Managed AppStream
+// 2.0 Image Updates" section in Administer Your AppStream 2.0 Images (https://docs.aws.amazon.com/appstream2/latest/developerguide/administer-images.html),
+// in the Amazon AppStream 2.0 Administration Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateUpdatedImage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUpdatedImage
+func (c *AppStream) CreateUpdatedImage(input *CreateUpdatedImageInput) (*CreateUpdatedImageOutput, error) {
+	req, out := c.CreateUpdatedImageRequest(input)
+	return out, req.Send()
+}
+
+// CreateUpdatedImageWithContext is the same as CreateUpdatedImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUpdatedImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateUpdatedImageWithContext(ctx aws.Context, input *CreateUpdatedImageInput, opts ...request.Option) (*CreateUpdatedImageOutput, error) {
+	req, out := c.CreateUpdatedImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateUsageReportSubscription = "CreateUsageReportSubscription"
 
 // CreateUsageReportSubscriptionRequest generates a "aws/request.Request" representing the
@@ -954,14 +1560,13 @@ const opCreateUsageReportSubscription = "CreateUsageReportSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUsageReportSubscriptionRequest method.
+//	req, resp := client.CreateUsageReportSubscriptionRequest(params)
 //
-//    // Example sending a request using the CreateUsageReportSubscriptionRequest method.
-//    req, resp := client.CreateUsageReportSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUsageReportSubscription
 func (c *AppStream) CreateUsageReportSubscriptionRequest(input *CreateUsageReportSubscriptionInput) (req *request.Request, output *CreateUsageReportSubscriptionOutput) {
@@ -992,15 +1597,16 @@ func (c *AppStream) CreateUsageReportSubscriptionRequest(input *CreateUsageRepor
 // API operation CreateUsageReportSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidRoleException
-//   The specified role is invalid.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUsageReportSubscription
 func (c *AppStream) CreateUsageReportSubscription(input *CreateUsageReportSubscriptionInput) (*CreateUsageReportSubscriptionOutput, error) {
@@ -1040,14 +1646,13 @@ const opCreateUser = "CreateUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateUserRequest method.
+//	req, resp := client.CreateUserRequest(params)
 //
-//    // Example sending a request using the CreateUserRequest method.
-//    req, resp := client.CreateUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUser
 func (c *AppStream) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
@@ -1079,21 +1684,22 @@ func (c *AppStream) CreateUserRequest(input *CreateUserInput) (req *request.Requ
 // API operation CreateUser for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceAlreadyExistsException
-//   The specified resource already exists.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUser
 func (c *AppStream) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
@@ -1117,6 +1723,181 @@ func (c *AppStream) CreateUserWithContext(ctx aws.Context, input *CreateUserInpu
 	return out, req.Send()
 }
 
+const opDeleteAppBlock = "DeleteAppBlock"
+
+// DeleteAppBlockRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAppBlock operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAppBlock for more information on using the DeleteAppBlock
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAppBlockRequest method.
+//	req, resp := client.DeleteAppBlockRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteAppBlock
+func (c *AppStream) DeleteAppBlockRequest(input *DeleteAppBlockInput) (req *request.Request, output *DeleteAppBlockOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAppBlock,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAppBlockInput{}
+	}
+
+	output = &DeleteAppBlockOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAppBlock API operation for Amazon AppStream.
+//
+// Deletes an app block.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteAppBlock for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteAppBlock
+func (c *AppStream) DeleteAppBlock(input *DeleteAppBlockInput) (*DeleteAppBlockOutput, error) {
+	req, out := c.DeleteAppBlockRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppBlockWithContext is the same as DeleteAppBlock with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAppBlock for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteAppBlockWithContext(ctx aws.Context, input *DeleteAppBlockInput, opts ...request.Option) (*DeleteAppBlockOutput, error) {
+	req, out := c.DeleteAppBlockRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteApplication = "DeleteApplication"
+
+// DeleteApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteApplication for more information on using the DeleteApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteApplication
+func (c *AppStream) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteApplicationInput{}
+	}
+
+	output = &DeleteApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteApplication API operation for Amazon AppStream.
+//
+// Deletes an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteApplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteApplication
+func (c *AppStream) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
+	req, out := c.DeleteApplicationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteApplicationWithContext is the same as DeleteApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteApplicationWithContext(ctx aws.Context, input *DeleteApplicationInput, opts ...request.Option) (*DeleteApplicationOutput, error) {
+	req, out := c.DeleteApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDirectoryConfig = "DeleteDirectoryConfig"
 
 // DeleteDirectoryConfigRequest generates a "aws/request.Request" representing the
@@ -1133,14 +1914,13 @@ const opDeleteDirectoryConfig = "DeleteDirectoryConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteDirectoryConfigRequest method.
+//	req, resp := client.DeleteDirectoryConfigRequest(params)
 //
-//    // Example sending a request using the DeleteDirectoryConfigRequest method.
-//    req, resp := client.DeleteDirectoryConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteDirectoryConfig
 func (c *AppStream) DeleteDirectoryConfigRequest(input *DeleteDirectoryConfigInput) (req *request.Request, output *DeleteDirectoryConfigOutput) {
@@ -1174,11 +1954,12 @@ func (c *AppStream) DeleteDirectoryConfigRequest(input *DeleteDirectoryConfigInp
 // API operation DeleteDirectoryConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteDirectoryConfig
 func (c *AppStream) DeleteDirectoryConfig(input *DeleteDirectoryConfigInput) (*DeleteDirectoryConfigOutput, error) {
@@ -1202,6 +1983,98 @@ func (c *AppStream) DeleteDirectoryConfigWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDeleteEntitlement = "DeleteEntitlement"
+
+// DeleteEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEntitlement for more information on using the DeleteEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEntitlementRequest method.
+//	req, resp := client.DeleteEntitlementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteEntitlement
+func (c *AppStream) DeleteEntitlementRequest(input *DeleteEntitlementInput) (req *request.Request, output *DeleteEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEntitlementInput{}
+	}
+
+	output = &DeleteEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEntitlement API operation for Amazon AppStream.
+//
+// Deletes the specified entitlement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DeleteEntitlement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - EntitlementNotFoundException
+//     The entitlement can't be found.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteEntitlement
+func (c *AppStream) DeleteEntitlement(input *DeleteEntitlementInput) (*DeleteEntitlementOutput, error) {
+	req, out := c.DeleteEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEntitlementWithContext is the same as DeleteEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DeleteEntitlementWithContext(ctx aws.Context, input *DeleteEntitlementInput, opts ...request.Option) (*DeleteEntitlementOutput, error) {
+	req, out := c.DeleteEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFleet = "DeleteFleet"
 
 // DeleteFleetRequest generates a "aws/request.Request" representing the
@@ -1218,14 +2091,13 @@ const opDeleteFleet = "DeleteFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteFleetRequest method.
+//	req, resp := client.DeleteFleetRequest(params)
 //
-//    // Example sending a request using the DeleteFleetRequest method.
-//    req, resp := client.DeleteFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteFleet
 func (c *AppStream) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Request, output *DeleteFleetOutput) {
@@ -1257,14 +2129,15 @@ func (c *AppStream) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 // API operation DeleteFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteFleet
 func (c *AppStream) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, error) {
@@ -1304,14 +2177,13 @@ const opDeleteImage = "DeleteImage"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteImageRequest method.
+//	req, resp := client.DeleteImageRequest(params)
 //
-//    // Example sending a request using the DeleteImageRequest method.
-//    req, resp := client.DeleteImageRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImage
 func (c *AppStream) DeleteImageRequest(input *DeleteImageInput) (req *request.Request, output *DeleteImageOutput) {
@@ -1343,17 +2215,18 @@ func (c *AppStream) DeleteImageRequest(input *DeleteImageInput) (req *request.Re
 // API operation DeleteImage for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImage
 func (c *AppStream) DeleteImage(input *DeleteImageInput) (*DeleteImageOutput, error) {
@@ -1393,14 +2266,13 @@ const opDeleteImageBuilder = "DeleteImageBuilder"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteImageBuilderRequest method.
+//	req, resp := client.DeleteImageBuilderRequest(params)
 //
-//    // Example sending a request using the DeleteImageBuilderRequest method.
-//    req, resp := client.DeleteImageBuilderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImageBuilder
 func (c *AppStream) DeleteImageBuilderRequest(input *DeleteImageBuilderInput) (req *request.Request, output *DeleteImageBuilderOutput) {
@@ -1431,14 +2303,15 @@ func (c *AppStream) DeleteImageBuilderRequest(input *DeleteImageBuilderInput) (r
 // API operation DeleteImageBuilder for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImageBuilder
 func (c *AppStream) DeleteImageBuilder(input *DeleteImageBuilderInput) (*DeleteImageBuilderOutput, error) {
@@ -1478,14 +2351,13 @@ const opDeleteImagePermissions = "DeleteImagePermissions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteImagePermissionsRequest method.
+//	req, resp := client.DeleteImagePermissionsRequest(params)
 //
-//    // Example sending a request using the DeleteImagePermissionsRequest method.
-//    req, resp := client.DeleteImagePermissionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImagePermissions
 func (c *AppStream) DeleteImagePermissionsRequest(input *DeleteImagePermissionsInput) (req *request.Request, output *DeleteImagePermissionsOutput) {
@@ -1519,11 +2391,12 @@ func (c *AppStream) DeleteImagePermissionsRequest(input *DeleteImagePermissionsI
 // API operation DeleteImagePermissions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteImagePermissions
 func (c *AppStream) DeleteImagePermissions(input *DeleteImagePermissionsInput) (*DeleteImagePermissionsOutput, error) {
@@ -1563,14 +2436,13 @@ const opDeleteStack = "DeleteStack"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteStackRequest method.
+//	req, resp := client.DeleteStackRequest(params)
 //
-//    // Example sending a request using the DeleteStackRequest method.
-//    req, resp := client.DeleteStackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteStack
 func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Request, output *DeleteStackOutput) {
@@ -1605,14 +2477,18 @@ func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Re
 // API operation DeleteStack for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteStack
 func (c *AppStream) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
@@ -1652,14 +2528,13 @@ const opDeleteUsageReportSubscription = "DeleteUsageReportSubscription"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUsageReportSubscriptionRequest method.
+//	req, resp := client.DeleteUsageReportSubscriptionRequest(params)
 //
-//    // Example sending a request using the DeleteUsageReportSubscriptionRequest method.
-//    req, resp := client.DeleteUsageReportSubscriptionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteUsageReportSubscription
 func (c *AppStream) DeleteUsageReportSubscriptionRequest(input *DeleteUsageReportSubscriptionInput) (req *request.Request, output *DeleteUsageReportSubscriptionOutput) {
@@ -1691,12 +2566,13 @@ func (c *AppStream) DeleteUsageReportSubscriptionRequest(input *DeleteUsageRepor
 // API operation DeleteUsageReportSubscription for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteUsageReportSubscription
 func (c *AppStream) DeleteUsageReportSubscription(input *DeleteUsageReportSubscriptionInput) (*DeleteUsageReportSubscriptionOutput, error) {
@@ -1736,14 +2612,13 @@ const opDeleteUser = "DeleteUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DeleteUserRequest method.
+//	req, resp := client.DeleteUserRequest(params)
 //
-//    // Example sending a request using the DeleteUserRequest method.
-//    req, resp := client.DeleteUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteUser
 func (c *AppStream) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
@@ -1775,8 +2650,8 @@ func (c *AppStream) DeleteUserRequest(input *DeleteUserInput) (req *request.Requ
 // API operation DeleteUser for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteUser
 func (c *AppStream) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -1800,6 +2675,253 @@ func (c *AppStream) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInpu
 	return out, req.Send()
 }
 
+const opDescribeAppBlocks = "DescribeAppBlocks"
+
+// DescribeAppBlocksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAppBlocks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAppBlocks for more information on using the DescribeAppBlocks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAppBlocksRequest method.
+//	req, resp := client.DescribeAppBlocksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeAppBlocks
+func (c *AppStream) DescribeAppBlocksRequest(input *DescribeAppBlocksInput) (req *request.Request, output *DescribeAppBlocksOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAppBlocks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAppBlocksInput{}
+	}
+
+	output = &DescribeAppBlocksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAppBlocks API operation for Amazon AppStream.
+//
+// Retrieves a list that describes one or more app blocks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeAppBlocks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeAppBlocks
+func (c *AppStream) DescribeAppBlocks(input *DescribeAppBlocksInput) (*DescribeAppBlocksOutput, error) {
+	req, out := c.DescribeAppBlocksRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAppBlocksWithContext is the same as DescribeAppBlocks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAppBlocks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeAppBlocksWithContext(ctx aws.Context, input *DescribeAppBlocksInput, opts ...request.Option) (*DescribeAppBlocksOutput, error) {
+	req, out := c.DescribeAppBlocksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeApplicationFleetAssociations = "DescribeApplicationFleetAssociations"
+
+// DescribeApplicationFleetAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeApplicationFleetAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeApplicationFleetAssociations for more information on using the DescribeApplicationFleetAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeApplicationFleetAssociationsRequest method.
+//	req, resp := client.DescribeApplicationFleetAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeApplicationFleetAssociations
+func (c *AppStream) DescribeApplicationFleetAssociationsRequest(input *DescribeApplicationFleetAssociationsInput) (req *request.Request, output *DescribeApplicationFleetAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeApplicationFleetAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeApplicationFleetAssociationsInput{}
+	}
+
+	output = &DescribeApplicationFleetAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeApplicationFleetAssociations API operation for Amazon AppStream.
+//
+// Retrieves a list that describes one or more application fleet associations.
+// Either ApplicationArn or FleetName must be specified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeApplicationFleetAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeApplicationFleetAssociations
+func (c *AppStream) DescribeApplicationFleetAssociations(input *DescribeApplicationFleetAssociationsInput) (*DescribeApplicationFleetAssociationsOutput, error) {
+	req, out := c.DescribeApplicationFleetAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeApplicationFleetAssociationsWithContext is the same as DescribeApplicationFleetAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeApplicationFleetAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeApplicationFleetAssociationsWithContext(ctx aws.Context, input *DescribeApplicationFleetAssociationsInput, opts ...request.Option) (*DescribeApplicationFleetAssociationsOutput, error) {
+	req, out := c.DescribeApplicationFleetAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeApplications = "DescribeApplications"
+
+// DescribeApplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeApplications operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeApplications for more information on using the DescribeApplications
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeApplicationsRequest method.
+//	req, resp := client.DescribeApplicationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeApplications
+func (c *AppStream) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *request.Request, output *DescribeApplicationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeApplications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeApplicationsInput{}
+	}
+
+	output = &DescribeApplicationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeApplications API operation for Amazon AppStream.
+//
+// Retrieves a list that describes one or more applications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeApplications for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeApplications
+func (c *AppStream) DescribeApplications(input *DescribeApplicationsInput) (*DescribeApplicationsOutput, error) {
+	req, out := c.DescribeApplicationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeApplicationsWithContext is the same as DescribeApplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeApplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeApplicationsWithContext(ctx aws.Context, input *DescribeApplicationsInput, opts ...request.Option) (*DescribeApplicationsOutput, error) {
+	req, out := c.DescribeApplicationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDirectoryConfigs = "DescribeDirectoryConfigs"
 
 // DescribeDirectoryConfigsRequest generates a "aws/request.Request" representing the
@@ -1816,14 +2938,13 @@ const opDescribeDirectoryConfigs = "DescribeDirectoryConfigs"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeDirectoryConfigsRequest method.
+//	req, resp := client.DescribeDirectoryConfigsRequest(params)
 //
-//    // Example sending a request using the DescribeDirectoryConfigsRequest method.
-//    req, resp := client.DescribeDirectoryConfigsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeDirectoryConfigs
 func (c *AppStream) DescribeDirectoryConfigsRequest(input *DescribeDirectoryConfigsInput) (req *request.Request, output *DescribeDirectoryConfigsOutput) {
@@ -1861,8 +2982,8 @@ func (c *AppStream) DescribeDirectoryConfigsRequest(input *DescribeDirectoryConf
 // API operation DescribeDirectoryConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeDirectoryConfigs
 func (c *AppStream) DescribeDirectoryConfigs(input *DescribeDirectoryConfigsInput) (*DescribeDirectoryConfigsOutput, error) {
@@ -1886,6 +3007,91 @@ func (c *AppStream) DescribeDirectoryConfigsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDescribeEntitlements = "DescribeEntitlements"
+
+// DescribeEntitlementsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEntitlements operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEntitlements for more information on using the DescribeEntitlements
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeEntitlementsRequest method.
+//	req, resp := client.DescribeEntitlementsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeEntitlements
+func (c *AppStream) DescribeEntitlementsRequest(input *DescribeEntitlementsInput) (req *request.Request, output *DescribeEntitlementsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEntitlements,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEntitlementsInput{}
+	}
+
+	output = &DescribeEntitlementsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEntitlements API operation for Amazon AppStream.
+//
+// Retrieves a list that describes one of more entitlements.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DescribeEntitlements for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - EntitlementNotFoundException
+//     The entitlement can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeEntitlements
+func (c *AppStream) DescribeEntitlements(input *DescribeEntitlementsInput) (*DescribeEntitlementsOutput, error) {
+	req, out := c.DescribeEntitlementsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEntitlementsWithContext is the same as DescribeEntitlements with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEntitlements for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DescribeEntitlementsWithContext(ctx aws.Context, input *DescribeEntitlementsInput, opts ...request.Option) (*DescribeEntitlementsOutput, error) {
+	req, out := c.DescribeEntitlementsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeFleets = "DescribeFleets"
 
 // DescribeFleetsRequest generates a "aws/request.Request" representing the
@@ -1902,14 +3108,13 @@ const opDescribeFleets = "DescribeFleets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeFleetsRequest method.
+//	req, resp := client.DescribeFleetsRequest(params)
 //
-//    // Example sending a request using the DescribeFleetsRequest method.
-//    req, resp := client.DescribeFleetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeFleets
 func (c *AppStream) DescribeFleetsRequest(input *DescribeFleetsInput) (req *request.Request, output *DescribeFleetsOutput) {
@@ -1941,8 +3146,8 @@ func (c *AppStream) DescribeFleetsRequest(input *DescribeFleetsInput) (req *requ
 // API operation DescribeFleets for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeFleets
 func (c *AppStream) DescribeFleets(input *DescribeFleetsInput) (*DescribeFleetsOutput, error) {
@@ -1982,14 +3187,13 @@ const opDescribeImageBuilders = "DescribeImageBuilders"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeImageBuildersRequest method.
+//	req, resp := client.DescribeImageBuildersRequest(params)
 //
-//    // Example sending a request using the DescribeImageBuildersRequest method.
-//    req, resp := client.DescribeImageBuildersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImageBuilders
 func (c *AppStream) DescribeImageBuildersRequest(input *DescribeImageBuildersInput) (req *request.Request, output *DescribeImageBuildersOutput) {
@@ -2022,8 +3226,8 @@ func (c *AppStream) DescribeImageBuildersRequest(input *DescribeImageBuildersInp
 // API operation DescribeImageBuilders for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImageBuilders
 func (c *AppStream) DescribeImageBuilders(input *DescribeImageBuildersInput) (*DescribeImageBuildersOutput, error) {
@@ -2063,14 +3267,13 @@ const opDescribeImagePermissions = "DescribeImagePermissions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeImagePermissionsRequest method.
+//	req, resp := client.DescribeImagePermissionsRequest(params)
 //
-//    // Example sending a request using the DescribeImagePermissionsRequest method.
-//    req, resp := client.DescribeImagePermissionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImagePermissions
 func (c *AppStream) DescribeImagePermissionsRequest(input *DescribeImagePermissionsInput) (req *request.Request, output *DescribeImagePermissionsOutput) {
@@ -2108,8 +3311,8 @@ func (c *AppStream) DescribeImagePermissionsRequest(input *DescribeImagePermissi
 // API operation DescribeImagePermissions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImagePermissions
 func (c *AppStream) DescribeImagePermissions(input *DescribeImagePermissionsInput) (*DescribeImagePermissionsOutput, error) {
@@ -2141,15 +3344,14 @@ func (c *AppStream) DescribeImagePermissionsWithContext(ctx aws.Context, input *
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeImagePermissions operation.
-//    pageNum := 0
-//    err := client.DescribeImagePermissionsPages(params,
-//        func(page *appstream.DescribeImagePermissionsOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeImagePermissions operation.
+//	pageNum := 0
+//	err := client.DescribeImagePermissionsPages(params,
+//	    func(page *appstream.DescribeImagePermissionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppStream) DescribeImagePermissionsPages(input *DescribeImagePermissionsInput, fn func(*DescribeImagePermissionsOutput, bool) bool) error {
 	return c.DescribeImagePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2201,14 +3403,13 @@ const opDescribeImages = "DescribeImages"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeImagesRequest method.
+//	req, resp := client.DescribeImagesRequest(params)
 //
-//    // Example sending a request using the DescribeImagesRequest method.
-//    req, resp := client.DescribeImagesRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImages
 func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Request, output *DescribeImagesOutput) {
@@ -2247,11 +3448,12 @@ func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *requ
 // API operation DescribeImages for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImages
 func (c *AppStream) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput, error) {
@@ -2283,15 +3485,14 @@ func (c *AppStream) DescribeImagesWithContext(ctx aws.Context, input *DescribeIm
 //
 // Note: This operation can generate multiple requests to a service.
 //
-//    // Example iterating over at most 3 pages of a DescribeImages operation.
-//    pageNum := 0
-//    err := client.DescribeImagesPages(params,
-//        func(page *appstream.DescribeImagesOutput, lastPage bool) bool {
-//            pageNum++
-//            fmt.Println(page)
-//            return pageNum <= 3
-//        })
-//
+//	// Example iterating over at most 3 pages of a DescribeImages operation.
+//	pageNum := 0
+//	err := client.DescribeImagesPages(params,
+//	    func(page *appstream.DescribeImagesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
 func (c *AppStream) DescribeImagesPages(input *DescribeImagesInput, fn func(*DescribeImagesOutput, bool) bool) error {
 	return c.DescribeImagesPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -2343,14 +3544,13 @@ const opDescribeSessions = "DescribeSessions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeSessionsRequest method.
+//	req, resp := client.DescribeSessionsRequest(params)
 //
-//    // Example sending a request using the DescribeSessionsRequest method.
-//    req, resp := client.DescribeSessionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeSessions
 func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *request.Request, output *DescribeSessionsOutput) {
@@ -2384,8 +3584,8 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 // API operation DescribeSessions for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeSessions
 func (c *AppStream) DescribeSessions(input *DescribeSessionsInput) (*DescribeSessionsOutput, error) {
@@ -2425,14 +3625,13 @@ const opDescribeStacks = "DescribeStacks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeStacksRequest method.
+//	req, resp := client.DescribeStacksRequest(params)
 //
-//    // Example sending a request using the DescribeStacksRequest method.
-//    req, resp := client.DescribeStacksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeStacks
 func (c *AppStream) DescribeStacksRequest(input *DescribeStacksInput) (req *request.Request, output *DescribeStacksOutput) {
@@ -2464,8 +3663,8 @@ func (c *AppStream) DescribeStacksRequest(input *DescribeStacksInput) (req *requ
 // API operation DescribeStacks for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeStacks
 func (c *AppStream) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, error) {
@@ -2505,14 +3704,13 @@ const opDescribeUsageReportSubscriptions = "DescribeUsageReportSubscriptions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUsageReportSubscriptionsRequest method.
+//	req, resp := client.DescribeUsageReportSubscriptionsRequest(params)
 //
-//    // Example sending a request using the DescribeUsageReportSubscriptionsRequest method.
-//    req, resp := client.DescribeUsageReportSubscriptionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsageReportSubscriptions
 func (c *AppStream) DescribeUsageReportSubscriptionsRequest(input *DescribeUsageReportSubscriptionsInput) (req *request.Request, output *DescribeUsageReportSubscriptionsOutput) {
@@ -2543,12 +3741,13 @@ func (c *AppStream) DescribeUsageReportSubscriptionsRequest(input *DescribeUsage
 // API operation DescribeUsageReportSubscriptions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsageReportSubscriptions
 func (c *AppStream) DescribeUsageReportSubscriptions(input *DescribeUsageReportSubscriptionsInput) (*DescribeUsageReportSubscriptionsOutput, error) {
@@ -2588,14 +3787,13 @@ const opDescribeUserStackAssociations = "DescribeUserStackAssociations"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUserStackAssociationsRequest method.
+//	req, resp := client.DescribeUserStackAssociationsRequest(params)
 //
-//    // Example sending a request using the DescribeUserStackAssociationsRequest method.
-//    req, resp := client.DescribeUserStackAssociationsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUserStackAssociations
 func (c *AppStream) DescribeUserStackAssociationsRequest(input *DescribeUserStackAssociationsInput) (req *request.Request, output *DescribeUserStackAssociationsOutput) {
@@ -2619,10 +3817,10 @@ func (c *AppStream) DescribeUserStackAssociationsRequest(input *DescribeUserStac
 // Retrieves a list that describes the UserStackAssociation objects. You must
 // specify either or both of the following:
 //
-//    * The stack name
+//   - The stack name
 //
-//    * The user name (email address of the user associated with the stack)
-//    and the authentication type for the user
+//   - The user name (email address of the user associated with the stack)
+//     and the authentication type for the user
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2632,8 +3830,12 @@ func (c *AppStream) DescribeUserStackAssociationsRequest(input *DescribeUserStac
 // API operation DescribeUserStackAssociations for usage and error information.
 //
 // Returned Error Types:
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUserStackAssociations
 func (c *AppStream) DescribeUserStackAssociations(input *DescribeUserStackAssociationsInput) (*DescribeUserStackAssociationsOutput, error) {
@@ -2673,14 +3875,13 @@ const opDescribeUsers = "DescribeUsers"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DescribeUsersRequest method.
+//	req, resp := client.DescribeUsersRequest(params)
 //
-//    // Example sending a request using the DescribeUsersRequest method.
-//    req, resp := client.DescribeUsersRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsers
 func (c *AppStream) DescribeUsersRequest(input *DescribeUsersInput) (req *request.Request, output *DescribeUsersOutput) {
@@ -2711,11 +3912,15 @@ func (c *AppStream) DescribeUsersRequest(input *DescribeUsersInput) (req *reques
 // API operation DescribeUsers for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsers
 func (c *AppStream) DescribeUsers(input *DescribeUsersInput) (*DescribeUsersOutput, error) {
@@ -2755,14 +3960,13 @@ const opDisableUser = "DisableUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisableUserRequest method.
+//	req, resp := client.DisableUserRequest(params)
 //
-//    // Example sending a request using the DisableUserRequest method.
-//    req, resp := client.DisableUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisableUser
 func (c *AppStream) DisableUserRequest(input *DisableUserInput) (req *request.Request, output *DisableUserOutput) {
@@ -2795,8 +3999,8 @@ func (c *AppStream) DisableUserRequest(input *DisableUserInput) (req *request.Re
 // API operation DisableUser for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisableUser
 func (c *AppStream) DisableUser(input *DisableUserInput) (*DisableUserOutput, error) {
@@ -2820,6 +4024,181 @@ func (c *AppStream) DisableUserWithContext(ctx aws.Context, input *DisableUserIn
 	return out, req.Send()
 }
 
+const opDisassociateApplicationFleet = "DisassociateApplicationFleet"
+
+// DisassociateApplicationFleetRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateApplicationFleet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateApplicationFleet for more information on using the DisassociateApplicationFleet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateApplicationFleetRequest method.
+//	req, resp := client.DisassociateApplicationFleetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateApplicationFleet
+func (c *AppStream) DisassociateApplicationFleetRequest(input *DisassociateApplicationFleetInput) (req *request.Request, output *DisassociateApplicationFleetOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateApplicationFleet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateApplicationFleetInput{}
+	}
+
+	output = &DisassociateApplicationFleetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateApplicationFleet API operation for Amazon AppStream.
+//
+// Disassociates the specified application from the fleet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DisassociateApplicationFleet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateApplicationFleet
+func (c *AppStream) DisassociateApplicationFleet(input *DisassociateApplicationFleetInput) (*DisassociateApplicationFleetOutput, error) {
+	req, out := c.DisassociateApplicationFleetRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateApplicationFleetWithContext is the same as DisassociateApplicationFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateApplicationFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DisassociateApplicationFleetWithContext(ctx aws.Context, input *DisassociateApplicationFleetInput, opts ...request.Option) (*DisassociateApplicationFleetOutput, error) {
+	req, out := c.DisassociateApplicationFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateApplicationFromEntitlement = "DisassociateApplicationFromEntitlement"
+
+// DisassociateApplicationFromEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateApplicationFromEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateApplicationFromEntitlement for more information on using the DisassociateApplicationFromEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateApplicationFromEntitlementRequest method.
+//	req, resp := client.DisassociateApplicationFromEntitlementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateApplicationFromEntitlement
+func (c *AppStream) DisassociateApplicationFromEntitlementRequest(input *DisassociateApplicationFromEntitlementInput) (req *request.Request, output *DisassociateApplicationFromEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateApplicationFromEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateApplicationFromEntitlementInput{}
+	}
+
+	output = &DisassociateApplicationFromEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateApplicationFromEntitlement API operation for Amazon AppStream.
+//
+// Deletes the specified application from the specified entitlement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation DisassociateApplicationFromEntitlement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - EntitlementNotFoundException
+//     The entitlement can't be found.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateApplicationFromEntitlement
+func (c *AppStream) DisassociateApplicationFromEntitlement(input *DisassociateApplicationFromEntitlementInput) (*DisassociateApplicationFromEntitlementOutput, error) {
+	req, out := c.DisassociateApplicationFromEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateApplicationFromEntitlementWithContext is the same as DisassociateApplicationFromEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateApplicationFromEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) DisassociateApplicationFromEntitlementWithContext(ctx aws.Context, input *DisassociateApplicationFromEntitlementInput, opts ...request.Option) (*DisassociateApplicationFromEntitlementOutput, error) {
+	req, out := c.DisassociateApplicationFromEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateFleet = "DisassociateFleet"
 
 // DisassociateFleetRequest generates a "aws/request.Request" representing the
@@ -2836,14 +4215,13 @@ const opDisassociateFleet = "DisassociateFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the DisassociateFleetRequest method.
+//	req, resp := client.DisassociateFleetRequest(params)
 //
-//    // Example sending a request using the DisassociateFleetRequest method.
-//    req, resp := client.DisassociateFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateFleet
 func (c *AppStream) DisassociateFleetRequest(input *DisassociateFleetInput) (req *request.Request, output *DisassociateFleetOutput) {
@@ -2875,14 +4253,18 @@ func (c *AppStream) DisassociateFleetRequest(input *DisassociateFleetInput) (req
 // API operation DisassociateFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateFleet
 func (c *AppStream) DisassociateFleet(input *DisassociateFleetInput) (*DisassociateFleetOutput, error) {
@@ -2922,14 +4304,13 @@ const opEnableUser = "EnableUser"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the EnableUserRequest method.
+//	req, resp := client.EnableUserRequest(params)
 //
-//    // Example sending a request using the EnableUserRequest method.
-//    req, resp := client.EnableUserRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/EnableUser
 func (c *AppStream) EnableUserRequest(input *EnableUserInput) (req *request.Request, output *EnableUserOutput) {
@@ -2962,12 +4343,13 @@ func (c *AppStream) EnableUserRequest(input *EnableUserInput) (req *request.Requ
 // API operation EnableUser for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/EnableUser
 func (c *AppStream) EnableUser(input *EnableUserInput) (*EnableUserOutput, error) {
@@ -3007,14 +4389,13 @@ const opExpireSession = "ExpireSession"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ExpireSessionRequest method.
+//	req, resp := client.ExpireSessionRequest(params)
 //
-//    // Example sending a request using the ExpireSessionRequest method.
-//    req, resp := client.ExpireSessionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ExpireSession
 func (c *AppStream) ExpireSessionRequest(input *ExpireSessionInput) (req *request.Request, output *ExpireSessionOutput) {
@@ -3082,14 +4463,13 @@ const opListAssociatedFleets = "ListAssociatedFleets"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAssociatedFleetsRequest method.
+//	req, resp := client.ListAssociatedFleetsRequest(params)
 //
-//    // Example sending a request using the ListAssociatedFleetsRequest method.
-//    req, resp := client.ListAssociatedFleetsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListAssociatedFleets
 func (c *AppStream) ListAssociatedFleetsRequest(input *ListAssociatedFleetsInput) (req *request.Request, output *ListAssociatedFleetsOutput) {
@@ -3156,14 +4536,13 @@ const opListAssociatedStacks = "ListAssociatedStacks"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListAssociatedStacksRequest method.
+//	req, resp := client.ListAssociatedStacksRequest(params)
 //
-//    // Example sending a request using the ListAssociatedStacksRequest method.
-//    req, resp := client.ListAssociatedStacksRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListAssociatedStacks
 func (c *AppStream) ListAssociatedStacksRequest(input *ListAssociatedStacksInput) (req *request.Request, output *ListAssociatedStacksOutput) {
@@ -3214,6 +4593,91 @@ func (c *AppStream) ListAssociatedStacksWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opListEntitledApplications = "ListEntitledApplications"
+
+// ListEntitledApplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEntitledApplications operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEntitledApplications for more information on using the ListEntitledApplications
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEntitledApplicationsRequest method.
+//	req, resp := client.ListEntitledApplicationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListEntitledApplications
+func (c *AppStream) ListEntitledApplicationsRequest(input *ListEntitledApplicationsInput) (req *request.Request, output *ListEntitledApplicationsOutput) {
+	op := &request.Operation{
+		Name:       opListEntitledApplications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListEntitledApplicationsInput{}
+	}
+
+	output = &ListEntitledApplicationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEntitledApplications API operation for Amazon AppStream.
+//
+// Retrieves a list of entitled applications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation ListEntitledApplications for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - EntitlementNotFoundException
+//     The entitlement can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListEntitledApplications
+func (c *AppStream) ListEntitledApplications(input *ListEntitledApplicationsInput) (*ListEntitledApplicationsOutput, error) {
+	req, out := c.ListEntitledApplicationsRequest(input)
+	return out, req.Send()
+}
+
+// ListEntitledApplicationsWithContext is the same as ListEntitledApplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEntitledApplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) ListEntitledApplicationsWithContext(ctx aws.Context, input *ListEntitledApplicationsInput, opts ...request.Option) (*ListEntitledApplicationsOutput, error) {
+	req, out := c.ListEntitledApplicationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -3230,14 +4694,13 @@ const opListTagsForResource = "ListTagsForResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
 //
-//    // Example sending a request using the ListTagsForResourceRequest method.
-//    req, resp := client.ListTagsForResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListTagsForResource
 func (c *AppStream) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
@@ -3272,8 +4735,8 @@ func (c *AppStream) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListTagsForResource
 func (c *AppStream) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3313,14 +4776,13 @@ const opStartFleet = "StartFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartFleetRequest method.
+//	req, resp := client.StartFleetRequest(params)
 //
-//    // Example sending a request using the StartFleetRequest method.
-//    req, resp := client.StartFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartFleet
 func (c *AppStream) StartFleetRequest(input *StartFleetInput) (req *request.Request, output *StartFleetOutput) {
@@ -3352,27 +4814,33 @@ func (c *AppStream) StartFleetRequest(input *StartFleetInput) (req *request.Requ
 // API operation StartFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - RequestLimitExceededException
+//     AppStream 2.0 can’t process the request right now because the Describe
+//     calls from your AWS account are being throttled by Amazon EC2. Try again
+//     later.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * InvalidRoleException
-//   The specified role is invalid.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
+//
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartFleet
 func (c *AppStream) StartFleet(input *StartFleetInput) (*StartFleetOutput, error) {
@@ -3412,14 +4880,13 @@ const opStartImageBuilder = "StartImageBuilder"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StartImageBuilderRequest method.
+//	req, resp := client.StartImageBuilderRequest(params)
 //
-//    // Example sending a request using the StartImageBuilderRequest method.
-//    req, resp := client.StartImageBuilderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartImageBuilder
 func (c *AppStream) StartImageBuilderRequest(input *StartImageBuilderInput) (req *request.Request, output *StartImageBuilderOutput) {
@@ -3450,21 +4917,22 @@ func (c *AppStream) StartImageBuilderRequest(input *StartImageBuilderInput) (req
 // API operation StartImageBuilder for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartImageBuilder
 func (c *AppStream) StartImageBuilder(input *StartImageBuilderInput) (*StartImageBuilderOutput, error) {
@@ -3504,14 +4972,13 @@ const opStopFleet = "StopFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopFleetRequest method.
+//	req, resp := client.StopFleetRequest(params)
 //
-//    // Example sending a request using the StopFleetRequest method.
-//    req, resp := client.StopFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StopFleet
 func (c *AppStream) StopFleetRequest(input *StopFleetInput) (req *request.Request, output *StopFleetOutput) {
@@ -3543,11 +5010,12 @@ func (c *AppStream) StopFleetRequest(input *StopFleetInput) (req *request.Reques
 // API operation StopFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StopFleet
 func (c *AppStream) StopFleet(input *StopFleetInput) (*StopFleetOutput, error) {
@@ -3587,14 +5055,13 @@ const opStopImageBuilder = "StopImageBuilder"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the StopImageBuilderRequest method.
+//	req, resp := client.StopImageBuilderRequest(params)
 //
-//    // Example sending a request using the StopImageBuilderRequest method.
-//    req, resp := client.StopImageBuilderRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StopImageBuilder
 func (c *AppStream) StopImageBuilderRequest(input *StopImageBuilderInput) (req *request.Request, output *StopImageBuilderOutput) {
@@ -3625,14 +5092,15 @@ func (c *AppStream) StopImageBuilderRequest(input *StopImageBuilderInput) (req *
 // API operation StopImageBuilder for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StopImageBuilder
 func (c *AppStream) StopImageBuilder(input *StopImageBuilderInput) (*StopImageBuilderOutput, error) {
@@ -3672,14 +5140,13 @@ const opTagResource = "TagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
 //
-//    // Example sending a request using the TagResourceRequest method.
-//    req, resp := client.TagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/TagResource
 func (c *AppStream) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
@@ -3721,15 +5188,16 @@ func (c *AppStream) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/TagResource
 func (c *AppStream) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3769,14 +5237,13 @@ const opUntagResource = "UntagResource"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
 //
-//    // Example sending a request using the UntagResourceRequest method.
-//    req, resp := client.UntagResourceRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UntagResource
 func (c *AppStream) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
@@ -3814,8 +5281,8 @@ func (c *AppStream) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UntagResource
 func (c *AppStream) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3839,6 +5306,91 @@ func (c *AppStream) UntagResourceWithContext(ctx aws.Context, input *UntagResour
 	return out, req.Send()
 }
 
+const opUpdateApplication = "UpdateApplication"
+
+// UpdateApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateApplication for more information on using the UpdateApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateApplicationRequest method.
+//	req, resp := client.UpdateApplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateApplication
+func (c *AppStream) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *UpdateApplicationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateApplicationInput{}
+	}
+
+	output = &UpdateApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateApplication API operation for Amazon AppStream.
+//
+// Updates the specified application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation UpdateApplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateApplication
+func (c *AppStream) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
+	req, out := c.UpdateApplicationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateApplicationWithContext is the same as UpdateApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) UpdateApplicationWithContext(ctx aws.Context, input *UpdateApplicationInput, opts ...request.Option) (*UpdateApplicationOutput, error) {
+	req, out := c.UpdateApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDirectoryConfig = "UpdateDirectoryConfig"
 
 // UpdateDirectoryConfigRequest generates a "aws/request.Request" representing the
@@ -3855,14 +5407,13 @@ const opUpdateDirectoryConfig = "UpdateDirectoryConfig"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateDirectoryConfigRequest method.
+//	req, resp := client.UpdateDirectoryConfigRequest(params)
 //
-//    // Example sending a request using the UpdateDirectoryConfigRequest method.
-//    req, resp := client.UpdateDirectoryConfigRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateDirectoryConfig
 func (c *AppStream) UpdateDirectoryConfigRequest(input *UpdateDirectoryConfigInput) (req *request.Request, output *UpdateDirectoryConfigOutput) {
@@ -3895,14 +5446,21 @@ func (c *AppStream) UpdateDirectoryConfigRequest(input *UpdateDirectoryConfigInp
 // API operation UpdateDirectoryConfig for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateDirectoryConfig
 func (c *AppStream) UpdateDirectoryConfig(input *UpdateDirectoryConfigInput) (*UpdateDirectoryConfigOutput, error) {
@@ -3926,6 +5484,94 @@ func (c *AppStream) UpdateDirectoryConfigWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opUpdateEntitlement = "UpdateEntitlement"
+
+// UpdateEntitlementRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEntitlement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEntitlement for more information on using the UpdateEntitlement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEntitlementRequest method.
+//	req, resp := client.UpdateEntitlementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateEntitlement
+func (c *AppStream) UpdateEntitlementRequest(input *UpdateEntitlementInput) (req *request.Request, output *UpdateEntitlementOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEntitlement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateEntitlementInput{}
+	}
+
+	output = &UpdateEntitlementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEntitlement API operation for Amazon AppStream.
+//
+// Updates the specified entitlement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation UpdateEntitlement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - EntitlementNotFoundException
+//     The entitlement can't be found.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateEntitlement
+func (c *AppStream) UpdateEntitlement(input *UpdateEntitlementInput) (*UpdateEntitlementOutput, error) {
+	req, out := c.UpdateEntitlementRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEntitlementWithContext is the same as UpdateEntitlement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEntitlement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) UpdateEntitlementWithContext(ctx aws.Context, input *UpdateEntitlementInput, opts ...request.Option) (*UpdateEntitlementOutput, error) {
+	req, out := c.UpdateEntitlementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFleet = "UpdateFleet"
 
 // UpdateFleetRequest generates a "aws/request.Request" representing the
@@ -3942,14 +5588,13 @@ const opUpdateFleet = "UpdateFleet"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateFleetRequest method.
+//	req, resp := client.UpdateFleetRequest(params)
 //
-//    // Example sending a request using the UpdateFleetRequest method.
-//    req, resp := client.UpdateFleetRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateFleet
 func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Request, output *UpdateFleetOutput) {
@@ -3973,10 +5618,20 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 // Updates the specified fleet.
 //
 // If the fleet is in the STOPPED state, you can update any attribute except
-// the fleet name. If the fleet is in the RUNNING state, you can update the
-// DisplayName, ComputeCapacity, ImageARN, ImageName, IdleDisconnectTimeoutInSeconds,
-// and DisconnectTimeoutInSeconds attributes. If the fleet is in the STARTING
-// or STOPPING state, you can't update it.
+// the fleet name.
+//
+// If the fleet is in the RUNNING state, you can update the following based
+// on the fleet type:
+//
+//   - Always-On and On-Demand fleet types You can update the DisplayName,
+//     ComputeCapacity, ImageARN, ImageName, IdleDisconnectTimeoutInSeconds,
+//     and DisconnectTimeoutInSeconds attributes.
+//
+//   - Elastic fleet type You can update the DisplayName, IdleDisconnectTimeoutInSeconds,
+//     DisconnectTimeoutInSeconds, MaxConcurrentSessions, SessionScriptS3Location
+//     and UsbDeviceFilterStrings attributes.
+//
+// If the fleet is in the STARTING or STOPPED state, you can't update it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3986,36 +5641,42 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 // API operation UpdateFleet for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceInUseException
-//   The specified resource is in use.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * InvalidRoleException
-//   The specified role is invalid.
+//   - RequestLimitExceededException
+//     AppStream 2.0 can’t process the request right now because the Describe
+//     calls from your AWS account are being throttled by Amazon EC2. Try again
+//     later.
 //
-//   * ResourceNotFoundException
-//   The specified resource was not found.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
+//
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
+//
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateFleet
 func (c *AppStream) UpdateFleet(input *UpdateFleetInput) (*UpdateFleetOutput, error) {
@@ -4055,14 +5716,13 @@ const opUpdateImagePermissions = "UpdateImagePermissions"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateImagePermissionsRequest method.
+//	req, resp := client.UpdateImagePermissionsRequest(params)
 //
-//    // Example sending a request using the UpdateImagePermissionsRequest method.
-//    req, resp := client.UpdateImagePermissionsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateImagePermissions
 func (c *AppStream) UpdateImagePermissionsRequest(input *UpdateImagePermissionsInput) (req *request.Request, output *UpdateImagePermissionsOutput) {
@@ -4094,14 +5754,15 @@ func (c *AppStream) UpdateImagePermissionsRequest(input *UpdateImagePermissionsI
 // API operation UpdateImagePermissions for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceNotAvailableException
-//   The specified resource exists and is not in use, but isn't available.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - ResourceNotAvailableException
+//     The specified resource exists and is not in use, but isn't available.
+//
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateImagePermissions
 func (c *AppStream) UpdateImagePermissions(input *UpdateImagePermissionsInput) (*UpdateImagePermissionsOutput, error) {
@@ -4141,14 +5802,13 @@ const opUpdateStack = "UpdateStack"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the UpdateStackRequest method.
+//	req, resp := client.UpdateStackRequest(params)
 //
-//    // Example sending a request using the UpdateStackRequest method.
-//    req, resp := client.UpdateStackRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateStack
 func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Request, output *UpdateStackOutput) {
@@ -4179,33 +5839,34 @@ func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Re
 // API operation UpdateStack for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The specified resource was not found.
 //
-//   * ResourceInUseException
-//   The specified resource is in use.
+//   - ResourceNotFoundException
+//     The specified resource was not found.
 //
-//   * InvalidRoleException
-//   The specified role is invalid.
+//   - ResourceInUseException
+//     The specified resource is in use.
 //
-//   * InvalidParameterCombinationException
-//   Indicates an incorrect combination of parameters, or a missing parameter.
+//   - InvalidRoleException
+//     The specified role is invalid.
 //
-//   * LimitExceededException
-//   The requested limit exceeds the permitted limit for an account.
+//   - InvalidParameterCombinationException
+//     Indicates an incorrect combination of parameters, or a missing parameter.
 //
-//   * InvalidAccountStatusException
-//   The resource cannot be created because your AWS account is suspended. For
-//   assistance, contact AWS Support.
+//   - LimitExceededException
+//     The requested limit exceeds the permitted limit for an account.
 //
-//   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   - InvalidAccountStatusException
+//     The resource cannot be created because your AWS account is suspended. For
+//     assistance, contact AWS Support.
 //
-//   * OperationNotPermittedException
-//   The attempted operation is not permitted.
+//   - IncompatibleImageException
+//     The image can't be updated because it's not compatible for updates.
 //
-//   * ConcurrentModificationException
-//   An API error occurred. Wait a few minutes and try again.
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
+//   - ConcurrentModificationException
+//     An API error occurred. Wait a few minutes and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateStack
 func (c *AppStream) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
@@ -4247,12 +5908,20 @@ type AccessEndpoint struct {
 	VpceId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessEndpoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessEndpoint) GoString() string {
 	return s.String()
 }
@@ -4285,9 +5954,121 @@ func (s *AccessEndpoint) SetVpceId(v string) *AccessEndpoint {
 	return s
 }
 
+// Describes an app block.
+//
+// App blocks are an Amazon AppStream 2.0 resource that stores the details about
+// the virtual hard disk in an S3 bucket. It also stores the setup script with
+// details about how to mount the virtual hard disk. The virtual hard disk includes
+// the application binaries and other files necessary to launch your applications.
+// Multiple applications can be assigned to a single app block.
+//
+// This is only supported for Elastic fleets.
+type AppBlock struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app block.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The created time of the app block.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description of the app block.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the app block.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The name of the app block.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The setup script details of the app block.
+	//
+	// SetupScriptDetails is a required field
+	SetupScriptDetails *ScriptDetails `type:"structure" required:"true"`
+
+	// The source S3 location of the app block.
+	SourceS3Location *S3Location `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppBlock) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AppBlock) SetArn(v string) *AppBlock {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *AppBlock) SetCreatedTime(v time.Time) *AppBlock {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AppBlock) SetDescription(v string) *AppBlock {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *AppBlock) SetDisplayName(v string) *AppBlock {
+	s.DisplayName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppBlock) SetName(v string) *AppBlock {
+	s.Name = &v
+	return s
+}
+
+// SetSetupScriptDetails sets the SetupScriptDetails field's value.
+func (s *AppBlock) SetSetupScriptDetails(v *ScriptDetails) *AppBlock {
+	s.SetupScriptDetails = v
+	return s
+}
+
+// SetSourceS3Location sets the SourceS3Location field's value.
+func (s *AppBlock) SetSourceS3Location(v *S3Location) *AppBlock {
+	s.SourceS3Location = v
+	return s
+}
+
 // Describes an application in the application catalog.
 type Application struct {
 	_ struct{} `type:"structure"`
+
+	// The app block ARN of the application.
+	AppBlockArn *string `type:"string"`
+
+	// The ARN of the application.
+	Arn *string `type:"string"`
+
+	// The time at which the application was created within the app block.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description of the application.
+	Description *string `min:"1" type:"string"`
 
 	// The application name to display.
 	DisplayName *string `min:"1" type:"string"`
@@ -4295,8 +6076,14 @@ type Application struct {
 	// If there is a problem, the application can be disabled after image creation.
 	Enabled *bool `type:"boolean"`
 
+	// The S3 location of the application icon.
+	IconS3Location *S3Location `type:"structure"`
+
 	// The URL for the application icon. This URL might be time-limited.
 	IconURL *string `min:"1" type:"string"`
+
+	// The instance families for the application.
+	InstanceFamilies []*string `type:"list"`
 
 	// The arguments that are passed to the application at launch.
 	LaunchParameters *string `min:"1" type:"string"`
@@ -4309,16 +6096,54 @@ type Application struct {
 
 	// The name of the application.
 	Name *string `min:"1" type:"string"`
+
+	// The platforms on which the application can run.
+	Platforms []*string `type:"list" enum:"PlatformType"`
+
+	// The working directory for the application.
+	WorkingDirectory *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Application) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Application) GoString() string {
 	return s.String()
+}
+
+// SetAppBlockArn sets the AppBlockArn field's value.
+func (s *Application) SetAppBlockArn(v string) *Application {
+	s.AppBlockArn = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *Application) SetArn(v string) *Application {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Application) SetCreatedTime(v time.Time) *Application {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Application) SetDescription(v string) *Application {
+	s.Description = &v
+	return s
 }
 
 // SetDisplayName sets the DisplayName field's value.
@@ -4333,9 +6158,21 @@ func (s *Application) SetEnabled(v bool) *Application {
 	return s
 }
 
+// SetIconS3Location sets the IconS3Location field's value.
+func (s *Application) SetIconS3Location(v *S3Location) *Application {
+	s.IconS3Location = v
+	return s
+}
+
 // SetIconURL sets the IconURL field's value.
 func (s *Application) SetIconURL(v string) *Application {
 	s.IconURL = &v
+	return s
+}
+
+// SetInstanceFamilies sets the InstanceFamilies field's value.
+func (s *Application) SetInstanceFamilies(v []*string) *Application {
+	s.InstanceFamilies = v
 	return s
 }
 
@@ -4363,6 +6200,63 @@ func (s *Application) SetName(v string) *Application {
 	return s
 }
 
+// SetPlatforms sets the Platforms field's value.
+func (s *Application) SetPlatforms(v []*string) *Application {
+	s.Platforms = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *Application) SetWorkingDirectory(v string) *Application {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// Describes the application fleet association.
+type ApplicationFleetAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the application associated with the fleet.
+	//
+	// ApplicationArn is a required field
+	ApplicationArn *string `type:"string" required:"true"`
+
+	// The name of the fleet associated with the application.
+	//
+	// FleetName is a required field
+	FleetName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationFleetAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationFleetAssociation) GoString() string {
+	return s.String()
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *ApplicationFleetAssociation) SetApplicationArn(v string) *ApplicationFleetAssociation {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetFleetName sets the FleetName field's value.
+func (s *ApplicationFleetAssociation) SetFleetName(v string) *ApplicationFleetAssociation {
+	s.FleetName = &v
+	return s
+}
+
 // The persistent application settings for users of a stack.
 type ApplicationSettings struct {
 	_ struct{} `type:"structure"`
@@ -4380,12 +6274,20 @@ type ApplicationSettings struct {
 	SettingsGroup *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSettings) GoString() string {
 	return s.String()
 }
@@ -4434,12 +6336,20 @@ type ApplicationSettingsResponse struct {
 	SettingsGroup *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSettingsResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ApplicationSettingsResponse) GoString() string {
 	return s.String()
 }
@@ -4462,6 +6372,198 @@ func (s *ApplicationSettingsResponse) SetSettingsGroup(v string) *ApplicationSet
 	return s
 }
 
+type AssociateApplicationFleetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the application.
+	//
+	// ApplicationArn is a required field
+	ApplicationArn *string `type:"string" required:"true"`
+
+	// The name of the fleet.
+	//
+	// FleetName is a required field
+	FleetName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationFleetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationFleetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateApplicationFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateApplicationFleetInput"}
+	if s.ApplicationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationArn"))
+	}
+	if s.FleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *AssociateApplicationFleetInput) SetApplicationArn(v string) *AssociateApplicationFleetInput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetFleetName sets the FleetName field's value.
+func (s *AssociateApplicationFleetInput) SetFleetName(v string) *AssociateApplicationFleetInput {
+	s.FleetName = &v
+	return s
+}
+
+type AssociateApplicationFleetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If fleet name is specified, this returns the list of applications that are
+	// associated to it. If application ARN is specified, this returns the list
+	// of fleets to which it is associated.
+	ApplicationFleetAssociation *ApplicationFleetAssociation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationFleetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationFleetOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationFleetAssociation sets the ApplicationFleetAssociation field's value.
+func (s *AssociateApplicationFleetOutput) SetApplicationFleetAssociation(v *ApplicationFleetAssociation) *AssociateApplicationFleetOutput {
+	s.ApplicationFleetAssociation = v
+	return s
+}
+
+type AssociateApplicationToEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the application.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The name of the entitlement.
+	//
+	// EntitlementName is a required field
+	EntitlementName *string `type:"string" required:"true"`
+
+	// The name of the stack.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateApplicationToEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateApplicationToEntitlementInput"}
+	if s.ApplicationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationIdentifier"))
+	}
+	if s.ApplicationIdentifier != nil && len(*s.ApplicationIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationIdentifier", 1))
+	}
+	if s.EntitlementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntitlementName"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *AssociateApplicationToEntitlementInput) SetApplicationIdentifier(v string) *AssociateApplicationToEntitlementInput {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// SetEntitlementName sets the EntitlementName field's value.
+func (s *AssociateApplicationToEntitlementInput) SetEntitlementName(v string) *AssociateApplicationToEntitlementInput {
+	s.EntitlementName = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *AssociateApplicationToEntitlementInput) SetStackName(v string) *AssociateApplicationToEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type AssociateApplicationToEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateApplicationToEntitlementOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4476,12 +6578,20 @@ type AssociateFleetInput struct {
 	StackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFleetInput) GoString() string {
 	return s.String()
 }
@@ -4524,12 +6634,20 @@ type AssociateFleetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateFleetOutput) GoString() string {
 	return s.String()
 }
@@ -4543,12 +6661,20 @@ type BatchAssociateUserStackInput struct {
 	UserStackAssociations []*UserStackAssociation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateUserStackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateUserStackInput) GoString() string {
 	return s.String()
 }
@@ -4592,12 +6718,20 @@ type BatchAssociateUserStackOutput struct {
 	Errors []*UserStackAssociationError `locationName:"errors" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateUserStackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchAssociateUserStackOutput) GoString() string {
 	return s.String()
 }
@@ -4617,12 +6751,20 @@ type BatchDisassociateUserStackInput struct {
 	UserStackAssociations []*UserStackAssociation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateUserStackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateUserStackInput) GoString() string {
 	return s.String()
 }
@@ -4666,12 +6808,20 @@ type BatchDisassociateUserStackOutput struct {
 	Errors []*UserStackAssociationError `locationName:"errors" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateUserStackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchDisassociateUserStackOutput) GoString() string {
 	return s.String()
 }
@@ -4679,6 +6829,55 @@ func (s BatchDisassociateUserStackOutput) GoString() string {
 // SetErrors sets the Errors field's value.
 func (s *BatchDisassociateUserStackOutput) SetErrors(v []*UserStackAssociationError) *BatchDisassociateUserStackOutput {
 	s.Errors = v
+	return s
+}
+
+// The certificate-based authentication properties used to authenticate SAML
+// 2.0 Identity Provider (IdP) user identities to Active Directory domain-joined
+// streaming instances. Fallback is turned on by default when certificate-based
+// authentication is Enabled . Fallback allows users to log in using their AD
+// domain password if certificate-based authentication is unsuccessful, or to
+// unlock a desktop lock screen. Enabled_no_directory_login_fallback enables
+// certificate-based authentication, but does not allow users to log in using
+// their AD domain password. Users will be disconnected to re-authenticate using
+// certificates.
+type CertificateBasedAuthProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the AWS Certificate Manager Private CA resource.
+	CertificateAuthorityArn *string `type:"string"`
+
+	// The status of the certificate-based authentication properties.
+	Status *string `type:"string" enum:"CertificateBasedAuthStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateBasedAuthProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateBasedAuthProperties) GoString() string {
+	return s.String()
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *CertificateBasedAuthProperties) SetCertificateAuthorityArn(v string) *CertificateBasedAuthProperties {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CertificateBasedAuthProperties) SetStatus(v string) *CertificateBasedAuthProperties {
+	s.Status = &v
 	return s
 }
 
@@ -4692,12 +6891,20 @@ type ComputeCapacity struct {
 	DesiredInstances *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeCapacity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeCapacity) GoString() string {
 	return s.String()
 }
@@ -4740,12 +6947,20 @@ type ComputeCapacityStatus struct {
 	Running *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeCapacityStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComputeCapacityStatus) GoString() string {
 	return s.String()
 }
@@ -4783,12 +6998,20 @@ type ConcurrentModificationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentModificationException) GoString() string {
 	return s.String()
 }
@@ -4854,12 +7077,20 @@ type CopyImageInput struct {
 	SourceImageName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyImageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyImageInput) GoString() string {
 	return s.String()
 }
@@ -4917,12 +7148,20 @@ type CopyImageOutput struct {
 	DestinationImageName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyImageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CopyImageOutput) GoString() string {
 	return s.String()
 }
@@ -4933,8 +7172,377 @@ func (s *CopyImageOutput) SetDestinationImageName(v string) *CopyImageOutput {
 	return s
 }
 
+type CreateAppBlockInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the app block.
+	Description *string `type:"string"`
+
+	// The display name of the app block. This is not displayed to the user.
+	DisplayName *string `type:"string"`
+
+	// The name of the app block.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The setup script details of the app block.
+	//
+	// SetupScriptDetails is a required field
+	SetupScriptDetails *ScriptDetails `type:"structure" required:"true"`
+
+	// The source S3 location of the app block.
+	//
+	// SourceS3Location is a required field
+	SourceS3Location *S3Location `type:"structure" required:"true"`
+
+	// The tags assigned to the app block.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAppBlockInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAppBlockInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAppBlockInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAppBlockInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.SetupScriptDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("SetupScriptDetails"))
+	}
+	if s.SourceS3Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceS3Location"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.SetupScriptDetails != nil {
+		if err := s.SetupScriptDetails.Validate(); err != nil {
+			invalidParams.AddNested("SetupScriptDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceS3Location != nil {
+		if err := s.SourceS3Location.Validate(); err != nil {
+			invalidParams.AddNested("SourceS3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateAppBlockInput) SetDescription(v string) *CreateAppBlockInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateAppBlockInput) SetDisplayName(v string) *CreateAppBlockInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAppBlockInput) SetName(v string) *CreateAppBlockInput {
+	s.Name = &v
+	return s
+}
+
+// SetSetupScriptDetails sets the SetupScriptDetails field's value.
+func (s *CreateAppBlockInput) SetSetupScriptDetails(v *ScriptDetails) *CreateAppBlockInput {
+	s.SetupScriptDetails = v
+	return s
+}
+
+// SetSourceS3Location sets the SourceS3Location field's value.
+func (s *CreateAppBlockInput) SetSourceS3Location(v *S3Location) *CreateAppBlockInput {
+	s.SourceS3Location = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAppBlockInput) SetTags(v map[string]*string) *CreateAppBlockInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAppBlockOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The app block.
+	AppBlock *AppBlock `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAppBlockOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAppBlockOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppBlock sets the AppBlock field's value.
+func (s *CreateAppBlockOutput) SetAppBlock(v *AppBlock) *CreateAppBlockOutput {
+	s.AppBlock = v
+	return s
+}
+
+type CreateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The app block ARN to which the application should be associated
+	//
+	// AppBlockArn is a required field
+	AppBlockArn *string `type:"string" required:"true"`
+
+	// The description of the application.
+	Description *string `type:"string"`
+
+	// The display name of the application. This name is visible to users in the
+	// application catalog.
+	DisplayName *string `type:"string"`
+
+	// The location in S3 of the application icon.
+	//
+	// IconS3Location is a required field
+	IconS3Location *S3Location `type:"structure" required:"true"`
+
+	// The instance families the application supports. Valid values are GENERAL_PURPOSE
+	// and GRAPHICS_G4.
+	//
+	// InstanceFamilies is a required field
+	InstanceFamilies []*string `type:"list" required:"true"`
+
+	// The launch parameters of the application.
+	LaunchParameters *string `min:"1" type:"string"`
+
+	// The launch path of the application.
+	//
+	// LaunchPath is a required field
+	LaunchPath *string `min:"1" type:"string" required:"true"`
+
+	// The name of the application. This name is visible to users when display name
+	// is not specified.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The platforms the application supports. WINDOWS_SERVER_2019 and AMAZON_LINUX2
+	// are supported for Elastic fleets.
+	//
+	// Platforms is a required field
+	Platforms []*string `type:"list" required:"true" enum:"PlatformType"`
+
+	// The tags assigned to the application.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The working directory of the application.
+	WorkingDirectory *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateApplicationInput"}
+	if s.AppBlockArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBlockArn"))
+	}
+	if s.IconS3Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("IconS3Location"))
+	}
+	if s.InstanceFamilies == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceFamilies"))
+	}
+	if s.LaunchParameters != nil && len(*s.LaunchParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchParameters", 1))
+	}
+	if s.LaunchPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("LaunchPath"))
+	}
+	if s.LaunchPath != nil && len(*s.LaunchPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchPath", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Platforms == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platforms"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.WorkingDirectory != nil && len(*s.WorkingDirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkingDirectory", 1))
+	}
+	if s.IconS3Location != nil {
+		if err := s.IconS3Location.Validate(); err != nil {
+			invalidParams.AddNested("IconS3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBlockArn sets the AppBlockArn field's value.
+func (s *CreateApplicationInput) SetAppBlockArn(v string) *CreateApplicationInput {
+	s.AppBlockArn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateApplicationInput) SetDescription(v string) *CreateApplicationInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateApplicationInput) SetDisplayName(v string) *CreateApplicationInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIconS3Location sets the IconS3Location field's value.
+func (s *CreateApplicationInput) SetIconS3Location(v *S3Location) *CreateApplicationInput {
+	s.IconS3Location = v
+	return s
+}
+
+// SetInstanceFamilies sets the InstanceFamilies field's value.
+func (s *CreateApplicationInput) SetInstanceFamilies(v []*string) *CreateApplicationInput {
+	s.InstanceFamilies = v
+	return s
+}
+
+// SetLaunchParameters sets the LaunchParameters field's value.
+func (s *CreateApplicationInput) SetLaunchParameters(v string) *CreateApplicationInput {
+	s.LaunchParameters = &v
+	return s
+}
+
+// SetLaunchPath sets the LaunchPath field's value.
+func (s *CreateApplicationInput) SetLaunchPath(v string) *CreateApplicationInput {
+	s.LaunchPath = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateApplicationInput) SetName(v string) *CreateApplicationInput {
+	s.Name = &v
+	return s
+}
+
+// SetPlatforms sets the Platforms field's value.
+func (s *CreateApplicationInput) SetPlatforms(v []*string) *CreateApplicationInput {
+	s.Platforms = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateApplicationInput) SetTags(v map[string]*string) *CreateApplicationInput {
+	s.Tags = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *CreateApplicationInput) SetWorkingDirectory(v string) *CreateApplicationInput {
+	s.WorkingDirectory = &v
+	return s
+}
+
+type CreateApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes an application in the application catalog.
+	Application *Application `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplication sets the Application field's value.
+func (s *CreateApplicationOutput) SetApplication(v *Application) *CreateApplicationOutput {
+	s.Application = v
+	return s
+}
+
 type CreateDirectoryConfigInput struct {
 	_ struct{} `type:"structure"`
+
+	// The certificate-based authentication properties used to authenticate SAML
+	// 2.0 Identity Provider (IdP) user identities to Active Directory domain-joined
+	// streaming instances. Fallback is turned on by default when certificate-based
+	// authentication is Enabled . Fallback allows users to log in using their AD
+	// domain password if certificate-based authentication is unsuccessful, or to
+	// unlock a desktop lock screen. Enabled_no_directory_login_fallback enables
+	// certificate-based authentication, but does not allow users to log in using
+	// their AD domain password. Users will be disconnected to re-authenticate using
+	// certificates.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
 
 	// The fully qualified name of the directory (for example, corp.example.com).
 	//
@@ -4948,17 +7556,23 @@ type CreateDirectoryConfigInput struct {
 
 	// The credentials for the service account used by the fleet or image builder
 	// to connect to the directory.
-	//
-	// ServiceAccountCredentials is a required field
-	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure" required:"true"`
+	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectoryConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectoryConfigInput) GoString() string {
 	return s.String()
 }
@@ -4972,9 +7586,6 @@ func (s *CreateDirectoryConfigInput) Validate() error {
 	if s.OrganizationalUnitDistinguishedNames == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationalUnitDistinguishedNames"))
 	}
-	if s.ServiceAccountCredentials == nil {
-		invalidParams.Add(request.NewErrParamRequired("ServiceAccountCredentials"))
-	}
 	if s.ServiceAccountCredentials != nil {
 		if err := s.ServiceAccountCredentials.Validate(); err != nil {
 			invalidParams.AddNested("ServiceAccountCredentials", err.(request.ErrInvalidParams))
@@ -4985,6 +7596,12 @@ func (s *CreateDirectoryConfigInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *CreateDirectoryConfigInput) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *CreateDirectoryConfigInput {
+	s.CertificateBasedAuthProperties = v
+	return s
 }
 
 // SetDirectoryName sets the DirectoryName field's value.
@@ -5012,12 +7629,20 @@ type CreateDirectoryConfigOutput struct {
 	DirectoryConfig *DirectoryConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectoryConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectoryConfigOutput) GoString() string {
 	return s.String()
 }
@@ -5028,13 +7653,153 @@ func (s *CreateDirectoryConfigOutput) SetDirectoryConfig(v *DirectoryConfig) *Cr
 	return s
 }
 
+type CreateEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether all or selected apps are entitled.
+	//
+	// AppVisibility is a required field
+	AppVisibility *string `type:"string" required:"true" enum:"AppVisibility"`
+
+	// The attributes of the entitlement.
+	//
+	// Attributes is a required field
+	Attributes []*EntitlementAttribute `min:"1" type:"list" required:"true"`
+
+	// The description of the entitlement.
+	Description *string `type:"string"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEntitlementInput"}
+	if s.AppVisibility == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppVisibility"))
+	}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+	if s.Attributes != nil && len(s.Attributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppVisibility sets the AppVisibility field's value.
+func (s *CreateEntitlementInput) SetAppVisibility(v string) *CreateEntitlementInput {
+	s.AppVisibility = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *CreateEntitlementInput) SetAttributes(v []*EntitlementAttribute) *CreateEntitlementInput {
+	s.Attributes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEntitlementInput) SetDescription(v string) *CreateEntitlementInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEntitlementInput) SetName(v string) *CreateEntitlementInput {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *CreateEntitlementInput) SetStackName(v string) *CreateEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type CreateEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitlement.
+	Entitlement *Entitlement `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEntitlementOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitlement sets the Entitlement field's value.
+func (s *CreateEntitlementOutput) SetEntitlement(v *Entitlement) *CreateEntitlementOutput {
+	s.Entitlement = v
+	return s
+}
+
 type CreateFleetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The desired capacity for the fleet.
-	//
-	// ComputeCapacity is a required field
-	ComputeCapacity *ComputeCapacity `type:"structure" required:"true"`
+	// The desired capacity for the fleet. This is not allowed for Elastic fleets.
+	// For Elastic fleets, specify MaxConcurrentSessions instead.
+	ComputeCapacity *ComputeCapacity `type:"structure"`
 
 	// The description to display.
 	Description *string `type:"string"`
@@ -5052,7 +7817,8 @@ type CreateFleetInput struct {
 	DisplayName *string `type:"string"`
 
 	// The name of the directory and organizational unit (OU) to use to join the
-	// fleet to a Microsoft Active Directory domain.
+	// fleet to a Microsoft Active Directory domain. This is not allowed for Elastic
+	// fleets.
 	DomainJoinInfo *DomainJoinInfo `type:"structure"`
 
 	// Enables or disables default internet access for the fleet.
@@ -5076,7 +7842,7 @@ type CreateFleetInput struct {
 	// assume a role, a fleet instance calls the AWS Security Token Service (STS)
 	// AssumeRole API operation and passes the ARN of the role to use. The operation
 	// creates a new session with temporary credentials. AppStream 2.0 retrieves
-	// the temporary credentials and creates the AppStream_Machine_Role credential
+	// the temporary credentials and creates the appstream_machine_role credential
 	// profile on the instance.
 	//
 	// For more information, see Using an IAM Role to Grant Permissions to Applications
@@ -5117,9 +7883,15 @@ type CreateFleetInput struct {
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
 	//
+	//    * stream.standard.small
+	//
 	//    * stream.standard.medium
 	//
 	//    * stream.standard.large
+	//
+	//    * stream.standard.xlarge
+	//
+	//    * stream.standard.2xlarge
 	//
 	//    * stream.compute.large
 	//
@@ -5141,6 +7913,18 @@ type CreateFleetInput struct {
 	//
 	//    * stream.memory.8xlarge
 	//
+	//    * stream.memory.z1d.large
+	//
+	//    * stream.memory.z1d.xlarge
+	//
+	//    * stream.memory.z1d.2xlarge
+	//
+	//    * stream.memory.z1d.3xlarge
+	//
+	//    * stream.memory.z1d.6xlarge
+	//
+	//    * stream.memory.z1d.12xlarge
+	//
 	//    * stream.graphics-design.large
 	//
 	//    * stream.graphics-design.xlarge
@@ -5151,14 +7935,42 @@ type CreateFleetInput struct {
 	//
 	//    * stream.graphics-desktop.2xlarge
 	//
+	//    * stream.graphics.g4dn.xlarge
+	//
+	//    * stream.graphics.g4dn.2xlarge
+	//
+	//    * stream.graphics.g4dn.4xlarge
+	//
+	//    * stream.graphics.g4dn.8xlarge
+	//
+	//    * stream.graphics.g4dn.12xlarge
+	//
+	//    * stream.graphics.g4dn.16xlarge
+	//
 	//    * stream.graphics-pro.4xlarge
 	//
 	//    * stream.graphics-pro.8xlarge
 	//
 	//    * stream.graphics-pro.16xlarge
 	//
+	// The following instance types are available for Elastic fleets:
+	//
+	//    * stream.standard.small
+	//
+	//    * stream.standard.medium
+	//
+	//    * stream.standard.large
+	//
+	//    * stream.standard.xlarge
+	//
+	//    * stream.standard.2xlarge
+	//
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
+
+	// The maximum concurrent sessions of the Elastic fleet. This is required for
+	// Elastic fleets, and not allowed for other fleet types.
+	MaxConcurrentSessions *int64 `type:"integer"`
 
 	// The maximum amount of time that a streaming session can remain active, in
 	// seconds. If users are still connected to a streaming instance five minutes
@@ -5173,6 +7985,22 @@ type CreateFleetInput struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The fleet platform. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported for
+	// Elastic fleets.
+	Platform *string `type:"string" enum:"PlatformType"`
+
+	// The S3 location of the session scripts configuration zip file. This only
+	// applies to Elastic fleets.
+	SessionScriptS3Location *S3Location `type:"structure"`
+
+	// The AppStream 2.0 view that is displayed to your users when they stream from
+	// the fleet. When APP is specified, only the windows of applications opened
+	// by users display. When DESKTOP is specified, the standard desktop that is
+	// provided by the operating system displays.
+	//
+	// The default value is APP.
+	StreamView *string `type:"string" enum:"StreamView"`
 
 	// The tags to associate with the fleet. A tag is a key-value pair, and the
 	// value is optional. For example, Environment=Test. If you do not specify a
@@ -5189,16 +8017,31 @@ type CreateFleetInput struct {
 	// in the Amazon AppStream 2.0 Administration Guide.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The VPC configuration for the fleet.
+	// The USB device filter strings that specify which USB devices a user can redirect
+	// to the fleet streaming session, when using the Windows native client. This
+	// is allowed but not required for Elastic fleets.
+	UsbDeviceFilterStrings []*string `type:"list"`
+
+	// The VPC configuration for the fleet. This is required for Elastic fleets,
+	// but not required for other fleet types. Elastic fleets require that you specify
+	// at least two subnets in different availability zones.
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetInput) GoString() string {
 	return s.String()
 }
@@ -5206,9 +8049,6 @@ func (s CreateFleetInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateFleetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateFleetInput"}
-	if s.ComputeCapacity == nil {
-		invalidParams.Add(request.NewErrParamRequired("ComputeCapacity"))
-	}
 	if s.ImageName != nil && len(*s.ImageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
 	}
@@ -5227,6 +8067,11 @@ func (s *CreateFleetInput) Validate() error {
 	if s.ComputeCapacity != nil {
 		if err := s.ComputeCapacity.Validate(); err != nil {
 			invalidParams.AddNested("ComputeCapacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SessionScriptS3Location != nil {
+		if err := s.SessionScriptS3Location.Validate(); err != nil {
+			invalidParams.AddNested("SessionScriptS3Location", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -5308,6 +8153,12 @@ func (s *CreateFleetInput) SetInstanceType(v string) *CreateFleetInput {
 	return s
 }
 
+// SetMaxConcurrentSessions sets the MaxConcurrentSessions field's value.
+func (s *CreateFleetInput) SetMaxConcurrentSessions(v int64) *CreateFleetInput {
+	s.MaxConcurrentSessions = &v
+	return s
+}
+
 // SetMaxUserDurationInSeconds sets the MaxUserDurationInSeconds field's value.
 func (s *CreateFleetInput) SetMaxUserDurationInSeconds(v int64) *CreateFleetInput {
 	s.MaxUserDurationInSeconds = &v
@@ -5320,9 +8171,33 @@ func (s *CreateFleetInput) SetName(v string) *CreateFleetInput {
 	return s
 }
 
+// SetPlatform sets the Platform field's value.
+func (s *CreateFleetInput) SetPlatform(v string) *CreateFleetInput {
+	s.Platform = &v
+	return s
+}
+
+// SetSessionScriptS3Location sets the SessionScriptS3Location field's value.
+func (s *CreateFleetInput) SetSessionScriptS3Location(v *S3Location) *CreateFleetInput {
+	s.SessionScriptS3Location = v
+	return s
+}
+
+// SetStreamView sets the StreamView field's value.
+func (s *CreateFleetInput) SetStreamView(v string) *CreateFleetInput {
+	s.StreamView = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateFleetInput) SetTags(v map[string]*string) *CreateFleetInput {
 	s.Tags = v
+	return s
+}
+
+// SetUsbDeviceFilterStrings sets the UsbDeviceFilterStrings field's value.
+func (s *CreateFleetInput) SetUsbDeviceFilterStrings(v []*string) *CreateFleetInput {
+	s.UsbDeviceFilterStrings = v
 	return s
 }
 
@@ -5339,12 +8214,20 @@ type CreateFleetOutput struct {
 	Fleet *Fleet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFleetOutput) GoString() string {
 	return s.String()
 }
@@ -5383,7 +8266,7 @@ type CreateImageBuilderInput struct {
 	// To assume a role, the image builder calls the AWS Security Token Service
 	// (STS) AssumeRole API operation and passes the ARN of the role to use. The
 	// operation creates a new session with temporary credentials. AppStream 2.0
-	// retrieves the temporary credentials and creates the AppStream_Machine_Role
+	// retrieves the temporary credentials and creates the appstream_machine_role
 	// credential profile on the instance.
 	//
 	// For more information, see Using an IAM Role to Grant Permissions to Applications
@@ -5399,6 +8282,8 @@ type CreateImageBuilderInput struct {
 
 	// The instance type to use when launching the image builder. The following
 	// instance types are available:
+	//
+	//    * stream.standard.small
 	//
 	//    * stream.standard.medium
 	//
@@ -5424,6 +8309,18 @@ type CreateImageBuilderInput struct {
 	//
 	//    * stream.memory.8xlarge
 	//
+	//    * stream.memory.z1d.large
+	//
+	//    * stream.memory.z1d.xlarge
+	//
+	//    * stream.memory.z1d.2xlarge
+	//
+	//    * stream.memory.z1d.3xlarge
+	//
+	//    * stream.memory.z1d.6xlarge
+	//
+	//    * stream.memory.z1d.12xlarge
+	//
 	//    * stream.graphics-design.large
 	//
 	//    * stream.graphics-design.xlarge
@@ -5433,6 +8330,18 @@ type CreateImageBuilderInput struct {
 	//    * stream.graphics-design.4xlarge
 	//
 	//    * stream.graphics-desktop.2xlarge
+	//
+	//    * stream.graphics.g4dn.xlarge
+	//
+	//    * stream.graphics.g4dn.2xlarge
+	//
+	//    * stream.graphics.g4dn.4xlarge
+	//
+	//    * stream.graphics.g4dn.8xlarge
+	//
+	//    * stream.graphics.g4dn.12xlarge
+	//
+	//    * stream.graphics.g4dn.16xlarge
 	//
 	//    * stream.graphics-pro.4xlarge
 	//
@@ -5467,12 +8376,20 @@ type CreateImageBuilderInput struct {
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderInput) GoString() string {
 	return s.String()
 }
@@ -5603,12 +8520,20 @@ type CreateImageBuilderOutput struct {
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderOutput) GoString() string {
 	return s.String()
 }
@@ -5632,12 +8557,20 @@ type CreateImageBuilderStreamingURLInput struct {
 	Validity *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderStreamingURLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderStreamingURLInput) GoString() string {
 	return s.String()
 }
@@ -5680,12 +8613,20 @@ type CreateImageBuilderStreamingURLOutput struct {
 	StreamingURL *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderStreamingURLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateImageBuilderStreamingURLOutput) GoString() string {
 	return s.String()
 }
@@ -5740,6 +8681,10 @@ type CreateStackInput struct {
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 
+	// The streaming protocol you want your stack to prefer. This can be UDP or
+	// TCP. Currently, UDP is only supported in the Windows native client.
+	StreamingExperienceSettings *StreamingExperienceSettings `type:"structure"`
+
 	// The tags to associate with the stack. A tag is a key-value pair, and the
 	// value is optional. For example, Environment=Test. If you do not specify a
 	// value, Environment=.
@@ -5760,12 +8705,20 @@ type CreateStackInput struct {
 	UserSettings []*UserSetting `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStackInput) GoString() string {
 	return s.String()
 }
@@ -5884,6 +8837,12 @@ func (s *CreateStackInput) SetStorageConnectors(v []*StorageConnector) *CreateSt
 	return s
 }
 
+// SetStreamingExperienceSettings sets the StreamingExperienceSettings field's value.
+func (s *CreateStackInput) SetStreamingExperienceSettings(v *StreamingExperienceSettings) *CreateStackInput {
+	s.StreamingExperienceSettings = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateStackInput) SetTags(v map[string]*string) *CreateStackInput {
 	s.Tags = v
@@ -5903,12 +8862,20 @@ type CreateStackOutput struct {
 	Stack *Stack `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStackOutput) GoString() string {
 	return s.String()
 }
@@ -5923,7 +8890,9 @@ type CreateStreamingURLInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application to launch after the session starts. This is the
-	// name that you specified as Name in the Image Assistant.
+	// name that you specified as Name in the Image Assistant. If your fleet is
+	// enabled for the Desktop stream view, you can also choose to launch directly
+	// to the operating system desktop. To do so, specify Desktop.
 	ApplicationId *string `min:"1" type:"string"`
 
 	// The name of the fleet.
@@ -5950,12 +8919,20 @@ type CreateStreamingURLInput struct {
 	Validity *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamingURLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamingURLInput) GoString() string {
 	return s.String()
 }
@@ -6040,12 +9017,20 @@ type CreateStreamingURLOutput struct {
 	StreamingURL *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamingURLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateStreamingURLOutput) GoString() string {
 	return s.String()
 }
@@ -6062,16 +9047,180 @@ func (s *CreateStreamingURLOutput) SetStreamingURL(v string) *CreateStreamingURL
 	return s
 }
 
+type CreateUpdatedImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to display the status of image update availability before
+	// AppStream 2.0 initiates the process of creating a new updated image. If this
+	// value is set to true, AppStream 2.0 displays whether image updates are available.
+	// If this value is set to false, AppStream 2.0 initiates the process of creating
+	// a new updated image without displaying whether image updates are available.
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The name of the image to update.
+	//
+	// ExistingImageName is a required field
+	ExistingImageName *string `locationName:"existingImageName" type:"string" required:"true"`
+
+	// The description to display for the new image.
+	NewImageDescription *string `locationName:"newImageDescription" type:"string"`
+
+	// The name to display for the new image.
+	NewImageDisplayName *string `locationName:"newImageDisplayName" type:"string"`
+
+	// The name of the new image. The name must be unique within the AWS account
+	// and Region.
+	//
+	// NewImageName is a required field
+	NewImageName *string `locationName:"newImageName" type:"string" required:"true"`
+
+	// The tags to associate with the new image. A tag is a key-value pair, and
+	// the value is optional. For example, Environment=Test. If you do not specify
+	// a value, Environment=.
+	//
+	// Generally allowed characters are: letters, numbers, and spaces representable
+	// in UTF-8, and the following special characters:
+	//
+	// _ . : / = + \ - @
+	//
+	// If you do not specify a value, the value is set to an empty string.
+	//
+	// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+	// in the Amazon AppStream 2.0 Administration Guide.
+	NewImageTags map[string]*string `locationName:"newImageTags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUpdatedImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUpdatedImageInput"}
+	if s.ExistingImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExistingImageName"))
+	}
+	if s.NewImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewImageName"))
+	}
+	if s.NewImageTags != nil && len(s.NewImageTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NewImageTags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateUpdatedImageInput) SetDryRun(v bool) *CreateUpdatedImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetExistingImageName sets the ExistingImageName field's value.
+func (s *CreateUpdatedImageInput) SetExistingImageName(v string) *CreateUpdatedImageInput {
+	s.ExistingImageName = &v
+	return s
+}
+
+// SetNewImageDescription sets the NewImageDescription field's value.
+func (s *CreateUpdatedImageInput) SetNewImageDescription(v string) *CreateUpdatedImageInput {
+	s.NewImageDescription = &v
+	return s
+}
+
+// SetNewImageDisplayName sets the NewImageDisplayName field's value.
+func (s *CreateUpdatedImageInput) SetNewImageDisplayName(v string) *CreateUpdatedImageInput {
+	s.NewImageDisplayName = &v
+	return s
+}
+
+// SetNewImageName sets the NewImageName field's value.
+func (s *CreateUpdatedImageInput) SetNewImageName(v string) *CreateUpdatedImageInput {
+	s.NewImageName = &v
+	return s
+}
+
+// SetNewImageTags sets the NewImageTags field's value.
+func (s *CreateUpdatedImageInput) SetNewImageTags(v map[string]*string) *CreateUpdatedImageInput {
+	s.NewImageTags = v
+	return s
+}
+
+type CreateUpdatedImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a new image can be created.
+	CanUpdateImage *bool `locationName:"canUpdateImage" type:"boolean"`
+
+	// Describes an image.
+	Image *Image `locationName:"image" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetCanUpdateImage sets the CanUpdateImage field's value.
+func (s *CreateUpdatedImageOutput) SetCanUpdateImage(v bool) *CreateUpdatedImageOutput {
+	s.CanUpdateImage = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *CreateUpdatedImageOutput) SetImage(v *Image) *CreateUpdatedImageOutput {
+	s.Image = v
+	return s
+}
+
 type CreateUsageReportSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUsageReportSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUsageReportSubscriptionInput) GoString() string {
 	return s.String()
 }
@@ -6093,12 +9242,20 @@ type CreateUsageReportSubscriptionOutput struct {
 	Schedule *string `type:"string" enum:"UsageReportSchedule"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUsageReportSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUsageReportSubscriptionOutput) GoString() string {
 	return s.String()
 }
@@ -6124,9 +9281,17 @@ type CreateUserInput struct {
 	AuthenticationType *string `type:"string" required:"true" enum:"AuthenticationType"`
 
 	// The first name, or given name, of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
 	FirstName *string `type:"string" sensitive:"true"`
 
 	// The last name, or surname, of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
 	LastName *string `type:"string" sensitive:"true"`
 
 	// The action to take for the welcome email that is sent to a user after the
@@ -6146,16 +9311,28 @@ type CreateUserInput struct {
 	// specified when their user pool account was created, a "user does not exist"
 	// error message displays.
 	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserInput) GoString() string {
 	return s.String()
 }
@@ -6213,13 +9390,157 @@ type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAppBlockInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the app block.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAppBlockInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAppBlockInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppBlockInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppBlockInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteAppBlockInput) SetName(v string) *DeleteAppBlockInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteAppBlockOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAppBlockOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAppBlockOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteApplicationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteApplicationInput) SetName(v string) *DeleteApplicationInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteApplicationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationOutput) GoString() string {
 	return s.String()
 }
 
@@ -6232,12 +9553,20 @@ type DeleteDirectoryConfigInput struct {
 	DirectoryName *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectoryConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectoryConfigInput) GoString() string {
 	return s.String()
 }
@@ -6265,13 +9594,103 @@ type DeleteDirectoryConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectoryConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectoryConfigOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEntitlementInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteEntitlementInput) SetName(v string) *DeleteEntitlementInput {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DeleteEntitlementInput) SetStackName(v string) *DeleteEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type DeleteEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEntitlementOutput) GoString() string {
 	return s.String()
 }
 
@@ -6284,12 +9703,20 @@ type DeleteFleetInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetInput) GoString() string {
 	return s.String()
 }
@@ -6320,12 +9747,20 @@ type DeleteFleetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFleetOutput) GoString() string {
 	return s.String()
 }
@@ -6339,12 +9774,20 @@ type DeleteImageBuilderInput struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageBuilderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageBuilderInput) GoString() string {
 	return s.String()
 }
@@ -6375,12 +9818,20 @@ type DeleteImageBuilderOutput struct {
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageBuilderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageBuilderOutput) GoString() string {
 	return s.String()
 }
@@ -6400,12 +9851,20 @@ type DeleteImageInput struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageInput) GoString() string {
 	return s.String()
 }
@@ -6436,12 +9895,20 @@ type DeleteImageOutput struct {
 	Image *Image `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImageOutput) GoString() string {
 	return s.String()
 }
@@ -6466,12 +9933,20 @@ type DeleteImagePermissionsInput struct {
 	SharedAccountId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImagePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImagePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -6508,12 +9983,20 @@ type DeleteImagePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImagePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteImagePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -6527,12 +10010,20 @@ type DeleteStackInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStackInput) GoString() string {
 	return s.String()
 }
@@ -6563,12 +10054,20 @@ type DeleteStackOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStackOutput) GoString() string {
 	return s.String()
 }
@@ -6577,12 +10076,20 @@ type DeleteUsageReportSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUsageReportSubscriptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUsageReportSubscriptionInput) GoString() string {
 	return s.String()
 }
@@ -6591,12 +10098,20 @@ type DeleteUsageReportSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUsageReportSubscriptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUsageReportSubscriptionOutput) GoString() string {
 	return s.String()
 }
@@ -6613,16 +10128,28 @@ type DeleteUserInput struct {
 	//
 	// Users' email addresses are case-sensitive.
 	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DeleteUserInput's
+	// String and GoString methods.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) GoString() string {
 	return s.String()
 }
@@ -6662,14 +10189,337 @@ type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeAppBlocksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the app blocks.
+	Arns []*string `type:"list"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppBlocksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppBlocksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAppBlocksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAppBlocksInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArns sets the Arns field's value.
+func (s *DescribeAppBlocksInput) SetArns(v []*string) *DescribeAppBlocksInput {
+	s.Arns = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeAppBlocksInput) SetMaxResults(v int64) *DescribeAppBlocksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAppBlocksInput) SetNextToken(v string) *DescribeAppBlocksInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeAppBlocksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The app blocks in the list.
+	AppBlocks []*AppBlock `type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppBlocksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppBlocksOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppBlocks sets the AppBlocks field's value.
+func (s *DescribeAppBlocksOutput) SetAppBlocks(v []*AppBlock) *DescribeAppBlocksOutput {
+	s.AppBlocks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAppBlocksOutput) SetNextToken(v string) *DescribeAppBlocksOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeApplicationFleetAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the application.
+	ApplicationArn *string `type:"string"`
+
+	// The name of the fleet.
+	FleetName *string `type:"string"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationFleetAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationFleetAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeApplicationFleetAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeApplicationFleetAssociationsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *DescribeApplicationFleetAssociationsInput) SetApplicationArn(v string) *DescribeApplicationFleetAssociationsInput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetFleetName sets the FleetName field's value.
+func (s *DescribeApplicationFleetAssociationsInput) SetFleetName(v string) *DescribeApplicationFleetAssociationsInput {
+	s.FleetName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeApplicationFleetAssociationsInput) SetMaxResults(v int64) *DescribeApplicationFleetAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeApplicationFleetAssociationsInput) SetNextToken(v string) *DescribeApplicationFleetAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeApplicationFleetAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The application fleet associations in the list.
+	ApplicationFleetAssociations []*ApplicationFleetAssociation `min:"1" type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationFleetAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationFleetAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationFleetAssociations sets the ApplicationFleetAssociations field's value.
+func (s *DescribeApplicationFleetAssociationsOutput) SetApplicationFleetAssociations(v []*ApplicationFleetAssociation) *DescribeApplicationFleetAssociationsOutput {
+	s.ApplicationFleetAssociations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeApplicationFleetAssociationsOutput) SetNextToken(v string) *DescribeApplicationFleetAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs for the applications.
+	Arns []*string `type:"list"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeApplicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeApplicationsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArns sets the Arns field's value.
+func (s *DescribeApplicationsInput) SetArns(v []*string) *DescribeApplicationsInput {
+	s.Arns = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeApplicationsInput) SetMaxResults(v int64) *DescribeApplicationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeApplicationsInput) SetNextToken(v string) *DescribeApplicationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The applications in the list.
+	Applications []*Application `type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplications sets the Applications field's value.
+func (s *DescribeApplicationsOutput) SetApplications(v []*Application) *DescribeApplicationsOutput {
+	s.Applications = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeApplicationsOutput) SetNextToken(v string) *DescribeApplicationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeDirectoryConfigsInput struct {
@@ -6686,12 +10536,20 @@ type DescribeDirectoryConfigsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectoryConfigsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectoryConfigsInput) GoString() string {
 	return s.String()
 }
@@ -6740,12 +10598,20 @@ type DescribeDirectoryConfigsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectoryConfigsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectoryConfigsOutput) GoString() string {
 	return s.String()
 }
@@ -6762,6 +10628,122 @@ func (s *DescribeDirectoryConfigsOutput) SetNextToken(v string) *DescribeDirecto
 	return s
 }
 
+type DescribeEntitlementsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The name of the entitlement.
+	Name *string `type:"string"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEntitlementsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEntitlementsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeEntitlementsInput) SetMaxResults(v int64) *DescribeEntitlementsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeEntitlementsInput) SetName(v string) *DescribeEntitlementsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEntitlementsInput) SetNextToken(v string) *DescribeEntitlementsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeEntitlementsInput) SetStackName(v string) *DescribeEntitlementsInput {
+	s.StackName = &v
+	return s
+}
+
+type DescribeEntitlementsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitlements.
+	Entitlements []*Entitlement `type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeEntitlementsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitlements sets the Entitlements field's value.
+func (s *DescribeEntitlementsOutput) SetEntitlements(v []*Entitlement) *DescribeEntitlementsOutput {
+	s.Entitlements = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEntitlementsOutput) SetNextToken(v string) *DescribeEntitlementsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeFleetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6773,12 +10755,20 @@ type DescribeFleetsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetsInput) GoString() string {
 	return s.String()
 }
@@ -6819,12 +10809,20 @@ type DescribeFleetsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFleetsOutput) GoString() string {
 	return s.String()
 }
@@ -6855,12 +10853,20 @@ type DescribeImageBuildersInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImageBuildersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImageBuildersInput) GoString() string {
 	return s.String()
 }
@@ -6907,12 +10913,20 @@ type DescribeImageBuildersOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImageBuildersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImageBuildersOutput) GoString() string {
 	return s.String()
 }
@@ -6950,12 +10964,20 @@ type DescribeImagePermissionsInput struct {
 	SharedAwsAccountIds []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -7017,12 +11039,20 @@ type DescribeImagePermissionsOutput struct {
 	SharedImagePermissionsList []*SharedImagePermissions `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -7065,12 +11095,20 @@ type DescribeImagesInput struct {
 	Type *string `type:"string" enum:"VisibilityType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagesInput) GoString() string {
 	return s.String()
 }
@@ -7129,12 +11167,20 @@ type DescribeImagesOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeImagesOutput) GoString() string {
 	return s.String()
 }
@@ -7177,16 +11223,25 @@ type DescribeSessionsInput struct {
 	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 
-	// The user identifier.
+	// The user identifier (ID). If you specify a user ID, you must also specify
+	// the authentication type.
 	UserId *string `min:"2" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSessionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSessionsInput) GoString() string {
 	return s.String()
 }
@@ -7266,12 +11321,20 @@ type DescribeSessionsOutput struct {
 	Sessions []*Session `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSessionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeSessionsOutput) GoString() string {
 	return s.String()
 }
@@ -7299,12 +11362,20 @@ type DescribeStacksInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStacksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStacksInput) GoString() string {
 	return s.String()
 }
@@ -7345,12 +11416,20 @@ type DescribeStacksOutput struct {
 	Stacks []*Stack `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStacksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeStacksOutput) GoString() string {
 	return s.String()
 }
@@ -7378,12 +11457,20 @@ type DescribeUsageReportSubscriptionsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsageReportSubscriptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsageReportSubscriptionsInput) GoString() string {
 	return s.String()
 }
@@ -7424,12 +11511,20 @@ type DescribeUsageReportSubscriptionsOutput struct {
 	UsageReportSubscriptions []*UsageReportSubscription `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsageReportSubscriptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsageReportSubscriptionsOutput) GoString() string {
 	return s.String()
 }
@@ -7466,15 +11561,27 @@ type DescribeUserStackAssociationsInput struct {
 	// The email address of the user who is associated with the stack.
 	//
 	// Users' email addresses are case-sensitive.
+	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeUserStackAssociationsInput's
+	// String and GoString methods.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserStackAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserStackAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -7539,12 +11646,20 @@ type DescribeUserStackAssociationsOutput struct {
 	UserStackAssociations []*UserStackAssociation `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserStackAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserStackAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -7578,12 +11693,20 @@ type DescribeUsersInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsersInput) GoString() string {
 	return s.String()
 }
@@ -7633,12 +11756,20 @@ type DescribeUsersOutput struct {
 	Users []*User `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUsersOutput) GoString() string {
 	return s.String()
 }
@@ -7660,6 +11791,17 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 type DirectoryConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The certificate-based authentication properties used to authenticate SAML
+	// 2.0 Identity Provider (IdP) user identities to Active Directory domain-joined
+	// streaming instances. Fallback is turned on by default when certificate-based
+	// authentication is Enabled . Fallback allows users to log in using their AD
+	// domain password if certificate-based authentication is unsuccessful, or to
+	// unlock a desktop lock screen. Enabled_no_directory_login_fallback enables
+	// certificate-based authentication, but does not allow users to log in using
+	// their AD domain password. Users will be disconnected to re-authenticate using
+	// certificates.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
+
 	// The time the directory configuration was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
@@ -7676,14 +11818,28 @@ type DirectoryConfig struct {
 	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DirectoryConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DirectoryConfig) GoString() string {
 	return s.String()
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *DirectoryConfig) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *DirectoryConfig {
+	s.CertificateBasedAuthProperties = v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -7722,16 +11878,28 @@ type DisableUserInput struct {
 	//
 	// Users' email addresses are case-sensitive.
 	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DisableUserInput's
+	// String and GoString methods.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableUserInput) GoString() string {
 	return s.String()
 }
@@ -7771,13 +11939,202 @@ type DisableUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisableUserOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateApplicationFleetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the application.
+	//
+	// ApplicationArn is a required field
+	ApplicationArn *string `type:"string" required:"true"`
+
+	// The name of the fleet.
+	//
+	// FleetName is a required field
+	FleetName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFleetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFleetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateApplicationFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateApplicationFleetInput"}
+	if s.ApplicationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationArn"))
+	}
+	if s.FleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *DisassociateApplicationFleetInput) SetApplicationArn(v string) *DisassociateApplicationFleetInput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetFleetName sets the FleetName field's value.
+func (s *DisassociateApplicationFleetInput) SetFleetName(v string) *DisassociateApplicationFleetInput {
+	s.FleetName = &v
+	return s
+}
+
+type DisassociateApplicationFleetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFleetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFleetOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateApplicationFromEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the application to remove from the entitlement.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The name of the entitlement.
+	//
+	// EntitlementName is a required field
+	EntitlementName *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateApplicationFromEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateApplicationFromEntitlementInput"}
+	if s.ApplicationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationIdentifier"))
+	}
+	if s.ApplicationIdentifier != nil && len(*s.ApplicationIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationIdentifier", 1))
+	}
+	if s.EntitlementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntitlementName"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *DisassociateApplicationFromEntitlementInput) SetApplicationIdentifier(v string) *DisassociateApplicationFromEntitlementInput {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// SetEntitlementName sets the EntitlementName field's value.
+func (s *DisassociateApplicationFromEntitlementInput) SetEntitlementName(v string) *DisassociateApplicationFromEntitlementInput {
+	s.EntitlementName = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DisassociateApplicationFromEntitlementInput) SetStackName(v string) *DisassociateApplicationFromEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type DisassociateApplicationFromEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateApplicationFromEntitlementOutput) GoString() string {
 	return s.String()
 }
 
@@ -7795,12 +12152,20 @@ type DisassociateFleetInput struct {
 	StackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFleetInput) GoString() string {
 	return s.String()
 }
@@ -7843,12 +12208,20 @@ type DisassociateFleetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateFleetOutput) GoString() string {
 	return s.String()
 }
@@ -7865,12 +12238,20 @@ type DomainJoinInfo struct {
 	OrganizationalUnitDistinguishedName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainJoinInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainJoinInfo) GoString() string {
 	return s.String()
 }
@@ -7902,16 +12283,28 @@ type EnableUserInput struct {
 	// specified when their user pool account was created, a "user does not exist"
 	// error message displays.
 	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EnableUserInput's
+	// String and GoString methods.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableUserInput) GoString() string {
 	return s.String()
 }
@@ -7951,14 +12344,373 @@ type EnableUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EnableUserOutput) GoString() string {
 	return s.String()
+}
+
+// The application associated to an entitlement. Access is controlled based
+// on user attributes.
+type EntitledApplication struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the application.
+	//
+	// ApplicationIdentifier is a required field
+	ApplicationIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitledApplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitledApplication) GoString() string {
+	return s.String()
+}
+
+// SetApplicationIdentifier sets the ApplicationIdentifier field's value.
+func (s *EntitledApplication) SetApplicationIdentifier(v string) *EntitledApplication {
+	s.ApplicationIdentifier = &v
+	return s
+}
+
+// Specifies an entitlement. Entitlements control access to specific applications
+// within a stack, based on user attributes. Entitlements apply to SAML 2.0
+// federated user identities. Amazon AppStream 2.0 user pool and streaming URL
+// users are entitled to all applications in a stack. Entitlements don't apply
+// to the desktop stream view application, or to applications managed by a dynamic
+// app provider using the Dynamic Application Framework.
+type Entitlement struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether all or selected apps are entitled.
+	//
+	// AppVisibility is a required field
+	AppVisibility *string `type:"string" required:"true" enum:"AppVisibility"`
+
+	// The attributes of the entitlement.
+	//
+	// Attributes is a required field
+	Attributes []*EntitlementAttribute `min:"1" type:"list" required:"true"`
+
+	// The time when the entitlement was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description of the entitlement.
+	Description *string `type:"string"`
+
+	// The time when the entitlement was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Entitlement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Entitlement) GoString() string {
+	return s.String()
+}
+
+// SetAppVisibility sets the AppVisibility field's value.
+func (s *Entitlement) SetAppVisibility(v string) *Entitlement {
+	s.AppVisibility = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *Entitlement) SetAttributes(v []*EntitlementAttribute) *Entitlement {
+	s.Attributes = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Entitlement) SetCreatedTime(v time.Time) *Entitlement {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Entitlement) SetDescription(v string) *Entitlement {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Entitlement) SetLastModifiedTime(v time.Time) *Entitlement {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Entitlement) SetName(v string) *Entitlement {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *Entitlement) SetStackName(v string) *Entitlement {
+	s.StackName = &v
+	return s
+}
+
+// The entitlement already exists.
+type EntitlementAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message in the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntitlementAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &EntitlementAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EntitlementAlreadyExistsException) Code() string {
+	return "EntitlementAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *EntitlementAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EntitlementAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *EntitlementAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EntitlementAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EntitlementAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An attribute associated with an entitlement. Application entitlements work
+// by matching a supported SAML 2.0 attribute name to a value when a user identity
+// federates to an Amazon AppStream 2.0 SAML application.
+type EntitlementAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// A supported AWS IAM SAML PrincipalTag attribute that is matched to the associated
+	// value when a user identity federates into an Amazon AppStream 2.0 SAML application.
+	//
+	// The following are valid values:
+	//
+	//    * roles
+	//
+	//    * department
+	//
+	//    * organization
+	//
+	//    * groups
+	//
+	//    * title
+	//
+	//    * costCenter
+	//
+	//    * userType
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A value that is matched to a supported SAML attribute name when a user identity
+	// federates into an Amazon AppStream 2.0 SAML application.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementAttribute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntitlementAttribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntitlementAttribute"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *EntitlementAttribute) SetName(v string) *EntitlementAttribute {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EntitlementAttribute) SetValue(v string) *EntitlementAttribute {
+	s.Value = &v
+	return s
+}
+
+// The entitlement can't be found.
+type EntitlementNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message in the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntitlementNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntitlementNotFoundException(v protocol.ResponseMetadata) error {
+	return &EntitlementNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EntitlementNotFoundException) Code() string {
+	return "EntitlementNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *EntitlementNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EntitlementNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *EntitlementNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EntitlementNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EntitlementNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type ExpireSessionInput struct {
@@ -7970,12 +12722,20 @@ type ExpireSessionInput struct {
 	SessionId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExpireSessionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExpireSessionInput) GoString() string {
 	return s.String()
 }
@@ -8006,12 +12766,20 @@ type ExpireSessionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExpireSessionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExpireSessionOutput) GoString() string {
 	return s.String()
 }
@@ -8076,7 +12844,7 @@ type Fleet struct {
 	// fleet instance calls the AWS Security Token Service (STS) AssumeRole API
 	// operation and passes the ARN of the role to use. The operation creates a
 	// new session with temporary credentials. AppStream 2.0 retrieves the temporary
-	// credentials and creates the AppStream_Machine_Role credential profile on
+	// credentials and creates the appstream_machine_role credential profile on
 	// the instance.
 	//
 	// For more information, see Using an IAM Role to Grant Permissions to Applications
@@ -8117,6 +12885,8 @@ type Fleet struct {
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
 	//
+	//    * stream.standard.small
+	//
 	//    * stream.standard.medium
 	//
 	//    * stream.standard.large
@@ -8141,6 +12911,18 @@ type Fleet struct {
 	//
 	//    * stream.memory.8xlarge
 	//
+	//    * stream.memory.z1d.large
+	//
+	//    * stream.memory.z1d.xlarge
+	//
+	//    * stream.memory.z1d.2xlarge
+	//
+	//    * stream.memory.z1d.3xlarge
+	//
+	//    * stream.memory.z1d.6xlarge
+	//
+	//    * stream.memory.z1d.12xlarge
+	//
 	//    * stream.graphics-design.large
 	//
 	//    * stream.graphics-design.xlarge
@@ -8151,6 +12933,18 @@ type Fleet struct {
 	//
 	//    * stream.graphics-desktop.2xlarge
 	//
+	//    * stream.graphics.g4dn.xlarge
+	//
+	//    * stream.graphics.g4dn.2xlarge
+	//
+	//    * stream.graphics.g4dn.4xlarge
+	//
+	//    * stream.graphics.g4dn.8xlarge
+	//
+	//    * stream.graphics.g4dn.12xlarge
+	//
+	//    * stream.graphics.g4dn.16xlarge
+	//
 	//    * stream.graphics-pro.4xlarge
 	//
 	//    * stream.graphics-pro.8xlarge
@@ -8159,6 +12953,9 @@ type Fleet struct {
 	//
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of concurrent sessions for the fleet.
+	MaxConcurrentSessions *int64 `type:"integer"`
 
 	// The maximum amount of time that a streaming session can remain active, in
 	// seconds. If users are still connected to a streaming instance five minutes
@@ -8174,21 +12971,47 @@ type Fleet struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The platform of the fleet.
+	Platform *string `type:"string" enum:"PlatformType"`
+
+	// The S3 location of the session scripts configuration zip file. This only
+	// applies to Elastic fleets.
+	SessionScriptS3Location *S3Location `type:"structure"`
+
 	// The current state for the fleet.
 	//
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"FleetState"`
 
+	// The AppStream 2.0 view that is displayed to your users when they stream from
+	// the fleet. When APP is specified, only the windows of applications opened
+	// by users display. When DESKTOP is specified, the standard desktop that is
+	// provided by the operating system displays.
+	//
+	// The default value is APP.
+	StreamView *string `type:"string" enum:"StreamView"`
+
+	// The USB device filter strings associated with the fleet.
+	UsbDeviceFilterStrings []*string `type:"list"`
+
 	// The VPC configuration for the fleet.
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Fleet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Fleet) GoString() string {
 	return s.String()
 }
@@ -8283,6 +13106,12 @@ func (s *Fleet) SetInstanceType(v string) *Fleet {
 	return s
 }
 
+// SetMaxConcurrentSessions sets the MaxConcurrentSessions field's value.
+func (s *Fleet) SetMaxConcurrentSessions(v int64) *Fleet {
+	s.MaxConcurrentSessions = &v
+	return s
+}
+
 // SetMaxUserDurationInSeconds sets the MaxUserDurationInSeconds field's value.
 func (s *Fleet) SetMaxUserDurationInSeconds(v int64) *Fleet {
 	s.MaxUserDurationInSeconds = &v
@@ -8295,9 +13124,33 @@ func (s *Fleet) SetName(v string) *Fleet {
 	return s
 }
 
+// SetPlatform sets the Platform field's value.
+func (s *Fleet) SetPlatform(v string) *Fleet {
+	s.Platform = &v
+	return s
+}
+
+// SetSessionScriptS3Location sets the SessionScriptS3Location field's value.
+func (s *Fleet) SetSessionScriptS3Location(v *S3Location) *Fleet {
+	s.SessionScriptS3Location = v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *Fleet) SetState(v string) *Fleet {
 	s.State = &v
+	return s
+}
+
+// SetStreamView sets the StreamView field's value.
+func (s *Fleet) SetStreamView(v string) *Fleet {
+	s.StreamView = &v
+	return s
+}
+
+// SetUsbDeviceFilterStrings sets the UsbDeviceFilterStrings field's value.
+func (s *Fleet) SetUsbDeviceFilterStrings(v []*string) *Fleet {
+	s.UsbDeviceFilterStrings = v
 	return s
 }
 
@@ -8318,12 +13171,20 @@ type FleetError struct {
 	ErrorMessage *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FleetError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FleetError) GoString() string {
 	return s.String()
 }
@@ -8373,6 +13234,9 @@ type Image struct {
 	// Indicates whether an image builder can be launched from this image.
 	ImageBuilderSupported *bool `type:"boolean"`
 
+	// Describes the errors that are returned when a new image can't be created.
+	ImageErrors []*ResourceError `type:"list"`
+
 	// The permissions to provide to the destination AWS account for the specified
 	// image.
 	ImagePermissions *ImagePermissions `type:"structure"`
@@ -8400,12 +13264,20 @@ type Image struct {
 	Visibility *string `type:"string" enum:"VisibilityType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Image) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Image) GoString() string {
 	return s.String()
 }
@@ -8461,6 +13333,12 @@ func (s *Image) SetImageBuilderName(v string) *Image {
 // SetImageBuilderSupported sets the ImageBuilderSupported field's value.
 func (s *Image) SetImageBuilderSupported(v bool) *Image {
 	s.ImageBuilderSupported = &v
+	return s
+}
+
+// SetImageErrors sets the ImageErrors field's value.
+func (s *Image) SetImageErrors(v []*ResourceError) *Image {
+	s.ImageErrors = v
 	return s
 }
 
@@ -8541,7 +13419,7 @@ type ImageBuilder struct {
 	// role, the image builder calls the AWS Security Token Service (STS) AssumeRole
 	// API operation and passes the ARN of the role to use. The operation creates
 	// a new session with temporary credentials. AppStream 2.0 retrieves the temporary
-	// credentials and creates the AppStream_Machine_Role credential profile on
+	// credentials and creates the appstream_machine_role credential profile on
 	// the instance.
 	//
 	// For more information, see Using an IAM Role to Grant Permissions to Applications
@@ -8557,6 +13435,8 @@ type ImageBuilder struct {
 
 	// The instance type for the image builder. The following instance types are
 	// available:
+	//
+	//    * stream.standard.small
 	//
 	//    * stream.standard.medium
 	//
@@ -8582,6 +13462,18 @@ type ImageBuilder struct {
 	//
 	//    * stream.memory.8xlarge
 	//
+	//    * stream.memory.z1d.large
+	//
+	//    * stream.memory.z1d.xlarge
+	//
+	//    * stream.memory.z1d.2xlarge
+	//
+	//    * stream.memory.z1d.3xlarge
+	//
+	//    * stream.memory.z1d.6xlarge
+	//
+	//    * stream.memory.z1d.12xlarge
+	//
 	//    * stream.graphics-design.large
 	//
 	//    * stream.graphics-design.xlarge
@@ -8591,6 +13483,18 @@ type ImageBuilder struct {
 	//    * stream.graphics-design.4xlarge
 	//
 	//    * stream.graphics-desktop.2xlarge
+	//
+	//    * stream.graphics.g4dn.xlarge
+	//
+	//    * stream.graphics.g4dn.2xlarge
+	//
+	//    * stream.graphics.g4dn.4xlarge
+	//
+	//    * stream.graphics.g4dn.8xlarge
+	//
+	//    * stream.graphics.g4dn.12xlarge
+	//
+	//    * stream.graphics.g4dn.16xlarge
 	//
 	//    * stream.graphics-pro.4xlarge
 	//
@@ -8620,12 +13524,20 @@ type ImageBuilder struct {
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageBuilder) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageBuilder) GoString() string {
 	return s.String()
 }
@@ -8749,12 +13661,20 @@ type ImageBuilderStateChangeReason struct {
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageBuilderStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageBuilderStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -8782,12 +13702,20 @@ type ImagePermissions struct {
 	AllowImageBuilder *bool `locationName:"allowImageBuilder" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImagePermissions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImagePermissions) GoString() string {
 	return s.String()
 }
@@ -8815,12 +13743,20 @@ type ImageStateChangeReason struct {
 	Message *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageStateChangeReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageStateChangeReason) GoString() string {
 	return s.String()
 }
@@ -8837,7 +13773,7 @@ func (s *ImageStateChangeReason) SetMessage(v string) *ImageStateChangeReason {
 	return s
 }
 
-// The image does not support storage connectors.
+// The image can't be updated because it's not compatible for updates.
 type IncompatibleImageException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8846,12 +13782,20 @@ type IncompatibleImageException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibleImageException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IncompatibleImageException) GoString() string {
 	return s.String()
 }
@@ -8904,12 +13848,20 @@ type InvalidAccountStatusException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidAccountStatusException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidAccountStatusException) GoString() string {
 	return s.String()
 }
@@ -8961,12 +13913,20 @@ type InvalidParameterCombinationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterCombinationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterCombinationException) GoString() string {
 	return s.String()
 }
@@ -9018,12 +13978,20 @@ type InvalidRoleException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRoleException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRoleException) GoString() string {
 	return s.String()
 }
@@ -9079,12 +14047,20 @@ type LastReportGenerationExecutionError struct {
 	ErrorMessage *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LastReportGenerationExecutionError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LastReportGenerationExecutionError) GoString() string {
 	return s.String()
 }
@@ -9110,12 +14086,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -9171,12 +14155,20 @@ type ListAssociatedFleetsInput struct {
 	StackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedFleetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedFleetsInput) GoString() string {
 	return s.String()
 }
@@ -9223,12 +14215,20 @@ type ListAssociatedFleetsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedFleetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedFleetsOutput) GoString() string {
 	return s.String()
 }
@@ -9258,12 +14258,20 @@ type ListAssociatedStacksInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedStacksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedStacksInput) GoString() string {
 	return s.String()
 }
@@ -9310,12 +14318,20 @@ type ListAssociatedStacksOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedStacksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociatedStacksOutput) GoString() string {
 	return s.String()
 }
@@ -9332,6 +14348,127 @@ func (s *ListAssociatedStacksOutput) SetNextToken(v string) *ListAssociatedStack
 	return s
 }
 
+type ListEntitledApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the entitlement.
+	//
+	// EntitlementName is a required field
+	EntitlementName *string `type:"string" required:"true"`
+
+	// The maximum size of each page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEntitledApplicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEntitledApplicationsInput"}
+	if s.EntitlementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntitlementName"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntitlementName sets the EntitlementName field's value.
+func (s *ListEntitledApplicationsInput) SetEntitlementName(v string) *ListEntitledApplicationsInput {
+	s.EntitlementName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEntitledApplicationsInput) SetMaxResults(v int64) *ListEntitledApplicationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntitledApplicationsInput) SetNextToken(v string) *ListEntitledApplicationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ListEntitledApplicationsInput) SetStackName(v string) *ListEntitledApplicationsInput {
+	s.StackName = &v
+	return s
+}
+
+type ListEntitledApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitled applications.
+	EntitledApplications []*EntitledApplication `type:"list"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntitledApplicationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitledApplications sets the EntitledApplications field's value.
+func (s *ListEntitledApplicationsOutput) SetEntitledApplications(v []*EntitledApplication) *ListEntitledApplicationsOutput {
+	s.EntitledApplications = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntitledApplicationsOutput) SetNextToken(v string) *ListEntitledApplicationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9341,12 +14478,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -9377,12 +14522,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9407,12 +14560,20 @@ type NetworkAccessConfiguration struct {
 	EniPrivateIpAddress *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkAccessConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NetworkAccessConfiguration) GoString() string {
 	return s.String()
 }
@@ -9438,12 +14599,20 @@ type OperationNotPermittedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationNotPermittedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationNotPermittedException) GoString() string {
 	return s.String()
 }
@@ -9486,6 +14655,73 @@ func (s *OperationNotPermittedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// AppStream 2.0 can’t process the request right now because the Describe
+// calls from your AWS account are being throttled by Amazon EC2. Try again
+// later.
+type RequestLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message in the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RequestLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestLimitExceededException(v protocol.ResponseMetadata) error {
+	return &RequestLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RequestLimitExceededException) Code() string {
+	return "RequestLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *RequestLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RequestLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *RequestLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RequestLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RequestLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -9495,12 +14731,20 @@ type ResourceAlreadyExistsException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -9557,12 +14801,20 @@ type ResourceError struct {
 	ErrorTimestamp *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceError) GoString() string {
 	return s.String()
 }
@@ -9594,12 +14846,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -9651,12 +14911,20 @@ type ResourceNotAvailableException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotAvailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotAvailableException) GoString() string {
 	return s.String()
 }
@@ -9708,12 +14976,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -9756,6 +15032,168 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes the S3 location.
+type S3Location struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 bucket of the S3 object.
+	//
+	// S3Bucket is a required field
+	S3Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The S3 key of the S3 object.
+	//
+	// S3Key is a required field
+	S3Key *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Location) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Location) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Location) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Location"}
+	if s.S3Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Bucket"))
+	}
+	if s.S3Bucket != nil && len(*s.S3Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Bucket", 3))
+	}
+	if s.S3Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Key"))
+	}
+	if s.S3Key != nil && len(*s.S3Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *S3Location) SetS3Bucket(v string) *S3Location {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *S3Location) SetS3Key(v string) *S3Location {
+	s.S3Key = &v
+	return s
+}
+
+// Describes the details of the script.
+type ScriptDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The runtime parameters passed to the run path for the script.
+	ExecutableParameters *string `min:"1" type:"string"`
+
+	// The run path for the script.
+	//
+	// ExecutablePath is a required field
+	ExecutablePath *string `min:"1" type:"string" required:"true"`
+
+	// The S3 object location for the script.
+	//
+	// ScriptS3Location is a required field
+	ScriptS3Location *S3Location `type:"structure" required:"true"`
+
+	// The run timeout, in seconds, for the script.
+	//
+	// TimeoutInSeconds is a required field
+	TimeoutInSeconds *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScriptDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScriptDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScriptDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScriptDetails"}
+	if s.ExecutableParameters != nil && len(*s.ExecutableParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutableParameters", 1))
+	}
+	if s.ExecutablePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutablePath"))
+	}
+	if s.ExecutablePath != nil && len(*s.ExecutablePath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutablePath", 1))
+	}
+	if s.ScriptS3Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScriptS3Location"))
+	}
+	if s.TimeoutInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeoutInSeconds"))
+	}
+	if s.ScriptS3Location != nil {
+		if err := s.ScriptS3Location.Validate(); err != nil {
+			invalidParams.AddNested("ScriptS3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutableParameters sets the ExecutableParameters field's value.
+func (s *ScriptDetails) SetExecutableParameters(v string) *ScriptDetails {
+	s.ExecutableParameters = &v
+	return s
+}
+
+// SetExecutablePath sets the ExecutablePath field's value.
+func (s *ScriptDetails) SetExecutablePath(v string) *ScriptDetails {
+	s.ExecutablePath = &v
+	return s
+}
+
+// SetScriptS3Location sets the ScriptS3Location field's value.
+func (s *ScriptDetails) SetScriptS3Location(v *S3Location) *ScriptDetails {
+	s.ScriptS3Location = v
+	return s
+}
+
+// SetTimeoutInSeconds sets the TimeoutInSeconds field's value.
+func (s *ScriptDetails) SetTimeoutInSeconds(v int64) *ScriptDetails {
+	s.TimeoutInSeconds = &v
+	return s
+}
+
 // Describes the credentials for the service account used by the fleet or image
 // builder to connect to the directory.
 type ServiceAccountCredentials struct {
@@ -9765,21 +15203,37 @@ type ServiceAccountCredentials struct {
 	// create computer objects, join computers to the domain, and change/reset the
 	// password on descendant computer objects for the organizational units specified.
 	//
+	// AccountName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ServiceAccountCredentials's
+	// String and GoString methods.
+	//
 	// AccountName is a required field
 	AccountName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The password for the account.
 	//
+	// AccountPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ServiceAccountCredentials's
+	// String and GoString methods.
+	//
 	// AccountPassword is a required field
 	AccountPassword *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceAccountCredentials) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceAccountCredentials) GoString() string {
 	return s.String()
 }
@@ -9870,12 +15324,20 @@ type Session struct {
 	UserId *string `min:"2" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Session) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Session) GoString() string {
 	return s.String()
 }
@@ -9956,12 +15418,20 @@ type SharedImagePermissions struct {
 	SharedAccountId *string `locationName:"sharedAccountId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SharedImagePermissions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SharedImagePermissions) GoString() string {
 	return s.String()
 }
@@ -10024,17 +15494,29 @@ type Stack struct {
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 
+	// The streaming protocol you want your stack to prefer. This can be UDP or
+	// TCP. Currently, UDP is only supported in the Windows native client.
+	StreamingExperienceSettings *StreamingExperienceSettings `type:"structure"`
+
 	// The actions that are enabled or disabled for users during their streaming
 	// sessions. By default these actions are enabled.
 	UserSettings []*UserSetting `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Stack) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Stack) GoString() string {
 	return s.String()
 }
@@ -10111,6 +15593,12 @@ func (s *Stack) SetStorageConnectors(v []*StorageConnector) *Stack {
 	return s
 }
 
+// SetStreamingExperienceSettings sets the StreamingExperienceSettings field's value.
+func (s *Stack) SetStreamingExperienceSettings(v *StreamingExperienceSettings) *Stack {
+	s.StreamingExperienceSettings = v
+	return s
+}
+
 // SetUserSettings sets the UserSettings field's value.
 func (s *Stack) SetUserSettings(v []*UserSetting) *Stack {
 	s.UserSettings = v
@@ -10128,12 +15616,20 @@ type StackError struct {
 	ErrorMessage *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StackError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StackError) GoString() string {
 	return s.String()
 }
@@ -10159,12 +15655,20 @@ type StartFleetInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartFleetInput) GoString() string {
 	return s.String()
 }
@@ -10195,12 +15699,20 @@ type StartFleetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartFleetOutput) GoString() string {
 	return s.String()
 }
@@ -10218,12 +15730,20 @@ type StartImageBuilderInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartImageBuilderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartImageBuilderInput) GoString() string {
 	return s.String()
 }
@@ -10266,12 +15786,20 @@ type StartImageBuilderOutput struct {
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartImageBuilderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartImageBuilderOutput) GoString() string {
 	return s.String()
 }
@@ -10291,12 +15819,20 @@ type StopFleetInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopFleetInput) GoString() string {
 	return s.String()
 }
@@ -10327,12 +15863,20 @@ type StopFleetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopFleetOutput) GoString() string {
 	return s.String()
 }
@@ -10346,12 +15890,20 @@ type StopImageBuilderInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopImageBuilderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopImageBuilderInput) GoString() string {
 	return s.String()
 }
@@ -10385,12 +15937,20 @@ type StopImageBuilderOutput struct {
 	ImageBuilder *ImageBuilder `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopImageBuilderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopImageBuilderOutput) GoString() string {
 	return s.String()
 }
@@ -10417,12 +15977,20 @@ type StorageConnector struct {
 	ResourceIdentifier *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageConnector) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageConnector) GoString() string {
 	return s.String()
 }
@@ -10461,6 +16029,39 @@ func (s *StorageConnector) SetResourceIdentifier(v string) *StorageConnector {
 	return s
 }
 
+// The streaming protocol you want your stack to prefer. This can be UDP or
+// TCP. Currently, UDP is only supported in the Windows native client.
+type StreamingExperienceSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The preferred protocol that you want to use while streaming your application.
+	PreferredProtocol *string `type:"string" enum:"PreferredProtocol"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingExperienceSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingExperienceSettings) GoString() string {
+	return s.String()
+}
+
+// SetPreferredProtocol sets the PreferredProtocol field's value.
+func (s *StreamingExperienceSettings) SetPreferredProtocol(v string) *StreamingExperienceSettings {
+	s.PreferredProtocol = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10483,12 +16084,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -10528,12 +16137,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10552,12 +16169,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -10597,18 +16222,202 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app block.
+	AppBlockArn *string `type:"string"`
+
+	// The attributes to delete for an application.
+	AttributesToDelete []*string `type:"list" enum:"ApplicationAttribute"`
+
+	// The description of the application.
+	Description *string `type:"string"`
+
+	// The display name of the application. This name is visible to users in the
+	// application catalog.
+	DisplayName *string `type:"string"`
+
+	// The icon S3 location of the application.
+	IconS3Location *S3Location `type:"structure"`
+
+	// The launch parameters of the application.
+	LaunchParameters *string `min:"1" type:"string"`
+
+	// The launch path of the application.
+	LaunchPath *string `min:"1" type:"string"`
+
+	// The name of the application. This name is visible to users when display name
+	// is not specified.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The working directory of the application.
+	WorkingDirectory *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateApplicationInput"}
+	if s.LaunchParameters != nil && len(*s.LaunchParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchParameters", 1))
+	}
+	if s.LaunchPath != nil && len(*s.LaunchPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchPath", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.WorkingDirectory != nil && len(*s.WorkingDirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkingDirectory", 1))
+	}
+	if s.IconS3Location != nil {
+		if err := s.IconS3Location.Validate(); err != nil {
+			invalidParams.AddNested("IconS3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBlockArn sets the AppBlockArn field's value.
+func (s *UpdateApplicationInput) SetAppBlockArn(v string) *UpdateApplicationInput {
+	s.AppBlockArn = &v
+	return s
+}
+
+// SetAttributesToDelete sets the AttributesToDelete field's value.
+func (s *UpdateApplicationInput) SetAttributesToDelete(v []*string) *UpdateApplicationInput {
+	s.AttributesToDelete = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateApplicationInput) SetDescription(v string) *UpdateApplicationInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateApplicationInput) SetDisplayName(v string) *UpdateApplicationInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetIconS3Location sets the IconS3Location field's value.
+func (s *UpdateApplicationInput) SetIconS3Location(v *S3Location) *UpdateApplicationInput {
+	s.IconS3Location = v
+	return s
+}
+
+// SetLaunchParameters sets the LaunchParameters field's value.
+func (s *UpdateApplicationInput) SetLaunchParameters(v string) *UpdateApplicationInput {
+	s.LaunchParameters = &v
+	return s
+}
+
+// SetLaunchPath sets the LaunchPath field's value.
+func (s *UpdateApplicationInput) SetLaunchPath(v string) *UpdateApplicationInput {
+	s.LaunchPath = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateApplicationInput) SetName(v string) *UpdateApplicationInput {
+	s.Name = &v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *UpdateApplicationInput) SetWorkingDirectory(v string) *UpdateApplicationInput {
+	s.WorkingDirectory = &v
+	return s
+}
+
+type UpdateApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes an application in the application catalog.
+	Application *Application `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplication sets the Application field's value.
+func (s *UpdateApplicationOutput) SetApplication(v *Application) *UpdateApplicationOutput {
+	s.Application = v
+	return s
+}
+
 type UpdateDirectoryConfigInput struct {
 	_ struct{} `type:"structure"`
+
+	// The certificate-based authentication properties used to authenticate SAML
+	// 2.0 Identity Provider (IdP) user identities to Active Directory domain-joined
+	// streaming instances. Fallback is turned on by default when certificate-based
+	// authentication is Enabled . Fallback allows users to log in using their AD
+	// domain password if certificate-based authentication is unsuccessful, or to
+	// unlock a desktop lock screen. Enabled_no_directory_login_fallback enables
+	// certificate-based authentication, but does not allow users to log in using
+	// their AD domain password. Users will be disconnected to re-authenticate using
+	// certificates.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
 
 	// The name of the Directory Config object.
 	//
@@ -10623,12 +16432,20 @@ type UpdateDirectoryConfigInput struct {
 	ServiceAccountCredentials *ServiceAccountCredentials `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectoryConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectoryConfigInput) GoString() string {
 	return s.String()
 }
@@ -10649,6 +16466,12 @@ func (s *UpdateDirectoryConfigInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *UpdateDirectoryConfigInput) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *UpdateDirectoryConfigInput {
+	s.CertificateBasedAuthProperties = v
+	return s
 }
 
 // SetDirectoryName sets the DirectoryName field's value.
@@ -10676,12 +16499,20 @@ type UpdateDirectoryConfigOutput struct {
 	DirectoryConfig *DirectoryConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectoryConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectoryConfigOutput) GoString() string {
 	return s.String()
 }
@@ -10692,13 +16523,144 @@ func (s *UpdateDirectoryConfigOutput) SetDirectoryConfig(v *DirectoryConfig) *Up
 	return s
 }
 
+type UpdateEntitlementInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether all or only selected apps are entitled.
+	AppVisibility *string `type:"string" enum:"AppVisibility"`
+
+	// The attributes of the entitlement.
+	Attributes []*EntitlementAttribute `min:"1" type:"list"`
+
+	// The description of the entitlement.
+	Description *string `type:"string"`
+
+	// The name of the entitlement.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the stack with which the entitlement is associated.
+	//
+	// StackName is a required field
+	StackName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEntitlementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEntitlementInput"}
+	if s.Attributes != nil && len(s.Attributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.StackName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppVisibility sets the AppVisibility field's value.
+func (s *UpdateEntitlementInput) SetAppVisibility(v string) *UpdateEntitlementInput {
+	s.AppVisibility = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *UpdateEntitlementInput) SetAttributes(v []*EntitlementAttribute) *UpdateEntitlementInput {
+	s.Attributes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEntitlementInput) SetDescription(v string) *UpdateEntitlementInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEntitlementInput) SetName(v string) *UpdateEntitlementInput {
+	s.Name = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *UpdateEntitlementInput) SetStackName(v string) *UpdateEntitlementInput {
+	s.StackName = &v
+	return s
+}
+
+type UpdateEntitlementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The entitlement.
+	Entitlement *Entitlement `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEntitlementOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntitlement sets the Entitlement field's value.
+func (s *UpdateEntitlementOutput) SetEntitlement(v *Entitlement) *UpdateEntitlementOutput {
+	s.Entitlement = v
+	return s
+}
+
 type UpdateFleetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The fleet attributes to delete.
-	AttributesToDelete []*string `type:"list"`
+	AttributesToDelete []*string `type:"list" enum:"FleetAttribute"`
 
-	// The desired capacity for the fleet.
+	// The desired capacity for the fleet. This is not allowed for Elastic fleets.
 	ComputeCapacity *ComputeCapacity `type:"structure"`
 
 	// Deletes the VPC association for the specified fleet.
@@ -10732,7 +16694,7 @@ type UpdateFleetInput struct {
 	// assume a role, a fleet instance calls the AWS Security Token Service (STS)
 	// AssumeRole API operation and passes the ARN of the role to use. The operation
 	// creates a new session with temporary credentials. AppStream 2.0 retrieves
-	// the temporary credentials and creates the AppStream_Machine_Role credential
+	// the temporary credentials and creates the appstream_machine_role credential
 	// profile on the instance.
 	//
 	// For more information, see Using an IAM Role to Grant Permissions to Applications
@@ -10773,9 +16735,15 @@ type UpdateFleetInput struct {
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
 	//
+	//    * stream.standard.small
+	//
 	//    * stream.standard.medium
 	//
 	//    * stream.standard.large
+	//
+	//    * stream.standard.xlarge
+	//
+	//    * stream.standard.2xlarge
 	//
 	//    * stream.compute.large
 	//
@@ -10797,6 +16765,18 @@ type UpdateFleetInput struct {
 	//
 	//    * stream.memory.8xlarge
 	//
+	//    * stream.memory.z1d.large
+	//
+	//    * stream.memory.z1d.xlarge
+	//
+	//    * stream.memory.z1d.2xlarge
+	//
+	//    * stream.memory.z1d.3xlarge
+	//
+	//    * stream.memory.z1d.6xlarge
+	//
+	//    * stream.memory.z1d.12xlarge
+	//
 	//    * stream.graphics-design.large
 	//
 	//    * stream.graphics-design.xlarge
@@ -10807,12 +16787,39 @@ type UpdateFleetInput struct {
 	//
 	//    * stream.graphics-desktop.2xlarge
 	//
+	//    * stream.graphics.g4dn.xlarge
+	//
+	//    * stream.graphics.g4dn.2xlarge
+	//
+	//    * stream.graphics.g4dn.4xlarge
+	//
+	//    * stream.graphics.g4dn.8xlarge
+	//
+	//    * stream.graphics.g4dn.12xlarge
+	//
+	//    * stream.graphics.g4dn.16xlarge
+	//
 	//    * stream.graphics-pro.4xlarge
 	//
 	//    * stream.graphics-pro.8xlarge
 	//
 	//    * stream.graphics-pro.16xlarge
+	//
+	// The following instance types are available for Elastic fleets:
+	//
+	//    * stream.standard.small
+	//
+	//    * stream.standard.medium
+	//
+	//    * stream.standard.large
+	//
+	//    * stream.standard.xlarge
+	//
+	//    * stream.standard.2xlarge
 	InstanceType *string `min:"1" type:"string"`
+
+	// The maximum number of concurrent sessions for a fleet.
+	MaxConcurrentSessions *int64 `type:"integer"`
 
 	// The maximum amount of time that a streaming session can remain active, in
 	// seconds. If users are still connected to a streaming instance five minutes
@@ -10826,16 +16833,47 @@ type UpdateFleetInput struct {
 	// A unique name for the fleet.
 	Name *string `min:"1" type:"string"`
 
-	// The VPC configuration for the fleet.
+	// The platform of the fleet. WINDOWS_SERVER_2019 and AMAZON_LINUX2 are supported
+	// for Elastic fleets.
+	Platform *string `type:"string" enum:"PlatformType"`
+
+	// The S3 location of the session scripts configuration zip file. This only
+	// applies to Elastic fleets.
+	SessionScriptS3Location *S3Location `type:"structure"`
+
+	// The AppStream 2.0 view that is displayed to your users when they stream from
+	// the fleet. When APP is specified, only the windows of applications opened
+	// by users display. When DESKTOP is specified, the standard desktop that is
+	// provided by the operating system displays.
+	//
+	// The default value is APP.
+	StreamView *string `type:"string" enum:"StreamView"`
+
+	// The USB device filter strings that specify which USB devices a user can redirect
+	// to the fleet streaming session, when using the Windows native client. This
+	// is allowed but not required for Elastic fleets.
+	UsbDeviceFilterStrings []*string `type:"list"`
+
+	// The VPC configuration for the fleet. This is required for Elastic fleets,
+	// but not required for other fleet types. Elastic fleets require that you specify
+	// at least two subnets in different availability zones.
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFleetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFleetInput) GoString() string {
 	return s.String()
 }
@@ -10855,6 +16893,11 @@ func (s *UpdateFleetInput) Validate() error {
 	if s.ComputeCapacity != nil {
 		if err := s.ComputeCapacity.Validate(); err != nil {
 			invalidParams.AddNested("ComputeCapacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SessionScriptS3Location != nil {
+		if err := s.SessionScriptS3Location.Validate(); err != nil {
+			invalidParams.AddNested("SessionScriptS3Location", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -10942,6 +16985,12 @@ func (s *UpdateFleetInput) SetInstanceType(v string) *UpdateFleetInput {
 	return s
 }
 
+// SetMaxConcurrentSessions sets the MaxConcurrentSessions field's value.
+func (s *UpdateFleetInput) SetMaxConcurrentSessions(v int64) *UpdateFleetInput {
+	s.MaxConcurrentSessions = &v
+	return s
+}
+
 // SetMaxUserDurationInSeconds sets the MaxUserDurationInSeconds field's value.
 func (s *UpdateFleetInput) SetMaxUserDurationInSeconds(v int64) *UpdateFleetInput {
 	s.MaxUserDurationInSeconds = &v
@@ -10951,6 +17000,30 @@ func (s *UpdateFleetInput) SetMaxUserDurationInSeconds(v int64) *UpdateFleetInpu
 // SetName sets the Name field's value.
 func (s *UpdateFleetInput) SetName(v string) *UpdateFleetInput {
 	s.Name = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *UpdateFleetInput) SetPlatform(v string) *UpdateFleetInput {
+	s.Platform = &v
+	return s
+}
+
+// SetSessionScriptS3Location sets the SessionScriptS3Location field's value.
+func (s *UpdateFleetInput) SetSessionScriptS3Location(v *S3Location) *UpdateFleetInput {
+	s.SessionScriptS3Location = v
+	return s
+}
+
+// SetStreamView sets the StreamView field's value.
+func (s *UpdateFleetInput) SetStreamView(v string) *UpdateFleetInput {
+	s.StreamView = &v
+	return s
+}
+
+// SetUsbDeviceFilterStrings sets the UsbDeviceFilterStrings field's value.
+func (s *UpdateFleetInput) SetUsbDeviceFilterStrings(v []*string) *UpdateFleetInput {
+	s.UsbDeviceFilterStrings = v
 	return s
 }
 
@@ -10967,12 +17040,20 @@ type UpdateFleetOutput struct {
 	Fleet *Fleet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFleetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFleetOutput) GoString() string {
 	return s.String()
 }
@@ -11003,12 +17084,20 @@ type UpdateImagePermissionsInput struct {
 	SharedAccountId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateImagePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateImagePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -11054,12 +17143,20 @@ type UpdateImagePermissionsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateImagePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateImagePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -11077,7 +17174,7 @@ type UpdateStackInput struct {
 	ApplicationSettings *ApplicationSettings `type:"structure"`
 
 	// The stack attributes to delete.
-	AttributesToDelete []*string `type:"list"`
+	AttributesToDelete []*string `type:"list" enum:"StackAttribute"`
 
 	// Deletes the storage connectors currently enabled for the stack.
 	//
@@ -11110,17 +17207,29 @@ type UpdateStackInput struct {
 	// The storage connectors to enable.
 	StorageConnectors []*StorageConnector `type:"list"`
 
+	// The streaming protocol you want your stack to prefer. This can be UDP or
+	// TCP. Currently, UDP is only supported in the Windows native client.
+	StreamingExperienceSettings *StreamingExperienceSettings `type:"structure"`
+
 	// The actions that are enabled or disabled for users during their streaming
 	// sessions. By default, these actions are enabled.
 	UserSettings []*UserSetting `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStackInput) GoString() string {
 	return s.String()
 }
@@ -11251,6 +17360,12 @@ func (s *UpdateStackInput) SetStorageConnectors(v []*StorageConnector) *UpdateSt
 	return s
 }
 
+// SetStreamingExperienceSettings sets the StreamingExperienceSettings field's value.
+func (s *UpdateStackInput) SetStreamingExperienceSettings(v *StreamingExperienceSettings) *UpdateStackInput {
+	s.StreamingExperienceSettings = v
+	return s
+}
+
 // SetUserSettings sets the UserSettings field's value.
 func (s *UpdateStackInput) SetUserSettings(v []*UserSetting) *UpdateStackInput {
 	s.UserSettings = v
@@ -11264,12 +17379,20 @@ type UpdateStackOutput struct {
 	Stack *Stack `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateStackOutput) GoString() string {
 	return s.String()
 }
@@ -11304,12 +17427,20 @@ type UsageReportSubscription struct {
 	SubscriptionErrors []*LastReportGenerationExecutionError `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UsageReportSubscription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UsageReportSubscription) GoString() string {
 	return s.String()
 }
@@ -11357,9 +17488,17 @@ type User struct {
 	Enabled *bool `type:"boolean"`
 
 	// The first name, or given name, of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
 	FirstName *string `type:"string" sensitive:"true"`
 
 	// The last name, or surname, of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
 	LastName *string `type:"string" sensitive:"true"`
 
 	// The status of the user in the user pool. The status can be one of the following:
@@ -11379,15 +17518,27 @@ type User struct {
 	// The email address of the user.
 	//
 	// Users' email addresses are case-sensitive.
+	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
 	UserName *string `min:"1" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) GoString() string {
 	return s.String()
 }
@@ -11456,12 +17607,20 @@ type UserSetting struct {
 	Permission *string `type:"string" required:"true" enum:"Permission"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserSetting) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserSetting) GoString() string {
 	return s.String()
 }
@@ -11516,16 +17675,28 @@ type UserStackAssociation struct {
 	//
 	// Users' email addresses are case-sensitive.
 	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserStackAssociation's
+	// String and GoString methods.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserStackAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserStackAssociation) GoString() string {
 	return s.String()
 }
@@ -11596,12 +17767,20 @@ type UserStackAssociationError struct {
 	UserStackAssociation *UserStackAssociation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserStackAssociationError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserStackAssociationError) GoString() string {
 	return s.String()
 }
@@ -11637,12 +17816,20 @@ type VpcConfig struct {
 	SubnetIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcConfig) GoString() string {
 	return s.String()
 }
@@ -11664,6 +17851,13 @@ const (
 	AccessEndpointTypeStreaming = "STREAMING"
 )
 
+// AccessEndpointType_Values returns all elements of the AccessEndpointType enum
+func AccessEndpointType_Values() []string {
+	return []string{
+		AccessEndpointTypeStreaming,
+	}
+}
+
 const (
 	// ActionClipboardCopyFromLocalDevice is a Action enum value
 	ActionClipboardCopyFromLocalDevice = "CLIPBOARD_COPY_FROM_LOCAL_DEVICE"
@@ -11679,7 +17873,58 @@ const (
 
 	// ActionPrintingToLocalDevice is a Action enum value
 	ActionPrintingToLocalDevice = "PRINTING_TO_LOCAL_DEVICE"
+
+	// ActionDomainPasswordSignin is a Action enum value
+	ActionDomainPasswordSignin = "DOMAIN_PASSWORD_SIGNIN"
+
+	// ActionDomainSmartCardSignin is a Action enum value
+	ActionDomainSmartCardSignin = "DOMAIN_SMART_CARD_SIGNIN"
 )
+
+// Action_Values returns all elements of the Action enum
+func Action_Values() []string {
+	return []string{
+		ActionClipboardCopyFromLocalDevice,
+		ActionClipboardCopyToLocalDevice,
+		ActionFileUpload,
+		ActionFileDownload,
+		ActionPrintingToLocalDevice,
+		ActionDomainPasswordSignin,
+		ActionDomainSmartCardSignin,
+	}
+}
+
+const (
+	// AppVisibilityAll is a AppVisibility enum value
+	AppVisibilityAll = "ALL"
+
+	// AppVisibilityAssociated is a AppVisibility enum value
+	AppVisibilityAssociated = "ASSOCIATED"
+)
+
+// AppVisibility_Values returns all elements of the AppVisibility enum
+func AppVisibility_Values() []string {
+	return []string{
+		AppVisibilityAll,
+		AppVisibilityAssociated,
+	}
+}
+
+const (
+	// ApplicationAttributeLaunchParameters is a ApplicationAttribute enum value
+	ApplicationAttributeLaunchParameters = "LAUNCH_PARAMETERS"
+
+	// ApplicationAttributeWorkingDirectory is a ApplicationAttribute enum value
+	ApplicationAttributeWorkingDirectory = "WORKING_DIRECTORY"
+)
+
+// ApplicationAttribute_Values returns all elements of the ApplicationAttribute enum
+func ApplicationAttribute_Values() []string {
+	return []string{
+		ApplicationAttributeLaunchParameters,
+		ApplicationAttributeWorkingDirectory,
+	}
+}
 
 const (
 	// AuthenticationTypeApi is a AuthenticationType enum value
@@ -11690,7 +17935,40 @@ const (
 
 	// AuthenticationTypeUserpool is a AuthenticationType enum value
 	AuthenticationTypeUserpool = "USERPOOL"
+
+	// AuthenticationTypeAwsAd is a AuthenticationType enum value
+	AuthenticationTypeAwsAd = "AWS_AD"
 )
+
+// AuthenticationType_Values returns all elements of the AuthenticationType enum
+func AuthenticationType_Values() []string {
+	return []string{
+		AuthenticationTypeApi,
+		AuthenticationTypeSaml,
+		AuthenticationTypeUserpool,
+		AuthenticationTypeAwsAd,
+	}
+}
+
+const (
+	// CertificateBasedAuthStatusDisabled is a CertificateBasedAuthStatus enum value
+	CertificateBasedAuthStatusDisabled = "DISABLED"
+
+	// CertificateBasedAuthStatusEnabled is a CertificateBasedAuthStatus enum value
+	CertificateBasedAuthStatusEnabled = "ENABLED"
+
+	// CertificateBasedAuthStatusEnabledNoDirectoryLoginFallback is a CertificateBasedAuthStatus enum value
+	CertificateBasedAuthStatusEnabledNoDirectoryLoginFallback = "ENABLED_NO_DIRECTORY_LOGIN_FALLBACK"
+)
+
+// CertificateBasedAuthStatus_Values returns all elements of the CertificateBasedAuthStatus enum
+func CertificateBasedAuthStatus_Values() []string {
+	return []string{
+		CertificateBasedAuthStatusDisabled,
+		CertificateBasedAuthStatusEnabled,
+		CertificateBasedAuthStatusEnabledNoDirectoryLoginFallback,
+	}
+}
 
 // The fleet attribute.
 const (
@@ -11705,7 +17983,25 @@ const (
 
 	// FleetAttributeIamRoleArn is a FleetAttribute enum value
 	FleetAttributeIamRoleArn = "IAM_ROLE_ARN"
+
+	// FleetAttributeUsbDeviceFilterStrings is a FleetAttribute enum value
+	FleetAttributeUsbDeviceFilterStrings = "USB_DEVICE_FILTER_STRINGS"
+
+	// FleetAttributeSessionScriptS3Location is a FleetAttribute enum value
+	FleetAttributeSessionScriptS3Location = "SESSION_SCRIPT_S3_LOCATION"
 )
+
+// FleetAttribute_Values returns all elements of the FleetAttribute enum
+func FleetAttribute_Values() []string {
+	return []string{
+		FleetAttributeVpcConfiguration,
+		FleetAttributeVpcConfigurationSecurityGroupIds,
+		FleetAttributeDomainJoinInfo,
+		FleetAttributeIamRoleArn,
+		FleetAttributeUsbDeviceFilterStrings,
+		FleetAttributeSessionScriptS3Location,
+	}
+}
 
 const (
 	// FleetErrorCodeIamServiceRoleMissingEniDescribeAction is a FleetErrorCode enum value
@@ -11756,6 +18052,12 @@ const (
 	// FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction is a FleetErrorCode enum value
 	FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction = "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION"
 
+	// FleetErrorCodeFleetStopped is a FleetErrorCode enum value
+	FleetErrorCodeFleetStopped = "FLEET_STOPPED"
+
+	// FleetErrorCodeFleetInstanceProvisioningFailure is a FleetErrorCode enum value
+	FleetErrorCodeFleetInstanceProvisioningFailure = "FLEET_INSTANCE_PROVISIONING_FAILURE"
+
 	// FleetErrorCodeDomainJoinErrorFileNotFound is a FleetErrorCode enum value
 	FleetErrorCodeDomainJoinErrorFileNotFound = "DOMAIN_JOIN_ERROR_FILE_NOT_FOUND"
 
@@ -11793,6 +18095,42 @@ const (
 	FleetErrorCodeDomainJoinInternalServiceError = "DOMAIN_JOIN_INTERNAL_SERVICE_ERROR"
 )
 
+// FleetErrorCode_Values returns all elements of the FleetErrorCode enum
+func FleetErrorCode_Values() []string {
+	return []string{
+		FleetErrorCodeIamServiceRoleMissingEniDescribeAction,
+		FleetErrorCodeIamServiceRoleMissingEniCreateAction,
+		FleetErrorCodeIamServiceRoleMissingEniDeleteAction,
+		FleetErrorCodeNetworkInterfaceLimitExceeded,
+		FleetErrorCodeInternalServiceError,
+		FleetErrorCodeIamServiceRoleIsMissing,
+		FleetErrorCodeMachineRoleIsMissing,
+		FleetErrorCodeStsDisabledInRegion,
+		FleetErrorCodeSubnetHasInsufficientIpAddresses,
+		FleetErrorCodeIamServiceRoleMissingDescribeSubnetAction,
+		FleetErrorCodeSubnetNotFound,
+		FleetErrorCodeImageNotFound,
+		FleetErrorCodeInvalidSubnetConfiguration,
+		FleetErrorCodeSecurityGroupsNotFound,
+		FleetErrorCodeIgwNotAttached,
+		FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction,
+		FleetErrorCodeFleetStopped,
+		FleetErrorCodeFleetInstanceProvisioningFailure,
+		FleetErrorCodeDomainJoinErrorFileNotFound,
+		FleetErrorCodeDomainJoinErrorAccessDenied,
+		FleetErrorCodeDomainJoinErrorLogonFailure,
+		FleetErrorCodeDomainJoinErrorInvalidParameter,
+		FleetErrorCodeDomainJoinErrorMoreData,
+		FleetErrorCodeDomainJoinErrorNoSuchDomain,
+		FleetErrorCodeDomainJoinErrorNotSupported,
+		FleetErrorCodeDomainJoinNerrInvalidWorkgroupName,
+		FleetErrorCodeDomainJoinNerrWorkstationNotStarted,
+		FleetErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded,
+		FleetErrorCodeDomainJoinNerrPasswordExpired,
+		FleetErrorCodeDomainJoinInternalServiceError,
+	}
+}
+
 const (
 	// FleetStateStarting is a FleetState enum value
 	FleetStateStarting = "STARTING"
@@ -11807,13 +18145,35 @@ const (
 	FleetStateStopped = "STOPPED"
 )
 
+// FleetState_Values returns all elements of the FleetState enum
+func FleetState_Values() []string {
+	return []string{
+		FleetStateStarting,
+		FleetStateRunning,
+		FleetStateStopping,
+		FleetStateStopped,
+	}
+}
+
 const (
 	// FleetTypeAlwaysOn is a FleetType enum value
 	FleetTypeAlwaysOn = "ALWAYS_ON"
 
 	// FleetTypeOnDemand is a FleetType enum value
 	FleetTypeOnDemand = "ON_DEMAND"
+
+	// FleetTypeElastic is a FleetType enum value
+	FleetTypeElastic = "ELASTIC"
 )
+
+// FleetType_Values returns all elements of the FleetType enum
+func FleetType_Values() []string {
+	return []string{
+		FleetTypeAlwaysOn,
+		FleetTypeOnDemand,
+		FleetTypeElastic,
+	}
+}
 
 const (
 	// ImageBuilderStatePending is a ImageBuilderState enum value
@@ -11842,7 +18202,30 @@ const (
 
 	// ImageBuilderStateFailed is a ImageBuilderState enum value
 	ImageBuilderStateFailed = "FAILED"
+
+	// ImageBuilderStateUpdating is a ImageBuilderState enum value
+	ImageBuilderStateUpdating = "UPDATING"
+
+	// ImageBuilderStatePendingQualification is a ImageBuilderState enum value
+	ImageBuilderStatePendingQualification = "PENDING_QUALIFICATION"
 )
+
+// ImageBuilderState_Values returns all elements of the ImageBuilderState enum
+func ImageBuilderState_Values() []string {
+	return []string{
+		ImageBuilderStatePending,
+		ImageBuilderStateUpdatingAgent,
+		ImageBuilderStateRunning,
+		ImageBuilderStateStopping,
+		ImageBuilderStateStopped,
+		ImageBuilderStateRebooting,
+		ImageBuilderStateSnapshotting,
+		ImageBuilderStateDeleting,
+		ImageBuilderStateFailed,
+		ImageBuilderStateUpdating,
+		ImageBuilderStatePendingQualification,
+	}
+}
 
 const (
 	// ImageBuilderStateChangeReasonCodeInternalError is a ImageBuilderStateChangeReasonCode enum value
@@ -11851,6 +18234,14 @@ const (
 	// ImageBuilderStateChangeReasonCodeImageUnavailable is a ImageBuilderStateChangeReasonCode enum value
 	ImageBuilderStateChangeReasonCodeImageUnavailable = "IMAGE_UNAVAILABLE"
 )
+
+// ImageBuilderStateChangeReasonCode_Values returns all elements of the ImageBuilderStateChangeReasonCode enum
+func ImageBuilderStateChangeReasonCode_Values() []string {
+	return []string{
+		ImageBuilderStateChangeReasonCodeInternalError,
+		ImageBuilderStateChangeReasonCodeImageUnavailable,
+	}
+}
 
 const (
 	// ImageStatePending is a ImageState enum value
@@ -11867,7 +18258,26 @@ const (
 
 	// ImageStateDeleting is a ImageState enum value
 	ImageStateDeleting = "DELETING"
+
+	// ImageStateCreating is a ImageState enum value
+	ImageStateCreating = "CREATING"
+
+	// ImageStateImporting is a ImageState enum value
+	ImageStateImporting = "IMPORTING"
 )
+
+// ImageState_Values returns all elements of the ImageState enum
+func ImageState_Values() []string {
+	return []string{
+		ImageStatePending,
+		ImageStateAvailable,
+		ImageStateFailed,
+		ImageStateCopying,
+		ImageStateDeleting,
+		ImageStateCreating,
+		ImageStateImporting,
+	}
+}
 
 const (
 	// ImageStateChangeReasonCodeInternalError is a ImageStateChangeReasonCode enum value
@@ -11880,6 +18290,15 @@ const (
 	ImageStateChangeReasonCodeImageCopyFailure = "IMAGE_COPY_FAILURE"
 )
 
+// ImageStateChangeReasonCode_Values returns all elements of the ImageStateChangeReasonCode enum
+func ImageStateChangeReasonCode_Values() []string {
+	return []string{
+		ImageStateChangeReasonCodeInternalError,
+		ImageStateChangeReasonCodeImageBuilderNotAvailable,
+		ImageStateChangeReasonCodeImageCopyFailure,
+	}
+}
+
 const (
 	// MessageActionSuppress is a MessageAction enum value
 	MessageActionSuppress = "SUPPRESS"
@@ -11888,6 +18307,14 @@ const (
 	MessageActionResend = "RESEND"
 )
 
+// MessageAction_Values returns all elements of the MessageAction enum
+func MessageAction_Values() []string {
+	return []string{
+		MessageActionSuppress,
+		MessageActionResend,
+	}
+}
+
 const (
 	// PermissionEnabled is a Permission enum value
 	PermissionEnabled = "ENABLED"
@@ -11895,6 +18322,14 @@ const (
 	// PermissionDisabled is a Permission enum value
 	PermissionDisabled = "DISABLED"
 )
+
+// Permission_Values returns all elements of the Permission enum
+func Permission_Values() []string {
+	return []string{
+		PermissionEnabled,
+		PermissionDisabled,
+	}
+}
 
 const (
 	// PlatformTypeWindows is a PlatformType enum value
@@ -11905,7 +18340,36 @@ const (
 
 	// PlatformTypeWindowsServer2019 is a PlatformType enum value
 	PlatformTypeWindowsServer2019 = "WINDOWS_SERVER_2019"
+
+	// PlatformTypeAmazonLinux2 is a PlatformType enum value
+	PlatformTypeAmazonLinux2 = "AMAZON_LINUX2"
 )
+
+// PlatformType_Values returns all elements of the PlatformType enum
+func PlatformType_Values() []string {
+	return []string{
+		PlatformTypeWindows,
+		PlatformTypeWindowsServer2016,
+		PlatformTypeWindowsServer2019,
+		PlatformTypeAmazonLinux2,
+	}
+}
+
+const (
+	// PreferredProtocolTcp is a PreferredProtocol enum value
+	PreferredProtocolTcp = "TCP"
+
+	// PreferredProtocolUdp is a PreferredProtocol enum value
+	PreferredProtocolUdp = "UDP"
+)
+
+// PreferredProtocol_Values returns all elements of the PreferredProtocol enum
+func PreferredProtocol_Values() []string {
+	return []string{
+		PreferredProtocolTcp,
+		PreferredProtocolUdp,
+	}
+}
 
 const (
 	// SessionConnectionStateConnected is a SessionConnectionState enum value
@@ -11914,6 +18378,14 @@ const (
 	// SessionConnectionStateNotConnected is a SessionConnectionState enum value
 	SessionConnectionStateNotConnected = "NOT_CONNECTED"
 )
+
+// SessionConnectionState_Values returns all elements of the SessionConnectionState enum
+func SessionConnectionState_Values() []string {
+	return []string{
+		SessionConnectionStateConnected,
+		SessionConnectionStateNotConnected,
+	}
+}
 
 // Possible values for the state of a streaming session.
 const (
@@ -11926,6 +18398,15 @@ const (
 	// SessionStateExpired is a SessionState enum value
 	SessionStateExpired = "EXPIRED"
 )
+
+// SessionState_Values returns all elements of the SessionState enum
+func SessionState_Values() []string {
+	return []string{
+		SessionStateActive,
+		SessionStatePending,
+		SessionStateExpired,
+	}
+}
 
 const (
 	// StackAttributeStorageConnectors is a StackAttribute enum value
@@ -11960,7 +18441,28 @@ const (
 
 	// StackAttributeAccessEndpoints is a StackAttribute enum value
 	StackAttributeAccessEndpoints = "ACCESS_ENDPOINTS"
+
+	// StackAttributeStreamingExperienceSettings is a StackAttribute enum value
+	StackAttributeStreamingExperienceSettings = "STREAMING_EXPERIENCE_SETTINGS"
 )
+
+// StackAttribute_Values returns all elements of the StackAttribute enum
+func StackAttribute_Values() []string {
+	return []string{
+		StackAttributeStorageConnectors,
+		StackAttributeStorageConnectorHomefolders,
+		StackAttributeStorageConnectorGoogleDrive,
+		StackAttributeStorageConnectorOneDrive,
+		StackAttributeRedirectUrl,
+		StackAttributeFeedbackUrl,
+		StackAttributeThemeName,
+		StackAttributeUserSettings,
+		StackAttributeEmbedHostDomains,
+		StackAttributeIamRoleArn,
+		StackAttributeAccessEndpoints,
+		StackAttributeStreamingExperienceSettings,
+	}
+}
 
 const (
 	// StackErrorCodeStorageConnectorError is a StackErrorCode enum value
@@ -11969,6 +18471,14 @@ const (
 	// StackErrorCodeInternalServiceError is a StackErrorCode enum value
 	StackErrorCodeInternalServiceError = "INTERNAL_SERVICE_ERROR"
 )
+
+// StackErrorCode_Values returns all elements of the StackErrorCode enum
+func StackErrorCode_Values() []string {
+	return []string{
+		StackErrorCodeStorageConnectorError,
+		StackErrorCodeInternalServiceError,
+	}
+}
 
 // The type of storage connector.
 const (
@@ -11982,6 +18492,31 @@ const (
 	StorageConnectorTypeOneDrive = "ONE_DRIVE"
 )
 
+// StorageConnectorType_Values returns all elements of the StorageConnectorType enum
+func StorageConnectorType_Values() []string {
+	return []string{
+		StorageConnectorTypeHomefolders,
+		StorageConnectorTypeGoogleDrive,
+		StorageConnectorTypeOneDrive,
+	}
+}
+
+const (
+	// StreamViewApp is a StreamView enum value
+	StreamViewApp = "APP"
+
+	// StreamViewDesktop is a StreamView enum value
+	StreamViewDesktop = "DESKTOP"
+)
+
+// StreamView_Values returns all elements of the StreamView enum
+func StreamView_Values() []string {
+	return []string{
+		StreamViewApp,
+		StreamViewDesktop,
+	}
+}
+
 const (
 	// UsageReportExecutionErrorCodeResourceNotFound is a UsageReportExecutionErrorCode enum value
 	UsageReportExecutionErrorCodeResourceNotFound = "RESOURCE_NOT_FOUND"
@@ -11993,10 +18528,26 @@ const (
 	UsageReportExecutionErrorCodeInternalServiceError = "INTERNAL_SERVICE_ERROR"
 )
 
+// UsageReportExecutionErrorCode_Values returns all elements of the UsageReportExecutionErrorCode enum
+func UsageReportExecutionErrorCode_Values() []string {
+	return []string{
+		UsageReportExecutionErrorCodeResourceNotFound,
+		UsageReportExecutionErrorCodeAccessDenied,
+		UsageReportExecutionErrorCodeInternalServiceError,
+	}
+}
+
 const (
 	// UsageReportScheduleDaily is a UsageReportSchedule enum value
 	UsageReportScheduleDaily = "DAILY"
 )
+
+// UsageReportSchedule_Values returns all elements of the UsageReportSchedule enum
+func UsageReportSchedule_Values() []string {
+	return []string{
+		UsageReportScheduleDaily,
+	}
+}
 
 const (
 	// UserStackAssociationErrorCodeStackNotFound is a UserStackAssociationErrorCode enum value
@@ -12005,9 +18556,22 @@ const (
 	// UserStackAssociationErrorCodeUserNameNotFound is a UserStackAssociationErrorCode enum value
 	UserStackAssociationErrorCodeUserNameNotFound = "USER_NAME_NOT_FOUND"
 
+	// UserStackAssociationErrorCodeDirectoryNotFound is a UserStackAssociationErrorCode enum value
+	UserStackAssociationErrorCodeDirectoryNotFound = "DIRECTORY_NOT_FOUND"
+
 	// UserStackAssociationErrorCodeInternalError is a UserStackAssociationErrorCode enum value
 	UserStackAssociationErrorCodeInternalError = "INTERNAL_ERROR"
 )
+
+// UserStackAssociationErrorCode_Values returns all elements of the UserStackAssociationErrorCode enum
+func UserStackAssociationErrorCode_Values() []string {
+	return []string{
+		UserStackAssociationErrorCodeStackNotFound,
+		UserStackAssociationErrorCodeUserNameNotFound,
+		UserStackAssociationErrorCodeDirectoryNotFound,
+		UserStackAssociationErrorCodeInternalError,
+	}
+}
 
 const (
 	// VisibilityTypePublic is a VisibilityType enum value
@@ -12019,3 +18583,12 @@ const (
 	// VisibilityTypeShared is a VisibilityType enum value
 	VisibilityTypeShared = "SHARED"
 )
+
+// VisibilityType_Values returns all elements of the VisibilityType enum
+func VisibilityType_Values() []string {
+	return []string{
+		VisibilityTypePublic,
+		VisibilityTypePrivate,
+		VisibilityTypeShared,
+	}
+}
